@@ -1,0 +1,59 @@
+QWidget{
+    background-color: white;
+}
+
+QRadioButton {
+    spacing: 10px;
+    color: black;
+    font: 18px 'Microsoft YaHei';
+    background-color: transparent;
+}
+
+QRadioButton::indicator {
+    background-color: transparent;
+}
+
+QRadioButton::indicator:unchecked {
+    height: 22px;
+    width: 22px;
+    border: 2px solid rgb(154, 154, 154);
+    border-radius: 13px;
+}
+
+
+QRadioButton::indicator:checked {
+    height: 12px;
+    width: 12px;
+    border: 7px solid rgb(0, 153, 188);
+    border-radius: 13px;
+}
+
+QRadioButton::indicator:unchecked:hover {
+    height: 22px;
+    width: 22px;
+    border: 2px solid rgb(120, 120, 120);
+    border-radius: 13px;
+}
+
+QRadioButton::indicator:checked:hover {
+    height: 12px;
+    width: 12px;
+    border: 7px solid rgb(72, 210, 242);
+    border-radius: 13px;
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    height: 22px;
+    width: 22px;
+    background-color: rgb(153, 153, 153);
+    border: 2px solid rgb(84, 84, 84);
+    border-radius: 13px;
+
+}
+
+QRadioButton::indicator:checked:pressed {
+    height: 12px;
+    width: 12px;
+    border: 7px solid rgb(0, 107, 131);
+    border-radius: 13px;
+}

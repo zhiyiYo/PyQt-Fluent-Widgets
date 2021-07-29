@@ -1,0 +1,39 @@
+QWidget {
+    background-color: white;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+QWidget#windowMask{
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+}
+
+QLabel {
+    background-color: transparent;
+    color: black;
+    font-family: 'Microsoft YaHei';
+    border: none;
+}
+
+QLabel#titleLabel {
+    font-size: 22px;
+}
+
+QLabel#contentLabel {
+    font-size: 11pt;
+}
+
+QPushButton {
+    background-color: rgb(204, 204, 204);
+    font: 19px 'Microsoft YaHei';
+    border-radius: 4px;
+    border: transparent;
+}
+
+QPushButton:pressed:hover {
+    background-color: rgb(153, 153, 153);
+}
+
+QPushButton:hover {
+    background-color: rgb(230, 230, 230);
+}
