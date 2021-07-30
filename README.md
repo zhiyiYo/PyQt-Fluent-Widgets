@@ -38,7 +38,7 @@ A collection of commonly used widgets.
         Slider
       </td>
       <td>
-        <code>LineEdit</code>
+        <code>Slider</code>
       </td>
     </tr>
     <tr>
