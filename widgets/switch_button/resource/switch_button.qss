@@ -17,6 +17,7 @@ Indicator {
     width: 50px;
     qproperty-sliderOnColor: white;
     qproperty-sliderOffColor: black;
+    qproperty-sliderDisabledColor: rgb(155, 154, 153);
     border-radius: 13px;
 }
 
@@ -52,8 +53,6 @@ Indicator:checked:pressed {
 }
 
 Indicator:disabled{
-    qproperty-sliderOffColor: rgb(155, 154, 153);
-    qproperty-sliderOnColor: rgb(155, 154, 153);
     border: 1px solid rgb(194, 194, 191);
     background-color: rgb(194, 194, 191);
 }

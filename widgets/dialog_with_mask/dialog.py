@@ -1,9 +1,10 @@
 # coding:utf-8
 import textwrap
 
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QDialog, QGraphicsDropShadowEffect, QLabel, QPushButton, QWidget
+from PyQt5.QtCore import Qt, pyqtSignal, QPropertyAnimation, QEasingCurve, QAbstractAnimation
+from PyQt5.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
+                             QGraphicsOpacityEffect, QLabel, QPushButton,
+                             QWidget)
 
 
 class MaskDialog(QDialog):
@@ -24,6 +25,8 @@ class MaskDialog(QDialog):
 
     def __initWidget(self):
         """ 初始化小部件 """
+        self.__setShadowEffect()
+        self.widget.setWindowOpacity(0.1)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())
@@ -31,7 +34,6 @@ class MaskDialog(QDialog):
         self.widget.setMaximumWidth(675)
         self.titleLabel.move(30, 30)
         self.contentLabel.move(30, 70)
-        self.__setShadowEffect()
         self.contentLabel.setText('\n'.join(textwrap.wrap(self.content, 36)))
         # 设置层叠样式
         self.windowMask.setObjectName('windowMask')
@@ -52,6 +54,33 @@ class MaskDialog(QDialog):
         shadowEffect.setOffset(0, 5)
         self.widget.setGraphicsEffect(shadowEffect)
 
+    def showEvent(self, e):
+        """ 淡入 """
+        opacityEffect = QGraphicsOpacityEffect(self)
+        self.setGraphicsEffect(opacityEffect)
+        opacityAni = QPropertyAnimation(opacityEffect, b'opacity', self)
+        opacityAni.setStartValue(0)
+        opacityAni.setEndValue(1)
+        opacityAni.setDuration(200)
+        opacityAni.setEasingCurve(QEasingCurve.InSine)
+        opacityAni.finished.connect(opacityEffect.deleteLater)
+        opacityAni.start()
+        super().showEvent(e)
+
+    def closeEvent(self, e):
+        """ 淡出 """
+        self.widget.setGraphicsEffect(None)
+        opacityEffect = QGraphicsOpacityEffect(self)
+        self.setGraphicsEffect(opacityEffect)
+        opacityAni = QPropertyAnimation(opacityEffect, b'opacity', self)
+        opacityAni.setStartValue(1)
+        opacityAni.setEndValue(0)
+        opacityAni.setDuration(100)
+        opacityAni.setEasingCurve(QEasingCurve.OutCubic)
+        opacityAni.finished.connect(self.deleteLater)
+        opacityAni.start()
+        e.ignore()
+
     def __initLayout(self):
         """ 初始化布局 """
         self.contentLabel.adjustSize()
@@ -67,10 +96,8 @@ class MaskDialog(QDialog):
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()
-        self.deleteLater()
+        self.close()
 
     def __onYesButtonClicked(self):
         self.yesSignal.emit()
-        self.deleteLater()
-
-
+        self.close()
