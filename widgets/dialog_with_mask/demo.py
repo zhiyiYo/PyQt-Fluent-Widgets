@@ -2,7 +2,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
-from dialog import MaskDialog
+from mask_dialog import MaskDialog
 
 
 class Window(QWidget):

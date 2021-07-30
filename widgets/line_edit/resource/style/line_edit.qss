@@ -36,7 +36,7 @@ QMenu::right-arrow {
     width: 16px;
     height: 16px;
     right: 16px;
-    border-image: url(resource/images/子菜单右箭头.png);
+    border-border-image: url(resource/images/子菜单右箭头.png);
 
 }
 
@@ -69,4 +69,3 @@ QMenu::icon {
     position: absolute;
     left: 16px;
 }
-

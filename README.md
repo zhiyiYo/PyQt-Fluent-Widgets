@@ -85,7 +85,32 @@ A collection of commonly used widgets.
         <img src="screenshot/dialog_with_mask.gif" />
       </td>
     </tr>
-  </tbody>
+    <tr>
+      <td>
+        Folder List Dialog
+      </td>
+      <td>
+        <code>FolderListDialog</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/folder_list_dialog.gif" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        State Tooltip
+      </td>
+      <td>
+        <code>StateTooltip</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/state_tooltip.gif" />
+      </td>
+    </tr>
     <tr>
       <td>
         Smooth Scroll Area

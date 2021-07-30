@@ -36,11 +36,7 @@ class MaskDialog(QDialog):
         self.contentLabel.move(30, 70)
         self.contentLabel.setText('\n'.join(textwrap.wrap(self.content, 36)))
         # 设置层叠样式
-        self.windowMask.setObjectName('windowMask')
-        self.titleLabel.setObjectName('titleLabel')
-        self.contentLabel.setObjectName('contentLabel')
-        with open('resource/dialog.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
+        self.__setQss()
         # 调节内部对话框大小并居中
         self.__initLayout()
         # 信号连接到槽
@@ -101,3 +97,11 @@ class MaskDialog(QDialog):
     def __onYesButtonClicked(self):
         self.yesSignal.emit()
         self.close()
+
+    def __setQss(self):
+        """ 设置层叠样式 """
+        self.windowMask.setObjectName('windowMask')
+        self.titleLabel.setObjectName('titleLabel')
+        self.contentLabel.setObjectName('contentLabel')
+        with open('resource/mask_dialog.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
