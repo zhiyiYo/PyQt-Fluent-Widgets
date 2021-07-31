@@ -30,7 +30,7 @@ class StateTooltip(QWidget):
         self.closeTimer = QTimer(self)
         self.animation = QPropertyAnimation(self, b"windowOpacity")
         self.busyImage = QPixmap("resource/images/running.png")
-        self.doneImage = QPixmap("resource/images/complete.png")
+        self.doneImage = QPixmap("resource/images/completed.png")
         self.closeButton = QToolButton(self)
         # 初始化参数
         self.isDone = False
@@ -114,7 +114,7 @@ class StateTooltip(QWidget):
         painter.setRenderHints(QPainter.SmoothPixmapTransform)
         painter.setPen(Qt.NoPen)
         if not self.isDone:
-            painter.translate(25, 22)  # 原点平移到旋转中心
+            painter.translate(24, 23)  # 原点平移到旋转中心
             painter.rotate(self.rotateAngle)  # 坐标系旋转
             painter.drawPixmap(
                 -int(self.busyImage.width() / 2),
