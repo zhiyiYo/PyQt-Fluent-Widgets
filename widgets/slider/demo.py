@@ -12,6 +12,7 @@ class Window(QWidget):
         super().__init__(parent=parent)
         self.resize(300, 90)
         self.hSlider = Slider(Qt.Horizontal, self)
+        self.hSlider.setValue(20)
         self.hSlider.move(56, 30)
         with open('resource/slider.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())

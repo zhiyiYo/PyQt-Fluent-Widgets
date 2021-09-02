@@ -26,7 +26,6 @@ class MaskDialog(QDialog):
     def __initWidget(self):
         """ 初始化小部件 """
         self.__setShadowEffect()
-        self.widget.setWindowOpacity(0.1)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())

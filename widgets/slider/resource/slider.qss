@@ -2,7 +2,6 @@ QWidget{
     background-color: white;
 }
 
-/* 水平滑动条 */
 QSlider:horizontal {
     height: 26px;
     width: 188px;
@@ -10,15 +9,16 @@ QSlider:horizontal {
 }
 
 QSlider::groove:horizontal {
-    width: 188px;
     border: none;
-    background-color: transparent;
+    height: 4px;
 }
 
 QSlider::handle:horizontal {
     width: 26px;
     height: 26px;
     border-radius: 13px;
+    margin-top: -11px;
+    margin-bottom: -11px;
     background-color: rgb(0, 153, 188);
 }
 
@@ -34,54 +34,12 @@ QSlider::handle:horizontal:pressed {
 QSlider::sub-page:horizontal {
     /*已划过部分的颜色*/
     background: rgb(0, 153, 187);
-    margin-top: 11px;
-    margin-bottom: 11px;
+    height: 4px;
+    border-radius: 2px;
 }
 
 QSlider::add-page:horizontal {
-    background-color: rgb(130, 131, 134);
-    margin-top: 11px;
-    margin-bottom: 11px;
-}
-
-
-/* 竖直滑动条 */
-QSlider:vertical {
-    width: 26px;
-    height: 188px;
-    background-color: transparent;
-}
-
-QSlider::groove:vertical {
-    width: 26px;
-    border: none;
-    background-color: transparent;
-}
-
-QSlider::handle:vertical {
-    width: 26px;
-    height: 26px;
-    border-radius: 13px;
-    background-color: rgb(0, 153, 188);
-}
-
-QSlider::handle:vertical:hover {
-    background-color: rgb(72, 210, 242);
-}
-
-QSlider::handle:vertical:pressed {
-    background-color: rgb(0, 107, 131);
-}
-
-
-QSlider::add-page:vertical {
-    background: rgb(0, 153, 187);
-    margin-left: 11px;
-    margin-right: 11px;
-}
-
-QSlider::sub-page:vertical {
-    background-color: rgb(130, 131, 134);
-    margin-left: 11px;
-    margin-right: 11px;
+    background-color: rgb(153, 153, 153);
+    height: 4px;
+    border-radius: 2px;
 }
