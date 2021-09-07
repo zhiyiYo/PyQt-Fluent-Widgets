@@ -1,8 +1,7 @@
 # coding: utf-8
 from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
-from PyQt5.QtGui import QColor, QPainter, QMouseEvent
-from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QLabel, QToolButton,
-                             QWidget)
+from PyQt5.QtGui import QColor, QPainter
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
 
 class Indicator(QToolButton):
