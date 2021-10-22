@@ -141,6 +141,7 @@ class SwitchButton(QWidget):
 
     def setChecked(self, isChecked: bool):
         """ 设置选中状态 """
+        self.adjustSize()
         self.indicator.setChecked(isChecked)
 
     def toggleChecked(self):
