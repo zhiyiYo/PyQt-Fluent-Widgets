@@ -48,6 +48,19 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
+        Hollow Handle Slider
+      </td>
+      <td>
+        <code>HollowHandleStyle</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/hollow_handle_slider.gif" />
+      </td>
+    </tr>
+    <tr>
+      <td>
         Line Edit
       </td>
       <td>
