@@ -126,6 +126,19 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
+        Flow Layout
+      </td>
+      <td>
+        <code>FlowLayout</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/flow_layout.gif" />
+      </td>
+    </tr>
+    <tr>
+      <td>
         Smooth Scroll Area
       </td>
       <td>
