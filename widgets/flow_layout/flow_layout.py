@@ -4,13 +4,12 @@ from PyQt5.QtWidgets import QLayout
 
 
 class FlowLayout(QLayout):
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.__items = []
         self.__verticalSpacing = 10
         self.__horizontalSpacing = 10
-        self.__margins = QMargins(0, 0, 0, 0)
-        super().setContentsMargins(self.__margins)
 
     def addItem(self, item):
         self.__items.append(item)
@@ -43,11 +42,11 @@ class FlowLayout(QLayout):
 
     def heightForWidth(self, width: int):
         """ 根据宽度计算最小高度 """
-        return self.__do_layout(QRect(0, 0, width, 0), False)
+        return self.__doLayout(QRect(0, 0, width, 0), False)
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        self.__do_layout(rect, True)
+        self.__doLayout(rect, True)
 
     def sizeHint(self):
         return self.minimumSize()
@@ -58,7 +57,7 @@ class FlowLayout(QLayout):
         for item in self.__items:
             size = size.expandedTo(item.minimumSize())
 
-        m = self.__margins
+        m = self.contentsMargins()
         size += QSize(m.left()+m.right(), m.top()+m.bottom())
 
         return size
@@ -79,7 +78,7 @@ class FlowLayout(QLayout):
         """ 返回水平方向间距 """
         return self.__horizontalSpacing
 
-    def __do_layout(self, rect: QRect, move: bool):
+    def __doLayout(self, rect: QRect, move: bool):
         """ 根据大小调整小部件位置 """
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
