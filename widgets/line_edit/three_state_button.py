@@ -5,49 +5,45 @@ from PyQt5.QtWidgets import QToolButton
 
 
 class ThreeStateButton(QToolButton):
-    """ 三种状态对应三种图标的按钮 """
+    """ Three state tool button class """
 
-    def __init__(self, iconPath_dict: dict, parent=None):
+    def __init__(self, iconPaths: dict, parent=None):
         """
         Parameters
         ----------
-        iconPath_dict: dict
-            提供按钮 normal、hover、pressed 三种状态下的图标地址
+        iconPaths: dict
+            icon path dict, provide icons in `normal`, `hover` and `pressed` state
 
         parent:
-            父级窗口 """
-        super().__init__(parent)
-        # 引用图标地址字典
-        self.iconPath_dict = iconPath_dict
-        self.resize(QPixmap(self.iconPath_dict['normal']).size())
-        # 初始化小部件
-        self.initWidget()
+            parent window
 
-    def initWidget(self):
-        """ 初始化小部件 """
+        iconSize: tuple
+            icon size
+        """
+        super().__init__(parent)
+        self.iconPaths = iconPaths
         self.setCursor(Qt.ArrowCursor)
-        self.setIcon(QIcon(self.iconPath_dict['normal']))
-        self.setIconSize(QSize(self.width(), self.height()))
+        self.resize(QPixmap(iconPaths['normal']).size())
+        self.setIconSize(self.size())
+        self.setIcon(QIcon(self.iconPaths['normal']))
         self.setStyleSheet('border: none; margin: 0px')
 
     def enterEvent(self, e):
-        """ hover时更换图标 """
-        self.setIcon(QIcon(self.iconPath_dict['hover']))
+        self.setIcon(QIcon(self.iconPaths['hover']))
 
     def leaveEvent(self, e):
-        """ leave时更换图标 """
-        self.setIcon(QIcon(self.iconPath_dict['normal']))
+        self.setIcon(QIcon(self.iconPaths['normal']))
 
     def mousePressEvent(self, e):
-        """ 鼠标左键按下时更换图标 """
         if e.button() == Qt.RightButton:
             return
-        self.setIcon(QIcon(self.iconPath_dict['pressed']))
+
+        self.setIcon(QIcon(self.iconPaths['pressed']))
         super().mousePressEvent(e)
 
     def mouseReleaseEvent(self, e):
-        """ 鼠标左键松开时更换图标 """
         if e.button() == Qt.RightButton:
             return
-        self.setIcon(QIcon(self.iconPath_dict['normal']))
+
+        self.setIcon(QIcon(self.iconPaths['normal']))
         super().mouseReleaseEvent(e)

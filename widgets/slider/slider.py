@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QSlider
 
 
 class Slider(QSlider):
-    """ 可点击的滑动条 """
+    """ A slider which can be clicked """
 
     clicked = pyqtSignal()
 
@@ -14,7 +14,6 @@ class Slider(QSlider):
         super().__init__(QtOrientation, parent=parent)
 
     def mousePressEvent(self, e: QMouseEvent):
-        """ 鼠标点击时移动到鼠标所在处 """
         super().mousePressEvent(e)
         if self.orientation() == Qt.Horizontal:
             value = int(e.pos().x() / self.width() * self.maximum())

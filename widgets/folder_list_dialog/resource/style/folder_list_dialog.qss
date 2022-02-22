@@ -41,3 +41,41 @@ QPushButton#completeButton:disabled {
     background-color: rgb(204, 204, 204);
     color: rgb(122, 122, 122);
 }
+
+QScrollArea {
+    border: none;
+}
+
+/*滚动条*/
+QScrollBar:vertical {
+    background: white;
+    border: none;
+    width: 3px;
+}
+
+/*隐藏上箭头*/
+QScrollBar::sub-line {
+    background: transparent;
+}
+
+/*隐藏下箭头*/
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(128, 128, 128);
+    min-height: 40px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+
+#scrollWidget {
+    border: none;
+}

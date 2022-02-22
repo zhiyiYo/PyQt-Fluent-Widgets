@@ -1,11 +1,11 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
+from PyQt5.QtCore import QFile, Qt, QTimer, pyqtProperty, pyqtSignal
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
 
 class Indicator(QToolButton):
-    """ 指示器 """
+    """ Indicator of switch button """
 
     checkedChanged = pyqtSignal(bool)
 
@@ -26,7 +26,7 @@ class Indicator(QToolButton):
         self.timer.timeout.connect(self.__updateSliderPos)
 
     def __updateSliderPos(self):
-        """ 更新滑块位置 """
+        """ update slider position """
         if self.isChecked():
             if self.sliderX+self.sliderStep < self.sliderEndX:
                 self.sliderX += self.sliderStep
@@ -43,16 +43,17 @@ class Indicator(QToolButton):
         self.style().polish(self)
 
     def setChecked(self, isChecked: bool):
-        """ 设置选中状态 """
+        """ set checked state """
         if isChecked == self.isChecked():
             return
+
         super().setChecked(isChecked)
         self.sliderEndX = self.width()-2*self.sliderRadius - \
             self.padding if self.isChecked() else self.padding
         self.timer.start(5)
 
     def mouseReleaseEvent(self, e):
-        """ 鼠标点击更新选中状态 """
+        """ toggle checked state when mouse release"""
         super().mouseReleaseEvent(e)
         self.sliderEndX = self.width()-2*self.sliderRadius - \
             self.padding if self.isChecked() else self.padding
@@ -68,15 +69,19 @@ class Indicator(QToolButton):
         self.update()
 
     def paintEvent(self, e):
-        """ 绘制指示器 """
-        super().paintEvent(e)  # 背景和边框由 qss 指定
+        """ paint indicator """
+        # the background and border are specified by qss
+        super().paintEvent(e)
+
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
+
         if self.isEnabled():
             color = self.sliderOnColor if self.isChecked() else self.sliderOffColor
         else:
             color = self.sliderDisabledColor
+
         painter.setBrush(color)
         painter.drawEllipse(self.sliderX, self.padding,
                             self.sliderRadius*2, self.sliderRadius*2)
@@ -109,6 +114,7 @@ class Indicator(QToolButton):
 
 
 class SwitchButton(QWidget):
+    """ Switch button class """
 
     checkedChanged = pyqtSignal(bool)
 
@@ -122,30 +128,32 @@ class SwitchButton(QWidget):
         self.__initWidget()
 
     def __initWidget(self):
-        """ 初始化小部件 """
-        # 设置布局
+        """ initialize widgets """
+        # set layout
         self.hBox.addWidget(self.indicator)
         self.hBox.addWidget(self.label)
         self.hBox.setSpacing(self.__spacing)
         self.hBox.setAlignment(Qt.AlignLeft)
         self.setAttribute(Qt.WA_StyledBackground)
         self.hBox.setContentsMargins(0, 0, 0, 0)
-        # 设置默认样式
+
+        # set default style sheet
         with open('resource/switch_button.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
-        # 信号连接到槽
+
+        # connect signal to slot
         self.indicator.checkedChanged.connect(self.checkedChanged)
 
     def isChecked(self):
         return self.indicator.isChecked()
 
     def setChecked(self, isChecked: bool):
-        """ 设置选中状态 """
+        """ set checked state """
         self.adjustSize()
         self.indicator.setChecked(isChecked)
 
     def toggleChecked(self):
-        """ 切换选中状态 """
+        """ toggle checked state """
         self.indicator.setChecked(not self.indicator.isChecked())
 
     def setText(self, text: str):

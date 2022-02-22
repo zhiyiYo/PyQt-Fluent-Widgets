@@ -1,29 +1,31 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer
+from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal
 from PyQt5.QtGui import QPainter, QPixmap
 from PyQt5.QtWidgets import QLabel, QWidget, QToolButton
 
 
 class StateTooltip(QWidget):
-    """ 进度提示框 """
+    """ State tooltip """
 
-    def __init__(self, title="", content="", parent=None):
+    closedSignal = pyqtSignal()
+
+    def __init__(self, title, content, parent=None):
         """
         Parameters
         ----------
         title: str
-            状态气泡标题
+            title of tooltip
 
         content: str
-            状态气泡内容
+            content of tooltip
 
         parant:
-            父级窗口
+            parent window
         """
         super().__init__(parent)
         self.title = title
         self.content = content
-        # 实例化小部件
+
         self.titleLabel = QLabel(self.title, self)
         self.contentLabel = QLabel(self.content, self)
         self.rotateTimer = QTimer(self)
@@ -32,67 +34,77 @@ class StateTooltip(QWidget):
         self.busyImage = QPixmap("resource/images/running.png")
         self.doneImage = QPixmap("resource/images/completed.png")
         self.closeButton = QToolButton(self)
-        # 初始化参数
+
         self.isDone = False
         self.rotateAngle = 0
         self.deltaAngle = 20
-        # 初始化
+
         self.__initWidget()
 
     def __initWidget(self):
-        """ 初始化小部件 """
+        """ initialize widgets """
         self.setAttribute(Qt.WA_StyledBackground)
         self.rotateTimer.setInterval(50)
         self.closeTimer.setInterval(1000)
         self.contentLabel.setMinimumWidth(200)
-        # 将信号连接到槽函数
-        self.closeButton.clicked.connect(self.hide)  # 点击关闭按钮只是隐藏了提示条
+
+        # connect signal to slot
+        self.closeButton.clicked.connect(self.__onCloseButtonClicked)
         self.rotateTimer.timeout.connect(self.__rotateTimerFlowSlot)
         self.closeTimer.timeout.connect(self.__slowlyClose)
+
         self.__setQss()
         self.__initLayout()
-        # 打开定时器
+
         self.rotateTimer.start()
 
     def __initLayout(self):
-        """ 初始化布局 """
-        self.titleLabel.adjustSize()
-        self.contentLabel.adjustSize()
+        """ initialize layout """
         self.setFixedSize(max(self.titleLabel.width(),
-                          self.contentLabel.width()) + 40, 64)
+                          self.contentLabel.width()) + 70, 64)
         self.titleLabel.move(40, 11)
         self.contentLabel.move(15, 34)
         self.closeButton.move(self.width() - 30, 23)
 
     def __setQss(self):
-        """ 设置层叠样式 """
+        """ set style sheet """
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
+
         with open("resource/style/state_tooltip.qss", encoding="utf-8") as f:
             self.setStyleSheet(f.read())
 
+        self.titleLabel.adjustSize()
+        self.contentLabel.adjustSize()
+
     def setTitle(self, title: str):
-        """ 设置提示框的标题 """
+        """ set the title of tooltip """
         self.title = title
         self.titleLabel.setText(title)
         self.titleLabel.adjustSize()
 
     def setContent(self, content: str):
-        """ 设置提示框内容 """
+        """ set the content of tooltip """
         self.content = content
         self.contentLabel.setText(content)
+
+        # adjustSize() will mask spinner get stuck
         self.contentLabel.adjustSize()
 
     def setState(self, isDone=False):
-        """ 设置运行状态 """
+        """ set the state of tooltip """
         self.isDone = isDone
         self.update()
-        # 运行完成后主动关闭窗口
         if self.isDone:
             self.closeTimer.start()
 
+    def __onCloseButtonClicked(self):
+        """ close button clicked slot """
+        self.closedSignal.emit()
+        self.hide()
+
     def __slowlyClose(self):
-        """ 缓慢关闭窗口 """
+        """ fade out """
         self.rotateTimer.stop()
         self.animation.setEasingCurve(QEasingCurve.Linear)
         self.animation.setDuration(500)
@@ -102,26 +114,24 @@ class StateTooltip(QWidget):
         self.animation.start()
 
     def __rotateTimerFlowSlot(self):
-        """ 定时器溢出时旋转箭头 """
+        """ rotate timer time out slot """
         self.rotateAngle = (self.rotateAngle + self.deltaAngle) % 360
         self.update()
 
     def paintEvent(self, e):
-        """ 绘制背景 """
+        """ paint state tooltip """
         super().paintEvent(e)
-        # 绘制旋转箭头
         painter = QPainter(self)
         painter.setRenderHints(QPainter.SmoothPixmapTransform)
         painter.setPen(Qt.NoPen)
         if not self.isDone:
-            painter.translate(24, 23)  # 原点平移到旋转中心
-            painter.rotate(self.rotateAngle)  # 坐标系旋转
+            painter.translate(24, 23)
+            painter.rotate(self.rotateAngle)
             painter.drawPixmap(
                 -int(self.busyImage.width() / 2),
                 -int(self.busyImage.height() / 2),
                 self.busyImage,
             )
         else:
-            painter.drawPixmap(
-                14, 13, self.doneImage.width(), self.doneImage.height(), self.doneImage
-            )
+            painter.drawPixmap(14, 13, self.doneImage.width(),
+                               self.doneImage.height(), self.doneImage)

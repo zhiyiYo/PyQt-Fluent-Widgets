@@ -2,7 +2,6 @@
 import textwrap
 
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QDialog, QLabel, QPushButton
 
 
@@ -23,22 +22,22 @@ class Dialog(QDialog):
         self.__initWidget()
 
     def __initWidget(self):
-        """ 初始化小部件 """
+        """ initialize widgets """
         self.yesButton.setFocus()
         self.titleLabel.move(30, 22)
         self.contentLabel.setMaximumWidth(900)
         self.contentLabel.setText('\n'.join(textwrap.wrap(self.content, 51)))
         self.contentLabel.move(30, self.titleLabel.y()+50)
-        # 设置层叠样式
+
         self.__setQss()
-        # 调整窗口大小
-        self.yesButton.adjustSize()
-        self.cancelButton.adjustSize()
-        self.contentLabel.adjustSize()
+
+        # adjust window size
         rect = self.contentLabel.rect()
-        self.setFixedSize(60+rect.right()+self.cancelButton.width(),
-                          self.contentLabel.y()+self.contentLabel.height()+self.yesButton.height()+60)
-        # 信号连接到槽
+        w = 60 + rect.right() + self.cancelButton.width()
+        h = self.contentLabel.y()+self.contentLabel.height()+self.yesButton.height()+60
+        self.setFixedSize(w, h)
+
+        # connect signal to slot
         self.yesButton.clicked.connect(self.__onYesButtonClicked)
         self.cancelButton.clicked.connect(self.__onCancelButtonClicked)
 
@@ -57,8 +56,13 @@ class Dialog(QDialog):
         self.deleteLater()
 
     def __setQss(self):
-        """ 设置层叠样式 """
+        """ set style sheet """
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
+
         with open('resource/style/dialog.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
+
+        self.yesButton.adjustSize()
+        self.cancelButton.adjustSize()
+        self.contentLabel.adjustSize()

@@ -24,7 +24,7 @@ class Window(QWidget):
             self.stateTooltip = None
         else:
             self.stateTooltip = StateTooltip('正在训练模型', '客官请耐心等待哦~~', self)
-            self.stateTooltip.move(520, 30)
+            self.stateTooltip.move(510, 30)
             self.stateTooltip.show()
 
 

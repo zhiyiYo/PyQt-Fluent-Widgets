@@ -24,6 +24,14 @@ class ScrollArea(QScrollArea):
         self.smoothMoveTimer = QTimer(self)
         self.smoothMode = SmoothMode(SmoothMode.COSINE)
         self.smoothMoveTimer.timeout.connect(self.__smoothMove)
+        self.verticalScrollBar().valueChanged.connect(self.__fakeMoveMouse)
+
+    def __fakeMoveMouse(self):
+        """ fake move mouse """
+        pos = QCursor.pos()
+        QCursor.setPos(pos + QPoint(0, 1))
+        QApplication.processEvents()
+        QCursor.setPos(pos)
 
     def setSmoothMode(self, smoothMode):
         """ set smooth mode """
@@ -62,7 +70,7 @@ class ScrollArea(QScrollArea):
         self.smoothMoveTimer.start(1000 / self.fps)
 
     def __smoothMove(self):
-        """ scroll smoothly when timer time out """
+        """ 计时器溢出时进行平滑滚动 """
         totalDelta = 0
 
         # Calculate the scrolling distance of all unprocessed events,

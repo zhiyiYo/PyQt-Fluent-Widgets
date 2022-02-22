@@ -2,7 +2,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
-from mask_dialog import MaskDialog
+from message_dialog import MessageDialog
 
 
 class Window(QWidget):
@@ -18,7 +18,7 @@ class Window(QWidget):
 
     def showDialog(self):
         content = '如果将"音乐"文件夹从音乐中移除，则该文件夹不会再出现在音乐中。'
-        w = MaskDialog('删除此文件夹吗？', content, self)
+        w = MessageDialog('删除此文件夹吗？', content, self)
         w.exec()
 
 

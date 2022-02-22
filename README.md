@@ -87,10 +87,10 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
-        Dialog with Mask
+        Message Dialog
       </td>
       <td>
-        <code>MaskDialog</code>
+        <code>MessageDialog</code>
       </td>
     </tr>
     <tr>

@@ -6,14 +6,14 @@ from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
 
 
 class HollowHandleStyle(QProxyStyle):
-    """ 滑块中空样式 """
+    """ Hollow handle style """
 
     def __init__(self, config: dict = None):
         """
         Parameters
         ----------
         config: dict
-            样式配置
+            style config
         """
         super().__init__()
         self.config = {
@@ -28,13 +28,13 @@ class HollowHandleStyle(QProxyStyle):
         config = config if config else {}
         self.config.update(config)
 
-        # 计算 handle 的大小
+        # get handle size
         w = self.config["handle.margin"]+self.config["handle.ring-width"] + \
             self.config["handle.hollow-radius"]
         self.config["handle.size"] = QSize(2*w, 2*w)
 
     def subControlRect(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, sc: QStyle.SubControl, widget: QWidget):
-        """ 返回子控件所占的矩形区域 """
+        """ get the rectangular area occupied by the sub control """
         if cc != self.CC_Slider or opt.orientation != Qt.Horizontal or sc == self.SC_SliderTickmarks:
             return super().subControlRect(cc, opt, sc, widget)
 
@@ -49,13 +49,14 @@ class HollowHandleStyle(QProxyStyle):
             size = self.config["handle.size"]
             x = self.sliderPositionFromValue(
                 opt.minimum, opt.maximum, opt.sliderPosition, rect.width())
-            # 解决滑块跑出滑动条的情况
+
+            # solve the situation that the handle runs out of slider
             x *= (rect.width()-size.width())/rect.width()
             sliderRect = QRectF(x, 0, size.width(), size.height())
             return sliderRect.toRect()
 
     def drawComplexControl(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, painter: QPainter, widget: QWidget):
-        """ 绘制子控件 """
+        """ draw sub control """
         if cc != self.CC_Slider or opt.orientation != Qt.Horizontal:
             return super().drawComplexControl(cc, opt, painter, widget)
 
@@ -64,23 +65,23 @@ class HollowHandleStyle(QProxyStyle):
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
 
-        # 绘制滑槽
+        # paint groove
         painter.save()
         painter.translate(grooveRect.topLeft())
 
-        # 绘制划过的部分
+        # paint the crossed part
         w = handleRect.x()-grooveRect.x()
         h = self.config['groove.height']
         painter.setBrush(self.config["sub-page.color"])
         painter.drawRect(0, 0, w, h)
 
-        # 绘制未划过的部分
+        # paint the uncrossed part
         x = w+self.config['handle.size'].width()
         painter.setBrush(self.config["add-page.color"])
         painter.drawRect(x, 0, grooveRect.width()-w, h)
         painter.restore()
 
-        # 绘制滑块
+        # paint handle
         ringWidth = self.config["handle.ring-width"]
         hollowRadius = self.config["handle.hollow-radius"]
         radius = ringWidth + hollowRadius
@@ -97,7 +98,7 @@ class HollowHandleStyle(QProxyStyle):
         painter.setBrush(handleColor)
         painter.drawPath(path)
 
-        # 滑块按下
+        # press handle
         if widget.isSliderDown():
             handleColor.setAlpha(255)
             painter.setBrush(handleColor)
