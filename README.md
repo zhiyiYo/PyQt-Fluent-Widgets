@@ -148,6 +148,11 @@ A collection of commonly used widgets.
   </tbody>
 </table>
 
+## See Also
+Here are some projects that use PyQt-Fluent-Widgets:
+* [**zhiyiYo/Groove**: A music player based on PyQt5 and LAV Filters](https://github.com/zhiyiYo/Groove)
+* [**zhiyiYo/Alpha-Gobang-Zero**: A gobang robot based on reinforcement learning](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
+
 
 ## License
 ```txt
