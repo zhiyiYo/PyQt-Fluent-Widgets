@@ -139,6 +139,19 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
+        Acrylic Label
+      </td>
+      <td>
+        <code>AcrylicLabel</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/acrylic_label.png"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
         Smooth Scroll Area
       </td>
       <td>
