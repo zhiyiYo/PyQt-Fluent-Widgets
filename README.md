@@ -126,6 +126,19 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
+        Tooltip
+      </td>
+      <td>
+        <code>Tooltip</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/ToolTip.gif" />
+      </td>
+    </tr>
+    <tr>
+      <td>
         Flow Layout
       </td>
       <td>
@@ -147,7 +160,7 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <img src="screenshot/acrylic_label.png"/>
+        <img src="screenshot/acrylic_label.png" style="width:70%"/>
       </td>
     </tr>
     <tr>

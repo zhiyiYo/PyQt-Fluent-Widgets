@@ -1,0 +1,24 @@
+ToolTip[dark="false"] {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    background-color: rgb(243, 243, 243);
+}
+
+ToolTip[dark="true"] {
+    border: 1px solid rgb(28, 28, 28);
+    border-radius: 5px;
+    background-color: rgb(43, 43, 43);
+}
+
+QLabel {
+    background-color: transparent;
+    font: 15px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QLabel[dark="false"] {
+    color: black;
+}
+
+QLabel[dark="true"] {
+    color: white;
+}
