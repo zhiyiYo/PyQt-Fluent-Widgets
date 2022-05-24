@@ -171,6 +171,22 @@ A collection of commonly used widgets.
         <code>ScrollArea</code>
       </td>
     </tr>
+    <tr>
+      <td>
+        Opacity Animation Stacked Widget
+      </td>
+      <td>
+        <code>OpacityAniStackedWidget</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Pop Up Animation Stacked Widget
+      </td>
+      <td>
+        <code>PopUpAniStackedWidget</code>
+      </td>
+    </tr>
   </tbody>
 </table>
 

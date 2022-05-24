@@ -4,7 +4,7 @@ from enum import Enum
 from math import cos, pi
 
 from PyQt5.QtCore import QDateTime, Qt, QTimer, QPoint
-from PyQt5.QtGui import QWheelEvent, QCursor
+from PyQt5.QtGui import QWheelEvent
 from PyQt5.QtWidgets import QApplication, QScrollArea
 
 
