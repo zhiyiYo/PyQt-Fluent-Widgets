@@ -83,7 +83,7 @@ class Indicator(QToolButton):
             color = self.sliderDisabledColor
 
         painter.setBrush(color)
-        painter.drawEllipse(self.sliderX, self.padding,
+        painter.drawEllipse(int(self.sliderX), self.padding,
                             self.sliderRadius*2, self.sliderRadius*2)
 
     def getSliderOnColor(self):
