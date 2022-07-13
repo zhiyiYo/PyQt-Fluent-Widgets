@@ -18,7 +18,6 @@ class Window(QWidget):
             self.setStyleSheet(f.read())
 
     def onCheckedChanged(self, isChecked: bool):
-        """ 开关按钮选中状态改变的槽函数 """
         text = '开' if isChecked else '关'
         self.switchButton.setText(text)
 

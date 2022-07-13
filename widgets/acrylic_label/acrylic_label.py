@@ -1,13 +1,13 @@
 # coding:utf-8
 import numpy as np
 from PIL import Image
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
 from PyQt5.QtWidgets import QLabel
 from scipy.ndimage.filters import gaussian_filter
 
 
-def gaussianBlur(imagePath: str, blurRadius=18, brightFactor=1, blurPicSize: tuple = None) -> np.ndarray:
+def gaussianBlur(imagePath: str, blurRadius=18, brightFactor=1, blurPicSize: tuple = None) -> QPixmap:
     if not imagePath.startswith(':'):
         image = Image.open(imagePath)
     else:
@@ -33,7 +33,36 @@ def gaussianBlur(imagePath: str, blurRadius=18, brightFactor=1, blurPicSize: tup
         image[:, :, i] = gaussian_filter(
             image[:, :, i], blurRadius) * brightFactor
 
-    return image
+    # convert ndarray to QPixmap
+    h, w, _ = image.shape
+    return QPixmap.fromImage(QImage(image.data, w, h, 3*w, QImage.Format_RGB888))
+
+
+
+class BlurCoverThread(QThread):
+    """ Blur album cover thread """
+
+    blurFinished = pyqtSignal(QPixmap)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.imagePath = ""
+        self.blurRadius = 7
+        self.maxSize = (450, 450)
+
+    def run(self):
+        if not self.imagePath:
+            return
+
+        pixmap = gaussianBlur(
+            self.imagePath, self.blurRadius, 0.85, self.maxSize)
+        self.blurFinished.emit(pixmap)
+
+    def blur(self, imagePath: str, blurRadius=6, maxSize: tuple = (450, 450)):
+        self.imagePath = imagePath
+        self.blurRadius = blurRadius
+        self.maxSize = maxSize or self.maxSize
+        self.start()
 
 
 class AcrylicTextureLabel(QLabel):
@@ -115,6 +144,14 @@ class AcrylicLabel(QLabel):
         self.maxBlurSize = maxBlurSize
         self.acrylicTextureLabel = AcrylicTextureLabel(
             tintColor, luminosityColor, parent=self)
+        self.blurThread = BlurCoverThread(self)
+        self.blurThread.blurFinished.connect(self.__onBlurFinished)
+
+    def __onBlurFinished(self, blurPixmap: QPixmap):
+        """ blur finished slot """
+        self.blurPixmap = blurPixmap
+        self.setPixmap(self.blurPixmap)
+        self.adjustSize()
 
     def setImage(self, imagePath: str):
         """ set the image to be blurred """
@@ -122,11 +159,7 @@ class AcrylicLabel(QLabel):
             return
 
         self.imagePath = imagePath
-        image = Image.fromarray(gaussianBlur(
-            imagePath, self.blurRadius, 0.85, self.maxBlurSize))
-        self.blurPixmap = image.toqpixmap()  # type:QPixmap
-        self.setPixmap(self.blurPixmap)
-        self.adjustSize()
+        self.blurThread.blur(imagePath, self.blurRadius, self.maxBlurSize)
 
     def setTintColor(self, color: QColor):
         self.acrylicTextureLabel.setTintColor(color)
@@ -134,5 +167,7 @@ class AcrylicLabel(QLabel):
     def resizeEvent(self, e):
         super().resizeEvent(e)
         self.acrylicTextureLabel.resize(self.size())
-        self.setPixmap(self.blurPixmap.scaled(
-            self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))
+
+        if not self.blurPixmap.isNull():
+            self.setPixmap(self.blurPixmap.scaled(
+                self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))
