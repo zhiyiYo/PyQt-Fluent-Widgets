@@ -113,6 +113,19 @@ A collection of commonly used widgets.
     </tr>
     <tr>
       <td>
+        Color Picker
+      </td>
+      <td>
+        <code>ColorPicker</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="screenshot/color_picker.gif" style="height:70%"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
         State Tooltip
       </td>
       <td>
