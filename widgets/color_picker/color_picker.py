@@ -4,8 +4,9 @@ import math
 
 from PyQt5.QtCore import QPoint, Qt, pyqtSignal
 from PyQt5.QtGui import QColor, QMouseEvent, QPainter, QPen, QPixmap
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QPushButton, QSlider,
-                             QToolButton, QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (QFrame, QGraphicsDropShadowEffect, QHBoxLayout,
+                             QLabel, QPushButton, QSlider, QToolButton,
+                             QVBoxLayout, QWidget)
 
 
 class DefaultColorPanel(QWidget):
@@ -232,17 +233,31 @@ class ColorPickerPanel(QWidget):
 
     def __init__(self, startColor=QColor(255, 0, 0), parent=None):
         super().__init__(parent=parent)
-        self.setFixedHeight(480)
-        self.setWindowFlags(Qt.Popup)
+        self.setWindowFlags(
+            Qt.Popup | Qt.NoDropShadowWindowHint | Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
 
         with open('resource/color_picker.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
-        self.vBoxLayout = QVBoxLayout(self)
-        self.sliderWidget = SliderWidget(self)
-        self.colorCircle = ColorCircle(startColor, self)
-        self.defaultColorPanel = DefaultColorPanel(self)
+        self.hBoxLayout = QHBoxLayout(self)
+        self.container = QFrame(self)
+        self.vBoxLayout = QVBoxLayout(self.container)
+        self.sliderWidget = SliderWidget()
+        self.colorCircle = ColorCircle(startColor)
+        self.defaultColorPanel = DefaultColorPanel()
 
+        # add shadow
+        self.shadowEffect = QGraphicsDropShadowEffect(self)
+        self.shadowEffect.setBlurRadius(32)
+        self.shadowEffect.setColor(QColor(0, 0, 0, 70))
+        self.shadowEffect.setOffset(0, 5)
+        self.container.setGraphicsEffect(self.shadowEffect)
+
+        # initialize layout
+        self.hBoxLayout.setContentsMargins(20, 15, 20, 30)
+        self.hBoxLayout.addWidget(self.container)
+        self.vBoxLayout.setContentsMargins(15, 15, 15, 10)
         self.vBoxLayout.addWidget(self.colorCircle)
         self.vBoxLayout.addWidget(self.sliderWidget)
         self.vBoxLayout.addWidget(self.defaultColorPanel)
@@ -265,6 +280,8 @@ class ColorPickerPanel(QWidget):
 class ColorPicker(QWidget):
     """ Color picker """
 
+    colorChanged = pyqtSignal(QColor)
+
     def __init__(self, color: QColor, parent=None):
         super().__init__(parent=parent)
         self.setFixedSize(40, 30)
@@ -274,18 +291,19 @@ class ColorPicker(QWidget):
         self.colorPickerPanel.hide()
         self.setCursor(Qt.PointingHandCursor)
 
-    def __onColorChanged(self, color):
+    def __onColorChanged(self, color: QColor):
         self.color = color
         self.update()
+        self.colorChanged.emit(color)
 
     def mousePressEvent(self, e):
         pos = self.mapToGlobal(QPoint())
-        self.colorPickerPanel.move(pos+QPoint(50, 0))
+        self.colorPickerPanel.move(pos+QPoint(50, -20))
         self.colorPickerPanel.show()
 
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(QPen(QColor(0, 0, 0, 0.3), 2))
+        painter.setPen(Qt.NoPen)
         painter.setBrush(self.color)
         painter.drawRoundedRect(self.rect(), 5, 5)

@@ -3,6 +3,10 @@ QWidget {
   /* background-color: rgb(17, 34, 49); */
 }
 
+QFrame{
+  border-radius: 8px;
+}
+
 QPushButton{
   margin: 0;
   border: 0px solid transparent;

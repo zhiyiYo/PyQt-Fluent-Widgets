@@ -10,9 +10,10 @@ class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.resize(500, 500)
+        self.resize(500, 600)
         self.colorPicker = ColorPicker(QColor(0, 153, 188), self)
-        self.colorPicker.move(200, 200)
+        self.colorPicker.move(50, 50)
+        self.setStyleSheet("Demo{background:white}")
 
 
 if __name__ == '__main__':
