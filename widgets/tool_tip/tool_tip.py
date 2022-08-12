@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import QFile, QPropertyAnimation, QTimer, Qt
+from PyQt5.QtCore import QFile, QPropertyAnimation, QTimer, Qt, QPoint, QSize
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)
@@ -11,27 +11,33 @@ class ToolTip(QFrame):
         super().__init__(parent=parent)
         self.__text = text
         self.__duration = 1000
+        self.container = QFrame(self)
         self.timer = QTimer(self)
-        self.hBox = QHBoxLayout(self)
+
+        self.setLayout(QHBoxLayout())
+        self.containerLayout = QHBoxLayout(self.container)
         self.label = QLabel(text, self)
         self.ani = QPropertyAnimation(self, b'windowOpacity', self)
 
         # set layout
-        self.hBox.addWidget(self.label)
-        self.hBox.setContentsMargins(10, 7, 10, 7)
+        self.layout().setContentsMargins(15, 10, 15, 15)
+        self.layout().addWidget(self.container)
+        self.containerLayout.addWidget(self.label)
+        self.containerLayout.setContentsMargins(10, 7, 10, 7)
 
         # add shadow
         self.shadowEffect = QGraphicsDropShadowEffect(self)
-        self.shadowEffect.setBlurRadius(32)
+        self.shadowEffect.setBlurRadius(25)
         self.shadowEffect.setColor(QColor(0, 0, 0, 60))
         self.shadowEffect.setOffset(0, 5)
-        self.setGraphicsEffect(self.shadowEffect)
+        self.container.setGraphicsEffect(self.shadowEffect)
 
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(self.hide)
 
         # set style
-        self.setAttribute(Qt.WA_StyledBackground)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
         self.setDarkTheme(False)
         self.__setQss()
 
@@ -64,7 +70,6 @@ class ToolTip(QFrame):
 
     def setDarkTheme(self, dark=False):
         """ set dark theme """
-        dark = 'true' if dark else 'false'
         self.setProperty('dark', dark)
         self.label.setProperty('dark', dark)
         self.setStyle(QApplication.style())
@@ -77,3 +82,24 @@ class ToolTip(QFrame):
     def hideEvent(self, e):
         self.timer.stop()
         super().hideEvent(e)
+
+    def adjustPos(self, pos: QPoint, size: QSize):
+        """ adjust the position of tooltip relative to widget
+
+        Parameters
+        ----------
+        pos: QPoint
+            global position of widget
+
+        size: QSize
+            size of widget
+        """
+        x = pos.x() + size.width()//2 - self.width()//2
+        y = pos.y() - self.height()
+
+        # adjust postion to prevent tooltips from appearing outside the screen
+        desk = QApplication.desktop()
+        x = min(max(0, x), desk.width() - self.width() - 5)
+        y = min(max(0, y), desk.height() - self.height() - 5)
+
+        self.move(x, y)

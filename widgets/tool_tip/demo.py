@@ -14,7 +14,7 @@ class Demo(QWidget):
         self.button1 = QPushButton('キラキラ', self)
         self.button2 = QPushButton('食べた愛', self)
         self._toolTip = ToolTip(parent=self)
-        # self._tooltip.setDarkTheme(True)
+        # self._toolTip.setDarkTheme(True)
 
         self.button1.setToolTip('aiko - キラキラ ✨')
         self.button2.setToolTip('aiko - 食べた愛 🥰')
@@ -43,16 +43,7 @@ class Demo(QWidget):
         if e.type() == QEvent.Enter:
             tip.setText(obj.toolTip())
             tip.setDuration(obj.toolTipDuration())
-
-            pos = obj.mapTo(self, QPoint(0, 0))
-            x = pos.x() + obj.width()//2 - tip.width()//2
-            y = pos.y() - 5 - tip.height()
-
-            # adjust postion to prevent tooltips from appearing outside the window
-            x = min(max(5, x), self.width() - tip.width() - 5)
-            y = min(max(5, y), self.height() - tip.height() - 5)
-
-            tip.move(x, y)
+            tip.adjustPos(obj.mapToGlobal(QPoint()), obj.size())
             tip.show()
         elif e.type() == QEvent.Leave:
             tip.hide()
