@@ -1,0 +1,60 @@
+QWidget {
+    background-color: white;
+}
+
+SwitchButton {
+    qproperty-spacing: 15;
+    background-color: transparent;
+}
+
+SwitchButton>QLabel {
+    color: black;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    background-color: transparent;
+}
+
+
+Indicator {
+    height: 22px;
+    width: 50px;
+    qproperty-sliderOnColor: white;
+    qproperty-sliderOffColor: black;
+    qproperty-sliderDisabledColor: rgb(155, 154, 153);
+    border-radius: 13px;
+}
+
+
+Indicator:!checked {
+    background-color: transparent;
+    border: 1px solid rgb(102, 102, 102);
+}
+
+Indicator:!checked:hover {
+    border: 1px solid rgb(51, 51, 51);
+    background-color: transparent;
+}
+
+Indicator:!checked:pressed {
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(153, 153, 153);
+}
+
+Indicator:checked {
+    border: 1px solid rgb(0, 153, 188);
+    background-color: rgb(0, 153, 188);
+}
+
+Indicator:checked:hover {
+    border: 1px solid rgb(72, 210, 242);
+    background-color: rgb(72, 210, 242);
+}
+
+Indicator:checked:pressed {
+    border: 1px solid rgb(0, 107, 131);
+    background-color: rgb(0, 107, 131);
+}
+
+Indicator:disabled {
+    border: 1px solid rgb(194, 194, 191);
+    background-color: rgb(194, 194, 191);
+}

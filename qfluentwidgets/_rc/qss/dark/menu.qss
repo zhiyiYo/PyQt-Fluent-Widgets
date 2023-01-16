@@ -1,0 +1,341 @@
+/*设置菜单样式*/
+QMenu {
+    background-color: rgb(43, 43, 43);
+    font-size: 18px;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    padding: 5px 0px 16px 0px;
+    border: 1px solid rgb(34, 34, 34);
+    color: white;
+    /* border-radius: 5px; */
+}
+
+QMenu::right-arrow {
+    width: 16px;
+    height: 16px;
+    right: 16px;
+    border-image: url(:/images/menu/ChevronRight_white.png);
+}
+
+QMenu::separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 104);
+    margin-right: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 13;
+}
+
+QMenu::item {
+    padding: 7px 20px 7px 13px;
+}
+
+QMenu::item:selected {
+    border-width: 1px;
+    border-color: rgb(33, 33, 33);
+    background: rgb(64, 64, 64);
+    color: white;
+}
+
+/*添加到菜单样式*/
+QMenu#addToMenu,
+QMenu#addFromMenu {
+    padding: 5px 0px 8px 0px;
+}
+
+QMenu#addToMenu::item,
+QMenu#addFromMenu::item,
+QMenu#blackAddToMenu::item,
+QMenu#blackDownloadMenu::item,
+QMenu#deskLyricMenu::item {
+    height: 38px;
+    /*设置文字边距*/
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+
+QMenu#addToMenu::item:selected,
+QMenu#addFromMenu::item:selected {
+    background-color: rgb(64, 64, 64);
+}
+
+QMenu#addToMenu::separator {
+    height: 1px;
+    margin-right: 14px;
+    margin-left: 14px;
+}
+
+/*调整图标位置*/
+QMenu#addToMenu::icon,
+QMenu#addFromMenu::icon,
+QMenu#blackAddToMenu::icon,
+QMenu#blackDownloadMenu::icon,
+QMenu#deskLyricMenu::icon {
+    position: absolute;
+    left: 14px;
+}
+
+
+/*排序模式菜单样式*/
+QMenu#sortModeMenu {
+    font-size: 16px;
+    height: 114px;
+    border: 1px solid rgb(210, 210, 210);
+    border-bottom: none;
+    padding-top: 1px;
+    border-radius: 0px;
+    background-color: rgb(43, 43, 43);
+}
+
+QMenu#sortModeMenu[modeNumber='4'] {
+    height: 152px;
+}
+
+QMenu#sortModeMenu[modeNumber='2'] {
+    height: 76px;
+}
+
+QMenu#sortModeMenu::item {
+    height: 14px;
+    color: white;
+    padding: 11px 85px 11px 12px;
+    margin: 0px 1px 1px 1px;
+}
+
+QMenu#sortModeMenu::item:default {
+    background-color: rgb(0, 153, 188);
+}
+
+QMenu#sortModeMenu::item:selected {
+    background: rgb(64, 64, 64);
+}
+
+QMenu#sortModeMenu::item:default:selected {
+    background: rgb(0, 107, 131);
+}
+
+
+/*单行输入框右击菜单样式*/
+QMenu#lineEditMenu {
+    width: 1px;
+    height: 1px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 0px;
+    padding: 5px 0px 5px 0px;
+}
+
+QMenu#lineEditMenu[hasCancelAct='true'] {
+    width: 1px;
+}
+
+QMenu#lineEditMenu::icon {
+    position: absolute;
+    left: 16px;
+}
+
+QMenu#lineEditMenu::item {
+    padding-left: 26px;
+}
+
+
+/*主界面更多操作菜单样式*/
+QMenu#moreActionsMenu {
+    border-radius: 0px;
+    width: 1px;
+}
+
+QMenu#lyricMenu,
+QMenu#playSpeedMenu {
+    border-radius: 0px;
+}
+
+QMenu#moreActionsMenu::icon,
+QMenu#lyricMenu::icon,
+QMenu#playSpeedMenu::icon {
+    position: absolute;
+    left: 14px;
+}
+
+QMenu#moreActionsMenu::item,
+QMenu#lyricMenu::item,
+QMenu#playSpeedMenu::item {
+    /*设置文字边距*/
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+
+/*正在播放界面菜单样式*/
+QMenu#playingInterfaceMenu::right-arrow {
+    border-image: url(:/images/playing_interface/ChevronRight.png);
+}
+
+QMenu#playingInterfaceMenu,
+QMenu#blackAddToMenu,
+QMenu#blackDownloadMenu {
+    color: white;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(20, 20, 20);
+    border-radius: 5px;
+    font-size: 18px;
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QMenu#playingInterfaceMenu::separator,
+QMenu#blackAddToMenu::separator,
+QMenu#blackDownloadMenu::separator {
+    background-color: rgb(120, 120, 120);
+}
+
+QMenu#playingInterfaceMenu::item {
+    padding-right: 42px;
+}
+
+QMenu#playingInterfaceMenu::item,
+QMenu#blackAddToMenu::item,
+QMenu#blackDownloadMenu::item {
+    color: white;
+}
+
+QMenu#playingInterfaceMenu::item:disabled {
+    color: rgb(120, 120, 120);
+    background: transparent;
+}
+
+QMenu#playingInterfaceMenu::item:disabled:selected {
+    color: rgb(120, 120, 120);
+    background: transparent;
+}
+
+QMenu#playingInterfaceMenu::item:disabled:pressed {
+    color: rgb(120, 120, 120);
+    background: transparent;
+}
+
+QMenu#playingInterfaceMenu::item:selected,
+QMenu#blackAddToMenu::item:selected,
+QMenu#blackDownloadMenu::item:selected {
+    background: rgb(54, 54, 54);
+    color: white;
+}
+
+QMenu#playingInterfaceMenu::item:pressed,
+QMenu#blackAddToMenu::item:pressed,
+QMenu#blackDownloadMenu::item:pressed {
+    background: rgb(77, 77, 77);
+    color: white;
+}
+
+QMenu#blackAddToMenu,
+QMenu#blackDownloadMenu {
+    padding: 5px 0px 8px 0px;
+}
+
+
+/*亚克力菜单样式*/
+QMenu[effect='acrylic'] {
+    background: transparent;
+    border: 0px;
+}
+
+QMenu#acrylicMenu::item {
+    /* padding-right: 20px;
+    padding-left: 13px; */
+    padding: 7px 20px 7px 13px;
+    background-color: transparent;
+}
+
+QMenu#acrylicMenu::item:selected {
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    background-color: rgba(0, 0, 0, 25);
+    color: black;
+}
+
+QMenu#albumCardContextMenu::item,
+QMenu#playlistCardContextMenu::item {
+    padding: 7px 20px 7px 14px;
+}
+
+QMenu#albumCardContextMenu::item:selected,
+QMenu#playlistCardContextMenu::item:selected {
+    background-color: rgba(0, 0, 0, 25);
+}
+
+QMenu#albumCardContextMenu::separator,
+QMenu#playlistCardContextMenu::separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 104);
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15;
+}
+
+
+/*专辑界面更多操作菜单*/
+QMenu#appBarMoreActionsMenu,
+QMenu#albumInterfaceAddToMenu {
+    width: 1px;
+    border-radius: 0px;
+}
+
+QMenu#appBarMoreActionsMenu::item {
+    min-width: 120px;
+}
+
+QMenu#albumInterfaceAddToMenu::item:selected {
+    height: 38px;
+}
+
+QMenu#albumInterfaceAddToMenu::separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 104);
+    margin-right: 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 15;
+}
+
+QMenu#albumInterfaceAddToMenu::icon {
+    position: absolute;
+    left: 14px;
+    height: 20px;
+    width: 20px;
+}
+
+QMenu#albumInterfaceAddToMenu::item {
+    /*设置文字边距*/
+    padding-left: 20px;
+    margin-bottom: 2px;
+}
+
+QMenu#onlineSongListContextMenu::item {
+    padding-right: 35px;
+}
+
+
+/* 系统托盘菜单 */
+QMenu#systemTrayMenu {
+    width: 300px;
+}
+
+QMenu#systemTrayMenu::separator {
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    background: rgba(255, 255, 255, 80);
+}
+
+QMenu#systemTrayMenu::icon {
+    padding: 0px 0px 0px 27px;
+}
+
+QMenu#systemTrayMenu::item {
+    padding: 7px 20px 7px 25px;
+}

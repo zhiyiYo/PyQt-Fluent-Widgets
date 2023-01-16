@@ -1,5 +1,16 @@
 # PyQt-Fluent-Widgets
-A collection of commonly used widgets.
+A library of fluent design widgets.
+
+## Install
+To install use pip:
+```shell
+pip install PyQt-Fluent-Widgets
+```
+Or clone the repo:
+```shell
+git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
+python setup.py install
+```
 
 ## Detailed list
 <table>
@@ -18,32 +29,6 @@ A collection of commonly used widgets.
     <tr>
       <td colspan="2" align="center">
         <img src="screenshot/switch_button.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Radio Button
-      </td>
-      <td>
-        <code>QRadioButton</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/radio_button.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Slider
-      </td>
-      <td>
-        <code>Slider</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/slider.gif" />
       </td>
     </tr>
     <tr>
@@ -109,19 +94,6 @@ A collection of commonly used widgets.
     <tr>
       <td colspan="2" align="center">
         <img src="screenshot/folder_list_dialog.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Color Picker
-      </td>
-      <td>
-        <code>ColorPicker</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/color_picker.gif" style="height:70%"/>
       </td>
     </tr>
     <tr>

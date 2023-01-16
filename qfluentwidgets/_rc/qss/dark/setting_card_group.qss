@@ -1,0 +1,15 @@
+SettingCardGroup {
+    background-color: transparent;
+}
+
+SettingCardGroup>QLabel,
+HyperlinkGroup>QLabel {
+    background-color: transparent;
+    font: 25px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+}
+
+HyperlinkGroup>QLabel {
+    padding-left: 13px;
+}
+

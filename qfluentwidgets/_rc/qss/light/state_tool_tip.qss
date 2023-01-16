@@ -1,0 +1,29 @@
+QWidget {
+    background-color: rgb(0, 107, 131);
+}
+
+QLabel#titleLabel {
+    color: white;
+    font: 17px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QLabel#contentLabel {
+    color: white;
+    font: 16px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QToolButton {
+    border: none;
+    margin: 0px;
+    width: 14px;
+    height: 14px;
+    border-image: url(:/images/state_tooltip/close_normal.png) top center no-repeat;
+}
+
+QToolButton:hover {
+    border-image: url(:/images/state_tooltip/close_hover.png) top center no-repeat;
+}
+
+QToolButton:pressed {
+    border-image: url(:/images/state_tooltip/close_hover.png) top center no-repeat;
+}
