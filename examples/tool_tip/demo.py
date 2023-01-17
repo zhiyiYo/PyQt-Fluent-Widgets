@@ -16,7 +16,7 @@ class Demo(QWidget):
         self._toolTip = ToolTip(parent=self)
         # self._toolTip.setDarkTheme(True)
 
-        self.button1.setToolTip('aiko - キラキラ ✨\n'*8)
+        self.button1.setToolTip('aiko - キラキラ ✨')
         self.button2.setToolTip('aiko - 食べた愛 🥰')
         self.button1.setToolTipDuration(1000)
         self.button2.setToolTipDuration(5000)

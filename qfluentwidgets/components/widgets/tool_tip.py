@@ -39,6 +39,7 @@ class ToolTip(QFrame):
         self.timer.timeout.connect(self.hide)
 
         # set style
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
         self.setDarkTheme(False)

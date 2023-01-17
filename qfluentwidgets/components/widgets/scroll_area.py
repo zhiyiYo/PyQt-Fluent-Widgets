@@ -22,7 +22,7 @@ class ScrollArea(QScrollArea):
         self.scrollStamps = deque()
         self.stepsLeftQueue = deque()
         self.smoothMoveTimer = QTimer(self)
-        self.smoothMode = SmoothMode(SmoothMode.COSINE)
+        self.smoothMode = SmoothMode(SmoothMode.LINEAR)
         self.smoothMoveTimer.timeout.connect(self.__smoothMove)
 
     def setSmoothMode(self, smoothMode):

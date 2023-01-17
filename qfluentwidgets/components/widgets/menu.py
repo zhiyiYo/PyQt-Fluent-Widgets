@@ -4,7 +4,7 @@ from PyQt5.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QPoint, QRect
 from PyQt5.QtWidgets import QAction, QApplication, QMenu, QWidget
 
 from ...common.icon import Icon, getIconColor
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import setStyleSheet, getStyleSheet
 
 
 class MenuIconFactory:
@@ -45,7 +45,7 @@ class MenuIconFactory:
     @classmethod
     def create(cls, iconType: str):
         """ create icon """
-        path = f":/images/menu/{iconType}_{getIconColor()}.png"
+        path = f":/qfluentwidgets/images/menu/{iconType}_{getIconColor()}.png"
         return Icon(path)
 
 
@@ -57,7 +57,7 @@ class DWMMenu(QMenu):
 
     def __init__(self, title="", parent=None):
         super().__init__(title, parent)
-        self.windowEffect = WindowEffect()
+        self.windowEffect = WindowEffect(self)
         self.setWindowFlags(
             Qt.FramelessWindowHint | Qt.Popup | Qt.NoDropShadowWindowHint)
         self.setAttribute(Qt.WA_StyledBackground)
@@ -92,7 +92,7 @@ class LineEditMenu(DWMMenu):
         self.animation = QPropertyAnimation(self, b"geometry")
         self.animation.setDuration(300)
         self.animation.setEasingCurve(QEasingCurve.OutQuad)
-        setStyleSheet(self, 'menu')
+        self.setProperty("selectAll", bool(self.parent().text()))
 
     def createActions(self):
         self.cutAct = QAction(
@@ -135,11 +135,9 @@ class LineEditMenu(DWMMenu):
     def exec_(self, pos):
         self.clear()
         self.createActions()
-        self.setProperty("hasCancelAct", "false")
 
         if QApplication.clipboard().mimeData().hasText():
             if self.parent().text():
-                self.setProperty("hasCancelAct", "true")
                 if self.parent().selectedText():
                     self.addActions(self.action_list)
                 else:
@@ -148,7 +146,6 @@ class LineEditMenu(DWMMenu):
                 self.addAction(self.pasteAct)
         else:
             if self.parent().text():
-                self.setProperty("hasCancelAct", "true")
                 if self.parent().selectedText():
                     self.addActions(
                         self.action_list[:2] + self.action_list[3:])
@@ -157,7 +154,7 @@ class LineEditMenu(DWMMenu):
             else:
                 return
 
-        w = 130+max(self.fontMetrics().width(i.text()) for i in self.actions())
+        w = 128+max(self.fontMetrics().width(i.text()) for i in self.actions())
         h = len(self.actions()) * 40 + 10
 
         self.animation.setStartValue(QRect(pos.x(), pos.y(), 1, 1))

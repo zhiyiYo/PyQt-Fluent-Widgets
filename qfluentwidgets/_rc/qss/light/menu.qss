@@ -1,18 +1,15 @@
 QMenu {
     background-color: rgb(232, 232, 232);
-    font-size: 18px;
     font: 18px 'Segoe UI', 'Microsoft YaHei';
-    padding: 5px 0px 16px 0px;
+    padding: 5px 0px 5px 0px;
     border: 1px solid rgb(200, 200, 200);
-    /* border-radius: 5px; */
 }
 
 QMenu::right-arrow {
     width: 16px;
     height: 16px;
     right: 16px;
-    border-image: url(:/images/menu/ChevronRight_black.png);
-
+    border-image: url(:/qfluentwidgets/images/menu/ChevronRight_black.png);
 }
 
 QMenu::separator {
@@ -25,7 +22,7 @@ QMenu::separator {
 }
 
 QMenu::item {
-    padding: 7px 20px 7px 13px;
+    padding: 7px 13px 7px 13px;
 }
 
 QMenu::item:selected {
@@ -40,12 +37,6 @@ QMenu#lineEditMenu {
     width: 1px;
     height: 1px;
     border: 1px solid rgb(200, 200, 200);
-    border-radius: 0px;
-    padding: 5px 0px 5px 0px;
-}
-
-QMenu#lineEditMenu[hasCancelAct='true'] {
-    width: 1px;
 }
 
 QMenu#lineEditMenu::icon {
@@ -55,4 +46,8 @@ QMenu#lineEditMenu::icon {
 
 QMenu#lineEditMenu::item {
     padding-left: 26px;
+}
+
+QMenu#lineEditMenu[selectAll=true]::item {
+    width: 118px;
 }

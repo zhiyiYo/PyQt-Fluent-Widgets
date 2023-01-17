@@ -5,10 +5,10 @@ from pathlib import Path
 from typing import Iterable, List, Union
 
 import darkdetect
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtGui import QColor
 
 from .exception_handler import exceptionHandler
-from .singleton import Singleton
 
 
 class ConfigValidator:
@@ -150,7 +150,7 @@ class ConfigItem:
     """ Config item """
 
     def __init__(self, group: str, name: str, default, validator: ConfigValidator = None,
-                 serializer: ConfigSerializer = None):
+                 serializer: ConfigSerializer = None, restart=False):
         """
         Parameters
         ----------
@@ -168,6 +168,9 @@ class ConfigItem:
 
         serializer: ConfigSerializer
             config serializer
+
+        restart: bool
+            whether to restart the application after updating value
         """
         self.group = group
         self.name = name
@@ -175,6 +178,7 @@ class ConfigItem:
         self.serializer = serializer or ConfigSerializer()
         self.__value = default
         self.value = default
+        self.restart = restart
 
     @property
     def value(self):
@@ -189,6 +193,9 @@ class ConfigItem:
     def key(self):
         """ get the config key separated by `.` """
         return self.group+"."+self.name if self.name else self.group
+
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}[value={self.value}]'
 
     def serialize(self):
         return self.serializer.serialize(self.value)
@@ -205,6 +212,9 @@ class RangeConfigItem(ConfigItem):
         """ get the available range of config """
         return self.validator.range
 
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}[range={self.range}, value={self.value}]'
+
 
 class OptionsConfigItem(ConfigItem):
     """ Config item with options """
@@ -213,44 +223,53 @@ class OptionsConfigItem(ConfigItem):
     def options(self):
         return self.validator.options
 
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}[options={self.options}, value={self.value}]'
+
 
 class ColorConfigItem(ConfigItem):
     """ Color config item """
 
-    def __init__(self, group: str, name: str, default):
-        super().__init__(group, name, QColor(default), ColorValidator(default), ColorSerializer())
+    def __init__(self, group: str, name: str, default, restart=False):
+        super().__init__(group, name, QColor(default), ColorValidator(default),
+                         ColorSerializer(), restart)
+
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}[value={self.value.name()}]'
 
 
-class Config(Singleton):
+class QConfig(QObject):
     """ Config of app """
 
-    folder = Path('config')
-    file = folder/"config.json"
+    appRestartSig = pyqtSignal()
 
     themeMode = OptionsConfigItem(
         "MainWindow", "Theme", "Light", OptionsValidator(["Light", "Dark", "Auto"]))
 
     def __init__(self):
+        super().__init__()
+        self.file = Path("config/config.json")
         self._theme = "Light"
+        self._cfg = self
 
-    @classmethod
-    def get(cls, item: ConfigItem):
+    def get(self, item: ConfigItem):
         return item.value
 
-    @classmethod
-    def set(cls, item: ConfigItem, value):
+    def set(self, item: ConfigItem, value):
         if item.value == value:
             return
 
         item.value = value
-        cls.save()
+        self.save()
 
-    @classmethod
-    def toDict(cls, serialize=True):
+        if item.restart:
+            self._cfg.appRestartSig.emit()
+
+    def toDict(self, serialize=True):
         """ convert config items to `dict` """
         items = {}
-        for name in dir(cls):
-            item = getattr(cls, name)
+        for name in dir(self._cfg.__class__):
+            item = getattr(self._cfg.__class__, name)
             if not isinstance(item, ConfigItem):
                 continue
 
@@ -266,30 +285,39 @@ class Config(Singleton):
 
         return items
 
-    @classmethod
-    def save(cls):
-        cls.folder.mkdir(parents=True, exist_ok=True)
-        with open(cls.file, "w", encoding="utf-8") as f:
-            json.dump(cls.toDict(), f, ensure_ascii=False, indent=4)
+    def save(self):
+        self._cfg.file.parent.mkdir(parents=True, exist_ok=True)
+        with open(self._cfg.file, "w", encoding="utf-8") as f:
+            json.dump(self._cfg.toDict(), f, ensure_ascii=False, indent=4)
 
-    @exceptionHandler
-    def load(self, file: str = None):
-        """ load config """
-        if isinstance(file, str) and Path(file).exists():
-            path = Path(file)
-            Config.folder = path.parent
-            Config.file = path.name
+    @exceptionHandler()
+    def load(self, file=None, config=None):
+        """ load config
+
+        Parameters
+        ----------
+        file: str or Path
+            the path of json config file
+
+        config: Config
+            config object to be initialized
+        """
+        if isinstance(config, QConfig):
+            self._cfg = config
+
+        if isinstance(file, (str, Path)):
+            self._cfg.file = Path(file)
 
         try:
-            with open(self.file, encoding="utf-8") as f:
+            with open(self._cfg.file, encoding="utf-8") as f:
                 cfg = json.load(f)
         except:
             cfg = {}
 
         # map config items'key to item
         items = {}
-        for name in dir(self.__class__):
-            item = getattr(Config, name)
+        for name in dir(self._cfg.__class__):
+            item = getattr(self._cfg.__class__, name)
             if isinstance(item, ConfigItem):
                 items[item.key] = item
 
@@ -303,15 +331,15 @@ class Config(Singleton):
                     if items.get(key) is not None:
                         items[key].deserializeFrom(value)
 
-        if self.get(self.themeMode) == "Auto":
-            self._theme = darkdetect.theme() or "Light"
+        if self.get(self._cfg.themeMode) == "Auto":
+            self._cfg._theme = darkdetect.theme() or "Light"
         else:
-            self._theme = self.get(self.themeMode)
+            self._cfg._theme = self.get(self._cfg.themeMode)
 
     @property
     def theme(self):
         """ get theme mode, can be `light` or `dark` """
-        return self._theme.lower()
+        return self._cfg._theme.lower()
 
 
-config = Config()
+config = QConfig()

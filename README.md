@@ -1,5 +1,30 @@
-# PyQt-Fluent-Widgets
-A library of fluent design widgets.
+<p align="center">
+  <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
+</p>
+  <h1 align="center">
+  PyQt-Fluent-Widgets
+</h1>
+<p align="center">
+  A fluent design widgets library based on PyQt5
+</p>
+
+<p align="center">
+
+  <a style="text-decoration:none">
+    <img src="https://img.shields.io/badge/Python-3.6+-blue.svg?color=00B16A" alt="Python 3.6+"/>
+  </a>
+
+  <a style="text-decoration:none">
+    <img src="https://img.shields.io/badge/PyQt-5.15.6-blue?color=00B16A" alt="PyQt 5.15.6"/>
+  </a>
+
+  <a style="text-decoration:none">
+    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=00B16A" alt="Platform Win32 | Linux | macOS"/>
+  </a>
+</p>
+
+![Interface](docs/source/_static/Interface.png)
+
 
 ## Install
 To install use pip:
@@ -12,168 +37,13 @@ git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
 python setup.py install
 ```
 
-## Detailed list
-<table>
-  <tbody>
-    <tr>
-      <td colspan="2" align="center"></td>
-    </tr>
-    <tr>
-      <td>
-        Switch Button
-      </td>
-      <td>
-        <code>SwitchButton</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/switch_button.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Hollow Handle Slider
-      </td>
-      <td>
-        <code>HollowHandleStyle</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/hollow_handle_slider.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Line Edit
-      </td>
-      <td>
-        <code>LineEdit</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/line_edit.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Dialog
-      </td>
-      <td>
-        <code>Dialog</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/dialog.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Message Dialog
-      </td>
-      <td>
-        <code>MessageDialog</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/dialog_with_mask.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Folder List Dialog
-      </td>
-      <td>
-        <code>FolderListDialog</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/folder_list_dialog.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        State Tooltip
-      </td>
-      <td>
-        <code>StateTooltip</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/state_tooltip.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Tooltip
-      </td>
-      <td>
-        <code>Tooltip</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/ToolTip.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Flow Layout
-      </td>
-      <td>
-        <code>FlowLayout</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/flow_layout.gif" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Acrylic Label
-      </td>
-      <td>
-        <code>AcrylicLabel</code>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <img src="screenshot/acrylic_label.png" style="width:70%"/>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Smooth Scroll Area
-      </td>
-      <td>
-        <code>ScrollArea</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Opacity Animation Stacked Widget
-      </td>
-      <td>
-        <code>OpacityAniStackedWidget</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Pop Up Animation Stacked Widget
-      </td>
-      <td>
-        <code>PopUpAniStackedWidget</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
+## Run example
+After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
+```python
+cd examples/settings
+python demo.py
+```
+
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:

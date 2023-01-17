@@ -113,12 +113,6 @@
         <file>images/setting_card/PencilInk_white.png</file>
         <file>images/setting_card/Question_black.png</file>
         <file>images/setting_card/Question_white.png</file>
-        <file>images/setting_card/RadioButtonHover_black.png</file>
-        <file>images/setting_card/RadioButtonHover_white.png</file>
-        <file>images/setting_card/RadioButtonPressed_black.png</file>
-        <file>images/setting_card/RadioButtonPressed_white.png</file>
-        <file>images/setting_card/RadioButton_black.png</file>
-        <file>images/setting_card/RadioButton_white.png</file>
         <file>images/setting_card/Search_black.png</file>
         <file>images/setting_card/Search_white.png</file>
         <file>images/setting_card/Transparent_black.png</file>
@@ -153,7 +147,9 @@
         <file>qss/dark/switch_button.qss</file>
         <file>qss/dark/tool_tip.qss</file>
         <file>qss/dark/folder_list_dialog.qss</file>
+        <file>qss/dark/setting_interface.qss</file>
 
+        <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
         <file>qss/light/expand_setting_card.qss</file>
         <file>qss/light/menu.qss</file>
@@ -164,5 +160,6 @@
         <file>qss/light/switch_button.qss</file>
         <file>qss/light/tool_tip.qss</file>
         <file>qss/light/folder_list_dialog.qss</file>
+        <file>qss/light/setting_interface.qss</file>
     </qresource>
 </RCC>

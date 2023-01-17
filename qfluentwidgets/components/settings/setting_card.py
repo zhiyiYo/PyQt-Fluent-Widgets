@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayou
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
+from ..widgets.label import PixmapLabel
 from ...common.style_sheet import setStyleSheet, getStyleSheet
 from ...common.config import ConfigItem, config, RangeConfigItem
 from ...common.icon import getIconColor
@@ -31,7 +32,7 @@ class SettingCard(QFrame):
             parent widget
         """
         super().__init__(parent=parent)
-        self.iconLabel = QLabel(self)
+        self.iconLabel = PixmapLabel(self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(content or '', self)
         self.hBoxLayout = QHBoxLayout(self)

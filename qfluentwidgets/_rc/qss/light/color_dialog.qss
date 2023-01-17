@@ -1,0 +1,197 @@
+ColorDialog, QScrollArea, QWidget {
+    background-color: transparent;
+}
+
+QScrollArea{
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#centerWidget{
+    border: 1px solid rgb(144, 144, 142);
+    border-radius: 10px;
+    background-color: white;
+}
+
+#buttonGroup {
+    background-color: rgb(243, 243, 243);
+    border-top: 1px solid rgb(229, 229, 229);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+QLabel {
+    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
+    background-color: transparent;
+}
+
+#titleLabel {
+    font-size: 24px;
+}
+
+#editLabel{
+    font-size: 20px;
+}
+
+#prefixLabel {
+    padding: 0;
+    font-size: 18px;
+}
+
+QPushButton {
+    background: rgb(251, 251, 251);
+    border: 1px solid rgb(229, 229, 229);
+    border-bottom: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    font: 17px 'Segoe UI', 'Microsoft YaHei';
+    padding: 7px 0;
+}
+
+QPushButton:hover {
+    background: rgb(246, 246, 246);
+}
+
+QPushButton:pressed {
+    background: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+QPushButton#yesButton {
+    color: white;
+    background-color: rgb(0, 107, 131);
+    border: 1px solid rgb(20, 119, 141);
+    border-bottom: 1px solid rgb(0, 64, 79);
+}
+
+QPushButton#yesButton:hover {
+    background-color: rgb(25, 121, 142);
+    border: 1px solid rgb(43, 132, 151);
+    border-bottom: 1px solid rgb(15, 73, 85);
+}
+
+QPushButton#yesButton:pressed {
+    background-color: rgb(49, 134, 153);
+    border: 1px solid rgb(49, 134, 153);
+}
+
+/* 滑动条 */
+QSlider:horizontal {
+    min-width: 415px;
+    min-height: 30px;
+}
+
+QSlider::groove:horizontal {
+    height: 16px;
+    border-radius: 8px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, x3:2, y3:0,
+            stop:0 hsv(--slider-hue, --slider-saturation, 0),
+            stop:1 hsv(--slider-hue, --slider-saturation, 255));
+
+}
+
+
+QSlider::handle:horizontal {
+    border: 1px solid rgb(222, 222, 222);
+    width: 26px;
+    min-height: 13px;
+    margin: -6px 0;
+    border-radius: 14px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+            stop:0 rgb(0, 0, 0),
+            stop:0.55 rgb(0, 0, 0),
+            stop:0.6 rgb(255, 255, 255),
+            stop:1 rgb(255, 255, 255));
+}
+
+
+QSlider::groove:horizontal:disabled {
+    background-color: rgba(0, 0, 0, 75);
+}
+
+QSlider::handle:horizontal:disabled {
+    background-color: #808080;
+    border: 6px solid #cccccc;
+}
+
+
+/* Line Edit */
+QLineEdit {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+    border-radius: 7px;
+    font: 18px "Segoe UI";
+    padding: 0px 13px;
+    selection-background-color: rgb(0, 183, 195);
+}
+
+QLineEdit:hover {
+    background-color: rgb(252, 252, 252);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+}
+
+QLineEdit:focus {
+    border-bottom: 1px solid rgb(0, 159, 170);
+    background-color: white;
+    border-top: 1px solid rgba(0, 0, 0, 13);
+    border-left: 1px solid rgba(0, 0, 0, 13);
+    border-right: 1px solid rgba(0, 0, 0, 13);
+}
+
+QLineEdit:disabled {
+    color: rgba(0, 0, 0, 150);
+    background-color: rgba(0, 0, 0, 13);
+    border: 1px solid rgba(0, 0, 0, 5);
+}
+
+
+#clearButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+#clearButton:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+#clearButton:pressed {
+    background-color: rgba(0, 0, 0, 6);
+}
+
+/* 滚动条 */
+QScrollBar {
+    background: transparent;
+    width: 5px;
+    margin-top: 40px;
+    margin-bottom: 133px;
+    padding-right: 2px;
+}
+
+/*隐藏上箭头*/
+QScrollBar::sub-line {
+    background: transparent;
+}
+
+/*隐藏下箭头*/
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(122, 122, 122);
+    border: 2px solid rgb(128, 128, 128);
+    border-radius: 1px;
+    min-height: 40px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}

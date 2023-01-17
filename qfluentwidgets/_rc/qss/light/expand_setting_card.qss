@@ -117,24 +117,40 @@ QRadioButton::indicator:hover {
 }
 
 QRadioButton::indicator:pressed {
-    background-color: rgba(0, 0, 0, 5);
     border: 2px solid #bbbbbb;
-    image: url(:/images/setting_card/RadioButton_white.png);
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(225, 224, 223),
+        stop:1 rgb(225, 224, 223));
 }
 
 QRadioButton::indicator:checked {
-    background-color: rgb(72, 210, 242);
-    border: 2px solid rgb(72, 210, 242);
-    image: url(:/images/setting_card/RadioButton_white.png);
-    color: rgb(255, 255, 255);
+    height: 26px;
+    width: 26px;
+    border: none;
+    border-radius: 13px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
 }
 
 QRadioButton::indicator:checked:hover {
-    image: url(:/images/setting_card/RadioButtonHover_white.png);
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.6 rgb(255, 255, 255),
+        stop:0.65 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
 }
 
 QRadioButton::indicator:checked:pressed {
-    image: url(:/images/setting_card/RadioButtonPressed_white.png);
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 rgb(255, 255, 255),
+        stop:0.5 rgb(255, 255, 255),
+        stop:0.55 rgb(72, 210, 242),
+        stop:1 rgb(72, 210, 242));
 }
 
 QRadioButton:disabled {
