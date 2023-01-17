@@ -342,4 +342,4 @@ class QConfig(QObject):
         return self._cfg._theme.lower()
 
 
-config = QConfig()
+qconfig = QConfig()

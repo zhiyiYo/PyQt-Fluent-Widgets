@@ -7,7 +7,7 @@ from PyQt5.QtGui import (QBrush, QColor, QFont, QFontMetrics, QMouseEvent,
 from PyQt5.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
                              QVBoxLayout, QWidget, QPushButton)
 
-from ...common.config import config
+from ...common.config import qconfig
 from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet
 from .dialog import Dialog
@@ -208,7 +208,7 @@ class ClickableWindow(QWidget):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
 
-        isDark = config.theme == 'dark'
+        isDark = qconfig.theme == 'dark'
         bg = 51 if isDark else 204
         brush = QBrush(QColor(bg, bg, bg))
         painter.setPen(Qt.NoPen)
@@ -251,7 +251,7 @@ class FolderCard(ClickableWindow):
             QPainter.TextAntialiasing | QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
 
         # paint text and icon
-        color = Qt.white if config.theme == 'dark' else Qt.black
+        color = Qt.white if qconfig.theme == 'dark' else Qt.black
         painter.setPen(color)
         if self._isPressed:
             self.__drawText(painter, 15, 10, 15, 9)

@@ -37,17 +37,20 @@ git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
 python setup.py install
 ```
 
-## Run example
+## Run Example
 After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
 cd examples/settings
 python demo.py
 ```
 
+## Document
+Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
+
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
-* [**zhiyiYo/Groove**: A music player based on PyQt5 and LAV Filters](https://github.com/zhiyiYo/Groove)
+* [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: A gobang robot based on reinforcement learning](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
 
 

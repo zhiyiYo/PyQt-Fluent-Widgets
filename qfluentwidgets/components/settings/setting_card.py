@@ -8,7 +8,7 @@ from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.label import PixmapLabel
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ...common.config import ConfigItem, config, RangeConfigItem
+from ...common.config import ConfigItem, qconfig, RangeConfigItem
 from ...common.icon import getIconColor
 
 
@@ -106,7 +106,7 @@ class SwitchSettingCard(SettingCard):
             self.tr('Off'), self, IndicatorPosition.RIGHT)
 
         if configItem:
-            self.setChecked(config.get(configItem))
+            self.setChecked(qconfig.get(configItem))
 
         setStyleSheet(self.switchButton, 'setting_card')
 
@@ -124,7 +124,7 @@ class SwitchSettingCard(SettingCard):
     def setChecked(self, isChecked: bool):
         """ set switch button checked state """
         if self.configItem:
-            config.set(self.configItem, isChecked)
+            qconfig.set(self.configItem, isChecked)
 
         self.switchButton.setChecked(isChecked)
         self.switchButton.setText(
@@ -179,7 +179,7 @@ class RangeSettingCard(SettingCard):
 
     def __onValueChanged(self, value: int):
         """ slider value changed slot """
-        config.set(self.configItem, value)
+        qconfig.set(self.configItem, value)
         self.valueLabel.setNum(value)
         self.valueLabel.adjustSize()
         self.valueChanged.emit(value)
@@ -329,13 +329,13 @@ class ColorSettingCard(SettingCard):
         super().__init__(iconPath, title, content, parent)
         self.configItem = configItem
         self.colorPicker = ColorPickerButton(
-            config.get(configItem), title, self)
+            qconfig.get(configItem), title, self)
         self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignRight)
         self.hBoxLayout.addSpacing(20)
         self.colorPicker.colorChanged.connect(self.__onColorChanged)
 
     def __onColorChanged(self, color: QColor):
-        config.set(self.configItem, color)
+        qconfig.set(self.configItem, color)
         self.colorChanged.emit(color)
 
 

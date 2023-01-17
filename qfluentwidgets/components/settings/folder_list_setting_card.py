@@ -7,7 +7,7 @@ from PyQt5.QtGui import QPixmap, QPainter
 from PyQt5.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
 
-from ...common.config import ConfigItem, config
+from ...common.config import ConfigItem, qconfig
 from ..dialog_box.dialog import Dialog
 from .expand_setting_card import ExpandSettingCard
 from .setting_card import SettingIconFactory as SIF
@@ -115,7 +115,7 @@ class FolderListSettingCard(ExpandSettingCard):
         self.addFolderButton = PushButton(
             SIF.create(SIF.FOLDER_ADD), self.tr('Add folder'), self)
 
-        self.folders = config.get(configItem).copy()   # type:List[str]
+        self.folders = qconfig.get(configItem).copy()   # type:List[str]
         self.__initWidget()
 
     def __initWidget(self):
@@ -140,7 +140,7 @@ class FolderListSettingCard(ExpandSettingCard):
 
         self.__addFolderItem(folder)
         self.folders.append(folder)
-        config.set(self.configItem, self.folders)
+        qconfig.set(self.configItem, self.folders)
         self.folderChanged.emit(self.folders)
 
     def __addFolderItem(self, folder: str):
@@ -171,4 +171,4 @@ class FolderListSettingCard(ExpandSettingCard):
         self._adjustViewSize()
 
         self.folderChanged.emit(self.folders)
-        config.set(self.configItem, self.folders)
+        qconfig.set(self.configItem, self.folders)

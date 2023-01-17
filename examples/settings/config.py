@@ -3,7 +3,7 @@ from enum import Enum
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication, QFont
-from qfluentwidgets import (config, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
+from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             ColorConfigItem, OptionsValidator, RangeConfigItem, RangeValidator,
                             FolderListValidator, EnumSerializer, FolderValidator)
 
@@ -106,4 +106,4 @@ RELEASE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases/latest"
 
 
 cfg = Config()
-config.load('config/config.json', cfg)
+qconfig.load('config/config.json', cfg)

@@ -3,7 +3,7 @@ from typing import List
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QButtonGroup, QLabel, QRadioButton
 
-from ...common.config import OptionsConfigItem, config
+from ...common.config import OptionsConfigItem, qconfig
 from .expand_setting_card import ExpandSettingCard
 
 
@@ -54,7 +54,7 @@ class OptionsSettingCard(ExpandSettingCard):
             button.setProperty(self.configName, option)
 
         self._adjustViewSize()
-        self.setSelected(config.get(self.configItem))
+        self.setSelected(qconfig.get(self.configItem))
         self.buttonGroup.buttonClicked.connect(self.__onButtonClicked)
 
     def __onButtonClicked(self, button: QRadioButton):
@@ -63,7 +63,7 @@ class OptionsSettingCard(ExpandSettingCard):
             return
 
         value = button.property(self.configName)
-        config.set(self.configItem, value)
+        qconfig.set(self.configItem, value)
 
         self.choiceLabel.setText(button.text())
         self.choiceLabel.adjustSize()

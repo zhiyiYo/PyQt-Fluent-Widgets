@@ -47,4 +47,6 @@ This document will show you all the features of PyQt-Fluent-Widgets and the best
    :caption: Contents
 
    quick-start
-
+   settings
+   gallery
+   see-also
