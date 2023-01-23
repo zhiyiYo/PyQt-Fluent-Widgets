@@ -40,20 +40,6 @@ FolderItem>QLabel {
     font: 18px 'Segoe UI', 'Microsoft YaHei';
 }
 
-ExpandButton {
-    background: transparent;
-    border: none;
-    border-radius: 4px;
-}
-
-ExpandButton:hover {
-    background: rgba(0, 0, 0, 0.04);
-}
-
-ExpandButton:pressed {
-    background: rgba(0, 0, 0, 0.03);
-}
-
 /* QPushButton */
 QPushButton {
     border: 1px solid rgb(238, 239, 238);

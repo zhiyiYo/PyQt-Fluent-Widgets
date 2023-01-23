@@ -1,32 +1,46 @@
 # coding:utf-8
 from PyQt5.QtCore import (Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint)
-from PyQt5.QtGui import QPixmap, QPainter
-from PyQt5.QtWidgets import QFrame, QWidget, QToolButton, QApplication
+from PyQt5.QtGui import QColor, QPixmap, QPainter
+from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
 
+from ...common.config import qconfig
 from ...common.style_sheet import setStyleSheet
 from .setting_card import SettingCard
 from .setting_card import SettingIconFactory as SIF
 from ..layout.v_box_layout import VBoxLayout
 
 
-class ExpandButton(QToolButton):
+class ExpandButton(QAbstractButton):
     """ Expand button """
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setFixedSize(38, 38)
         self.__angle = 0
+        self.isHover = False
+        self.isPressed = False
         self.iconPixmap = QPixmap(SIF.create(SIF.ARROW_DOWN))
         self.rotateAni = QPropertyAnimation(self, b'angle', self)
         self.clicked.connect(self.__onClicked)
 
     def paintEvent(self, e):
-        super().paintEvent(e)
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing |
                                QPainter.SmoothPixmapTransform)
         painter.setPen(Qt.NoPen)
+
+        # draw background
+        r = 255 if qconfig.theme == 'dark' else 0
+        if self.isPressed:
+            color = QColor(r, r, r, 10)
+        elif self.isHover:
+            color = QColor(r, r, r, 14)
+        else:
+            color = Qt.transparent
+
+        painter.setBrush(color)
+        painter.drawRoundedRect(self.rect(), 4, 4)
 
         # draw icon
         painter.translate(self.width()//2, self.height()//2)
@@ -36,6 +50,28 @@ class ExpandButton(QToolButton):
             -int(self.iconPixmap.height() / 2),
             self.iconPixmap
         )
+
+    def enterEvent(self, e):
+        self.setHover(True)
+
+    def leaveEvent(self, e):
+        self.setHover(False)
+
+    def mousePressEvent(self, e):
+        super().mousePressEvent(e)
+        self.setPressed(True)
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self.setPressed(False)
+
+    def setHover(self, isHover: bool):
+        self.isHover = isHover
+        self.update()
+
+    def setPressed(self, isPressed: bool):
+        self.isPressed = isPressed
+        self.update()
 
     def __onClicked(self):
         self.rotateAni.setEndValue(180 if self.angle < 180 else 0)
@@ -133,6 +169,25 @@ class ExpandSettingCard(QFrame):
     def resizeEvent(self, e):
         self.card.resize(self.width(), self.card.height())
         self.view.resize(self.width(), self.view.height())
+
+    def enterEvent(self, e):
+        super().enterEvent(e)
+        self.expandButton.setHover(True)
+
+    def leaveEvent(self, e):
+        super().leaveEvent(e)
+        self.expandButton.setHover(False)
+
+    def mousePressEvent(self, e):
+        super().mousePressEvent(e)
+        if e.button() == Qt.LeftButton:
+            self.expandButton.setPressed(True)
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        if e.button() == Qt.LeftButton:
+            self.expandButton.setPressed(False)
+            self.expandButton.click()
 
     def sizeHint(self):
         return self.size()
