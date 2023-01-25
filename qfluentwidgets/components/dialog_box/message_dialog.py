@@ -50,11 +50,13 @@ class MessageDialog(MaskDialogBase):
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()
+        self.setResult(self.Rejected)
         self.close()
 
     def __onYesButtonClicked(self):
         self.setEnabled(False)
         self.yesSignal.emit()
+        self.setResult(self.Accepted)
         self.close()
 
     def __setQss(self):

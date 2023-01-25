@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import (Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
+from PyQt5.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint)
 from PyQt5.QtGui import QColor, QPixmap, QPainter
 from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
@@ -125,6 +125,7 @@ class ExpandSettingCard(QFrame):
         setStyleSheet(self.card, 'expand_setting_card')
         setStyleSheet(self, 'expand_setting_card')
 
+        self.card.installEventFilter(self)
         self.aniGroup.finished.connect(self.__onAniFinished)
         self.expandButton.clicked.connect(self.toggleExpand)
 
@@ -170,27 +171,19 @@ class ExpandSettingCard(QFrame):
         self.card.resize(self.width(), self.card.height())
         self.view.resize(self.width(), self.view.height())
 
-    def enterEvent(self, e):
-        super().enterEvent(e)
-        self.expandButton.setHover(True)
+    def eventFilter(self, obj, e):
+        if obj is self.card:
+            if e.type() == QEvent.Enter:
+                self.expandButton.setHover(True)
+            elif e.type()==QEvent.Leave:
+                self.expandButton.setHover(False)
+            elif e.type() == QEvent.MouseButtonPress and e.button() == Qt.LeftButton:
+                self.expandButton.setPressed(True)
+            elif e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton:
+                self.expandButton.setPressed(False)
+                self.expandButton.click()
 
-    def leaveEvent(self, e):
-        super().leaveEvent(e)
-        self.expandButton.setHover(False)
-
-    def mousePressEvent(self, e):
-        super().mousePressEvent(e)
-        if e.button() == Qt.LeftButton:
-            self.expandButton.setPressed(True)
-
-    def mouseReleaseEvent(self, e):
-        super().mouseReleaseEvent(e)
-        if e.button() == Qt.LeftButton:
-            self.expandButton.setPressed(False)
-            self.expandButton.click()
-
-    def sizeHint(self):
-        return self.size()
+        return super().eventFilter(obj, e)
 
     def __onAniFinished(self):
         """ expand animation finished slot """

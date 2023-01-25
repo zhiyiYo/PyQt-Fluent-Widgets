@@ -64,11 +64,11 @@ class Dialog(FramelessDialog):
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()
-        self.deleteLater()
+        self.reject()
 
     def __onYesButtonClicked(self):
         self.yesSignal.emit()
-        self.deleteLater()
+        self.accept()
 
     def __setQss(self):
         """ 设置层叠样式 """

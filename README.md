@@ -9,17 +9,16 @@
 </p>
 
 <p align="center">
-
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/Python-3.6+-blue.svg?color=00B16A" alt="Python 3.6+"/>
+    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=#4ec820" alt="Platform Win32 | Linux | macOS"/>
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/PyQt-5.15.6-blue?color=00B16A" alt="PyQt 5.15.6"/>
+    <img src="https://static.pepy.tech/personalized-badge/pyqt-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=00B16A" alt="Platform Win32 | Linux | macOS"/>
+    <img src="https://img.shields.io/badge/License-MIT-blue?color=#4ec820" alt="MIT"/>
   </a>
 </p>
 
