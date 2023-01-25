@@ -3,16 +3,26 @@ from collections import deque
 from enum import Enum
 from math import cos, pi
 
-from PyQt5.QtCore import QDateTime, Qt, QTimer, QPoint
+from PyQt5.QtCore import QDateTime, QEasingCurve, Qt, QTimer, QPoint, pyqtSignal, QPropertyAnimation
 from PyQt5.QtGui import QWheelEvent
-from PyQt5.QtWidgets import QApplication, QScrollArea
+from PyQt5.QtWidgets import QApplication, QScrollArea, QScrollBar
 
 
 class ScrollArea(QScrollArea):
     """ A scroll area which can scroll smoothly """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, orient=Qt.Vertical):
+        """
+        Parameters
+        ----------
+        parent: QWidget
+            parent widget
+
+        orient: Orientation
+            scroll orientation
+        """
         super().__init__(parent)
+        self.orient = orient
         self.fps = 60
         self.duration = 400
         self.stepsTotal = 0
@@ -29,7 +39,7 @@ class ScrollArea(QScrollArea):
         """ set smooth mode """
         self.smoothMode = smoothMode
 
-    def wheelEvent(self, e: QWheelEvent):
+    def wheelEvent(self, e):
         if self.smoothMode == SmoothMode.NO_SMOOTH:
             super().wheelEvent(e)
             return
@@ -75,20 +85,27 @@ class ScrollArea(QScrollArea):
         while self.stepsLeftQueue and self.stepsLeftQueue[0][1] == 0:
             self.stepsLeftQueue.popleft()
 
-        # create wheel event
+        # construct wheel event
+        if self.orient == Qt.Vertical:
+            p = QPoint(0, totalDelta)
+            bar = self.verticalScrollBar()
+        else:
+            p = QPoint(totalDelta, 0)
+            bar = self.horizontalScrollBar()
+
         e = QWheelEvent(
             self.lastWheelEvent.pos(),
             self.lastWheelEvent.globalPos(),
             QPoint(),
-            QPoint(0, totalDelta),
+            p,
             round(totalDelta),
-            Qt.Vertical,
+            self.orient,
             self.lastWheelEvent.buttons(),
             Qt.NoModifier
         )
 
         # send wheel event to app
-        QApplication.sendEvent(self.verticalScrollBar(), e)
+        QApplication.sendEvent(bar, e)
 
         # stop scrolling if the queque is empty
         if not self.stepsLeftQueue:
@@ -121,3 +138,86 @@ class SmoothMode(Enum):
     LINEAR = 2
     QUADRATI = 3
     COSINE = 4
+
+
+class SmoothScrollBar(QScrollBar):
+    """ Smooth scroll bar """
+
+    scrollFinished = pyqtSignal()
+
+    def __init__(self, parent=None):
+        QScrollBar.__init__(self, parent)
+        self.ani = QPropertyAnimation()
+        self.ani.setTargetObject(self)
+        self.ani.setPropertyName(b"value")
+        self.ani.setEasingCurve(QEasingCurve.OutCubic)
+        self.ani.setDuration(500)
+        self.__value = self.value()
+        self.ani.finished.connect(self.__onScrollFinished)
+
+    def __onScrollFinished(self):
+        self.scrollFinished.emit()
+        return
+
+    def setValue(self, value: int):
+        if value == self.value():
+            return
+
+        # stop running animation
+        self.ani.stop()
+        self.scrollFinished.emit()
+
+        self.ani.setStartValue(self.value())
+        self.ani.setEndValue(value)
+        self.ani.start()
+
+    def scrollValue(self, value: int):
+        """ scroll the specified distance """
+        self.__value += value
+        self.__value = max(self.minimum(), self.__value)
+        self.__value = min(self.maximum(), self.__value)
+        self.setValue(self.__value)
+
+    def scrollTo(self, value: int):
+        """ scroll to the specified position """
+        self.__value = value
+        self.__value = max(self.minimum(), self.__value)
+        self.__value = min(self.maximum(), self.__value)
+        self.setValue(self.__value)
+
+    def resetValue(self, value):
+        self.__value = value
+
+    def mousePressEvent(self, e):
+        self.ani.stop()
+        super().mousePressEvent(e)
+        self.__value = self.value()
+
+    def mouseReleaseEvent(self, e):
+        self.ani.stop()
+        super().mouseReleaseEvent(e)
+        self.__value = self.value()
+
+    def mouseMoveEvent(self, e):
+        self.ani.stop()
+        super().mouseMoveEvent(e)
+        self.__value = self.value()
+
+
+class SmoothScrollArea(QScrollArea):
+    """ Smooth scroll area """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.hScrollBar = SmoothScrollBar()
+        self.vScrollBar = SmoothScrollBar()
+        self.hScrollBar.setOrientation(Qt.Horizontal)
+        self.vScrollBar.setOrientation(Qt.Vertical)
+        self.setVerticalScrollBar(self.vScrollBar)
+        self.setHorizontalScrollBar(self.hScrollBar)
+
+    def wheelEvent(self, e):
+        if e.modifiers() == Qt.NoModifier:
+            self.vScrollBar.scrollValue(-e.angleDelta().y())
+        else:
+            self.hScrollBar.scrollValue(-e.angleDelta().x())
