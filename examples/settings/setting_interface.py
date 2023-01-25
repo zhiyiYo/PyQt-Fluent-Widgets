@@ -192,9 +192,9 @@ class SettingInterface(ScrollArea):
     def __initWidget(self):
         self.resize(1000, 800)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setViewportMargins(0, 120, 0, 0)
+        self.setViewportMargins(0, 120, 0, 20)
         self.setWidget(self.scrollWidget)
-        self.scrollWidget.resize(self.width(), 1940)
+        self.setWidgetResizable(True)
 
         # initialize style sheet
         self.scrollWidget.setObjectName('scrollWidget')
@@ -244,10 +244,6 @@ class SettingInterface(ScrollArea):
         self.expandLayout.addWidget(self.mainPanelGroup)
         self.expandLayout.addWidget(self.updateSoftwareGroup)
         self.expandLayout.addWidget(self.aboutGroup)
-
-    def resizeEvent(self, e):
-        self.scrollWidget.resize(self.width(), self.scrollWidget.height())
-        super().resizeEvent(e)
 
     def __showRestartTooltip(self):
         """ show restart tooltip """
