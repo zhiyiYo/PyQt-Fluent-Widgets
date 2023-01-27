@@ -14,7 +14,7 @@ from .exception_handler import exceptionHandler
 class ConfigValidator:
     """ Config validator """
 
-    def validate(self, value) -> bool:
+    def validate(self, value):
         """ Verify whether the value is legal """
         return True
 
@@ -31,7 +31,7 @@ class RangeValidator(ConfigValidator):
         self.max = max
         self.range = (min, max)
 
-    def validate(self, value) -> bool:
+    def validate(self, value):
         return self.min <= value <= self.max
 
     def correct(self, value):
@@ -41,7 +41,7 @@ class RangeValidator(ConfigValidator):
 class OptionsValidator(ConfigValidator):
     """ Options validator """
 
-    def __init__(self, options: Union[Iterable, Enum]) -> None:
+    def __init__(self, options):
         if not options:
             raise ValueError("The `options` can't be empty.")
 
@@ -50,7 +50,7 @@ class OptionsValidator(ConfigValidator):
 
         self.options = list(options)
 
-    def validate(self, value) -> bool:
+    def validate(self, value):
         return value in self.options
 
     def correct(self, value):
@@ -67,10 +67,10 @@ class BoolValidator(OptionsValidator):
 class FolderValidator(ConfigValidator):
     """ Folder validator """
 
-    def validate(self, value: str) -> bool:
+    def validate(self, value):
         return Path(value).exists()
 
-    def correct(self, value: str):
+    def correct(self, value):
         path = Path(value)
         path.mkdir(exist_ok=True, parents=True)
         return str(path.absolute()).replace("\\", "/")
@@ -79,7 +79,7 @@ class FolderValidator(ConfigValidator):
 class FolderListValidator(ConfigValidator):
     """ Folder list validator """
 
-    def validate(self, value: List[str]) -> bool:
+    def validate(self, value):
         return all(Path(i).exists() for i in value)
 
     def correct(self, value: List[str]):
@@ -98,7 +98,7 @@ class ColorValidator(ConfigValidator):
     def __init__(self, default):
         self.default = QColor(default)
 
-    def validate(self, color) -> bool:
+    def validate(self, color):
         try:
             return QColor(color).isValid()
         except:
@@ -126,7 +126,7 @@ class EnumSerializer(ConfigSerializer):
     def __init__(self, enumClass):
         self.enumClass = enumClass
 
-    def serialize(self, value: Enum):
+    def serialize(self, value):
         return value.value
 
     def deserialize(self, value):
@@ -149,8 +149,7 @@ class ColorSerializer(ConfigSerializer):
 class ConfigItem:
     """ Config item """
 
-    def __init__(self, group: str, name: str, default, validator: ConfigValidator = None,
-                 serializer: ConfigSerializer = None, restart=False):
+    def __init__(self, group, name, default, validator=None, serializer=None, restart=False):
         """
         Parameters
         ----------
@@ -194,7 +193,7 @@ class ConfigItem:
         """ get the config key separated by `.` """
         return self.group+"."+self.name if self.name else self.group
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.__class__.__name__}[value={self.value}]'
 
     def serialize(self):
@@ -212,7 +211,7 @@ class RangeConfigItem(ConfigItem):
         """ get the available range of config """
         return self.validator.range
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.__class__.__name__}[range={self.range}, value={self.value}]'
 
 
@@ -223,18 +222,18 @@ class OptionsConfigItem(ConfigItem):
     def options(self):
         return self.validator.options
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.__class__.__name__}[options={self.options}, value={self.value}]'
 
 
 class ColorConfigItem(ConfigItem):
     """ Color config item """
 
-    def __init__(self, group: str, name: str, default, restart=False):
+    def __init__(self, group, name, default, restart=False):
         super().__init__(group, name, QColor(default), ColorValidator(default),
                          ColorSerializer(), restart)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.__class__.__name__}[value={self.value.name()}]'
 
 
@@ -252,10 +251,12 @@ class QConfig(QObject):
         self._theme = "Light"
         self._cfg = self
 
-    def get(self, item: ConfigItem):
+    def get(self, item):
+        """ get the value of config item """
         return item.value
 
-    def set(self, item: ConfigItem, value):
+    def set(self, item, value):
+        """ set the value of config item """
         if item.value == value:
             return
 

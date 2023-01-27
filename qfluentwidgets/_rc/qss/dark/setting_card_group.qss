@@ -5,7 +5,7 @@ SettingCardGroup {
 SettingCardGroup>QLabel,
 HyperlinkGroup>QLabel {
     background-color: transparent;
-    font: 25px 'Segoe UI', 'Microsoft YaHei';
+    font: 20px 'Segoe UI', 'Microsoft YaHei';
     color: white;
 }
 

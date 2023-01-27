@@ -25,9 +25,9 @@ class MessageDialog(MaskDialogBase):
     def __initWidget(self):
         """ initialize widgets """
         self.windowMask.resize(self.size())
-        self.widget.setMaximumWidth(675)
-        self.titleLabel.move(30, 30)
-        self.contentLabel.move(30, 70)
+        self.widget.setMaximumWidth(540)
+        self.titleLabel.move(24, 24)
+        self.contentLabel.move(24, 56)
         self.contentLabel.setText(TextWrap.wrap(self.content, 71)[0])
 
         self.__setQss()
@@ -40,13 +40,13 @@ class MessageDialog(MaskDialogBase):
     def __initLayout(self):
         """ initialize layout """
         self.contentLabel.adjustSize()
-        self.widget.setFixedSize(60+self.contentLabel.width(),
-                                 self.contentLabel.y() + self.contentLabel.height()+115)
-        self.yesButton.resize((self.widget.width() - 68) // 2, 40)
-        self.cancelButton.resize(self.yesButton.width(), 40)
-        self.yesButton.move(30, self.widget.height()-70)
+        self.widget.setFixedSize(48+self.contentLabel.width(),
+                                 self.contentLabel.y() + self.contentLabel.height()+92)
+        self.yesButton.resize((self.widget.width() - 54) // 2, 32)
+        self.cancelButton.resize(self.yesButton.width(), 32)
+        self.yesButton.move(24, self.widget.height()-56)
         self.cancelButton.move(
-            self.widget.width()-30-self.cancelButton.width(), self.widget.height()-70)
+            self.widget.width()-24-self.cancelButton.width(), self.widget.height()-56)
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()

@@ -1,56 +1,56 @@
 SettingCard {
     border: 1px solid rgb(35, 35, 35);
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: rgb(50, 50, 50);
 }
 
 QLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     padding: 0;
 }
 
 QLabel#contentLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 11px 'Segoe UI', 'Microsoft YaHei';
     color: rgb(208, 208, 208);
     padding: 0;
 }
 
 /* 滑动条 */
 QSlider:horizontal {
-    min-width: 335px;
-    min-height: 30px;
+    min-width: 268px;
+    min-height: 22px;
 }
 
 QSlider::groove:horizontal {
-    height: 5px;
+    height: 4px;
     background-color: rgb(158, 159, 159);
     border-radius: 2px;
 }
 
 QSlider::sub-page:horizontal {
     background: rgb(41, 247, 255);
-    height: 5px;
+    height: 4px;
     border-radius: 2px;
 }
 
 QSlider::handle:horizontal {
     border: 1px solid rgb(58, 58, 58);
-    width: 26px;
-    min-height: 31px;
-    margin: -12px 0 -11px 0;
-    border-radius: 14px;
+    width: 21px;
+    min-height: 22px;
+    margin: -9px 0;
+    border-radius: 11px;
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(41, 247, 255),
         stop:0.5 rgb(41, 247, 255),
-        stop:0.55 rgb(69, 69, 69),
+        stop:0.6 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
 
 QSlider::handle:horizontal:hover {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(41, 247, 255),
-        stop:0.65 rgb(41, 247, 255),
+        stop:0.6 rgb(41, 247, 255),
         stop:0.7 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
@@ -58,8 +58,8 @@ QSlider::handle:horizontal:hover {
 QSlider::handle:horizontal:pressed {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(41, 247, 255),
-        stop:0.35 rgb(41, 247, 255),
-        stop:0.4 rgb(69, 69, 69),
+        stop:0.4 rgb(41, 247, 255),
+        stop:0.5 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
 
@@ -70,22 +70,22 @@ RangeSettingCard > QLabel#valueLabel{
 
 /* 切换开关 */
 SwitchButton {
-    qproperty-spacing: 15;
+    qproperty-spacing: 12;
 }
 
 SwitchButton>QLabel {
     color: white;
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
 }
 
 
 Indicator {
-    height: 22px;
-    width: 50px;
+    height: 16px;
+    width: 37px;
     qproperty-sliderOnColor: black;
     qproperty-sliderOffColor: rgb(210, 211, 210);
     qproperty-sliderDisabledColor: rgb(155, 154, 153);
-    border-radius: 13px;
+    border-radius: 10px;
 }
 
 
@@ -131,8 +131,8 @@ QPushButton {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
-    padding: 6px 45px 6px 45px;
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    padding: 5px 36px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     background-color: rgb(62, 63, 62);
 }
@@ -148,11 +148,11 @@ QPushButton:pressed {
 }
 
 #hyperlinkButton {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
-    padding: 7px 15px 7px 15px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 6px 12px 6px 12px;
     color: rgb(41, 243, 255);
     border: none;
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: transparent;
 }
 
@@ -169,7 +169,7 @@ QPushButton:pressed {
     background-color: rgb(41, 243, 255);
     border: 1px solid rgb(58, 248, 255);
     border-bottom: 1px solid rgb(35, 213, 220);
-    padding: 6px 15px 6px 15px;
+    padding: 5px 12px 5px 12px;
 }
 
 #primaryButton:hover {
@@ -186,7 +186,7 @@ QPushButton:pressed {
 
 ColorPickerButton {
     border: 1px solid rgba(255, 255, 255, 24);
-    border-radius: 6px;
+    border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
     background-color: --color-picker-background;
 }

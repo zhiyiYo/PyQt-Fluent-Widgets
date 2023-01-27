@@ -2,10 +2,11 @@
 from typing import List
 from pathlib import Path
 
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QPixmap, QPainter
+from PyQt5.QtCore import Qt, pyqtSignal, QRectF
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
+from PyQt5.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
 from ..dialog_box.dialog import Dialog
@@ -16,10 +17,11 @@ from .setting_card import SettingIconFactory as SIF
 class ToolButton(QToolButton):
     """ Tool button """
 
-    def __init__(self, iconPath: str, size: tuple, parent=None):
+    def __init__(self, iconPath: str, size: tuple, iconSize: tuple, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
-        self.iconPixmap = QPixmap(iconPath)
+        self.iconPath = iconPath
+        self._iconSize = iconSize
         self.setFixedSize(*size)
 
     def mousePressEvent(self, e):
@@ -36,7 +38,10 @@ class ToolButton(QToolButton):
         painter.setRenderHints(QPainter.Antialiasing |
                                QPainter.SmoothPixmapTransform)
         painter.setOpacity(0.63 if self.isPressed else 1)
-        painter.drawPixmap(self.rect(), self.iconPixmap)
+        renderer = QSvgRenderer(self.iconPath, self)
+        w, h = self._iconSize
+        renderer.render(painter, QRectF(
+            (self.width()-w)//2, (self.height()-h)//2, w, h))
 
 
 class PushButton(QPushButton):
@@ -45,7 +50,7 @@ class PushButton(QPushButton):
     def __init__(self, iconPath: str, text: str, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
-        self.iconPixmap = QPixmap(iconPath)
+        self.iconPath = iconPath
         self.setText(text)
 
     def mousePressEvent(self, e):
@@ -59,10 +64,10 @@ class PushButton(QPushButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.Antialiasing)
         painter.setOpacity(0.63 if self.isPressed else 1)
-        painter.drawPixmap(15, 10, self.iconPixmap)
+        renderer = QSvgRenderer(self.iconPath, self)
+        renderer.render(painter, QRectF(12, 8, 16, 16))
 
 
 class FolderItem(QWidget):
@@ -75,12 +80,12 @@ class FolderItem(QWidget):
         self.folder = folder
         self.hBoxLayout = QHBoxLayout(self)
         self.folderLabel = QLabel(folder, self)
-        self.removeButton = ToolButton(SIF.create(SIF.CLOSE), (48, 36), self)
+        self.removeButton = ToolButton(SIF.create(SIF.CLOSE), (39, 29), (12, 12), self)
 
-        self.setFixedHeight(66)
-        self.hBoxLayout.setContentsMargins(60, 0, 75, 0)
+        self.setFixedHeight(53)
+        self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
         self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignLeft)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
         self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignRight)
         self.hBoxLayout.setAlignment(Qt.AlignVCenter)

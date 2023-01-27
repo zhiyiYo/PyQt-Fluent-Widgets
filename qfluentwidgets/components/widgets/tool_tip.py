@@ -23,10 +23,10 @@ class ToolTip(QFrame):
         self.ani = QPropertyAnimation(self, b'windowOpacity', self)
 
         # set layout
-        self.layout().setContentsMargins(15, 10, 15, 15)
+        self.layout().setContentsMargins(12, 8, 12, 12)
         self.layout().addWidget(self.container)
         self.containerLayout.addWidget(self.label)
-        self.containerLayout.setContentsMargins(10, 7, 10, 7)
+        self.containerLayout.setContentsMargins(8, 6, 8, 6)
 
         # add shadow
         self.shadowEffect = QGraphicsDropShadowEffect(self)
@@ -48,7 +48,7 @@ class ToolTip(QFrame):
     def text(self):
         return self.__text
 
-    def setText(self, text: str):
+    def setText(self, text):
         """ set text on tooltip """
         self.__text = text
         self.label.setText(text)
@@ -58,7 +58,7 @@ class ToolTip(QFrame):
     def duration(self):
         return self.__duration
 
-    def setDuration(self, duration: int):
+    def setDuration(self, duration):
         """ set tooltip duration in milliseconds """
         self.__duration = abs(duration)
 
@@ -84,7 +84,7 @@ class ToolTip(QFrame):
         self.timer.stop()
         super().hideEvent(e)
 
-    def adjustPos(self, pos: QPoint, size: QSize):
+    def adjustPos(self, pos, size):
         """ adjust the position of tooltip relative to widget
 
         Parameters
@@ -100,7 +100,7 @@ class ToolTip(QFrame):
 
         # adjust postion to prevent tooltips from appearing outside the screen
         desk = QApplication.desktop()
-        x = min(max(0, x), desk.width() - self.width() - 5)
-        y = min(max(0, y), desk.height() - self.height() - 5)
+        x = min(max(0, x), desk.width() - self.width() - 4)
+        y = min(max(0, y), desk.height() - self.height() - 4)
 
         self.move(x, y)

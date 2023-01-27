@@ -1,7 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint
+from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
 from PyQt5.QtGui import QPainter, QPixmap
 from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
+from PyQt5.QtSvg import QSvgRenderer, QSvgWidget
 
 from .label import PixmapLabel
 from ...common import setStyleSheet
@@ -34,8 +35,8 @@ class StateToolTip(QWidget):
         self.rotateTimer = QTimer(self)
         self.closeTimer = QTimer(self)
         self.animation = QPropertyAnimation(self, b"windowOpacity")
-        self.busyImage = QPixmap(":/qfluentwidgets/images/state_tool_tip/running.png")
-        self.doneImage = QPixmap(":/qfluentwidgets/images/state_tool_tip/completed.png")
+        self.busyIconPath = ":/qfluentwidgets/images/state_tool_tip/running.svg"
+        self.doneIconPath = ":/qfluentwidgets/images/state_tool_tip/completed.svg"
         self.closeButton = QToolButton(self)
 
         self.isDone = False
@@ -64,10 +65,10 @@ class StateToolTip(QWidget):
     def __initLayout(self):
         """ initialize layout """
         self.setFixedSize(max(self.titleLabel.width(),
-                          self.contentLabel.width()) + 70, 64)
-        self.titleLabel.move(40, 11)
-        self.contentLabel.move(15, 34)
-        self.closeButton.move(self.width() - 30, 23)
+                          self.contentLabel.width()) + 56, 51)
+        self.titleLabel.move(32, 9)
+        self.contentLabel.move(12, 27)
+        self.closeButton.move(self.width() - 24, 18)
 
     def __setQss(self):
         """ set style sheet """
@@ -127,16 +128,13 @@ class StateToolTip(QWidget):
         painter.setRenderHints(QPainter.SmoothPixmapTransform)
         painter.setPen(Qt.NoPen)
         if not self.isDone:
-            painter.translate(24, 23)
+            painter.translate(19, 18)
             painter.rotate(self.rotateAngle)
-            painter.drawPixmap(
-                -int(self.busyImage.width() / 2),
-                -int(self.busyImage.height() / 2),
-                self.busyImage,
-            )
+            render = QSvgRenderer(self.busyIconPath, self)
+            render.render(painter, QRectF(-8, -8, 16, 16))
         else:
-            painter.drawPixmap(14, 13, self.doneImage.width(),
-                               self.doneImage.height(), self.doneImage)
+            render = QSvgRenderer(self.doneIconPath, self)
+            render.render(painter, QRectF(11, 10, 16, 16))
 
 
 class ToastToolTip(QWidget):
@@ -161,11 +159,11 @@ class ToastToolTip(QWidget):
         super().__init__(parent)
         self.title = title
         self.content = content
-        self.icon = f":/qfluentwidgets/images/state_tool_tip/{icon}.png"
+        self.icon = f":/qfluentwidgets/images/state_tool_tip/{icon}.svg"
 
         self.titleLabel = QLabel(self.title, self)
         self.contentLabel = QLabel(self.content, self)
-        self.iconLabel = PixmapLabel(self)
+        self.iconLabel = QSvgWidget(self.icon, self)
         self.closeButton = QToolButton(self)
         self.closeTimer = QTimer(self)
         self.opacityEffect = QGraphicsOpacityEffect(self)
@@ -177,14 +175,13 @@ class ToastToolTip(QWidget):
     def __initWidget(self):
         """ initialize widgets """
         self.setAttribute(Qt.WA_StyledBackground)
-        self.closeButton.setFixedSize(QSize(14, 14))
-        self.closeButton.setIconSize(QSize(14, 14))
+        self.closeButton.setFixedSize(QSize(11, 11))
+        self.closeButton.setIconSize(QSize(11, 11))
         self.closeTimer.setInterval(2000)
         self.contentLabel.setMinimumWidth(250)
 
-        self.iconLabel.setPixmap(QPixmap(self.icon))
-        self.iconLabel.adjustSize()
-        self.iconLabel.move(15, 13)
+        self.iconLabel.resize(16, 16)
+        self.iconLabel.move(12, 10)
 
         self.setGraphicsEffect(self.opacityEffect)
         self.opacityEffect.setOpacity(1)
@@ -199,10 +196,10 @@ class ToastToolTip(QWidget):
     def __initLayout(self):
         """ initialize layout """
         self.setFixedSize(max(self.titleLabel.width(),
-                          self.contentLabel.width()) + 90, 64)
-        self.titleLabel.move(40, 11)
-        self.contentLabel.move(15, 34)
-        self.closeButton.move(self.width() - 30, 23)
+                          self.contentLabel.width()) + 72, 51)
+        self.titleLabel.move(32, 9)
+        self.contentLabel.move(12, 27)
+        self.closeButton.move(self.width() - 24, 18)
 
     def __setQss(self):
         """ set style sheet """
@@ -223,11 +220,11 @@ class ToastToolTip(QWidget):
     def getSuitablePos(self):
         """ get suitable position in main window """
         for i in range(10):
-            dy = i*(self.height() + 20)
-            pos = QPoint(self.window().width() - self.width() - 30, 63+dy)
+            dy = i*(self.height() + 16)
+            pos = QPoint(self.window().width() - self.width() - 24, 50+dy)
             widget = self.window().childAt(pos + QPoint(2, 2))
             if isinstance(widget, (StateToolTip, ToastToolTip)):
-                pos += QPoint(0, self.height() + 20)
+                pos += QPoint(0, self.height() + 16)
             else:
                 break
 

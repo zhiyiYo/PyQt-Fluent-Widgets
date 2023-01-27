@@ -10,9 +10,9 @@ class Window(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.resize(200, 100)
+        self.resize(160, 80)
         self.switchButton = SwitchButton(parent=self)
-        self.switchButton.move(60, 30)
+        self.switchButton.move(48, 24)
         self.switchButton.checkedChanged.connect(self.onCheckedChanged)
 
     def onCheckedChanged(self, isChecked: bool):
@@ -21,6 +21,12 @@ class Window(QWidget):
 
 
 if __name__ == '__main__':
+    # enable dpi scale
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    
     app = QApplication(sys.argv)
     w = Window()
     w.show()

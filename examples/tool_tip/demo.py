@@ -1,6 +1,6 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEvent, QPoint
+from PyQt5.QtCore import QEvent, QPoint, Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout
 
 from qfluentwidgets import ToolTip
@@ -14,6 +14,8 @@ class Demo(QWidget):
         self.button1 = QPushButton('キラキラ', self)
         self.button2 = QPushButton('食べた愛', self)
         self._toolTip = ToolTip(parent=self)
+
+        # use dark theme
         # self._toolTip.setDarkTheme(True)
 
         self.button1.setToolTip('aiko - キラキラ ✨')
@@ -24,12 +26,12 @@ class Demo(QWidget):
         self.button1.installEventFilter(self)
         self.button2.installEventFilter(self)
 
-        self.hBox.setContentsMargins(30, 30, 30, 30)
-        self.hBox.setSpacing(20)
+        self.hBox.setContentsMargins(24, 24, 24, 24)
+        self.hBox.setSpacing(16)
         self.hBox.addWidget(self.button1)
         self.hBox.addWidget(self.button2)
 
-        self.resize(600, 300)
+        self.resize(480, 240)
         self._toolTip.hide()
 
         with open('resource/demo.qss', encoding='utf-8') as f:
@@ -54,6 +56,12 @@ class Demo(QWidget):
 
 
 if __name__ == '__main__':
+    # enable dpi scale
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+
     app = QApplication(sys.argv)
     w = Demo()
     w.show()

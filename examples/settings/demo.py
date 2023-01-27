@@ -5,7 +5,6 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QColor
 from PyQt5.QtWidgets import QApplication, QLabel, QHBoxLayout
 
-from qfluentwidgets import dpi_manager
 from qframelesswindow import FramelessWindow, TitleBar
 from qframelesswindow.titlebar import TitleBarButton
 from setting_interface import SettingInterface, cfg
@@ -18,8 +17,8 @@ class CustomTitleBar(TitleBar):
         super().__init__(parent)
         # add window icon
         self.iconLabel = QLabel(self)
-        self.iconLabel.setFixedSize(22, 22)
-        self.hBoxLayout.insertSpacing(0, 10)
+        self.iconLabel.setFixedSize(20, 20)
+        self.hBoxLayout.insertSpacing(0, 8)
         self.hBoxLayout.insertWidget(1, self.iconLabel, 0, Qt.AlignLeft)
         self.window().windowIconChanged.connect(self.setIcon)
 
@@ -29,8 +28,8 @@ class CustomTitleBar(TitleBar):
         self.titleLabel.setStyleSheet(f"""
             QLabel{{
                 background: transparent;
-                font: 15px 'Segoe UI';
-                padding: 0 3px;
+                font: 13px 'Segoe UI';
+                padding: 0 4px;
                 color: {'white' if cfg.theme == 'dark' else 'black'}
             }}
         """)
@@ -51,7 +50,7 @@ class CustomTitleBar(TitleBar):
         self.titleLabel.adjustSize()
 
     def setIcon(self, icon):
-        self.iconLabel.setPixmap(icon.pixmap(22, 22))
+        self.iconLabel.setPixmap(icon.pixmap(20, 20))
 
 
 class Window(FramelessWindow):
@@ -69,7 +68,7 @@ class Window(FramelessWindow):
         self.setWindowIcon(QIcon("resource/logo.png"))
         self.setWindowTitle("PyQt-Fluent-Widgets")
 
-        self.resize(1350, 980)
+        self.resize(1080, 784)
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
@@ -78,11 +77,13 @@ class Window(FramelessWindow):
 
 
 if __name__ == '__main__':
-    # enable high dpi scale
-    os.environ["QT_ENABLE_HIGHDPI_SCALING"] = "0"
+    # enable dpi scale
     if cfg.get(cfg.dpiScale) == "Auto":
-        os.environ["QT_SCALE_FACTOR"] = str(max(1, dpi_manager.scale-0.25))
+        QApplication.setHighDpiScaleFactorRoundingPolicy(
+            Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     else:
+        os.environ["QT_ENABLE_HIGHDPI_SCALING"] = "0"
         os.environ["QT_SCALE_FACTOR"] = str(cfg.get(cfg.dpiScale))
 
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)

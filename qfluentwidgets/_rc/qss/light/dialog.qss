@@ -17,19 +17,19 @@ QLabel {
 }
 
 QLabel#titleLabel {
-    font: 25px 'Segoe UI', 'Microsoft YaHei';
+    font: 20px 'Segoe UI', 'Microsoft YaHei';
     padding: 0;
 }
 
 #contentLabel {
     padding: 0;
-    font: 17px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     border: none;
 }
 
 QLabel#windowTitleLabel {
-    font: 15px 'Segoe UI', 'Microsoft YaHei';
-    padding: 8px 8px;
+    font: 12px 'Segoe UI', 'Microsoft YaHei';
+    padding: 6px 6px;
     background-color: rgb(243, 243, 243);
 }
 
@@ -37,10 +37,10 @@ QPushButton {
     background: rgb(251, 251, 251);
     border: 1px solid rgb(229, 229, 229);
     border-bottom: 1px solid rgb(204, 204, 204);
-    border-radius: 5px;
-    font: 17px 'Segoe UI', 'Microsoft YaHei';
-    padding-top: 7px;
-    padding-bottom: 7px;
+    border-radius: 4px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 QPushButton:hover {

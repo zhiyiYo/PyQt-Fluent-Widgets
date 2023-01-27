@@ -1,5 +1,6 @@
 # coding:utf-8
 import sys
+from PyQt5.QtCore import QEasingCurve
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
 from qfluentwidgets import FlowLayout
@@ -9,7 +10,10 @@ class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        layout = FlowLayout(self)
+        layout = FlowLayout(self, needAni=True)
+
+        # customize animation
+        layout.setAnimation(250, QEasingCurve.OutQuad)
 
         layout.setContentsMargins(30, 30, 30, 30)
         layout.setVerticalSpacing(20)

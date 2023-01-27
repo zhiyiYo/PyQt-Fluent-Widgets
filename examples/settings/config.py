@@ -99,7 +99,7 @@ class Config(QConfig):
 
 YEAR = 2023
 AUTHOR = "zhiyiYo"
-VERSION = "v0.0.1"
+VERSION = "v0.2.0"
 HELP_URL = "https://pyqt-fluent-widgets.readthedocs.io"
 FEEDBACK_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
 RELEASE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases/latest"

@@ -15,7 +15,7 @@ class Dialog(FramelessDialog):
 
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent)
-        self.resize(300, 240)
+        self.resize(240, 192)
         self.titleBar.hide()
 
         self.content = content
@@ -38,7 +38,7 @@ class Dialog(FramelessDialog):
         self.__initLayout()
 
         self.yesButton.setFocus()
-        self.buttonGroup.setFixedHeight(101)
+        self.buttonGroup.setFixedHeight(81)
         self.contentLabel.setText(TextWrap.wrap(self.content, 100, False)[0])
         self.setResizeEnabled(False)
 
@@ -52,13 +52,13 @@ class Dialog(FramelessDialog):
         self.vBoxLayout.addLayout(self.textLayout, 1)
         self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
 
-        self.textLayout.setSpacing(15)
-        self.textLayout.setContentsMargins(30, 30, 30, 30)
+        self.textLayout.setSpacing(12)
+        self.textLayout.setContentsMargins(24, 24, 24, 24)
         self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
         self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignTop)
 
-        self.buttonLayout.setSpacing(15)
-        self.buttonLayout.setContentsMargins(30, 30, 30, 30)
+        self.buttonLayout.setSpacing(12)
+        self.buttonLayout.setContentsMargins(24, 24, 24, 24)
         self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
         self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
 

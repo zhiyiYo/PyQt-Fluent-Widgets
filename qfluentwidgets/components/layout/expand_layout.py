@@ -1,8 +1,7 @@
 # coding:utf-8
-from typing import List
 from PyQt5.QtCore import QSize, QPoint, Qt, QEvent, QRect
 from PyQt5.QtGui import QResizeEvent
-from PyQt5.QtWidgets import QLayout, QLayoutItem, QWidget
+from PyQt5.QtWidgets import QLayout, QWidget
 
 
 class ExpandLayout(QLayout):
@@ -10,8 +9,8 @@ class ExpandLayout(QLayout):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.__items = []   #type:List[QLayoutItem]
-        self.__widgets = [] #type:List[QWidget]
+        self.__items = []
+        self.__widgets = []
 
     def addWidget(self, widget: QWidget):
         if widget in self.__widgets:
@@ -20,19 +19,19 @@ class ExpandLayout(QLayout):
         self.__widgets.append(widget)
         widget.installEventFilter(self)
 
-    def addItem(self, item: QLayoutItem):
+    def addItem(self, item):
         self.__items.append(item)
 
     def count(self):
         return len(self.__items)
 
-    def itemAt(self, index: int):
+    def itemAt(self, index):
         if 0 <= index < len(self.__items):
             return self.__items[index]
 
         return None
 
-    def takeAt(self, index: int):
+    def takeAt(self, index):
         if 0 <= index < len(self.__items):
             self.__widgets.pop(index)
             return self.__items.pop(index)
@@ -45,11 +44,11 @@ class ExpandLayout(QLayout):
     def hasHeightForWidth(self):
         return True
 
-    def heightForWidth(self, width: int):
+    def heightForWidth(self, width):
         """ get the minimal height according to width """
         return self.__doLayout(QRect(0, 0, width, 0), False)
 
-    def setGeometry(self, rect: QRect):
+    def setGeometry(self, rect):
         super().setGeometry(rect)
         self.__doLayout(rect, True)
 
@@ -67,7 +66,7 @@ class ExpandLayout(QLayout):
 
         return size
 
-    def __doLayout(self, rect: QRect, move: bool):
+    def __doLayout(self, rect, move):
         """ adjust widgets position according to the window size """
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
@@ -83,7 +82,7 @@ class ExpandLayout(QLayout):
 
         return y - rect.y()
 
-    def eventFilter(self, obj, e: QEvent) -> bool:
+    def eventFilter(self, obj, e):
         if obj in self.__widgets:
             if e.type() == QEvent.Resize:
                 re = QResizeEvent(e)

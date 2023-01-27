@@ -29,7 +29,7 @@ class TextWrap:
         return 1
 
     @classmethod
-    def wrap(cls, text: str, width: int, once=True) -> tuple:
+    def wrap(cls, text, width, once=True):
         """ Wrap according to string length
 
         Parameters

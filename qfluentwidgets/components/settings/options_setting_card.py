@@ -45,8 +45,8 @@ class OptionsSettingCard(ExpandSettingCard):
         self.addWidget(self.choiceLabel)
 
         # create buttons
-        self.viewLayout.setSpacing(24)
-        self.viewLayout.setContentsMargins(60, 22, 0, 22)
+        self.viewLayout.setSpacing(19)
+        self.viewLayout.setContentsMargins(48, 18, 0, 18)
         for text, option in zip(texts, configItem.options):
             button = QRadioButton(text, self.view)
             self.buttonGroup.addButton(button)

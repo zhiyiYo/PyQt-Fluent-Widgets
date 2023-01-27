@@ -24,7 +24,7 @@ class SettingCardGroup(QWidget):
         self.cardLayout.setSpacing(2)
 
         self.vBoxLayout.addWidget(self.titleLabel)
-        self.vBoxLayout.addSpacing(15)
+        self.vBoxLayout.addSpacing(12)
         self.vBoxLayout.addLayout(self.cardLayout, 1)
 
         setStyleSheet(self, 'setting_card_group')
@@ -42,5 +42,5 @@ class SettingCardGroup(QWidget):
             self.addSettingCard(card)
 
     def adjustSize(self):
-        h = self.cardLayout.heightForWidth(self.width()) + 52
+        h = self.cardLayout.heightForWidth(self.width()) + 46
         return self.resize(self.width(), h)

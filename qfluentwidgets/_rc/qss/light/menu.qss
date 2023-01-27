@@ -1,28 +1,28 @@
 QMenu {
     background-color: rgb(232, 232, 232);
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
-    padding: 5px 0px 5px 0px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 4px 0px 4px 0px;
     border: 1px solid rgb(200, 200, 200);
 }
 
 QMenu::right-arrow {
-    width: 16px;
-    height: 16px;
-    right: 16px;
-    border-image: url(:/qfluentwidgets/images/menu/ChevronRight_black.png);
+    width: 13px;
+    height: 13px;
+    right: 13px;
+    border-image: url(:/qfluentwidgets/images/menu/ChevronRight_black.svg);
 }
 
 QMenu::separator {
     height: 1px;
     background: rgba(0, 0, 0, 104);
     margin-right: 13px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 13;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 10px;
 }
 
 QMenu::item {
-    padding: 7px 13px 7px 13px;
+    padding: 6px 10px 6px 10px;
 }
 
 QMenu::item:selected {
@@ -41,13 +41,13 @@ QMenu#lineEditMenu {
 
 QMenu#lineEditMenu::icon {
     position: absolute;
-    left: 16px;
+    left: 13px;
 }
 
 QMenu#lineEditMenu::item {
-    padding-left: 26px;
+    padding-left: 21px;
 }
 
 QMenu#lineEditMenu[selectAll=true]::item {
-    width: 118px;
+    width: 98px;
 }

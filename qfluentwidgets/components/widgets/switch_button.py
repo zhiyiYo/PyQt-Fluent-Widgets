@@ -17,7 +17,7 @@ class Indicator(QToolButton):
         super().__init__(parent=parent)
         self.setCheckable(True)
         super().setChecked(False)
-        self.resize(50, 26)
+        self.resize(37, 16)
         self.__sliderOnColor = QColor(Qt.white)
         self.__sliderOffColor = QColor(Qt.black)
         self.__sliderDisabledColor = QColor(QColor(155, 154, 153))
@@ -41,7 +41,7 @@ class Indicator(QToolButton):
             if self.sliderX-self.sliderStep > self.sliderEndX:
                 self.sliderX -= self.sliderStep
             else:
-                self.sliderX = self.sliderEndX
+                self.sliderX = self.padding
                 self.timer.stop()
 
         self.style().polish(self)
@@ -143,7 +143,7 @@ class SwitchButton(QWidget):
         """
         super().__init__(parent=parent)
         self.text = text
-        self.__spacing = 15
+        self.__spacing = 12
         self.indicatorPos = indicatorPos
         self.hBox = QHBoxLayout(self)
         self.indicator = Indicator(self)
@@ -176,7 +176,7 @@ class SwitchButton(QWidget):
     def isChecked(self):
         return self.indicator.isChecked()
 
-    def setChecked(self, isChecked: bool):
+    def setChecked(self, isChecked):
         """ set checked state """
         self.adjustSize()
         self.indicator.setChecked(isChecked)
@@ -185,7 +185,7 @@ class SwitchButton(QWidget):
         """ toggle checked state """
         self.indicator.setChecked(not self.indicator.isChecked())
 
-    def setText(self, text: str):
+    def setText(self, text):
         self.text = text
         self.label.setText(text)
         self.adjustSize()
@@ -193,7 +193,7 @@ class SwitchButton(QWidget):
     def getSpacing(self):
         return self.__spacing
 
-    def setSpacing(self, spacing: int):
+    def setSpacing(self, spacing):
         self.__spacing = spacing
         self.hBox.setSpacing(spacing)
         self.update()

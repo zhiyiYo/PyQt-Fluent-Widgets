@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget
 
 
 
-def getStyleSheet(file: str):
+def getStyleSheet(file):
     """ get style sheet
 
     Parameters
@@ -20,7 +20,7 @@ def getStyleSheet(file: str):
     return qss
 
 
-def setStyleSheet(widget: QWidget, file: str):
+def setStyleSheet(widget, file):
     """ set the style sheet of widget
 
     Parameters

@@ -13,20 +13,18 @@ QLabel {
 }
 
 QLabel#titleLabel {
-    font: 25px 'Segoe UI', 'Microsoft YaHei';
+    font: 20px 'Segoe UI', 'Microsoft YaHei';
 }
 
 QLabel#contentLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
 }
 
 QPushButton#completeButton {
     background-color: rgb(204, 204, 204);
-    padding: 11px 64px 11px 64px;
-    font: 19px 'Segoe UI', 'Microsoft YaHei';
+    padding: 9px 51px 9px 51px;
+    font: 15px 'Segoe UI', 'Microsoft YaHei';
     border: none;
-    height: 20px;
-    width: 55px;
 }
 
 QPushButton#completeButton:pressed:hover {
@@ -46,26 +44,23 @@ QScrollArea{
     border: none;
 }
 
-/*滚动条*/
 QScrollBar:vertical {
     background: white;
     border: none;
     width: 3px;
 }
 
-/*隐藏上箭头*/
 QScrollBar::sub-line {
     background: transparent;
 }
 
-/*隐藏下箭头*/
 QScrollBar::add-line {
     background: transparent;
 }
 
 QScrollBar::handle {
     background: rgb(128, 128, 128);
-    min-height: 40px;
+    min-height: 32px;
     border: 1px solid transparent;
     border-radius: 1px;
 }

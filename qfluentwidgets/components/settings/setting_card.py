@@ -1,12 +1,12 @@
 # coding:utf-8
 from PyQt5.QtCore import QUrl, Qt, pyqtSignal
-from PyQt5.QtGui import QPixmap, QColor, QDesktopServices
+from PyQt5.QtGui import QColor, QDesktopServices
 from PyQt5.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
+from PyQt5.QtSvg import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
-from ..widgets.label import PixmapLabel
 from ...common.style_sheet import setStyleSheet, getStyleSheet
 from ...common.config import ConfigItem, qconfig, RangeConfigItem
 from ...common.icon import getIconColor
@@ -20,7 +20,7 @@ class SettingCard(QFrame):
         Parameters
         ----------
         iconPath: str
-            the path of icon
+            the path of svg icon
 
         title: str
             the title of card
@@ -32,7 +32,7 @@ class SettingCard(QFrame):
             parent widget
         """
         super().__init__(parent=parent)
-        self.iconLabel = PixmapLabel(self)
+        self.iconLabel = QSvgWidget(iconPath, self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(content or '', self)
         self.hBoxLayout = QHBoxLayout(self)
@@ -41,26 +41,25 @@ class SettingCard(QFrame):
         if not content:
             self.contentLabel.hide()
 
-        self.setFixedHeight(88 if content else 62)
-        self.iconLabel.setFixedSize(20, 20)
-        self.iconLabel.setPixmap(QPixmap(iconPath))
+        self.setFixedHeight(70 if content else 50)
+        self.iconLabel.setFixedSize(16, 16)
 
         # initialize layout
         self.hBoxLayout.setSpacing(0)
-        self.hBoxLayout.setContentsMargins(20, 0, 0, 0)
+        self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
         self.hBoxLayout.setAlignment(Qt.AlignVCenter)
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.setAlignment(Qt.AlignVCenter)
 
         self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignLeft)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
 
         self.hBoxLayout.addLayout(self.vBoxLayout)
         self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignLeft)
         self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignLeft)
 
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
 
         self.contentLabel.setObjectName('contentLabel')
@@ -112,7 +111,7 @@ class SwitchSettingCard(SettingCard):
 
         # add switch button to layout
         self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
 
         self.switchButton.checkedChanged.connect(self.__onCheckedChanged)
 
@@ -162,7 +161,7 @@ class RangeSettingCard(SettingCard):
         self.configItem = configItem
         self.slider = Slider(Qt.Horizontal, self)
         self.valueLabel = QLabel(self)
-        self.slider.setFixedWidth(335)
+        self.slider.setFixedWidth(268)
 
         self.slider.setSingleStep(1)
         self.slider.setRange(*configItem.range)
@@ -170,9 +169,9 @@ class RangeSettingCard(SettingCard):
         self.valueLabel.setNum(configItem.value)
 
         self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(8)
+        self.hBoxLayout.addSpacing(6)
         self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
 
         self.valueLabel.setObjectName('valueLabel')
         self.slider.valueChanged.connect(self.__onValueChanged)
@@ -212,7 +211,7 @@ class PushSettingCard(SettingCard):
         super().__init__(iconPath, title, content, parent)
         self.button = QPushButton(text, self)
         self.hBoxLayout.addWidget(self.button, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
         self.button.clicked.connect(self.clicked)
 
 
@@ -262,7 +261,7 @@ class HyperlinkCard(SettingCard):
             lambda i: QDesktopServices.openUrl(self.url))
 
         self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
 
 
 class ColorPickerButton(QToolButton):
@@ -273,7 +272,7 @@ class ColorPickerButton(QToolButton):
     def __init__(self, color: QColor, title: str, parent=None):
         super().__init__(parent=parent)
         self.title = title
-        self.setFixedSize(120, 40)
+        self.setFixedSize(96, 32)
         self.setAutoFillBackground(True)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
@@ -331,7 +330,7 @@ class ColorSettingCard(SettingCard):
         self.colorPicker = ColorPickerButton(
             qconfig.get(configItem), title, self)
         self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignRight)
-        self.hBoxLayout.addSpacing(20)
+        self.hBoxLayout.addSpacing(16)
         self.colorPicker.colorChanged.connect(self.__onColorChanged)
 
     def __onColorChanged(self, color: QColor):
@@ -354,20 +353,19 @@ class SettingIconFactory:
     MUSIC = "Music"
     VIDEO = "Video"
     EMBED = "Embed"
-    ALBUM = "Album"
     FOLDER = "Folder"
     SEARCH = "Search"
     UPDATE = "Update"
     PALETTE = "Palette"
     FEEDBACK = "Feedback"
     MINIMIZE = "Minimize"
+    LANGUAGE = "Language"
     DOWNLOAD = "Download"
     QUESTION = "Question"
     ALIGNMENT = "Alignment"
     PENCIL_INK = "PencilInk"
     FOLDER_ADD = "FolderAdd"
     ARROW_DOWN = "ChevronDown"
-    FILE_SEARCH = "FileSearch"
     TRANSPARENT = "Transparent"
     MUSIC_FOLDER = "MusicFolder"
     BACKGROUND_FILL = "BackgroundColor"
@@ -376,4 +374,4 @@ class SettingIconFactory:
     @staticmethod
     def create(iconType: str):
         """ create icon """
-        return f':/qfluentwidgets/images/setting_card/{iconType}_{getIconColor()}.png'
+        return f':/qfluentwidgets/images/setting_card/{iconType}_{getIconColor()}.svg'

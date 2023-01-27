@@ -21,12 +21,18 @@ class Demo(QWidget):
         self.slider = QSlider(Qt.Horizontal, self)
         self.slider.setStyle(HollowHandleStyle(style))
 
-        # 需要调整高度
+        # need adjust height
         self.slider.resize(200, 28)
         self.slider.move(50, 61)
 
 
 if __name__ == '__main__':
+    # enable dpi scale
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    
     app = QApplication(sys.argv)
     w = Demo()
     w.show()

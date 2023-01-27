@@ -11,7 +11,7 @@ from .exception_handler import exceptionHandler
 
 
 
-def gaussianBlur(imagePath: str, blurRadius=18, brightFactor=1, blurPicSize: tuple = None) -> QPixmap:
+def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
     if not imagePath.startswith(':'):
         image = Image.open(imagePath)
     else:
@@ -47,7 +47,7 @@ class DominantColor:
 
     @classmethod
     @exceptionHandler((24, 24, 24))
-    def getDominantColor(cls, imagePath: str):
+    def getDominantColor(cls, imagePath):
         """ extract dominant color from image
 
         Parameters
@@ -86,7 +86,7 @@ class DominantColor:
         return palette[0]
 
     @classmethod
-    def __adjustPaletteValue(cls, palette: list):
+    def __adjustPaletteValue(cls, palette):
         """ adjust the brightness of palette """
         newPalette = []
         for rgb in palette:
@@ -105,7 +105,7 @@ class DominantColor:
         return newPalette
 
     @staticmethod
-    def rgb2hsv(rgb: tuple) -> tuple:
+    def rgb2hsv(rgb):
         """ convert rgb to hsv """
         r, g, b = [i / 255 for i in rgb]
         mx = max(r, g, b)
@@ -124,7 +124,7 @@ class DominantColor:
         return (h, s, v)
 
     @staticmethod
-    def hsv2rgb(h, s, v) -> tuple:
+    def hsv2rgb(h, s, v):
         """ convert hsv to rgb """
         h60 = h / 60.0
         h60f = floor(h60)

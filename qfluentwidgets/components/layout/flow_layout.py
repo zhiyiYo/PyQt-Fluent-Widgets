@@ -1,19 +1,59 @@
 # coding:utf-8
-from PyQt5.QtCore import QSize, QPoint, Qt, QRect
-from PyQt5.QtWidgets import QLayout
+from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
+from PyQt5.QtWidgets import QLayout, QLayoutItem
 
 
 class FlowLayout(QLayout):
     """ Flow layout """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, needAni=False):
+        """
+        Parameters
+        ----------
+        parent:
+            parent window or layout
+
+        needAni: bool
+            whether to add moving animation
+        """
         super().__init__(parent)
         self._items = []
+        self._anis = []
+        self._aniGroup = QParallelAnimationGroup(self)
         self._verticalSpacing = 10
         self._horizontalSpacing = 10
+        self.needAni = needAni
 
     def addItem(self, item):
         self._items.append(item)
+
+    def addWidget(self, w):
+        super().addWidget(w)
+        if not self.needAni:
+            return
+
+        ani = QPropertyAnimation(w, b'geometry')
+        ani.setDuration(300)
+        self._anis.append(ani)
+        self._aniGroup.addAnimation(ani)
+
+    def setAnimation(self, duration, ease=QEasingCurve.Linear):
+        """ set the moving animation
+
+        Parameters
+        ----------
+        duration: int
+            the duration of animation in milliseconds
+
+        ease: QEasingCurve
+            the easing curve of animation
+        """
+        if not self.needAni:
+            return
+
+        for ani in self._anis:
+            ani.setDuration(duration)
+            ani.setEasingCurve(ease)
 
     def count(self):
         return len(self._items)
@@ -88,7 +128,7 @@ class FlowLayout(QLayout):
         spaceX = self.horizontalSpacing()
         spaceY = self.verticalSpacing()
 
-        for item in self._items:
+        for i, item in enumerate(self._items):
             nextX = x + item.sizeHint().width() + spaceX
 
             if nextX - spaceX > rect.right() and rowHeight > 0:
@@ -98,9 +138,16 @@ class FlowLayout(QLayout):
                 rowHeight = 0
 
             if move:
-                item.setGeometry(QRect(QPoint(x, y), item.sizeHint()))
+                if not self.needAni:
+                    item.setGeometry(QRect(QPoint(x, y), item.sizeHint()))
+                else:
+                    self._anis[i].stop()
+                    self._anis[i].setEndValue(QRect(QPoint(x, y), item.sizeHint()))
 
             x = nextX
             rowHeight = max(rowHeight, item.sizeHint().height())
+
+        if self.needAni:
+            self._aniGroup.start()
 
         return y + rowHeight - rect.y()

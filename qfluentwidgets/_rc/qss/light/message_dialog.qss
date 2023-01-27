@@ -16,16 +16,16 @@ QLabel {
 }
 
 QLabel#titleLabel {
-    font-size: 22px;
+    font-size: 18px;
 }
 
 QLabel#contentLabel {
-    font-size: 11pt;
+    font-size: 14px;
 }
 
 QPushButton {
     background-color: rgb(204, 204, 204);
-    font: 19px 'Segoe UI', 'Microsoft YaHei';
+    font: 15px 'Segoe UI', 'Microsoft YaHei';
     border: transparent;
 }
 

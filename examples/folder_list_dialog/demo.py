@@ -1,5 +1,6 @@
 # coding:utf-8
 import sys
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
 from qfluentwidgets import FolderListDialog
@@ -9,9 +10,9 @@ class Window(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.resize(1000, 800)
+        self.resize(800, 720)
         self.btn = QPushButton('Click Me', parent=self)
-        self.btn.move(390, 375)
+        self.btn.move(312, 300)
         self.btn.clicked.connect(self.showDialog)
         self.btn.setObjectName('btn')
         with open('resource/demo.qss', encoding='utf-8') as f:
@@ -27,6 +28,12 @@ class Window(QWidget):
 
 
 if __name__ == '__main__':
+    # enable dpi scale
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+
     app = QApplication(sys.argv)
     w = Window()
     w.show()

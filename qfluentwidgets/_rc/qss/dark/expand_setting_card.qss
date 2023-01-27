@@ -1,6 +1,6 @@
 ExpandSettingCard {
     border: 1px solid rgb(35, 35, 35);
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: rgb(46, 46, 46);
 }
 
@@ -10,34 +10,34 @@ ExpandSettingCard {
 
 ExpandSettingCard[isExpand=false]>SettingCard {
     border: 1px solid rgb(35, 35, 35);
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: rgb(50, 50, 50);
 }
 
 ExpandSettingCard[isExpand=true]>SettingCard {
     border: 1px solid rgb(35, 35, 35);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     background-color: rgb(50, 50, 50);
 }
 
 QLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     padding: 0;
     background: transparent;
 }
 
 QLabel#contentLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 11px 'Segoe UI', 'Microsoft YaHei';
     color: rgb(208, 208, 208);
     padding: 0;
 }
 
 FolderItem>QLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
 }
 
 /* QPushButton */
@@ -45,8 +45,8 @@ QPushButton {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
-    padding: 6px 15px 6px 45px;
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    padding: 5px 12px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     background-color: rgb(62, 63, 62);
 }
@@ -67,7 +67,7 @@ ToolButton {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     background-color: rgb(62, 63, 62);
 }
@@ -83,20 +83,20 @@ ToolButton:pressed {
 
 /* 单选框 */
 QRadioButton {
-    min-height: 30px;
-    max-height: 30px;
+    min-height: 24px;
+    max-height: 24px;
     background-color: transparent;
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
 }
 
 QRadioButton::indicator {
-    width: 22px;
-    height: 22px;
-    border-radius: 13px;
+    width: 18px;
+    height: 18px;
+    border-radius: 11px;
     border: 2px solid #848484;
     background-color: transparent;
-    margin-right: 5px;
+    margin-right: 4px;
 }
 
 QRadioButton::indicator:hover {
@@ -108,19 +108,19 @@ QRadioButton::indicator:pressed {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.5 rgb(0, 0, 0),
-        stop:0.55 rgb(43, 42, 42),
+        stop:0.6 rgb(43, 42, 42),
         stop:1 rgb(43, 42, 42));
 }
 
 QRadioButton::indicator:checked {
-    height: 26px;
-    width: 26px;
+    height: 22px;
+    width: 22px;
     border: none;
-    border-radius: 13px;
+    border-radius: 11px;
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.5 rgb(0, 0, 0),
-        stop:0.55 rgb(72, 210, 242),
+        stop:0.6 rgb(72, 210, 242),
         stop:1 rgb(72, 210, 242));
 }
 
@@ -128,7 +128,7 @@ QRadioButton::indicator:checked:hover {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.6 rgb(0, 0, 0),
-        stop:0.65 rgb(72, 210, 242),
+        stop:0.7 rgb(72, 210, 242),
         stop:1 rgb(72, 210, 242));
 }
 
@@ -136,7 +136,7 @@ QRadioButton::indicator:checked:pressed {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.5 rgb(0, 0, 0),
-        stop:0.55 rgb(72, 210, 242),
+        stop:0.6 rgb(72, 210, 242),
         stop:1 rgb(72, 210, 242));
 }
 

@@ -3,24 +3,24 @@ QWidget {
 }
 
 SwitchButton {
-    qproperty-spacing: 15;
+    qproperty-spacing: 12;
     background-color: transparent;
 }
 
 SwitchButton>QLabel {
     color: black;
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     background-color: transparent;
 }
 
 
 Indicator {
-    height: 22px;
-    width: 50px;
+    height: 16px;
+    width: 37px;
     qproperty-sliderOnColor: white;
     qproperty-sliderOffColor: black;
     qproperty-sliderDisabledColor: rgb(155, 154, 153);
-    border-radius: 13px;
+    border-radius: 10px;
 }
 
 

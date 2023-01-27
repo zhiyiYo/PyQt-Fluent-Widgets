@@ -1,55 +1,50 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
-from PyQt5.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QPoint, QRect, Qt
-from PyQt5.QtWidgets import QAction, QApplication, QMenu, QWidget
+from PyQt5.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QAction, QApplication, QMenu, QProxyStyle, QStyle
 
 from ...common.icon import Icon, getIconColor
-from ...common.style_sheet import setStyleSheet, getStyleSheet
+from ...common.style_sheet import setStyleSheet
 
 
 class MenuIconFactory:
     """ Menu icon factory """
 
-    ADD = "Add"
-    ALBUM = "Album"
+    CUT = "Cut"
+    COPY = "Copy"
+    PASTE = "Paste"
     CANCEL = "Cancel"
     CHEVRON_RIGHT = "ChevronRight"
-    CLEAR = "Clear"
-    CONTACT = "Contact"
-    COPY = "Copy"
-    CUT = "Cut"
-    FULL_SCREEN = "FullScreen"
-    PASTE = "Paste"
-    PLAYING = "Playing"
-    PLAYLIST = "Playlist"
-    LYRIC = "Lyric"
-    MOVIE = "Movie"
-    BULLSEYE = "Bullseye"
-    LOCK = "Lock"
-    UNLOCK = "Unlock"
-    CLOSE = "Close"
-    SETTINGS = "Settings"
-    RELOAD = "Reload"
-    HIDE = "Hide"
-    VIEW = "View"
-    FOLDER_SEARCH = "FolderSearch"
-    FILE_COMMENT = "FileComment"
-    SPEED = "Speed"
-    SPEED_UP = "SpeedUp"
-    SPEED_DOWN = "SpeedDown"
-    SPEED_RESET = "SpeedReset"
-    INSERT = "Insert"
-    FOLDER = "Folder"
-    MUSIC_NOTE = "MusicNote"
 
     @classmethod
     def create(cls, iconType: str):
         """ create icon """
-        path = f":/qfluentwidgets/images/menu/{iconType}_{getIconColor()}.png"
-        return Icon(path)
+        path = f":/qfluentwidgets/images/menu/{iconType}_{getIconColor()}.svg"
+        return QIcon(path)
 
 
 MIF = MenuIconFactory
+
+
+class CustomMenuStyle(QProxyStyle):
+    """ Custom menu style """
+
+    def __init__(self, iconSize=14):
+        """
+        Parameters
+        ----------
+        iconSizeL int
+            the size of icon
+        """
+        super().__init__()
+        self.iconSize = iconSize
+
+    def pixelMetric(self, metric, option, widget):
+        if metric == QStyle.PM_SmallIconSize:
+            return self.iconSize
+
+        return super().pixelMetric(metric, option, widget)
 
 
 class DWMMenu(QMenu):
@@ -61,25 +56,13 @@ class DWMMenu(QMenu):
         self.setWindowFlags(
             Qt.FramelessWindowHint | Qt.Popup | Qt.NoDropShadowWindowHint)
         self.setAttribute(Qt.WA_StyledBackground)
+        self.setStyle(CustomMenuStyle())
         setStyleSheet(self, 'menu')
 
     def event(self, e: QEvent):
         if e.type() == QEvent.WinIdChange:
             self.windowEffect.addMenuShadowEffect(self.winId())
         return QMenu.event(self, e)
-
-    def getPopupPos(self, widget: QWidget):
-        """ get suitable popup position
-
-        Parameters
-        ----------
-        widget: QWidget
-            the widget that triggers the pop-up menu
-        """
-        pos = widget.mapToGlobal(QPoint())
-        x = pos.x() + widget.width() + 5
-        y = pos.y() + int(widget.height() / 2 - (13 + 38 * len(self.actions())) / 2)
-        return QPoint(x, y)
 
 
 
@@ -154,12 +137,12 @@ class LineEditMenu(DWMMenu):
             else:
                 return
 
-        w = 128+max(self.fontMetrics().width(i.text()) for i in self.actions())
-        h = len(self.actions()) * 40 + 10
+        w = 92+max(self.fontMetrics().width(i.text()) for i in self.actions())
+        h = len(self.actions()) * 32 + 8
 
         self.animation.setStartValue(QRect(pos.x(), pos.y(), 1, 1))
         self.animation.setEndValue(QRect(pos.x(), pos.y(), w, h))
-        self.setStyle(QApplication.style())
+        self.setStyle(CustomMenuStyle())
 
         self.animation.start()
         super().exec_(pos)

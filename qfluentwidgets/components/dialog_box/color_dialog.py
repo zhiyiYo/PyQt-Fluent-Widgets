@@ -1,11 +1,11 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp
-from PyQt5.QtGui import (QIcon, QBrush, QColor, QMouseEvent, QPixmap,
-                         QPainter, QPen, QIntValidator, QRegExpValidator)
+from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
+from PyQt5.QtGui import (QBrush, QColor, QMouseEvent, QPixmap,
+                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
 from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
-from ...common.icon import getIconColor
+from ...common.icon import Icon, getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
 from ..widgets import LineEditMenu, Slider, ScrollArea
 from .mask_dialog_base import MaskDialogBase
@@ -18,28 +18,28 @@ class HuePanel(QWidget):
 
     def __init__(self, color=QColor(255, 0, 0), parent=None):
         super().__init__(parent=parent)
-        self.setFixedSize(320, 320)
+        self.setFixedSize(256, 256)
         self.huePixmap = QPixmap(":/qfluentwidgets/images/color_dialog/HuePanel.png")
         self.setColor(color)
 
-    def mousePressEvent(self, e: QMouseEvent):
+    def mousePressEvent(self, e):
         self.setPickerPosition(e.pos())
 
-    def mouseMoveEvent(self, e: QMouseEvent):
+    def mouseMoveEvent(self, e):
         self.setPickerPosition(e.pos())
 
-    def setPickerPosition(self, pos: QPoint):
+    def setPickerPosition(self, pos):
         """ set the position of  """
         self.pickerPos = pos
         self.color.setHsv(
-            min(1, pos.x() / self.width()) * 360,
-            min(1, (self.height() - pos.y()) / self.height()) * 255,
+            max(0, min(1, pos.x() / self.width())) * 360,
+            max(0, min(1, (self.height() - pos.y()) / self.height())) * 255,
             255
         )
         self.update()
         self.colorChanged.emit(self.color)
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set color """
         self.color = QColor(color)
         self.color.setHsv(self.color.hue(), self.color.saturation(), 255)
@@ -64,8 +64,8 @@ class HuePanel(QWidget):
 
         # draw hue panel
         painter.setBrush(QBrush(self.huePixmap))
-        painter.setPen(QPen(QColor(0, 0, 0, 15), 3))
-        painter.drawRoundedRect(self.rect(), 7, 7)
+        painter.setPen(QPen(QColor(0, 0, 0, 15), 2.4))
+        painter.drawRoundedRect(self.rect(), 5.6, 5.6)
 
         # draw picker
         if self.saturation > 153 or 40 < self.hue < 180:
@@ -75,8 +75,8 @@ class HuePanel(QWidget):
 
         painter.setPen(QPen(color, 3))
         painter.setBrush(Qt.NoBrush)
-        painter.drawEllipse(self.pickerPos.x() - 10,
-                            self.pickerPos.y() - 10, 20, 20)
+        painter.drawEllipse(self.pickerPos.x() - 8,
+                            self.pickerPos.y() - 8, 16, 16)
 
 
 class BrightnessSlider(Slider):
@@ -84,14 +84,14 @@ class BrightnessSlider(Slider):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, color: QColor, parent=None):
+    def __init__(self, color, parent=None):
         super().__init__(Qt.Horizontal, parent)
         self.setRange(0, 255)
         self.setSingleStep(1)
         self.setColor(color)
         self.valueChanged.connect(self.__onValueChanged)
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set color """
         self.color = QColor(color)
         self.setValue(self.color.value())
@@ -100,7 +100,7 @@ class BrightnessSlider(Slider):
         qss = qss.replace('--slider-saturation', str(self.color.saturation()))
         self.setStyleSheet(qss)
 
-    def __onValueChanged(self, value: int):
+    def __onValueChanged(self, value):
         """ slider value changed slot """
         self.color.setHsv(self.color.hue(), self.color.saturation(), value)
         self.setColor(self.color)
@@ -110,12 +110,12 @@ class BrightnessSlider(Slider):
 class ColorCard(QWidget):
     """ Color card """
 
-    def __init__(self, color: QColor, parent=None):
+    def __init__(self, color, parent=None):
         super().__init__(parent)
-        self.setFixedSize(55, 160)
+        self.setFixedSize(44, 128)
         self.setColor(color)
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set the color of card """
         self.color = QColor(color)
         self.update()
@@ -126,7 +126,7 @@ class ColorCard(QWidget):
 
         painter.setBrush(self.color)
         painter.setPen(QColor(0, 0, 0, 13))
-        painter.drawRoundedRect(self.rect(), 5, 5)
+        painter.drawRoundedRect(self.rect(), 4, 4)
 
 
 class ColorLineEdit(QLineEdit):
@@ -134,22 +134,22 @@ class ColorLineEdit(QLineEdit):
 
     valueChanged = pyqtSignal(str)
 
-    def __init__(self, value: int, parent=None):
+    def __init__(self, value, parent=None):
         super().__init__(str(value), parent)
-        self.setFixedSize(170, 41)
+        self.setFixedSize(136, 33)
         self.clearButton = QToolButton(self)
 
-        self.clearButton.move(self.width() - 41, 5)
-        self.clearButton.setFixedSize(36, 31)
+        self.clearButton.move(self.width() - 33, 4)
+        self.clearButton.setFixedSize(29, 25)
         self.clearButton.setObjectName('clearButton')
         self.clearButton.setIcon(
-            QIcon(f":/qfluentwidgets/images/color_dialog/Clear_{getIconColor()}.png"))
-        self.clearButton.setIconSize(self.size())
+            QIcon(f":/qfluentwidgets/images/color_dialog/Clear_{getIconColor()}.svg"))
+        self.clearButton.setIconSize(QSize(10, 10))
         self.clearButton.setCursor(Qt.PointingHandCursor)
         self.clearButton.hide()
 
         self.setValidator(QIntValidator(0, 255, self))
-        self.setTextMargins(0, 0, 41, 0)
+        self.setTextMargins(0, 0, 33, 0)
         self.clearButton.clicked.connect(self.clear)
         self.textEdited.connect(self._onTextEdited)
         self.textChanged.connect(self._onTextChanged)
@@ -162,13 +162,13 @@ class ColorLineEdit(QLineEdit):
         super().focusInEvent(e)
         self.clearButton.setVisible(bool(self.text()))
 
-    def _onTextEdited(self, text: str):
+    def _onTextEdited(self, text):
         """ text edited slot """
         state = self.validator().validate(text, 0)[0]
         if state == QIntValidator.Acceptable:
             self.valueChanged.emit(text)
 
-    def _onTextChanged(self, text: str):
+    def _onTextChanged(self, text):
         """ text changed slot """
         self.clearButton.setVisible(bool(text) and self.hasFocus())
 
@@ -180,15 +180,15 @@ class ColorLineEdit(QLineEdit):
 class HexColorLineEdit(ColorLineEdit):
     """ Hex color line edit """
 
-    def __init__(self, color: QColor, parent=None):
+    def __init__(self, color, parent=None):
         super().__init__(QColor(color).name()[1:], parent)
         self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{6}')))
-        self.setTextMargins(11, 0, 41, 0)
+        self.setTextMargins(4, 0, 33, 0)
         self.prefixLabel = QLabel('#', self)
-        self.prefixLabel.move(13, 9)
+        self.prefixLabel.move(10, 7)
         self.prefixLabel.setObjectName('prefixLabel')
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set color """
         self.setText(color.name()[1:])
 
@@ -198,7 +198,19 @@ class ColorDialog(MaskDialogBase):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, color: QColor, title: str, parent=None):
+    def __init__(self, color, title: str, parent=None):
+        """
+        Parameters
+        ----------
+        color: `QColor` | `GlobalColor` | str
+            initial color
+
+        title: str
+            the title of dialog
+
+        parent: QWidget
+            parent widget
+        """
         super().__init__(parent)
         self.oldColor = QColor(color)
         self.color = QColor(color)
@@ -231,15 +243,15 @@ class ColorDialog(MaskDialogBase):
 
     def __initWidget(self):
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea.setViewportMargins(60, 30, 0, 30)
+        self.scrollArea.setViewportMargins(48, 24, 0, 24)
         self.scrollArea.setWidget(self.scrollWidget)
 
-        self.widget.setMaximumSize(610, 870)
-        self.widget.resize(610, 870)
-        self.scrollWidget.resize(550, 700)
-        self.buttonGroup.setFixedSize(608, 101)
-        self.yesButton.setFixedWidth(270)
-        self.cancelButton.setFixedWidth(270)
+        self.widget.setMaximumSize(488, 696)
+        self.widget.resize(488, 696)
+        self.scrollWidget.resize(440, 560)
+        self.buttonGroup.setFixedSize(486, 81)
+        self.yesButton.setFixedWidth(216)
+        self.cancelButton.setFixedWidth(216)
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 80))
         self.setMaskColor(QColor(0, 0, 0, 76))
@@ -249,19 +261,19 @@ class ColorDialog(MaskDialogBase):
         self.__connectSignalToSlot()
 
     def __initLayout(self):
-        self.huePanel.move(0, 57)
-        self.newColorCard.move(360, 57)
-        self.oldColorCard.move(360, self.newColorCard.geometry().bottom()+1)
-        self.brightSlider.move(0, 405)
+        self.huePanel.move(0, 46)
+        self.newColorCard.move(288, 46)
+        self.oldColorCard.move(288, self.newColorCard.geometry().bottom()+1)
+        self.brightSlider.move(0, 324)
 
-        self.editLabel.move(0, 476)
-        self.redLineEdit.move(0, 532)
-        self.greenLineEdit.move(0, 588)
-        self.blueLineEdit.move(0, 644)
-        self.redLabel.move(180, 543)
-        self.greenLabel.move(180, 598)
-        self.blueLabel.move(180, 655)
-        self.hexLineEdit.move(245, 476)
+        self.editLabel.move(0, 381)
+        self.redLineEdit.move(0, 426)
+        self.greenLineEdit.move(0, 470)
+        self.blueLineEdit.move(0, 515)
+        self.redLabel.move(144, 434)
+        self.greenLabel.move(144, 478)
+        self.blueLabel.move(144, 524)
+        self.hexLineEdit.move(196, 381)
 
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setAlignment(Qt.AlignTop)
@@ -269,8 +281,8 @@ class ColorDialog(MaskDialogBase):
         self.vBoxLayout.addWidget(self.scrollArea, 1)
         self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
 
-        self.yesButton.move(30, 31)
-        self.cancelButton.move(310, 31)
+        self.yesButton.move(24, 25)
+        self.cancelButton.move(250, 25)
 
     def __setQss(self):
         self.editLabel.setObjectName('editLabel')
@@ -282,7 +294,7 @@ class ColorDialog(MaskDialogBase):
         self.titleLabel.adjustSize()
         self.editLabel.adjustSize()
 
-    def setColor(self, color: QColor, movePicker=True):
+    def setColor(self, color, movePicker=True):
         """ set color """
         self.color = QColor(color)
         self.brightSlider.setColor(color)
@@ -294,33 +306,33 @@ class ColorDialog(MaskDialogBase):
         if movePicker:
             self.huePanel.setColor(color)
 
-    def __onHueChanged(self, color: QColor):
+    def __onHueChanged(self, color):
         """ hue changed slot """
         self.color.setHsv(color.hue(), color.saturation(), self.color.value())
         self.setColor(self.color)
 
-    def __onBrightnessChanged(self, color: QColor):
+    def __onBrightnessChanged(self, color):
         """ brightness changed slot """
         self.color.setHsv(self.color.hue(),
                           self.color.saturation(), color.value())
         self.setColor(self.color, False)
 
-    def __onRedChanged(self, red: str):
+    def __onRedChanged(self, red):
         """ red channel changed slot """
         self.color.setRed(int(red))
         self.setColor(self.color)
 
-    def __onBlueChanged(self, blue: str):
+    def __onBlueChanged(self, blue):
         """ blue channel changed slot """
         self.color.setBlue(int(blue))
         self.setColor(self.color)
 
-    def __onGreenChanged(self, green: str):
+    def __onGreenChanged(self, green):
         """ green channel changed slot """
         self.color.setGreen(int(green))
         self.setColor(self.color)
 
-    def __onHexColorChanged(self, color: str):
+    def __onHexColorChanged(self, color):
         """ hex color changed slot """
         self.color.setNamedColor("#" + color)
         self.setColor(self.color)

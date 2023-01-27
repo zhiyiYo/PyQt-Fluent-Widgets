@@ -6,13 +6,13 @@ QWidget {
 
 QScrollArea {
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: transparent;
 }
 
 #centerWidget {
     border: 1px solid rgb(58, 58, 58);
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: rgb(43, 43, 43);
 }
 
@@ -22,36 +22,36 @@ QScrollArea {
     border-left: none;
     border-right: none;
     border-bottom: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 QLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     background-color: transparent;
 }
 
 #titleLabel {
-    font-size: 24px;
+    font-size: 19px;
 }
 
 #editLabel {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #prefixLabel {
     padding: 0;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 QPushButton {
     background: rgb(45, 45, 45);
     border: 1px solid rgb(48, 48, 48);
     border-top: 1px solid rgb(53, 53, 53);
-    border-radius: 5px;
-    font: 17px 'Segoe UI', 'Microsoft YaHei';
-    padding: 7px 0;
+    border-radius: 4px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 6px 0;
     color: white;
 }
 
@@ -84,13 +84,13 @@ QPushButton#yesButton:pressed {
 
 /* 滑动条 */
 QSlider:horizontal {
-    min-width: 415px;
-    min-height: 30px;
+    min-width: 332px;
+    min-height: 24px;
 }
 
 QSlider::groove:horizontal {
-    height: 16px;
-    border-radius: 8px;
+    height: 12px;
+    border-radius: 6px;
     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, x3:2, y3:0,
             stop:0 hsv(--slider-hue, --slider-saturation, 0),
             stop:1 hsv(--slider-hue, --slider-saturation, 255));
@@ -100,10 +100,10 @@ QSlider::groove:horizontal {
 
 QSlider::handle:horizontal {
     border: 1px solid rgb(55, 55, 55);
-    width: 26px;
-    min-height: 13px;
-    margin: -6px 0;
-    border-radius: 14px;
+    width: 16px;
+    min-height: 10px;
+    margin: -3px 0;
+    border-radius: 9px;
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
             stop:0 rgb(255, 255, 255),
             stop:0.55 rgb(255, 255, 255),
@@ -127,8 +127,8 @@ QLineEdit {
     background-color: rgb(55, 55, 55);
     border: 1px solid rgb(58, 58, 58);
     border-bottom: 1px solid rgb(159, 159, 159);
-    border-radius: 7px;
-    font: 18px "Segoe UI";
+    border-radius: 6px;
+    font: 14px "Segoe UI";
     padding: 0px 13px;
     color: white;
     selection-background-color: rgb(0, 183, 195);
@@ -161,10 +161,9 @@ QLineEdit:focus {
 /* 滚动条 */
 QScrollBar {
     background: transparent;
-    width: 5px;
-    margin-top: 40px;
-    margin-bottom: 133px;
-    padding-right: 2px;
+    width: 4px;
+    margin-top: 32px;
+    padding-right: 1px;
 }
 
 /*隐藏上箭头*/
@@ -181,7 +180,7 @@ QScrollBar::handle {
     background: rgb(122, 122, 122);
     border: 2px solid rgb(128, 128, 128);
     border-radius: 1px;
-    min-height: 40px;
+    min-height: 32px;
 }
 
 QScrollBar::add-page:vertical,
