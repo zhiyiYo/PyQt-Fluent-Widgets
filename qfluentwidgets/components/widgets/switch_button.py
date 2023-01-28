@@ -1,9 +1,9 @@
 # coding: utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
-from PyQt5.QtGui import QColor, QPainter
-from PyQt5.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
+from PyQt6.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
+from PyQt6.QtGui import QColor, QPainter
+from PyQt6.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
 from ...common.style_sheet import setStyleSheet
 
@@ -18,8 +18,8 @@ class Indicator(QToolButton):
         self.setCheckable(True)
         super().setChecked(False)
         self.resize(37, 16)
-        self.__sliderOnColor = QColor(Qt.white)
-        self.__sliderOffColor = QColor(Qt.black)
+        self.__sliderOnColor = QColor(Qt.GlobalColor.white)
+        self.__sliderOffColor = QColor(Qt.GlobalColor.black)
         self.__sliderDisabledColor = QColor(QColor(155, 154, 153))
         self.timer = QTimer(self)
         self.padding = self.height()//4
@@ -78,8 +78,8 @@ class Indicator(QToolButton):
         super().paintEvent(e)
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         if self.isEnabled():
             color = self.sliderOnColor if self.isChecked() else self.sliderOffColor
@@ -152,7 +152,7 @@ class SwitchButton(QWidget):
 
     def __initWidget(self):
         """ initialize widgets """
-        self.setAttribute(Qt.WA_StyledBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
 
         # set layout
         self.hBox.setSpacing(self.__spacing)
@@ -161,11 +161,11 @@ class SwitchButton(QWidget):
         if self.indicatorPos == IndicatorPosition.LEFT:
             self.hBox.addWidget(self.indicator)
             self.hBox.addWidget(self.label)
-            self.hBox.setAlignment(Qt.AlignLeft)
+            self.hBox.setAlignment(Qt.AlignmentFlag.AlignLeft)
         else:
-            self.hBox.addWidget(self.label, 0, Qt.AlignRight)
-            self.hBox.addWidget(self.indicator, 0, Qt.AlignRight)
-            self.hBox.setAlignment(Qt.AlignRight)
+            self.hBox.addWidget(self.label, 0, Qt.AlignmentFlag.AlignRight)
+            self.hBox.addWidget(self.indicator, 0, Qt.AlignmentFlag.AlignRight)
+            self.hBox.setAlignment(Qt.AlignmentFlag.AlignRight)
 
         # set default style sheet
         setStyleSheet(self, 'switch_button')

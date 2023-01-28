@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEasingCurve
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt6.QtCore import QEasingCurve
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton
 
 from qfluentwidgets import FlowLayout
 
@@ -13,7 +13,7 @@ class Demo(QWidget):
         layout = FlowLayout(self, needAni=True)
 
         # customize animation
-        layout.setAnimation(250, QEasingCurve.OutQuad)
+        layout.setAnimation(250, QEasingCurve.Type.OutQuad)
 
         layout.setContentsMargins(30, 30, 30, 30)
         layout.setVerticalSpacing(20)
@@ -33,4 +33,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     w = Demo()
     w.show()
-    app.exec_()
+    app.exec()

@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
-from PyQt5.QtGui import (QBrush, QColor, QMouseEvent, QPixmap,
-                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
-from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
+from PyQt6.QtCore import Qt, pyqtSignal, QPoint, QRegularExpression, QSize
+from PyQt6.QtGui import (QBrush, QColor, QPixmap, QPainter, QPen, QIntValidator,
+                         QIcon, QRegularExpressionValidator)
+from PyQt6.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
 from ...common.icon import Icon, getIconColor
@@ -59,8 +59,8 @@ class HuePanel(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing |
+                               QPainter.RenderHint.SmoothPixmapTransform)
 
         # draw hue panel
         painter.setBrush(QBrush(self.huePixmap))
@@ -69,12 +69,12 @@ class HuePanel(QWidget):
 
         # draw picker
         if self.saturation > 153 or 40 < self.hue < 180:
-            color = Qt.black
+            color = Qt.GlobalColor.black
         else:
             color = QColor(255, 253, 254)
 
         painter.setPen(QPen(color, 3))
-        painter.setBrush(Qt.NoBrush)
+        painter.setBrush(Qt.BrushStyle.NoBrush)
         painter.drawEllipse(self.pickerPos.x() - 8,
                             self.pickerPos.y() - 8, 16, 16)
 
@@ -85,7 +85,7 @@ class BrightnessSlider(Slider):
     colorChanged = pyqtSignal(QColor)
 
     def __init__(self, color, parent=None):
-        super().__init__(Qt.Horizontal, parent)
+        super().__init__(Qt.Orientation.Horizontal, parent)
         self.setRange(0, 255)
         self.setSingleStep(1)
         self.setColor(color)
@@ -122,7 +122,7 @@ class ColorCard(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         painter.setBrush(self.color)
         painter.setPen(QColor(0, 0, 0, 13))
@@ -145,7 +145,7 @@ class ColorLineEdit(QLineEdit):
         self.clearButton.setIcon(
             QIcon(f":/qfluentwidgets/images/color_dialog/Clear_{getIconColor()}.svg"))
         self.clearButton.setIconSize(QSize(10, 10))
-        self.clearButton.setCursor(Qt.PointingHandCursor)
+        self.clearButton.setCursor(Qt.CursorShape.PointingHandCursor)
         self.clearButton.hide()
 
         self.setValidator(QIntValidator(0, 255, self))
@@ -165,7 +165,7 @@ class ColorLineEdit(QLineEdit):
     def _onTextEdited(self, text):
         """ text edited slot """
         state = self.validator().validate(text, 0)[0]
-        if state == QIntValidator.Acceptable:
+        if state == QIntValidator.State.Acceptable:
             self.valueChanged.emit(text)
 
     def _onTextChanged(self, text):
@@ -174,7 +174,7 @@ class ColorLineEdit(QLineEdit):
 
     def contextMenuEvent(self, e):
         menu = LineEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos())
 
 
 class HexColorLineEdit(ColorLineEdit):
@@ -182,7 +182,7 @@ class HexColorLineEdit(ColorLineEdit):
 
     def __init__(self, color, parent=None):
         super().__init__(QColor(color).name()[1:], parent)
-        self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{6}')))
+        self.setValidator(QRegularExpressionValidator(QRegularExpression(r'[A-Fa-f0-9]{6}')))
         self.setTextMargins(4, 0, 33, 0)
         self.prefixLabel = QLabel('#', self)
         self.prefixLabel.move(10, 7)
@@ -242,7 +242,7 @@ class ColorDialog(MaskDialogBase):
         self.__initWidget()
 
     def __initWidget(self):
-        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.scrollArea.setViewportMargins(48, 24, 0, 24)
         self.scrollArea.setWidget(self.scrollWidget)
 
@@ -276,10 +276,10 @@ class ColorDialog(MaskDialogBase):
         self.hexLineEdit.move(196, 381)
 
         self.vBoxLayout.setSpacing(0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.addWidget(self.scrollArea, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignmentFlag.AlignBottom)
 
         self.yesButton.move(24, 25)
         self.cancelButton.move(250, 25)

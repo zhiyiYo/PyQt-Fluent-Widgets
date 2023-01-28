@@ -1,8 +1,8 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
-from PyQt5.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QApplication, QMenu, QProxyStyle, QStyle
+from PyQt6.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
+from PyQt6.QtGui import QIcon, QAction
+from PyQt6.QtWidgets import QApplication, QMenu, QProxyStyle, QStyle
 
 from ...common.icon import Icon, getIconColor
 from ...common.style_sheet import setStyleSheet
@@ -41,7 +41,7 @@ class CustomMenuStyle(QProxyStyle):
         self.iconSize = iconSize
 
     def pixelMetric(self, metric, option, widget):
-        if metric == QStyle.PM_SmallIconSize:
+        if metric == QStyle.PixelMetric.PM_SmallIconSize:
             return self.iconSize
 
         return super().pixelMetric(metric, option, widget)
@@ -54,13 +54,13 @@ class DWMMenu(QMenu):
         super().__init__(title, parent)
         self.windowEffect = WindowEffect(self)
         self.setWindowFlags(
-            Qt.FramelessWindowHint | Qt.Popup | Qt.NoDropShadowWindowHint)
-        self.setAttribute(Qt.WA_StyledBackground)
+            Qt.WindowType.FramelessWindowHint | Qt.WindowType.Popup | Qt.WindowType.NoDropShadowWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.setStyle(CustomMenuStyle())
         setStyleSheet(self, 'menu')
 
     def event(self, e: QEvent):
-        if e.type() == QEvent.WinIdChange:
+        if e.type() == QEvent.Type.WinIdChange:
             self.windowEffect.addMenuShadowEffect(self.winId())
         return QMenu.event(self, e)
 
@@ -74,7 +74,7 @@ class LineEditMenu(DWMMenu):
         self.setObjectName("lineEditMenu")
         self.animation = QPropertyAnimation(self, b"geometry")
         self.animation.setDuration(300)
-        self.animation.setEasingCurve(QEasingCurve.OutQuad)
+        self.animation.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.setProperty("selectAll", bool(self.parent().text()))
 
     def createActions(self):
@@ -115,7 +115,7 @@ class LineEditMenu(DWMMenu):
         self.action_list = [self.cutAct, self.copyAct,
                             self.pasteAct, self.cancelAct, self.selectAllAct]
 
-    def exec_(self, pos):
+    def exec(self, pos):
         self.clear()
         self.createActions()
 
@@ -137,7 +137,7 @@ class LineEditMenu(DWMMenu):
             else:
                 return
 
-        w = 92+max(self.fontMetrics().width(i.text()) for i in self.actions())
+        w = 109+max(self.fontMetrics().boundingRect(i.text()).width() for i in self.actions())
         h = len(self.actions()) * 32 + 8
 
         self.animation.setStartValue(QRect(pos.x(), pos.y(), 1, 1))
@@ -145,5 +145,5 @@ class LineEditMenu(DWMMenu):
         self.setStyle(CustomMenuStyle())
 
         self.animation.start()
-        super().exec_(pos)
+        super().exec(pos)
 

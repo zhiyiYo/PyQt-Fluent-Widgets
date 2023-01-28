@@ -5,7 +5,7 @@
   PyQt-Fluent-Widgets
 </h1>
 <p align="center">
-  A fluent design widgets library based on PyQt5
+  A fluent design widgets library based on PyQt6
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/License-MIT-blue?color=#4ec820" alt="MIT"/>
+    <img src="https://img.shields.io/badge/PyQt-6.3.1-blue?color=#4ec820" alt="PyQt 6.3.1"/>
   </a>
 </p>
 
@@ -28,11 +28,11 @@
 ## Install
 To install use pip:
 ```shell
-pip install PyQt-Fluent-Widgets
+pip install PyQt6-Fluent-Widgets
 ```
 Or clone the repo:
 ```shell
-git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
+git clone -b PyQt6 https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
 python setup.py install
 ```
 

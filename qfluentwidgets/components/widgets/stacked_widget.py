@@ -1,10 +1,10 @@
 # coding:utf-8
 from typing import List
 
-from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve,
+from PyQt6.QtCore import (QAbstractAnimation, QEasingCurve,
                           QParallelAnimationGroup, QPoint, QPropertyAnimation,
                           pyqtSignal)
-from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
+from PyQt6.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
 
 
 class OpacityAniStackedWidget(QStackedWidget):
@@ -100,7 +100,7 @@ class PopUpAniStackedWidget(QStackedWidget):
         })
 
     def setCurrentIndex(self, index: int, isNeedPopOut: bool = False, isShowNextWidgetDirectly: bool = True,
-                        duration: int = 250, easingCurve=QEasingCurve.OutQuad):
+                        duration: int = 250, easingCurve=QEasingCurve.Type.OutQuad):
         """ set current window to display
 
         Parameters
@@ -126,7 +126,7 @@ class PopUpAniStackedWidget(QStackedWidget):
         if index == self.currentIndex():
             return
 
-        if self.__currentAniGroup and self.__currentAniGroup.state() == QAbstractAnimation.Running:
+        if self.__currentAniGroup and self.__currentAniGroup.state() == QAbstractAnimation.State.Running:
             return
 
         # get the index of widget to be displayed
@@ -186,7 +186,7 @@ class PopUpAniStackedWidget(QStackedWidget):
         self.aniStart.emit()
 
     def setCurrentWidget(self, widget, isNeedPopOut: bool = False, isShowNextWidgetDirectly: bool = True,
-                         duration: int = 250, easingCurve=QEasingCurve.OutQuad):
+                         duration: int = 250, easingCurve=QEasingCurve.Type.OutQuad):
         """ set currect widget
 
         Parameters
@@ -209,7 +209,7 @@ class PopUpAniStackedWidget(QStackedWidget):
         self.setCurrentIndex(self.indexOf(
             widget), isNeedPopOut, isShowNextWidgetDirectly, duration, easingCurve)
 
-    def __setAnimation(self, ani: QPropertyAnimation, startValue, endValue, duration, easingCurve=QEasingCurve.Linear):
+    def __setAnimation(self, ani: QPropertyAnimation, startValue, endValue, duration, easingCurve=QEasingCurve.Type.Linear):
         """ set the config of animation """
         ani.setEasingCurve(easingCurve)
         ani.setStartValue(startValue)

@@ -2,11 +2,11 @@
 from typing import List
 from pathlib import Path
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRectF
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
+from PyQt6.QtCore import Qt, pyqtSignal, QRectF
+from PyQt6.QtGui import QPainter
+from PyQt6.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
-from PyQt5.QtSvg import QSvgRenderer
+from PyQt6.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
 from ..dialog_box.dialog import Dialog
@@ -17,7 +17,7 @@ from .setting_card import SettingIconFactory as SIF
 class ToolButton(QToolButton):
     """ Tool button """
 
-    def __init__(self, iconPath: str, size: tuple, iconSize: tuple, parent=None):
+    def __init__(self, iconPath, size, iconSize, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
         self.iconPath = iconPath
@@ -35,8 +35,8 @@ class ToolButton(QToolButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing |
+                               QPainter.RenderHint.SmoothPixmapTransform)
         painter.setOpacity(0.63 if self.isPressed else 1)
         renderer = QSvgRenderer(self.iconPath, self)
         w, h = self._iconSize
@@ -47,7 +47,7 @@ class ToolButton(QToolButton):
 class PushButton(QPushButton):
     """ Push button """
 
-    def __init__(self, iconPath: str, text: str, parent=None):
+    def __init__(self, iconPath, text, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
         self.iconPath = iconPath
@@ -64,7 +64,7 @@ class PushButton(QPushButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setOpacity(0.63 if self.isPressed else 1)
         renderer = QSvgRenderer(self.iconPath, self)
         renderer.render(painter, QRectF(12, 8, 16, 16))
@@ -75,7 +75,7 @@ class FolderItem(QWidget):
 
     removed = pyqtSignal(QWidget)
 
-    def __init__(self, folder: str, parent=None):
+    def __init__(self, folder, parent=None):
         super().__init__(parent=parent)
         self.folder = folder
         self.hBoxLayout = QHBoxLayout(self)
@@ -84,11 +84,11 @@ class FolderItem(QWidget):
 
         self.setFixedHeight(53)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
-        self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignmentFlag.AlignLeft)
         self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
-        self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignRight)
-        self.hBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
         self.removeButton.clicked.connect(
             lambda: self.removed.emit(self))
@@ -99,7 +99,7 @@ class FolderListSettingCard(ExpandSettingCard):
 
     folderChanged = pyqtSignal(list)
 
-    def __init__(self, configItem: ConfigItem, title: str, content: str = None, parent=None):
+    def __init__(self, configItem, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -128,7 +128,7 @@ class FolderListSettingCard(ExpandSettingCard):
 
         # initialize layout
         self.viewLayout.setSpacing(0)
-        self.viewLayout.setAlignment(Qt.AlignTop)
+        self.viewLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.viewLayout.setContentsMargins(0, 0, 0, 0)
         for folder in self.folders:
             self.__addFolderItem(folder)
@@ -148,14 +148,14 @@ class FolderListSettingCard(ExpandSettingCard):
         qconfig.set(self.configItem, self.folders)
         self.folderChanged.emit(self.folders)
 
-    def __addFolderItem(self, folder: str):
+    def __addFolderItem(self, folder):
         """ add folder item """
         item = FolderItem(folder, self.view)
         item.removed.connect(self.__showConfirmDialog)
         self.viewLayout.addWidget(item)
         self._adjustViewSize()
 
-    def __showConfirmDialog(self, item: FolderItem):
+    def __showConfirmDialog(self, item):
         """ show confirm dialog """
         name = Path(item.folder).name
         title = self.tr('Are you sure you want to delete the folder?')
@@ -164,9 +164,9 @@ class FolderListSettingCard(ExpandSettingCard):
                     "longer appear in the list, but will not be deleted.")
         w = Dialog(title, content, self.window())
         w.yesSignal.connect(lambda: self.__removeFolder(item))
-        w.exec_()
+        w.exec()
 
-    def __removeFolder(self, item: FolderItem):
+    def __removeFolder(self, item):
         """ remove folder """
         if item.folder not in self.folders:
             return

@@ -1,7 +1,6 @@
 # coding:utf-8
-from typing import List
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QVBoxLayout, QWidget
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QVBoxLayout, QWidget
 
 
 class VBoxLayout(QVBoxLayout):
@@ -11,23 +10,23 @@ class VBoxLayout(QVBoxLayout):
         super().__init__(parent)
         self.widgets = []
 
-    def addWidgets(self, widgets: List[QWidget], stretch=0, alignment=Qt.AlignTop):
+    def addWidgets(self, widgets, stretch=0, alignment=Qt.AlignmentFlag.AlignTop):
         """ add widgets to layout """
         for widget in widgets:
             self.addWidget(widget, stretch, alignment)
 
-    def addWidget(self, widget: QWidget, stretch=0, alignment=Qt.AlignTop):
+    def addWidget(self, widget, stretch=0, alignment=Qt.AlignmentFlag.AlignTop):
         """ add widget to layout """
         super().addWidget(widget, stretch, alignment)
         self.widgets.append(widget)
         widget.show()
 
-    def removeWidget(self, widget: QWidget):
+    def removeWidget(self, widget):
         """ remove widget from layout but not delete it """
         super().removeWidget(widget)
         self.widgets.remove(widget)
 
-    def deleteWidget(self, widget: QWidget):
+    def deleteWidget(self, widget):
         """ remove widget from layout and delete it """
         self.removeWidget(widget)
         widget.hide()

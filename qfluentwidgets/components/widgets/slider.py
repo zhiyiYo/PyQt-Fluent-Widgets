@@ -1,8 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import QSize, Qt, pyqtSignal, QPoint, QRectF
-from PyQt5.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
-from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
-                             QWidget)
+from PyQt6.QtCore import QSize, Qt, pyqtSignal, QPoint, QRectF, QPointF
+from PyQt6.QtGui import QColor, QPainter, QPainterPath
+from PyQt6.QtWidgets import QProxyStyle, QSlider
 
 
 class Slider(QSlider):
@@ -13,10 +12,10 @@ class Slider(QSlider):
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)
 
-    def mousePressEvent(self, e: QMouseEvent):
+    def mousePressEvent(self, e):
         super().mousePressEvent(e)
 
-        if self.orientation() == Qt.Horizontal:
+        if self.orientation() == Qt.Orientation.Horizontal:
             value = int(e.pos().x() / self.width() * self.maximum())
         else:
             value = int((self.height()-e.pos().y()) /
@@ -54,19 +53,20 @@ class HollowHandleStyle(QProxyStyle):
             self.config["handle.hollow-radius"]
         self.config["handle.size"] = QSize(2*w, 2*w)
 
-    def subControlRect(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, sc: QStyle.SubControl, widget: QWidget):
+    def subControlRect(self, cc, opt, sc, widget):
         """ get the rectangular area occupied by the sub control """
-        if cc != self.CC_Slider or opt.orientation != Qt.Horizontal or sc == self.SC_SliderTickmarks:
+        if cc != self.ComplexControl.CC_Slider or opt.orientation != Qt.Orientation.Horizontal or \
+                sc == self.SubControl.SC_SliderTickmarks:
             return super().subControlRect(cc, opt, sc, widget)
 
         rect = opt.rect
 
-        if sc == self.SC_SliderGroove:
+        if sc == self.SubControl.SC_SliderGroove:
             h = self.config["groove.height"]
             grooveRect = QRectF(0, (rect.height()-h)//2, rect.width(), h)
             return grooveRect.toRect()
 
-        elif sc == self.SC_SliderHandle:
+        elif sc == self.SubControl.SC_SliderHandle:
             size = self.config["handle.size"]
             x = self.sliderPositionFromValue(
                 opt.minimum, opt.maximum, opt.sliderPosition, rect.width())
@@ -76,15 +76,15 @@ class HollowHandleStyle(QProxyStyle):
             sliderRect = QRectF(x, 0, size.width(), size.height())
             return sliderRect.toRect()
 
-    def drawComplexControl(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, painter: QPainter, widget: QWidget):
+    def drawComplexControl(self, cc, opt, painter, widget):
         """ draw sub control """
-        if cc != self.CC_Slider or opt.orientation != Qt.Horizontal:
+        if cc != self.ComplexControl.CC_Slider or opt.orientation != Qt.Orientation.Horizontal:
             return super().drawComplexControl(cc, opt, painter, widget)
 
-        grooveRect = self.subControlRect(cc, opt, self.SC_SliderGroove, widget)
-        handleRect = self.subControlRect(cc, opt, self.SC_SliderHandle, widget)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        grooveRect = self.subControlRect(cc, opt, self.SubControl.SC_SliderGroove, widget)
+        handleRect = self.subControlRect(cc, opt, self.SubControl.SC_SliderHandle, widget)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         # paint groove
         painter.save()
@@ -110,12 +110,12 @@ class HollowHandleStyle(QProxyStyle):
         path = QPainterPath()
         path.moveTo(0, 0)
         center = handleRect.center() + QPoint(1, 1)
-        path.addEllipse(center, radius, radius)
-        path.addEllipse(center, hollowRadius, hollowRadius)
+        path.addEllipse(QPointF(center), radius, radius)
+        path.addEllipse(QPointF(center), hollowRadius, hollowRadius)
 
         handleColor = self.config["handle.color"]  # type:QColor
         handleColor.setAlpha(255 if opt.activeSubControls !=
-                             self.SC_SliderHandle else 153)
+                             self.SubControl.SC_SliderHandle else 153)
         painter.setBrush(handleColor)
         painter.drawPath(path)
 

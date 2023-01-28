@@ -1,4 +1,4 @@
-PyQt5-Frameless-Window
+PyQt6-Frameless-Window
 darkdetect
 colorthief
 scipy

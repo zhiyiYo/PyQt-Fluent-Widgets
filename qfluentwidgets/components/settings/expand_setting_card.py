@@ -1,9 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
+from PyQt6.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
-from PyQt5.QtGui import QColor, QPixmap, QPainter
-from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
-from PyQt5.QtSvg import QSvgRenderer
+from PyQt6.QtGui import QColor, QPixmap, QPainter
+from PyQt6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
+from PyQt6.QtSvg import QSvgRenderer
 
 from ...common.config import qconfig
 from ...common.style_sheet import setStyleSheet
@@ -27,9 +27,9 @@ class ExpandButton(QAbstractButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing |
+                               QPainter.RenderHint.SmoothPixmapTransform)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         # draw background
         r = 255 if qconfig.theme == 'dark' else 0
@@ -38,7 +38,7 @@ class ExpandButton(QAbstractButton):
         elif self.isHover:
             color = QColor(r, r, r, 14)
         else:
-            color = Qt.transparent
+            color = Qt.GlobalColor.transparent
 
         painter.setBrush(color)
         painter.drawRoundedRect(self.rect(), 4, 4)
@@ -112,8 +112,8 @@ class ExpandSettingCard(QFrame):
         # initialize expand animation
         self.aniGroup.addAnimation(self.expandAni)
         self.aniGroup.addAnimation(self.slideAni)
-        self.slideAni.setEasingCurve(QEasingCurve.OutQuad)
-        self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.slideAni.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.expandAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.slideAni.setDuration(200)
         self.expandAni.setDuration(200)
 
@@ -129,9 +129,9 @@ class ExpandSettingCard(QFrame):
 
     def addWidget(self, widget: QWidget):
         """ add widget to tail """
-        self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignRight)
+        self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignRight)
         self.card.hBoxLayout.addSpacing(19)
-        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
+        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
         self.card.hBoxLayout.addSpacing(8)
 
     def setExpand(self, isExpand: bool):
@@ -171,13 +171,13 @@ class ExpandSettingCard(QFrame):
 
     def eventFilter(self, obj, e):
         if obj is self.card:
-            if e.type() == QEvent.Enter:
+            if e.type() == QEvent.Type.Enter:
                 self.expandButton.setHover(True)
-            elif e.type()==QEvent.Leave:
+            elif e.type()==QEvent.Type.Leave:
                 self.expandButton.setHover(False)
-            elif e.type() == QEvent.MouseButtonPress and e.button() == Qt.LeftButton:
+            elif e.type() == QEvent.Type.MouseButtonPress and e.button() == Qt.MouseButton.LeftButton:
                 self.expandButton.setPressed(True)
-            elif e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton:
+            elif e.type() == QEvent.Type.MouseButtonRelease and e.button() == Qt.MouseButton.LeftButton:
                 self.expandButton.setPressed(False)
                 self.expandButton.click()
 

@@ -1,7 +1,6 @@
 # coding:utf-8
 from .config import qconfig
-from PyQt5.QtCore import QFile
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtCore import QFile
 
 
 
@@ -14,7 +13,7 @@ def getStyleSheet(file):
         qss file name, without `.qss` suffix
     """
     f = QFile(f":/qfluentwidgets/qss/{qconfig.theme}/{file}.qss")
-    f.open(QFile.ReadOnly)
+    f.open(QFile.OpenModeFlag.ReadOnly)
     qss = str(f.readAll(), encoding='utf-8')
     f.close()
     return qss

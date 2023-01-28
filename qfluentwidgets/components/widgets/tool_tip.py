@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
+from PyQt6.QtCore import QPropertyAnimation, QTimer, Qt
+from PyQt6.QtGui import QColor
+from PyQt6.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)
 
 from ...common import setStyleSheet
@@ -39,9 +39,9 @@ class ToolTip(QFrame):
         self.timer.timeout.connect(self.hide)
 
         # set style
-        self.setAttribute(Qt.WA_TransparentForMouseEvents)
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setWindowFlags(Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint)
         self.setDarkTheme(False)
         self.__setQss()
 
@@ -99,7 +99,7 @@ class ToolTip(QFrame):
         y = pos.y() - self.height()
 
         # adjust postion to prevent tooltips from appearing outside the screen
-        desk = QApplication.desktop()
+        desk = QApplication.primaryScreen().size()
         x = min(max(0, x), desk.width() - self.width() - 4)
         y = min(max(0, y), desk.height() - self.height() - 4)
 

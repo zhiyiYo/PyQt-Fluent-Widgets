@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import QUrl, Qt, pyqtSignal
-from PyQt5.QtGui import QColor, QDesktopServices
-from PyQt5.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
-from PyQt5.QtSvg import QSvgWidget
+from PyQt6.QtCore import QUrl, Qt, pyqtSignal
+from PyQt6.QtGui import QColor, QDesktopServices
+from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
+from PyQt6.QtSvgWidgets import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
@@ -15,7 +15,7 @@ from ...common.icon import getIconColor
 class SettingCard(QFrame):
     """ Setting card """
 
-    def __init__(self, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -47,17 +47,17 @@ class SettingCard(QFrame):
         # initialize layout
         self.hBoxLayout.setSpacing(0)
         self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
-        self.hBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
-        self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft)
         self.hBoxLayout.addSpacing(16)
 
         self.hBoxLayout.addLayout(self.vBoxLayout)
-        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignLeft)
-        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignLeft)
+        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft)
+        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignLeft)
 
         self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
@@ -80,7 +80,7 @@ class SwitchSettingCard(SettingCard):
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, iconPath: str, title: str, content: str = None, configItem: ConfigItem = None, parent=None):
+    def __init__(self, iconPath, title, content=None, configItem=None, parent=None):
         """
         Parameters
         ----------
@@ -110,7 +110,7 @@ class SwitchSettingCard(SettingCard):
         setStyleSheet(self.switchButton, 'setting_card')
 
         # add switch button to layout
-        self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.switchButton.checkedChanged.connect(self.__onCheckedChanged)
@@ -138,7 +138,7 @@ class RangeSettingCard(SettingCard):
 
     valueChanged = pyqtSignal(int)
 
-    def __init__(self, configItem: RangeConfigItem, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, configItem, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -159,7 +159,7 @@ class RangeSettingCard(SettingCard):
         """
         super().__init__(iconPath, title, content, parent)
         self.configItem = configItem
-        self.slider = Slider(Qt.Horizontal, self)
+        self.slider = Slider(Qt.Orientation.Horizontal, self)
         self.valueLabel = QLabel(self)
         self.slider.setFixedWidth(268)
 
@@ -168,9 +168,9 @@ class RangeSettingCard(SettingCard):
         self.slider.setValue(configItem.value)
         self.valueLabel.setNum(configItem.value)
 
-        self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(6)
-        self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.valueLabel.setObjectName('valueLabel')
@@ -189,7 +189,7 @@ class PushSettingCard(SettingCard):
 
     clicked = pyqtSignal()
 
-    def __init__(self, text, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, text, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -210,7 +210,7 @@ class PushSettingCard(SettingCard):
         """
         super().__init__(iconPath, title, content, parent)
         self.button = QPushButton(text, self)
-        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
         self.button.clicked.connect(self.clicked)
 
@@ -218,7 +218,7 @@ class PushSettingCard(SettingCard):
 class PrimaryPushSettingCard(PushSettingCard):
     """ Push setting card with primary color """
 
-    def __init__(self, text: str, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, text, iconPath, title, content=None, parent=None):
         super().__init__(text, iconPath, title, content, parent)
         self.button.setObjectName('primaryButton')
 
@@ -226,7 +226,7 @@ class PrimaryPushSettingCard(PushSettingCard):
 class HyperlinkCard(SettingCard):
     """ Hyperlink card """
 
-    def __init__(self, url: str, text: str, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, url, text, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -256,11 +256,11 @@ class HyperlinkCard(SettingCard):
         self.linkButton = QPushButton(text, self)
 
         self.linkButton.setObjectName('hyperlinkButton')
-        self.linkButton.setCursor(Qt.PointingHandCursor)
+        self.linkButton.setCursor(Qt.CursorShape.PointingHandCursor)
         self.linkButton.clicked.connect(
             lambda i: QDesktopServices.openUrl(self.url))
 
-        self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
 
@@ -274,10 +274,10 @@ class ColorPickerButton(QToolButton):
         self.title = title
         self.setFixedSize(96, 32)
         self.setAutoFillBackground(True)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         self.setColor(color)
-        self.setCursor(Qt.PointingHandCursor)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.clicked.connect(self.__showColorDialog)
 
     def __showColorDialog(self):
@@ -288,12 +288,12 @@ class ColorPickerButton(QToolButton):
         w.colorChanged.connect(self.__onColorChanged)
         w.exec()
 
-    def __onColorChanged(self, color: QColor):
+    def __onColorChanged(self, color):
         """ color changed slot """
         self.setColor(color)
         self.colorChanged.emit(color)
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set color """
         self.color = QColor(color)
         qss = getStyleSheet('setting_card')
@@ -306,7 +306,7 @@ class ColorSettingCard(SettingCard):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, configItem: ConfigItem, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, configItem, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -329,7 +329,7 @@ class ColorSettingCard(SettingCard):
         self.configItem = configItem
         self.colorPicker = ColorPickerButton(
             qconfig.get(configItem), title, self)
-        self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
         self.colorPicker.colorChanged.connect(self.__onColorChanged)
 

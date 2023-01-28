@@ -4,7 +4,7 @@ from math import floor
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt6.QtGui import QImage, QPixmap
 from scipy.ndimage.filters import gaussian_filter
 
 from .exception_handler import exceptionHandler
@@ -39,7 +39,7 @@ def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
 
     # convert ndarray to QPixmap
     h, w, _ = image.shape
-    return QPixmap.fromImage(QImage(image.data, w, h, 3*w, QImage.Format_RGB888))
+    return QPixmap.fromImage(QImage(image.data, w, h, 3*w, QImage.Format.Format_RGB888))
 
 
 class DominantColor:
@@ -150,7 +150,7 @@ class DominantColor:
         return (r, g, b)
 
     @staticmethod
-    def colorfulness(r: int, g: int, b: int):
+    def colorfulness(r, g, b):
         rg = np.absolute(r - g)
         yb = np.absolute(0.5 * (r + g) - b)
 

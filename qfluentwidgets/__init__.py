@@ -1,7 +1,7 @@
 """
-PyQt-Fluent-Widgets
+PyQt6-Fluent-Widgets
 ===================
-A fluent design widgets library based on PyQt5.
+A fluent design widgets library based on PyQt6.
 
 Documentation is available in the docstrings and
 online at https://pyqt-fluent-widgets.readthedocs.io.
@@ -10,7 +10,7 @@ online at https://pyqt-fluent-widgets.readthedocs.io.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.0.1"
 
 from .components import *
 from .common import *

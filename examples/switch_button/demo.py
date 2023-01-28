@@ -1,7 +1,6 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget
 
 from qfluentwidgets import SwitchButton
 
@@ -15,19 +14,13 @@ class Window(QWidget):
         self.switchButton.move(48, 24)
         self.switchButton.checkedChanged.connect(self.onCheckedChanged)
 
-    def onCheckedChanged(self, isChecked: bool):
+    def onCheckedChanged(self, isChecked):
         text = 'On' if isChecked else 'Off'
         self.switchButton.setText(text)
 
 
 if __name__ == '__main__':
-    # enable dpi scale
-    QApplication.setHighDpiScaleFactorRoundingPolicy(
-        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    
     app = QApplication(sys.argv)
     w = Window()
     w.show()
-    sys.exit(app.exec_())
+    app.exec()

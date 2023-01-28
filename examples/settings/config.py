@@ -1,8 +1,8 @@
 # coding:utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication, QFont
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QGuiApplication, QFont
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             ColorConfigItem, OptionsValidator, RangeConfigItem, RangeValidator,
                             FolderListValidator, EnumSerializer, FolderValidator)
@@ -72,7 +72,7 @@ class Config(QConfig):
     deskLyricStrokeSize = RangeConfigItem(
         "DesktopLyric", "StrokeSize", 5, RangeValidator(0, 20))
     deskLyricStrokeColor = ColorConfigItem(
-        "DesktopLyric", "StrokeColor", Qt.black)
+        "DesktopLyric", "StrokeColor", Qt.GlobalColor.black)
     deskLyricFontFamily = ConfigItem(
         "DesktopLyric", "FontFamily", "Microsoft YaHei")
     deskLyricAlignment = OptionsConfigItem(

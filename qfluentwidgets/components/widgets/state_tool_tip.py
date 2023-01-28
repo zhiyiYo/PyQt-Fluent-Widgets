@@ -1,8 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
-from PyQt5.QtGui import QPainter, QPixmap
-from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PyQt5.QtSvg import QSvgRenderer, QSvgWidget
+from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
+from PyQt6.QtGui import QPainter
+from PyQt6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
+from PyQt6.QtSvg import QSvgRenderer
+from PyQt6.QtSvgWidgets import QSvgWidget
 
 from .label import PixmapLabel
 from ...common import setStyleSheet
@@ -47,7 +48,7 @@ class StateToolTip(QWidget):
 
     def __initWidget(self):
         """ initialize widgets """
-        self.setAttribute(Qt.WA_StyledBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.rotateTimer.setInterval(50)
         self.closeTimer.setInterval(1000)
         self.contentLabel.setMinimumWidth(200)
@@ -109,7 +110,7 @@ class StateToolTip(QWidget):
     def __slowlyClose(self):
         """ fade out """
         self.rotateTimer.stop()
-        self.animation.setEasingCurve(QEasingCurve.Linear)
+        self.animation.setEasingCurve(QEasingCurve.Type.Linear)
         self.animation.setDuration(500)
         self.animation.setStartValue(1)
         self.animation.setEndValue(0)
@@ -125,8 +126,8 @@ class StateToolTip(QWidget):
         """ paint state tooltip """
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.SmoothPixmapTransform)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.SmoothPixmapTransform)
+        painter.setPen(Qt.PenStyle.NoPen)
         if not self.isDone:
             painter.translate(19, 18)
             painter.rotate(self.rotateAngle)
@@ -140,7 +141,7 @@ class StateToolTip(QWidget):
 class ToastToolTip(QWidget):
     """ Toast tooltip """
 
-    def __init__(self, title: str, content: str, icon: str, parent=None):
+    def __init__(self, title, content, icon, parent=None):
         """
         Parameters
         ----------
@@ -174,7 +175,7 @@ class ToastToolTip(QWidget):
 
     def __initWidget(self):
         """ initialize widgets """
-        self.setAttribute(Qt.WA_StyledBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.closeButton.setFixedSize(QSize(11, 11))
         self.closeButton.setIconSize(QSize(11, 11))
         self.closeTimer.setInterval(2000)
@@ -233,7 +234,7 @@ class ToastToolTip(QWidget):
     def showEvent(self, e):
         pos = self.getSuitablePos()
         self.slideAni.setDuration(200)
-        self.slideAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.slideAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.slideAni.setStartValue(QPoint(self.window().width(), pos.y()))
         self.slideAni.setEndValue(pos)
         self.slideAni.start()

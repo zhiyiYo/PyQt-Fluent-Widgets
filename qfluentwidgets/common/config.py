@@ -2,11 +2,10 @@
 import json
 from enum import Enum
 from pathlib import Path
-from typing import Iterable, List, Union
 
 import darkdetect
-from PyQt5.QtCore import QObject, pyqtSignal
-from PyQt5.QtGui import QColor
+from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt6.QtGui import QColor
 
 from .exception_handler import exceptionHandler
 
@@ -82,7 +81,7 @@ class FolderListValidator(ConfigValidator):
     def validate(self, value):
         return all(Path(i).exists() for i in value)
 
-    def correct(self, value: List[str]):
+    def correct(self, value):
         folders = []
         for folder in value:
             path = Path(folder)

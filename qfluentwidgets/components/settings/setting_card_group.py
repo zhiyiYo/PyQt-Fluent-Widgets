@@ -1,8 +1,6 @@
 # coding:utf-8
-from typing import List
-
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
 
 from ...common.style_sheet import setStyleSheet
 from ..layout.expand_layout import ExpandLayout
@@ -11,14 +9,14 @@ from ..layout.expand_layout import ExpandLayout
 class SettingCardGroup(QWidget):
     """ Setting card group """
 
-    def __init__(self, title: str, parent=None):
+    def __init__(self, title, parent=None):
         super().__init__(parent=parent)
         self.titleLabel = QLabel(title, self)
         self.vBoxLayout = QVBoxLayout(self)
         self.cardLayout = ExpandLayout()
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setSpacing(0)
         self.cardLayout.setContentsMargins(0, 0, 0, 0)
         self.cardLayout.setSpacing(2)
@@ -30,13 +28,13 @@ class SettingCardGroup(QWidget):
         setStyleSheet(self, 'setting_card_group')
         self.titleLabel.adjustSize()
 
-    def addSettingCard(self, card: QWidget):
+    def addSettingCard(self, card):
         """ add setting card to group """
         card.setParent(self)
         self.cardLayout.addWidget(card)
         self.adjustSize()
 
-    def addSettingCards(self, cards: List[QWidget]):
+    def addSettingCards(self, cards):
         """ add setting cards to group """
         for card in cards:
             self.addSettingCard(card)

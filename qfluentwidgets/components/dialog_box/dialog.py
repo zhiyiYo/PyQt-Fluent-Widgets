@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
+from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
@@ -48,19 +48,19 @@ class Dialog(FramelessDialog):
     def __initLayout(self):
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.addWidget(self.windowTitleLabel, 0, Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.windowTitleLabel, 0, Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.addLayout(self.textLayout, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignmentFlag.AlignBottom)
 
         self.textLayout.setSpacing(12)
         self.textLayout.setContentsMargins(24, 24, 24, 24)
-        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
-        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignTop)
+        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignTop)
+        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignTop)
 
         self.buttonLayout.setSpacing(12)
         self.buttonLayout.setContentsMargins(24, 24, 24, 24)
-        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
-        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
+        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignmentFlag.AlignVCenter)
+        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignmentFlag.AlignVCenter)
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()
