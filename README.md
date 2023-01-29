@@ -2,7 +2,7 @@
   <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
-  PyQt-Fluent-Widgets
+  PyQt6-Fluent-Widgets
 </h1>
 <p align="center">
   A fluent design widgets library based on PyQt6

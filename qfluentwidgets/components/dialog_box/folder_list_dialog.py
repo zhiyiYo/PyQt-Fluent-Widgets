@@ -258,23 +258,26 @@ class FolderCard(ClickableWindow):
         color = Qt.GlobalColor.white if qconfig.theme == 'dark' else Qt.GlobalColor.black
         painter.setPen(color)
         if self._isPressed:
-            self.__drawText(painter, 12, 8, 12, 7)
+            self.__drawText(painter, 12, 12, 12, 11)
             painter.drawPixmap(self.width() - 26, 18, self.__closeIcon)
         else:
-            self.__drawText(painter, 10, 9, 10, 8)
+            self.__drawText(painter, 10, 13, 10, 12)
             painter.drawPixmap(self.width() - 24, 20, self.__closeIcon)
 
     def __drawText(self, painter, x1, fontSize1, x2, fontSize2):
         """ draw text """
         # paint folder name
-        font = QFont("Microsoft YaHei", fontSize1, 75)
+        font = QFont("Microsoft YaHei")
+        font.setPixelSize(fontSize1)
+        font.setBold(True)
         painter.setFont(font)
         name = QFontMetrics(font).elidedText(
             self.folderName, Qt.TextElideMode.ElideRight, self.width()-48)
         painter.drawText(x1, 30, name)
 
         # paint folder path
-        font = QFont("Microsoft YaHei", fontSize2)
+        font = QFont("Microsoft YaHei")
+        font.setPixelSize(fontSize2)
         painter.setFont(font)
         path = QFontMetrics(font).elidedText(
             self.folderPath, Qt.TextElideMode.ElideRight, self.width()-24)
