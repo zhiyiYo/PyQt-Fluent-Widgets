@@ -1,14 +1,14 @@
 # coding:utf-8
-from PyQt5.QtCore import QSize, Qt, pyqtSignal, QPoint, QRectF
-from PyQt5.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
-from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
+from PySide2.QtCore import QSize, Qt, Signal, QPoint, QRectF
+from PySide2.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
+from PySide2.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
 
 class Slider(QSlider):
     """ A slider can be clicked """
 
-    clicked = pyqtSignal(int)
+    clicked = Signal(int)
 
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)
@@ -54,12 +54,12 @@ class HollowHandleStyle(QProxyStyle):
             self.config["handle.hollow-radius"]
         self.config["handle.size"] = QSize(2*w, 2*w)
 
-    def subControlRect(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, sc: QStyle.SubControl, widget: QWidget):
+    def subControlRect(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, sc: QStyle.SubControl, widget: QSlider):
         """ get the rectangular area occupied by the sub control """
-        if cc != self.CC_Slider or opt.orientation != Qt.Horizontal or sc == self.SC_SliderTickmarks:
+        if cc != self.CC_Slider or widget.orientation() != Qt.Horizontal or sc == self.SC_SliderTickmarks:
             return super().subControlRect(cc, opt, sc, widget)
 
-        rect = opt.rect
+        rect = widget.rect()
 
         if sc == self.SC_SliderGroove:
             h = self.config["groove.height"]
@@ -69,16 +69,16 @@ class HollowHandleStyle(QProxyStyle):
         elif sc == self.SC_SliderHandle:
             size = self.config["handle.size"]
             x = self.sliderPositionFromValue(
-                opt.minimum, opt.maximum, opt.sliderPosition, rect.width())
+                widget.minimum(), widget.maximum(), widget.value(), rect.width())
 
             # solve the situation that the handle runs out of slider
             x *= (rect.width()-size.width())/rect.width()
             sliderRect = QRectF(x, 0, size.width(), size.height())
             return sliderRect.toRect()
 
-    def drawComplexControl(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, painter: QPainter, widget: QWidget):
+    def drawComplexControl(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, painter: QPainter, widget: QSlider):
         """ draw sub control """
-        if cc != self.CC_Slider or opt.orientation != Qt.Horizontal:
+        if cc != self.CC_Slider or widget.orientation() != Qt.Horizontal:
             return super().drawComplexControl(cc, opt, painter, widget)
 
         grooveRect = self.subControlRect(cc, opt, self.SC_SliderGroove, widget)

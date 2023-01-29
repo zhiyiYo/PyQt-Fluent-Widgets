@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEvent, QPoint, Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout
+from PySide2.QtCore import QEvent, QPoint, Qt
+from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout
 
 from qfluentwidgets import ToolTip
 

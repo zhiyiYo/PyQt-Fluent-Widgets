@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
 
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QApplication
+from PySide2.QtGui import QColor
+from PySide2.QtWidgets import QApplication
 
 from qfluentwidgets import AcrylicLabel
 

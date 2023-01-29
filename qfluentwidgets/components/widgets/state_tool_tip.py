@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
-from PyQt5.QtGui import QPainter, QPixmap
-from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PyQt5.QtSvg import QSvgRenderer, QSvgWidget
+from PySide2.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal, QSize, QPoint, QRectF
+from PySide2.QtGui import QPainter, QPixmap
+from PySide2.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
+from PySide2.QtSvg import QSvgRenderer, QSvgWidget
 
 from .label import PixmapLabel
 from ...common import setStyleSheet
@@ -11,7 +11,7 @@ from ...common import setStyleSheet
 class StateToolTip(QWidget):
     """ State tooltip """
 
-    closedSignal = pyqtSignal()
+    closedSignal = Signal()
 
     def __init__(self, title, content, parent=None):
         """

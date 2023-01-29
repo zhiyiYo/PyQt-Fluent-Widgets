@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import Iterable, List, Union
 
 import darkdetect
-from PyQt5.QtCore import QObject, pyqtSignal
-from PyQt5.QtGui import QColor
+from PySide2.QtCore import QObject, Signal
+from PySide2.QtGui import QColor
 
 from .exception_handler import exceptionHandler
 
@@ -240,7 +240,7 @@ class ColorConfigItem(ConfigItem):
 class QConfig(QObject):
     """ Config of app """
 
-    appRestartSig = pyqtSignal()
+    appRestartSig = Signal()
 
     themeMode = OptionsConfigItem(
         "MainWindow", "Theme", "Light", OptionsValidator(["Light", "Dark", "Auto"]))

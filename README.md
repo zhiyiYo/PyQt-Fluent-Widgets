@@ -2,10 +2,10 @@
   <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
-  PyQt-Fluent-Widgets
+  PySide2-Fluent-Widgets
 </h1>
 <p align="center">
-  A fluent design widgets library based on PyQt5
+  A fluent design widgets library based on PySide2
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://static.pepy.tech/personalized-badge/pyqt-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
+    <img src="https://static.pepy.tech/personalized-badge/pyside2-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
   </a>
 
   <a style="text-decoration:none">
@@ -28,23 +28,23 @@
 ## Install
 To install use pip:
 ```shell
-pip install PyQt-Fluent-Widgets
+pip install PySide2-Fluent-Widgets
 ```
 Or clone the repo:
 ```shell
-git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
+git clone -b PySide2 https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
 python setup.py install
 ```
 
 ## Run Example
-After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
+After installing PySide2-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
 cd examples/settings
 python demo.py
 ```
 
 ## Document
-Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
+Want to know more about PySide2-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
 
 
 ## See Also

@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
-from PyQt5.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
-from PyQt5.QtWidgets import QLabel
+from PySide2.QtCore import Qt, QThread, Signal
+from PySide2.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
+from PySide2.QtWidgets import QLabel
 
 from ...common.image_utils import gaussianBlur
 
@@ -9,7 +9,7 @@ from ...common.image_utils import gaussianBlur
 class BlurCoverThread(QThread):
     """ Blur album cover thread """
 
-    blurFinished = pyqtSignal(QPixmap)
+    blurFinished = Signal(QPixmap)
 
     def __init__(self, parent=None):
         super().__init__(parent)

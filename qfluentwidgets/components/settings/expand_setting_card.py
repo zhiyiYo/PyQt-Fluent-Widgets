@@ -1,9 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
+from PySide2.QtCore import (QEvent, Qt, QPropertyAnimation, Property, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
-from PyQt5.QtGui import QColor, QPixmap, QPainter
-from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
-from PyQt5.QtSvg import QSvgRenderer
+from PySide2.QtGui import QColor, QPixmap, QPainter
+from PySide2.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
+from PySide2.QtSvg import QSvgRenderer
 
 from ...common.config import qconfig
 from ...common.style_sheet import setStyleSheet
@@ -83,7 +83,7 @@ class ExpandButton(QAbstractButton):
         self.__angle = angle
         self.update()
 
-    angle = pyqtProperty(float, getAngle, setAngle)
+    angle = Property(float, getAngle, setAngle)
 
 
 class ExpandSettingCard(QFrame):

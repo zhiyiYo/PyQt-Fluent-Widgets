@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEasingCurve
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PySide2.QtCore import QEasingCurve
+from PySide2.QtWidgets import QApplication, QWidget, QPushButton
 
 from qfluentwidgets import FlowLayout
 

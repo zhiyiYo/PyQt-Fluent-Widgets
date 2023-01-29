@@ -5,19 +5,19 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ExpandLayout, setStyleSheet, ToastToolTip)
 from qfluentwidgets import SettingIconFactory as SIF
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
+from PySide2.QtCore import Qt, Signal, QUrl
+from PySide2.QtGui import QDesktopServices
+from PySide2.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 
 
 class SettingInterface(ScrollArea):
     """ Setting interface """
 
-    checkUpdateSig = pyqtSignal()
-    musicFoldersChanged = pyqtSignal(list)
-    acrylicEnableChanged = pyqtSignal(bool)
-    downloadFolderChanged = pyqtSignal(str)
-    minimizeToTrayChanged = pyqtSignal(bool)
+    checkUpdateSig = Signal()
+    musicFoldersChanged = Signal(list)
+    acrylicEnableChanged = Signal(bool)
+    downloadFolderChanged = Signal(str)
+    minimizeToTrayChanged = Signal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

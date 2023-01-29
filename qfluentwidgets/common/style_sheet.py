@@ -1,7 +1,7 @@
 # coding:utf-8
 from .config import qconfig
-from PyQt5.QtCore import QFile
-from PyQt5.QtWidgets import QWidget
+from PySide2.QtCore import QFile
+from PySide2.QtWidgets import QWidget
 
 
 

@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
-from PyQt5.QtGui import QColor, QResizeEvent
-from PyQt5.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
+from PySide2.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
+from PySide2.QtGui import QColor, QResizeEvent
+from PySide2.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
                              QGraphicsOpacityEffect, QHBoxLayout, QWidget, QFrame)
 
 from ...common.config import qconfig

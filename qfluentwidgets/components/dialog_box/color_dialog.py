@@ -1,20 +1,20 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
-from PyQt5.QtGui import (QBrush, QColor, QMouseEvent, QPixmap,
-                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
-from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
+from PySide2.QtCore import Qt, Signal, QPoint, QRegExp, QSize
+from PySide2.QtGui import (QBrush, QColor, QPixmap, QPainter,
+                           QPen, QIntValidator, QRegExpValidator, QIcon)
+from PySide2.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
 from ...common.icon import Icon, getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ..widgets import LineEditMenu, Slider, ScrollArea
+from ..widgets import Slider, ScrollArea
 from .mask_dialog_base import MaskDialogBase
 
 
 class HuePanel(QWidget):
     """ Hue panel """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, color=QColor(255, 0, 0), parent=None):
         super().__init__(parent=parent)
@@ -82,7 +82,7 @@ class HuePanel(QWidget):
 class BrightnessSlider(Slider):
     """ Brightness slider """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, color, parent=None):
         super().__init__(Qt.Horizontal, parent)
@@ -132,7 +132,7 @@ class ColorCard(QWidget):
 class ColorLineEdit(QLineEdit):
     """ Color line edit """
 
-    valueChanged = pyqtSignal(str)
+    valueChanged = Signal(str)
 
     def __init__(self, value, parent=None):
         super().__init__(str(value), parent)
@@ -173,8 +173,7 @@ class ColorLineEdit(QLineEdit):
         self.clearButton.setVisible(bool(text) and self.hasFocus())
 
     def contextMenuEvent(self, e):
-        menu = LineEditMenu(self)
-        menu.exec_(e.globalPos())
+        return
 
 
 class HexColorLineEdit(ColorLineEdit):
@@ -196,7 +195,7 @@ class HexColorLineEdit(ColorLineEdit):
 class ColorDialog(MaskDialogBase):
     """ Color dialog """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, color, title: str, parent=None):
         """

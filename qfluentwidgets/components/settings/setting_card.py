@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import QUrl, Qt, pyqtSignal
-from PyQt5.QtGui import QColor, QDesktopServices
-from PyQt5.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
-from PyQt5.QtSvg import QSvgWidget
+from PySide2.QtCore import QUrl, Qt, Signal
+from PySide2.QtGui import QColor, QDesktopServices
+from PySide2.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
+from PySide2.QtSvg import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
@@ -78,7 +78,7 @@ class SettingCard(QFrame):
 class SwitchSettingCard(SettingCard):
     """ Setting card with switch button """
 
-    checkedChanged = pyqtSignal(bool)
+    checkedChanged = Signal(bool)
 
     def __init__(self, iconPath: str, title: str, content: str = None, configItem: ConfigItem = None, parent=None):
         """
@@ -136,7 +136,7 @@ class SwitchSettingCard(SettingCard):
 class RangeSettingCard(SettingCard):
     """ Setting card with a slider """
 
-    valueChanged = pyqtSignal(int)
+    valueChanged = Signal(int)
 
     def __init__(self, configItem: RangeConfigItem, iconPath: str, title: str, content: str = None, parent=None):
         """
@@ -187,7 +187,7 @@ class RangeSettingCard(SettingCard):
 class PushSettingCard(SettingCard):
     """ Setting card with a push button """
 
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, text, iconPath: str, title: str, content: str = None, parent=None):
         """
@@ -267,7 +267,7 @@ class HyperlinkCard(SettingCard):
 class ColorPickerButton(QToolButton):
     """ Color picker button """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, color: QColor, title: str, parent=None):
         super().__init__(parent=parent)
@@ -304,7 +304,7 @@ class ColorPickerButton(QToolButton):
 class ColorSettingCard(SettingCard):
     """ Setting card with color picker """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, configItem: ConfigItem, iconPath: str, title: str, content: str = None, parent=None):
         """

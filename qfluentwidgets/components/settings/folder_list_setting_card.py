@@ -2,11 +2,11 @@
 from typing import List
 from pathlib import Path
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRectF
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
+from PySide2.QtCore import Qt, Signal, QRectF
+from PySide2.QtGui import QPainter
+from PySide2.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
-from PyQt5.QtSvg import QSvgRenderer
+from PySide2.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
 from ..dialog_box.dialog import Dialog
@@ -73,7 +73,7 @@ class PushButton(QPushButton):
 class FolderItem(QWidget):
     """ Folder item """
 
-    removed = pyqtSignal(QWidget)
+    removed = Signal(QWidget)
 
     def __init__(self, folder: str, parent=None):
         super().__init__(parent=parent)
@@ -97,7 +97,7 @@ class FolderItem(QWidget):
 class FolderListSettingCard(ExpandSettingCard):
     """ Folder list setting card """
 
-    folderChanged = pyqtSignal(list)
+    folderChanged = Signal(list)
 
     def __init__(self, configItem: ConfigItem, title: str, content: str = None, parent=None):
         """

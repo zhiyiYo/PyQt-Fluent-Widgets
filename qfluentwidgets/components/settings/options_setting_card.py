@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QButtonGroup, QLabel, QRadioButton
+from PySide2.QtCore import Signal
+from PySide2.QtWidgets import QButtonGroup, QLabel, QRadioButton
 
 from ...common.config import OptionsConfigItem, qconfig
 from .expand_setting_card import ExpandSettingCard
@@ -10,7 +10,7 @@ from .expand_setting_card import ExpandSettingCard
 class OptionsSettingCard(ExpandSettingCard):
     """ setting card with a group of options """
 
-    optionChanged = pyqtSignal(OptionsConfigItem)
+    optionChanged = Signal(OptionsConfigItem)
 
     def __init__(self, configItem: OptionsConfigItem, iconPath: str, title: str, content: str = None,
                  texts: List[str] = None, parent=None):

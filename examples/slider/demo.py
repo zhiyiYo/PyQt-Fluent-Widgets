@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QApplication, QWidget, QSlider
+from PySide2.QtCore import Qt
+from PySide2.QtGui import QColor
+from PySide2.QtWidgets import QApplication, QWidget, QSlider
 
 from qfluentwidgets import HollowHandleStyle
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    
+
     app = QApplication(sys.argv)
     w = Demo()
     w.show()

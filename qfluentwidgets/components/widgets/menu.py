@@ -1,8 +1,8 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
-from PyQt5.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QApplication, QMenu, QProxyStyle, QStyle
+from PySide2.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
+from PySide2.QtGui import QIcon
+from PySide2.QtWidgets import QAction, QLineEdit, QMenu, QProxyStyle, QStyle
 
 from ...common.icon import Icon, getIconColor
 from ...common.style_sheet import setStyleSheet
@@ -119,23 +119,14 @@ class LineEditMenu(DWMMenu):
         self.clear()
         self.createActions()
 
-        if QApplication.clipboard().mimeData().hasText():
-            if self.parent().text():
-                if self.parent().selectedText():
-                    self.addActions(self.action_list)
-                else:
-                    self.addActions(self.action_list[2:])
-            else:
-                self.addAction(self.pasteAct)
+        if not self.parent().text():
+           return
+
+        if self.parent().selectedText():
+            self.addActions(
+                self.action_list[:2] + self.action_list[3:])
         else:
-            if self.parent().text():
-                if self.parent().selectedText():
-                    self.addActions(
-                        self.action_list[:2] + self.action_list[3:])
-                else:
-                    self.addActions(self.action_list[3:])
-            else:
-                return
+            self.addActions(self.action_list[3:])
 
         w = 92+max(self.fontMetrics().width(i.text()) for i in self.actions())
         h = len(self.actions()) * 32 + 8

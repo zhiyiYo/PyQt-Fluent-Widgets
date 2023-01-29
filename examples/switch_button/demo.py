@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget
+from PySide2.QtCore import Qt
+from PySide2.QtWidgets import QApplication, QWidget
 
 from qfluentwidgets import SwitchButton
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    
+
     app = QApplication(sys.argv)
     w = Window()
     w.show()

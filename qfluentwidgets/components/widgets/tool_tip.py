@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
+from PySide2.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
+from PySide2.QtGui import QColor
+from PySide2.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)
 
 from ...common import setStyleSheet

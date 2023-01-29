@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import QSize, QPoint, Qt, QEvent, QRect
-from PyQt5.QtGui import QResizeEvent
-from PyQt5.QtWidgets import QLayout, QWidget
+from PySide2.QtCore import QSize, QPoint, Qt, QEvent, QRect
+from PySide2.QtGui import QResizeEvent
+from PySide2.QtWidgets import QLayout, QWidget
 
 
 class ExpandLayout(QLayout):
@@ -85,8 +85,7 @@ class ExpandLayout(QLayout):
     def eventFilter(self, obj, e):
         if obj in self.__widgets:
             if e.type() == QEvent.Resize:
-                re = QResizeEvent(e)
-                ds = re.size() - re.oldSize()  # type:QSize
+                ds = e.size() - e.oldSize()  # type:QSize
                 if ds.height() != 0 and ds.width() == 0:
                     w = self.parentWidget()
                     w.resize(w.width(), w.height() + ds.height())

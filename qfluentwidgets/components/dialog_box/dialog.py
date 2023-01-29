@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
+from PySide2.QtCore import Qt, Signal
+from PySide2.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
@@ -10,8 +10,8 @@ from ...common.style_sheet import setStyleSheet
 class Dialog(FramelessDialog):
     """ Dialog box """
 
-    yesSignal = pyqtSignal()
-    cancelSignal = pyqtSignal()
+    yesSignal = Signal()
+    cancelSignal = Signal()
 
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent)

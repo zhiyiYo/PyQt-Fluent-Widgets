@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import List
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
+from PySide2.QtCore import Qt
+from PySide2.QtWidgets import QWidget, QLabel, QVBoxLayout
 
 from ...common.style_sheet import setStyleSheet
 from ..layout.expand_layout import ExpandLayout
