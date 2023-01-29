@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List
-from PySide2.QtCore import Signal
-from PySide2.QtWidgets import QButtonGroup, QLabel, QRadioButton
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QButtonGroup, QLabel, QRadioButton
 
 from ...common.config import OptionsConfigItem, qconfig
 from .expand_setting_card import ExpandSettingCard

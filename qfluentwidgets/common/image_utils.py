@@ -4,7 +4,7 @@ from math import floor
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
-from PySide2.QtGui import QImage, QPixmap
+from PySide6.QtGui import QImage, QPixmap
 from scipy.ndimage.filters import gaussian_filter
 
 from .exception_handler import exceptionHandler

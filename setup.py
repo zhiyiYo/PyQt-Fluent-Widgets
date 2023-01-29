@@ -5,19 +5,19 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="PySide2-Fluent-Widgets",
+    name="PySide6-Fluent-Widgets",
     version="0.0.1",
     keywords="pyside2 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
-    description="A fluent design widgets library based on PySide2",
+    description="A fluent design widgets library based on PySide6",
     long_description=long_description,
     long_description_content_type='text/markdown',
     license="MIT",
-    url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2",
+    url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6",
     packages=setuptools.find_packages(),
     install_requires=[
-        "PySide2-Frameless-Window",
+        "PySide6-Frameless-Window",
         "darkdetect",
         "scipy",
         "pillow",

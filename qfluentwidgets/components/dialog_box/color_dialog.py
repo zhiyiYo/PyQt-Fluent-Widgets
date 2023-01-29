@@ -1,8 +1,8 @@
 # coding:utf-8
-from PySide2.QtCore import Qt, Signal, QPoint, QRegExp, QSize
-from PySide2.QtGui import (QBrush, QColor, QPixmap, QPainter,
-                           QPen, QIntValidator, QRegExpValidator, QIcon)
-from PySide2.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
+from PySide6.QtCore import Qt, Signal, QPoint, QRegularExpression, QSize
+from PySide6.QtGui import (QBrush, QColor, QPixmap, QPainter,
+                           QPen, QIntValidator, QRegularExpressionValidator, QIcon)
+from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
 from ...common.icon import Icon, getIconColor
@@ -181,7 +181,7 @@ class HexColorLineEdit(ColorLineEdit):
 
     def __init__(self, color, parent=None):
         super().__init__(QColor(color).name()[1:], parent)
-        self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{6}')))
+        self.setValidator(QRegularExpressionValidator(QRegularExpression(r'[A-Fa-f0-9]{6}')))
         self.setTextMargins(4, 0, 33, 0)
         self.prefixLabel = QLabel('#', self)
         self.prefixLabel.move(10, 7)

@@ -1,8 +1,9 @@
 # coding:utf-8
-from PySide2.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal, QSize, QPoint, QRectF
-from PySide2.QtGui import QPainter, QPixmap
-from PySide2.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PySide2.QtSvg import QSvgRenderer, QSvgWidget
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal, QSize, QPoint, QRectF
+from PySide6.QtGui import QPainter, QPixmap
+from PySide6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
+from PySide6.QtSvg import QSvgRenderer
+from PySide6.QtSvgWidgets import QSvgWidget
 
 from .label import PixmapLabel
 from ...common import setStyleSheet

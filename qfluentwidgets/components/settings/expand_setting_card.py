@@ -1,9 +1,9 @@
 # coding:utf-8
-from PySide2.QtCore import (QEvent, Qt, QPropertyAnimation, Property, QEasingCurve,
+from PySide6.QtCore import (QEvent, Qt, QPropertyAnimation, Property, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
-from PySide2.QtGui import QColor, QPixmap, QPainter
-from PySide2.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
-from PySide2.QtSvg import QSvgRenderer
+from PySide6.QtGui import QColor, QPixmap, QPainter
+from PySide6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
+from PySide6.QtSvg import QSvgRenderer
 
 from ...common.config import qconfig
 from ...common.style_sheet import setStyleSheet

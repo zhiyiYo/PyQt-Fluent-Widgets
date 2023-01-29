@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
-from PySide2.QtCore import Qt
-from PySide2.QtGui import QColor
-from PySide2.QtWidgets import QApplication, QWidget, QSlider
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QApplication, QWidget, QSlider
 
 from qfluentwidgets import HollowHandleStyle
 
@@ -27,13 +27,7 @@ class Demo(QWidget):
 
 
 if __name__ == '__main__':
-    # enable dpi scale
-    QApplication.setHighDpiScaleFactorRoundingPolicy(
-        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-
     app = QApplication(sys.argv)
     w = Demo()
     w.show()
-    sys.exit(app.exec_())
+    app.exec()

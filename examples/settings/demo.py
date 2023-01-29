@@ -1,9 +1,9 @@
 # coding:utf-8
 import os
 import sys
-from PySide2.QtCore import Qt
-from PySide2.QtGui import QIcon, QColor
-from PySide2.QtWidgets import QApplication, QLabel, QHBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon, QColor
+from PySide6.QtWidgets import QApplication, QLabel, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from qframelesswindow.titlebar import TitleBarButton
@@ -49,7 +49,7 @@ class Window(FramelessWindow):
         self.hBoxLayout.addWidget(self.settingInterface)
 
         self.setWindowIcon(QIcon("resource/logo.png"))
-        self.setWindowTitle("PySide2-Fluent-Widgets")
+        self.setWindowTitle("PySide6-Fluent-Widgets")
 
         self.resize(1080, 784)
         desktop = QApplication.primaryScreen().size()
@@ -61,17 +61,11 @@ class Window(FramelessWindow):
 
 if __name__ == '__main__':
     # enable dpi scale
-    if cfg.get(cfg.dpiScale) == "Auto":
-        QApplication.setHighDpiScaleFactorRoundingPolicy(
-            Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
-        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    else:
+    if cfg.get(cfg.dpiScale) != "Auto":
         os.environ["QT_ENABLE_HIGHDPI_SCALING"] = "0"
         os.environ["QT_SCALE_FACTOR"] = str(cfg.get(cfg.dpiScale))
-
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
     app = QApplication(sys.argv)
     w = Window()
     w.show()
-    app.exec_()
+    app.exec()

@@ -1,7 +1,7 @@
 # coding:utf-8
-from PySide2.QtCore import QSize, Qt, Signal, QPoint, QRectF
-from PySide2.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
-from PySide2.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
+from PySide6.QtCore import QSize, Qt, Signal, QPoint, QRectF
+from PySide6.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
+from PySide6.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
 
@@ -56,17 +56,18 @@ class HollowHandleStyle(QProxyStyle):
 
     def subControlRect(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, sc: QStyle.SubControl, widget: QSlider):
         """ get the rectangular area occupied by the sub control """
-        if cc != self.CC_Slider or widget.orientation() != Qt.Horizontal or sc == self.SC_SliderTickmarks:
+        if cc != self.ComplexControl.CC_Slider or widget.orientation() != Qt.Horizontal \
+                or sc == self.SubControl.SC_SliderTickmarks:
             return super().subControlRect(cc, opt, sc, widget)
 
         rect = widget.rect()
 
-        if sc == self.SC_SliderGroove:
+        if sc == self.SubControl.SC_SliderGroove:
             h = self.config["groove.height"]
             grooveRect = QRectF(0, (rect.height()-h)//2, rect.width(), h)
             return grooveRect.toRect()
 
-        elif sc == self.SC_SliderHandle:
+        elif sc == self.SubControl.SC_SliderHandle:
             size = self.config["handle.size"]
             x = self.sliderPositionFromValue(
                 widget.minimum(), widget.maximum(), widget.value(), rect.width())
@@ -78,11 +79,11 @@ class HollowHandleStyle(QProxyStyle):
 
     def drawComplexControl(self, cc: QStyle.ComplexControl, opt: QStyleOptionSlider, painter: QPainter, widget: QSlider):
         """ draw sub control """
-        if cc != self.CC_Slider or widget.orientation() != Qt.Horizontal:
+        if cc != self.ComplexControl.CC_Slider or widget.orientation() != Qt.Horizontal:
             return super().drawComplexControl(cc, opt, painter, widget)
 
-        grooveRect = self.subControlRect(cc, opt, self.SC_SliderGroove, widget)
-        handleRect = self.subControlRect(cc, opt, self.SC_SliderHandle, widget)
+        grooveRect = self.subControlRect(cc, opt, self.SubControl.SC_SliderGroove, widget)
+        handleRect = self.subControlRect(cc, opt, self.SubControl.SC_SliderHandle, widget)
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
 
@@ -115,7 +116,7 @@ class HollowHandleStyle(QProxyStyle):
 
         handleColor = self.config["handle.color"]  # type:QColor
         handleColor.setAlpha(255 if opt.activeSubControls !=
-                             self.SC_SliderHandle else 153)
+                             self.SubControl.SC_SliderHandle else 153)
         painter.setBrush(handleColor)
         painter.drawPath(path)
 

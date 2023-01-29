@@ -1,12 +1,12 @@
 """
-PySide2-Fluent-Widgets
+PySide6-Fluent-Widgets
 ======================
-A fluent design widgets library based on PySide2.
+A fluent design widgets library based on PySide6.
 
 Documentation is available in the docstrings and
 online at https://pyqt-fluent-widgets.readthedocs.io.
 
-Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2/examples.
+Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6/examples.
 
 :copyright: (c) 2023 by zhiyiYo.
 :license: MIT, see LICENSE for more details.

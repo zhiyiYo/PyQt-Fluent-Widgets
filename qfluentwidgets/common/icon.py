@@ -1,7 +1,7 @@
 # coding:utf-8
-from PySide2.QtCore import QPoint, QRect, QRectF, QSize, Qt
-from PySide2.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap
-from PySide2.QtSvg import QSvgRenderer
+from PySide6.QtCore import QPoint, QRect, QRectF, QSize, Qt
+from PySide6.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap
+from PySide6.QtSvg import QSvgRenderer
 
 from .config import qconfig
 

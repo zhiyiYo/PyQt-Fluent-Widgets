@@ -1,7 +1,7 @@
 # coding:utf-8
-from PySide2.QtCore import Qt, QThread, Signal
-from PySide2.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
-from PySide2.QtWidgets import QLabel
+from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
+from PySide6.QtWidgets import QLabel
 
 from ...common.image_utils import gaussianBlur
 

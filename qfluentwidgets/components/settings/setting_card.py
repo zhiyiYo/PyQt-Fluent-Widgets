@@ -1,8 +1,8 @@
 # coding:utf-8
-from PySide2.QtCore import QUrl, Qt, Signal
-from PySide2.QtGui import QColor, QDesktopServices
-from PySide2.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
-from PySide2.QtSvg import QSvgWidget
+from PySide6.QtCore import QUrl, Qt, Signal
+from PySide6.QtGui import QColor, QDesktopServices
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
+from PySide6.QtSvgWidgets import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.switch_button import SwitchButton, IndicatorPosition

@@ -1,10 +1,10 @@
 # coding:utf-8
 import os
 
-from PySide2.QtCore import Qt, Signal
-from PySide2.QtGui import (QBrush, QColor, QFont, QFontMetrics, QMouseEvent,
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import (QBrush, QColor, QFont, QFontMetrics, QMouseEvent,
                          QPainter, QPen, QPixmap)
-from PySide2.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
+from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
                              QVBoxLayout, QWidget, QPushButton)
 
 from ...common.config import qconfig
@@ -255,23 +255,26 @@ class FolderCard(ClickableWindow):
         color = Qt.white if qconfig.theme == 'dark' else Qt.black
         painter.setPen(color)
         if self._isPressed:
-            self.__drawText(painter, 12, 8, 12, 7)
+            self.__drawText(painter, 12, 12, 12, 10)
             painter.drawPixmap(self.width() - 26, 18, self.__closeIcon)
         else:
-            self.__drawText(painter, 10, 9, 10, 8)
+            self.__drawText(painter, 10, 13, 10, 11)
             painter.drawPixmap(self.width() - 24, 20, self.__closeIcon)
 
     def __drawText(self, painter, x1, fontSize1, x2, fontSize2):
         """ draw text """
         # paint folder name
-        font = QFont("Microsoft YaHei", fontSize1, 75)
+        font = QFont("Microsoft YaHei")
+        font.setBold(True)
+        font.setPixelSize(fontSize1)
         painter.setFont(font)
         name = QFontMetrics(font).elidedText(
             self.folderName, Qt.ElideRight, self.width()-48)
         painter.drawText(x1, 30, name)
 
         # paint folder path
-        font = QFont("Microsoft YaHei", fontSize2)
+        font = QFont("Microsoft YaHei")
+        font.setPixelSize(fontSize2)
         painter.setFont(font)
         path = QFontMetrics(font).elidedText(
             self.folderPath, Qt.ElideRight, self.width()-24)

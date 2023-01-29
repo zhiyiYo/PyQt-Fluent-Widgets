@@ -1,6 +1,6 @@
 # coding:utf-8
-from PySide2.QtCore import Signal
-from PySide2.QtWidgets import QLabel, QPushButton
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QLabel, QPushButton, QDialog
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import setStyleSheet
@@ -50,14 +50,12 @@ class MessageDialog(MaskDialogBase):
 
     def __onCancelButtonClicked(self):
         self.cancelSignal.emit()
-        self.setResult(self.Rejected)
-        self.close()
+        self.reject()
 
     def __onYesButtonClicked(self):
         self.setEnabled(False)
         self.yesSignal.emit()
-        self.setResult(self.Accepted)
-        self.close()
+        self.accept()
 
     def __setQss(self):
         """ set style sheet """

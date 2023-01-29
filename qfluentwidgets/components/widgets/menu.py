@@ -1,8 +1,8 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
-from PySide2.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
-from PySide2.QtGui import QIcon
-from PySide2.QtWidgets import QAction, QLineEdit, QMenu, QProxyStyle, QStyle
+from PySide6.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt
+from PySide6.QtGui import QAction, QIcon
+from PySide6.QtWidgets import QMenu, QProxyStyle, QStyle
 
 from ...common.icon import Icon, getIconColor
 from ...common.style_sheet import setStyleSheet

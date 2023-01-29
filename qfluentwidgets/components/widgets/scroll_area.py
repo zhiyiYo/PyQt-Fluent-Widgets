@@ -3,9 +3,9 @@ from collections import deque
 from enum import Enum
 from math import cos, pi
 
-from PySide2.QtCore import QDateTime, QEasingCurve, Qt, QTimer, QPoint, Signal, QPropertyAnimation, QPointF
-from PySide2.QtGui import QWheelEvent
-from PySide2.QtWidgets import QApplication, QScrollArea, QScrollBar
+from PySide6.QtCore import QDateTime, QEasingCurve, Qt, QTimer, QPoint, Signal, QPropertyAnimation, QPointF
+from PySide6.QtGui import QWheelEvent
+from PySide6.QtWidgets import QApplication, QScrollArea, QScrollBar
 
 
 class ScrollArea(QScrollArea):
@@ -53,8 +53,8 @@ class ScrollArea(QScrollArea):
 
         # adjust the acceration ratio based on unprocessed events
         accerationRatio = min(len(self.scrollStamps) / 15, 1)
-        self.lastWheelPos = QPointF(e.pos())
-        self.lastWheelGlobalPos = QPointF(e.globalPos())
+        self.lastWheelPos = e.position()
+        self.lastWheelGlobalPos = e.globalPosition()
 
         # get the number of steps
         self.stepsTotal = self.fps * self.duration / 1000

@@ -2,10 +2,10 @@
   <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
-  PySide2-Fluent-Widgets
+  PySide6-Fluent-Widgets
 </h1>
 <p align="center">
-  A fluent design widgets library based on PySide2
+  A fluent design widgets library based on PySide6
 </p>
 
 <p align="center">
@@ -28,23 +28,23 @@
 ## Install
 To install use pip:
 ```shell
-pip install PySide2-Fluent-Widgets
+pip install PySide6-Fluent-Widgets
 ```
 Or clone the repo:
 ```shell
-git clone -b PySide2 https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
+git clone -b PySide6 https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
 python setup.py install
 ```
 
 ## Run Example
-After installing PySide2-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
+After installing PySide6-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
 cd examples/settings
 python demo.py
 ```
 
 ## Document
-Want to know more about PySide2-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
+Want to know more about PySide6-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
 
 
 ## See Also

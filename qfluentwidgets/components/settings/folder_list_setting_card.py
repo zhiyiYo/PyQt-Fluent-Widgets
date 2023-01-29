@@ -2,11 +2,11 @@
 from typing import List
 from pathlib import Path
 
-from PySide2.QtCore import Qt, Signal, QRectF
-from PySide2.QtGui import QPainter
-from PySide2.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
+from PySide6.QtCore import Qt, Signal, QRectF
+from PySide6.QtGui import QPainter
+from PySide6.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
-from PySide2.QtSvg import QSvgRenderer
+from PySide6.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
 from ..dialog_box.dialog import Dialog

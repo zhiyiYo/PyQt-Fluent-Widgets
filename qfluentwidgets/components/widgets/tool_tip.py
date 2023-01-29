@@ -1,7 +1,7 @@
 # coding:utf-8
-from PySide2.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
-from PySide2.QtGui import QColor
-from PySide2.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
+from PySide6.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)
 
 from ...common import setStyleSheet
@@ -99,7 +99,7 @@ class ToolTip(QFrame):
         y = pos.y() - self.height()
 
         # adjust postion to prevent tooltips from appearing outside the screen
-        desk = QApplication.desktop()
+        desk = QApplication.primaryScreen().size()
         x = min(max(0, x), desk.width() - self.width() - 4)
         y = min(max(0, y), desk.height() - self.height() - 4)
 

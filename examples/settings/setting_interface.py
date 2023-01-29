@@ -5,9 +5,9 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ExpandLayout, setStyleSheet, ToastToolTip)
 from qfluentwidgets import SettingIconFactory as SIF
-from PySide2.QtCore import Qt, Signal, QUrl
-from PySide2.QtGui import QDesktopServices
-from PySide2.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
+from PySide6.QtCore import Qt, Signal, QUrl
+from PySide6.QtGui import QDesktopServices
+from PySide6.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 
 
 class SettingInterface(ScrollArea):
