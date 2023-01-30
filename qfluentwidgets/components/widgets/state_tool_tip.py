@@ -1,10 +1,9 @@
 # coding:utf-8
 from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
-from PyQt5.QtGui import QPainter, QPixmap
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
 from PyQt5.QtSvg import QSvgRenderer, QSvgWidget
 
-from .label import PixmapLabel
 from ...common import setStyleSheet
 
 

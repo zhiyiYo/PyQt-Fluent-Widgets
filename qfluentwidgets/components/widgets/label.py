@@ -1,9 +1,15 @@
 # coding:utf-8
+import warnings
+
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
 from PyQt5.QtWidgets import QLabel
 
-from ...common.image_utils import gaussianBlur
+try:
+    from ...common.image_utils import gaussianBlur
+except ImportError as e:
+    warnings.warn('`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
+
 
 
 class BlurCoverThread(QThread):
@@ -138,29 +144,3 @@ class AcrylicLabel(QLabel):
         if not self.blurPixmap.isNull():
             self.setPixmap(self.blurPixmap.scaled(
                 self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))
-
-
-class PixmapLabel(QLabel):
-    """ Label for high dpi screen """
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.__pixmap = QPixmap()
-
-    def setPixmap(self, pixmap: QPixmap):
-        self.__pixmap = pixmap
-        self.setFixedSize(pixmap.size())
-        self.update()
-
-    def pixmap(self):
-        return self.__pixmap
-
-    def paintEvent(self, e):
-        if self.__pixmap.isNull():
-            return
-
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        painter.setPen(Qt.NoPen)
-        painter.drawPixmap(self.rect(), self.__pixmap)
