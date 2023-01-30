@@ -4,7 +4,7 @@ import sys
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QApplication
 
-from qfluentwidgets import AcrylicLabel
+from qfluentwidgets.components.widgets.label import AcrylicLabel
 
 
 app = QApplication(sys.argv)

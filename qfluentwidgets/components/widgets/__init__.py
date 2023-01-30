@@ -1,4 +1,3 @@
-from .label import AcrylicLabel, PixmapLabel
 from .menu import DWMMenu, LineEditMenu
 from .slider import Slider, HollowHandleStyle
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget

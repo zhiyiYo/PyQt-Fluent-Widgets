@@ -5,7 +5,6 @@ from PySide6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffe
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtSvgWidgets import QSvgWidget
 
-from .label import PixmapLabel
 from ...common import setStyleSheet
 
 

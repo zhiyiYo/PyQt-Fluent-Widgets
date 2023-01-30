@@ -26,14 +26,13 @@
 
 
 ## Install
-To install use pip:
+To install lite version (`AcrylicLabel` is not available):
 ```shell
 pip install PySide6-Fluent-Widgets
 ```
-Or clone the repo:
+Or install full-featured version:
 ```shell
-git clone -b PySide6 https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
-python setup.py install
+pip install 'PySide6-Fluent-Widgets[full]'
 ```
 
 ## Run Example

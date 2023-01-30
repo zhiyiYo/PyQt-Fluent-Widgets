@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PySide6-Fluent-Widgets",
-    version="0.0.1",
+    version="0.0.2",
     keywords="pyside6 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -19,10 +19,10 @@ setuptools.setup(
     install_requires=[
         "PySideSix-Frameless-Window",
         "darkdetect",
-        "scipy",
-        "pillow",
-        "colorthief",
     ],
+    extras_require = {
+        'full': ['scipy', 'pillow', 'colorthief']
+    },
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
