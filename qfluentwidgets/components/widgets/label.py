@@ -3,7 +3,10 @@ from PyQt6.QtCore import Qt, QThread, pyqtSignal
 from PyQt6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
 from PyQt6.QtWidgets import QLabel
 
-from ...common.image_utils import gaussianBlur
+try:
+    from ...common.image_utils import gaussianBlur
+except ImportError as e:
+    warnings.warn('`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
 
 
 class BlurCoverThread(QThread):

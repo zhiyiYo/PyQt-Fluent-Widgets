@@ -26,3 +26,4 @@ download/
 build/
 dist/
 PyQt_Fluent_Widgets.egg-info/
+PyQt6_Fluent_Widgets.egg-info/
