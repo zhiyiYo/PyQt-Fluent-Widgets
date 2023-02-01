@@ -20,7 +20,6 @@ class ToolTip(QFrame):
         self.setLayout(QHBoxLayout())
         self.containerLayout = QHBoxLayout(self.container)
         self.label = QLabel(text, self)
-        self.ani = QPropertyAnimation(self, b'windowOpacity', self)
 
         # set layout
         self.layout().setContentsMargins(12, 8, 12, 12)

@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
+from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize, QCoreApplication
 from PyQt5.QtGui import (QBrush, QColor, QMouseEvent, QPixmap,
                          QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
 from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,

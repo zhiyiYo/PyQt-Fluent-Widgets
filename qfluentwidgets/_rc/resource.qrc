@@ -13,6 +13,12 @@
         <file>images/menu/Cut_white.svg</file>
         <file>images/menu/Paste_black.svg</file>
         <file>images/menu/Paste_white.svg</file>
+        <file>images/menu/Add_black.svg</file>
+        <file>images/menu/Add_white.svg</file>
+        <file>images/menu/Folder_black.svg</file>
+        <file>images/menu/Folder_white.svg</file>
+        <file>images/menu/Setting_black.svg</file>
+        <file>images/menu/Setting_white.svg</file>
         <file>images/setting_card/Alignment_black.svg</file>
         <file>images/setting_card/Alignment_white.svg</file>
         <file>images/setting_card/BackgroundColor_black.svg</file>
@@ -69,8 +75,8 @@
         <file>images/setting_card/Web_white.svg</file>
         <file>images/setting_card/Zoom_black.svg</file>
         <file>images/setting_card/Zoom_white.svg</file>
-        <file>images/setting_card/language_black.svg</file>
-        <file>images/setting_card/language_white.svg</file>
+        <file>images/setting_card/Language_black.svg</file>
+        <file>images/setting_card/Language_white.svg</file>
         <file>images/state_tool_tip/close_white.svg</file>
         <file>images/state_tool_tip/close_black.svg</file>
         <file>images/state_tool_tip/completed.svg</file>

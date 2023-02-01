@@ -16,10 +16,6 @@ class SongQuality(Enum):
     SUPER = "Super quality"
     LOSSLESS = "Lossless quality"
 
-    @staticmethod
-    def values():
-        return [q.value for q in SongQuality]
-
 
 class MvQuality(Enum):
     """ MV quality enumeration class """
@@ -29,9 +25,14 @@ class MvQuality(Enum):
     SD = "SD"
     LD = "LD"
 
-    @staticmethod
-    def values():
-        return [q.value for q in MvQuality]
+
+class Language(Enum):
+    """ Language enumeration """
+
+    CHINESE_SIMPLIFIED = "zh"
+    CHINESE_TRADITIONAL = "hk"
+    ENGLISH = "en"
+    AUTO = "Auto"
 
 
 class Config(QConfig):
@@ -63,6 +64,8 @@ class Config(QConfig):
         "MainWindow", "RecentPlayNumbers", 300, RangeValidator(10, 300))
     dpiScale = OptionsConfigItem(
         "MainWindow", "DpiScale", "Auto", OptionsValidator([1, 1.25, 1.5, 1.75, 2, "Auto"]), restart=True)
+    language = OptionsConfigItem(
+        "MainWindow", "Language", Language.AUTO, OptionsValidator(Language), EnumSerializer(Language), restart=True)
 
     # desktop lyric
     deskLyricHighlightColor = ColorConfigItem(

@@ -1,4 +1,4 @@
-from .menu import DWMMenu, LineEditMenu
+from .menu import DWMMenu, LineEditMenu, RoundMenu, MenuIconFactory
 from .slider import Slider, HollowHandleStyle
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
 from .switch_button import SwitchButton, IndicatorPosition
