@@ -1,10 +1,9 @@
 # coding:utf-8
 import sys
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QAction, QHBoxLayout, QLabel
 from qfluentwidgets import RoundMenu
-from qfluentwidgets import MenuIconFactory as MIF
+from qfluentwidgets import FluentIconFactory as FIF
 
 
 class Demo(QWidget):
@@ -23,16 +22,16 @@ class Demo(QWidget):
         menu = RoundMenu(parent=self)
 
         # add actions
-        menu.addAction(QAction(MIF.create(MIF.COPY), 'Copy'))
-        menu.addAction(QAction(MIF.create(MIF.CUT), 'Cut'))
+        menu.addAction(QAction(FIF.icon(FIF.COPY), 'Copy'))
+        menu.addAction(QAction(FIF.icon(FIF.CUT), 'Cut'))
 
         submenu = RoundMenu("Add To", self)
-        submenu.setIcon(MIF.create(MIF.ADD))
+        submenu.setIcon(FIF.icon(FIF.ADD))
         menu.addMenu(submenu)
 
         # add actions
-        menu.addAction(QAction(MIF.create(MIF.PASTE), 'Paste'))
-        menu.addAction(QAction(MIF.create(MIF.CANCEL), 'Undo'))
+        menu.addAction(QAction(FIF.icon(FIF.PASTE), 'Paste'))
+        menu.addAction(QAction(FIF.icon(FIF.CANCEL), 'Undo'))
 
         # add separator
         menu.addSeparator()

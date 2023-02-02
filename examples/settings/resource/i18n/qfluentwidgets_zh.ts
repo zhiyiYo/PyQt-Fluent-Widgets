@@ -342,7 +342,7 @@
     </message>
     <message>
         <source>Configuration takes effect after restart</source>
-        <translation>配置在重启 Groove 后生效</translation>
+        <translation>配置在重启软件后生效</translation>
     </message>
 </context>
 </TS>

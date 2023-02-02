@@ -4,7 +4,7 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ExpandLayout, setStyleSheet, ToastToolTip)
-from qfluentwidgets import SettingIconFactory as SIF
+from qfluentwidgets import FluentIconFactory as FIF
 from PyQt5.QtCore import Qt, pyqtSignal, QUrl
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
@@ -37,7 +37,7 @@ class SettingInterface(ScrollArea):
         )
         self.downloadFolderCard = PushSettingCard(
             self.tr('Choose folder'),
-            SIF.create(SIF.DOWNLOAD),
+            FIF.path(FIF.DOWNLOAD),
             self.tr("Download directory"),
             cfg.get(cfg.downloadFolder),
             self.musicInThisPCGroup
@@ -46,7 +46,7 @@ class SettingInterface(ScrollArea):
         # personalization
         self.personalGroup = SettingCardGroup(self.tr('Personalization'), self.scrollWidget)
         self.enableAcrylicCard = SwitchSettingCard(
-            SIF.create(SIF.TRANSPARENT),
+            FIF.path(FIF.TRANSPARENT),
             self.tr("Use Acrylic effect"),
             self.tr("Acrylic effect has better visual experience, but it may cause the window to become stuck"),
             configItem=cfg.enableAcrylicBackground,
@@ -54,7 +54,7 @@ class SettingInterface(ScrollArea):
         )
         self.themeCard = OptionsSettingCard(
             cfg.themeMode,
-            SIF.create(SIF.BRUSH),
+            FIF.path(FIF.BRUSH),
             self.tr('Application theme'),
             self.tr("Change the appearance of your application"),
             texts=[
@@ -65,7 +65,7 @@ class SettingInterface(ScrollArea):
         )
         self.zoomCard = OptionsSettingCard(
             cfg.dpiScale,
-            SIF.create(SIF.ZOOM),
+            FIF.path(FIF.ZOOM),
             self.tr("Interface zoom"),
             self.tr("Change the size of widgets and fonts"),
             texts=[
@@ -76,7 +76,7 @@ class SettingInterface(ScrollArea):
         )
         self.languageCard = OptionsSettingCard(
             cfg.language,
-            SIF.create(SIF.LANGUAGE),
+            FIF.path(FIF.LANGUAGE),
             self.tr('Language'),
             self.tr('Set your preferred language for UI'),
             texts=['简体中文', '繁體中文', 'English', self.tr('Use system setting')],
@@ -87,13 +87,13 @@ class SettingInterface(ScrollArea):
         self.onlineMusicGroup = SettingCardGroup(self.tr('Online Music'), self.scrollWidget)
         self.onlinePageSizeCard = RangeSettingCard(
             cfg.onlinePageSize,
-            SIF.create(SIF.SEARCH),
+            FIF.path(FIF.SEARCH),
             self.tr("Number of online music displayed on each page"),
             parent=self.onlineMusicGroup
         )
         self.onlineMusicQualityCard = OptionsSettingCard(
             cfg.onlineSongQuality,
-            SIF.create(SIF.MUSIC),
+            FIF.path(FIF.MUSIC),
             self.tr('Online music quality'),
             texts=[
                 self.tr('Standard quality'), self.tr('High quality'),
@@ -103,7 +103,7 @@ class SettingInterface(ScrollArea):
         )
         self.onlineMvQualityCard = OptionsSettingCard(
             cfg.onlineMvQuality,
-            SIF.create(SIF.VIDEO),
+            FIF.path(FIF.VIDEO),
             self.tr('Online MV quality'),
             texts=[
                 self.tr('Full HD'), self.tr('HD'),
@@ -116,31 +116,31 @@ class SettingInterface(ScrollArea):
         self.deskLyricGroup = SettingCardGroup(self.tr('Desktop Lyric'), self.scrollWidget)
         self.deskLyricFontCard = PushSettingCard(
             self.tr('Choose font'),
-            SIF.create(SIF.FONT),
+            FIF.path(FIF.FONT),
             self.tr('Font'),
             parent=self.deskLyricGroup
         )
         self.deskLyricHighlightColorCard = ColorSettingCard(
             cfg.deskLyricHighlightColor,
-            SIF.create(SIF.PALETTE),
+            FIF.path(FIF.PALETTE),
             self.tr('Foreground color'),
             parent=self.deskLyricGroup
         )
         self.deskLyricStrokeColorCard = ColorSettingCard(
             cfg.deskLyricStrokeColor,
-            SIF.create(SIF.PENCIL_INK),
+            FIF.path(FIF.PENCIL_INK),
             self.tr('Stroke color'),
             parent=self.deskLyricGroup
         )
         self.deskLyricStrokeSizeCard = RangeSettingCard(
             cfg.deskLyricStrokeSize,
-            SIF.create(SIF.FLUORESCENT_PEN),
+            FIF.path(FIF.FLUORESCENT_PEN),
             self.tr('Stroke size'),
             parent=self.deskLyricGroup
         )
         self.deskLyricAlignmentCard = OptionsSettingCard(
             cfg.deskLyricAlignment,
-            SIF.create(SIF.ALIGNMENT),
+            FIF.path(FIF.ALIGNMENT),
             self.tr('Alignment'),
             texts=[
                 self.tr('Center aligned'), self.tr('Left aligned'),
@@ -152,7 +152,7 @@ class SettingInterface(ScrollArea):
         # main panel
         self.mainPanelGroup = SettingCardGroup(self.tr('Main Panel'), self.scrollWidget)
         self.minimizeToTrayCard = SwitchSettingCard(
-            SIF.create(SIF.MINIMIZE),
+            FIF.path(FIF.MINIMIZE),
             self.tr('Minimize to tray after closing'),
             self.tr('PyQt-Fluent-Widgets will continue to run in the background'),
             configItem=cfg.minimizeToTray,
@@ -162,7 +162,7 @@ class SettingInterface(ScrollArea):
         # update software
         self.updateSoftwareGroup = SettingCardGroup(self.tr("Software update"), self.scrollWidget)
         self.updateOnStartUpCard = SwitchSettingCard(
-            SIF.create(SIF.UPDATE),
+            FIF.path(FIF.UPDATE),
             self.tr('Check for updates when the application starts'),
             self.tr('The new version will be more stable and have more features'),
             configItem=cfg.checkUpdateAtStartUp,
@@ -174,21 +174,21 @@ class SettingInterface(ScrollArea):
         self.helpCard = HyperlinkCard(
             HELP_URL,
             self.tr('Open help page'),
-            SIF.create(SIF.HELP),
+            FIF.path(FIF.HELP),
             self.tr('Help'),
             self.tr('Discover new features and learn useful tips about PyQt-Fluent-Widgets'),
             self.aboutGroup
         )
         self.feedbackCard = PrimaryPushSettingCard(
             self.tr('Provide feedback'),
-            SIF.create(SIF.FEEDBACK),
+            FIF.path(FIF.FEEDBACK),
             self.tr('Provide feedback'),
             self.tr('Help us improve PyQt-Fluent-Widgets by providing feedback'),
             self.aboutGroup
         )
         self.aboutCard = PrimaryPushSettingCard(
             self.tr('Check update'),
-            SIF.create(SIF.INFO),
+            FIF.path(FIF.INFO),
             self.tr('About'),
             '© ' + self.tr('Copyright') + f" {YEAR}, {AUTHOR}. " +
             self.tr('Version') + f" {VERSION[1:]}",

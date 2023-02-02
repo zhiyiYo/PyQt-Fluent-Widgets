@@ -5,37 +5,11 @@ from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QStyleOptionViewItem)
-from PyQt5.QtSvg import QSvgRenderer
 
 from ...common.smooth_scroll import SmoothScroll
-from ...common.icon import Icon, getIconColor
+from ...common.icon import FluentIconFactory as FIF
 from ...common.style_sheet import setStyleSheet
 from ...common.config import qconfig
-
-
-class MenuIconFactory:
-    """ Menu icon factory """
-
-    CUT = "Cut"
-    ADD = "Add"
-    COPY = "Copy"
-    PASTE = "Paste"
-    CANCEL = "Cancel"
-    FOLDER = "Folder"
-    SETTING = "Setting"
-    CHEVRON_RIGHT = "ChevronRight"
-
-    @classmethod
-    def create(cls, iconType: str):
-        """ create icon """
-        return QIcon(cls.path(iconType))
-
-    @classmethod
-    def path(cls, iconType: str):
-        return f":/qfluentwidgets/images/menu/{iconType}_{getIconColor()}.svg"
-
-
-MIF = MenuIconFactory
 
 
 class CustomMenuStyle(QProxyStyle):
@@ -89,28 +63,28 @@ class LineEditMenu(DWMMenu):
 
     def createActions(self):
         self.cutAct = QAction(
-            MIF.create(MIF.CUT),
+            FIF.icon(FIF.CUT),
             self.tr("Cut"),
             self,
             shortcut="Ctrl+X",
             triggered=self.parent().cut,
         )
         self.copyAct = QAction(
-            MIF.create(MIF.COPY),
+            FIF.icon(FIF.COPY),
             self.tr("Copy"),
             self,
             shortcut="Ctrl+C",
             triggered=self.parent().copy,
         )
         self.pasteAct = QAction(
-            MIF.create(MIF.PASTE),
+            FIF.icon(FIF.PASTE),
             self.tr("Paste"),
             self,
             shortcut="Ctrl+V",
             triggered=self.parent().paste,
         )
         self.cancelAct = QAction(
-            MIF.create(MIF.CANCEL),
+            FIF.icon(FIF.CANCEL),
             self.tr("Cancel"),
             self,
             shortcut="Ctrl+Z",
@@ -201,9 +175,8 @@ class SubMenuItemWidget(QWidget):
         self.style().drawPrimitive(QStyle.PE_PanelItemViewRow, option, painter)
 
         # draw right arrow
-        s = 9
-        renderer = QSvgRenderer(MIF.path(MIF.CHEVRON_RIGHT))
-        renderer.render(painter, QRectF(self.width()-10, self.height()/2-s/2, s, s))
+        FIF.render(FIF.CHEVRON_RIGHT, painter, QRectF(
+            self.width()-10, self.height()/2-9/2, 9, 9))
 
 
 class MenuActionListWidget(QListWidget):
@@ -298,7 +271,7 @@ class RoundMenu(QWidget):
         self._actions.append(action)
         hasIcon = any(not i.icon().isNull() for i in self._actions)
 
-        # create empty icon
+        # icon empty icon
         icon = action.icon()
         if hasIcon and icon.isNull():
             pixmap = QPixmap(self.view.iconSize())
@@ -356,7 +329,7 @@ class RoundMenu(QWidget):
         """ add sub menu """
         hasIcon = any(not self.view.item(i).icon().isNull() for i in range(self.view.count()))
 
-        # create empty icon
+        # icon empty icon
         icon = menu.icon()
         if hasIcon and icon.isNull():
             pixmap = QPixmap(self.view.iconSize())
@@ -381,7 +354,7 @@ class RoundMenu(QWidget):
         m = self.view.viewportMargins()
         w = self.view.width()-m.left()-m.right()
 
-        # create separator
+        # icon separator
         separator = MenuSeparator(self.view)
         separator.resize(w, separator.height())
 

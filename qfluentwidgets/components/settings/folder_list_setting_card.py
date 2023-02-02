@@ -6,12 +6,12 @@ from PyQt5.QtCore import Qt, pyqtSignal, QRectF
 from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
-from PyQt5.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
+from ...common.icon import drawSvgIcon
+from ...common.icon import FluentIconFactory as FIF
 from ..dialog_box.dialog import Dialog
 from .expand_setting_card import ExpandSettingCard
-from .setting_card import SettingIconFactory as SIF
 
 
 class ToolButton(QToolButton):
@@ -38,9 +38,8 @@ class ToolButton(QToolButton):
         painter.setRenderHints(QPainter.Antialiasing |
                                QPainter.SmoothPixmapTransform)
         painter.setOpacity(0.63 if self.isPressed else 1)
-        renderer = QSvgRenderer(self.iconPath, self)
         w, h = self._iconSize
-        renderer.render(painter, QRectF(
+        drawSvgIcon(self.iconPath, painter, QRectF(
             (self.width()-w)//2, (self.height()-h)//2, w, h))
 
 
@@ -66,8 +65,7 @@ class PushButton(QPushButton):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setOpacity(0.63 if self.isPressed else 1)
-        renderer = QSvgRenderer(self.iconPath, self)
-        renderer.render(painter, QRectF(12, 8, 16, 16))
+        drawSvgIcon(self.iconPath, painter, QRectF(12, 8, 16, 16))
 
 
 class FolderItem(QWidget):
@@ -80,7 +78,7 @@ class FolderItem(QWidget):
         self.folder = folder
         self.hBoxLayout = QHBoxLayout(self)
         self.folderLabel = QLabel(folder, self)
-        self.removeButton = ToolButton(SIF.create(SIF.CLOSE), (39, 29), (12, 12), self)
+        self.removeButton = ToolButton(FIF.path(FIF.CLOSE), (39, 29), (12, 12), self)
 
         self.setFixedHeight(53)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
@@ -115,10 +113,10 @@ class FolderListSettingCard(ExpandSettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(SIF.create(SIF.FOLDER), title, content, parent)
+        super().__init__(FIF.path(FIF.FOLDER), title, content, parent)
         self.configItem = configItem
         self.addFolderButton = PushButton(
-            SIF.create(SIF.FOLDER_ADD), self.tr('Add folder'), self)
+            FIF.path(FIF.FOLDER_ADD), self.tr('Add folder'), self)
 
         self.folders = qconfig.get(configItem).copy()   # type:List[str]
         self.__initWidget()
