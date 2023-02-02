@@ -2,7 +2,7 @@
 from qframelesswindow import WindowEffect
 from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
                           Qt, QSize, QRectF, pyqtSignal, QPoint)
-from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion
+from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QStyleOptionViewItem)
@@ -201,6 +201,8 @@ class MenuActionListWidget(QListWidget):
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setTextElideMode(Qt.ElideNone)
+        self.setDragEnabled(False)
+        self.setVerticalScrollMode(self.ScrollPerPixel)
         self.setIconSize(QSize(14, 14))
         self.smoothScroll = SmoothScroll(self)
         self.setStyleSheet(
@@ -233,12 +235,13 @@ class MenuActionListWidget(QListWidget):
             size.setHeight(size.height() + s.height())
 
         # adjust the height of viewport
+        h = QApplication.screenAt(QCursor.pos()).availableSize().height()-100
         vsize = QSize(size)
-        vsize.setHeight(min(588, vsize.height()))
+        vsize.setHeight(min(h-12, vsize.height()))
         self.viewport().adjustSize()
 
         # adjust the height of list widget
-        size.setHeight(min(600, size.height()+3))
+        size.setHeight(min(h, size.height()+3))
         m = self.viewportMargins()
         size += QSize(m.left()+m.right()+2, m.top()+m.bottom())
         self.setFixedSize(size)
