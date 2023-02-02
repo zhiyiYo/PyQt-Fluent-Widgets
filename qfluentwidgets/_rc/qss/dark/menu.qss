@@ -70,6 +70,14 @@ MenuActionListWidget::item {
     color: white;
 }
 
+MenuActionListWidget::disbled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
 MenuActionListWidget::item:hover {
     background-color: rgba(255, 255, 255, 0.08);
 }

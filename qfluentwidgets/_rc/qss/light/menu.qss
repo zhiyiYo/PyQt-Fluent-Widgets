@@ -68,6 +68,14 @@ MenuActionListWidget::item {
     border: none;
 }
 
+MenuActionListWidget::item:disbaled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+}
+
 MenuActionListWidget::item:hover {
     background-color: rgba(0, 0, 0, 9);
 }

@@ -16,7 +16,7 @@ class Demo(QWidget):
         self.layout().addWidget(self.label)
         self.resize(400, 400)
 
-        self.setStyleSheet('Demo{background: white} QLabel{font: 20px "Segoe UI"}')
+        self.setStyleSheet('Demo{background: white} QLabel{font-size: 20px}')
 
     def contextMenuEvent(self, e):
         menu = RoundMenu(parent=self)
@@ -25,17 +25,34 @@ class Demo(QWidget):
         menu.addAction(QAction(FIF.icon(FIF.COPY), 'Copy'))
         menu.addAction(QAction(FIF.icon(FIF.CUT), 'Cut'))
 
-        submenu = RoundMenu("Add To", self)
+        # add sub menu
+        submenu = RoundMenu(self, "Add to")
         submenu.setIcon(FIF.icon(FIF.ADD))
+        submenu.addActions([
+            QAction(FIF.icon(FIF.FOLDER), 'Folder'),
+            QAction(FIF.icon(FIF.MUSIC_FOLDER), 'Music folder'),
+        ])
         menu.addMenu(submenu)
 
         # add actions
-        menu.addAction(QAction(FIF.icon(FIF.PASTE), 'Paste'))
-        menu.addAction(QAction(FIF.icon(FIF.CANCEL), 'Undo'))
+        menu.addActions([
+            QAction(FIF.icon(FIF.PASTE), 'Paste'),
+            QAction(FIF.icon(FIF.CANCEL), 'Undo')
+        ])
 
         # add separator
         menu.addSeparator()
         menu.addAction(QAction(f'Select all'))
+
+        # insert actions
+        menu.insertAction(
+            menu.menuActions()[-1], QAction(FIF.icon(FIF.SETTING), 'Settings'))
+        menu.insertActions(
+            menu.menuActions()[-1],
+            [QAction(FIF.icon(FIF.HELP), 'Help'), QAction(FIF.icon(FIF.FEEDBACK), 'Feedback')]
+        )
+
+        # show menu
         menu.exec(e.globalPos())
 
 

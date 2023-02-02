@@ -6,8 +6,8 @@ from PyQt5.QtSvg import QSvgRenderer
 from .config import qconfig
 
 
-class PixmapIconEngine(QIconEngine):
-    """ Pixmap icon engine """
+class IconEngine(QIconEngine):
+    """ Icon engine """
 
     def __init__(self, iconPath):
         self.iconPath = iconPath
@@ -32,7 +32,17 @@ class Icon(QIcon):
 
     def __init__(self, iconPath):
         self.iconPath = iconPath
-        super().__init__(PixmapIconEngine(iconPath))
+        super().__init__(IconEngine(iconPath))
+
+
+class MenuIconEngine(QIconEngine):
+
+    def __init__(self, icon):
+        super().__init__()
+        self.icon = icon
+
+    def paint(self, painter, rect, mode, state):
+        self.icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
 
 
 def getIconColor():
