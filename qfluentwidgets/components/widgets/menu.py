@@ -2,7 +2,7 @@
 from qframelesswindow import WindowEffect
 from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
                           Qt, QSize, QRectF, pyqtSignal, QPoint)
-from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap
+from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QStyleOptionViewItem)
@@ -144,7 +144,7 @@ class MenuSeparator(QWidget):
     def paintEvent(self, e):
         painter = QPainter(self)
         c = 0 if qconfig.theme == 'light' else 255
-        pen = QPen(QColor(c, c, c, 104), 1)
+        pen = QPen(QColor(c, c, c, 25), 1)
         pen.setCosmetic(True)
         painter.setPen(pen)
         painter.drawLine(0, 4, self.width(), 4)
@@ -243,6 +243,14 @@ class MenuActionListWidget(QListWidget):
         size += QSize(m.left()+m.right()+2, m.top()+m.bottom())
         self.setFixedSize(size)
 
+    def setItemHeight(self, height):
+        """ set the height of item """
+        for i in range(self.count()):
+            item = self.item(i)
+            item.setSizeHint(item.sizeHint().width(), i)
+
+        self.adjustSize()
+
 
 class RoundMenu(QWidget):
     """ Round corner menu """
@@ -255,8 +263,10 @@ class RoundMenu(QWidget):
         self.isSubMenu = False
         self.parentMenu = None
         self.menuItem = None
+        self.itemHeight = 28
         self.hBoxLayout = QHBoxLayout(self)
         self.view = MenuActionListWidget(self)
+        self.ani = QPropertyAnimation(self, b'pos', self)
         self.__initWidgets()
 
     def __initWidgets(self):
@@ -268,8 +278,18 @@ class RoundMenu(QWidget):
         self.setShadowEffect()
         self.hBoxLayout.addWidget(self.view)
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
-        self.view.itemClicked.connect(self.__onItemClicked)
         setStyleSheet(self, 'menu')
+
+        self.view.itemClicked.connect(self._onItemClicked)
+        self.ani.valueChanged.connect(self._onSlideValueChanged)
+
+    def setItemHeight(self, height):
+        """ set the height of menu item """
+        if height == self.itemHeight:
+            return
+
+        self.itemHeight = height
+        self.view.setItemHeight(height)
 
     def setShadowEffect(self, blurRadius=30, offset=(0, 8), color=QColor(0, 0, 0, 30)):
         """ add shadow to dialog """
@@ -324,10 +344,12 @@ class RoundMenu(QWidget):
 
         # icon empty icon
         icon = QIcon(MenuIconEngine(action.icon()))
-        if hasIcon and icon.isNull():
+        if hasIcon and action.icon().isNull():
             pixmap = QPixmap(self.view.iconSize())
             pixmap.fill(Qt.transparent)
             icon = QIcon(pixmap)
+        elif not hasIcon:
+            icon = QIcon()
 
         item = QListWidgetItem(icon, action.text())
         if not hasIcon:
@@ -337,7 +359,7 @@ class RoundMenu(QWidget):
             item.setText(" " + item.text())
             w = 60 + self.view.fontMetrics().width(item.text())
 
-        item.setSizeHint(QSize(w, 33))
+        item.setSizeHint(QSize(w, self.itemHeight))
         action.setProperty('item', item)
         item.setData(Qt.UserRole, action)
         return item
@@ -426,7 +448,7 @@ class RoundMenu(QWidget):
 
         # add submenu item
         menu._setParentMenu(self, item)
-        item.setSizeHint(QSize(w, 33))
+        item.setSizeHint(QSize(w, self.itemHeight))
         item.setData(Qt.UserRole, menu)
         w = SubMenuItemWidget(menu, item, self)
         w.showMenuSig.connect(self._showSubMenu)
@@ -437,13 +459,6 @@ class RoundMenu(QWidget):
     def _showSubMenu(self):
         """ show sub menu """
         w = self.sender()
-
-        # update selected row
-        self.view.clearSelection()
-        QApplication.processEvents()
-        self.view.setCurrentItem(w.item)
-
-        # show sub menu
         pos = w.mapToGlobal(QPoint())
         pos += QPoint(w.width()-6, 0)
         w.menu.exec(pos)
@@ -470,7 +485,7 @@ class RoundMenu(QWidget):
         self.view.addItem(item)
         self.view.setItemWidget(item, separator)
 
-    def __onItemClicked(self, item):
+    def _onItemClicked(self, item):
         action = item.data(Qt.UserRole)
         if action not in self._actions:
             return
@@ -511,7 +526,10 @@ class RoundMenu(QWidget):
         view = self.parentMenu.view
         w = view.itemWidget(self.menuItem)
         rect = w.geometry().translated(w.mapToGlobal(QPoint())-w.pos())
-        if self.parentMenu.geometry().contains(pos) and not rect.contains(pos):
+        mr = self.geometry()
+        mr.setHeight(self.itemHeight + 10)
+        if self.parentMenu.geometry().contains(pos) and not rect.contains(pos) and \
+                not mr.contains(pos):
             view.clearSelection()
             self._hideMenu()
 
@@ -522,14 +540,40 @@ class RoundMenu(QWidget):
             if index < view.count()-1:
                 view.item(index+1).setFlags(Qt.ItemIsEnabled)
 
-    def exec(self, pos):
+    def _onSlideValueChanged(self, pos):
+        m = self.layout().contentsMargins()
+        w = self.view.width() + m.left() + m.right() + 120
+        h = self.view.height() + m.top() + m.bottom() + 20
+        y = self.ani.endValue().y() - pos.y()
+        self.setMask(QRegion(0, y, w, h))
+
+    def exec(self, pos, ani=True):
+        """ show menu
+
+        Parameters
+        ----------
+        pos: QPoint
+            pop-up position
+
+        ani: bool
+            Whether to show pop-up animation
+        """
         desktop = QApplication.desktop().availableGeometry()
         m = self.layout().contentsMargins()
         w = self.view.width() + m.left() + m.right() + 20
         h = self.view.height() + m.top() + m.bottom() + 20
         pos.setX(min(pos.x() - 30, desktop.width() - w))
-        pos.setY(min(pos.y() - 12, desktop.height() - h))
-        self.move(pos)
+        pos.setY(min(pos.y() - 10, desktop.height() - h))
+
+        if ani:
+            self.ani.setStartValue(pos-QPoint(0, h/2))
+            self.ani.setEndValue(pos)
+            self.ani.setDuration(250)
+            self.ani.setEasingCurve(QEasingCurve.OutQuad)
+            self.ani.start()
+        else:
+            self.move(pos)
+
         self.show()
 
         if not self.isSubMenu:

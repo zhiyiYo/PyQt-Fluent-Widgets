@@ -29,8 +29,8 @@ class Demo(QWidget):
         submenu = RoundMenu(self, "Add to")
         submenu.setIcon(FIF.icon(FIF.ADD))
         submenu.addActions([
-            QAction(FIF.icon(FIF.FOLDER), 'Folder'),
-            QAction(FIF.icon(FIF.MUSIC_FOLDER), 'Music folder'),
+            QAction(FIF.icon(FIF.VIDEO), 'Video'),
+            QAction(FIF.icon(FIF.MUSIC), 'Music'),
         ])
         menu.addMenu(submenu)
 
@@ -53,7 +53,7 @@ class Demo(QWidget):
         )
 
         # show menu
-        menu.exec(e.globalPos())
+        menu.exec(e.globalPos(), ani=True)
 
 
 if __name__ == '__main__':

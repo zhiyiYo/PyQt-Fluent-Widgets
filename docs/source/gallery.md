@@ -18,6 +18,9 @@
 ### Hollow Handle Slider
 ![](./_static/gallery/hollow_handle_slider.gif)
 
+### Round Corners Menu
+![](./_static/gallery/round_menu.gif)
+
 ### Message Dialog
 ![](./_static/gallery/dialog_with_mask.gif)
 
