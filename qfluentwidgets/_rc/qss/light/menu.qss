@@ -51,3 +51,41 @@ QMenu#lineEditMenu::item {
 QMenu#lineEditMenu[selectAll=true]::item {
     width: 98px;
 }
+
+
+MenuActionListWidget {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    background-color: rgb(249, 249, 249);
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+MenuActionListWidget::item {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+MenuActionListWidget::item:disbaled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+}
+
+MenuActionListWidget::item:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+MenuActionListWidget::item:selected {
+    background-color: rgba(0, 0, 0, 7);
+    color: black;
+}
+
+MenuActionListWidget::item:selected:active {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.7);
+}

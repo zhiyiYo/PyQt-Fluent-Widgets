@@ -5,7 +5,7 @@ from PySide6.QtGui import (QBrush, QColor, QPixmap, QPainter,
 from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
-from ...common.icon import Icon, getIconColor
+from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
 from ..widgets import Slider, ScrollArea
 from .mask_dialog_base import MaskDialogBase

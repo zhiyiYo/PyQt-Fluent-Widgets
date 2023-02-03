@@ -1,4 +1,6 @@
 # coding:utf-8
+import warnings
+
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
 from PySide6.QtWidgets import QLabel

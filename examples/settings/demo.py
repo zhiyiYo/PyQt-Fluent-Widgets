@@ -1,13 +1,14 @@
 # coding:utf-8
 import os
 import sys
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QLocale, QTranslator
 from PySide6.QtGui import QIcon, QColor
-from PySide6.QtWidgets import QApplication, QLabel, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from qframelesswindow.titlebar import TitleBarButton
-from setting_interface import SettingInterface, cfg
+from setting_interface import SettingInterface
+from config import cfg, Language
 
 
 class CustomTitleBar(StandardTitleBar):
@@ -66,6 +67,19 @@ if __name__ == '__main__':
         os.environ["QT_SCALE_FACTOR"] = str(cfg.get(cfg.dpiScale))
 
     app = QApplication(sys.argv)
+
+    # internationalization
+    translator = QTranslator()
+    language = cfg.get(cfg.language)
+
+    if language == Language.AUTO:
+        translator.load(QLocale.system(), "resource/i18n/qfluentwidgets_")
+    elif language != Language.ENGLISH:
+        translator.load(f"resource/i18n/qfluentwidgets_{language.value}.qm")
+
+    app.installTranslator(translator)
+
+    # create main window
     w = Window()
     w.show()
     app.exec()

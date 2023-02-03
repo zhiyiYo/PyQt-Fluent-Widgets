@@ -61,6 +61,7 @@ PyQt-Fluent-Widgets provides many kinds of setting card:
 | :----------------------: | ------------------------------------------------------------ |
 |     `HyperlinkCard`      | Setting card with a hyper link                               |
 |    `ColorSettingCard`    | Setting card with a color picker                             |
+|   `ComboBoxSettingCard`  | Setting card with a combo box                                |
 |    `RangeSettingCard`    | Setting card with a slider                                   |
 |    `PushSettingCard`     | Setting card with a naive push button                        |
 | `PrimaryPushSettingCard` | Setting card with a push button highlighted in the background |

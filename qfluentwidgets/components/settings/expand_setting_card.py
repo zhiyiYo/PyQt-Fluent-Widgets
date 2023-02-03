@@ -6,9 +6,9 @@ from PySide6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
 from PySide6.QtSvg import QSvgRenderer
 
 from ...common.config import qconfig
+from ...common.icon import FluentIconFactory as FIF
 from ...common.style_sheet import setStyleSheet
 from .setting_card import SettingCard
-from .setting_card import SettingIconFactory as SIF
 from ..layout.v_box_layout import VBoxLayout
 
 
@@ -21,7 +21,6 @@ class ExpandButton(QAbstractButton):
         self.__angle = 0
         self.isHover = False
         self.isPressed = False
-        self.iconPath = SIF.create(SIF.ARROW_DOWN)
         self.rotateAni = QPropertyAnimation(self, b'angle', self)
         self.clicked.connect(self.__onClicked)
 
@@ -46,8 +45,7 @@ class ExpandButton(QAbstractButton):
         # draw icon
         painter.translate(self.width()//2, self.height()//2)
         painter.rotate(self.__angle)
-        renderer = QSvgRenderer(self.iconPath, self)
-        renderer.render(painter, QRectF(-6, -6, 9.6, 9.6))
+        FIF.render(FIF.ARROW_DOWN, painter, QRectF(-6, -6, 9.6, 9.6))
 
     def enterEvent(self, e):
         self.setHover(True)
