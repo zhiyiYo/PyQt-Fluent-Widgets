@@ -26,7 +26,7 @@ class Demo(QWidget):
         menu.addAction(QAction(FIF.icon(FIF.CUT), 'Cut'))
 
         # add sub menu
-        submenu = RoundMenu(self, "Add to")
+        submenu = RoundMenu("Add to", self)
         submenu.setIcon(FIF.icon(FIF.ADD))
         submenu.addActions([
             QAction(FIF.icon(FIF.VIDEO), 'Video'),

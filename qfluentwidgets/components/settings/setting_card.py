@@ -1,21 +1,22 @@
 # coding:utf-8
 from PyQt5.QtCore import QUrl, Qt, pyqtSignal
 from PyQt5.QtGui import QColor, QDesktopServices
-from PyQt5.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
+                             QVBoxLayout, QPushButton)
 from PyQt5.QtSvg import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
+from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ...common.config import ConfigItem, qconfig, RangeConfigItem
-from ...common.icon import getIconColor
+from ...common.config import qconfig, OptionsConfigItem
 
 
 class SettingCard(QFrame):
     """ Setting card """
 
-    def __init__(self, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -80,7 +81,7 @@ class SwitchSettingCard(SettingCard):
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, iconPath: str, title: str, content: str = None, configItem: ConfigItem = None, parent=None):
+    def __init__(self, iconPath, title, content=None, configItem=None, parent=None):
         """
         Parameters
         ----------
@@ -138,7 +139,7 @@ class RangeSettingCard(SettingCard):
 
     valueChanged = pyqtSignal(int)
 
-    def __init__(self, configItem: RangeConfigItem, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, configItem, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -189,7 +190,7 @@ class PushSettingCard(SettingCard):
 
     clicked = pyqtSignal()
 
-    def __init__(self, text, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, text, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -218,7 +219,7 @@ class PushSettingCard(SettingCard):
 class PrimaryPushSettingCard(PushSettingCard):
     """ Push setting card with primary color """
 
-    def __init__(self, text: str, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, text, iconPath, title, content=None, parent=None):
         super().__init__(text, iconPath, title, content, parent)
         self.button.setObjectName('primaryButton')
 
@@ -226,7 +227,7 @@ class PrimaryPushSettingCard(PushSettingCard):
 class HyperlinkCard(SettingCard):
     """ Hyperlink card """
 
-    def __init__(self, url: str, text: str, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, url, text, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -306,7 +307,7 @@ class ColorSettingCard(SettingCard):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, configItem: ConfigItem, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, configItem, iconPath, title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -338,40 +339,42 @@ class ColorSettingCard(SettingCard):
         self.colorChanged.emit(color)
 
 
-class SettingIconFactory:
-    """ Setting icon factory """
+class ComboBoxSettingCard(SettingCard):
+    """ Setting card with a combo box """
 
-    WEB = "Web"
-    LINK = "Link"
-    HELP = "Help"
-    FONT = "Font"
-    INFO = "Info"
-    ZOOM = "Zoom"
-    CLOSE = "Close"
-    MOVIE = "Movie"
-    BRUSH = "Brush"
-    MUSIC = "Music"
-    VIDEO = "Video"
-    EMBED = "Embed"
-    FOLDER = "Folder"
-    SEARCH = "Search"
-    UPDATE = "Update"
-    PALETTE = "Palette"
-    FEEDBACK = "Feedback"
-    MINIMIZE = "Minimize"
-    LANGUAGE = "Language"
-    DOWNLOAD = "Download"
-    QUESTION = "Question"
-    ALIGNMENT = "Alignment"
-    PENCIL_INK = "PencilInk"
-    FOLDER_ADD = "FolderAdd"
-    ARROW_DOWN = "ChevronDown"
-    TRANSPARENT = "Transparent"
-    MUSIC_FOLDER = "MusicFolder"
-    BACKGROUND_FILL = "BackgroundColor"
-    FLUORESCENT_PEN = "FluorescentPen"
+    def __init__(self, configItem, iconPath, title, content=None, texts=None, parent=None):
+        """
+        Parameters
+        ----------
+        configItem: OptionsConfigItem
+            configuration item operated by the card
 
-    @staticmethod
-    def create(iconType: str):
-        """ create icon """
-        return f':/qfluentwidgets/images/setting_card/{iconType}_{getIconColor()}.svg'
+        iconPath: str
+            the path of icon
+
+        title: str
+            the title of card
+
+        content: str
+            the content of card
+
+        texts: List[str]
+            the text of items
+
+        parent: QWidget
+            parent widget
+        """
+        super().__init__(iconPath, title, content, parent)
+        self.configItem = configItem
+        self.comboBox = ComboBox(self)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignRight)
+        self.hBoxLayout.addSpacing(16)
+
+        self.textToOption = {t: o for t, o in zip(texts, configItem.options)}
+        self.optionToText = {o: t for o, t in zip(configItem.options, texts)}
+        self.comboBox.addItems(texts)
+        self.comboBox.setCurrentText(self.optionToText[qconfig.get(configItem)])
+        self.comboBox.currentTextChanged.connect(self._onCurrentTextChanged)
+
+    def _onCurrentTextChanged(self, text):
+        qconfig.set(self.configItem, self.textToOption[text])

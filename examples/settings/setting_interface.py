@@ -3,7 +3,7 @@ from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ExpandLayout, setStyleSheet, ToastToolTip)
+                            ComboBoxSettingCard, ExpandLayout, setStyleSheet, ToastToolTip)
 from qfluentwidgets import FluentIconFactory as FIF
 from PyQt5.QtCore import Qt, pyqtSignal, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -74,7 +74,7 @@ class SettingInterface(ScrollArea):
             ],
             parent=self.personalGroup
         )
-        self.languageCard = OptionsSettingCard(
+        self.languageCard = ComboBoxSettingCard(
             cfg.language,
             FIF.path(FIF.LANGUAGE),
             self.tr('Language'),

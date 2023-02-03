@@ -1,3 +1,4 @@
+from .combo_box import ComboBox
 from .menu import DWMMenu, LineEditMenu, RoundMenu
 from .slider import Slider, HollowHandleStyle
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget

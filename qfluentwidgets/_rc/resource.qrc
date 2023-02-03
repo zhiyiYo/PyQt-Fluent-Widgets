@@ -98,6 +98,7 @@
         <file>qss/dark/tool_tip.qss</file>
         <file>qss/dark/folder_list_dialog.qss</file>
         <file>qss/dark/setting_interface.qss</file>
+        <file>qss/dark/combo_box.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -111,5 +112,6 @@
         <file>qss/light/tool_tip.qss</file>
         <file>qss/light/folder_list_dialog.qss</file>
         <file>qss/light/setting_interface.qss</file>
+        <file>qss/light/combo_box.qss</file>
     </qresource>
 </RCC>

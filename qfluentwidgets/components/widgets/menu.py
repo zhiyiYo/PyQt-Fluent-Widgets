@@ -153,8 +153,7 @@ class MenuSeparator(QWidget):
 class SubMenuItemWidget(QWidget):
     """ Sub menu item """
 
-    showMenuSig = pyqtSignal()
-    hideMenuSig = pyqtSignal()
+    showMenuSig = pyqtSignal(QListWidgetItem)
 
     def __init__(self, menu, item, parent=None):
         """
@@ -175,17 +174,11 @@ class SubMenuItemWidget(QWidget):
 
     def enterEvent(self, e):
         super().enterEvent(e)
-        self.showMenuSig.emit()
+        self.showMenuSig.emit(self.item)
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(
-            QPainter.Antialiasing | QPainter.SmoothPixmapTransform | QPainter.TextAntialiasing)
-
-        # draw icon and text
-        option = QStyleOptionViewItem()
-        option.initFrom(self.parent())
-        self.style().drawPrimitive(QStyle.PE_PanelItemViewRow, option, painter)
+        painter.setRenderHints(QPainter.Antialiasing)
 
         # draw right arrow
         FIF.render(FIF.CHEVRON_RIGHT, painter, QRectF(
@@ -202,6 +195,7 @@ class MenuActionListWidget(QListWidget):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setTextElideMode(Qt.ElideNone)
         self.setDragEnabled(False)
+        self.setMouseTracking(True)
         self.setVerticalScrollMode(self.ScrollPerPixel)
         self.setIconSize(QSize(14, 14))
         self.smoothScroll = SmoothScroll(self)
@@ -235,15 +229,18 @@ class MenuActionListWidget(QListWidget):
             size.setHeight(size.height() + s.height())
 
         # adjust the height of viewport
-        h = QApplication.screenAt(QCursor.pos()).availableSize().height()-100
+        ss = QApplication.screenAt(QCursor.pos()).availableSize()
+        w, h = ss.width() - 100, ss.height() - 100
         vsize = QSize(size)
         vsize.setHeight(min(h-12, vsize.height()))
+        vsize.setWidth(min(w-12, vsize.width()))
         self.viewport().adjustSize()
 
         # adjust the height of list widget
-        size.setHeight(min(h, size.height()+3))
         m = self.viewportMargins()
         size += QSize(m.left()+m.right()+2, m.top()+m.bottom())
+        size.setHeight(min(h, size.height()+3))
+        size.setWidth(min(w, size.width()))
         self.setFixedSize(size)
 
     def setItemHeight(self, height):
@@ -258,7 +255,7 @@ class MenuActionListWidget(QListWidget):
 class RoundMenu(QWidget):
     """ Round corner menu """
 
-    def __init__(self, parent, title=""):
+    def __init__(self, title="", parent=None):
         super().__init__(parent=parent)
         self._title = title
         self._icon = QIcon()
@@ -279,11 +276,13 @@ class RoundMenu(QWidget):
         self.setMouseTracking(True)
 
         self.setShadowEffect()
-        self.hBoxLayout.addWidget(self.view)
+        self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
+
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
         setStyleSheet(self, 'menu')
 
         self.view.itemClicked.connect(self._onItemClicked)
+        self.view.itemEntered.connect(self._onItemEntered)
         self.ani.valueChanged.connect(self._onSlideValueChanged)
 
     def setItemHeight(self, height):
@@ -300,12 +299,19 @@ class RoundMenu(QWidget):
         self.shadowEffect.setBlurRadius(blurRadius)
         self.shadowEffect.setOffset(*offset)
         self.shadowEffect.setColor(color)
+        self.view.setGraphicsEffect(None)
         self.view.setGraphicsEffect(self.shadowEffect)
 
     def _setParentMenu(self, parent, item):
         self.parentMenu = parent
         self.menuItem = item
         self.isSubMenu = True if parent else False
+
+    def adjustSize(self):
+        m = self.layout().contentsMargins()
+        w = self.view.width() + m.left() + m.right()
+        h = self.view.height() + m.top() + m.bottom()
+        self.setFixedSize(w, h)
 
     def icon(self):
         return self._icon
@@ -332,6 +338,7 @@ class RoundMenu(QWidget):
         """
         item = self._createMenuActionItem(action)
         self.view.addItem(item)
+        self.adjustSize()
 
     def _createMenuActionItem(self, action, before=None):
         """ create menu action item  """
@@ -379,6 +386,7 @@ class RoundMenu(QWidget):
         index = self.view.row(beforeItem)
         item = self._createMenuActionItem(action, before)
         self.view.insertItem(index, item)
+        self.adjustSize()
 
     def addActions(self, actions):
         """ add actions to menu
@@ -455,22 +463,16 @@ class RoundMenu(QWidget):
         item.setData(Qt.UserRole, menu)
         w = SubMenuItemWidget(menu, item, self)
         w.showMenuSig.connect(self._showSubMenu)
-        w.hideMenuSig.connect(self._hideSubMenu)
+        w.resize(item.sizeHint())
         self.view.addItem(item)
         self.view.setItemWidget(item, w)
+        self.adjustSize()
 
-    def _showSubMenu(self):
+    def _showSubMenu(self, item):
         """ show sub menu """
-        w = self.sender()
-        pos = w.mapToGlobal(QPoint())
-        pos += QPoint(w.width()-6, 0)
+        w = self.view.itemWidget(item)
+        pos = w.mapToGlobal(QPoint(w.width()+5, -5))
         w.menu.exec(pos)
-
-    def _hideSubMenu(self):
-        """ hide sub menu """
-        w = self.sender()
-        w.item.setSelected(False)
-        w.menu.hide()
 
     def addSeparator(self):
         """ add seperator to menu """
@@ -487,6 +489,7 @@ class RoundMenu(QWidget):
         item.setSizeHint(QSize(w, separator.height()))
         self.view.addItem(item)
         self.view.setItemWidget(item, separator)
+        self.adjustSize()
 
     def _onItemClicked(self, item):
         action = item.data(Qt.UserRole)
@@ -505,6 +508,12 @@ class RoundMenu(QWidget):
             menu = menu.parentMenu
 
         menu.deleteLater()
+
+    def _onItemEntered(self, item):
+        if not isinstance(item.data(Qt.UserRole), RoundMenu):
+            return
+
+        self._showSubMenu(item)
 
     def _hideMenu(self):
         self.view.clearSelection()
@@ -527,8 +536,11 @@ class RoundMenu(QWidget):
         # hide submenu when mouse moves out of submenu item
         pos = e.globalPos()
         view = self.parentMenu.view
-        w = view.itemWidget(self.menuItem)
-        rect = w.geometry().translated(w.mapToGlobal(QPoint())-w.pos())
+
+        # get the rect of menu item
+        margin = view.viewportMargins()
+        rect = view.visualItemRect(self.menuItem).translated(view.mapToGlobal(QPoint()))
+        rect= rect.translated(margin.left(), margin.top()+2)
         mr = self.geometry()
         mr.setHeight(self.itemHeight + 10)
         if self.parentMenu.geometry().contains(pos) and not rect.contains(pos) and \
@@ -561,12 +573,13 @@ class RoundMenu(QWidget):
         ani: bool
             Whether to show pop-up animation
         """
+        if self.isVisible():
+            return
+
         desktop = QApplication.desktop().availableGeometry()
-        m = self.layout().contentsMargins()
-        w = self.view.width() + m.left() + m.right() + 20
-        h = self.view.height() + m.top() + m.bottom() + 20
-        pos.setX(min(pos.x() - 30, desktop.width() - w))
-        pos.setY(min(pos.y() - 10, desktop.height() - h))
+        w, h = self.width() + 20, self.height() + 20
+        pos.setX(max(10, min(pos.x() - self.layout().contentsMargins().left(), desktop.width() - w)))
+        pos.setY(max(10, min(pos.y() - 4, desktop.height() - h)))
 
         if ani:
             self.ani.setStartValue(pos-QPoint(0, h/2))

@@ -3,6 +3,9 @@
 ### Acrylic Label
 <img width="60%" src="./_static/gallery/acrylic_label.png"/>
 
+### Combo Box
+![](./_static/gallery/combo_box.gif)
+
 ### Color Dialog
 ![](./_static/gallery/color_dialog.gif)
 

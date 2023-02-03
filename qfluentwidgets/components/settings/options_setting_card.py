@@ -12,8 +12,7 @@ class OptionsSettingCard(ExpandSettingCard):
 
     optionChanged = pyqtSignal(OptionsConfigItem)
 
-    def __init__(self, configItem: OptionsConfigItem, iconPath: str, title: str, content: str = None,
-                 texts: List[str] = None, parent=None):
+    def __init__(self, configItem, iconPath, title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
