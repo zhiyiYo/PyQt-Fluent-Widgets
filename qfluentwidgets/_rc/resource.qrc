@@ -3,74 +3,78 @@
         <file>images/color_dialog/Clear_black.svg</file>
         <file>images/color_dialog/Clear_white.svg</file>
         <file>images/color_dialog/HuePanel.png</file>
-        <file>images/menu/Cancel_black.svg</file>
-        <file>images/menu/Cancel_white.svg</file>
-        <file>images/menu/ChevronRight_black.svg</file>
-        <file>images/menu/ChevronRight_white.svg</file>
-        <file>images/menu/Copy_black.svg</file>
-        <file>images/menu/Copy_white.svg</file>
-        <file>images/menu/Cut_black.svg</file>
-        <file>images/menu/Cut_white.svg</file>
-        <file>images/menu/Paste_black.svg</file>
-        <file>images/menu/Paste_white.svg</file>
-        <file>images/setting_card/Alignment_black.svg</file>
-        <file>images/setting_card/Alignment_white.svg</file>
-        <file>images/setting_card/BackgroundColor_black.svg</file>
-        <file>images/setting_card/BackgroundColor_white.svg</file>
-        <file>images/setting_card/Brush_black.svg</file>
-        <file>images/setting_card/Brush_white.svg</file>
-        <file>images/setting_card/ChevronDown_black.svg</file>
-        <file>images/setting_card/ChevronDown_white.svg</file>
-        <file>images/setting_card/Close_black.svg</file>
-        <file>images/setting_card/Close_white.svg</file>
-        <file>images/setting_card/Download_black.svg</file>
-        <file>images/setting_card/Download_white.svg</file>
-        <file>images/setting_card/Embed_black.svg</file>
-        <file>images/setting_card/Embed_white.svg</file>
-        <file>images/setting_card/Feedback_black.svg</file>
-        <file>images/setting_card/Feedback_white.svg</file>
-        <file>images/setting_card/FluorescentPen_black.svg</file>
-        <file>images/setting_card/FluorescentPen_white.svg</file>
-        <file>images/setting_card/FolderAdd_black.svg</file>
-        <file>images/setting_card/FolderAdd_white.svg</file>
-        <file>images/setting_card/Folder_black.svg</file>
-        <file>images/setting_card/Folder_white.svg</file>
-        <file>images/setting_card/Font_black.svg</file>
-        <file>images/setting_card/Font_white.svg</file>
-        <file>images/setting_card/Help_black.svg</file>
-        <file>images/setting_card/Help_white.svg</file>
-        <file>images/setting_card/Info_black.svg</file>
-        <file>images/setting_card/Info_white.svg</file>
-        <file>images/setting_card/Link_black.svg</file>
-        <file>images/setting_card/Link_white.svg</file>
-        <file>images/setting_card/Minimize_black.svg</file>
-        <file>images/setting_card/Minimize_white.svg</file>
-        <file>images/setting_card/Movie_black.svg</file>
-        <file>images/setting_card/Movie_white.svg</file>
-        <file>images/setting_card/MusicFolder_black.svg</file>
-        <file>images/setting_card/MusicFolder_white.svg</file>
-        <file>images/setting_card/Music_black.svg</file>
-        <file>images/setting_card/Music_white.svg</file>
-        <file>images/setting_card/Palette_black.svg</file>
-        <file>images/setting_card/Palette_white.svg</file>
-        <file>images/setting_card/PencilInk_black.svg</file>
-        <file>images/setting_card/PencilInk_white.svg</file>
-        <file>images/setting_card/Question_black.svg</file>
-        <file>images/setting_card/Question_white.svg</file>
-        <file>images/setting_card/Search_black.svg</file>
-        <file>images/setting_card/Search_white.svg</file>
-        <file>images/setting_card/Transparent_black.svg</file>
-        <file>images/setting_card/Transparent_white.svg</file>
-        <file>images/setting_card/Update_black.svg</file>
-        <file>images/setting_card/Update_white.svg</file>
-        <file>images/setting_card/Video_black.svg</file>
-        <file>images/setting_card/Video_white.svg</file>
-        <file>images/setting_card/Web_black.svg</file>
-        <file>images/setting_card/Web_white.svg</file>
-        <file>images/setting_card/Zoom_black.svg</file>
-        <file>images/setting_card/Zoom_white.svg</file>
-        <file>images/setting_card/language_black.svg</file>
-        <file>images/setting_card/language_white.svg</file>
+        <file>images/icons/Cancel_black.svg</file>
+        <file>images/icons/Cancel_white.svg</file>
+        <file>images/icons/ChevronRight_black.svg</file>
+        <file>images/icons/ChevronRight_white.svg</file>
+        <file>images/icons/Copy_black.svg</file>
+        <file>images/icons/Copy_white.svg</file>
+        <file>images/icons/Cut_black.svg</file>
+        <file>images/icons/Cut_white.svg</file>
+        <file>images/icons/Paste_black.svg</file>
+        <file>images/icons/Paste_white.svg</file>
+        <file>images/icons/Add_black.svg</file>
+        <file>images/icons/Add_white.svg</file>
+        <file>images/icons/Folder_black.svg</file>
+        <file>images/icons/Folder_white.svg</file>
+        <file>images/icons/Setting_black.svg</file>
+        <file>images/icons/Setting_white.svg</file>
+        <file>images/icons/Alignment_black.svg</file>
+        <file>images/icons/Alignment_white.svg</file>
+        <file>images/icons/BackgroundColor_black.svg</file>
+        <file>images/icons/BackgroundColor_white.svg</file>
+        <file>images/icons/Brush_black.svg</file>
+        <file>images/icons/Brush_white.svg</file>
+        <file>images/icons/ChevronDown_black.svg</file>
+        <file>images/icons/ChevronDown_white.svg</file>
+        <file>images/icons/Close_black.svg</file>
+        <file>images/icons/Close_white.svg</file>
+        <file>images/icons/Download_black.svg</file>
+        <file>images/icons/Download_white.svg</file>
+        <file>images/icons/Embed_black.svg</file>
+        <file>images/icons/Embed_white.svg</file>
+        <file>images/icons/Feedback_black.svg</file>
+        <file>images/icons/Feedback_white.svg</file>
+        <file>images/icons/FluorescentPen_black.svg</file>
+        <file>images/icons/FluorescentPen_white.svg</file>
+        <file>images/icons/FolderAdd_black.svg</file>
+        <file>images/icons/FolderAdd_white.svg</file>
+        <file>images/icons/Font_black.svg</file>
+        <file>images/icons/Font_white.svg</file>
+        <file>images/icons/Help_black.svg</file>
+        <file>images/icons/Help_white.svg</file>
+        <file>images/icons/Info_black.svg</file>
+        <file>images/icons/Info_white.svg</file>
+        <file>images/icons/Link_black.svg</file>
+        <file>images/icons/Link_white.svg</file>
+        <file>images/icons/Minimize_black.svg</file>
+        <file>images/icons/Minimize_white.svg</file>
+        <file>images/icons/Movie_black.svg</file>
+        <file>images/icons/Movie_white.svg</file>
+        <file>images/icons/MusicFolder_black.svg</file>
+        <file>images/icons/MusicFolder_white.svg</file>
+        <file>images/icons/Music_black.svg</file>
+        <file>images/icons/Music_white.svg</file>
+        <file>images/icons/Palette_black.svg</file>
+        <file>images/icons/Palette_white.svg</file>
+        <file>images/icons/PencilInk_black.svg</file>
+        <file>images/icons/PencilInk_white.svg</file>
+        <file>images/icons/Question_black.svg</file>
+        <file>images/icons/Question_white.svg</file>
+        <file>images/icons/Search_black.svg</file>
+        <file>images/icons/Search_white.svg</file>
+        <file>images/icons/Transparent_black.svg</file>
+        <file>images/icons/Transparent_white.svg</file>
+        <file>images/icons/Update_black.svg</file>
+        <file>images/icons/Update_white.svg</file>
+        <file>images/icons/Video_black.svg</file>
+        <file>images/icons/Video_white.svg</file>
+        <file>images/icons/Web_black.svg</file>
+        <file>images/icons/Web_white.svg</file>
+        <file>images/icons/Zoom_black.svg</file>
+        <file>images/icons/Zoom_white.svg</file>
+        <file>images/icons/Language_black.svg</file>
+        <file>images/icons/Language_white.svg</file>
         <file>images/state_tool_tip/close_white.svg</file>
         <file>images/state_tool_tip/close_black.svg</file>
         <file>images/state_tool_tip/completed.svg</file>
@@ -94,6 +98,7 @@
         <file>qss/dark/tool_tip.qss</file>
         <file>qss/dark/folder_list_dialog.qss</file>
         <file>qss/dark/setting_interface.qss</file>
+        <file>qss/dark/combo_box.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -107,5 +112,6 @@
         <file>qss/light/tool_tip.qss</file>
         <file>qss/light/folder_list_dialog.qss</file>
         <file>qss/light/setting_interface.qss</file>
+        <file>qss/light/combo_box.qss</file>
     </qresource>
 </RCC>

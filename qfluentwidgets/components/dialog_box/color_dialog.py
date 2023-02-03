@@ -5,9 +5,9 @@ from PyQt6.QtGui import (QBrush, QColor, QPixmap, QPainter, QPen, QIntValidator,
 from PyQt6.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
                              QToolButton, QPushButton, QFrame, QVBoxLayout)
 
-from ...common.icon import Icon, getIconColor
+from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ..widgets import LineEditMenu, Slider, ScrollArea
+from ..widgets import Slider, ScrollArea
 from .mask_dialog_base import MaskDialogBase
 
 
@@ -173,8 +173,7 @@ class ColorLineEdit(QLineEdit):
         self.clearButton.setVisible(bool(text) and self.hasFocus())
 
     def contextMenuEvent(self, e):
-        menu = LineEditMenu(self)
-        menu.exec(e.globalPos())
+        return
 
 
 class HexColorLineEdit(ColorLineEdit):

@@ -1,14 +1,13 @@
 ## Quick start
 
 ### Install
-To install use pip:
+To install lite version (`AcrylicLabel` is not available) use pip:
 ```shell
 pip install PyQt-Fluent-Widgets
 ```
-Or clone the repo:
+Or install full-featured version use pip:
 ```shell
-git clone https://github.com/zhiyiYo/PyQt-Fluent-Widgets.git
-python setup.py install
+pip install 'PyQt-Fluent-Widgets[full]'
 ```
 
 ### Run example

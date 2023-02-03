@@ -5,11 +5,11 @@ from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayou
 from PyQt6.QtSvgWidgets import QSvgWidget
 
 from ..dialog_box.color_dialog import ColorDialog
+from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ...common.config import ConfigItem, qconfig, RangeConfigItem
-from ...common.icon import getIconColor
+from ...common.config import qconfig
 
 
 class SettingCard(QFrame):
@@ -338,40 +338,42 @@ class ColorSettingCard(SettingCard):
         self.colorChanged.emit(color)
 
 
-class SettingIconFactory:
-    """ Setting icon factory """
+class ComboBoxSettingCard(SettingCard):
+    """ Setting card with a combo box """
 
-    WEB = "Web"
-    LINK = "Link"
-    HELP = "Help"
-    FONT = "Font"
-    INFO = "Info"
-    ZOOM = "Zoom"
-    CLOSE = "Close"
-    MOVIE = "Movie"
-    BRUSH = "Brush"
-    MUSIC = "Music"
-    VIDEO = "Video"
-    EMBED = "Embed"
-    FOLDER = "Folder"
-    SEARCH = "Search"
-    UPDATE = "Update"
-    PALETTE = "Palette"
-    FEEDBACK = "Feedback"
-    MINIMIZE = "Minimize"
-    LANGUAGE = "Language"
-    DOWNLOAD = "Download"
-    QUESTION = "Question"
-    ALIGNMENT = "Alignment"
-    PENCIL_INK = "PencilInk"
-    FOLDER_ADD = "FolderAdd"
-    ARROW_DOWN = "ChevronDown"
-    TRANSPARENT = "Transparent"
-    MUSIC_FOLDER = "MusicFolder"
-    BACKGROUND_FILL = "BackgroundColor"
-    FLUORESCENT_PEN = "FluorescentPen"
+    def __init__(self, configItem, iconPath, title, content=None, texts=None, parent=None):
+        """
+        Parameters
+        ----------
+        configItem: OptionsConfigItem
+            configuration item operated by the card
 
-    @staticmethod
-    def create(iconType: str):
-        """ create icon """
-        return f':/qfluentwidgets/images/setting_card/{iconType}_{getIconColor()}.svg'
+        iconPath: str
+            the path of icon
+
+        title: str
+            the title of card
+
+        content: str
+            the content of card
+
+        texts: List[str]
+            the text of items
+
+        parent: QWidget
+            parent widget
+        """
+        super().__init__(iconPath, title, content, parent)
+        self.configItem = configItem
+        self.comboBox = ComboBox(self)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addSpacing(16)
+
+        self.textToOption = {t: o for t, o in zip(texts, configItem.options)}
+        self.optionToText = {o: t for o, t in zip(configItem.options, texts)}
+        self.comboBox.addItems(texts)
+        self.comboBox.setCurrentText(self.optionToText[qconfig.get(configItem)])
+        self.comboBox.currentTextChanged.connect(self._onCurrentTextChanged)
+
+    def _onCurrentTextChanged(self, text):
+        qconfig.set(self.configItem, self.textToOption[text])
