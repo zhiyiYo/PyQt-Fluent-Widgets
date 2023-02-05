@@ -1,11 +1,11 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
 from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
-                          Qt, QSize, QRectF, pyqtSignal, QPoint)
+                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer)
 from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
-                             QListWidgetItem, QStyleOptionViewItem)
+                             QListWidgetItem)
 
 from ...common.smooth_scroll import SmoothScroll
 from ...common.icon import FluentIconFactory as FIF
@@ -51,87 +51,6 @@ class DWMMenu(QMenu):
             self.windowEffect.addMenuShadowEffect(self.winId())
         return QMenu.event(self, e)
 
-
-class LineEditMenu(DWMMenu):
-    """ Line edit menu """
-
-    def __init__(self, parent):
-        super().__init__("", parent)
-        self.setObjectName("lineEditMenu")
-        self.animation = QPropertyAnimation(self, b"geometry")
-        self.animation.setDuration(300)
-        self.animation.setEasingCurve(QEasingCurve.OutQuad)
-        self.setProperty("selectAll", bool(self.parent().text()))
-
-    def createActions(self):
-        self.cutAct = QAction(
-            FIF.icon(FIF.CUT),
-            self.tr("Cut"),
-            self,
-            shortcut="Ctrl+X",
-            triggered=self.parent().cut,
-        )
-        self.copyAct = QAction(
-            FIF.icon(FIF.COPY),
-            self.tr("Copy"),
-            self,
-            shortcut="Ctrl+C",
-            triggered=self.parent().copy,
-        )
-        self.pasteAct = QAction(
-            FIF.icon(FIF.PASTE),
-            self.tr("Paste"),
-            self,
-            shortcut="Ctrl+V",
-            triggered=self.parent().paste,
-        )
-        self.cancelAct = QAction(
-            FIF.icon(FIF.CANCEL),
-            self.tr("Cancel"),
-            self,
-            shortcut="Ctrl+Z",
-            triggered=self.parent().undo,
-        )
-        self.selectAllAct = QAction(
-            self.tr("Select all"),
-            self,
-            shortcut="Ctrl+A",
-            triggered=self.parent().selectAll
-        )
-        self.action_list = [self.cutAct, self.copyAct,
-                            self.pasteAct, self.cancelAct, self.selectAllAct]
-
-    def exec_(self, pos):
-        self.clear()
-        self.createActions()
-
-        if QApplication.clipboard().mimeData().hasText():
-            if self.parent().text():
-                if self.parent().selectedText():
-                    self.addActions(self.action_list)
-                else:
-                    self.addActions(self.action_list[2:])
-            else:
-                self.addAction(self.pasteAct)
-        else:
-            if self.parent().text():
-                if self.parent().selectedText():
-                    self.addActions(
-                        self.action_list[:2] + self.action_list[3:])
-                else:
-                    self.addActions(self.action_list[3:])
-            else:
-                return
-
-        w = 92+max(self.fontMetrics().width(i.text()) for i in self.actions())
-        h = len(self.actions()) * 32 + 8
-
-        self.animation.setStartValue(QRect(pos.x(), pos.y(), 1, 1))
-        self.animation.setEndValue(QRect(pos.x(), pos.y(), w, h))
-        self.setStyle(CustomMenuStyle())
-
-        self.animation.start()
-        super().exec_(pos)
 
 
 class MenuSeparator(QWidget):
@@ -260,9 +179,13 @@ class RoundMenu(QWidget):
         self._title = title
         self._icon = QIcon()
         self._actions = []
+        self._subMenus = []
         self.isSubMenu = False
         self.parentMenu = None
         self.menuItem = None
+        self.lastHoverItem = None
+        self.lastHoverSubMenuItem = None
+        self.isHideBySystem = True
         self.itemHeight = 28
         self.hBoxLayout = QHBoxLayout(self)
         self.view = MenuActionListWidget(self)
@@ -336,11 +259,11 @@ class RoundMenu(QWidget):
         action: QAction
             menu action
         """
-        item = self._createMenuActionItem(action)
+        item = self._createActionItem(action)
         self.view.addItem(item)
         self.adjustSize()
 
-    def _createMenuActionItem(self, action, before=None):
+    def _createActionItem(self, action, before=None):
         """ create menu action item  """
         if not before:
             self._actions.append(action)
@@ -350,19 +273,8 @@ class RoundMenu(QWidget):
         else:
             raise ValueError('`before` is not in the action list')
 
-        hasIcon = any(not i.icon().isNull() for i in self._actions)
-
-        # icon empty icon
-        icon = QIcon(MenuIconEngine(action.icon()))
-        if hasIcon and action.icon().isNull():
-            pixmap = QPixmap(self.view.iconSize())
-            pixmap.fill(Qt.transparent)
-            icon = QIcon(pixmap)
-        elif not hasIcon:
-            icon = QIcon()
-
-        item = QListWidgetItem(icon, action.text())
-        if not hasIcon:
+        item = QListWidgetItem(self._createItemIcon(action), action.text())
+        if not self._hasItemIcon():
             w = 28 + self.view.fontMetrics().width(action.text())
         else:
             # add a blank character to increase space between icon and text
@@ -370,9 +282,27 @@ class RoundMenu(QWidget):
             w = 60 + self.view.fontMetrics().width(item.text())
 
         item.setSizeHint(QSize(w, self.itemHeight))
-        action.setProperty('item', item)
         item.setData(Qt.UserRole, action)
+        action.setProperty('item', item)
+        action.changed.connect(self._onActionChanged)
         return item
+
+    def _hasItemIcon(self):
+        return any(not i.icon().isNull() for i in self._actions+self._subMenus)
+
+    def _createItemIcon(self, w):
+        """ create the icon of menu item """
+        hasIcon = self._hasItemIcon()
+        icon = QIcon(MenuIconEngine(w.icon()))
+
+        if hasIcon and w.icon().isNull():
+            pixmap = QPixmap(self.view.iconSize())
+            pixmap.fill(Qt.transparent)
+            icon = QIcon(pixmap)
+        elif not hasIcon:
+            icon = QIcon()
+
+        return icon
 
     def insertAction(self, before, action):
         """ inserts action to menu, before the action before """
@@ -384,7 +314,7 @@ class RoundMenu(QWidget):
             return
 
         index = self.view.row(beforeItem)
-        item = self._createMenuActionItem(action, before)
+        item = self._createActionItem(action, before)
         self.view.insertItem(index, item)
         self.adjustSize()
 
@@ -439,18 +369,29 @@ class RoundMenu(QWidget):
         if not isinstance(menu, RoundMenu):
             raise ValueError('`menu` should be an instance of `RoundMenu`.')
 
-        hasIcon = any(not self.view.item(i).icon().isNull()
-                      for i in range(self.view.count()))
+        item, w = self._createSubMenuItem(menu)
+        self.view.addItem(item)
+        self.view.setItemWidget(item, w)
+        self.adjustSize()
 
-        # icon empty icon
-        icon = menu.icon()
-        if hasIcon and icon.isNull():
-            pixmap = QPixmap(self.view.iconSize())
-            pixmap.fill(Qt.transparent)
-            icon = QIcon(pixmap)
+    def insertMenu(self, before, menu):
+        """ insert menu before action `before` """
+        if not isinstance(menu, RoundMenu):
+            raise ValueError('`menu` should be an instance of `RoundMenu`.')
 
-        item = QListWidgetItem(icon, menu.title(), self.view)
-        if not hasIcon:
+        if before not in self._actions:
+            raise ValueError('`before` should be in menu action list')
+
+        item, w = self._createSubMenuItem(menu)
+        self.view.insertItem(self.view.row(before.property('item')), item)
+        self.view.setItemWidget(item, w)
+        self.adjustSize()
+
+    def _createSubMenuItem(self, menu):
+        self._subMenus.append(menu)
+
+        item = QListWidgetItem(self._createItemIcon(menu), menu.title())
+        if not self._hasItemIcon():
             w = 48 + self.view.fontMetrics().width(menu.title())
         else:
             # add a blank character to increase space between icon and text
@@ -464,13 +405,21 @@ class RoundMenu(QWidget):
         w = SubMenuItemWidget(menu, item, self)
         w.showMenuSig.connect(self._showSubMenu)
         w.resize(item.sizeHint())
-        self.view.addItem(item)
-        self.view.setItemWidget(item, w)
-        self.adjustSize()
+
+        return item, w
 
     def _showSubMenu(self, item):
         """ show sub menu """
-        w = self.view.itemWidget(item)
+        self.lastHoverItem = item
+        self.lastHoverSubMenuItem = item
+        # delay 400 ms to anti-shake
+        QTimer.singleShot(400, self._onShowMenuTimeOut)
+
+    def _onShowMenuTimeOut(self):
+        if self.lastHoverSubMenuItem is None or not self.lastHoverItem is self.lastHoverSubMenuItem:
+            return
+
+        w = self.view.itemWidget(self.lastHoverSubMenuItem)
         pos = w.mapToGlobal(QPoint(w.width()+5, -5))
         w.menu.exec(pos)
 
@@ -496,39 +445,51 @@ class RoundMenu(QWidget):
         if action not in self._actions:
             return
 
-        self._hideMenu()
+        self._hideMenu(False)
 
         if not self.isSubMenu:
             action.trigger()
             return
 
         # close parent menu
+        self._closeParentMenu()
+        action.trigger()
+
+    def _closeParentMenu(self):
         menu = self
         while menu.parentMenu:
             menu = menu.parentMenu
 
         menu.close()
-        action.trigger()
 
     def _onItemEntered(self, item):
+        self.lastHoverItem = item
         if not isinstance(item.data(Qt.UserRole), RoundMenu):
             return
 
         self._showSubMenu(item)
 
-    def _hideMenu(self):
+    def _hideMenu(self, isHideBySystem=False):
+        self.isHideBySystem = isHideBySystem
         self.view.clearSelection()
         if self.isSubMenu:
             self.hide()
         else:
             self.close()
 
+    def hideEvent(self, e):
+        if self.isHideBySystem and self.isSubMenu:
+            self._closeParentMenu()
+
+        self.isHideBySystem = True
+        e.accept()
+
     def menuActions(self):
         return self._actions
 
     def mousePressEvent(self, e):
         if self.childAt(e.pos()) is not self.view:
-            self._hideMenu()
+            self._hideMenu(True)
 
     def mouseMoveEvent(self, e):
         if not self.isSubMenu:
@@ -545,7 +506,7 @@ class RoundMenu(QWidget):
         if self.parentMenu.geometry().contains(pos) and not rect.contains(pos) and \
                 not self.geometry().contains(pos):
             view.clearSelection()
-            self._hideMenu()
+            self._hideMenu(False)
 
             # update style
             index = view.row(self.menuItem)
@@ -553,6 +514,24 @@ class RoundMenu(QWidget):
                 view.item(index-1).setFlags(Qt.ItemIsEnabled)
             if index < view.count()-1:
                 view.item(index+1).setFlags(Qt.ItemIsEnabled)
+
+    def _onActionChanged(self):
+        """ action changed slot """
+        action = self.sender()
+        item = action.property('item')
+        item.setIcon(self._createItemIcon(action))
+
+        if not self._hasItemIcon():
+            item.setText(action.text())
+            w = 28 + self.view.fontMetrics().width(action.text())
+        else:
+            # add a blank character to increase space between icon and text
+            item.setText(" " + action.text())
+            w = 60 + self.view.fontMetrics().width(item.text())
+
+        item.setSizeHint(QSize(w, self.itemHeight))
+        self.view.adjustSize()
+        self.adjustSize()
 
     def _onSlideValueChanged(self, pos):
         m = self.layout().contentsMargins()
@@ -603,3 +582,89 @@ class RoundMenu(QWidget):
             view.item(index-1).setFlags(Qt.NoItemFlags)
         if index < view.count()-1:
             view.item(index+1).setFlags(Qt.NoItemFlags)
+
+    def exec_(self, pos: QPoint, ani=True):
+        """ show menu
+
+        Parameters
+        ----------
+        pos: QPoint
+            pop-up position
+
+        ani: bool
+            Whether to show pop-up animation
+        """
+        self.exec(pos, ani)
+
+
+class LineEditMenu(RoundMenu):
+    """ Line edit menu """
+
+    def __init__(self, parent):
+        super().__init__("", parent)
+        self.animation = QPropertyAnimation(self, b"geometry")
+        self.animation.setDuration(300)
+        self.animation.setEasingCurve(QEasingCurve.OutQuad)
+        self.setProperty("selectAll", bool(self.parent().text()))
+
+    def createActions(self):
+        self.cutAct = QAction(
+            FIF.icon(FIF.CUT),
+            self.tr("Cut"),
+            self,
+            shortcut="Ctrl+X",
+            triggered=self.parent().cut,
+        )
+        self.copyAct = QAction(
+            FIF.icon(FIF.COPY),
+            self.tr("Copy"),
+            self,
+            shortcut="Ctrl+C",
+            triggered=self.parent().copy,
+        )
+        self.pasteAct = QAction(
+            FIF.icon(FIF.PASTE),
+            self.tr("Paste"),
+            self,
+            shortcut="Ctrl+V",
+            triggered=self.parent().paste,
+        )
+        self.cancelAct = QAction(
+            FIF.icon(FIF.CANCEL),
+            self.tr("Cancel"),
+            self,
+            shortcut="Ctrl+Z",
+            triggered=self.parent().undo,
+        )
+        self.selectAllAct = QAction(
+            self.tr("Select all"),
+            self,
+            shortcut="Ctrl+A",
+            triggered=self.parent().selectAll
+        )
+        self.action_list = [self.cutAct, self.copyAct,
+                            self.pasteAct, self.cancelAct, self.selectAllAct]
+
+    def exec(self, pos, ani=True):
+        self.clear()
+        self.createActions()
+
+        if QApplication.clipboard().mimeData().hasText():
+            if self.parent().text():
+                if self.parent().selectedText():
+                    self.addActions(self.action_list)
+                else:
+                    self.addActions(self.action_list[2:])
+            else:
+                self.addAction(self.pasteAct)
+        else:
+            if self.parent().text():
+                if self.parent().selectedText():
+                    self.addActions(
+                        self.action_list[:2] + self.action_list[3:])
+                else:
+                    self.addActions(self.action_list[3:])
+            else:
+                return
+
+        super().exec(pos, ani)
