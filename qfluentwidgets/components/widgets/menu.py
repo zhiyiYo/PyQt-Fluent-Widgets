@@ -487,10 +487,10 @@ class RoundMenu(QWidget):
         if action not in self._actions:
             return
 
-        action.trigger()
         self._hideMenu()
 
         if not self.isSubMenu:
+            action.trigger()
             return
 
         # close parent menu
@@ -498,7 +498,8 @@ class RoundMenu(QWidget):
         while menu.parentMenu:
             menu = menu.parentMenu
 
-        menu.deleteLater()
+        menu.close()
+        action.trigger()
 
     def _onItemEntered(self, item):
         if not isinstance(item.data(Qt.UserRole), RoundMenu):
@@ -511,7 +512,7 @@ class RoundMenu(QWidget):
         if self.isSubMenu:
             self.hide()
         else:
-            self.deleteLater()
+            self.close()
 
     def menuActions(self):
         return self._actions
@@ -532,10 +533,8 @@ class RoundMenu(QWidget):
         margin = view.viewportMargins()
         rect = view.visualItemRect(self.menuItem).translated(view.mapToGlobal(QPoint()))
         rect= rect.translated(margin.left(), margin.top()+2)
-        mr = self.geometry()
-        mr.setHeight(self.itemHeight + 10)
         if self.parentMenu.geometry().contains(pos) and not rect.contains(pos) and \
-                not mr.contains(pos):
+                not self.geometry().contains(pos):
             view.clearSelection()
             self._hideMenu()
 
