@@ -39,6 +39,7 @@ class ScrollArea(QScrollArea):
     def wheelEvent(self, e):
         self.smoothScroll.wheelEvent(e)
 
+
 class SmoothScrollBar(QScrollBar):
     """ Smooth scroll bar """
 
@@ -51,6 +52,7 @@ class SmoothScrollBar(QScrollBar):
         self.ani.setPropertyName(b"value")
         self.ani.setEasingCurve(QEasingCurve.Type.OutCubic)
         self.ani.setDuration(500)
+        self.__value = self.value()
         self.ani.finished.connect(self.scrollFinished)
 
     def setValue(self, value):
@@ -67,25 +69,35 @@ class SmoothScrollBar(QScrollBar):
 
     def scrollValue(self, value):
         """ scroll the specified distance """
-        value += self.value()
-        self.scrollTo(value)
+        self.__value += value
+        self.__value = max(self.minimum(), self.__value)
+        self.__value = min(self.maximum(), self.__value)
+        self.setValue(self.__value)
 
     def scrollTo(self, value):
         """ scroll to the specified position """
-        value = min(self.maximum(), max(self.minimum(), value))
-        self.setValue(value)
+        self.__value = value
+        self.__value = max(self.minimum(), self.__value)
+        self.__value = min(self.maximum(), self.__value)
+        self.setValue(self.__value)
+
+    def resetValue(self, value):
+        self.__value = value
 
     def mousePressEvent(self, e):
         self.ani.stop()
         super().mousePressEvent(e)
+        self.__value = self.value()
 
     def mouseReleaseEvent(self, e):
         self.ani.stop()
         super().mouseReleaseEvent(e)
+        self.__value = self.value()
 
     def mouseMoveEvent(self, e):
         self.ani.stop()
         super().mouseMoveEvent(e)
+        self.__value = self.value()
 
 
 class SmoothScrollArea(QScrollArea):
