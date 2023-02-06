@@ -14,8 +14,8 @@ class Demo(SmoothScrollArea):
         self.label.setPixmap(QPixmap("resource/shoko.jpg"))
 
         # customize scroll animation
-        self.setScrollAnimation(Qt.Vertical, 400, QEasingCurve.OutQuint)
-        self.setScrollAnimation(Qt.Horizontal, 400, QEasingCurve.OutQuint)
+        self.setScrollAnimation(Qt.Vertical, 500, QEasingCurve.OutQuint)
+        self.setScrollAnimation(Qt.Horizontal, 500, QEasingCurve.OutQuint)
 
         self.horizontalScrollBar().setValue(1900)
         self.setWidget(self.label)
