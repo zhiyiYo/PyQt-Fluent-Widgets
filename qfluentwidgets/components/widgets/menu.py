@@ -554,10 +554,10 @@ class RoundMenu(QWidget):
         if self.isVisible():
             return
 
-        desktop = QApplication.desktop().availableGeometry()
-        w, h = self.width() + 20, self.height() + 20
-        pos.setX(max(10, min(pos.x() - self.layout().contentsMargins().left(), desktop.width() - w)))
-        pos.setY(max(10, min(pos.y() - 4, desktop.height() - h)))
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = self.width() + 5, self.height() + 5
+        pos.setX(max(10, min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w)))
+        pos.setY(max(10, min(pos.y() - 4, rect.bottom() - h)))
 
         if ani:
             self.ani.setStartValue(pos-QPoint(0, h/2))

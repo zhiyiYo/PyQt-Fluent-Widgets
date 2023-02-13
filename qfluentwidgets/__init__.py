@@ -10,7 +10,7 @@ online at https://pyqt-fluent-widgets.readthedocs.io.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = "0.2.4"
+__version__ = "0.2.5"
 
 from .components import *
 from .common import *
