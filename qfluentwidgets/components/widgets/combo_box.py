@@ -122,6 +122,9 @@ class ComboBox(QPushButton):
         self._showComboMenu()
 
     def _showComboMenu(self):
+        if not self.items:
+            return
+
         menu = ComboBoxMenu(self)
         for i, item in enumerate(self.items):
             menu.addAction(

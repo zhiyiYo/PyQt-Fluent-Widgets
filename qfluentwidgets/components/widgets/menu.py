@@ -275,7 +275,7 @@ class RoundMenu(QWidget):
 
         item = QListWidgetItem(self._createItemIcon(action), action.text())
         if not self._hasItemIcon():
-            w = 28 + self.view.fontMetrics().width(action.text())
+            w = 28 + self.view.fontMetrics().boundingRect(action.text()).width()
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + item.text())
@@ -523,11 +523,11 @@ class RoundMenu(QWidget):
 
         if not self._hasItemIcon():
             item.setText(action.text())
-            w = 28 + self.view.fontMetrics().width(action.text())
+            w = 28 + self.view.fontMetrics().boundingRect(action.text()).width()
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + action.text())
-            w = 60 + self.view.fontMetrics().width(item.text())
+            w = 60 + self.view.fontMetrics().boundingRect(item.text()).width()
 
         item.setSizeHint(QSize(w, self.itemHeight))
         self.view.adjustSize()
@@ -541,11 +541,11 @@ class RoundMenu(QWidget):
 
         if not self._hasItemIcon():
             item.setText(action.text())
-            w = 28 + self.view.fontMetrics().width(action.text())
+            w = 28 + self.view.fontMetrics().boundingRect(action.text()).width()
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + action.text())
-            w = 60 + self.view.fontMetrics().width(item.text())
+            w = 60 + self.view.fontMetrics().boundingRect(item.text()).width()
 
         item.setSizeHint(QSize(w, self.itemHeight))
         self.view.adjustSize()
@@ -572,10 +572,10 @@ class RoundMenu(QWidget):
         if self.isVisible():
             return
 
-        desktop = QApplication.screenAt(QCursor.pos()).availableGeometry().size()
-        w, h = self.width() + 20, self.height() + 20
-        pos.setX(max(10, min(pos.x() - self.layout().contentsMargins().left(), desktop.width() - w)))
-        pos.setY(max(10, min(pos.y() - 4, desktop.height() - h)))
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = self.width() + 5, self.height() + 5
+        pos.setX(max(10, min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w)))
+        pos.setY(max(10, min(pos.y() - 4, rect.bottom() - h)))
 
         if ani:
             self.ani.setStartValue(pos-QPoint(0, h/2))
