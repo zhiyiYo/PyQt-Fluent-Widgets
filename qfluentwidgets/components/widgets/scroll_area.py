@@ -1,11 +1,6 @@
 # coding:utf-8
-from collections import deque
-from enum import Enum
-from math import cos, pi
-
-from PyQt6.QtCore import QDateTime, QEasingCurve, Qt, QTimer, QPoint, pyqtSignal, QPropertyAnimation
-from PyQt6.QtGui import QWheelEvent
-from PyQt6.QtWidgets import QApplication, QScrollArea, QScrollBar
+from PyQt6.QtCore import QEasingCurve, Qt,pyqtSignal, QPropertyAnimation
+from PyQt6.QtWidgets import QScrollArea, QScrollBar
 
 from ...common.smooth_scroll import SmoothScroll, SmoothMode
 

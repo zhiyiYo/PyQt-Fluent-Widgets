@@ -67,7 +67,7 @@ class SmoothScroll:
         self.stepsLeftQueue.append([delta, self.stepsTotal])
 
         # overflow time of timer: 1000ms/frames
-        self.smoothMoveTimer.start(1000 / self.fps)
+        self.smoothMoveTimer.start(int(1000 / self.fps))
 
     def __smoothMove(self):
         """ scroll smoothly when timer time out """

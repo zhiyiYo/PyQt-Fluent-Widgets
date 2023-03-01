@@ -98,7 +98,7 @@ class FolderListSettingCard(ExpandSettingCard):
 
     folderChanged = pyqtSignal(list)
 
-    def __init__(self, configItem, title, content=None, parent=None):
+    def __init__(self, configItem, title, content=None, directory="./", parent=None):
         """
         Parameters
         ----------
@@ -111,11 +111,15 @@ class FolderListSettingCard(ExpandSettingCard):
         content: str
             the content of card
 
+        directory: str
+            working directory of file dialog
+
         parent: QWidget
             parent widget
         """
         super().__init__(FIF.path(FIF.FOLDER), title, content, parent)
         self.configItem = configItem
+        self._dialogDirectory = directory
         self.addFolderButton = PushButton(
             FIF.path(FIF.FOLDER_ADD), self.tr('Add folder'), self)
 
@@ -137,7 +141,7 @@ class FolderListSettingCard(ExpandSettingCard):
     def __showFolderDialog(self):
         """ show folder dialog """
         folder = QFileDialog.getExistingDirectory(
-            self, self.tr("Choose folder"), "./")
+            self, self.tr("Choose folder"), self._dialogDirectory)
 
         if not folder or folder in self.folders:
             return

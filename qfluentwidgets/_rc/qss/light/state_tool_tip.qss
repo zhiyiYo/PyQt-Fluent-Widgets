@@ -1,29 +1,18 @@
-QWidget {
+StateToolTip,
+ToastToolTip {
     background-color: rgb(0, 107, 131);
+    border: none;
+    border-radius: 7px;
 }
 
 QLabel#titleLabel {
     color: white;
+    background-color: transparent;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
 }
 
 QLabel#contentLabel {
     color: white;
+    background-color: transparent;
     font: 13px 'Segoe UI', 'Microsoft YaHei';
-}
-
-QToolButton {
-    border: none;
-    margin: 0px;
-    width: 11px;
-    height: 11px;
-    border-image: url(:/qfluentwidgets/images/state_tool_tip/close_white.svg) top center no-repeat;
-}
-
-QToolButton:hover {
-    border-image: url(:/qfluentwidgets/images/state_tool_tip/close_black.svg) top center no-repeat;
-}
-
-QToolButton:pressed {
-    border-image: url(:/qfluentwidgets/images/state_tool_tip/close_black.svg) top center no-repeat;
 }
