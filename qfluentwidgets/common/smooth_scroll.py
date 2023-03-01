@@ -3,9 +3,9 @@ from collections import deque
 from enum import Enum
 from math import cos, pi
 
-from PyQt5.QtCore import QDateTime, QEasingCurve, Qt, QTimer, QPoint, pyqtSignal, QPropertyAnimation
+from PyQt5.QtCore import QDateTime, Qt, QTimer, QPoint
 from PyQt5.QtGui import QWheelEvent
-from PyQt5.QtWidgets import QApplication, QScrollArea, QScrollBar
+from PyQt5.QtWidgets import QApplication, QScrollArea
 
 
 class SmoothScroll:
@@ -69,7 +69,7 @@ class SmoothScroll:
         self.stepsLeftQueue.append([delta, self.stepsTotal])
 
         # overflow time of timer: 1000ms/frames
-        self.smoothMoveTimer.start(1000 / self.fps)
+        self.smoothMoveTimer.start(int(1000 / self.fps))
 
     def __smoothMove(self):
         """ scroll smoothly when timer time out """
@@ -87,10 +87,10 @@ class SmoothScroll:
 
         # construct wheel event
         if self.orient == Qt.Vertical:
-            p = QPoint(0, totalDelta)
+            p = QPoint(0, round(totalDelta))
             bar = self.widget.verticalScrollBar()
         else:
-            p = QPoint(totalDelta, 0)
+            p = QPoint(round(totalDelta), 0)
             bar = self.widget.horizontalScrollBar()
 
         e = QWheelEvent(

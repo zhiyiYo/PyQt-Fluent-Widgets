@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
+from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)

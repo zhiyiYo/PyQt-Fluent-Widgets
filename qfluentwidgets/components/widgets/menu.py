@@ -560,7 +560,7 @@ class RoundMenu(QWidget):
         pos.setY(max(10, min(pos.y() - 4, rect.bottom() - h)))
 
         if ani:
-            self.ani.setStartValue(pos-QPoint(0, h/2))
+            self.ani.setStartValue(pos-QPoint(0, int(h/2)))
             self.ani.setEndValue(pos)
             self.ani.setDuration(250)
             self.ani.setEasingCurve(QEasingCurve.OutQuad)
