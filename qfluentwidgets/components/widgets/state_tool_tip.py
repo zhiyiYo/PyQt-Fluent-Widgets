@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffe
 from PySide6.QtSvgWidgets import QSvgWidget
 
 from ...common import setStyleSheet, drawSvgIcon
+from ...components.widgets.three_state_button import ThreeStateButton, ButtonState
 
 
 class StateToolTip(QWidget):
@@ -36,7 +37,15 @@ class StateToolTip(QWidget):
         self.animation = QPropertyAnimation(self, b"windowOpacity")
         self.busyIconPath = ":/qfluentwidgets/images/state_tool_tip/running.svg"
         self.doneIconPath = ":/qfluentwidgets/images/state_tool_tip/completed.svg"
-        self.closeButton = QToolButton(self)
+        self.closeButton = ThreeStateButton(
+            {
+                ButtonState.NORMAL: ':/qfluentwidgets/images/state_tool_tip/close_normal.svg',
+                ButtonState.HOVER: ':/qfluentwidgets/images/state_tool_tip/close_hover.svg',
+                ButtonState.PRESSED: ':/qfluentwidgets/images/state_tool_tip/close_pressed.svg',
+            },
+            parent=self,
+            buttonSize=(12, 12)
+        )
 
         self.isDone = False
         self.rotateAngle = 0
@@ -67,7 +76,7 @@ class StateToolTip(QWidget):
                           self.contentLabel.width()) + 56, 51)
         self.titleLabel.move(32, 9)
         self.contentLabel.move(12, 27)
-        self.closeButton.move(self.width() - 24, 18)
+        self.closeButton.move(self.width() - 24, 19)
 
     def __setQss(self):
         """ set style sheet """
@@ -124,7 +133,7 @@ class StateToolTip(QWidget):
         """ paint state tooltip """
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
         if not self.isDone:
             painter.translate(19, 18)
@@ -161,11 +170,19 @@ class ToastToolTip(QWidget):
         self.titleLabel = QLabel(self.title, self)
         self.contentLabel = QLabel(self.content, self)
         self.iconLabel = QSvgWidget(self.icon, self)
-        self.closeButton = QToolButton(self)
         self.closeTimer = QTimer(self)
         self.opacityEffect = QGraphicsOpacityEffect(self)
         self.opacityAni = QPropertyAnimation(self.opacityEffect, b"opacity")
         self.slideAni = QPropertyAnimation(self, b'pos')
+        self.closeButton = ThreeStateButton(
+            {
+                ButtonState.NORMAL: ':/qfluentwidgets/images/state_tool_tip/close_normal.svg',
+                ButtonState.HOVER: ':/qfluentwidgets/images/state_tool_tip/close_hover.svg',
+                ButtonState.PRESSED: ':/qfluentwidgets/images/state_tool_tip/close_pressed.svg',
+            },
+            parent=self,
+            buttonSize=(12, 12)
+        )
 
         self.__initWidget()
 
@@ -175,7 +192,7 @@ class ToastToolTip(QWidget):
         self.closeButton.setFixedSize(QSize(11, 11))
         self.closeButton.setIconSize(QSize(11, 11))
         self.closeTimer.setInterval(2000)
-        self.contentLabel.setMinimumWidth(250)
+        self.contentLabel.setMinimumWidth(180)
 
         self.iconLabel.resize(16, 16)
         self.iconLabel.move(12, 10)
@@ -196,7 +213,7 @@ class ToastToolTip(QWidget):
                           self.contentLabel.width()) + 72, 51)
         self.titleLabel.move(32, 9)
         self.contentLabel.move(12, 27)
-        self.closeButton.move(self.width() - 24, 18)
+        self.closeButton.move(self.width() - 24, 19)
 
     def __setQss(self):
         """ set style sheet """

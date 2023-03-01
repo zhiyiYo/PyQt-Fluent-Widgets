@@ -32,8 +32,8 @@ class HuePanel(QWidget):
         """ set the position of  """
         self.pickerPos = pos
         self.color.setHsv(
-            max(0, min(1, pos.x() / self.width())) * 360,
-            max(0, min(1, (self.height() - pos.y()) / self.height())) * 255,
+            int(max(0, min(1, pos.x() / self.width())) * 360),
+            int(max(0, min(1, (self.height() - pos.y()) / self.height())) * 255),
             255
         )
         self.update()
@@ -44,8 +44,8 @@ class HuePanel(QWidget):
         self.color = QColor(color)
         self.color.setHsv(self.color.hue(), self.color.saturation(), 255)
         self.pickerPos = QPoint(
-            self.hue/360*self.width(),
-            (255 - self.saturation)/255*self.height()
+            int(self.hue/360*self.width()),
+            int((255 - self.saturation)/255*self.height())
         )
         self.update()
 

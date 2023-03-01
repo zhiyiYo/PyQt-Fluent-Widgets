@@ -75,8 +75,9 @@
         <file>images/icons/Zoom_white.svg</file>
         <file>images/icons/Language_black.svg</file>
         <file>images/icons/Language_white.svg</file>
-        <file>images/state_tool_tip/close_white.svg</file>
-        <file>images/state_tool_tip/close_black.svg</file>
+        <file>images/state_tool_tip/close_normal.svg</file>
+        <file>images/state_tool_tip/close_hover.svg</file>
+        <file>images/state_tool_tip/close_pressed.svg</file>
         <file>images/state_tool_tip/completed.svg</file>
         <file>images/state_tool_tip/info.svg</file>
         <file>images/state_tool_tip/running.svg</file>

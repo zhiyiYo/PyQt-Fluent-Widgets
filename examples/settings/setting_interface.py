@@ -5,7 +5,7 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ComboBoxSettingCard, ExpandLayout, setStyleSheet, ToastToolTip)
 from qfluentwidgets import FluentIconFactory as FIF
-from PySide6.QtCore import Qt, Signal, QUrl
+from PySide6.QtCore import Qt, Signal, QUrl, QStandardPaths
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 
@@ -33,6 +33,7 @@ class SettingInterface(ScrollArea):
         self.musicFolderCard = FolderListSettingCard(
             cfg.musicFolders,
             self.tr("Local music library"),
+            directory=QStandardPaths.writableLocation(QStandardPaths.MusicLocation),
             parent=self.musicInThisPCGroup
         )
         self.downloadFolderCard = PushSettingCard(

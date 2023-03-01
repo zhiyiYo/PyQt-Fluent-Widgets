@@ -1,5 +1,5 @@
 # coding:utf-8
-from PySide6.QtCore import QPropertyAnimation, QTimer, Qt, QPoint, QSize
+from PySide6.QtCore import QTimer, Qt
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel)
