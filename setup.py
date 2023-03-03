@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PyQt6-Fluent-Widgets",
-    version="0.0.8",
+    version="0.0.9",
     keywords="pyqt6 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",

@@ -146,6 +146,9 @@ class StateToolTip(QWidget):
 class ToastToolTip(QWidget):
     """ Toast tooltip """
 
+    SUCCESS = "completed"
+    WARNING = "info"
+
     def __init__(self, title, content, icon, parent=None):
         """
         Parameters
@@ -253,3 +256,13 @@ class ToastToolTip(QWidget):
         self.slideAni.start()
         super().showEvent(e)
         self.closeTimer.start()
+
+    @classmethod
+    def success(cls, title: str, content: str, parent=None):
+        """ show a success toast """
+        cls(title, content, cls.SUCCESS, parent).show()
+
+    @classmethod
+    def warn(cls, title: str, content: str, parent=None):
+        """ show a warning toast """
+        cls(title, content, cls.WARNING, parent).show()

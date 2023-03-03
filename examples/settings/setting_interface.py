@@ -257,13 +257,11 @@ class SettingInterface(ScrollArea):
 
     def __showRestartTooltip(self):
         """ show restart tooltip """
-        w = ToastToolTip(
+        ToastToolTip.warn(
             self.tr('Configuration updated successfully'),
             self.tr('Configuration takes effect after restart'),
-            'info',
             self.window()
         )
-        w.show()
 
     def __onDeskLyricFontCardClicked(self):
         """ desktop lyric font button clicked slot """
