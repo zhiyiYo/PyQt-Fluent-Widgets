@@ -1,6 +1,7 @@
 QWidget {
     background-color: rgb(23, 23, 23);
     border: 1px solid rgb(55, 55, 55);
+    border-radius: 6px;
 }
 
 QWidget#windowMask {
