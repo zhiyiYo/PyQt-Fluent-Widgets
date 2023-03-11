@@ -10,6 +10,17 @@ QDialog {
     border-bottom: none;
 }
 
+MessageBox #buttonGroup {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#centerWidget {
+    border: 1px solid rgb(144, 144, 142);
+    border-radius: 8px;
+    background-color: white;
+}
+
 QLabel {
     background-color: transparent;
 }

@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 
-from qfluentwidgets import MessageDialog
+from qfluentwidgets import MessageDialog, MessageBox
 
 
 class Window(QWidget):
@@ -20,7 +20,8 @@ class Window(QWidget):
     def showDialog(self):
         title = 'Are you sure you want to delete the folder?'
         content = """If you delete the "Music" folder from the list, the folder will no longer appear in the list, but will not be deleted."""
-        w = MessageDialog(title, content, self)
+        # w = MessageDialog(title, content, self)   # Win10 style message box
+        w = MessageBox(title, content, self)
         if w.exec():
             print('Yes button is pressed')
         else:
