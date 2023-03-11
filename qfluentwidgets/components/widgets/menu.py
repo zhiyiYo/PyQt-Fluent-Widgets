@@ -11,7 +11,7 @@ from ...common.smooth_scroll import SmoothScroll
 from ...common.icon import FluentIconFactory as FIF
 from ...common.icon import MenuIconEngine
 from ...common.style_sheet import setStyleSheet
-from ...common.config import qconfig
+from ...common.config import isDarkTheme
 
 
 class CustomMenuStyle(QProxyStyle):
@@ -62,7 +62,7 @@ class MenuSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        c = 0 if qconfig.theme == 'light' else 255
+        c = 0 if not isDarkTheme() else 255
         pen = QPen(QColor(c, c, c, 25), 1)
         pen.setCosmetic(True)
         painter.setPen(pen)

@@ -4,7 +4,7 @@ from PyQt5.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingC
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
 
-from ...common.config import qconfig
+from ...common.config import isDarkTheme
 from ...common.icon import FluentIconFactory as FIF
 from ...common.style_sheet import setStyleSheet
 from .setting_card import SettingCard
@@ -30,7 +30,7 @@ class ExpandButton(QAbstractButton):
         painter.setPen(Qt.NoPen)
 
         # draw background
-        r = 255 if qconfig.theme == 'dark' else 0
+        r = 255 if isDarkTheme() else 0
         if self.isPressed:
             color = QColor(r, r, r, 10)
         elif self.isHover:

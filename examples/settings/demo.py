@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication, QLabel, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, TitleBar
 from qframelesswindow.titlebar import TitleBarButton
+from qfluentwidgets import isDarkTheme
 from setting_interface import SettingInterface
 from config import cfg, Language
 
@@ -31,13 +32,13 @@ class CustomTitleBar(TitleBar):
                 background: transparent;
                 font: 13px 'Segoe UI';
                 padding: 0 4px;
-                color: {'white' if cfg.theme == 'dark' else 'black'}
+                color: {'white' if isDarkTheme() else 'black'}
             }}
         """)
         self.window().windowTitleChanged.connect(self.setTitle)
 
         # customize title bar button
-        if cfg.theme == 'dark':
+        if isDarkTheme():
             for button in (self.findChildren(TitleBarButton)):
                 button.setNormalColor(Qt.white)
                 button.setHoverColor(Qt.white)
@@ -95,7 +96,7 @@ if __name__ == '__main__':
     # internationalization
     translator = QTranslator()
     language = cfg.get(cfg.language)
-    
+
     if language == Language.AUTO:
         translator.load(QLocale.system(), "resource/i18n/qfluentwidgets_")
     elif language != Language.ENGLISH:

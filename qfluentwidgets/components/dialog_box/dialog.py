@@ -1,7 +1,7 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout, QSizePolicy
+from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap

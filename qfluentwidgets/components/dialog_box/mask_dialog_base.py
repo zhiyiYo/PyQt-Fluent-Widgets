@@ -4,7 +4,7 @@ from PyQt5.QtGui import QColor, QResizeEvent
 from PyQt5.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
                              QGraphicsOpacityEffect, QHBoxLayout, QWidget, QFrame)
 
-from ...common.config import qconfig
+from ...common.config import isDarkTheme
 
 
 class MaskDialogBase(QDialog):
@@ -21,7 +21,7 @@ class MaskDialogBase(QDialog):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setGeometry(0, 0, parent.width(), parent.height())
 
-        c = 0 if qconfig.theme == 'dark' else 255
+        c = 0 if isDarkTheme() else 255
         self.windowMask.resize(self.size())
         self.windowMask.setStyleSheet(f'background:rgba({c}, {c}, {c}, 0.6)')
         self.__hBoxLayout.addWidget(self.widget)

@@ -1,10 +1,10 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF, QPoint
-from PyQt5.QtGui import QColor, QPainter, QCursor
+from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QAction, QPushButton, QWidget
 
 from .menu import RoundMenu
-from ...common.config import qconfig
+from ...common.config import qconfig, isDarkTheme
 from ...common.icon import FluentIconFactory as FIF
 from ...common.style_sheet import setStyleSheet
 
@@ -188,7 +188,7 @@ class ComboBoxMenuItemWidget(QWidget):
             painter.setOpacity(0.7)
 
         # draw text
-        isLight = qconfig.theme == 'light'
+        isLight = not isDarkTheme()
         painter.setPen(Qt.black if isLight else Qt.white)
         painter.setFont(self.item.font())
         painter.drawText(QRect(12, 0, self.width()-10,

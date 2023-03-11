@@ -3,7 +3,7 @@ from PyQt5.QtCore import QPoint, QRect, QRectF, Qt
 from PyQt5.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap
 from PyQt5.QtSvg import QSvgRenderer
 
-from .config import qconfig
+from .config import isDarkTheme
 
 
 class IconEngine(QIconEngine):
@@ -47,7 +47,7 @@ class MenuIconEngine(QIconEngine):
 
 def getIconColor():
     """ get the color of icon based on theme """
-    return "white" if qconfig.theme == 'dark' else 'black'
+    return "white" if isDarkTheme() else 'black'
 
 
 def drawSvgIcon(iconPath, painter, rect):
