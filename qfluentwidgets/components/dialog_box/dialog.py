@@ -111,7 +111,7 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         super().__init__(parent=parent)
         self._setUpUi(title, content, self.widget)
 
-        self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 80))
+        self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
 
         self.widget.setFixedSize(
