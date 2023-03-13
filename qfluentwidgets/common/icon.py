@@ -68,6 +68,28 @@ def drawSvgIcon(iconPath, painter, rect):
     renderer.render(painter, QRectF(rect))
 
 
+def drawIcon(iconPath, painter, rect):
+    """ draw icon
+
+    Parameters
+    ----------
+    iconPath: str
+        the path of svg icon
+
+    painter: QPainter
+        painter
+
+    rect: QRect | QRectF
+        the rect to render icon
+    """
+    if not iconPath.lower().endswith('svg'):
+        image = QImage(iconPath).scaled(
+            rect.width(), rect.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        painter.drawImage(rect, image)
+    else:
+        drawSvgIcon(iconPath, painter, rect)
+
+
 class FluentIconFactory:
     """ Fluent icon factory """
 
@@ -80,6 +102,7 @@ class FluentIconFactory:
     FONT = "Font"
     INFO = "Info"
     ZOOM = "Zoom"
+    MENU = "Menu"
     CLOSE = "Close"
     MOVIE = "Movie"
     BRUSH = "Brush"

@@ -12,7 +12,7 @@ class MaskDialogBase(QDialog):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.__hBoxLayout = QHBoxLayout(self)
+        self._hBoxLayout = QHBoxLayout(self)
         self.windowMask = QWidget(self)
 
         # dialog box in the center of mask, all widgets take it as parent
@@ -24,7 +24,7 @@ class MaskDialogBase(QDialog):
         c = 0 if isDarkTheme() else 255
         self.windowMask.resize(self.size())
         self.windowMask.setStyleSheet(f'background:rgba({c}, {c}, {c}, 0.6)')
-        self.__hBoxLayout.addWidget(self.widget)
+        self._hBoxLayout.addWidget(self.widget)
         self.setShadowEffect()
 
         self.window().installEventFilter(self)

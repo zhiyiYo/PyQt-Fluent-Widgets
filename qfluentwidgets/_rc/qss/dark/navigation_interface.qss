@@ -1,0 +1,16 @@
+NavigationPanel {
+    background-color: rgba(32, 32, 32, --bgOpacity);
+    border: 1px solid rgba(57, 57, 57, --bgOpacity);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+QScrollArea,
+#scrollWidget {
+    border: none;
+    background-color: transparent;
+}
+
+NavigationInterface {
+    background-color: rgb(32, 32, 32);
+}

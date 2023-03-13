@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QObject
-from PyQt5.QtGui import QColor
+from PyQt5.QtCore import Qt, pyqtSignal, QObject, QEvent
+from PyQt5.QtGui import QColor, QResizeEvent
 from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
 from qframelesswindow import FramelessDialog
 
@@ -37,10 +37,22 @@ class Ui_MessageBox(QObject):
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
-        self.contentLabel.setText(TextWrap.wrap(self.content, 100, False)[0])
+
+        self._adjustText()
 
         self.yesButton.clicked.connect(self.__onYesButtonClicked)
         self.cancelButton.clicked.connect(self.__onCancelButtonClicked)
+
+    def _adjustText(self):
+        if self.isWindow():
+            if self.parent():
+                chars = max(min(self.parent().width() / 9, 100), 30)
+            else:
+                chars = 100
+        else:
+            chars = max(min(self.window().width() / 9, 100), 30)
+
+        self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
 
     def __initLayout(self):
         self.vBoxLayout.setSpacing(0)
@@ -113,8 +125,17 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
+        self._hBoxLayout.removeWidget(self.widget)
+        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
 
         self.widget.setFixedSize(
             max(self.contentLabel.width(), self.titleLabel.width())+48,
             self.contentLabel.y() + self.contentLabel.height() + 105
         )
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self.window():
+            if e.type() == QEvent.Resize:
+                self._adjustText()
+
+        return super().eventFilter(obj, e)
