@@ -3,8 +3,8 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QLabel
-from qfluentwidgets import RoundMenu
-from qfluentwidgets import FluentIconFactory as FIF
+from qfluentwidgets import RoundMenu, setTheme, Theme
+from qfluentwidgets import FluentIcon as FIF
 
 
 class Demo(QWidget):
@@ -19,26 +19,28 @@ class Demo(QWidget):
 
         self.setStyleSheet('Demo{background: white} QLabel{font-size: 20px}')
 
+        # setTheme(Theme.DARK)
+
     def contextMenuEvent(self, e):
         menu = RoundMenu(parent=self)
 
         # add actions
-        menu.addAction(QAction(FIF.icon(FIF.COPY), 'Copy'))
-        menu.addAction(QAction(FIF.icon(FIF.CUT), 'Cut'))
+        menu.addAction(QAction(FIF.COPY.icon(), 'Copy'))
+        menu.addAction(QAction(FIF.CUT.icon(), 'Cut'))
 
         # add sub menu
         submenu = RoundMenu("Add to", self)
-        submenu.setIcon(FIF.icon(FIF.ADD))
+        submenu.setIcon(FIF.ADD.icon())
         submenu.addActions([
-            QAction(FIF.icon(FIF.VIDEO), 'Video'),
-            QAction(FIF.icon(FIF.MUSIC), 'Music'),
+            QAction(FIF.VIDEO.icon(), 'Video'),
+            QAction(FIF.MUSIC.icon(), 'Music'),
         ])
         menu.addMenu(submenu)
 
         # add actions
         menu.addActions([
-            QAction(FIF.icon(FIF.PASTE), 'Paste'),
-            QAction(FIF.icon(FIF.CANCEL), 'Undo')
+            QAction(FIF.PASTE.icon(), 'Paste'),
+            QAction(FIF.CANCEL.icon(), 'Undo')
         ])
 
         # add separator
@@ -47,10 +49,10 @@ class Demo(QWidget):
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], QAction(FIF.icon(FIF.SETTING), 'Settings'))
+            menu.menuActions()[-1], QAction(FIF.SETTING.icon(), 'Settings'))
         menu.insertActions(
             menu.menuActions()[-1],
-            [QAction(FIF.icon(FIF.HELP), 'Help'), QAction(FIF.icon(FIF.FEEDBACK), 'Feedback')]
+            [QAction(FIF.HELP.icon(), 'Help'), QAction(FIF.FEEDBACK.icon(), 'Feedback')]
         )
 
         # show menu

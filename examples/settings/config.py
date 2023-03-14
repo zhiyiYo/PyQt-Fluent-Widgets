@@ -58,8 +58,6 @@ class Config(QConfig):
     minimizeToTray = ConfigItem(
         "MainWindow", "MinimizeToTray", True, BoolValidator())
     playBarColor = ColorConfigItem("MainWindow", "PlayBarColor", "#225C7F")
-    themeMode = OptionsConfigItem(
-        "MainWindow", "ThemeMode", "Light", OptionsValidator(["Light", "Dark", "Auto"]), restart=True)
     recentPlaysNumber = RangeConfigItem(
         "MainWindow", "RecentPlayNumbers", 300, RangeValidator(10, 300))
     dpiScale = OptionsConfigItem(

@@ -3,14 +3,14 @@ from typing import List
 from pathlib import Path
 
 from PyQt6.QtCore import Qt, pyqtSignal, QRectF
-from PyQt6.QtGui import QPainter
+from PyQt6.QtGui import QPainter, QIcon
 from PyQt6.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
                              QHBoxLayout, QToolButton)
 from PyQt6.QtSvg import QSvgRenderer
 
 from ...common.config import ConfigItem, qconfig
-from ...common.icon import drawSvgIcon
-from ...common.icon import FluentIconFactory as FIF
+from ...common.icon import drawIcon
+from ...common.icon import FluentIcon as FIF
 from ..dialog_box.dialog import Dialog
 from .expand_setting_card import ExpandSettingCard
 
@@ -18,10 +18,10 @@ from .expand_setting_card import ExpandSettingCard
 class ToolButton(QToolButton):
     """ Tool button """
 
-    def __init__(self, iconPath, size, iconSize, parent=None):
+    def __init__(self, icon, size: tuple, iconSize: tuple, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
-        self.iconPath = iconPath
+        self._icon = icon
         self._iconSize = iconSize
         self.setFixedSize(*size)
 
@@ -40,17 +40,17 @@ class ToolButton(QToolButton):
                                QPainter.RenderHint.SmoothPixmapTransform)
         painter.setOpacity(0.63 if self.isPressed else 1)
         w, h = self._iconSize
-        drawSvgIcon(self.iconPath, painter, QRectF(
+        drawIcon(self._icon, painter, QRectF(
             (self.width()-w)//2, (self.height()-h)//2, w, h))
 
 
 class PushButton(QPushButton):
     """ Push button """
 
-    def __init__(self, iconPath, text, parent=None):
+    def __init__(self, icon, text: str, parent=None):
         super().__init__(parent=parent)
         self.isPressed = False
-        self.iconPath = iconPath
+        self._icon = icon
         self.setText(text)
 
     def mousePressEvent(self, e):
@@ -66,7 +66,7 @@ class PushButton(QPushButton):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setOpacity(0.63 if self.isPressed else 1)
-        drawSvgIcon(self.iconPath, painter, QRectF(12, 8, 16, 16))
+        drawIcon(self._icon, painter, QRectF(12, 8, 16, 16))
 
 
 class FolderItem(QWidget):
@@ -79,7 +79,7 @@ class FolderItem(QWidget):
         self.folder = folder
         self.hBoxLayout = QHBoxLayout(self)
         self.folderLabel = QLabel(folder, self)
-        self.removeButton = ToolButton(FIF.path(FIF.CLOSE), (39, 29), (12, 12), self)
+        self.removeButton = ToolButton(FIF.CLOSE, (39, 29), (12, 12), self)
 
         self.setFixedHeight(53)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
@@ -117,11 +117,10 @@ class FolderListSettingCard(ExpandSettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(FIF.path(FIF.FOLDER), title, content, parent)
+        super().__init__(FIF.FOLDER, title, content, parent)
         self.configItem = configItem
         self._dialogDirectory = directory
-        self.addFolderButton = PushButton(
-            FIF.path(FIF.FOLDER_ADD), self.tr('Add folder'), self)
+        self.addFolderButton = PushButton(FIF.FOLDER_ADD, self.tr('Add folder'), self)
 
         self.folders = qconfig.get(configItem).copy()   # type:List[str]
         self.__initWidget()

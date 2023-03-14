@@ -4,7 +4,7 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import QApplication, QWidget
-from qfluentwidgets import ColorPickerButton
+from qfluentwidgets import ColorPickerButton, setTheme, Theme
 
 
 class Demo(QWidget):
@@ -15,6 +15,8 @@ class Demo(QWidget):
         self.resize(800, 720)
         self.button.move(352, 312)
         self.setStyleSheet("Demo{background:white}")
+
+        # setTheme(Theme.DARK)
 
 
 if __name__ == '__main__':

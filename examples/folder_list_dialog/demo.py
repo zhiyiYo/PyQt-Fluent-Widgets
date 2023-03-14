@@ -2,7 +2,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton
 
-from qfluentwidgets import FolderListDialog
+from qfluentwidgets import FolderListDialog, setTheme, Theme
 
 
 class Window(QWidget):
@@ -16,6 +16,8 @@ class Window(QWidget):
         self.btn.setObjectName('btn')
         with open('resource/demo.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
+
+        # setTheme(Theme.DARK)
 
     def showDialog(self):
         folder_paths = ['D:/KuGou', 'C:/Users/shoko/Documents/Music']

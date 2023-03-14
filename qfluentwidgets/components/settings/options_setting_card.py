@@ -1,8 +1,11 @@
 # coding:utf-8
+from typing import Union
 from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QButtonGroup, QLabel, QRadioButton
 
 from ...common.config import OptionsConfigItem, qconfig
+from ...common.icon import FluentIcon
 from .expand_setting_card import ExpandSettingCard
 
 
@@ -11,15 +14,15 @@ class OptionsSettingCard(ExpandSettingCard):
 
     optionChanged = pyqtSignal(OptionsConfigItem)
 
-    def __init__(self, configItem, iconPath, title, content=None, texts=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
         configItem: OptionsConfigItem
             options config item
 
-        iconPath: str
-            icon path
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of setting card
@@ -33,7 +36,7 @@ class OptionsSettingCard(ExpandSettingCard):
         parent: QWidget
             parent window
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.texts = texts or []
         self.configItem = configItem
         self.configName = configItem.name

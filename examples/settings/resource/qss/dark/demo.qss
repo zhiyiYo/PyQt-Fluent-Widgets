@@ -1,0 +1,27 @@
+MinimizeButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgba(255, 255, 255, 26);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgba(255, 255, 255, 51)
+}
+
+
+MaximizeButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgba(255, 255, 255, 26);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgba(255, 255, 255, 51)
+}
+
+CloseButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+}
+
+StandardTitleBar > QLabel {
+    color: white;
+}

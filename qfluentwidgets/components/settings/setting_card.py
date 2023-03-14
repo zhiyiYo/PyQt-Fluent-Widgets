@@ -1,26 +1,30 @@
 # coding:utf-8
+from typing import Union
+
 from PyQt6.QtCore import QUrl, Qt, pyqtSignal
-from PyQt6.QtGui import QColor, QDesktopServices
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QToolButton, QVBoxLayout, QPushButton
-from PyQt6.QtSvgWidgets import QSvgWidget
+from PyQt6.QtGui import QColor, QDesktopServices, QIcon, QPainter
+from PyQt6.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
+                             QVBoxLayout, QPushButton)
 
 from ..dialog_box.color_dialog import ColorDialog
 from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
-from ...common.style_sheet import setStyleSheet, getStyleSheet
+from ..widgets.icon_widget import IconWidget
+from ...common.style_sheet import setStyleSheet
 from ...common.config import qconfig
+from ...common.icon import FluentIcon
 
 
 class SettingCard(QFrame):
     """ Setting card """
 
-    def __init__(self, iconPath, title, content=None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
         """
         Parameters
         ----------
-        iconPath: str
-            the path of svg icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -32,7 +36,7 @@ class SettingCard(QFrame):
             parent widget
         """
         super().__init__(parent=parent)
-        self.iconLabel = QSvgWidget(iconPath, self)
+        self.iconLabel = IconWidget(icon, self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(content or '', self)
         self.hBoxLayout = QHBoxLayout(self)
@@ -80,12 +84,12 @@ class SwitchSettingCard(SettingCard):
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, iconPath, title, content=None, configItem=None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIcon], title, content=None, configItem=None, parent=None):
         """
         Parameters
         ----------
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -99,7 +103,7 @@ class SwitchSettingCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.switchButton = SwitchButton(
             self.tr('Off'), self, IndicatorPosition.RIGHT)
@@ -138,15 +142,15 @@ class RangeSettingCard(SettingCard):
 
     valueChanged = pyqtSignal(int)
 
-    def __init__(self, configItem, iconPath, title, content=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
         """
         Parameters
         ----------
         configItem: RangeConfigItem
             configuration item operated by the card
 
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -157,7 +161,7 @@ class RangeSettingCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.slider = Slider(Qt.Orientation.Horizontal, self)
         self.valueLabel = QLabel(self)
@@ -189,15 +193,15 @@ class PushSettingCard(SettingCard):
 
     clicked = pyqtSignal()
 
-    def __init__(self, text, iconPath, title, content=None, parent=None):
+    def __init__(self, text, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
         """
         Parameters
         ----------
         text: str
             the text of push button
 
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -208,7 +212,7 @@ class PushSettingCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.button = QPushButton(text, self)
         self.hBoxLayout.addWidget(self.button, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
@@ -218,15 +222,15 @@ class PushSettingCard(SettingCard):
 class PrimaryPushSettingCard(PushSettingCard):
     """ Push setting card with primary color """
 
-    def __init__(self, text, iconPath, title, content=None, parent=None):
-        super().__init__(text, iconPath, title, content, parent)
+    def __init__(self, text, icon, title, content=None, parent=None):
+        super().__init__(text, icon, title, content, parent)
         self.button.setObjectName('primaryButton')
 
 
 class HyperlinkCard(SettingCard):
     """ Hyperlink card """
 
-    def __init__(self, url, text, iconPath, title, content=None, parent=None):
+    def __init__(self, url, text, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -236,8 +240,8 @@ class HyperlinkCard(SettingCard):
         text: str
             text of url
 
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -251,7 +255,7 @@ class HyperlinkCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.url = QUrl(url)
         self.linkButton = QPushButton(text, self)
 
@@ -296,9 +300,15 @@ class ColorPickerButton(QToolButton):
     def setColor(self, color):
         """ set color """
         self.color = QColor(color)
-        qss = getStyleSheet('setting_card')
-        qss = qss.replace('--color-picker-background', color.name())
-        self.setStyleSheet(qss)
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(self.color)
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 5, 5)
+        super().paintEvent(e)
 
 
 class ColorSettingCard(SettingCard):
@@ -306,15 +316,15 @@ class ColorSettingCard(SettingCard):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, configItem, iconPath, title, content=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
         """
         Parameters
         ----------
         configItem: RangeConfigItem
             configuration item operated by the card
 
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -325,7 +335,7 @@ class ColorSettingCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.colorPicker = ColorPickerButton(
             qconfig.get(configItem), title, self)
@@ -341,15 +351,15 @@ class ColorSettingCard(SettingCard):
 class ComboBoxSettingCard(SettingCard):
     """ Setting card with a combo box """
 
-    def __init__(self, configItem, iconPath, title, content=None, texts=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
         configItem: OptionsConfigItem
             configuration item operated by the card
 
-        iconPath: str
-            the path of icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         title: str
             the title of card
@@ -363,7 +373,7 @@ class ComboBoxSettingCard(SettingCard):
         parent: QWidget
             parent widget
         """
-        super().__init__(iconPath, title, content, parent)
+        super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.comboBox = ComboBox(self)
         self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignRight)

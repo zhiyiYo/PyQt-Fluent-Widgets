@@ -10,6 +10,14 @@ from PyQt6.QtGui import QColor
 from .exception_handler import exceptionHandler
 
 
+class Theme(Enum):
+    """ Theme enumeration """
+
+    LIGHT = "Light"
+    DARK = "Dark"
+    AUTO = "Auto"
+
+
 class ConfigValidator:
     """ Config validator """
 
@@ -240,14 +248,15 @@ class QConfig(QObject):
     """ Config of app """
 
     appRestartSig = pyqtSignal()
+    themeChanged = pyqtSignal(Theme)
 
     themeMode = OptionsConfigItem(
-        "MainWindow", "Theme", "Light", OptionsValidator(["Light", "Dark", "Auto"]))
+        "MainWindow", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
 
     def __init__(self):
         super().__init__()
         self.file = Path("config/config.json")
-        self._theme = "Light"
+        self._theme = Theme.LIGHT
         self._cfg = self
 
     def get(self, item):
@@ -264,6 +273,9 @@ class QConfig(QObject):
 
         if item.restart:
             self._cfg.appRestartSig.emit()
+
+        if item is self._cfg.themeMode:
+            self._cfg.themeChanged.emit(value)
 
     def toDict(self, serialize=True):
         """ convert config items to `dict` """
@@ -331,15 +343,33 @@ class QConfig(QObject):
                     if items.get(key) is not None:
                         items[key].deserializeFrom(value)
 
-        if self.get(self._cfg.themeMode) == "Auto":
-            self._cfg._theme = darkdetect.theme() or "Light"
+        if self.get(self.themeMode) == Theme.AUTO:
+            theme = darkdetect.theme()
+            if theme:
+                self._cfg._theme = Theme(theme)
+            else:
+                self._cfg._theme = Theme.LIGHT
         else:
-            self._cfg._theme = self.get(self._cfg.themeMode)
+            self._cfg._theme = self.get(self.themeMode)
 
     @property
     def theme(self):
-        """ get theme mode, can be `light` or `dark` """
-        return self._cfg._theme.lower()
+        """ get theme mode, can be `Theme.Light` or `Theme.Dark` """
+        return self._cfg._theme
+
+    @theme.setter
+    def theme(self, t):
+        """ chaneg the theme without modifying the config file """
+        if t == Theme.AUTO:
+            t = darkdetect.theme()
+            t = Theme(t) if t else Theme.LIGHT
+
+        self._cfg._theme = t
 
 
 qconfig = QConfig()
+
+
+def isDarkTheme():
+    """ whether the theme is dark mode """
+    return qconfig.theme == Theme.DARK
