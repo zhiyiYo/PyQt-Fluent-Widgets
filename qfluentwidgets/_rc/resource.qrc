@@ -75,6 +75,8 @@
         <file>images/icons/Zoom_white.svg</file>
         <file>images/icons/Language_black.svg</file>
         <file>images/icons/Language_white.svg</file>
+        <file>images/icons/Menu_black.svg</file>
+        <file>images/icons/Menu_white.svg</file>
         <file>images/state_tool_tip/close_normal.svg</file>
         <file>images/state_tool_tip/close_hover.svg</file>
         <file>images/state_tool_tip/close_pressed.svg</file>
@@ -100,6 +102,7 @@
         <file>qss/dark/folder_list_dialog.qss</file>
         <file>qss/dark/setting_interface.qss</file>
         <file>qss/dark/combo_box.qss</file>
+        <file>qss/dark/navigation_interface.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -114,5 +117,6 @@
         <file>qss/light/folder_list_dialog.qss</file>
         <file>qss/light/setting_interface.qss</file>
         <file>qss/light/combo_box.qss</file>
+        <file>qss/light/navigation_interface.qss</file>
     </qresource>
 </RCC>

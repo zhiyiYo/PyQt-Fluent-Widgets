@@ -12,6 +12,15 @@
 ### Dialog
 ![](./_static/gallery/dialog.gif)
 
+### Message Box
+![](./_static/gallery/message_box.gif)
+
+### Win10 Style Message Dialog
+![](./_static/gallery/dialog_with_mask.gif)
+
+### Navigation
+![](./_static/gallery/navigation.gif)
+
 ### Flow Layout
 ![](./_static/gallery/flow_layout.gif)
 
@@ -23,9 +32,6 @@
 
 ### Round Corners Menu
 ![](./_static/gallery/round_menu.gif)
-
-### Message Dialog
-![](./_static/gallery/dialog_with_mask.gif)
 
 ### State Tool Tip
 ![](./_static/gallery/state_tool_tip.gif)

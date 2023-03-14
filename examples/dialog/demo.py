@@ -3,7 +3,7 @@ import sys
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QWidget, QPushButton
 
-from qfluentwidgets import Dialog
+from qfluentwidgets import Dialog, setTheme, Theme
 
 
 class Window(QWidget):
@@ -16,6 +16,8 @@ class Window(QWidget):
         self.btn.clicked.connect(self.showDialog)
         with open('resource/demo.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
+
+        # setTheme(Theme.DARK)
 
     def showDialog(self):
         title = 'Are you sure you want to delete the folder?'

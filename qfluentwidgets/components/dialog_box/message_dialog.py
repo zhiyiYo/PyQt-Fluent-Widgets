@@ -8,7 +8,7 @@ from .mask_dialog_base import MaskDialogBase
 
 
 class MessageDialog(MaskDialogBase):
-    """ Message dialog box with a mask """
+    """ Win10 style message dialog box with a mask """
 
     yesSignal = Signal()
     cancelSignal = Signal()

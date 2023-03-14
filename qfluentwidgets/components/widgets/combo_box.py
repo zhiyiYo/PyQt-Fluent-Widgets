@@ -4,8 +4,8 @@ from PySide6.QtGui import QColor, QPainter, QAction
 from PySide6.QtWidgets import QPushButton, QWidget
 
 from .menu import RoundMenu
-from ...common.config import qconfig
-from ...common.icon import FluentIconFactory as FIF
+from ...common.config import isDarkTheme
+from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import setStyleSheet
 
 
@@ -155,7 +155,7 @@ class ComboBox(QPushButton):
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        FIF.render(FIF.ARROW_DOWN, painter, QRectF(
+        FIF.ARROW_DOWN.render(painter, QRectF(
             self.width()-22, self.height()/2-6, 10, 10))
 
 
@@ -188,7 +188,7 @@ class ComboBoxMenuItemWidget(QWidget):
             painter.setOpacity(0.7)
 
         # draw text
-        isLight = qconfig.theme == 'light'
+        isLight = not isDarkTheme()
         painter.setPen(Qt.black if isLight else Qt.white)
         painter.setFont(self.item.font())
         painter.drawText(QRect(12, 0, self.width()-10,

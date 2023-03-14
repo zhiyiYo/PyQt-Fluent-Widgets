@@ -1,26 +1,35 @@
 # coding:utf-8
-from .config import qconfig
+import weakref
+
+import darkdetect
 from PySide6.QtCore import QFile
-from PySide6.QtWidgets import QWidget
+
+from .config import qconfig, Theme
 
 
+fluentWidgets = weakref.WeakKeyDictionary()
 
-def getStyleSheet(file):
+
+def getStyleSheet(file, theme=Theme.AUTO):
     """ get style sheet
 
     Parameters
     ----------
     file: str
         qss file name, without `.qss` suffix
+
+    theme: Theme
+        the theme of style sheet
     """
-    f = QFile(f":/qfluentwidgets/qss/{qconfig.theme}/{file}.qss")
+    theme = qconfig.theme if theme == Theme.AUTO else theme
+    f = QFile(f":/qfluentwidgets/qss/{theme.value.lower()}/{file}.qss")
     f.open(QFile.ReadOnly)
     qss = str(f.readAll(), encoding='utf-8')
     f.close()
     return qss
 
 
-def setStyleSheet(widget, file):
+def setStyleSheet(widget, file, theme=Theme.AUTO):
     """ set the style sheet of widget
 
     Parameters
@@ -30,5 +39,21 @@ def setStyleSheet(widget, file):
 
     file: str
         qss file name, without `.qss` suffix
+
+    theme: Theme
+        the theme of style sheet
     """
-    widget.setStyleSheet(getStyleSheet(file))
+    fluentWidgets[widget] = file
+    widget.setStyleSheet(getStyleSheet(file, theme))
+
+
+def setTheme(theme: Theme):
+    """ set the theme of application """
+    if theme == Theme.AUTO:
+        theme = darkdetect.theme()
+        qconfig.theme = Theme(theme) if theme else Theme.LIGHT
+    else:
+        qconfig.theme = theme
+
+    for widget, file in fluentWidgets.items():
+        setStyleSheet(widget, file, qconfig.theme)

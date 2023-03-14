@@ -6,43 +6,17 @@ from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, StandardTitleBar
-from qframelesswindow.titlebar import TitleBarButton
+from qfluentwidgets import isDarkTheme
 from setting_interface import SettingInterface
 from config import cfg, Language
 
-
-class CustomTitleBar(StandardTitleBar):
-    """ Custom title bar """
-
-    def __init__(self, parent):
-        super().__init__(parent)
-
-        self.titleLabel.setStyleSheet(f"""
-            QLabel{{
-                background: transparent;
-                font: 13px 'Segoe UI';
-                padding: 0 4px;
-                color: {'white' if cfg.theme == 'dark' else 'black'}
-            }}
-        """)
-
-        # customize title bar button
-        if cfg.theme == 'dark':
-            for button in (self.findChildren(TitleBarButton)):
-                button.setNormalColor(Qt.white)
-                button.setHoverColor(Qt.white)
-                button.setPressedColor(Qt.white)
-                if button is not self.closeBtn:
-                    button.setHoverBackgroundColor(QColor(255, 255, 255, 26))
-                    button.setPressedBackgroundColor(QColor(255, 255, 255, 51))
 
 
 class Window(FramelessWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        # change the default title bar if you like
-        self.setTitleBar(CustomTitleBar(self))
+        self.setTitleBar(StandardTitleBar(self))
 
         self.hBoxLayout = QHBoxLayout(self)
         self.settingInterface = SettingInterface(self)
@@ -58,6 +32,14 @@ class Window(FramelessWindow):
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
 
         self.titleBar.raise_()
+
+        self.setQss()
+        cfg.themeChanged.connect(self.setQss)
+
+    def setQss(self):
+        theme = 'dark' if isDarkTheme() else 'light'
+        with open(f'resource/qss/{theme}/demo.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
 
 
 if __name__ == '__main__':

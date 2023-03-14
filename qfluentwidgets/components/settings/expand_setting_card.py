@@ -1,12 +1,13 @@
 # coding:utf-8
+from typing import Union
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import (QEvent, Qt, QPropertyAnimation, Property, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
 from PySide6.QtGui import QColor, QPixmap, QPainter
 from PySide6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
-from PySide6.QtSvg import QSvgRenderer
 
-from ...common.config import qconfig
-from ...common.icon import FluentIconFactory as FIF
+from ...common.config import isDarkTheme
+from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import setStyleSheet
 from .setting_card import SettingCard
 from ..layout.v_box_layout import VBoxLayout
@@ -31,7 +32,7 @@ class ExpandButton(QAbstractButton):
         painter.setPen(Qt.NoPen)
 
         # draw background
-        r = 255 if qconfig.theme == 'dark' else 0
+        r = 255 if isDarkTheme() else 0
         if self.isPressed:
             color = QColor(r, r, r, 10)
         elif self.isHover:
@@ -45,7 +46,7 @@ class ExpandButton(QAbstractButton):
         # draw icon
         painter.translate(self.width()//2, self.height()//2)
         painter.rotate(self.__angle)
-        FIF.render(FIF.ARROW_DOWN, painter, QRectF(-6, -6, 9.6, 9.6))
+        FIF.ARROW_DOWN.render(painter, QRectF(-6, -6, 9.6, 9.6))
 
     def enterEvent(self, e):
         self.setHover(True)
@@ -87,12 +88,12 @@ class ExpandButton(QAbstractButton):
 class ExpandSettingCard(QFrame):
     """ Expandable setting card """
 
-    def __init__(self, iconPath: str, title: str, content: str = None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
         super().__init__(parent=parent)
         self.isExpand = False
         self.expandButton = ExpandButton(self)
         self.view = QFrame(self)
-        self.card = SettingCard(iconPath, title, content, self)
+        self.card = SettingCard(icon, title, content, self)
         self.viewLayout = VBoxLayout(self.view)
 
         # expand animation
