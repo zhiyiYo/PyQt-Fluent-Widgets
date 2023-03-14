@@ -2,7 +2,7 @@
 from typing import Union
 
 from PyQt5.QtCore import QUrl, Qt, pyqtSignal
-from PyQt5.QtGui import QColor, QDesktopServices, QIcon
+from PyQt5.QtGui import QColor, QDesktopServices, QIcon, QPainter
 from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
                              QVBoxLayout, QPushButton)
 
@@ -277,7 +277,6 @@ class ColorPickerButton(QToolButton):
         super().__init__(parent=parent)
         self.title = title
         self.setFixedSize(96, 32)
-        self.setAutoFillBackground(True)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
         self.setColor(color)
@@ -292,17 +291,23 @@ class ColorPickerButton(QToolButton):
         w.colorChanged.connect(self.__onColorChanged)
         w.exec()
 
-    def __onColorChanged(self, color: QColor):
+    def __onColorChanged(self, color):
         """ color changed slot """
         self.setColor(color)
         self.colorChanged.emit(color)
 
-    def setColor(self, color: QColor):
+    def setColor(self, color):
         """ set color """
         self.color = QColor(color)
-        qss = getStyleSheet('setting_card')
-        qss = qss.replace('--color-picker-background', color.name())
-        self.setStyleSheet(qss)
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(self.color)
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 5, 5)
+        super().paintEvent(e)
 
 
 class ColorSettingCard(SettingCard):
