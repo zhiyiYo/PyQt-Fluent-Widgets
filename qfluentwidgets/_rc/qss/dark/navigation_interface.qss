@@ -1,6 +1,13 @@
-NavigationPanel {
-    background-color: rgba(32, 32, 32, --bgOpacity);
-    border: 1px solid rgba(57, 57, 57, --bgOpacity);
+NavigationPanel[menu=true] {
+    background-color: rgb(32, 32, 32);
+    border: 1px solid rgb(57, 57, 57);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+NavigationPanel[menu=false] {
+    background-color: transparent;
+    border: 1px solid transparent;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
 }

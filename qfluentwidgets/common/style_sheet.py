@@ -43,10 +43,7 @@ def setStyleSheet(widget, file, theme=Theme.AUTO):
     theme: Theme
         the theme of style sheet
     """
-    # register widget
-    if widget not in fluentWidgets:
-        fluentWidgets[widget] = file
-
+    fluentWidgets[widget] = file
     widget.setStyleSheet(getStyleSheet(file, theme))
 
 
