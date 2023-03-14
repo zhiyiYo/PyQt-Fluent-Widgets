@@ -4,7 +4,7 @@ from typing import Dict, Union
 
 from PyQt6.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve
 from PyQt6.QtGui import QResizeEvent, QIcon
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QFrame
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import NavigationButton, MenuButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
@@ -44,7 +44,6 @@ class NavigationPanel(QFrame):
         self.scrollLayout = NavigationItemLayout(self.scrollWidget)
         self.items = {}   # type: Dict[str, NavigationWidget]
 
-        self._bgOpacity = 0
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
 
         self.isMinimalEnabled = isMinimalEnabled
@@ -71,6 +70,7 @@ class NavigationPanel(QFrame):
         self.menuButton.clicked.connect(self.toggle)
         self.expandAni.finished.connect(self._onExpandAniFinished)
 
+        self.setProperty('menu', False)
         self.scrollWidget.setObjectName('scrollWidget')
         setStyleSheet(self, 'navigation_interface')
         self.__initLayout()
@@ -191,7 +191,9 @@ class NavigationPanel(QFrame):
         if self.window().width() > 1007 and not self.isMinimalEnabled:
             self.displayMode = NavigationDisplayMode.EXPAND
         else:
-            self.setStyleSheet(getStyleSheet('navigation_interface').replace('--bgOpacity', '1'))
+            self.setProperty('menu', True)
+            self.setStyle(QApplication.style())
+
             self.displayMode = NavigationDisplayMode.MENU
             if not self._parent.isWindow():
                 pos = self.parent().pos()
@@ -283,9 +285,12 @@ class NavigationPanel(QFrame):
         s = getStyleSheet('navigation_interface')
         if self.displayMode == NavigationDisplayMode.MINIMAL:
             self.hide()
-            self.setStyleSheet(s.replace('--bgOpacity', '0'))
+            self.setProperty('menu', False)
+            self.setStyle(QApplication.style())
         elif self.displayMode == NavigationDisplayMode.COMPACT:
-            self.setStyleSheet(s.replace('--bgOpacity', '0'))
+            self.setProperty('menu', False)
+            self.setStyle(QApplication.style())
+
             for item in self.items.values():
                 item.setCompacted(True)
 
