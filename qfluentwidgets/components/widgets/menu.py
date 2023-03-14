@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QListWidgetItem)
 
 from ...common.smooth_scroll import SmoothScroll
-from ...common.icon import FluentIconFactory as FIF
+from ...common.icon import FluentIcon as FIF
 from ...common.icon import MenuIconEngine
 from ...common.style_sheet import setStyleSheet
 from ...common.config import isDarkTheme
@@ -100,7 +100,7 @@ class SubMenuItemWidget(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
 
         # draw right arrow
-        FIF.render(FIF.CHEVRON_RIGHT, painter, QRectF(
+        FIF.CHEVRON_RIGHT.render(painter, QRectF(
             self.width()-10, self.height()/2-9/2, 9, 9))
 
 

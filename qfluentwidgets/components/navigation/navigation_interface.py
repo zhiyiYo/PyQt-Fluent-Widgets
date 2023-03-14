@@ -1,10 +1,13 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QEvent
-from PyQt5.QtGui import QResizeEvent
+from typing import Union
+
+from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtGui import QResizeEvent, QIcon
 from PyQt5.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationWidget, NavigationDisplayMode
 from ...common.style_sheet import setStyleSheet
+from ...common.icon import FluentIcon
 
 
 class NavigationInterface(QWidget):
@@ -30,7 +33,7 @@ class NavigationInterface(QWidget):
         self.setAttribute(Qt.WA_StyledBackground)
         setStyleSheet(self, 'navigation_interface')
 
-    def addItem(self, routeKey: str, iconPath: str, text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIcon], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
         """ add navigation item
 
         Parameters
@@ -38,8 +41,8 @@ class NavigationInterface(QWidget):
         routKey: str
             the unique name of item
 
-        iconPath: str
-            the svg icon path of navigation item
+        icon: str | QIcon | FluentIcon
+            the icon of navigation item
 
         text: str
             the text of navigation item
@@ -53,7 +56,7 @@ class NavigationInterface(QWidget):
         selectable: bool
             whether the item is selectable
         """
-        self.panel.addItem(routeKey, iconPath, text, onClick, selectable, position)
+        self.panel.addItem(routeKey, icon, text, onClick, selectable, position)
 
     def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
         """ add custom widget

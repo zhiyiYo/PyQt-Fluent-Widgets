@@ -1,11 +1,13 @@
 # coding:utf-8
+from typing import Union
+
 from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF
-from PyQt5.QtGui import QColor, QPainter, QPen
+from PyQt5.QtGui import QColor, QPainter, QPen, QIcon
 from PyQt5.QtWidgets import QWidget
 
 from ...common.config import isDarkTheme
 from ...common.icon import drawIcon
-from ...common.icon import FluentIconFactory as FIF
+from ...common.icon import FluentIcon as FIF
 
 
 class NavigationWidget(QWidget):
@@ -71,19 +73,19 @@ class NavigationWidget(QWidget):
 class NavigationButton(NavigationWidget):
     """ Navigation button """
 
-    def __init__(self, iconPath: str, text: str, isSelectable: bool, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
         """
         Parameters
         ----------
-        iconPath: str
-            the path of button icon
+        icon: str | QIcon | FluentIcon
+            the icon to be drawn
 
         text: str
             the text of button
         """
         super().__init__(isSelectable=isSelectable, parent=parent)
 
-        self.iconPath = iconPath
+        self.icon = icon
         self._text = text
 
         self.setStyleSheet(
@@ -108,13 +110,14 @@ class NavigationButton(NavigationWidget):
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
-            painter.setBrush(QColor(0, 153, 188))
+            color = QColor(41, 247, 255) if isDarkTheme() else QColor(0, 153, 188)
+            painter.setBrush(color)
             painter.drawRoundedRect(0, 10, 3, 16, 1.5, 1.5)
         elif self.isEnter:
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-        drawIcon(self.iconPath, painter, QRectF(11.5, 10, 16, 16))
+        drawIcon(self.icon, painter, QRectF(11.5, 10, 16, 16))
 
         # draw text
         if not self.isCompacted:
@@ -128,7 +131,7 @@ class MenuButton(NavigationButton):
     """ Menu button """
 
     def __init__(self, parent=None):
-        super().__init__(FIF.path(FIF.MENU), '', parent)
+        super().__init__(FIF.MENU, '', parent)
 
     def setCompacted(self, isCompacted: bool):
         self.setFixedSize(40, 36)

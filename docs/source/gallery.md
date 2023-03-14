@@ -18,6 +18,9 @@
 ### Win10 Style Message Dialog
 ![](./_static/gallery/dialog_with_mask.gif)
 
+### Navigation
+![](./_static/gallery/navigation.gif)
+
 ### Flow Layout
 ![](./_static/gallery/flow_layout.gif)
 

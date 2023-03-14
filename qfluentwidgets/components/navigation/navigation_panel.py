@@ -1,14 +1,15 @@
 # coding:utf-8
 from enum import Enum
-from typing import Dict
+from typing import Dict, Union
 
 from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve
-from PyQt5.QtGui import QResizeEvent
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
+from PyQt5.QtGui import QResizeEvent, QIcon
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame
 
 from .navigation_widget import NavigationButton, MenuButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
 from ...common.style_sheet import setStyleSheet, getStyleSheet
+from ...common.icon import FluentIcon
 
 
 class NavigationDisplayMode(Enum):
@@ -95,7 +96,7 @@ class NavigationPanel(QFrame):
 
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignTop)
 
-    def addItem(self, routeKey: str, iconPath: str, text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIcon], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
         """ add navigation item
 
         Parameters
@@ -103,8 +104,8 @@ class NavigationPanel(QFrame):
         routeKey: str
             the unique name of item
 
-        iconPath: str
-            the svg icon path of navigation item
+        icon: str | QIcon | FluentIcon
+            the icon of navigation item
 
         text: str
             the text of navigation item
@@ -121,7 +122,7 @@ class NavigationPanel(QFrame):
         if text in self.items:
             return
 
-        button = NavigationButton(iconPath, text, selectable, self)
+        button = NavigationButton(icon, text, selectable, self)
         self.addWidget(routeKey, button, onClick, position)
 
     def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
@@ -266,6 +267,9 @@ class NavigationPanel(QFrame):
             w = QResizeEvent(e).size().width()
             if w < 1008 and self.displayMode == NavigationDisplayMode.EXPAND:
                 self.collapse()
+            elif w >= 1008 and self.displayMode == NavigationDisplayMode.COMPACT and \
+                    not self.menuButton.isVisible():
+                self.expand()
 
         return super().eventFilter(obj, e)
 

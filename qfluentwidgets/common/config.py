@@ -2,11 +2,12 @@
 import json
 from enum import Enum
 from pathlib import Path
-from typing import Iterable, List, Union
+from typing import List
 
 import darkdetect
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import qApp
 
 from .exception_handler import exceptionHandler
 
@@ -249,9 +250,10 @@ class QConfig(QObject):
     """ Config of app """
 
     appRestartSig = pyqtSignal()
+    themeChanged = pyqtSignal(Theme)
 
     themeMode = OptionsConfigItem(
-        "MainWindow", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme), restart=True)
+        "MainWindow", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
 
     def __init__(self):
         super().__init__()
@@ -273,6 +275,9 @@ class QConfig(QObject):
 
         if item.restart:
             self._cfg.appRestartSig.emit()
+
+        if item is self._cfg.themeMode:
+            self._cfg.themeChanged.emit(value)
 
     def toDict(self, serialize=True):
         """ convert config items to `dict` """
@@ -353,6 +358,15 @@ class QConfig(QObject):
     def theme(self):
         """ get theme mode, can be `Theme.Light` or `Theme.Dark` """
         return self._cfg._theme
+
+    @theme.setter
+    def theme(self, t):
+        """ chaneg the theme without modifying the config file """
+        if t == Theme.AUTO:
+            t = darkdetect.theme()
+            t = Theme(t) if t else Theme.LIGHT
+
+        self._cfg._theme = t
 
 
 qconfig = QConfig()

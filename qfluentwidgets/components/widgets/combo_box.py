@@ -4,8 +4,8 @@ from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QAction, QPushButton, QWidget
 
 from .menu import RoundMenu
-from ...common.config import qconfig, isDarkTheme
-from ...common.icon import FluentIconFactory as FIF
+from ...common.config import isDarkTheme
+from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import setStyleSheet
 
 
@@ -155,7 +155,7 @@ class ComboBox(QPushButton):
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        FIF.render(FIF.ARROW_DOWN, painter, QRectF(
+        FIF.ARROW_DOWN.render(painter, QRectF(
             self.width()-22, self.height()/2-6, 10, 10))
 
 

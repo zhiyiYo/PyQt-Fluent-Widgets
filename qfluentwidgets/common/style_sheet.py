@@ -1,6 +1,13 @@
 # coding:utf-8
-from .config import qconfig, Theme
+import weakref
+
+import darkdetect
 from PyQt5.QtCore import QFile
+
+from .config import qconfig, Theme
+
+
+fluentWidgets = weakref.WeakKeyDictionary()
 
 
 def getStyleSheet(file, theme=Theme.AUTO):
@@ -36,4 +43,20 @@ def setStyleSheet(widget, file, theme=Theme.AUTO):
     theme: Theme
         the theme of style sheet
     """
+    # register widget
+    if widget not in fluentWidgets:
+        fluentWidgets[widget] = file
+
     widget.setStyleSheet(getStyleSheet(file, theme))
+
+
+def setTheme(theme: Theme):
+    """ set the theme of application """
+    if theme == Theme.AUTO:
+        theme = darkdetect.theme()
+        qconfig.theme = Theme(theme) if theme else Theme.LIGHT
+    else:
+        qconfig.theme = theme
+
+    for widget, file in fluentWidgets.items():
+        setStyleSheet(widget, file, qconfig.theme)

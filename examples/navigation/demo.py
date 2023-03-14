@@ -4,9 +4,9 @@ from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
-from qfluentwidgets import NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox
-from qfluentwidgets import FluentIconFactory as FIF
-
+from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
+                            isDarkTheme, setTheme, Theme)
+from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
 
@@ -40,14 +40,7 @@ class AvatarWidget(NavigationWidget):
             painter.setOpacity(0.7)
 
         # draw background
-        if self.isSelected:
-            painter.setBrush(QColor(0, 0, 0, 6 if self.isEnter else 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
-
-            # draw indicator
-            painter.setBrush(QColor(0, 153, 188))
-            painter.drawRoundedRect(0, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter:
+        if self.isEnter:
             painter.setBrush(QColor(0, 0, 0, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
@@ -58,7 +51,7 @@ class AvatarWidget(NavigationWidget):
         painter.translate(-8, -6)
 
         if not self.isCompacted:
-            painter.setPen(Qt.black)
+            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
             font = QFont('Segoe UI')
             font.setPixelSize(14)
             painter.setFont(font)
@@ -71,8 +64,11 @@ class Window(FramelessWindow):
         super().__init__()
         self.setTitleBar(StandardTitleBar(self))
 
+        # use dark theme mode
+        setTheme(Theme.DARK)
+
         self.hBoxLayout = QHBoxLayout(self)
-        self.navigationInterface = NavigationInterface(self, True)
+        self.navigationInterface = NavigationInterface(self, showMenuButton=True)
         self.stackWidget = QStackedWidget(self)
 
         # create sub interface
@@ -89,28 +85,36 @@ class Window(FramelessWindow):
         self.stackWidget.addWidget(self.settingInterface)
 
         # initialize layout
+        self.initLayout()
+
+        # add items to navigation interface
+        self.initNavigation()
+
+        self.initWindow()
+
+    def initLayout(self):
         self.hBoxLayout.setSpacing(0)
         self.hBoxLayout.setContentsMargins(0, self.titleBar.height(), 0, 0)
         self.hBoxLayout.addWidget(self.navigationInterface)
         self.hBoxLayout.addWidget(self.stackWidget)
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
-        # add items to navigation interface
+    def initNavigation(self):
         self.navigationInterface.addItem(
             routeKey=self.searchInterface.objectName(),
-            iconPath=FIF.path(FIF.SEARCH),
+            icon=FIF.SEARCH,
             text='Search',
             onClick=lambda: self.switchTo(self.searchInterface)
         )
         self.navigationInterface.addItem(
             routeKey=self.musicInterface.objectName(),
-            iconPath=FIF.path(FIF.MUSIC),
+            icon=FIF.MUSIC,
             text='Music library',
             onClick=lambda: self.switchTo(self.musicInterface)
         )
         self.navigationInterface.addItem(
             routeKey=self.navigationInterface.objectName(),
-            iconPath=FIF.path(FIF.VIDEO),
+            icon=FIF.VIDEO,
             text='Video library',
             onClick=lambda: self.switchTo(self.videoInterface)
         )
@@ -120,7 +124,7 @@ class Window(FramelessWindow):
         # add navigation items to scroll area
         self.navigationInterface.addItem(
             routeKey='folder',
-            iconPath=FIF.path(FIF.FOLDER),
+            icon=FIF.FOLDER,
             text='Folder library',
             onClick=lambda: self.switchTo(self.folderInterface),
             position=NavigationItemPostion.SCROLL
@@ -128,7 +132,7 @@ class Window(FramelessWindow):
         # for i in range(1, 21):
         #     self.navigationInterface.addItem(
         #         f'folder{i}',
-        #         FIF.path(FIF.FOLDER),
+        #         FIF.FOLDER,
         #         f'Folder {i}',
         #         lambda: print('Folder clicked'),
         #         position=NavigationItemPostion.SCROLL
@@ -144,7 +148,7 @@ class Window(FramelessWindow):
 
         self.navigationInterface.addItem(
             routeKey='setting',
-            iconPath=FIF.path(FIF.SETTING),
+            icon=FIF.SETTING,
             text='Settings',
             onClick=lambda: self.switchTo(self.settingInterface),
             position=NavigationItemPostion.BOTTOM
@@ -153,16 +157,22 @@ class Window(FramelessWindow):
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.stackWidget.setCurrentIndex(1)
 
-        with open('resource/demo.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
-
+    def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon('resource/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+
+        self.setQss()
+
+    def setQss(self):
+        color = 'dark' if isDarkTheme() else 'light'
+        with open(f'resource/{color}/demo.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
 
     def switchTo(self, widget):
         self.stackWidget.setCurrentWidget(widget)
