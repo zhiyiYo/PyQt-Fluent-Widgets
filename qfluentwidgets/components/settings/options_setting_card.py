@@ -5,7 +5,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QButtonGroup, QLabel, QRadioButton
 
 from ...common.config import OptionsConfigItem, qconfig
-from ...common.icon import FluentIcon
+from ...common.icon import FluentIconBase
 from .expand_setting_card import ExpandSettingCard
 
 
@@ -14,14 +14,14 @@ class OptionsSettingCard(ExpandSettingCard):
 
     optionChanged = pyqtSignal(OptionsConfigItem)
 
-    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, texts=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
         configItem: OptionsConfigItem
             options config item
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str

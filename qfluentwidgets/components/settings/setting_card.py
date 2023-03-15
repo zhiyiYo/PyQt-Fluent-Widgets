@@ -13,17 +13,17 @@ from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ...common.style_sheet import setStyleSheet
 from ...common.config import qconfig, isDarkTheme
-from ...common.icon import FluentIcon
+from ...common.icon import FluentIconBase
 
 
 class SettingCard(QFrame):
     """ Setting card """
 
-    def __init__(self, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
         Parameters
         ----------
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -84,11 +84,11 @@ class SwitchSettingCard(SettingCard):
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, icon: Union[str, QIcon, FluentIcon], title, content=None, configItem=None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, content=None, configItem=None, parent=None):
         """
         Parameters
         ----------
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -142,14 +142,14 @@ class RangeSettingCard(SettingCard):
 
     valueChanged = pyqtSignal(int)
 
-    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
         Parameters
         ----------
         configItem: RangeConfigItem
             configuration item operated by the card
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -193,14 +193,14 @@ class PushSettingCard(SettingCard):
 
     clicked = pyqtSignal()
 
-    def __init__(self, text, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
+    def __init__(self, text, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
         Parameters
         ----------
         text: str
             the text of push button
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -230,7 +230,7 @@ class PrimaryPushSettingCard(PushSettingCard):
 class HyperlinkCard(SettingCard):
     """ Hyperlink card """
 
-    def __init__(self, url, text, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
+    def __init__(self, url, text, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
         Parameters
         ----------
@@ -240,7 +240,7 @@ class HyperlinkCard(SettingCard):
         text: str
             text of url
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -315,14 +315,14 @@ class ColorSettingCard(SettingCard):
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
         Parameters
         ----------
         configItem: RangeConfigItem
             configuration item operated by the card
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str
@@ -350,14 +350,14 @@ class ColorSettingCard(SettingCard):
 class ComboBoxSettingCard(SettingCard):
     """ Setting card with a combo box """
 
-    def __init__(self, configItem, icon: Union[str, QIcon, FluentIcon], title, content=None, texts=None, parent=None):
+    def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
         configItem: OptionsConfigItem
             configuration item operated by the card
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         title: str

@@ -1,17 +1,16 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtGui import QIcon, QPainter
 from PyQt6.QtWidgets import QWidget
 
-from ...common.icon import FluentIcon, drawIcon
+from ...common.icon import FluentIconBase, drawIcon
 
 
 class IconWidget(QWidget):
     """ Icon widget """
 
-    def __init__(self, icon: Union[str, QIcon, FluentIcon], parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
         super().__init__(parent=parent)
         self.icon = icon
 

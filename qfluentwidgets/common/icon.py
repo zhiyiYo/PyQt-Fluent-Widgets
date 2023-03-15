@@ -70,12 +70,12 @@ def drawSvgIcon(iconPath, painter, rect):
     renderer.render(painter, QRectF(rect))
 
 
-def drawIcon(icon, painter:QPainter, rect):
+def drawIcon(icon, painter, rect):
     """ draw icon
 
     Parameters
     ----------
-    icon: `str` | `QIcon` | `FluentIcon`
+    icon: str | QIcon | FluentIconBaseBase
         the icon to be drawn
 
     painter: QPainter
@@ -84,7 +84,7 @@ def drawIcon(icon, painter:QPainter, rect):
     rect: QRect | QRectF
         the rect to render icon
     """
-    if isinstance(icon, FluentIcon):
+    if isinstance(icon, FluentIconBase):
         icon.render(painter, rect)
     else:
         icon = QIcon(icon)
@@ -92,7 +92,57 @@ def drawIcon(icon, painter:QPainter, rect):
         painter.drawPixmap(rect, image)
 
 
-class FluentIcon(Enum):
+class FluentIconBase:
+    """ Fluent icon base class """
+
+    def path(self, theme=Theme.AUTO):
+        """ get the path of icon
+
+        Parameters
+        ----------
+        theme: Theme
+            the theme of icon
+            * `Theme.Light`: black icon
+            * `Theme.DARK`: white icon
+            * `Theme.AUTO`: icon color depends on `config.theme`
+        """
+        raise NotImplementedError
+
+    def icon(self, theme=Theme.AUTO):
+        """ create an fluent icon
+
+        Parameters
+        ----------
+        theme: Theme
+            the theme of icon
+            * `Theme.Light`: black icon
+            * `Theme.DARK`: white icon
+            * `Theme.AUTO`: icon color depends on `config.theme`
+        """
+        return QIcon(self.path(theme))
+
+    def render(self, painter, rect, theme=Theme.AUTO):
+        """ draw svg icon
+
+        Parameters
+        ----------
+        painter: QPainter
+            painter
+
+        rect: QRect | QRectF
+            the rect to render icon
+
+        theme: Theme
+            the theme of icon
+            * `Theme.Light`: black icon
+            * `Theme.DARK`: white icon
+            * `Theme.AUTO`: icon color depends on `config.theme`
+        """
+        drawSvgIcon(self.path(theme), painter, rect)
+
+
+
+class FluentIcon(FluentIconBase, Enum):
     """ Fluent icon """
 
     WEB = "Web"
@@ -134,16 +184,6 @@ class FluentIcon(Enum):
     FLUORESCENT_PEN = "FluorescentPen"
 
     def path(self, theme=Theme.AUTO):
-        """ get the path of icon
-
-        Parameters
-        ----------
-        theme: Theme
-            the theme of icon
-            * `Theme.Light`: black icon
-            * `Theme.DARK`: white icon
-            * `Theme.AUTO`: icon color depends on `config.theme`
-        """
         if theme == Theme.AUTO:
             c = getIconColor()
         else:
@@ -151,34 +191,3 @@ class FluentIcon(Enum):
 
         return f':/qfluentwidgets/images/icons/{self.value}_{c}.svg'
 
-    def icon(self, theme=Theme.AUTO):
-        """ create an fluent icon
-
-        Parameters
-        ----------
-        theme: Theme
-            the theme of icon
-            * `Theme.Light`: black icon
-            * `Theme.DARK`: white icon
-            * `Theme.AUTO`: icon color depends on `config.theme`
-        """
-        return QIcon(self.path(theme))
-
-    def render(self, painter, rect, theme=Theme.AUTO):
-        """ draw svg icon
-
-        Parameters
-        ----------
-        painter: QPainter
-            painter
-
-        rect: QRect | QRectF
-            the rect to render icon
-
-        theme: Theme
-            the theme of icon
-            * `Theme.Light`: black icon
-            * `Theme.DARK`: white icon
-            * `Theme.AUTO`: icon color depends on `config.theme`
-        """
-        drawSvgIcon(self.path(theme), painter, rect)
