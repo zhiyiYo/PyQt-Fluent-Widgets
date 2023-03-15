@@ -48,5 +48,6 @@ This document will show you all the features of PyQt-Fluent-Widgets and the best
 
    quick-start
    settings
+   icon
    gallery
    see-also
