@@ -11,8 +11,8 @@ from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
-from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ...common.config import qconfig
+from ...common.style_sheet import setStyleSheet
+from ...common.config import qconfig, isDarkTheme
 from ...common.icon import FluentIcon
 
 
@@ -304,10 +304,10 @@ class ColorPickerButton(QToolButton):
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.PenStyle.NoPen)
+        pc = QColor(255, 255, 255, 10) if isDarkTheme() else QColor(234, 234, 234)
+        painter.setPen(pc)
         painter.setBrush(self.color)
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 5, 5)
-        super().paintEvent(e)
 
 
 class ColorSettingCard(SettingCard):

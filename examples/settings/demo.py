@@ -57,6 +57,7 @@ if __name__ == '__main__':
 
     # create application
     app = QApplication(sys.argv)
+    app.setAttribute(Qt.AA_DontCreateNativeWidgetSiblings)
 
     # internationalization
     translator = QTranslator()

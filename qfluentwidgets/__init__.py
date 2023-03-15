@@ -6,11 +6,13 @@ A fluent design widgets library based on PyQt5.
 Documentation is available in the docstrings and
 online at https://pyqt-fluent-widgets.readthedocs.io.
 
+Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples.
+
 :copyright: (c) 2023 by zhiyiYo.
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = "0.2.8"
+__version__ = "0.3.0"
 
 from .components import *
 from .common import *
