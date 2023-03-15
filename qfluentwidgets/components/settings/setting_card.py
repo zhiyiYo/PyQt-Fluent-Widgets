@@ -11,7 +11,7 @@ from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
-from ...common.style_sheet import setStyleSheet, getStyleSheet
+from ...common.style_sheet import setStyleSheet
 from ...common.config import qconfig, isDarkTheme
 from ...common.icon import FluentIcon
 
