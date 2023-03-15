@@ -77,7 +77,7 @@ class NavigationButton(NavigationWidget):
         """
         Parameters
         ----------
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon to be drawn
 
         text: str
