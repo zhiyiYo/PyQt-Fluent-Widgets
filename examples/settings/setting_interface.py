@@ -3,7 +3,7 @@ from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ComboBoxSettingCard, ExpandLayout, setStyleSheet, ToastToolTip, setTheme)
+                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, setTheme)
 from qfluentwidgets import FluentIcon as FIF
 from PyQt6.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt6.QtGui import QDesktopServices
@@ -206,9 +206,7 @@ class SettingInterface(ScrollArea):
         self.setWidgetResizable(True)
 
         # initialize style sheet
-        self.scrollWidget.setObjectName('scrollWidget')
-        self.settingLabel.setObjectName('settingLabel')
-        setStyleSheet(self, 'setting_interface')
+        self.__setQss(cfg.theme)
 
         # initialize layout
         self.__initLayout()
@@ -255,6 +253,15 @@ class SettingInterface(ScrollArea):
         self.expandLayout.addWidget(self.updateSoftwareGroup)
         self.expandLayout.addWidget(self.aboutGroup)
 
+    def __setQss(self, theme: Theme):
+        """ set style sheet """
+        self.scrollWidget.setObjectName('scrollWidget')
+        self.settingLabel.setObjectName('settingLabel')
+
+        theme = 'dark' if theme == Theme.DARK else 'light'
+        with open(f'resource/qss/{theme}/setting_interface.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
+
     def __showRestartTooltip(self):
         """ show restart tooltip """
         ToastToolTip.warn(
@@ -280,10 +287,18 @@ class SettingInterface(ScrollArea):
         cfg.set(cfg.downloadFolder, folder)
         self.downloadFolderCard.setContent(folder)
 
+    def __onThemeChanged(self, theme: Theme):
+        """ theme changed slot """
+        # change the theme of qfluentwidgets
+        setTheme(theme)
+
+        # chang the theme of setting interface
+        self.__setQss(theme)
+
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.appRestartSig.connect(self.__showRestartTooltip)
-        cfg.themeChanged.connect(setTheme)
+        cfg.themeChanged.connect(self.__onThemeChanged)
 
         # music in the pc
         self.musicFolderCard.folderChanged.connect(

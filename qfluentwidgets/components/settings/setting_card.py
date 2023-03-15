@@ -12,7 +12,7 @@ from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ...common.style_sheet import setStyleSheet
-from ...common.config import qconfig
+from ...common.config import qconfig, isDarkTheme
 from ...common.icon import FluentIcon
 
 
@@ -277,7 +277,6 @@ class ColorPickerButton(QToolButton):
         super().__init__(parent=parent)
         self.title = title
         self.setFixedSize(96, 32)
-        self.setAutoFillBackground(True)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         self.setColor(color)
@@ -305,10 +304,10 @@ class ColorPickerButton(QToolButton):
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
-        painter.setPen(Qt.PenStyle.NoPen)
+        pc = QColor(255, 255, 255, 10) if isDarkTheme() else QColor(234, 234, 234)
+        painter.setPen(pc)
         painter.setBrush(self.color)
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 5, 5)
-        super().paintEvent(e)
 
 
 class ColorSettingCard(SettingCard):
