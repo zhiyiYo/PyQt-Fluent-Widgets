@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 from .navigation_widget import NavigationButton, MenuButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ...common.icon import FluentIcon
+from ...common.icon import FluentIconBase
 
 
 class NavigationDisplayMode(Enum):
@@ -96,7 +96,7 @@ class NavigationPanel(QFrame):
 
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignTop)
 
-    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIcon], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
         """ add navigation item
 
         Parameters
@@ -104,7 +104,7 @@ class NavigationPanel(QFrame):
         routeKey: str
             the unique name of item
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon of navigation item
 
         text: str
@@ -289,7 +289,7 @@ class NavigationPanel(QFrame):
         elif self.displayMode == NavigationDisplayMode.COMPACT:
             self.setProperty('menu', False)
             self.setStyle(QApplication.style())
-            
+
             for item in self.items.values():
                 item.setCompacted(True)
 

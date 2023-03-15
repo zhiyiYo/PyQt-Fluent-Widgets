@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationWidget, NavigationDisplayMode
 from ...common.style_sheet import setStyleSheet
-from ...common.icon import FluentIcon
+from ...common.icon import FluentIconBase
 
 
 class NavigationInterface(QWidget):
@@ -33,7 +33,7 @@ class NavigationInterface(QWidget):
         self.setAttribute(Qt.WA_StyledBackground)
         setStyleSheet(self, 'navigation_interface')
 
-    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIcon], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
         """ add navigation item
 
         Parameters
@@ -41,7 +41,7 @@ class NavigationInterface(QWidget):
         routKey: str
             the unique name of item
 
-        icon: str | QIcon | FluentIcon
+        icon: str | QIcon | FluentIconBase
             the icon of navigation item
 
         text: str
