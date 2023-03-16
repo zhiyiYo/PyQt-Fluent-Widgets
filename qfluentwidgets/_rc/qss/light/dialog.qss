@@ -22,7 +22,9 @@ MessageBox #buttonGroup {
 }
 
 QLabel {
+    color: black;
     background-color: transparent;
+    border: none;
 }
 
 QLabel#titleLabel {
@@ -43,6 +45,7 @@ QLabel#windowTitleLabel {
 }
 
 QPushButton {
+    color: black;
     background: rgb(251, 251, 251);
     border: 1px solid rgb(229, 229, 229);
     border-bottom: 1px solid rgb(204, 204, 204);

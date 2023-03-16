@@ -8,6 +8,8 @@ QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     padding: 0;
+    border: none;
+    background-color: transparent;
 }
 
 QLabel#contentLabel {
@@ -76,6 +78,8 @@ SwitchButton {
 SwitchButton>QLabel {
     color: white;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
+    background-color: transparent;
+    border: none;
 }
 
 

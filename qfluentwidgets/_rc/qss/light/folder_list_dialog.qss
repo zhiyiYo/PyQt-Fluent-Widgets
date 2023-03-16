@@ -9,7 +9,9 @@ QWidget#windowMask {
 }
 
 QLabel {
+    color: black;
     border: none;
+    background-color: transparent;
 }
 
 QLabel#titleLabel {
@@ -21,6 +23,7 @@ QLabel#contentLabel {
 }
 
 QPushButton#completeButton {
+    color: black;
     background-color: rgb(204, 204, 204);
     padding: 9px 51px 9px 51px;
     font: 15px 'Segoe UI', 'Microsoft YaHei';

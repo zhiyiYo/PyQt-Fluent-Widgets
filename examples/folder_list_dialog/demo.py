@@ -14,7 +14,6 @@ class Window(QWidget):
         self.btn = QPushButton('Click Me', parent=self)
         self.btn.move(312, 300)
         self.btn.clicked.connect(self.showDialog)
-        self.btn.setObjectName('btn')
         with open('resource/demo.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
