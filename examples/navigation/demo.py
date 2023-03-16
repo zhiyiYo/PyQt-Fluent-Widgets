@@ -113,7 +113,7 @@ class Window(FramelessWindow):
             onClick=lambda: self.switchTo(self.musicInterface)
         )
         self.navigationInterface.addItem(
-            routeKey=self.navigationInterface.objectName(),
+            routeKey=self.videoInterface.objectName(),
             icon=FIF.VIDEO,
             text='Video library',
             onClick=lambda: self.switchTo(self.videoInterface)
@@ -123,7 +123,7 @@ class Window(FramelessWindow):
 
         # add navigation items to scroll area
         self.navigationInterface.addItem(
-            routeKey='folder',
+            routeKey=self.folderInterface.objectName(),
             icon=FIF.FOLDER,
             text='Folder library',
             onClick=lambda: self.switchTo(self.folderInterface),
@@ -147,7 +147,7 @@ class Window(FramelessWindow):
         )
 
         self.navigationInterface.addItem(
-            routeKey='setting',
+            routeKey=self.settingInterface.objectName(),
             icon=FIF.SETTING,
             text='Settings',
             onClick=lambda: self.switchTo(self.settingInterface),
