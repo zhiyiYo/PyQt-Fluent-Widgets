@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt6.QtCore import QPropertyAnimation, QTimer, Qt
-from PyQt6.QtGui import QColor
+from PyQt6.QtCore import QPropertyAnimation, QEvent, QObject, QPoint, QTimer, Qt
+from PyQt6.QtGui import QColor, QCursor
 from PyQt6.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
-                             QHBoxLayout, QLabel)
+                             QHBoxLayout, QLabel, QWidget)
 
 from ...common import setStyleSheet
 
@@ -41,7 +41,6 @@ class ToolTip(QFrame):
         self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowFlags(Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint)
-        self.setDarkTheme(False)
         self.__setQss()
 
     def text(self):
@@ -69,11 +68,6 @@ class ToolTip(QFrame):
         self.label.adjustSize()
         self.adjustSize()
 
-    def setDarkTheme(self, dark=False):
-        """ set dark theme """
-        self.setProperty('dark', dark)
-        self.setStyle(QApplication.style())
-
     def showEvent(self, e):
         self.timer.stop()
         self.timer.start(self.__duration)
@@ -98,8 +92,68 @@ class ToolTip(QFrame):
         y = pos.y() - self.height()
 
         # adjust postion to prevent tooltips from appearing outside the screen
-        desk = QApplication.primaryScreen().size()
-        x = min(max(0, x), desk.width() - self.width() - 4)
-        y = min(max(0, y), desk.height() - self.height() - 4)
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        x = min(max(0, x), rect.width() - self.width() - 4)
+        y = min(max(0, y), rect.height() - self.height() - 4)
 
         self.move(x, y)
+
+
+class ToolTipFilter(QObject):
+    """ Tool button with a tool tip """
+
+    def __init__(self, parent: QWidget, showDelay=300):
+        """
+        Parameters
+        ----------
+        parent: QWidget
+            the widget to install tool tip
+
+        showDelay: int
+            show tool tip after how long the mouse hovers in milliseconds
+        """
+        super().__init__(parent=parent)
+        self.isEnter = False
+        self._tooltip = None
+        self._tooltipDelay = showDelay
+        self.timer = QTimer(self)
+
+    def eventFilter(self, obj: QObject, e: QEvent) -> bool:
+        if e.type() == QEvent.Type.ToolTip:
+            return True
+        elif e.type() in [QEvent.Type.Hide, QEvent.Type.Leave]:
+            self.hideToolTip()
+        elif e.type() == QEvent.Type.Enter:
+            self.isEnter = True
+            parent = self.parent()  # type: QWidget
+            if parent.isWidgetType() and parent.toolTip():
+                if self._tooltip is None:
+                    self._tooltip = ToolTip(parent.toolTip(), parent.window())
+
+                t = parent.toolTipDuration() if parent.toolTipDuration() > 0 else 1000
+                self._tooltip.setDuration(t)
+
+                # show the tool tip after delay
+                QTimer.singleShot(self._tooltipDelay, self.showToolTip)
+
+        return super().eventFilter(obj, e)
+
+    def hideToolTip(self):
+        """ hide tool tip """
+        self.isEnter = False
+        if self._tooltip:
+            self._tooltip.hide()
+
+    def showToolTip(self):
+        """ show tool tip """
+        if not self.isEnter:
+            return
+
+        parent = self.parent()  # type: QWidget
+        self._tooltip.setText(parent.toolTip())
+        self._tooltip.adjustPos(parent.mapToGlobal(QPoint()), parent.size())
+        self._tooltip.show()
+
+    def setToolTipDelay(self, delay: int):
+        """ set the delay of tool tip """
+        self._tooltipDelay = delay

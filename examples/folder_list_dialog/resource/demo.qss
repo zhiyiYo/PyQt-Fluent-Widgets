@@ -2,7 +2,7 @@ QWidget {
     background-color: white;
 }
 
-QPushButton#btn {
+QPushButton {
     background-color: rgb(204, 204, 204);
     padding: 8px 51px 8px 51px;
     font: 15px 'Microsoft YaHei';
@@ -10,15 +10,15 @@ QPushButton#btn {
     border-radius: 4px;
 }
 
-QPushButton#btn:pressed:hover {
+QPushButton:pressed:hover {
     background-color: rgb(153, 153, 153);
 }
 
-QPushButton#btn:hover {
+QPushButton:hover {
     background-color: rgb(230, 230, 230);
 }
 
-QPushButton#btn:disabled {
+QPushButton:disabled {
     background-color: rgb(204, 204, 204);
     color: rgb(122, 122, 122);
 }

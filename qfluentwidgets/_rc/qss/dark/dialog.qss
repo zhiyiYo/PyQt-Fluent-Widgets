@@ -24,6 +24,7 @@ MessageBox #buttonGroup {
 QLabel {
     background-color: transparent;
     color: white;
+    border: none;
 }
 
 QLabel#titleLabel {

@@ -6,6 +6,7 @@ ExpandSettingCard {
 
 #view {
     background: transparent;
+    border: none;
 }
 
 ExpandSettingCard[isExpand=false]>SettingCard {
@@ -28,6 +29,7 @@ QLabel {
     color: black;
     padding: 0;
     background: transparent;
+    border: none;
 }
 
 QLabel#contentLabel {
@@ -87,6 +89,7 @@ QRadioButton {
     max-height: 24px;
     background-color: transparent;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
 }
 
 QRadioButton::indicator {

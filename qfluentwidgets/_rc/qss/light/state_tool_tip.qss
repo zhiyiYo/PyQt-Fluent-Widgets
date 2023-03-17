@@ -5,14 +5,17 @@ ToastToolTip {
     border-radius: 7px;
 }
 
-QLabel#titleLabel {
+QLabel {
     color: white;
     background-color: transparent;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font-family: 'Segoe UI', 'Microsoft YaHei';
+    border: none;
+}
+
+QLabel#titleLabel {
+    font-size: 14px;
 }
 
 QLabel#contentLabel {
-    color: white;
-    background-color: transparent;
-    font: 13px 'Segoe UI', 'Microsoft YaHei';
+    font-size: 13px;
 }
