@@ -111,6 +111,7 @@ class Dialog(FramelessDialog, Ui_MessageBox):
         self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignTop)
         self.windowTitleLabel.setObjectName('windowTitleLabel')
         setStyleSheet(self, 'dialog')
+        self.setFixedSize(self.size())
 
 
 class MessageBox(MaskDialogBase, Ui_MessageBox):

@@ -11,6 +11,7 @@ QWidget#windowMask {
 QLabel {
     border: none;
     color: white;
+    background-color: transparent;
 }
 
 QLabel#titleLabel {

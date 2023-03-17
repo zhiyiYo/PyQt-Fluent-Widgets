@@ -2,7 +2,7 @@ ColorDialog, QScrollArea, QWidget {
     background-color: transparent;
 }
 
-QScrollArea{
+QScrollArea {
     border: 1px solid transparent;
     border-radius: 8px;
     background-color: transparent;
@@ -28,6 +28,7 @@ QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: black;
     background-color: transparent;
+    border: none;
 }
 
 #titleLabel {
@@ -44,6 +45,7 @@ QLabel {
 }
 
 QPushButton {
+    color: black;
     background: rgb(251, 251, 251);
     border: 1px solid rgb(229, 229, 229);
     border-bottom: 1px solid rgb(204, 204, 204);
@@ -121,6 +123,7 @@ QSlider::handle:horizontal:disabled {
 
 /* Line Edit */
 QLineEdit {
+    color: black;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 13);
     border-bottom: 1px solid rgba(0, 0, 0, 100);

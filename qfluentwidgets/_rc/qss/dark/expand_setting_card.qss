@@ -6,6 +6,7 @@ ExpandSettingCard {
 
 #view {
     background: transparent;
+    border: none;
 }
 
 ExpandSettingCard[isExpand=false]>SettingCard {
@@ -28,6 +29,7 @@ QLabel {
     color: white;
     padding: 0;
     background: transparent;
+    border: none;
 }
 
 QLabel#contentLabel {

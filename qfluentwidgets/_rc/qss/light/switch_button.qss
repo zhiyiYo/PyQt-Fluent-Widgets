@@ -11,6 +11,7 @@ SwitchButton>QLabel {
     color: black;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     background-color: transparent;
+    border: none;
 }
 
 

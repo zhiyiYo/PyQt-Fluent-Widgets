@@ -2,13 +2,9 @@ SettingCardGroup {
     background-color: transparent;
 }
 
-SettingCardGroup>QLabel,
-HyperlinkGroup>QLabel {
+SettingCardGroup>QLabel {
     background-color: transparent;
     font: 20px 'Segoe UI', 'Microsoft YaHei';
     color: black;
-}
-
-HyperlinkGroup>QLabel {
-    padding-left: 10px;
+    border: none;
 }
