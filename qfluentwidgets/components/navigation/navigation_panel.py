@@ -251,12 +251,13 @@ class NavigationPanel(QFrame):
             self.collapse()
 
     def resizeEvent(self, e: QResizeEvent):
-        if e.oldSize().width() == self.width():
+        if e.oldSize().height() == self.height():
             return
 
         th = self.topLayout.minimumSize().height()
         bh = self.bottomLayout.minimumSize().height()
-        self.scrollArea.setFixedHeight(self.height()-th-bh-20)
+        h = self.height()-th-bh-20
+        self.scrollArea.setFixedHeight(max(h, 36))
 
     def eventFilter(self, obj, e: QEvent):
         if obj is not self.window():
@@ -303,6 +304,14 @@ class NavigationPanel(QFrame):
         """ set whether the navigation widget is compacted """
         for item in self.findChildren(NavigationWidget):
             item.setCompacted(isCompacted)
+
+    def layoutMinHeight(self):
+        th = self.topLayout.minimumSize().height()
+        bh = self.bottomLayout.minimumSize().height()
+        sh = sum(w.height() for w in self.findChildren(NavigationSeparator))
+        spacing = self.topLayout.count() * self.topLayout.spacing()
+        spacing += self.bottomLayout.count() * self.bottomLayout.spacing()
+        return 36 + th + bh + sh + spacing
 
 
 class NavigationItemLayout(QVBoxLayout):
