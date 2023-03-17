@@ -57,6 +57,7 @@ class NavigationInterface(QWidget):
             whether the item is selectable
         """
         self.panel.addItem(routeKey, icon, text, onClick, selectable, position)
+        self.setMinimumHeight(self.panel.layoutMinHeight())
 
     def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
         """ add custom widget
@@ -76,6 +77,7 @@ class NavigationInterface(QWidget):
             where the button is added
         """
         self.panel.addWidget(routeKey, widget, onClick, position)
+        self.setMinimumHeight(self.panel.layoutMinHeight())
 
     def addSeparator(self, position=NavigationItemPostion.TOP):
         """ add separator
@@ -86,6 +88,7 @@ class NavigationInterface(QWidget):
             where to add the separator
         """
         self.panel.addSeparator(position)
+        self.setMinimumHeight(self.panel.layoutMinHeight())
 
     def setCurrentItem(self, name: str):
         """ set current selected item

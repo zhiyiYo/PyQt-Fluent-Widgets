@@ -41,7 +41,8 @@ class AvatarWidget(NavigationWidget):
 
         # draw background
         if self.isEnter:
-            painter.setBrush(QColor(0, 0, 0, 10))
+            c = 255 if isDarkTheme() else 0
+            painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
         # draw avatar
