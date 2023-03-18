@@ -26,6 +26,9 @@ class Ui_MessageBox(QObject):
         self.buttonGroup = QFrame(parent)
         self.yesButton = QPushButton(self.tr('OK'), self.buttonGroup)
         self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         self.vBoxLayout = QVBoxLayout(parent)
         self.textLayout = QVBoxLayout()
@@ -125,10 +128,6 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent=parent)
         self._setUpUi(title, content, self.widget)
-
-        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        if sys.platform == 'darwin':
-            self.buttonLayout.setSpacing(24)
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
