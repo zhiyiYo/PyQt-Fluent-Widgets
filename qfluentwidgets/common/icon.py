@@ -88,6 +88,7 @@ def drawIcon(icon, painter, rect):
         icon.render(painter, rect)
     else:
         icon = QIcon(icon)
+        rect = QRectF(rect).toRect()
         image = icon.pixmap(rect.width(), rect.height())
         painter.drawPixmap(rect, image)
 
