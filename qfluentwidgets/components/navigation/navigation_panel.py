@@ -2,14 +2,15 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve
+from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, Signal, QObject
 from PySide6.QtGui import QResizeEvent, QIcon
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
-from .navigation_widget import NavigationButton, MenuButton, NavigationWidget, NavigationSeparator
+from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
-from ...common.style_sheet import setStyleSheet, getStyleSheet
+from ...common.style_sheet import setStyleSheet
 from ...common.icon import FluentIconBase
+from ...common.icon import FluentIcon as FIF
 
 
 class NavigationDisplayMode(Enum):
@@ -30,19 +31,24 @@ class NavigationItemPostion(Enum):
 class NavigationPanel(QFrame):
     """ Navigation panel """
 
+    displayModeChanged = Signal(NavigationDisplayMode)
+
     def __init__(self, parent=None, isMinimalEnabled=False):
         super().__init__(parent=parent)
         self._parent = parent   # type: QWidget
         self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
 
-        self.menuButton = MenuButton(self)
+        self.menuButton = NavigationToolButton(FIF.MENU, self)
+        self.returnButton = NavigationToolButton(FIF.RETURN, self)
 
         self.vBoxLayout = NavigationItemLayout(self)
         self.topLayout = NavigationItemLayout()
         self.bottomLayout = NavigationItemLayout()
         self.scrollLayout = NavigationItemLayout(self.scrollWidget)
+
         self.items = {}   # type: Dict[str, NavigationWidget]
+        self.history = NavigationHistory(self.items)
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
 
@@ -59,6 +65,9 @@ class NavigationPanel(QFrame):
         self.setAttribute(Qt.WA_StyledBackground)
         self.window().installEventFilter(self)
 
+        self.returnButton.hide()
+        self.returnButton.setDisabled(True)
+
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidget(self.scrollWidget)
@@ -69,6 +78,8 @@ class NavigationPanel(QFrame):
 
         self.menuButton.clicked.connect(self.toggle)
         self.expandAni.finished.connect(self._onExpandAniFinished)
+        self.history.emptyChanged.connect(self.returnButton.setDisabled)
+        self.returnButton.clicked.connect(self.history.pop)
 
         self.scrollWidget.setObjectName('scrollWidget')
         self.setProperty('menu', False)
@@ -94,6 +105,7 @@ class NavigationPanel(QFrame):
         self.scrollLayout.setAlignment(Qt.AlignTop)
         self.bottomLayout.setAlignment(Qt.AlignBottom)
 
+        self.topLayout.addWidget(self.returnButton, 0, Qt.AlignTop)
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignTop)
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
@@ -119,10 +131,10 @@ class NavigationPanel(QFrame):
         selectable: bool
             whether the item is selectable
         """
-        if text in self.items:
+        if routeKey in self.items:
             return
 
-        button = NavigationButton(icon, text, selectable, self)
+        button = NavigationPushButton(icon, text, selectable, self)
         self.addWidget(routeKey, button, onClick, position)
 
     def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
@@ -181,6 +193,10 @@ class NavigationPanel(QFrame):
         """ set whether the menu button is visible """
         self.menuButton.setVisible(isVisible)
 
+    def setReturnButtonVisible(self, isVisible: bool):
+        """ set whether the menu button is visible """
+        self.returnButton.setVisible(isVisible)
+
     def expand(self):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
@@ -201,6 +217,7 @@ class NavigationPanel(QFrame):
 
             self.show()
 
+        self.displayModeChanged.emit(self.displayMode)
         self.expandAni.setStartValue(
             QRect(self.pos(), QSize(48, self.height())))
         self.expandAni.setEndValue(
@@ -237,6 +254,7 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             return
 
+        self.history.push(routeKey)
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
 
@@ -282,7 +300,8 @@ class NavigationPanel(QFrame):
             else:
                 self.displayMode = NavigationDisplayMode.COMPACT
 
-        s = getStyleSheet('navigation_interface')
+            self.displayModeChanged.emit(self.displayMode)
+
         if self.displayMode == NavigationDisplayMode.MINIMAL:
             self.hide()
             self.setProperty('menu', False)
@@ -312,6 +331,9 @@ class NavigationPanel(QFrame):
         spacing += self.bottomLayout.count() * self.bottomLayout.spacing()
         return 36 + th + bh + sh + spacing
 
+    def setDefaultRouteKey(self, key: str):
+        """ set the routing key to use when the navigation history is empty """
+        self.history.defaultRouteKey = key
 
 class NavigationItemLayout(QVBoxLayout):
     """ Navigation layout """
@@ -323,3 +345,47 @@ class NavigationItemLayout(QVBoxLayout):
             if isinstance(item.widget(), NavigationSeparator):
                 geo = item.geometry()
                 item.widget().setGeometry(0, geo.y(), geo.width(), geo.height())
+
+
+class NavigationHistory(QObject):
+    """ Navigation history """
+
+    emptyChanged = Signal(bool)
+
+    def __init__(self, items: Dict[str, NavigationWidget]):
+        super().__init__()
+        self.items = items
+        self.history = []
+        self._defaultRouteKey = None
+
+    @property
+    def defaultRouteKey(self):
+        return self._defaultRouteKey
+
+    @defaultRouteKey.setter
+    def defaultRouteKey(self, key):
+        if key not in self.items:
+            raise ValueError(f'The route key `{key}` has not been registered yet.')
+
+        self._defaultRouteKey = key
+
+    def push(self, routeKey: str):
+        if not self.history and self.defaultRouteKey != routeKey:
+            self.history.append(routeKey)
+            self.emptyChanged.emit(False)
+        elif self.history and self.history[-1] != routeKey:
+            self.history.append(routeKey)
+
+    def pop(self):
+        if not self.history:
+            return
+
+        self.history.pop()
+
+        if self.history:
+            self.items[self.history[-1]].clicked.emit()
+        else:
+            if self.defaultRouteKey is not None:
+                self.items[self.defaultRouteKey].clicked.emit()
+
+            self.emptyChanged.emit(True)

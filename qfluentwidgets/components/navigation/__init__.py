@@ -1,3 +1,3 @@
-from .navigation_widget import NavigationWidget, NavigationButton, NavigationSeparator
-from .navigation_panel import NavigationPanel, NavigationItemPostion
+from .navigation_widget import NavigationWidget, NavigationPushButton, NavigationSeparator, NavigationToolButton
+from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationDisplayMode
 from .navigation_interface import NavigationInterface
