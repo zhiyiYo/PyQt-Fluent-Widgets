@@ -17,7 +17,7 @@ MessageBox #buttonGroup {
 
 #centerWidget {
     border: 1px solid rgb(144, 144, 142);
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: white;
 }
 

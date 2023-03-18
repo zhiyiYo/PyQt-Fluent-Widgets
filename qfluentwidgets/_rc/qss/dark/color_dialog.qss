@@ -12,7 +12,7 @@ QScrollArea {
 
 #centerWidget {
     border: 1px solid rgb(58, 58, 58);
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: rgb(43, 43, 43);
 }
 
