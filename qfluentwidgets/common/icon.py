@@ -166,6 +166,7 @@ class FluentIcon(FluentIconBase, Enum):
     FOLDER = "Folder"
     SEARCH = "Search"
     UPDATE = "Update"
+    RETURN = "Return"
     SETTING = "Setting"
     PALETTE = "Palette"
     FEEDBACK = "Feedback"

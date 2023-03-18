@@ -3,23 +3,30 @@ Widget > QLabel {
 }
 
 Widget {
-    border: 1px solid rgb(29, 29, 29);
+    border-left: 1px solid rgb(29, 29, 29);
     background-color: rgb(39, 39, 39);
 }
 
+
 Window {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(39, 39, 39);
 }
 
-StandardTitleBar {
-    background-color: rgb(32, 32, 32);
+CustomTitleBar {
+    background-color: transparent;
 }
 
-StandardTitleBar > QLabel,
+CustomTitleBar > QLabel,
 Widget > QLabel {
     color: white;
 }
 
+
+CustomTitleBar>QLabel#titleLabel {
+    background: transparent;
+    font: 13px 'Segoe UI';
+    padding: 0 4px
+}
 
 MinimizeButton {
     qproperty-normalColor: white;

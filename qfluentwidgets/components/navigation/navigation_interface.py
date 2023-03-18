@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import Qt, QEvent
+from PyQt5.QtCore import Qt, QEvent, pyqtSignal
 from PyQt5.QtGui import QResizeEvent, QIcon
 from PyQt5.QtWidgets import QWidget
 
@@ -13,20 +13,27 @@ from ...common.icon import FluentIconBase
 class NavigationInterface(QWidget):
     """ Navigation interface """
 
-    def __init__(self, parent=None, showMenuButton=True):
+    displayModeChanged = pyqtSignal(NavigationDisplayMode)
+
+    def __init__(self, parent=None, showMenuButton=True, showReturnButton=False):
         """
         Parameters
         ----------
+        parent: widget
+            parent widget
+
         showMenuButton: bool
             whether to show menu button
 
-        parent: widget
-            parent widget
+        showReturnButton: bool
+            whether to show return button
         """
         super().__init__(parent=parent)
         self.panel = NavigationPanel(self)
         self.panel.setMenuButtonVisible(showMenuButton)
+        self.panel.setReturnButtonVisible(showReturnButton)
         self.panel.installEventFilter(self)
+        self.panel.displayModeChanged.connect(self.displayModeChanged)
 
         self.resize(48, self.height())
         self.setMinimumWidth(48)
@@ -99,6 +106,10 @@ class NavigationInterface(QWidget):
             the unique name of item
         """
         self.panel.setCurrentItem(name)
+
+    def setDefaultRouteKey(self, key: str):
+        """ set the routing key to use when the navigation history is empty """
+        self.panel.setDefaultRouteKey(key)
 
     def eventFilter(self, obj, e: QEvent):
         if obj is not self.panel or e.type() != QEvent.Resize:
