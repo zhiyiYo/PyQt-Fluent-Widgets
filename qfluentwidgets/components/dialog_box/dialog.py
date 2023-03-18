@@ -1,6 +1,4 @@
 # coding:utf-8
-import sys
-
 from PyQt5.QtCore import Qt, pyqtSignal, QObject, QEvent
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
@@ -26,9 +24,6 @@ class Ui_MessageBox(QObject):
         self.buttonGroup = QFrame(parent)
         self.yesButton = QPushButton(self.tr('OK'), self.buttonGroup)
         self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
-        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
-        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         self.vBoxLayout = QVBoxLayout(parent)
         self.textLayout = QVBoxLayout()
@@ -39,6 +34,10 @@ class Ui_MessageBox(QObject):
     def __initWidget(self):
         self.__setQss()
         self.__initLayout()
+        
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
