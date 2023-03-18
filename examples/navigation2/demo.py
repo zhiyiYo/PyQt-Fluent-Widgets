@@ -7,18 +7,21 @@ from PyQt6.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, Q
 from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme)
 from qfluentwidgets import FluentIcon as FIF
-from qframelesswindow import FramelessWindow, StandardTitleBar
+from qframelesswindow import FramelessWindow, TitleBar
 
 
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)
+        self.setObjectName(text.replace(' ', '-'))
         self.label = QLabel(text, self)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.hBoxLayout = QHBoxLayout(self)
         self.hBoxLayout.addWidget(self.label, 1, Qt.AlignmentFlag.AlignCenter)
-        self.setObjectName(text.replace(' ', '-'))
+
+        # leave some space for title bar
+        self.hBoxLayout.setContentsMargins(0, 32, 0, 0)
 
 
 class AvatarWidget(NavigationWidget):
@@ -59,17 +62,46 @@ class AvatarWidget(NavigationWidget):
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignmentFlag.AlignVCenter, 'zhiyiYo')
 
 
+class CustomTitleBar(TitleBar):
+    """ Title bar with icon and title """
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        # add window icon
+        self.iconLabel = QLabel(self)
+        self.iconLabel.setFixedSize(18, 18)
+        self.hBoxLayout.insertSpacing(0, 10)
+        self.hBoxLayout.insertWidget(
+            1, self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom)
+        self.window().windowIconChanged.connect(self.setIcon)
+
+        # add title label
+        self.titleLabel = QLabel(self)
+        self.hBoxLayout.insertWidget(
+            2, self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom)
+        self.titleLabel.setObjectName('titleLabel')
+        self.window().windowTitleChanged.connect(self.setTitle)
+
+    def setTitle(self, title):
+        self.titleLabel.setText(title)
+        self.titleLabel.adjustSize()
+
+    def setIcon(self, icon):
+        self.iconLabel.setPixmap(QIcon(icon).pixmap(18, 18))
+
+
 class Window(FramelessWindow):
 
     def __init__(self):
         super().__init__()
-        self.setTitleBar(StandardTitleBar(self))
+        self.setTitleBar(CustomTitleBar(self))
 
         # use dark theme mode
         setTheme(Theme.DARK)
 
         self.hBoxLayout = QHBoxLayout(self)
-        self.navigationInterface = NavigationInterface(self, showMenuButton=True)
+        self.navigationInterface = NavigationInterface(
+            self, showMenuButton=True, showReturnButton=True)
         self.stackWidget = QStackedWidget(self)
 
         # create sub interface
@@ -95,10 +127,13 @@ class Window(FramelessWindow):
 
     def initLayout(self):
         self.hBoxLayout.setSpacing(0)
-        self.hBoxLayout.setContentsMargins(0, self.titleBar.height(), 0, 0)
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.navigationInterface)
         self.hBoxLayout.addWidget(self.stackWidget)
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
+
+        self.titleBar.raise_()
+        self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
 
     def initNavigation(self):
         self.navigationInterface.addItem(
@@ -192,6 +227,10 @@ class Window(FramelessWindow):
             self
         )
         w.exec()
+
+    def resizeEvent(self, e):
+        self.titleBar.move(46, 0)
+        self.titleBar.resize(self.width()-46, self.titleBar.height())
 
 
 if __name__ == '__main__':

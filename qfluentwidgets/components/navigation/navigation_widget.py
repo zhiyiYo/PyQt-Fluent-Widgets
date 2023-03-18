@@ -70,8 +70,8 @@ class NavigationWidget(QWidget):
         self.update()
 
 
-class NavigationButton(NavigationWidget):
-    """ Navigation button """
+class NavigationPushButton(NavigationWidget):
+    """ Navigation push button """
 
     def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
         """
@@ -89,7 +89,7 @@ class NavigationButton(NavigationWidget):
         self._text = text
 
         self.setStyleSheet(
-            "NavigationButton{font: 14px 'Segoe UI', 'Microsoft YaHei'}")
+            "NavigationPushButton{font: 14px 'Segoe UI', 'Microsoft YaHei'}")
 
     def text(self):
         return self._text
@@ -102,6 +102,8 @@ class NavigationButton(NavigationWidget):
 
         if self.isPressed:
             painter.setOpacity(0.7)
+        if not self.isEnabled():
+            painter.setOpacity(0.4)
 
         # draw background
         c = 255 if isDarkTheme() else 0
@@ -113,7 +115,7 @@ class NavigationButton(NavigationWidget):
             color = QColor(41, 247, 255) if isDarkTheme() else QColor(0, 153, 188)
             painter.setBrush(color)
             painter.drawRoundedRect(0, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter:
+        elif self.isEnter and self.isEnabled():
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
@@ -127,11 +129,11 @@ class NavigationButton(NavigationWidget):
                              self.height()), Qt.AlignmentFlag.AlignVCenter, self.text())
 
 
-class MenuButton(NavigationButton):
-    """ Menu button """
+class NavigationToolButton(NavigationPushButton):
+    """ Navigation tool button """
 
-    def __init__(self, parent=None):
-        super().__init__(FIF.MENU, '', parent)
+    def __init__(self, icon: Union[str, QIcon, FIF], parent=None):
+        super().__init__(icon, '', False, parent)
 
     def setCompacted(self, isCompacted: bool):
         self.setFixedSize(40, 36)
