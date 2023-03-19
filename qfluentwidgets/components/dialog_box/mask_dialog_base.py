@@ -1,6 +1,6 @@
 # coding:utf-8
 from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
-from PyQt6.QtGui import QColor, QResizeEvent
+from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
                              QGraphicsOpacityEffect, QHBoxLayout, QWidget, QFrame)
 
@@ -77,7 +77,6 @@ class MaskDialogBase(QDialog):
     def eventFilter(self, obj, e: QEvent):
         if obj is self.window():
             if e.type() == QEvent.Type.Resize:
-                re = QResizeEvent(e)
-                self.resize(re.size())
+                self.resize(e.size())
 
         return super().eventFilter(obj, e)
