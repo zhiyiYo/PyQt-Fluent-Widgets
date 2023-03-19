@@ -1,6 +1,4 @@
 # coding:utf-8
-import sys
-
 from PyQt5.QtCore import Qt, pyqtSignal, QObject, QEvent
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
@@ -36,6 +34,10 @@ class Ui_MessageBox(QObject):
     def __initWidget(self):
         self.__setQss()
         self.__initLayout()
+        
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
@@ -125,10 +127,6 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent=parent)
         self._setUpUi(title, content, self.widget)
-
-        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        if sys.platform == 'darwin':
-            self.buttonLayout.setSpacing(24)
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
