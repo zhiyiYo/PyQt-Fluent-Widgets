@@ -1,6 +1,4 @@
 # coding:utf-8
-import sys
-
 from PySide6.QtCore import Qt, Signal, QObject, QEvent
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
@@ -37,6 +35,10 @@ class Ui_MessageBox(QObject):
         self.__setQss()
         self.__initLayout()
 
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
 
@@ -48,11 +50,13 @@ class Ui_MessageBox(QObject):
     def _adjustText(self):
         if self.isWindow():
             if self.parent():
-                chars = max(min(self.parent().width() / 9, 100), 30)
+                w = max(self.titleLabel.width(), self.parent().width())
+                chars = max(min(w / 9, 100), 30)
             else:
                 chars = 100
         else:
-            chars = max(min(self.window().width() / 9, 100), 30)
+            w = max(self.titleLabel.width(), self.window().width())
+            chars = max(min(w / 9, 100), 30)
 
         self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
 
@@ -126,17 +130,14 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         super().__init__(parent=parent)
         self._setUpUi(title, content, self.widget)
 
-        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        if sys.platform == 'darwin':
-            self.buttonLayout.setSpacing(24)
-
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
         self._hBoxLayout.removeWidget(self.widget)
         self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
 
+        self.buttonGroup.setMinimumWidth(280)
         self.widget.setFixedSize(
-            max(self.contentLabel.width(), self.titleLabel.width())+48,
+            max(self.contentLabel.width(), self.titleLabel.width()) + 48,
             self.contentLabel.y() + self.contentLabel.height() + 105
         )
 
