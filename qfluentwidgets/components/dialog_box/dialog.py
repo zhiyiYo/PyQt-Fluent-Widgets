@@ -50,11 +50,13 @@ class Ui_MessageBox(QObject):
     def _adjustText(self):
         if self.isWindow():
             if self.parent():
-                chars = max(min(self.parent().width() / 9, 100), 30)
+                w = max(self.titleLabel.width(), self.parent().width())
+                chars = max(min(w / 9, 100), 30)
             else:
                 chars = 100
         else:
-            chars = max(min(self.window().width() / 9, 100), 30)
+            w = max(self.titleLabel.width(), self.window().width())
+            chars = max(min(w / 9, 100), 30)
 
         self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
 
@@ -133,8 +135,9 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         self._hBoxLayout.removeWidget(self.widget)
         self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignmentFlag.AlignCenter)
 
+        self.buttonGroup.setMinimumWidth(280)
         self.widget.setFixedSize(
-            max(self.contentLabel.width(), self.titleLabel.width())+48,
+            max(self.contentLabel.width(), self.titleLabel.width()) + 48,
             self.contentLabel.y() + self.contentLabel.height() + 105
         )
 
