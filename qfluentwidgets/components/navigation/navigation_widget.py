@@ -14,6 +14,7 @@ class NavigationWidget(QWidget):
     """ Navigation widget """
 
     clicked = pyqtSignal()
+    EXPAND_WIDTH = 312
 
     def __init__(self, isSelectable: bool, parent=None):
         super().__init__(parent)
@@ -51,7 +52,7 @@ class NavigationWidget(QWidget):
         if isCompacted:
             self.setFixedSize(40, 36)
         else:
-            self.setFixedSize(312, 36)
+            self.setFixedSize(self.EXPAND_WIDTH, 36)
 
         self.update()
 
@@ -150,7 +151,7 @@ class NavigationSeparator(NavigationWidget):
         if isCompacted:
             self.setFixedSize(48, 3)
         else:
-            self.setFixedSize(322, 3)
+            self.setFixedSize(self.EXPAND_WIDTH + 10, 3)
 
         self.update()
 

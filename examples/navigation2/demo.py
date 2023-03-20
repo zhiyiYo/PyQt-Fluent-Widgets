@@ -190,8 +190,11 @@ class Window(FramelessWindow):
             position=NavigationItemPostion.BOTTOM
         )
 
-        #!IMPORTANT: don't forget set the default route key
+        #!IMPORTANT: don't forget to set the default route key
         self.navigationInterface.setDefaultRouteKey(self.musicInterface.objectName())
+
+        # set the maximum width
+        # self.navigationInterface.setExpandWidth(300)
 
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.stackWidget.setCurrentIndex(1)
