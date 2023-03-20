@@ -1,7 +1,7 @@
 ## Navigation
 ### Structure
 
-PyQt Fluent Widgets provides a side navigation class `NavigationInterface`. You can use it with `QStackWidget` and put them in `QHBoxLayout`. Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation2.
+PyQt Fluent Widgets provides a side navigation class `NavigationInterface`. You can use it with `QStackWidget` and put them in `QHBoxLayout`. Examples are available at [navigation2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation2).
 
 ![](_static/NvigationInterface_Structure.jpg)
 
@@ -50,7 +50,7 @@ class AvatarWidget(NavigationWidget):
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
 ```
 
-Now let's take a look at the parameters required for the `addWidget()` methed:
+Now let's take a look at the parameters required for the `addWidget()` method:
 
 ```python
 def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP)
@@ -60,10 +60,10 @@ As you can see, this method requires four parameters:
 
 * `routeKey`: A unique name for the `widget` to be added. You can consider the sub interface in the `QStackWidget` as a web page, and the `routeKey` is the url of the web page. When you switch between sub interfaces, `NavigationPanel` will add a `routeKey` to the navigation history. When you click the return button, the `routeKey` at the top of the navigation history will pop up. If there are other `routeKeys` in the history at this time, PyQt-Fluent-Widgets will switch to the corresponding sub interface corresponding to current top `routeKey`. Otherwise, it will switch to the sub interface corresponding to `defaultRouteKey`, so you should call `NavigationInterface.setDefaultRouteKey()` before running app.
 * `widget`: The widget to be added to panel.
-* `onClick`: Slot function connected to the widget's `clicked` signal. If you want to switch sub interfaces when clicking `widget`t, it is recommended to write this slot function as `lambda: self.stackWidget.setCurrentWidget(self.xxxInterface) `.
+* `onClick`: Slot function connected to the widget's `clicked` signal. If you want to switch sub interfaces when clicking `widget`, it is recommended to write this slot function as `lambda: self.stackWidget.setCurrentWidget(self.xxxInterface) `.
 * `position`: Where to add the `widget` to the panel. The following values are available:
   * `NavigationItemPostion.TOP`: add `widget` to the top layout of panel.
-  * `NavigationItemPostion.SCROLL`: add `widget` to the scroll layout of panel. You can scroll the widgets in scroll layout When there are too many menu items.
+  * `NavigationItemPostion.SCROLL`: add `widget` to the scroll layout of panel. You can scroll the widgets in scroll layout when there are too many menu items.
   * `NavigationItemPostion.BOTTOM`: add `widget` to the bottom layout of panel.
 
 ### Display mode
@@ -85,7 +85,7 @@ If you call `NavigationInterface.setExpandWidth()`, the large window width (1008
 
 
 ### More examples
-Here is an another style of navigation interface, and its corresponding example program is available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation.
+Here is an another style of navigation interface, and its corresponding example program is available at [navigation](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation).
 
 ![](_static/NavigationInterface.jpg)
 
