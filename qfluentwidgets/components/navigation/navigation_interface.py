@@ -111,6 +111,10 @@ class NavigationInterface(QWidget):
         """ set the routing key to use when the navigation history is empty """
         self.panel.setDefaultRouteKey(key)
 
+    def setExpandWidth(self, width: int):
+        """ set the maximum width """
+        self.panel.setExpandWidth(width)
+
     def eventFilter(self, obj, e: QEvent):
         if obj is not self.panel or e.type() != QEvent.Resize:
             return super().eventFilter(obj, e)

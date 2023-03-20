@@ -51,6 +51,7 @@ class NavigationPanel(QFrame):
         self.history = NavigationHistory(self.items)
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
+        self.expandWidth = 322
 
         self.isMinimalEnabled = isMinimalEnabled
         if isMinimalEnabled:
@@ -197,6 +198,14 @@ class NavigationPanel(QFrame):
         """ set whether the menu button is visible """
         self.returnButton.setVisible(isVisible)
 
+    def setExpandWidth(self, width: int):
+        """ set the maximum width """
+        if width <= 42:
+            return
+
+        self.expandWidth = width
+        NavigationWidget.EXPAND_WIDTH = width - 10
+
     def expand(self):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
@@ -204,7 +213,8 @@ class NavigationPanel(QFrame):
 
         # determine the display mode according to the width of window
         # https://learn.microsoft.com/en-us/windows/apps/design/controls/navigationview#default
-        if self.window().width() > 1007 and not self.isMinimalEnabled:
+        expandWidth = 1007 + self.expandWidth - 322
+        if self.window().width() > expandWidth and not self.isMinimalEnabled:
             self.displayMode = NavigationDisplayMode.EXPAND
         else:
             self.setProperty('menu', True)
@@ -221,7 +231,7 @@ class NavigationPanel(QFrame):
         self.expandAni.setStartValue(
             QRect(self.pos(), QSize(48, self.height())))
         self.expandAni.setEndValue(
-            QRect(self.pos(), QSize(322, self.height())))
+            QRect(self.pos(), QSize(self.expandWidth, self.height())))
         self.expandAni.start()
 
     def collapse(self):
