@@ -2,10 +2,11 @@ ComboBox {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
-    padding: 5px 31px 5px 11px;
+    padding: 5px 31px 6px 11px;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     background-color: rgb(62, 63, 62);
+    text-align: left;
 }
 
 ComboBox:hover {

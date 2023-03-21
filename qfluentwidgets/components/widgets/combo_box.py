@@ -130,6 +130,9 @@ class ComboBox(QPushButton):
             menu.addAction(
                 QAction(item, triggered=lambda x=i: self._onItemClicked(x)))
 
+        menu.view.setMinimumWidth(self.width())
+        menu.adjustSize()
+        
         # set the selected item
         menu.setDefaultAction(menu.menuActions()[self.currentIndex()])
 
