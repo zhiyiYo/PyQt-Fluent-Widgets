@@ -6,6 +6,7 @@ ComboBox {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: black;
     background-color: rgb(254, 254, 254);
+    text-align: left;
 }
 
 ComboBox:hover {
