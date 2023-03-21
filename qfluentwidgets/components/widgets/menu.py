@@ -190,6 +190,7 @@ class RoundMenu(QWidget):
         self.hBoxLayout = QHBoxLayout(self)
         self.view = MenuActionListWidget(self)
         self.ani = QPropertyAnimation(self, b'pos', self)
+        self.timer = QTimer(self)
         self.__initWidgets()
 
     def __initWidgets(self):
@@ -197,6 +198,10 @@ class RoundMenu(QWidget):
                             Qt.NoDropShadowWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
+
+        self.timer.setSingleShot(True)
+        self.timer.setInterval(400)
+        self.timer.timeout.connect(self._onShowMenuTimeOut)
 
         self.setShadowEffect()
         self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
@@ -413,7 +418,8 @@ class RoundMenu(QWidget):
         self.lastHoverItem = item
         self.lastHoverSubMenuItem = item
         # delay 400 ms to anti-shake
-        QTimer.singleShot(400, self._onShowMenuTimeOut)
+        self.timer.stop()
+        self.timer.start()
 
     def _onShowMenuTimeOut(self):
         if self.lastHoverSubMenuItem is None or not self.lastHoverItem is self.lastHoverSubMenuItem:
@@ -458,6 +464,7 @@ class RoundMenu(QWidget):
     def _closeParentMenu(self):
         menu = self
         while menu.parentMenu:
+            menu.close()
             menu = menu.parentMenu
 
         menu.close()
