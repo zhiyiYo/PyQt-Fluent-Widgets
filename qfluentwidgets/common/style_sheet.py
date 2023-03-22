@@ -87,14 +87,8 @@ def setStyleSheet(widget, file, theme=Theme.AUTO, register=True):
     widget.setStyleSheet(getStyleSheet(file, theme))
 
 
-def setTheme(theme: Theme):
-    """ set the theme of application """
-    if theme == Theme.AUTO:
-        theme = darkdetect.theme()
-        qconfig.theme = Theme(theme) if theme else Theme.LIGHT
-    else:
-        qconfig.theme = theme
-
+def updateStyleSheet():
+    """ update the style sheet of all fluent widgets """
     removes = []
     for widget, file in styleSheetManager.items():
         try:
@@ -104,3 +98,22 @@ def setTheme(theme: Theme):
 
     for widget in removes:
         styleSheetManager.deregister(widget)
+
+
+def setTheme(theme: Theme, save=False):
+    """ set the theme of application
+
+    Parameters
+    ----------
+    theme: Theme
+        theme mode
+
+    save: bool
+        whether to save the change to config file
+    """
+    if theme == Theme.AUTO:
+        theme = darkdetect.theme()
+        theme = Theme(theme) if theme else Theme.LIGHT
+
+    qconfig.set(qconfig.themeMode, theme, save)
+    updateStyleSheet()

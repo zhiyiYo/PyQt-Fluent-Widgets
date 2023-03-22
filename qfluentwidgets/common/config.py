@@ -253,7 +253,7 @@ class QConfig(QObject):
     themeChanged = pyqtSignal(Theme)
 
     themeMode = OptionsConfigItem(
-        "MainWindow", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
+        "QFluentWidgets", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
 
     def __init__(self):
         super().__init__()
@@ -265,18 +265,21 @@ class QConfig(QObject):
         """ get the value of config item """
         return item.value
 
-    def set(self, item, value):
+    def set(self, item, value, save=True):
         """ set the value of config item """
         if item.value == value:
             return
 
         item.value = value
-        self.save()
+
+        if save:
+            self.save()
 
         if item.restart:
             self._cfg.appRestartSig.emit()
 
         if item is self._cfg.themeMode:
+            self.theme = value
             self._cfg.themeChanged.emit(value)
 
     def toDict(self, serialize=True):
@@ -300,6 +303,7 @@ class QConfig(QObject):
         return items
 
     def save(self):
+        """ save config """
         self._cfg.file.parent.mkdir(parents=True, exist_ok=True)
         with open(self._cfg.file, "w", encoding="utf-8") as f:
             json.dump(self._cfg.toDict(), f, ensure_ascii=False, indent=4)
@@ -345,14 +349,7 @@ class QConfig(QObject):
                     if items.get(key) is not None:
                         items[key].deserializeFrom(value)
 
-        if self.get(self.themeMode) == Theme.AUTO:
-            theme = darkdetect.theme()
-            if theme:
-                self._cfg._theme = Theme(theme)
-            else:
-                self._cfg._theme = Theme.LIGHT
-        else:
-            self._cfg._theme = self.get(self.themeMode)
+        self.theme = self.get(self.themeMode)
 
     @property
     def theme(self):
