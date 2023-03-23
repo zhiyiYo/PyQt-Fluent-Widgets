@@ -11,6 +11,7 @@ from ..widgets.combo_box import ComboBox
 from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
+from ..widgets.button import HyperlinkButton
 from ...common.style_sheet import setStyleSheet
 from ...common.config import qconfig, isDarkTheme
 from ...common.icon import FluentIconBase
@@ -110,8 +111,6 @@ class SwitchSettingCard(SettingCard):
 
         if configItem:
             self.setChecked(qconfig.get(configItem))
-
-        setStyleSheet(self.switchButton, 'setting_card')
 
         # add switch button to layout
         self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignmentFlag.AlignRight)
@@ -256,14 +255,7 @@ class HyperlinkCard(SettingCard):
             parent widget
         """
         super().__init__(icon, title, content, parent)
-        self.url = QUrl(url)
-        self.linkButton = QPushButton(text, self)
-
-        self.linkButton.setObjectName('hyperlinkButton')
-        self.linkButton.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.linkButton.clicked.connect(
-            lambda i: QDesktopServices.openUrl(self.url))
-
+        self.linkButton = HyperlinkButton(url, text, self)
         self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 

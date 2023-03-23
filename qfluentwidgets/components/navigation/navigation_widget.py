@@ -6,6 +6,7 @@ from PyQt6.QtGui import QColor, QPainter, QPen, QIcon
 from PyQt6.QtWidgets import QWidget
 
 from ...common.config import isDarkTheme
+from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon
 from ...common.icon import FluentIcon as FIF
 
@@ -113,8 +114,7 @@ class NavigationPushButton(NavigationWidget):
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
-            color = QColor(41, 247, 255) if isDarkTheme() else QColor(0, 153, 188)
-            painter.setBrush(color)
+            painter.setBrush(themeColor())
             painter.drawRoundedRect(0, 10, 3, 16, 1.5, 1.5)
         elif self.isEnter and self.isEnabled():
             painter.setBrush(QColor(c, c, c, 10))

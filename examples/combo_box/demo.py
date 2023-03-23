@@ -2,7 +2,7 @@
 import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QWidget
-from qfluentwidgets import ComboBox, setTheme, Theme
+from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor
 
 class Demo(QWidget):
 
@@ -19,6 +19,7 @@ class Demo(QWidget):
         self.setStyleSheet('Demo{background:white}')
 
         # setTheme(Theme.DARK)
+        # setThemeColor('#0078d4')
 
 
 if __name__ == '__main__':

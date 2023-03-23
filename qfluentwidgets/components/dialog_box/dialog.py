@@ -1,11 +1,12 @@
 # coding:utf-8
 from PyQt6.QtCore import Qt, pyqtSignal, QObject, QEvent
 from PyQt6.QtGui import QColor
-from PyQt6.QtWidgets import QLabel, QPushButton, QFrame, QVBoxLayout, QHBoxLayout
+from PyQt6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import setStyleSheet
+from ..widgets.button import PushButton, PrimaryPushButton
 
 from .mask_dialog_base import MaskDialogBase
 
@@ -22,8 +23,8 @@ class Ui_MessageBox(QObject):
         self.contentLabel = QLabel(content, parent)
 
         self.buttonGroup = QFrame(parent)
-        self.yesButton = QPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
+        self.cancelButton = PushButton(self.tr('Cancel'), self.buttonGroup)
 
         self.vBoxLayout = QVBoxLayout(parent)
         self.textLayout = QVBoxLayout()
@@ -89,7 +90,6 @@ class Ui_MessageBox(QObject):
         """ 设置层叠样式 """
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
-        self.yesButton.setObjectName('yesButton')
         self.buttonGroup.setObjectName('buttonGroup')
 
         setStyleSheet(self, 'dialog')

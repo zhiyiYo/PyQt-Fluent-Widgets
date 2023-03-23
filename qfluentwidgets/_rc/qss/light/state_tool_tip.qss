@@ -1,6 +1,6 @@
 StateToolTip,
 ToastToolTip {
-    background-color: rgb(0, 107, 131);
+    background-color: --ThemeColorDark1;
     border: none;
     border-radius: 7px;
 }

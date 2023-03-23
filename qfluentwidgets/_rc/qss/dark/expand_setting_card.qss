@@ -122,24 +122,24 @@ QRadioButton::indicator:checked {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.5 rgb(0, 0, 0),
-        stop:0.6 rgb(72, 210, 242),
-        stop:1 rgb(72, 210, 242));
+        stop:0.6 --ThemeColorPrimary,
+        stop:1 --ThemeColorPrimary);
 }
 
 QRadioButton::indicator:checked:hover {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.6 rgb(0, 0, 0),
-        stop:0.7 rgb(72, 210, 242),
-        stop:1 rgb(72, 210, 242));
+        stop:0.7 --ThemeColorPrimary,
+        stop:1 --ThemeColorPrimary);
 }
 
 QRadioButton::indicator:checked:pressed {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
         stop:0 rgb(0, 0, 0),
         stop:0.5 rgb(0, 0, 0),
-        stop:0.6 rgb(72, 210, 242),
-        stop:1 rgb(72, 210, 242));
+        stop:0.6 --ThemeColorPrimary,
+        stop:1 --ThemeColorPrimary);
 }
 
 QRadioButton:disabled {
