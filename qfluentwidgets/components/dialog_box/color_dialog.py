@@ -1,13 +1,13 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize, QCoreApplication
-from PyQt5.QtGui import (QBrush, QColor, QMouseEvent, QPixmap,
+from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
+from PyQt5.QtGui import (QBrush, QColor, QPixmap,
                          QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
 from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
-                             QToolButton, QPushButton, QFrame, QVBoxLayout)
+                             QToolButton, QFrame, QVBoxLayout)
 
-from ...common.icon import Icon, getIconColor
+from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ..widgets import LineEditMenu, Slider, ScrollArea
+from ..widgets import LineEditMenu, Slider, ScrollArea, PushButton, PrimaryPushButton
 from .mask_dialog_base import MaskDialogBase
 
 
@@ -219,8 +219,8 @@ class ColorDialog(MaskDialogBase):
         self.scrollWidget = QWidget(self.scrollArea)
 
         self.buttonGroup = QFrame(self.widget)
-        self.yesButton = QPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
+        self.cancelButton = PushButton(self.tr('Cancel'), self.buttonGroup)
 
         self.titleLabel = QLabel(title, self.scrollWidget)
         self.huePanel = HuePanel(color, self.scrollWidget)

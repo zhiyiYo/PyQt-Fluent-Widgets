@@ -251,9 +251,11 @@ class QConfig(QObject):
 
     appRestartSig = pyqtSignal()
     themeChanged = pyqtSignal(Theme)
+    themeColorChanged = pyqtSignal(QColor)
 
     themeMode = OptionsConfigItem(
         "QFluentWidgets", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
+    themeColor = ColorConfigItem("QFluentWidgets", "ThemeColor", '#009faa')
 
     def __init__(self):
         super().__init__()
@@ -266,7 +268,19 @@ class QConfig(QObject):
         return item.value
 
     def set(self, item, value, save=True):
-        """ set the value of config item """
+        """ set the value of config item
+
+        Parameters
+        ----------
+        item: ConfigItem
+            config item
+
+        value:
+            the new value of config item
+
+        save: bool
+            whether to save the change to config file
+        """
         if item.value == value:
             return
 
@@ -281,6 +295,9 @@ class QConfig(QObject):
         if item is self._cfg.themeMode:
             self.theme = value
             self._cfg.themeChanged.emit(value)
+
+        if item is self._cfg.themeColor:
+            self._cfg.themeColorChanged.emit(value)
 
     def toDict(self, serialize=True):
         """ convert config items to `dict` """
@@ -372,3 +389,7 @@ qconfig = QConfig()
 def isDarkTheme():
     """ whether the theme is dark mode """
     return qconfig.theme == Theme.DARK
+
+def theme():
+    """ get theme mode """
+    return qconfig.theme

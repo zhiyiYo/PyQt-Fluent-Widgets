@@ -104,6 +104,7 @@
         <file>qss/dark/folder_list_dialog.qss</file>
         <file>qss/dark/combo_box.qss</file>
         <file>qss/dark/navigation_interface.qss</file>
+        <file>qss/dark/button.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -118,5 +119,6 @@
         <file>qss/light/folder_list_dialog.qss</file>
         <file>qss/light/combo_box.qss</file>
         <file>qss/light/navigation_interface.qss</file>
+        <file>qss/light/button.qss</file>
     </qresource>
 </RCC>
