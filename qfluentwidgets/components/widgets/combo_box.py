@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QPushButton, QWidget
 from .menu import RoundMenu
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import setStyleSheet, themeColor
 
 
 class ComboBox(QPushButton):
@@ -132,7 +132,7 @@ class ComboBox(QPushButton):
 
         menu.view.setMinimumWidth(self.width())
         menu.adjustSize()
-        
+
         # set the selected item
         menu.setDefaultAction(menu.menuActions()[self.currentIndex()])
 
@@ -202,11 +202,7 @@ class ComboBoxMenuItemWidget(QWidget):
             return
 
         painter.setPen(Qt.NoPen)
-        if isLight:
-            painter.setBrush(QColor(0, 159, 170))
-        else:
-            painter.setBrush(QColor(41, 247, 255))
-
+        painter.setBrush(themeColor())
         painter.drawRoundedRect(0, 8, 3, 16, 1.5, 1.5)
 
 

@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
 
 from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ..widgets import Slider, ScrollArea
+from ..widgets import LineEditMenu, Slider, ScrollArea, PushButton, PrimaryPushButton
 from .mask_dialog_base import MaskDialogBase
 
 
@@ -218,8 +218,8 @@ class ColorDialog(MaskDialogBase):
         self.scrollWidget = QWidget(self.scrollArea)
 
         self.buttonGroup = QFrame(self.widget)
-        self.yesButton = QPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
+        self.cancelButton = PushButton(self.tr('Cancel'), self.buttonGroup)
 
         self.titleLabel = QLabel(title, self.scrollWidget)
         self.huePanel = HuePanel(color, self.scrollWidget)

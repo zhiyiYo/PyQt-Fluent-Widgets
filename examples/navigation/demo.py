@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
 from PySide6.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
-                            isDarkTheme, setTheme, Theme)
+                            isDarkTheme, setTheme, Theme, setThemeColor)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
@@ -67,6 +67,9 @@ class Window(FramelessWindow):
 
         # use dark theme mode
         setTheme(Theme.DARK)
+
+        # change the theme color
+        # setThemeColor('#0078d4')
 
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True)

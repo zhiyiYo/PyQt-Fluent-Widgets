@@ -1,0 +1,68 @@
+PushButton {
+    background: rgb(45, 45, 45);
+    border: 1px solid rgb(48, 48, 48);
+    border-top: 1px solid rgb(53, 53, 53);
+    border-radius: 4px;
+    color: white;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 6px 0;
+}
+
+PushButton:hover {
+    background: rgb(50, 50, 50);
+}
+
+PushButton:pressed {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(39, 39, 39);
+    border: 1px solid rgb(48, 48, 48);
+}
+
+PushButton:disabled {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(59, 59, 59);
+    border: 1px solid rgb(80, 80, 80);
+}
+
+
+PrimaryPushButton {
+    color: black;
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+}
+
+PrimaryPushButton:hover {
+    background-color: --ThemeColorDark1;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+}
+
+PrimaryPushButton:pressed {
+    color: rgba(0, 0, 0, 0.63);
+    background-color: --ThemeColorDark2;
+    border: 1px solid --ThemeColorDark2;
+}
+
+PrimaryPushButton:disabled {
+    color: rgb(82, 82, 82);
+    background-color: rgb(52, 52, 52);
+    border: 1px solid rgb(52, 52, 52);
+}
+
+HyperlinkButton {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 6px 12px 6px 12px;
+    color: --ThemeColorPrimary;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+HyperlinkButton:hover {
+    background-color: rgba(255, 255, 255, 10);
+}
+
+HyperlinkButton:pressed {
+    background-color: rgba(255, 255, 255, 7);
+}

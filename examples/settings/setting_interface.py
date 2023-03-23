@@ -3,7 +3,7 @@ from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, setTheme)
+                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, setTheme, setThemeColor)
 from qfluentwidgets import FluentIcon as FIF
 from PySide6.QtCore import Qt, Signal, QUrl, QStandardPaths
 from PySide6.QtGui import QDesktopServices

@@ -31,7 +31,7 @@ QSlider::groove:horizontal {
 }
 
 QSlider::sub-page:horizontal {
-    background: rgb(41, 247, 255);
+    background: --ThemeColorPrimary;
     height: 4px;
     border-radius: 2px;
 }
@@ -43,24 +43,24 @@ QSlider::handle:horizontal {
     margin: -9px 0;
     border-radius: 11px;
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
-        stop:0 rgb(41, 247, 255),
-        stop:0.5 rgb(41, 247, 255),
+        stop:0 --ThemeColorPrimary,
+        stop:0.5 --ThemeColorPrimary,
         stop:0.6 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
 
 QSlider::handle:horizontal:hover {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
-        stop:0 rgb(41, 247, 255),
-        stop:0.6 rgb(41, 247, 255),
+        stop:0 --ThemeColorPrimary,
+        stop:0.6 --ThemeColorPrimary,
         stop:0.7 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
 
 QSlider::handle:horizontal:pressed {
     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
-        stop:0 rgb(41, 247, 255),
-        stop:0.4 rgb(41, 247, 255),
+        stop:0 --ThemeColorPrimary,
+        stop:0.4 --ThemeColorPrimary,
         stop:0.5 rgb(69, 69, 69),
         stop:1 rgb(69, 69, 69));
 }
@@ -70,67 +70,6 @@ RangeSettingCard > QLabel#valueLabel{
 }
 
 
-/* 切换开关 */
-SwitchButton {
-    qproperty-spacing: 12;
-}
-
-SwitchButton>QLabel {
-    color: white;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
-    background-color: transparent;
-    border: none;
-}
-
-
-Indicator {
-    height: 16px;
-    width: 37px;
-    qproperty-sliderOnColor: black;
-    qproperty-sliderOffColor: rgb(210, 211, 210);
-    qproperty-sliderDisabledColor: rgb(155, 154, 153);
-    border-radius: 10px;
-}
-
-
-Indicator:!checked {
-    background-color: rgb(58, 60, 59);
-    border: 1px solid rgb(162, 163, 162);
-}
-
-Indicator:!checked:hover {
-    background-color: rgb(58, 60, 59);
-    border: 1px solid rgb(160, 161, 161);
-    qproperty-sliderOffColor: rgb(91, 91, 91);
-}
-
-Indicator:!checked:pressed {
-    background-color: rgb(162, 163, 163);
-    border: 1px solid rgb(133, 133, 133);
-    qproperty-sliderOffColor: rgb(87, 87, 87);
-}
-
-Indicator:checked {
-    border: 1px solid rgb(41, 247, 255);
-    background-color: rgb(41, 247, 255);
-}
-
-Indicator:checked:hover {
-    border: 1px solid rgb(41, 227, 234);
-    background-color: rgb(41, 227, 234);
-}
-
-Indicator:checked:pressed {
-    border: 1px solid rgb(45, 210, 217);
-    background-color: rgb(45, 210, 217);
-}
-
-Indicator:disabled {
-    border: 1px solid #646464;
-    background-color: transparent;
-}
-
-/* QPushButton */
 QPushButton {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
@@ -151,41 +90,24 @@ QPushButton:pressed {
     color: rgba(255, 255, 255, 0.63);
 }
 
-#hyperlinkButton {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
-    padding: 6px 12px 6px 12px;
-    color: rgb(41, 243, 255);
-    border: none;
-    border-radius: 6px;
-    background-color: transparent;
-}
-
-#hyperlinkButton:hover {
-    background-color: rgba(255, 255, 255, 10);
-}
-
-#hyperlinkButton:pressed {
-    background-color: rgba(255, 255, 255, 7);
-}
-
 #primaryButton {
     color: black;
-    background-color: rgb(41, 243, 255);
-    border: 1px solid rgb(58, 248, 255);
-    border-bottom: 1px solid rgb(35, 213, 220);
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
     padding: 5px 12px 5px 12px;
 }
 
 #primaryButton:hover {
-    background-color: rgb(41, 227, 234);
-    border: 1px solid rgb(58, 229, 236);
-    border-bottom: 1px solid rgb(35, 196, 202);
+    background-color: --ThemeColorDark1;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
 }
 
 #primaryButton:pressed {
-    background-color: rgb(42, 207, 214);
-    border: 1px solid rgb(42, 207, 214);
     color: rgba(0, 0, 0, 0.63);
+    background-color: --ThemeColorDark2;
+    border: 1px solid --ThemeColorDark2;
 }
 
 ColorPickerButton {
