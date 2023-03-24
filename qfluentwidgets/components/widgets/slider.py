@@ -4,6 +4,8 @@ from PySide6.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
 from PySide6.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
+from ...common.style_sheet import setStyleSheet
+
 
 class Slider(QSlider):
     """ A slider can be clicked """
@@ -12,6 +14,7 @@ class Slider(QSlider):
 
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)
+        setStyleSheet(self, 'slider')
 
     def mousePressEvent(self, e: QMouseEvent):
         super().mousePressEvent(e)

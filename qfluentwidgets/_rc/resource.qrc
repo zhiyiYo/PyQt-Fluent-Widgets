@@ -90,6 +90,10 @@
         <file>images/folder_list_dialog/Close_black.png</file>
         <file>images/folder_list_dialog/Add_black.png</file>
         <file>images/folder_list_dialog/Add_white.png</file>
+        <file>images/check_box/Accept_black.svg</file>
+        <file>images/check_box/Accept_white.svg</file>
+        <file>images/check_box/PartialAccept_black.svg</file>
+        <file>images/check_box/PartialAccept_white.svg</file>
 
         <file>qss/dark/color_dialog.qss</file>
         <file>qss/dark/dialog.qss</file>
@@ -105,6 +109,9 @@
         <file>qss/dark/combo_box.qss</file>
         <file>qss/dark/navigation_interface.qss</file>
         <file>qss/dark/button.qss</file>
+        <file>qss/dark/slider.qss</file>
+        <file>qss/dark/line_edit.qss</file>
+        <file>qss/dark/check_box.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -120,5 +127,8 @@
         <file>qss/light/combo_box.qss</file>
         <file>qss/light/navigation_interface.qss</file>
         <file>qss/light/button.qss</file>
+        <file>qss/light/slider.qss</file>
+        <file>qss/light/line_edit.qss</file>
+        <file>qss/light/check_box.qss</file>
     </qresource>
 </RCC>

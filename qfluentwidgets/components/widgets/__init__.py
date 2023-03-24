@@ -7,3 +7,5 @@ from .state_tool_tip import StateToolTip, ToastToolTip
 from .scroll_area import ScrollArea, SmoothScrollArea, SmoothScrollBar
 from .tool_tip import ToolTip, ToolTipFilter
 from .button import PrimaryPushButton, PushButton
+from .line_edit import LineEdit
+from .check_box import CheckBox
