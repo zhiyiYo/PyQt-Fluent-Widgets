@@ -1,6 +1,6 @@
 # coding:utf-8
 from PyQt6.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
-from PyQt6.QtWidgets import QLayout, QLayoutItem
+from PyQt6.QtWidgets import QLayout, QWidgetItem
 
 
 class FlowLayout(QLayout):
@@ -34,6 +34,7 @@ class FlowLayout(QLayout):
 
         ani = QPropertyAnimation(w, b'geometry')
         ani.setDuration(300)
+        w.setProperty('flowAni', ani)
         self._anis.append(ani)
         self._aniGroup.addAnimation(ani)
 
@@ -66,7 +67,14 @@ class FlowLayout(QLayout):
 
     def takeAt(self, index: int):
         if 0 <= index < len(self._items):
-            return self._items.pop(index)
+            item = self._items[index]   # type: QWidgetItem
+            ani = item.widget().property('flowAni')
+            if ani:
+                self._anis.remove(ani)
+                self._aniGroup.removeAnimation(ani)
+                ani.deleteLater()
+
+            return self._items.pop(index).widget()
 
         return None
 
@@ -74,6 +82,13 @@ class FlowLayout(QLayout):
         """ remove all widgets from layout """
         while self._items:
             self.takeAt(0)
+
+    def takeAllWidgets(self):
+        """ remove all widgets from layout and delete them """
+        while self._items:
+            w = self.takeAt(0)
+            if w:
+                w.deleteLater()
 
     def expandingDirections(self):
         return Qt.Orientation(0)
