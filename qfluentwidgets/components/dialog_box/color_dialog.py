@@ -2,12 +2,12 @@
 from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
 from PyQt5.QtGui import (QBrush, QColor, QPixmap,
                          QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
-from PyQt5.QtWidgets import (QApplication, QLabel, QLineEdit, QWidget,
-                             QToolButton, QFrame, QVBoxLayout)
+from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QToolButton, QFrame, QVBoxLayout
 
 from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
 from ..widgets import LineEditMenu, Slider, ScrollArea, PushButton, PrimaryPushButton
+from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
 
 
@@ -129,7 +129,7 @@ class ColorCard(QWidget):
         painter.drawRoundedRect(self.rect(), 4, 4)
 
 
-class ColorLineEdit(QLineEdit):
+class ColorLineEdit(LineEdit):
     """ Color line edit """
 
     valueChanged = pyqtSignal(str)
@@ -137,44 +137,16 @@ class ColorLineEdit(QLineEdit):
     def __init__(self, value, parent=None):
         super().__init__(str(value), parent)
         self.setFixedSize(136, 33)
-        self.clearButton = QToolButton(self)
-
-        self.clearButton.move(self.width() - 33, 4)
-        self.clearButton.setFixedSize(29, 25)
-        self.clearButton.setObjectName('clearButton')
-        self.clearButton.setIcon(
-            QIcon(f":/qfluentwidgets/images/color_dialog/Clear_{getIconColor()}.svg"))
-        self.clearButton.setIconSize(QSize(10, 10))
-        self.clearButton.setCursor(Qt.PointingHandCursor)
-        self.clearButton.hide()
-
+        self.setClearButtonEnabled(True)
         self.setValidator(QIntValidator(0, 255, self))
-        self.setTextMargins(0, 0, 33, 0)
-        self.clearButton.clicked.connect(self.clear)
+
         self.textEdited.connect(self._onTextEdited)
-        self.textChanged.connect(self._onTextChanged)
-
-    def focusOutEvent(self, e):
-        super().focusOutEvent(e)
-        self.clearButton.hide()
-
-    def focusInEvent(self, e):
-        super().focusInEvent(e)
-        self.clearButton.setVisible(bool(self.text()))
 
     def _onTextEdited(self, text):
         """ text edited slot """
         state = self.validator().validate(text, 0)[0]
         if state == QIntValidator.Acceptable:
             self.valueChanged.emit(text)
-
-    def _onTextChanged(self, text):
-        """ text changed slot """
-        self.clearButton.setVisible(bool(text) and self.hasFocus())
-
-    def contextMenuEvent(self, e):
-        menu = LineEditMenu(self)
-        menu.exec_(e.globalPos())
 
 
 class HexColorLineEdit(ColorLineEdit):

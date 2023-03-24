@@ -3,6 +3,9 @@
 ### Acrylic Label
 <img width="60%" src="./_static/gallery/acrylic_label.png"/>
 
+### Check Box
+![](./_static/gallery/check_box.gif)
+
 ### Combo Box
 ![](./_static/gallery/combo_box.gif)
 
@@ -26,6 +29,9 @@
 
 ### Folder List Dialog
 ![](./_static/gallery/folder_list_dialog.gif)
+
+### Slider
+![](./_static/gallery/slider.gif)
 
 ### Hollow Handle Slider
 ![](./_static/gallery/hollow_handle_slider.gif)

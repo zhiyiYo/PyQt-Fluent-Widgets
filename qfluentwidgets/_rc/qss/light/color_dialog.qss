@@ -84,53 +84,6 @@ QSlider::handle:horizontal:disabled {
 }
 
 
-/* Line Edit */
-QLineEdit {
-    color: black;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 13);
-    border-bottom: 1px solid rgba(0, 0, 0, 100);
-    border-radius: 6px;
-    font: 14px "Segoe UI";
-    padding: 0px 13px;
-    selection-background-color: rgb(0, 183, 195);
-}
-
-QLineEdit:hover {
-    background-color: rgb(252, 252, 252);
-    border: 1px solid rgba(0, 0, 0, 13);
-    border-bottom: 1px solid rgba(0, 0, 0, 100);
-}
-
-QLineEdit:focus {
-    border-bottom: 1px solid rgb(0, 159, 170);
-    background-color: white;
-    border-top: 1px solid rgba(0, 0, 0, 13);
-    border-left: 1px solid rgba(0, 0, 0, 13);
-    border-right: 1px solid rgba(0, 0, 0, 13);
-}
-
-QLineEdit:disabled {
-    color: rgba(0, 0, 0, 150);
-    background-color: rgba(0, 0, 0, 13);
-    border: 1px solid rgba(0, 0, 0, 5);
-}
-
-
-#clearButton {
-    background-color: transparent;
-    border-radius: 4px;
-    margin: 0;
-}
-
-#clearButton:hover {
-    background-color: rgba(0, 0, 0, 9);
-}
-
-#clearButton:pressed {
-    background-color: rgba(0, 0, 0, 6);
-}
-
 /* 滚动条 */
 QScrollBar {
     background: transparent;

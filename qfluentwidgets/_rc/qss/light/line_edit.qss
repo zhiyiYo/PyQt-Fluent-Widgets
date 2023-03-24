@@ -1,0 +1,46 @@
+QLineEdit {
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+    border-radius: 6px;
+    font: 14px "Segoe UI";
+    padding: 0px 13px;
+    selection-background-color: --ThemeColorLight1;
+}
+
+QLineEdit:hover {
+    background-color: rgb(252, 252, 252);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+}
+
+QLineEdit:focus {
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+}
+
+QLineEdit:focus {
+    border-bottom: 1px solid --ThemeColorPrimary;
+    background-color: white;
+}
+
+QLineEdit:disabled {
+    color: rgba(0, 0, 0, 150);
+    background-color: rgb(252, 252, 252);
+    border: 1px solid rgb(237, 237, 237);
+}
+
+#clearButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+#clearButton:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+#clearButton:pressed {
+    background-color: rgba(0, 0, 0, 6);
+}
