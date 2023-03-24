@@ -198,3 +198,34 @@ class ExpandSettingCard(QFrame):
 
         if self.view.isVisible():
             self.resize(self.width(), h + self.card.height())
+
+
+
+class GroupSeparator(QWidget):
+    """ group separator """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setFixedHeight(3)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        c = 35 if isDarkTheme() else 230
+        painter.setPen(QColor(c, c, c))
+        painter.drawLine(0, 1, self.width(), 1)
+
+
+class ExpandGroupSettingCard(ExpandSettingCard):
+    """ Expand group setting card """
+
+    def addGroupWidget(self, widget: QWidget):
+        """ add widget to group """
+        if widget in self.viewLayout.widgets:
+            return
+
+        # add separator
+        if self.viewLayout.count() >= 1:
+            self.viewLayout.addWidget(GroupSeparator(self.view))
+
+        widget.setParent(self.view)
+        self.viewLayout.addWidget(widget)

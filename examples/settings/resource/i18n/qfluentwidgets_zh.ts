@@ -86,6 +86,21 @@
     </message>
 </context>
 <context>
+    <name>CustomColorSettingCard</name>
+    <message>
+        <source>Custom color</source>
+        <translation>自定义颜色</translation>
+    </message>
+    <message>
+        <source>Default color</source>
+        <translation>默认颜色</translation>
+    </message>
+    <message>
+        <source>Choose color</source>
+        <translation>选择颜色</translation>
+    </message>
+</context>
+<context>
     <name>ColorPickerButton</name>
     <message>
         <source>Choose </source>
@@ -154,6 +169,14 @@
     <message>
         <source>Application theme</source>
         <translation>应用主题</translation>
+    </message>
+    <message>
+        <source>Theme color</source>
+        <translation>主题色</translation>
+    </message>
+    <message>
+        <source>Change the theme color of you application</source>
+        <translation>调整你的应用主题颜色</translation>
     </message>
     <message>
         <source>Change the appearance of your application</source>

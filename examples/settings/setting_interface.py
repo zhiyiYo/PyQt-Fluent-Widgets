@@ -3,7 +3,8 @@ from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, setTheme, setThemeColor)
+                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, CustomColorSettingCard,
+                            setTheme, setThemeColor)
 from qfluentwidgets import FluentIcon as FIF
 from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt5.QtGui import QDesktopServices
@@ -63,6 +64,13 @@ class SettingInterface(ScrollArea):
                 self.tr('Use system setting')
             ],
             parent=self.personalGroup
+        )
+        self.themeColorCard=CustomColorSettingCard(
+            cfg.themeColor,
+            FIF.PALETTE,
+            self.tr('Theme color'),
+            self.tr('Change the theme color of you application'),
+            self.personalGroup
         )
         self.zoomCard = OptionsSettingCard(
             cfg.dpiScale,
@@ -221,6 +229,7 @@ class SettingInterface(ScrollArea):
 
         self.personalGroup.addSettingCard(self.enableAcrylicCard)
         self.personalGroup.addSettingCard(self.themeCard)
+        self.personalGroup.addSettingCard(self.themeColorCard)
         self.personalGroup.addSettingCard(self.zoomCard)
         self.personalGroup.addSettingCard(self.languageCard)
 
@@ -309,6 +318,7 @@ class SettingInterface(ScrollArea):
         # personalization
         self.enableAcrylicCard.checkedChanged.connect(
             self.acrylicEnableChanged)
+        self.themeColorCard.colorChanged.connect(setThemeColor)
 
         # playing interface
         self.deskLyricFontCard.clicked.connect(self.__onDeskLyricFontCardClicked)

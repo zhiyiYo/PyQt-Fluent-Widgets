@@ -187,6 +187,7 @@ class ConfigItem:
         self.__value = default
         self.value = default
         self.restart = restart
+        self.defaultValue = self.validator.correct(default)
 
     @property
     def value(self):
