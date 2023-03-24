@@ -63,6 +63,12 @@ QPushButton:pressed {
     color: rgba(0, 0, 0, 0.63);
 }
 
+QPushButton:disabled {
+    color: rgb(162, 162, 162);
+    background: rgb(252, 252, 252);
+    border: 1px solid rgb(223, 223, 223);
+}
+
 
 /* Tool button */
 ToolButton {
@@ -149,4 +155,8 @@ QRadioButton:disabled {
 QRadioButton::indicator:disabled {
     border: 2px solid #bbbbbb;
     background-color: rgba(0, 0, 0, 0);
+}
+
+#chooseColorButton {
+    padding: 5px 17px 5px 17px;
 }
