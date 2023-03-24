@@ -32,7 +32,7 @@ pip install PySide6-Fluent-Widgets
 ```
 Or install full-featured version:
 ```shell
-pip install 'PySide6-Fluent-Widgets[full]'
+pip install "PySide6-Fluent-Widgets[full]"
 ```
 
 ## Run Example

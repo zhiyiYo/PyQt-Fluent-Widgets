@@ -7,7 +7,7 @@ pip install PyQt-Fluent-Widgets
 ```
 Or install full-featured version use pip:
 ```shell
-pip install 'PyQt-Fluent-Widgets[full]'
+pip install "PyQt-Fluent-Widgets[full]"
 ```
 
 ### Run example
