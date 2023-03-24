@@ -1,0 +1,66 @@
+CheckBox {
+    color: white;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    spacing: 8px;
+    min-width: 28px;
+    min-height: 20px;
+}
+
+CheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgb(42, 42, 42);
+}
+
+CheckBox::indicator:hover {
+    border: 1px solid rgb(161, 161, 161);
+    background-color: rgb(56, 56, 56);
+}
+
+CheckBox::indicator:pressed {
+    border: 1px solid rgb(86, 86, 86);
+    background-color: rgb(62, 62, 62);
+}
+
+CheckBox::indicator:checked,
+CheckBox::indicator:indeterminate {
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorPrimary;
+}
+
+CheckBox::indicator:checked {
+    image: url(:/qfluentwidgets/images/check_box/Accept_black.svg);
+}
+
+CheckBox::indicator:indeterminate {
+    image: url(:/qfluentwidgets/images/check_box/PartialAccept_black.svg);
+}
+
+CheckBox::indicator:checked:hover,
+CheckBox::indicator:indeterminate:hover {
+    border: 1px solid --ThemeColorDark1;
+    background-color: --ThemeColorDark1;
+}
+
+CheckBox::indicator:checked:pressed,
+CheckBox::indicator:indeterminate:pressed {
+    border: 1px solid --ThemeColorDark2;
+    background-color: --ThemeColorDark2;
+}
+
+CheckBox:disabled {
+    color: rgba(255, 255, 255, 110);
+}
+
+CheckBox::indicator:disabled {
+    border: 1px solid rgb(82, 82, 82);
+    background-color: rgb(45, 45, 45);
+}
+
+CheckBox::indicator:checked:disabled,
+CheckBox::indicator:indeterminate:disabled {
+    border: 1px solid rgb(82, 82, 82);
+    background-color: rgb(82, 82, 82);
+}

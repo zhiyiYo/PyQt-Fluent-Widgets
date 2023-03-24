@@ -3,6 +3,8 @@ from PyQt6.QtCore import QSize, Qt, pyqtSignal, QPoint, QRectF, QPointF
 from PyQt6.QtGui import QColor, QPainter, QPainterPath
 from PyQt6.QtWidgets import QProxyStyle, QSlider
 
+from ...common.style_sheet import setStyleSheet
+
 
 class Slider(QSlider):
     """ A slider can be clicked """
@@ -11,6 +13,7 @@ class Slider(QSlider):
 
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)
+        setStyleSheet(self, 'slider')
 
     def mousePressEvent(self, e):
         super().mousePressEvent(e)

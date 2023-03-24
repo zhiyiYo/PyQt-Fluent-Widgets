@@ -615,31 +615,33 @@ class LineEditMenu(RoundMenu):
     def __init__(self, parent):
         super().__init__("", parent)
         self.setProperty("selectAll", bool(self.parent().text()))
+        self.selectionStart = parent.selectionStart()
+        self.selectionLength = parent.selectionLength()
 
     def createActions(self):
         self.cutAct = QAction(
-            FIF.icon(FIF.CUT),
+            FIF.CUT.icon(),
             self.tr("Cut"),
             self,
             shortcut="Ctrl+X",
             triggered=self.parent().cut,
         )
         self.copyAct = QAction(
-            FIF.icon(FIF.COPY),
+            FIF.COPY.icon(),
             self.tr("Copy"),
             self,
             shortcut="Ctrl+C",
             triggered=self.parent().copy,
         )
         self.pasteAct = QAction(
-            FIF.icon(FIF.PASTE),
+            FIF.PASTE.icon(),
             self.tr("Paste"),
             self,
             shortcut="Ctrl+V",
             triggered=self.parent().paste,
         )
         self.cancelAct = QAction(
-            FIF.icon(FIF.CANCEL),
+            FIF.CANCEL.icon(),
             self.tr("Cancel"),
             self,
             shortcut="Ctrl+Z",
@@ -653,6 +655,12 @@ class LineEditMenu(RoundMenu):
         )
         self.action_list = [self.cutAct, self.copyAct,
                             self.pasteAct, self.cancelAct, self.selectAllAct]
+
+    def _onItemClicked(self, item):
+        if self.selectionLength:
+            self.parent().setSelection(self.selectionStart, self.selectionLength)
+
+        super()._onItemClicked(item)
 
     def exec(self, pos, ani=True):
         self.clear()

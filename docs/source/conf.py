@@ -9,7 +9,7 @@
 project = 'PyQt-Fluent-Widgets'
 copyright = '2023, zhiyiYo'
 author = 'zhiyiYo'
-release = 'v0.2.8'
+release = 'v0.4.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
