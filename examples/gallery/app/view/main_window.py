@@ -11,6 +11,7 @@ from qframelesswindow import FramelessWindow
 from .title_bar import CustomTitleBar
 from .setting_interface import SettingInterface, cfg
 from .basic_input_interface import BasicInputInterface
+from .dialog_interface import DialogInterface
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 
@@ -55,9 +56,11 @@ class MainWindow(FramelessWindow):
 
         # create sub interface
         self.basicInputInterface = BasicInputInterface(self)
+        self.dialogInterface = DialogInterface(self)
         self.settingInterface = SettingInterface(self)
 
         self.stackWidget.addWidget(self.basicInputInterface)
+        self.stackWidget.addWidget(self.dialogInterface)
         self.stackWidget.addWidget(self.settingInterface)
 
         # initialize layout
@@ -84,6 +87,7 @@ class MainWindow(FramelessWindow):
 
     def initNavigation(self):
         self.basicInputInterface.setObjectName('basicInterface')
+        self.dialogInterface.setObjectName('dialogInterface')
         self.settingInterface.setObjectName('settingsInterface')
 
         self.navigationInterface.addItem(
@@ -102,10 +106,10 @@ class MainWindow(FramelessWindow):
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey='Dialogs',
+            routeKey=self.dialogInterface.objectName(),
             icon=Icon.MESSAGE,
             text=self.tr('Dialogs'),
-            onClick=print,
+            onClick=lambda: self.switchTo(self.dialogInterface),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(

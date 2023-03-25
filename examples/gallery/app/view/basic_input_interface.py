@@ -87,6 +87,7 @@ class BasicInputInterface(GalleryInterface):
         radioLayout.addWidget(radioButton1)
         radioLayout.addWidget(radioButton2)
         radioLayout.addWidget(radioButton3)
+        radioButton1.click()
         self.addExampleCard(
             self.tr('A group of RadioButton controls in a button group'),
             radioWidget,
@@ -95,6 +96,7 @@ class BasicInputInterface(GalleryInterface):
 
         slider = Slider(Qt.Horizontal)
         slider.setRange(0, 100)
+        slider.setValue(30)
         slider.setFixedWidth(200)
         self.addExampleCard(
             self.tr('A simple horizontal slider'),
