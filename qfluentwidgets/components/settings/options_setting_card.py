@@ -56,7 +56,8 @@ class OptionsSettingCard(ExpandSettingCard):
             button.setProperty(self.configName, option)
 
         self._adjustViewSize()
-        self.setSelected(qconfig.get(self.configItem))
+        self.setValue(qconfig.get(self.configItem))
+        configItem.valueChanged.connect(self.setValue)
         self.buttonGroup.buttonClicked.connect(self.__onButtonClicked)
 
     def __onButtonClicked(self, button: RadioButton):
@@ -71,11 +72,14 @@ class OptionsSettingCard(ExpandSettingCard):
         self.choiceLabel.adjustSize()
         self.optionChanged.emit(self.configItem)
 
-    def setSelected(self, value):
+    def setValue(self, value):
         """ select button according to the value """
+        qconfig.set(self.configItem, value)
+
         for button in self.viewLayout.widgets:
             isChecked = button.property(self.configName) == value
             button.setChecked(isChecked)
+
             if isChecked:
                 self.choiceLabel.setText(button.text())
                 self.choiceLabel.adjustSize()

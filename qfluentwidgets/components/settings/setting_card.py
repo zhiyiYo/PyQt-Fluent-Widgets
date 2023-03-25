@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import QUrl, Qt, pyqtSignal
-from PyQt5.QtGui import QColor, QDesktopServices, QIcon, QPainter
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import QColor, QIcon, QPainter
 from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
                              QVBoxLayout, QPushButton)
 
@@ -13,7 +13,7 @@ from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ..widgets.button import HyperlinkButton
 from ...common.style_sheet import setStyleSheet
-from ...common.config import qconfig, isDarkTheme
+from ...common.config import qconfig, isDarkTheme, ConfigItem
 from ...common.icon import FluentIconBase
 
 
@@ -79,13 +79,18 @@ class SettingCard(QFrame):
         self.contentLabel.setText(content)
         self.contentLabel.setVisible(bool(content))
 
+    def setValue(self, value):
+        """ set the value of config item """
+        pass
+
 
 class SwitchSettingCard(SettingCard):
     """ Setting card with switch button """
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, content=None, configItem=None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, content=None,
+                 configItem: ConfigItem = None, parent=None):
         """
         Parameters
         ----------
@@ -110,7 +115,8 @@ class SwitchSettingCard(SettingCard):
             self.tr('Off'), self, IndicatorPosition.RIGHT)
 
         if configItem:
-            self.setChecked(qconfig.get(configItem))
+            self.setValue(qconfig.get(configItem))
+            configItem.valueChanged.connect(self.setValue)
 
         # add switch button to layout
         self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignRight)
@@ -120,11 +126,10 @@ class SwitchSettingCard(SettingCard):
 
     def __onCheckedChanged(self, isChecked: bool):
         """ switch button checked state changed slot """
-        self.setChecked(isChecked)
+        self.setValue(isChecked)
         self.checkedChanged.emit(isChecked)
 
-    def setChecked(self, isChecked: bool):
-        """ set switch button checked state """
+    def setValue(self, isChecked: bool):
         if self.configItem:
             qconfig.set(self.configItem, isChecked)
 
@@ -177,14 +182,18 @@ class RangeSettingCard(SettingCard):
         self.hBoxLayout.addSpacing(16)
 
         self.valueLabel.setObjectName('valueLabel')
+        configItem.valueChanged.connect(self.setValue)
         self.slider.valueChanged.connect(self.__onValueChanged)
 
     def __onValueChanged(self, value: int):
         """ slider value changed slot """
+        self.setValue(value)
+        self.valueChanged.emit(value)
+
+    def setValue(self, value):
         qconfig.set(self.configItem, value)
         self.valueLabel.setNum(value)
         self.valueLabel.adjustSize()
-        self.valueChanged.emit(value)
 
 
 class PushSettingCard(SettingCard):
@@ -333,10 +342,15 @@ class ColorSettingCard(SettingCard):
         self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignRight)
         self.hBoxLayout.addSpacing(16)
         self.colorPicker.colorChanged.connect(self.__onColorChanged)
+        configItem.valueChanged.connect(self.setValue)
 
     def __onColorChanged(self, color: QColor):
         qconfig.set(self.configItem, color)
         self.colorChanged.emit(color)
+
+    def setValue(self, color: QColor):
+        self.colorPicker.setColor(color)
+        qconfig.set(self.configItem, color)
 
 
 class ComboBoxSettingCard(SettingCard):
@@ -375,6 +389,11 @@ class ComboBoxSettingCard(SettingCard):
         self.comboBox.addItems(texts)
         self.comboBox.setCurrentText(self.optionToText[qconfig.get(configItem)])
         self.comboBox.currentTextChanged.connect(self._onCurrentTextChanged)
+        configItem.valueChanged.connect(self.setValue)
 
     def _onCurrentTextChanged(self, text):
+        qconfig.set(self.configItem, self.textToOption[text])
+
+    def setValue(self, text):
+        self.comboBox.setCurrentText(text)
         qconfig.set(self.configItem, self.textToOption[text])

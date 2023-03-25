@@ -16,6 +16,7 @@ class LineEdit(QLineEdit):
 
         setStyleSheet(self, 'line_edit')
         self.setFixedHeight(33)
+        self.setAttribute(Qt.WA_MacShowFocusRect, False)
         self.clearButton = QToolButton(self)
 
         self.setTextMargins(0, 0, 33, 0)
