@@ -1,12 +1,12 @@
 # coding:utf-8
 from PySide6.QtCore import Qt, Signal, QObject, QEvent
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout
+from PySide6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushButton
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import setStyleSheet
-from ..widgets.button import PushButton, PrimaryPushButton
+from ..widgets.button import PrimaryPushButton
 
 from .mask_dialog_base import MaskDialogBase
 
@@ -24,7 +24,7 @@ class Ui_MessageBox(QObject):
 
         self.buttonGroup = QFrame(parent)
         self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = PushButton(self.tr('Cancel'), self.buttonGroup)
+        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
 
         self.vBoxLayout = QVBoxLayout(parent)
         self.textLayout = QVBoxLayout()
@@ -91,6 +91,7 @@ class Ui_MessageBox(QObject):
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
         self.buttonGroup.setObjectName('buttonGroup')
+        self.cancelButton.setObjectName('cancelButton')
 
         setStyleSheet(self, 'dialog')
 

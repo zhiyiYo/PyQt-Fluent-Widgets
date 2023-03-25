@@ -2,10 +2,11 @@
 from typing import Union
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QButtonGroup, QLabel, QRadioButton
+from PySide6.QtWidgets import QButtonGroup, QLabel
 
 from ...common.config import OptionsConfigItem, qconfig
 from ...common.icon import FluentIconBase
+from ..widgets.button import RadioButton
 from .expand_setting_card import ExpandSettingCard
 
 
@@ -49,7 +50,7 @@ class OptionsSettingCard(ExpandSettingCard):
         self.viewLayout.setSpacing(19)
         self.viewLayout.setContentsMargins(48, 18, 0, 18)
         for text, option in zip(texts, configItem.options):
-            button = QRadioButton(text, self.view)
+            button = RadioButton(text, self.view)
             self.buttonGroup.addButton(button)
             self.viewLayout.addWidget(button)
             button.setProperty(self.configName, option)
@@ -58,7 +59,7 @@ class OptionsSettingCard(ExpandSettingCard):
         self.setSelected(qconfig.get(self.configItem))
         self.buttonGroup.buttonClicked.connect(self.__onButtonClicked)
 
-    def __onButtonClicked(self, button: QRadioButton):
+    def __onButtonClicked(self, button: RadioButton):
         """ button clicked slot """
         if button.text() == self.choiceLabel.text():
             return

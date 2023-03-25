@@ -1,20 +1,19 @@
 # coding:utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QWidget, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget
 
-from qfluentwidgets import MessageDialog, MessageBox, setTheme, Theme
+from qfluentwidgets import MessageDialog, MessageBox, setTheme, Theme, PrimaryPushButton
 
 
-class Window(QWidget):
+class Demo(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.resize(1000, 500)
-        self.btn = QPushButton('Click Me', parent=self)
-        self.btn.move(425, 25)
+        self.btn = PrimaryPushButton('Click Me', parent=self)
+        self.btn.move(455, 25)
         self.btn.clicked.connect(self.showDialog)
-        with open('resource/demo.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
+        self.setStyleSheet('Demo{background:white}')
 
         # setTheme(Theme.DARK)
 
@@ -31,6 +30,6 @@ class Window(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    w = Window()
+    w = Demo()
     w.show()
     app.exec()
