@@ -2,11 +2,10 @@
 from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
 from PyQt5.QtGui import (QBrush, QColor, QPixmap,
                          QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QToolButton, QFrame, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QFrame, QVBoxLayout
 
-from ...common.icon import getIconColor
 from ...common.style_sheet import setStyleSheet, getStyleSheet
-from ..widgets import LineEditMenu, Slider, ScrollArea, PushButton, PrimaryPushButton
+from ..widgets import Slider, ScrollArea, PushButton, PrimaryPushButton
 from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
 
@@ -192,7 +191,7 @@ class ColorDialog(MaskDialogBase):
 
         self.buttonGroup = QFrame(self.widget)
         self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = PushButton(self.tr('Cancel'), self.buttonGroup)
+        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
 
         self.titleLabel = QLabel(title, self.scrollWidget)
         self.huePanel = HuePanel(color, self.scrollWidget)

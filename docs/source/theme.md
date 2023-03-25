@@ -13,3 +13,5 @@ You can use `setThemeColor()` method to change the theme color of PyQt-Fluent-Wi
 * `QColor`
 * `Qt.GlobalColor`
 * `str`: Hex color strings or color names, such as `#0065d5` or `red`.
+
+When the theme color changes, `qconfig` will emit the `themeColorChanged` signal.

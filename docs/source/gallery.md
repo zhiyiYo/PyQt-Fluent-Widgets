@@ -1,49 +1,62 @@
 ## Gallery
 
-### Acrylic Label
-<img width="60%" src="./_static/gallery/acrylic_label.png"/>
+### Basic input
+#### Button
+![](./_static/gallery/button.gif)
 
-### Check Box
+#### Check Box
 ![](./_static/gallery/check_box.gif)
 
-### Combo Box
+#### Combo Box
 ![](./_static/gallery/combo_box.gif)
 
-### Color Dialog
+#### Radio Button
+![](./_static/gallery/radio_button.gif)
+
+#### Switch Button
+![](./_static/gallery/switch_button.gif)
+
+#### Slider
+![](./_static/gallery/slider.gif)
+
+#### Hollow Handle Slider
+![](./_static/gallery/hollow_handle_slider.gif)
+
+
+### Dialogs
+#### Color Dialog
 ![](./_static/gallery/color_dialog.gif)
 
-### Dialog
+#### Dialog
 ![](./_static/gallery/dialog.gif)
 
-### Message Box
+#### Message Box
 ![](./_static/gallery/message_box.gif)
 
-### Win10 Style Message Dialog
+#### Win10 Style Message Dialog
 ![](./_static/gallery/dialog_with_mask.gif)
 
-### Navigation
-![](./_static/gallery/navigation.gif)
+#### Folder List Dialog
+![](./_static/gallery/folder_list_dialog.gif)
+
+
+### Menus
+![](./_static/gallery/round_menu.gif)
 
 ### Flow Layout
 ![](./_static/gallery/flow_layout.gif)
 
-### Folder List Dialog
-![](./_static/gallery/folder_list_dialog.gif)
+### Navigation
+![](./_static/gallery/navigation.gif)
 
-### Slider
-![](./_static/gallery/slider.gif)
-
-### Hollow Handle Slider
-![](./_static/gallery/hollow_handle_slider.gif)
-
-### Round Corners Menu
-![](./_static/gallery/round_menu.gif)
-
-### State Tool Tip
+### Status & info
+#### State Tool Tip
 ![](./_static/gallery/state_tool_tip.gif)
 
-### Switch Button
-![](./_static/gallery/switch_button.gif)
-
-### Tool Tip
+#### Tool Tip
 ![](./_static/gallery/tool_tip.gif)
+
+
+### Material
+### Acrylic Label
+<img width="60%" src="./_static/gallery/acrylic_label.png"/>
