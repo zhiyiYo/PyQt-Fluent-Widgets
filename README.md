@@ -22,7 +22,7 @@
   </a>
 </p>
 
-![Interface](docs/source/_static/Interface.png)
+![Interface](docs/source/_static/Interface.jpg)
 
 
 ## Install
@@ -38,7 +38,7 @@ pip install "PySide6-Fluent-Widgets[full]"
 ## Run Example
 After installing PySide6-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
-cd examples/settings
+cd examples/gallery
 python demo.py
 ```
 

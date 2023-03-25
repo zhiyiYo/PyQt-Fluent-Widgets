@@ -34,7 +34,7 @@
    </p>
 
    <p align="center">
-      <img src="./_static/Interface.png" alt="Interface">
+      <img src="./_static/Interface.jpg" alt="Interface">
    </p>
 
 

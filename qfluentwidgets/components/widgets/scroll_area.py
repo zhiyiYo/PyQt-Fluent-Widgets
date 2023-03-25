@@ -19,7 +19,7 @@ class ScrollArea(QScrollArea):
             scroll orientation
         """
         super().__init__(parent)
-        self.smoothScroll = SmoothScroll(self)
+        self.smoothScroll = SmoothScroll(self, orient)
 
     def setSmoothMode(self, mode):
         """ set smooth mode

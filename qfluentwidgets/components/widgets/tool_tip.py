@@ -93,7 +93,7 @@ class ToolTip(QFrame):
 
         # adjust postion to prevent tooltips from appearing outside the screen
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        x = min(max(0, x), rect.width() - self.width() - 4)
+        x = min(max(0, x) if QCursor().pos().x() >= 0 else x, rect.width() - self.width() - 4)
         y = min(max(0, y), rect.height() - self.height() - 4)
 
         self.move(x, y)
