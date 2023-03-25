@@ -2,11 +2,11 @@
 from typing import Union
 from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtGui import QIcon, QColor
-from PyQt6.QtWidgets import (QWidget, QRadioButton, QLabel, QButtonGroup,
-                             QVBoxLayout, QPushButton, QHBoxLayout)
+from PyQt6.QtWidgets import QWidget, QLabel, QButtonGroup, QVBoxLayout, QPushButton, QHBoxLayout
 
 from ..dialog_box import ColorDialog
 from .expand_setting_card import ExpandGroupSettingCard
+from ..widgets.button import RadioButton
 from ...common.config import qconfig, ColorConfigItem
 from ...common.icon import FluentIconBase
 
@@ -45,9 +45,9 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
 
         self.radioWidget = QWidget(self.view)
         self.radioLayout = QVBoxLayout(self.radioWidget)
-        self.defaultRadioButton = QRadioButton(
+        self.defaultRadioButton = RadioButton(
             self.tr('Default color'), self.radioWidget)
-        self.customRadioButton = QRadioButton(
+        self.customRadioButton = RadioButton(
             self.tr('Custom color'), self.radioWidget)
         self.buttonGroup = QButtonGroup(self)
 
@@ -102,7 +102,7 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
 
         self._adjustViewSize()
 
-    def __onRadioButtonClicked(self, button: QRadioButton):
+    def __onRadioButtonClicked(self, button: RadioButton):
         """ radio button clicked slot """
         if button.text() == self.choiceLabel.text():
             return

@@ -1,21 +1,21 @@
 # coding:utf-8
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt6.QtWidgets import QApplication, QWidget
 
-from qfluentwidgets import StateToolTip
+from qfluentwidgets import StateToolTip, PushButton
 
 
-class Window(QWidget):
+class Demo(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.resize(800, 300)
-        self.btn = QPushButton('Click Me', parent=self)
-        self.btn.move(310, 225)
+        self.btn = PushButton('Click Me', parent=self)
+        self.btn.move(360, 225)
         self.btn.clicked.connect(self.onButtonClicked)
         self.stateTooltip = None
-        with open('resource/demo.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
+
+        self.setStyleSheet('Demo{background:white}')
 
     def onButtonClicked(self):
         if self.stateTooltip:
@@ -30,6 +30,6 @@ class Window(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    w = Window()
+    w = Demo()
     w.show()
     app.exec()
