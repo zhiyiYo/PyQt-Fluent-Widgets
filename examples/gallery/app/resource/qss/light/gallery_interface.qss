@@ -29,7 +29,8 @@ ExampleCard > #card {
 }
 
 ExampleCard > #titleLabel {
-    font: 14px 'Segoe UI SemiBold', 'Microsoft YaHei';
+    font: 14px 'Segoe UI Light', 'Microsoft YaHei';
+    font-weight: 700;
     background-color: transparent;
     color: black;
 }

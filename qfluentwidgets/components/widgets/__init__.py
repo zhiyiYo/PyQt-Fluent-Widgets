@@ -10,3 +10,4 @@ from .button import PrimaryPushButton, PushButton, RadioButton, HyperlinkButton,
 from .line_edit import LineEdit
 from .check_box import CheckBox
 from .icon_widget import IconWidget
+from .label import PixmapLabel

@@ -1,4 +1,5 @@
 # coding: utf-8
+from typing import List
 from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
@@ -9,6 +10,8 @@ from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
 
 from .title_bar import CustomTitleBar
+from .gallery_interface import GalleryInterface
+from .home_interface import HomeInterface
 from .basic_input_interface import BasicInputInterface
 from .dialog_interface import DialogInterface
 from .layout_interface import LayoutInterface
@@ -19,6 +22,7 @@ from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
+from ..common.signal_bus import signalBus
 
 
 class StackedWidget(QFrame):
@@ -42,10 +46,12 @@ class StackedWidget(QFrame):
         self.view.addWidget(widget)
 
     def setCurrentWidget(self, widget, popOut=False):
+        widget.verticalScrollBar().setValue(0)
         if not popOut:
             self.view.setCurrentWidget(widget, duration=300)
         else:
-            self.view.setCurrentWidget(widget, True, False, 200, QEasingCurve.InQuad)
+            self.view.setCurrentWidget(
+                widget, True, False, 200, QEasingCurve.InQuad)
 
     def setCurrentIndex(self, index, popOut=False):
         self.setCurrentWidget(self.view.widget(index), popOut)
@@ -63,20 +69,22 @@ class MainWindow(FramelessWindow):
         self.navigationInterface = NavigationInterface(self, True, True)
 
         # create sub interface
+        self.homeInterface = HomeInterface(self)
         self.basicInputInterface = BasicInputInterface(self)
         self.dialogInterface = DialogInterface(self)
         self.layoutInterface = LayoutInterface(self)
         self.menuInterface = MenuInterface(self)
         self.materialInterface = MaterialInterface(self)
-        self.scrollInterface= ScrollInterface(self)
+        self.scrollInterface = ScrollInterface(self)
         self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
 
+        self.stackWidget.addWidget(self.homeInterface)
         self.stackWidget.addWidget(self.basicInputInterface)
         self.stackWidget.addWidget(self.dialogInterface)
         self.stackWidget.addWidget(self.layoutInterface)
-        self.stackWidget.addWidget(self.menuInterface)
         self.stackWidget.addWidget(self.materialInterface)
+        self.stackWidget.addWidget(self.menuInterface)
         self.stackWidget.addWidget(self.scrollInterface)
         self.stackWidget.addWidget(self.statusInfoInterface)
         self.stackWidget.addWidget(self.settingInterface)
@@ -99,12 +107,15 @@ class MainWindow(FramelessWindow):
         self.widgetLayout.addWidget(self.stackWidget)
         self.widgetLayout.setContentsMargins(0, 48, 0, 0)
 
+        signalBus.switchToSampleCard.connect(self.switchToSample)
+
         self.navigationInterface.displayModeChanged.connect(
             self.titleBar.raise_)
         self.titleBar.raise_()
 
     def initNavigation(self):
-        self.basicInputInterface.setObjectName('basicInterface')
+        self.homeInterface.setObjectName('homeInterface')
+        self.basicInputInterface.setObjectName('basicInputInterface')
         self.dialogInterface.setObjectName('dialogInterface')
         self.layoutInterface.setObjectName('layoutInterface')
         self.menuInterface.setObjectName('menuInterface')
@@ -113,11 +124,12 @@ class MainWindow(FramelessWindow):
         self.scrollInterface.setObjectName('scrollInterface')
         self.settingInterface.setObjectName('settingsInterface')
 
+        # add navigation items
         self.navigationInterface.addItem(
-            routeKey='Home',
+            routeKey=self.homeInterface.objectName(),
             icon=Icon.HOME,
             text=self.tr('Home'),
-            onClick=print
+            onClick=lambda t: self.switchTo(self.homeInterface, t)
         )
         self.navigationInterface.addSeparator()
 
@@ -143,17 +155,17 @@ class MainWindow(FramelessWindow):
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey=self.menuInterface.objectName(),
-            icon=Icon.MENU,
-            text=self.tr('Menus'),
-            onClick=lambda t: self.switchTo(self.menuInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
             routeKey=self.materialInterface.objectName(),
             icon=FIF.PALETTE,
             text=self.tr('Material'),
             onClick=lambda t: self.switchTo(self.materialInterface, t),
+            position=NavigationItemPostion.SCROLL
+        )
+        self.navigationInterface.addItem(
+            routeKey=self.menuInterface.objectName(),
+            icon=Icon.MENU,
+            text=self.tr('Menus'),
+            onClick=lambda t: self.switchTo(self.menuInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
@@ -189,16 +201,16 @@ class MainWindow(FramelessWindow):
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
         self.navigationInterface.setDefaultRouteKey(
-            self.basicInputInterface.objectName())
+            self.homeInterface.objectName())
 
         self.stackWidget.currentWidgetChanged.connect(
             lambda w: self.navigationInterface.setCurrentItem(w.objectName()))
         self.navigationInterface.setCurrentItem(
-            self.basicInputInterface.objectName())
+            self.homeInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
 
     def initWindow(self):
-        self.resize(1000, 780)
+        self.resize(960, 780)
         self.setMinimumWidth(580)
         self.setWindowIcon(QIcon('app/resource/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
@@ -225,8 +237,16 @@ class MainWindow(FramelessWindow):
 
     def showMessageBox(self):
         w = MessageBox(
-            'This is a help message',
-            'You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉',
+            self.tr('This is a help message'),
+            self.tr('You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉'),
             self
         )
         w.exec()
+
+    def switchToSample(self, routeKey, index):
+        """ switch to sample """
+        interfaces = self.findChildren(GalleryInterface)
+        for w in interfaces:
+            if w.objectName() == routeKey:
+                w.scrollToCard(index)
+                self.stackWidget.setCurrentWidget(w)

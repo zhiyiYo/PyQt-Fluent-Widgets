@@ -97,7 +97,7 @@ class BasicInputInterface(GalleryInterface):
         slider = Slider(Qt.Horizontal)
         slider.setRange(0, 100)
         slider.setValue(30)
-        slider.setFixedWidth(200)
+        slider.setMinimumWidth(200)
         self.addExampleCard(
             self.tr('A simple horizontal slider'),
             slider,

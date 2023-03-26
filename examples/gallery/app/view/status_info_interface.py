@@ -2,7 +2,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel
-from qfluentwidgets import StateToolTip, ToolTipFilter, PushButton
+from qfluentwidgets import StateToolTip, ToolTipFilter, PushButton, PixmapLabel
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -37,13 +37,13 @@ class StatusInfoInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tool_tip/demo.py'
         )
 
-        label = QLabel()
+        label = PixmapLabel()
         label.setPixmap(QPixmap('app/resource/images/kunkun.png').scaled(
-            200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            160, 160, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         label.installEventFilter(ToolTipFilter(label, showDelay=500))
         label.setToolTip(self.tr('Label with a ToolTip'))
         label.setToolTipDuration(2000)
-        label.setFixedSize(200, 200)
+        label.setFixedSize(160, 160)
         self.addExampleCard(
             self.tr('A label with a ToolTip'),
             label,

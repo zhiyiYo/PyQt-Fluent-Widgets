@@ -219,6 +219,59 @@
     </message>
 </context>
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../view/main_window.py" line="116"/>
+        <source>Home</source>
+        <translation>主页</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="124"/>
+        <source>Basic input</source>
+        <translation>基本输入</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="131"/>
+        <source>Dialogs</source>
+        <translation>对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="138"/>
+        <source>Layout</source>
+        <translation>布局</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="145"/>
+        <source>Menus</source>
+        <translation>菜单</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="152"/>
+        <source>Material</source>
+        <translation>材料</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="159"/>
+        <source>Scrolling</source>
+        <translation>滚动</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="166"/>
+        <source>Status &amp; info</source>
+        <translation>状态和信息</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="227"/>
+        <source>This is a help message</source>
+        <translation>一条友善的提示</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="227"/>
+        <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
+        <translation>你点击了一个自定义的导航项。你可以通过 `NavigationInterface.addWidget()` 添加更多的自定义导航项。</translation>
+    </message>
+</context>
+<context>
     <name>MaterialInterface</name>
     <message>
         <location filename="../../view/material_interface.py" line="29"/>
@@ -297,7 +350,7 @@
 <context>
     <name>ScrollInterface</name>
     <message>
-        <location filename="../../view/scroll_interface.py" line="35"/>
+        <location filename="../../view/scroll_interface.py" line="36"/>
         <source>Smooth scroll area</source>
         <translation>平滑滚动区域</translation>
     </message>
@@ -490,7 +543,7 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="44"/>
         <source>Label with a ToolTip</source>
-        <translation>标签的工具提示</translation>
+        <translation>多看一眼就会爆炸</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="47"/>

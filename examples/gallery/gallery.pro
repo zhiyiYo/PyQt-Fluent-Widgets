@@ -1,4 +1,4 @@
-SOURCES += app/view/main_window/main_window.py \
+SOURCES += app/view/main_window.py \
         app/view/setting_interface.py \
         app/view/basic_input_interface.py \
         app/view/dialog_interface.py \

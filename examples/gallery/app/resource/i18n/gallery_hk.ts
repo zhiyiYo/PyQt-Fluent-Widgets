@@ -219,6 +219,59 @@
     </message>
 </context>
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../view/main_window.py" line="116"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="124"/>
+        <source>Basic input</source>
+        <translation type="unfinished">基本輸入</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="131"/>
+        <source>Dialogs</source>
+        <translation type="unfinished">對話框</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="138"/>
+        <source>Layout</source>
+        <translation type="unfinished">布局</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="145"/>
+        <source>Menus</source>
+        <translation type="unfinished">菜單</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="152"/>
+        <source>Material</source>
+        <translation type="unfinished">材料</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="159"/>
+        <source>Scrolling</source>
+        <translation type="unfinished">滾動</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="166"/>
+        <source>Status &amp; info</source>
+        <translation type="unfinished">狀態和信息</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="227"/>
+        <source>This is a help message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="227"/>
+        <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MaterialInterface</name>
     <message>
         <location filename="../../view/material_interface.py" line="29"/>
@@ -297,7 +350,7 @@
 <context>
     <name>ScrollInterface</name>
     <message>
-        <location filename="../../view/scroll_interface.py" line="35"/>
+        <location filename="../../view/scroll_interface.py" line="36"/>
         <source>Smooth scroll area</source>
         <translation>平滑滾動區域</translation>
     </message>

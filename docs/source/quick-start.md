@@ -13,6 +13,6 @@ pip install "PyQt-Fluent-Widgets[full]"
 ### Run example
 After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
-cd examples/settings
+cd examples/gallery
 python demo.py
 ```

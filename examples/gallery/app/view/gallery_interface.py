@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
                             isDarkTheme, IconWidget, Theme, ToolTipFilter)
 from ..common.icon import Icon
-from ..common.config import cfg, FEEDBACK_URL, DOCUMENT_URL, EXAMPLE_URL
+from ..common.config import cfg, FEEDBACK_URL, HELP_URL, EXAMPLE_URL
 
 
 class ToolBar(QWidget):
@@ -49,7 +49,8 @@ class ToolBar(QWidget):
         self.buttonLayout.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
 
         self.themeButton.installEventFilter(ToolTipFilter(self.themeButton))
-        self.feedbackButton.installEventFilter(ToolTipFilter(self.feedbackButton))
+        self.feedbackButton.installEventFilter(
+            ToolTipFilter(self.feedbackButton))
         self.themeButton.setToolTip(self.tr('Toggle theme'))
         self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
@@ -58,7 +59,7 @@ class ToolBar(QWidget):
 
         self.themeButton.clicked.connect(self.toggleTheme)
         self.documentButton.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(DOCUMENT_URL)))
+            lambda: QDesktopServices.openUrl(QUrl(HELP_URL)))
         self.sourceButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(EXAMPLE_URL)))
         self.feedbackButton.clicked.connect(
@@ -82,7 +83,8 @@ class ExampleCard(QWidget):
 
         self.sourceWidget = QFrame(self.card)
         self.sourcePath = sourcePath
-        self.sourcePathLabel = QLabel(self.tr('Source code'), self.sourceWidget)
+        self.sourcePathLabel = QLabel(
+            self.tr('Source code'), self.sourceWidget)
         self.linkIcon = IconWidget(FluentIcon.LINK, self.sourceWidget)
 
         self.vBoxLayout = QVBoxLayout(self)
@@ -181,6 +183,11 @@ class GalleryInterface(ScrollArea):
         card = ExampleCard(title, widget, sourcePath, stretch, self.view)
         self.vBoxLayout.addWidget(card, 0, Qt.AlignTop)
         return card
+
+    def scrollToCard(self, index: int):
+        """ scroll to example card """
+        w = self.vBoxLayout.itemAt(index).widget()
+        self.verticalScrollBar().setValue(w.y())
 
     def resizeEvent(self, e):
         super().resizeEvent(e)

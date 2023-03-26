@@ -8,11 +8,12 @@ class Icon(FluentIconBase, Enum):
 
     HOME = "Home"
     CHAT = "Chat"
+    CODE = "Code"
     MENU = "Menu"
     ALBUM = "Album"
     SCROLL = "Scroll"
     LAYOUT = "Layout"
-    GITHUB = "Github"
+    GITHUB = "GitHub"
     MESSAGE = "Message"
     CHECKBOX = "CheckBox"
     DOCUMENT = "Document"
