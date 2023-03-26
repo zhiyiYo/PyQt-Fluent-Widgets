@@ -36,6 +36,9 @@ class NavigationPanel(QFrame):
     def __init__(self, parent=None, isMinimalEnabled=False):
         super().__init__(parent=parent)
         self._parent = parent   # type: QWidget
+        self._isMenuButtonVisible = True
+        self._isReturnButtonVisible = False
+
         self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
 
@@ -192,10 +195,12 @@ class NavigationPanel(QFrame):
 
     def setMenuButtonVisible(self, isVisible: bool):
         """ set whether the menu button is visible """
+        self._isMenuButtonVisible = isVisible
         self.menuButton.setVisible(isVisible)
 
     def setReturnButtonVisible(self, isVisible: bool):
         """ set whether the menu button is visible """
+        self._isReturnButtonVisible = isVisible
         self.returnButton.setVisible(isVisible)
 
     def setExpandWidth(self, width: int):
@@ -299,7 +304,7 @@ class NavigationPanel(QFrame):
             if w < 1008 and self.displayMode == NavigationDisplayMode.EXPAND:
                 self.collapse()
             elif w >= 1008 and self.displayMode == NavigationDisplayMode.COMPACT and \
-                    not self.menuButton.isVisible():
+                    not self._isMenuButtonVisible:
                 self.expand()
 
         return super().eventFilter(obj, e)
@@ -394,9 +399,9 @@ class NavigationHistory(QObject):
         self.history.pop()
 
         if self.history:
-            self.items[self.history[-1]].clicked.emit()
+            self.items[self.history[-1]].clicked.emit(False)
         else:
             if self.defaultRouteKey is not None:
-                self.items[self.defaultRouteKey].clicked.emit()
+                self.items[self.defaultRouteKey].clicked.emit(False)
 
             self.emptyChanged.emit(True)

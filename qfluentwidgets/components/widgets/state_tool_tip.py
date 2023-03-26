@@ -129,6 +129,19 @@ class StateToolTip(QWidget):
         self.rotateAngle = (self.rotateAngle + self.deltaAngle) % 360
         self.update()
 
+    def getSuitablePos(self):
+        """ get suitable position in main window """
+        for i in range(10):
+            dy = i*(self.height() + 16)
+            pos = QPoint(self.window().width() - self.width() - 24, 50+dy)
+            widget = self.window().childAt(pos + QPoint(2, 2))
+            if isinstance(widget, (StateToolTip, ToastToolTip)):
+                pos += QPoint(0, self.height() + 16)
+            else:
+                break
+
+        return pos
+
     def paintEvent(self, e):
         """ paint state tooltip """
         super().paintEvent(e)

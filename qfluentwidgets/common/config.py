@@ -153,8 +153,10 @@ class ColorSerializer(ConfigSerializer):
         return QColor(value)
 
 
-class ConfigItem:
+class ConfigItem(QObject):
     """ Config item """
+
+    valueChanged = pyqtSignal(object)
 
     def __init__(self, group, name, default, validator=None, serializer=None, restart=False):
         """
@@ -178,6 +180,7 @@ class ConfigItem:
         restart: bool
             whether to restart the application after updating value
         """
+        super().__init__()
         self.group = group
         self.name = name
         self.validator = validator or ConfigValidator()
@@ -194,7 +197,11 @@ class ConfigItem:
 
     @value.setter
     def value(self, v):
-        self.__value = self.validator.correct(v)
+        v = self.validator.correct(v)
+        ov = self.__value
+        self.__value = v
+        if ov != v:
+            self.valueChanged.emit(v)
 
     @property
     def key(self):

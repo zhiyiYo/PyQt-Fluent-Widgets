@@ -52,8 +52,9 @@ class Indicator(QToolButton):
             return
 
         super().setChecked(isChecked)
+        self.sliderRadius = (self.height()-2*self.padding)//2
         self.sliderEndX = self.width()-2*self.sliderRadius - \
-            self.padding if self.isChecked() else self.padding
+            self.padding if isChecked else self.padding
         self.timer.start(5)
 
     def mouseReleaseEvent(self, e):

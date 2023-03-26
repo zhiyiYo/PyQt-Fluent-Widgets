@@ -58,5 +58,5 @@
 
 
 ### Material
-### Acrylic Label
+#### Acrylic Label
 <img width="60%" src="./_static/gallery/acrylic_label.png"/>

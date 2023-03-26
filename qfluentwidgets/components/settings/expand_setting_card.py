@@ -199,6 +199,10 @@ class ExpandSettingCard(QFrame):
         if self.view.isVisible():
             self.resize(self.width(), h + self.card.height())
 
+    def setValue(self, value):
+        """ set the value of config item """
+        pass
+
 
 
 class GroupSeparator(QWidget):

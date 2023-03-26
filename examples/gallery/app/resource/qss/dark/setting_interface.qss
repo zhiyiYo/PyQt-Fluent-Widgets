@@ -1,0 +1,48 @@
+SettingInterface, #scrollWidget {
+    background-color: transparent;
+}
+
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+
+/* 标签 */
+QLabel#settingLabel {
+    font: 33px 'Microsoft YaHei Light';
+    background-color: transparent;
+    color: white;
+}
+
+
+/* 滚动条 */
+QScrollBar {
+    background: transparent;
+    width: 4px;
+    margin-top: 32px;
+    margin-bottom: 0;
+    padding-right: 2px;
+}
+
+/*隐藏上箭头*/
+QScrollBar::sub-line {
+    background: transparent;
+}
+
+/*隐藏下箭头*/
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(122, 122, 122);
+    border: 2px solid rgb(128, 128, 128);
+    border-radius: 1px;
+    min-height: 32px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
