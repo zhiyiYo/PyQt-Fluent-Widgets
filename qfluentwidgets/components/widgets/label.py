@@ -130,9 +130,6 @@ class AcrylicLabel(QLabel):
 
     def setImage(self, imagePath: str):
         """ set the image to be blurred """
-        if imagePath == self.imagePath:
-            return
-
         self.imagePath = imagePath
         self.blurThread.blur(imagePath, self.blurRadius, self.maxBlurSize)
 

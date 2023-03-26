@@ -1,10 +1,10 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QFrame, QWidget
+from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPostion, MessageBox,
-                            isDarkTheme)
+                            isDarkTheme, PopUpAniStackedWidget)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
 
@@ -29,7 +29,7 @@ class StackedWidget(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.hBoxLayout = QHBoxLayout(self)
-        self.view = QStackedWidget(self)
+        self.view = PopUpAniStackedWidget(self)
 
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.view)
@@ -41,11 +41,14 @@ class StackedWidget(QFrame):
         """ add widget to view """
         self.view.addWidget(widget)
 
-    def setCurrentWidget(self, widget):
-        self.view.setCurrentWidget(widget)
+    def setCurrentWidget(self, widget, popOut=False):
+        if not popOut:
+            self.view.setCurrentWidget(widget, duration=300)
+        else:
+            self.view.setCurrentWidget(widget, True, False, 200, QEasingCurve.InQuad)
 
-    def setCurrentIndex(self, index):
-        self.view.setCurrentIndex(index)
+    def setCurrentIndex(self, index, popOut=False):
+        self.setCurrentWidget(self.view.widget(index), popOut)
 
 
 class MainWindow(FramelessWindow):
@@ -122,49 +125,49 @@ class MainWindow(FramelessWindow):
             routeKey=self.basicInputInterface.objectName(),
             icon=Icon.CHECKBOX,
             text=self.tr('Basic input'),
-            onClick=lambda: self.switchTo(self.basicInputInterface),
+            onClick=lambda t: self.switchTo(self.basicInputInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.dialogInterface.objectName(),
             icon=Icon.MESSAGE,
             text=self.tr('Dialogs'),
-            onClick=lambda: self.switchTo(self.dialogInterface),
+            onClick=lambda t: self.switchTo(self.dialogInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.layoutInterface.objectName(),
             icon=Icon.LAYOUT,
             text=self.tr('Layout'),
-            onClick=lambda: self.switchTo(self.layoutInterface),
+            onClick=lambda t: self.switchTo(self.layoutInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.menuInterface.objectName(),
             icon=Icon.MENU,
             text=self.tr('Menus'),
-            onClick=lambda: self.switchTo(self.menuInterface),
+            onClick=lambda t: self.switchTo(self.menuInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.materialInterface.objectName(),
             icon=FIF.PALETTE,
             text=self.tr('Material'),
-            onClick=lambda: self.switchTo(self.materialInterface),
+            onClick=lambda t: self.switchTo(self.materialInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.scrollInterface.objectName(),
             icon=Icon.SCROLL,
             text=self.tr('Scrolling'),
-            onClick=lambda: self.switchTo(self.scrollInterface),
+            onClick=lambda t: self.switchTo(self.scrollInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.statusInfoInterface.objectName(),
             icon=Icon.CHAT,
             text=self.tr('Status & info'),
-            onClick=lambda: self.switchTo(self.statusInfoInterface),
+            onClick=lambda t: self.switchTo(self.statusInfoInterface, t),
             position=NavigationItemPostion.SCROLL
         )
 
@@ -180,7 +183,7 @@ class MainWindow(FramelessWindow):
             routeKey=self.settingInterface.objectName(),
             icon=FIF.SETTING,
             text='Settings',
-            onClick=lambda: self.switchTo(self.settingInterface),
+            onClick=lambda t: self.switchTo(self.settingInterface, t),
             position=NavigationItemPostion.BOTTOM
         )
 
@@ -213,8 +216,8 @@ class MainWindow(FramelessWindow):
         with open(f'app/resource/qss/{color}/main_window.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
-    def switchTo(self, widget):
-        self.stackWidget.setCurrentWidget(widget)
+    def switchTo(self, widget, triggerByUser=True):
+        self.stackWidget.setCurrentWidget(widget, not triggerByUser)
 
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)

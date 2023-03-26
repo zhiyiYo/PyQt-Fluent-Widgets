@@ -398,9 +398,9 @@ class NavigationHistory(QObject):
         self.history.pop()
 
         if self.history:
-            self.items[self.history[-1]].clicked.emit()
+            self.items[self.history[-1]].clicked.emit(False)
         else:
             if self.defaultRouteKey is not None:
-                self.items[self.defaultRouteKey].clicked.emit()
+                self.items[self.defaultRouteKey].clicked.emit(False)
 
             self.emptyChanged.emit(True)

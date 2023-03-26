@@ -14,7 +14,7 @@ from ...common.icon import FluentIcon as FIF
 class NavigationWidget(QWidget):
     """ Navigation widget """
 
-    clicked = pyqtSignal()
+    clicked = pyqtSignal(bool)  # whether triggered by the user
     EXPAND_WIDTH = 312
 
     def __init__(self, isSelectable: bool, parent=None):
@@ -42,7 +42,7 @@ class NavigationWidget(QWidget):
     def mouseReleaseEvent(self, e):
         self.isPressed = False
         self.update()
-        self.clicked.emit()
+        self.clicked.emit(True)
 
     def setCompacted(self, isCompacted: bool):
         """ set whether the widget is compacted """

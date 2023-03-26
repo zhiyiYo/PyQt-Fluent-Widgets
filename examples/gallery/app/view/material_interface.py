@@ -5,6 +5,7 @@ from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
+from ..common.config import cfg
 
 
 class MaterialInterface(GalleryInterface):
@@ -13,18 +14,25 @@ class MaterialInterface(GalleryInterface):
     def __init__(self, parent=None):
         t = Translator()
         super().__init__(
-            title=t.menus,
+            title=t.material,
             subtitle='qfluentwidgets.components.widgets',
             parent=parent
         )
 
-        label = AcrylicLabel(15, QColor(105, 114, 168, 102))
-        label.setImage('app/resource/images/chidanta.jpg')
-        label.setMaximumSize(787, 579)
-        label.setMinimumSize(197, 145)
+        self.label = AcrylicLabel(
+            cfg.get(cfg.blurRadius), QColor(105, 114, 168, 102))
+        self.label.setImage('app/resource/images/chidanta.jpg')
+        self.label.setMaximumSize(787, 579)
+        self.label.setMinimumSize(197, 145)
+        cfg.blurRadius.valueChanged.connect(self.onBlurRadiusChanged)
+
         self.addExampleCard(
             self.tr('Acrylic label'),
-            label,
+            self.label,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/acrylic_label/demo.py',
             stretch=1
         )
+
+    def onBlurRadiusChanged(self, radius: int):
+        self.label.blurRadius = radius
+        self.label.setImage('app/resource/images/chidanta.jpg')

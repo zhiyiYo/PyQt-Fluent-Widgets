@@ -19,7 +19,7 @@ class MenuInterface(GalleryInterface):
             parent=parent
         )
 
-        button = PushButton('Show menu')
+        button = PushButton(self.tr('Show menu'))
         button.clicked.connect(lambda: self.createMenu(
             button.mapToGlobal(QPoint()) + QPoint(button.width()+5, -100)))
 
@@ -33,35 +33,37 @@ class MenuInterface(GalleryInterface):
         menu = RoundMenu(parent=self)
 
         # add actions
-        menu.addAction(QAction(FIF.COPY.icon(), 'Copy'))
-        menu.addAction(QAction(FIF.CUT.icon(), 'Cut'))
+        menu.addAction(QAction(FIF.COPY.icon(), self.tr('Copy')))
+        menu.addAction(QAction(FIF.CUT.icon(), self.tr('Cut')))
 
         # add sub menu
-        submenu = RoundMenu("Add to", self)
+        submenu = RoundMenu(self.tr("Add to"), self)
         submenu.setIcon(FIF.ADD.icon())
         submenu.addActions([
-            QAction(FIF.VIDEO.icon(), 'Video'),
-            QAction(FIF.MUSIC.icon(), 'Music'),
+            QAction(FIF.VIDEO.icon(), self.tr('Video')),
+            QAction(FIF.MUSIC.icon(), self.tr('Music')),
         ])
         menu.addMenu(submenu)
 
         # add actions
         menu.addActions([
-            QAction(FIF.PASTE.icon(), 'Paste'),
-            QAction(FIF.CANCEL.icon(), 'Undo')
+            QAction(FIF.PASTE.icon(), self.tr('Paste')),
+            QAction(FIF.CANCEL.icon(), self.tr('Undo'))
         ])
 
         # add separator
         menu.addSeparator()
-        menu.addAction(QAction(f'Select all'))
+        menu.addAction(QAction(self.tr('Select all')))
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], QAction(FIF.SETTING.icon(), 'Settings'))
+            menu.menuActions()[-1], QAction(FIF.SETTING.icon(), self.tr('Settings')))
         menu.insertActions(
             menu.menuActions()[-1],
-            [QAction(FIF.HELP.icon(), 'Help'), QAction(
-                FIF.FEEDBACK.icon(), 'Feedback')]
+            [
+                QAction(FIF.HELP.icon(), self.tr('Help')),
+                QAction(FIF.FEEDBACK.icon(), self.tr('Feedback'))
+            ]
         )
 
         # show menu

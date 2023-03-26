@@ -4,7 +4,7 @@ from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 
 from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
-                            isDarkTheme, IconWidget, Theme)
+                            isDarkTheme, IconWidget, Theme, ToolTipFilter)
 from ..common.icon import Icon
 from ..common.config import cfg, FEEDBACK_URL, DOCUMENT_URL, EXAMPLE_URL
 
@@ -47,6 +47,11 @@ class ToolBar(QWidget):
         self.buttonLayout.addWidget(self.themeButton, 0, Qt.AlignRight)
         self.buttonLayout.addWidget(self.feedbackButton, 0, Qt.AlignRight)
         self.buttonLayout.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
+
+        self.themeButton.installEventFilter(ToolTipFilter(self.themeButton))
+        self.feedbackButton.installEventFilter(ToolTipFilter(self.feedbackButton))
+        self.themeButton.setToolTip(self.tr('Toggle theme'))
+        self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
         self.titleLabel.setObjectName('titleLabel')
         self.subtitleLabel.setObjectName('subtitleLabel')

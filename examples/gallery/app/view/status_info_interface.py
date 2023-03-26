@@ -20,7 +20,7 @@ class StatusInfoInterface(GalleryInterface):
         )
 
         self.stateTooltip = None
-        button = PushButton('Show StateToolTip')
+        button = PushButton(self.tr('Show StateToolTip'))
         button.clicked.connect(self.onStateButtonClicked)
         self.addExampleCard(
             self.tr('State tool tip'),
@@ -28,9 +28,9 @@ class StatusInfoInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/status_tool_tip/demo.py'
         )
 
-        button = PushButton('Button with a simple ToolTip')
+        button = PushButton(self.tr('Button with a simple ToolTip'))
         button.installEventFilter(ToolTipFilter(button))
-        button.setToolTip('Simple ToolTip')
+        button.setToolTip(self.tr('Simple ToolTip'))
         self.addExampleCard(
             self.tr('State tool tip'),
             button,
@@ -52,12 +52,12 @@ class StatusInfoInterface(GalleryInterface):
 
     def onStateButtonClicked(self):
         if self.stateTooltip:
-            self.stateTooltip.setContent('The model training is complete! 😆')
+            self.stateTooltip.setContent(self.tr('The model training is complete!') +' 😆')
             self.stateTooltip.setState(True)
             self.stateTooltip = None
         else:
             self.stateTooltip = StateToolTip(
-                'Training model', 'Please wait patiently', self.window())
+                self.tr('Training model'), self.tr('Please wait patiently'), self.window())
             self.sender().setText(self.tr('Hide state tool tip'))
             self.stateTooltip.move(self.stateTooltip.getSuitablePos())
             self.stateTooltip.show()

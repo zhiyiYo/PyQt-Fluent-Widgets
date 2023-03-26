@@ -22,7 +22,7 @@ class BasicInputInterface(GalleryInterface):
 
         self.addExampleCard(
             self.tr('A simple button with text content'),
-            PushButton('Standard push button'),
+            PushButton(self.tr('Standard push button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
@@ -39,23 +39,23 @@ class BasicInputInterface(GalleryInterface):
 
         self.addExampleCard(
             self.tr('Accent style applied to button'),
-            PrimaryPushButton('Accent style button'),
+            PrimaryPushButton(self.tr('Accent style button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
         self.addExampleCard(
             self.tr('A hyperlink button that navigates to a URI'),
-            HyperlinkButton('http://github.com', 'GitHub home page'),
+            HyperlinkButton('http://github.com', self.tr('GitHub home page')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
         self.addExampleCard(
             self.tr('A 2-state CheckBox'),
-            CheckBox('Two-state CheckBox'),
+            CheckBox(self.tr('Two-state CheckBox')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/check_box/demo.py'
         )
 
-        checkBox = CheckBox('Three-state CheckBox')
+        checkBox = CheckBox(self.tr('Three-state CheckBox'))
         checkBox.setTristate(True)
         self.addExampleCard(
             self.tr('A 3-state CheckBox'),
@@ -77,9 +77,9 @@ class BasicInputInterface(GalleryInterface):
         radioLayout = QVBoxLayout(radioWidget)
         radioLayout.setContentsMargins(2, 0, 0, 0)
         radioLayout.setSpacing(15)
-        radioButton1 = RadioButton('Star Platinum', radioWidget)
-        radioButton2 = RadioButton('Crazy Diamond', radioWidget)
-        radioButton3 = RadioButton('Soft and Wet', radioWidget)
+        radioButton1 = RadioButton(self.tr('Star Platinum'), radioWidget)
+        radioButton2 = RadioButton(self.tr('Crazy Diamond'), radioWidget)
+        radioButton3 = RadioButton(self.tr('Soft and Wet'), radioWidget)
         buttonGroup = QButtonGroup(radioWidget)
         buttonGroup.addButton(radioButton1)
         buttonGroup.addButton(radioButton2)
@@ -104,10 +104,16 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/slider/demo.py'
         )
 
+        self.switchButton = SwitchButton(self.tr('Off'))
+        self.switchButton.checkedChanged.connect(self.onSwitchCheckedChanged)
         self.addExampleCard(
             self.tr('A simple switch button'),
-            SwitchButton(self.tr('Off'), self),
+            self.switchButton,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/switch_button/demo.py'
         )
 
-
+    def onSwitchCheckedChanged(self, isChecked):
+        if isChecked:
+            self.switchButton.setText(self.tr('On'))
+        else:
+            self.switchButton.setText(self.tr('Off'))

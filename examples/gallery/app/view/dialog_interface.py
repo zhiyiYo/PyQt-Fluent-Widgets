@@ -52,7 +52,7 @@ class DialogInterface(GalleryInterface):
             print('Cancel button is pressed')
 
     def showMessageDialog(self):
-        title = self.tr('This is a frameless message dialog')
+        title = self.tr('This is a message dialog with mask')
         content = self.tr(
             "If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.")
         w = MessageBox(title, content, self.window())

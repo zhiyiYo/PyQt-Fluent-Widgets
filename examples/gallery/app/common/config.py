@@ -1,10 +1,8 @@
 # coding:utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication, QFont
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
-                            ColorConfigItem, OptionsValidator, RangeConfigItem, RangeValidator,
+                            OptionsValidator, RangeConfigItem, RangeValidator,
                             FolderListValidator, EnumSerializer, FolderValidator)
 
 
@@ -28,19 +26,16 @@ class Config(QConfig):
         "Folders", "Download", "app/download", FolderValidator())
 
     # main window
-    minimizeToTray = ConfigItem(
-        "MainWindow", "MinimizeToTray", True, BoolValidator())
-    playBarColor = ColorConfigItem("MainWindow", "PlayBarColor", "#225C7F")
-    recentPlaysNumber = RangeConfigItem(
-        "MainWindow", "RecentPlayNumbers", 300, RangeValidator(10, 300))
     dpiScale = OptionsConfigItem(
         "MainWindow", "DpiScale", "Auto", OptionsValidator([1, 1.25, 1.5, 1.75, 2, "Auto"]), restart=True)
     language = OptionsConfigItem(
         "MainWindow", "Language", Language.AUTO, OptionsValidator(Language), EnumSerializer(Language), restart=True)
 
+    # Material
+    blurRadius  = RangeConfigItem("Material", "AcrylicBlurRadius", 15, RangeValidator(0, 40))
+
     # software update
-    checkUpdateAtStartUp = ConfigItem(
-        "Update", "CheckUpdateAtStartUp", True, BoolValidator())
+    checkUpdateAtStartUp = ConfigItem("Update", "CheckUpdateAtStartUp", True, BoolValidator())
 
 
 YEAR = 2023

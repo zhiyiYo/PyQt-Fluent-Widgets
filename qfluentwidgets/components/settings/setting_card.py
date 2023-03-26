@@ -394,6 +394,6 @@ class ComboBoxSettingCard(SettingCard):
     def _onCurrentTextChanged(self, text):
         qconfig.set(self.configItem, self.textToOption[text])
 
-    def setValue(self, text):
-        self.comboBox.setCurrentText(text)
-        qconfig.set(self.configItem, self.textToOption[text])
+    def setValue(self, value):
+        self.comboBox.setCurrentText(self.optionToText[value])
+        qconfig.set(self.configItem, value)
