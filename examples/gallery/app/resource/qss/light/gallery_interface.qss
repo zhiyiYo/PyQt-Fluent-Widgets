@@ -49,9 +49,14 @@ ExampleCard > #titleLabel {
 QScrollBar {
     background: transparent;
     width: 4px;
-    margin-top: 32px;
+    margin-top: 132px;
     margin-bottom: 0;
     padding-right: 2px;
+}
+
+
+#imageViewer QScrollBar {
+    margin-top: 0px;
 }
 
 /*隐藏上箭头*/

@@ -10,6 +10,8 @@ try:
 except ImportError as e:
     warnings.warn('`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
 
+    def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
+        return QPixmap(imagePath)
 
 
 class BlurCoverThread(QThread):
@@ -21,7 +23,7 @@ class BlurCoverThread(QThread):
         super().__init__(parent)
         self.imagePath = ""
         self.blurRadius = 7
-        self.maxSize = (450, 450)
+        self.maxSize = None
 
     def run(self):
         if not self.imagePath:
@@ -141,6 +143,6 @@ class AcrylicLabel(QLabel):
         super().resizeEvent(e)
         self.acrylicTextureLabel.resize(self.size())
 
-        if not self.blurPixmap.isNull():
+        if not self.blurPixmap.isNull() and self.blurPixmap.size() != self.size():
             self.setPixmap(self.blurPixmap.scaled(
                 self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))

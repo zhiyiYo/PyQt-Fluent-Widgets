@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
 from PyQt5.QtMultimedia import QSound
 from qfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
-                            ComboBox, RadioButton, CheckBox, Slider)
+                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton, IndicatorPosition)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -103,3 +103,11 @@ class BasicInputInterface(GalleryInterface):
             slider,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/slider/demo.py'
         )
+
+        self.addExampleCard(
+            self.tr('A simple switch button'),
+            SwitchButton(self.tr('Off'), self),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/switch_button/demo.py'
+        )
+
+

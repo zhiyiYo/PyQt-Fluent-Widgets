@@ -9,9 +9,14 @@ from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
 
 from .title_bar import CustomTitleBar
-from .setting_interface import SettingInterface, cfg
 from .basic_input_interface import BasicInputInterface
 from .dialog_interface import DialogInterface
+from .layout_interface import LayoutInterface
+from .material_interface import MaterialInterface
+from .menu_interface import MenuInterface
+from .scroll_interface import ScrollInterface
+from .status_info_interface import StatusInfoInterface
+from .setting_interface import SettingInterface, cfg
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 
@@ -57,10 +62,20 @@ class MainWindow(FramelessWindow):
         # create sub interface
         self.basicInputInterface = BasicInputInterface(self)
         self.dialogInterface = DialogInterface(self)
+        self.layoutInterface = LayoutInterface(self)
+        self.menuInterface = MenuInterface(self)
+        self.materialInterface = MaterialInterface(self)
+        self.scrollInterface= ScrollInterface(self)
+        self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
 
         self.stackWidget.addWidget(self.basicInputInterface)
         self.stackWidget.addWidget(self.dialogInterface)
+        self.stackWidget.addWidget(self.layoutInterface)
+        self.stackWidget.addWidget(self.menuInterface)
+        self.stackWidget.addWidget(self.materialInterface)
+        self.stackWidget.addWidget(self.scrollInterface)
+        self.stackWidget.addWidget(self.statusInfoInterface)
         self.stackWidget.addWidget(self.settingInterface)
 
         # initialize layout
@@ -88,6 +103,11 @@ class MainWindow(FramelessWindow):
     def initNavigation(self):
         self.basicInputInterface.setObjectName('basicInterface')
         self.dialogInterface.setObjectName('dialogInterface')
+        self.layoutInterface.setObjectName('layoutInterface')
+        self.menuInterface.setObjectName('menuInterface')
+        self.materialInterface.setObjectName('materialInterface')
+        self.statusInfoInterface.setObjectName('statusInfoInterface')
+        self.scrollInterface.setObjectName('scrollInterface')
         self.settingInterface.setObjectName('settingsInterface')
 
         self.navigationInterface.addItem(
@@ -113,31 +133,38 @@ class MainWindow(FramelessWindow):
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey='Status&info',
+            routeKey=self.layoutInterface.objectName(),
             icon=Icon.LAYOUT,
             text=self.tr('Layout'),
-            onClick=print,
+            onClick=lambda: self.switchTo(self.layoutInterface),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey='Menus',
+            routeKey=self.menuInterface.objectName(),
             icon=Icon.MENU,
             text=self.tr('Menus'),
-            onClick=print,
+            onClick=lambda: self.switchTo(self.menuInterface),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey='Material',
+            routeKey=self.materialInterface.objectName(),
             icon=FIF.PALETTE,
             text=self.tr('Material'),
-            onClick=print,
+            onClick=lambda: self.switchTo(self.materialInterface),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
-            routeKey='Layout',
+            routeKey=self.scrollInterface.objectName(),
+            icon=Icon.SCROLL,
+            text=self.tr('Scrolling'),
+            onClick=lambda: self.switchTo(self.scrollInterface),
+            position=NavigationItemPostion.SCROLL
+        )
+        self.navigationInterface.addItem(
+            routeKey=self.statusInfoInterface.objectName(),
             icon=Icon.CHAT,
             text=self.tr('Status & info'),
-            onClick=print,
+            onClick=lambda: self.switchTo(self.statusInfoInterface),
             position=NavigationItemPostion.SCROLL
         )
 
@@ -163,11 +190,13 @@ class MainWindow(FramelessWindow):
 
         self.stackWidget.currentWidgetChanged.connect(
             lambda w: self.navigationInterface.setCurrentItem(w.objectName()))
-        self.navigationInterface.setCurrentItem(self.basicInputInterface.objectName())
+        self.navigationInterface.setCurrentItem(
+            self.basicInputInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
 
     def initWindow(self):
-        self.resize(900, 700)
+        self.resize(1000, 780)
+        self.setMinimumWidth(580)
         self.setWindowIcon(QIcon('app/resource/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)

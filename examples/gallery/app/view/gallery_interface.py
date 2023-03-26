@@ -67,9 +67,11 @@ class ToolBar(QWidget):
 class ExampleCard(QWidget):
     """ Example card """
 
-    def __init__(self, title, widget: QWidget, sourcePath, parent=None):
+    def __init__(self, title, widget: QWidget, sourcePath, stretch=0, parent=None):
         super().__init__(parent=parent)
         self.widget = widget
+        self.stretch = stretch
+
         self.titleLabel = QLabel(title, self)
         self.card = QFrame(self)
 
@@ -119,7 +121,9 @@ class ExampleCard(QWidget):
 
         self.widget.setParent(self.card)
         self.topLayout.addWidget(self.widget)
-        self.topLayout.addStretch(1)
+        if self.stretch == 0:
+            self.topLayout.addStretch(1)
+
         self.widget.show()
 
         self.bottomLayout.addWidget(self.sourcePathLabel, 0, Qt.AlignLeft)
@@ -139,6 +143,18 @@ class GalleryInterface(ScrollArea):
     """ Gallery interface """
 
     def __init__(self, title: str, subtitle: str, parent=None):
+        """
+        Parameters
+        ----------
+        title: str
+            The title of gallery
+
+        subtitle: str
+            The subtitle of gallery
+
+        parent: QWidget
+            parent widget
+        """
         super().__init__(parent=parent)
         self.view = QWidget(self)
         self.toolBar = ToolBar(title, subtitle, self)
@@ -156,9 +172,10 @@ class GalleryInterface(ScrollArea):
         self.__setQss()
         cfg.themeChanged.connect(self.__setQss)
 
-    def addExampleCard(self, title, widget, sourcePath: str):
-        card = ExampleCard(title, widget, sourcePath, self.view)
+    def addExampleCard(self, title, widget, sourcePath: str, stretch=0):
+        card = ExampleCard(title, widget, sourcePath, stretch, self.view)
         self.vBoxLayout.addWidget(card, 0, Qt.AlignTop)
+        return card
 
     def resizeEvent(self, e):
         super().resizeEvent(e)
