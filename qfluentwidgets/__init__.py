@@ -12,7 +12,7 @@ Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/Py
 :license: MIT, see LICENSE for more details.
 """
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 from .components import *
 from .common import *
