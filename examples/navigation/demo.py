@@ -24,10 +24,12 @@ class Widget(QFrame):
 class AvatarWidget(NavigationWidget):
     """ Avatar widget """
 
-    def __init__(self, parent=None):
+    def __init__(self, text: str, img: QImage = None, parent=None):
         super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('resource/shoko.png').scaled(
-            24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.text = text
+        self.avatar = img
+        if self.avatar:
+            self.avatar = self.avatar.scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -46,17 +48,31 @@ class AvatarWidget(NavigationWidget):
             painter.drawRoundedRect(self.rect(), 5, 5)
 
         # draw avatar
-        painter.setBrush(QBrush(self.avatar))
-        painter.translate(8, 6)
-        painter.drawEllipse(0, 0, 24, 24)
-        painter.translate(-8, -6)
+        if self.avatar:
+            painter.setBrush(QBrush(self.avatar))
+            painter.translate(8, 6)
+            painter.drawEllipse(0, 0, 24, 24)
+            painter.translate(-8, -6)
+        else:
+            c = 255 if isDarkTheme() else 0
+            painter.setBrush(QColor(c, c, c, 50))
+            painter.translate(8, 6)
+            painter.drawEllipse(0, 0, 24, 24)
+            painter.translate(-8, -6)
+            font = QFont('Microsoft YaHei')
+            font.setPixelSize(12)
+            text = self.text[0:1]
+            painter.setFont(font)
+            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
+            width = painter.fontMetrics().width(text)
+            painter.drawText(QRect(20-width/2, 0, 255, 36), Qt.AlignVCenter, text)
 
         if not self.isCompacted:
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
             font = QFont('Segoe UI')
             font.setPixelSize(14)
             painter.setFont(font)
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
+            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.text)
 
 
 class Window(FramelessWindow):
@@ -145,7 +161,8 @@ class Window(FramelessWindow):
         # add custom widget to bottom
         self.navigationInterface.addWidget(
             routeKey='avatar',
-            widget=AvatarWidget(),
+            widget=AvatarWidget('zhiyiYo'),
+            # widget=AvatarWidget('zhiyiYo',QImage('resource/shoko.png')),
             onClick=self.showMessageBox,
             position=NavigationItemPostion.BOTTOM
         )
