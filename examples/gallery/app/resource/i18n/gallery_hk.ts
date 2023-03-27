@@ -150,7 +150,7 @@
 <context>
     <name>ExampleCard</name>
     <message>
-        <location filename="../../view/gallery_interface.py" line="85"/>
+        <location filename="../../view/gallery_interface.py" line="86"/>
         <source>Source code</source>
         <translation>源代碼</translation>
     </message>
@@ -221,54 +221,54 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="116"/>
+        <location filename="../../view/main_window.py" line="128"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>主頁</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="124"/>
+        <location filename="../../view/main_window.py" line="136"/>
         <source>Basic input</source>
-        <translation type="unfinished">基本輸入</translation>
+        <translation>基本輸入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="131"/>
+        <location filename="../../view/main_window.py" line="143"/>
         <source>Dialogs</source>
-        <translation type="unfinished">對話框</translation>
+        <translation>對話框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="138"/>
+        <location filename="../../view/main_window.py" line="150"/>
         <source>Layout</source>
-        <translation type="unfinished">布局</translation>
+        <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="145"/>
+        <location filename="../../view/main_window.py" line="164"/>
         <source>Menus</source>
-        <translation type="unfinished">菜單</translation>
+        <translation>菜單</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="152"/>
+        <location filename="../../view/main_window.py" line="157"/>
         <source>Material</source>
-        <translation type="unfinished">材料</translation>
+        <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="159"/>
+        <location filename="../../view/main_window.py" line="171"/>
         <source>Scrolling</source>
-        <translation type="unfinished">滾動</translation>
+        <translation>滾動</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="166"/>
+        <location filename="../../view/main_window.py" line="178"/>
         <source>Status &amp; info</source>
-        <translation type="unfinished">狀態和信息</translation>
+        <translation>狀態和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="227"/>
+        <location filename="../../view/main_window.py" line="239"/>
         <source>This is a help message</source>
-        <translation type="unfinished"></translation>
+        <translation>一條友善的提示</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="227"/>
+        <location filename="../../view/main_window.py" line="239"/>
         <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
-        <translation type="unfinished"></translation>
+        <translation>你點擊了一個自定義的導航項。你可以通過 `NavigationInterface.addWidget()` 添加更多的自定義導航項。</translation>
     </message>
 </context>
 <context>
@@ -350,14 +350,14 @@
 <context>
     <name>ScrollInterface</name>
     <message>
-        <location filename="../../view/scroll_interface.py" line="36"/>
+        <location filename="../../view/scroll_interface.py" line="33"/>
         <source>Smooth scroll area</source>
         <translation>平滑滾動區域</translation>
     </message>
     <message>
-        <location filename="../../view/scroll_interface.py" line="28"/>
+        <location filename="../../view/scroll_interface.py" line="39"/>
         <source>Chitanda Eru is too hot 🥵</source>
-        <translation type="unfinished"></translation>
+        <translation>好奇寶寶千反田太燒了 🥵</translation>
     </message>
 </context>
 <context>
@@ -543,7 +543,7 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="44"/>
         <source>Label with a ToolTip</source>
-        <translation>標簽的工具提示</translation>
+        <translation>多看一眼就會爆炸</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="47"/>
@@ -551,12 +551,7 @@
         <translation>帶有工具提示的標簽</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="61"/>
-        <source>Hide state tool tip</source>
-        <translation>隱藏狀態提示條</translation>
-    </message>
-    <message>
-        <location filename="../../view/status_info_interface.py" line="23"/>
+        <location filename="../../view/status_info_interface.py" line="56"/>
         <source>Show StateToolTip</source>
         <translation>顯示進度提示條</translation>
     </message>
@@ -576,14 +571,19 @@
         <translation>模型訓練完成啦！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="59"/>
+        <location filename="../../view/status_info_interface.py" line="60"/>
         <source>Training model</source>
         <translation>正在訓練模型</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="59"/>
+        <location filename="../../view/status_info_interface.py" line="60"/>
         <source>Please wait patiently</source>
         <translation>我知道你很急，但是你先別急~~</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="62"/>
+        <source>Hide StateToolTip</source>
+        <translation>隱藏進度提示條</translation>
     </message>
 </context>
 <context>
@@ -599,12 +599,12 @@
         <translation>源代碼</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="53"/>
+        <location filename="../../view/gallery_interface.py" line="54"/>
         <source>Toggle theme</source>
         <translation>切換主題</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="54"/>
+        <location filename="../../view/gallery_interface.py" line="55"/>
         <source>Send feedback</source>
         <translation>提供反饋</translation>
     </message>

@@ -53,11 +53,12 @@ class StatusInfoInterface(GalleryInterface):
     def onStateButtonClicked(self):
         if self.stateTooltip:
             self.stateTooltip.setContent(self.tr('The model training is complete!') +' 😆')
+            self.sender().setText(self.tr('Show StateToolTip'))
             self.stateTooltip.setState(True)
             self.stateTooltip = None
         else:
             self.stateTooltip = StateToolTip(
                 self.tr('Training model'), self.tr('Please wait patiently'), self.window())
-            self.sender().setText(self.tr('Hide state tool tip'))
+            self.sender().setText(self.tr('Hide StateToolTip'))
             self.stateTooltip.move(self.stateTooltip.getSuitablePos())
             self.stateTooltip.show()
