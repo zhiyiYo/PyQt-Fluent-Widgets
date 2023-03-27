@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QApplication, QWidget, QSlider
 
-from qfluentwidgets import HollowHandleStyle, Slider
+from qfluentwidgets import HollowHandleStyle, Slider, setTheme, Theme
 
 
 class Demo1(QWidget):
@@ -30,11 +30,17 @@ class Demo2(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.resize(300, 150)
+        # setTheme(Theme.DARK)
 
-        self.slider = Slider(Qt.Horizontal, self)
-        self.slider.setFixedWidth(200)
-        self.slider.move(50, 61)
+        self.resize(300, 300)
+
+        self.slider1 = Slider(Qt.Horizontal, self)
+        self.slider1.setFixedWidth(200)
+        self.slider1.move(50, 30)
+
+        self.slider2 = Slider(Qt.Vertical, self)
+        self.slider2.setFixedHeight(150)
+        self.slider2.move(140, 80)
 
         self.setStyleSheet('Demo2{background: white}')
 
@@ -45,4 +51,4 @@ if __name__ == '__main__':
     w1.show()
     w2 = Demo2()
     w2.show()
-    sys.exit(app.exec_())
+    app.exec()

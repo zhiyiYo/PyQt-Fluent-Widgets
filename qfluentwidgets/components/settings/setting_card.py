@@ -176,6 +176,7 @@ class RangeSettingCard(SettingCard):
         self.slider.setValue(configItem.value)
         self.valueLabel.setNum(configItem.value)
 
+        self.hBoxLayout.addStretch(1)
         self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignRight)
         self.hBoxLayout.addSpacing(6)
         self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignRight)

@@ -248,5 +248,5 @@ class MainWindow(FramelessWindow):
         interfaces = self.findChildren(GalleryInterface)
         for w in interfaces:
             if w.objectName() == routeKey:
-                w.scrollToCard(index)
                 self.stackWidget.setCurrentWidget(w)
+                w.scrollToCard(index)
