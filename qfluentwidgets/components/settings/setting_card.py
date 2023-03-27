@@ -169,7 +169,6 @@ class RangeSettingCard(SettingCard):
         self.configItem = configItem
         self.slider = Slider(Qt.Orientation.Horizontal, self)
         self.valueLabel = QLabel(self)
-        self.slider.setFixedWidth(268)
         self.slider.setMinimumWidth(268)
 
         self.slider.setSingleStep(1)
