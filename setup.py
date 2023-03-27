@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PyQt-Fluent-Widgets",
-    version="0.4.2",
+    version="0.4.3",
     keywords="pyqt fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -27,5 +27,10 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent'
-    ]
+    ],
+    project_urls={
+        'Documentation': 'https://pyqt-fluent-widgets.readthedocs.io/',
+        'Source Code': 'https://github.com/zhiyiYo/PyQt-Fluent-Widgets',
+        'Bug Tracker': 'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues',
+    }
 )
