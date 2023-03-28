@@ -1,9 +1,9 @@
 # coding:utf-8
 import sys
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget
 
-from qfluentwidgets import LineEdit
+from qfluentwidgets import LineEdit, PushButton
 
 
 class Demo(QWidget):
@@ -11,9 +11,10 @@ class Demo(QWidget):
     def __init__(self):
         super().__init__()
         self.lineEdit = LineEdit('', self)
-        self.button=QPushButton('按钮', self)
+        self.button = PushButton('按钮', self)
         self.resize(500, 500)
-        self.lineEdit.move(150, 220)
+        self.lineEdit.move(110, 220)
+        self.button.move(320, 220)
         self.lineEdit.resize(200, 33)
         self.lineEdit.setClearButtonEnabled(True)
 
