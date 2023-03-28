@@ -29,7 +29,7 @@
       </a>
 
       <a style="text-decoration:none">
-         <img src="https://img.shields.io/badge/License-MIT-blue?color=#4ec820" alt="MIT"/>
+         <img src="https://img.shields.io/badge/License-GPLv3-blue?color=#4ec820" alt="GPLv3"/>
       </a>
    </p>
 

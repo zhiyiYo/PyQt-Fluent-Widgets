@@ -6,14 +6,14 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PyQt6-Fluent-Widgets",
-    version="0.2.5",
+    version="0.2.6",
     keywords="pyqt6 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
     description="A fluent design widgets library based on PyQt6",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    license="MIT",
+    license="GPLv3",
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6",
     packages=setuptools.find_packages(),
     install_requires=[
@@ -25,7 +25,7 @@ setuptools.setup(
     },
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: OS Independent'
     ],
     project_urls={

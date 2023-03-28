@@ -8,11 +8,11 @@ online at https://pyqt-fluent-widgets.readthedocs.io.
 
 Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6/examples.
 
-:copyright: (c) 2023 by zhiyiYo.
-:license: MIT, see LICENSE for more details.
+:copyright: (c) 2021 by zhiyiYo.
+:license: GPLv3, see LICENSE for more details.
 """
 
-__version__ = "0.2.5"
+__version__ = "0.2.6"
 
 from .components import *
 from .common import *
