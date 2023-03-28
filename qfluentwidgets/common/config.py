@@ -7,7 +7,6 @@ from typing import List
 import darkdetect
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import qApp
 
 from .exception_handler import exceptionHandler
 
