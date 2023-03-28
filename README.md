@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
+  <img width="18%" align="center" src="https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
   PyQt-Fluent-Widgets
@@ -18,11 +18,11 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/License-MIT-blue?color=#4ec820" alt="MIT"/>
+    <img src="https://img.shields.io/badge/License-GPLv3-blue?color=#4ec820" alt="GPLv3"/>
   </a>
 </p>
 
-![Interface](docs/source/_static/Interface.jpg)
+![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
 
 
 ## Install
