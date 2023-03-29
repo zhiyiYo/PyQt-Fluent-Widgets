@@ -42,9 +42,11 @@ cd examples/gallery
 python demo.py
 ```
 
-## Document
+## Documentation
 Want to know more about PySide6-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
 
+## Video Demonstration
+Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
