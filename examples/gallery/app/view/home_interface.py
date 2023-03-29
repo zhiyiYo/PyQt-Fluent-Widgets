@@ -39,7 +39,7 @@ class BannerWidget(QWidget):
         )
 
         self.linkCardView.addCard(
-            Icon.GITHUB,
+            FluentIcon.GITHUB,
             self.tr('GitHub repo'),
             self.tr(
                 'The latest fluent design controls and styles for your applications.'),
