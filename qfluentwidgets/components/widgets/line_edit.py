@@ -1,10 +1,29 @@
 # coding: utf-8
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtCore import QSize, Qt, QRectF
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QLineEdit, QToolButton
 
 from ...common.style_sheet import setStyleSheet
 from ...common.icon import FluentIcon as FIF
 from .menu import LineEditMenu
+
+
+class ClearButton(QToolButton):
+    """ Clear button """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setFixedSize(29, 25)
+        self.setIconSize(QSize(10, 10))
+        self.setCursor(Qt.PointingHandCursor)
+        self.setObjectName('clearButton')
+        setStyleSheet(self, 'line_edit')
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing | QPainter.SmoothPixmapTransform)
+        FIF.CLOSE.render(painter, QRectF(9.5, 7, 10, 10))
 
 
 class LineEdit(QLineEdit):
@@ -18,16 +37,9 @@ class LineEdit(QLineEdit):
         self.setFixedHeight(33)
         self.setAttribute(Qt.WA_MacShowFocusRect, False)
 
-        self.clearButton = QToolButton(self)
-        self.clearButton.setObjectName('clearButton')
+        self.clearButton = ClearButton(self)
         self.clearButton.move(self.width() - 33, 4)
-        self.clearButton.setFixedSize(29, 25)
         self.clearButton.hide()
-
-        self.clearButton.setIcon(FIF.CLOSE.icon())
-        self.clearButton.setIconSize(QSize(10, 10))
-
-        self.clearButton.setCursor(Qt.PointingHandCursor)
 
         self.clearButton.clicked.connect(self.clear)
         self.textChanged.connect(self.__onTextChanged)
@@ -59,5 +71,3 @@ class LineEdit(QLineEdit):
 
     def resizeEvent(self, e):
         self.clearButton.move(self.width() - 33, 4)
-
-
