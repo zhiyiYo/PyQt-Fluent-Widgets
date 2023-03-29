@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="18%" align="center" src="docs/source/_static/logo.png" alt="logo">
+  <img width="18%" align="center" src="https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
   PyQt6-Fluent-Widgets
@@ -22,7 +22,7 @@
   </a>
 </p>
 
-![Interface](docs/source/_static/Interface.jpg)
+![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
 
 
 ## Install
