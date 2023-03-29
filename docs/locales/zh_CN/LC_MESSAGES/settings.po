@@ -66,9 +66,9 @@ msgid ""
 "item from config file. For example, you can use ColorSerializer to "
 "serialize config items with QColor value type."
 msgstr ""
-"PyQt-Fluent-Widgets 使用 json 文件来保存配置，由于 json 文件只支持字符串、布尔值、列表和字典，对于枚举类或者 "
+"PyQt-Fluent-Widgets 使用 json 文件来保存配置，而 json 文件只支持字符串、布尔值、列表和字典，对于枚举类或者 "
 "`QColor`，无法直接将它们的值写入 json 文件中。为了解决这个问题，PyQt-Fluent-Widgets 提供了 "
-"`ConfigSerializer` 类及其子类来序列化和反序列化配置项。举个栗子，你可以使用 `ColorSerializer` "
+"`ConfigSerializer` 类及其子类来序列化和反序列化配置项。举个栗子，可以使用 `ColorSerializer` "
 "来序列化值类型为 `QColor` 的配置项。"
 
 #: ../../source/settings.md:11 7aff5d8231034bb0ad894d6108f4c807
@@ -80,7 +80,7 @@ msgid ""
 "You should add config items to the class attribute of QConfig subclasss,"
 "  then use qconfig.load() to load config file, for example:"
 msgstr ""
-"你应该将 `ConfigItem` 的实例添加到 `QConfig` 子类的类属性中，然后使用 `qconfig.load()` "
+"为了正确读写配置项的值，应该将 `ConfigItem` 的实例添加到 `QConfig` 子类的类属性中，然后使用 `qconfig.load()` "
 "来加载配置文件。下面是一个简单的例子："
 
 #: ../../source/settings.md:89 e72ec71f16bb480585ed8e14e99d5015
@@ -96,7 +96,7 @@ msgid ""
 "You can use SettingCardGroup.addSettingCard() to add a setting card to "
 "the same group, and SettingCardGroup will adjust its layout automatically"
 " based on the height of setting cards."
-msgstr "你可以使用 `SettingCardGroup.addSettingCard()` 将多个设置卡添加到同一个组中，`SettingCardGroup` 会根据设置卡的高度自动调整自己的布局。"
+msgstr "可以通过 `SettingCardGroup.addSettingCard()` 将多个设置卡添加到同一个组中，`SettingCardGroup` 会根据设置卡的高度自动调整自己的布局。"
 
 #: ../../source/settings.md:146 793ebd8ec76445bfb7ecf053abc47866
 msgid ""

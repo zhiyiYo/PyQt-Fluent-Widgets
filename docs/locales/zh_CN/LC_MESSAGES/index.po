@@ -32,5 +32,5 @@ msgstr "欢迎来到 PyQt-Fluent-Widgets 帮助文档！"
 msgid ""
 "This document will show you all the features of PyQt-Fluent-Widgets and "
 "the best practice of it."
-msgstr "这份文档将向你展示 PyQt-Fluent-Widgets 的全部特性和最佳实践。"
+msgstr "这份文档将展示 PyQt-Fluent-Widgets 的全部特性和正确使用姿势 🚀"
 

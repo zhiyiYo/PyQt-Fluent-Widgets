@@ -33,7 +33,7 @@ msgid ""
 "PyQt Fluent Widgets provides a side navigation class NavigationInterface."
 " You can use it with QStackWidget and put them in QHBoxLayout. Examples "
 "are available at navigation2."
-msgstr "PyQt-Fluent-Widgets 提供侧边导航类 `NavigationInterface`，你可以将它和 `QStackWidget` 放在 `QHBoxLayout` 中。示例程序参见 [navigation2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation2)"
+msgstr "PyQt-Fluent-Widgets 提供侧边导航类 `NavigationInterface`，可以将它和 `QStackWidget` 放在 `QHBoxLayout` 中。示例程序参见 [navigation2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation2)"
 
 #: ../../source/navigation.md:8 5c57ef2be90248b9a3f1e009604a4186
 msgid ""
@@ -51,7 +51,7 @@ msgid ""
 "NavigationWidget and rewrite its paintEvent() and "
 "setCompacted()(optional). Here an example shows how to create an avatar "
 "item."
-msgstr "如果你想自定义一个导航项，可以定义一个 `NavigationWidget` 的子类并实现它的 `paintEvent()` 和 `setCompacted()`（可选） 方法。下面是一个简单例子，展示了如何定义一个头像导航项："
+msgstr "如果希望自定义一个导航项，可以创建 `NavigationWidget` 的子类并实现它的 `paintEvent()` 和 `setCompacted()`（可选） 方法。下面是一个简单例子，展示了如何定义头像导航项："
 
 #: ../../source/navigation.md:53 806c4ccf0eee4d70b04adb32285a0112
 msgid ""
@@ -138,7 +138,7 @@ msgstr "`NavigationDisplayMode.MENU`：展开的导航菜单（当窗口窗口�
 msgid ""
 "NavigationDisplayMode.MINIMAL: Only a menu button on small window widths "
 "(you should add and manage the menu button to main window by yourself)."
-msgstr "`NavigationDisplayMode.MINIMAL`：只显示一个菜单按钮。你应该自己创建并管理菜单按钮和 `NavigationPanel`，然后将菜单按钮的点击信号连接到 `NavigationPanel.toggle()` 函数上。"
+msgstr "`NavigationDisplayMode.MINIMAL`：只显示一个菜单按钮。在这种显示模式下，应该自己创建并管理菜单按钮和 `NavigationPanel`，然后将菜单按钮的点击信号连接到 `NavigationPanel.toggle()` 函数上。"
 
 #: ../../source/navigation.md:84 d43aacaf91354d439d3ff15b48fb1313
 msgid ""

@@ -33,7 +33,7 @@ msgid ""
 "You can use the setTheme() method to switch the light/dark theme of PyQt-"
 "Fluent-Widgets. The parameter of setTheme() accepts the following three "
 "values:"
-msgstr "你可以使用 `setTheme()` 函数来切换 PyQt-Fluent-Widgets 全部组件的亮暗主题。该函数接受下述值："
+msgstr "`setTheme()` 函数用于切换 PyQt-Fluent-Widgets 全部组件的亮暗主题。该函数接受下述值："
 
 #: ../../source/theme.md:5 22d2a026a46540ab8f9e563ccc105b8d
 msgid "Theme.LIGHT: Light theme"
@@ -67,7 +67,7 @@ msgid ""
 "You can use setThemeColor() method to change the theme color of PyQt-"
 "Fluent-Widgets. This method accepts the following three types of "
 "parameters:"
-msgstr "你可以使用 `setThemeColor()` 函数来修改全部组件的主题色。该函数接受三种类型的值："
+msgstr "`setThemeColor()` 函数用于修改全部组件的主题色。该函数接受三种类型的值："
 
 #: ../../source/theme.md:13 7d2529df9e784db9bcfe546662332984
 msgid "QColor"

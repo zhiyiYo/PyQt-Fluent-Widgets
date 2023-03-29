@@ -44,5 +44,5 @@ msgstr "运行示例"
 msgid ""
 "After installing PyQt-Fluent-Widgets package using pip, you can run any "
 "demo in the examples directory, for example:"
-msgstr "使用 pip 安装好 PyQt-Fluent-Widgets 包之后，你可以运行 examples 目录下的任意示例，比如："
+msgstr "使用 pip 安装好 PyQt-Fluent-Widgets 包之后，就可以运行 [examples](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples) 目录下的任意示例，比如："
 
