@@ -5,7 +5,7 @@ QLineEdit {
     border-bottom: 1px solid rgba(0, 0, 0, 100);
     border-radius: 6px;
     font: 14px "Segoe UI";
-    padding: 0px 13px;
+    padding: 0px 10px;
     selection-background-color: --ThemeColorLight1;
 }
 
