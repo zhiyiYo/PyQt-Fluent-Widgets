@@ -13,7 +13,6 @@ class Icon(FluentIconBase, Enum):
     ALBUM = "Album"
     SCROLL = "Scroll"
     LAYOUT = "Layout"
-    GITHUB = "GitHub"
     MESSAGE = "Message"
     CHECKBOX = "CheckBox"
     DOCUMENT = "Document"

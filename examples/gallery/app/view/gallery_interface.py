@@ -19,7 +19,7 @@ class ToolBar(QWidget):
 
         self.documentButton = PushButton(
             self.tr('Documentation'), self, Icon.DOCUMENT)
-        self.sourceButton = PushButton(self.tr('Source'), self, Icon.GITHUB)
+        self.sourceButton = PushButton(self.tr('Source'), self, FluentIcon.GITHUB)
         self.themeButton = ToolButton(Icon.CONSTRACT, self)
         self.feedbackButton = ToolButton(FluentIcon.FEEDBACK, self)
 
