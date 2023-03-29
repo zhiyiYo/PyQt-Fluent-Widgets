@@ -302,7 +302,7 @@ class SettingInterface(ScrollArea):
         setTheme(theme)
 
         # chang the theme of setting interface
-        self.__setQss(theme)
+        self.__setQss()
 
     def __connectSignalToSlot(self):
         """ connect signal to slot """
