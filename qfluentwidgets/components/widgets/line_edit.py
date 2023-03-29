@@ -17,10 +17,8 @@ class LineEdit(QLineEdit):
         setStyleSheet(self, 'line_edit')
         self.setFixedHeight(33)
         self.setAttribute(Qt.WidgetAttribute.WA_MacShowFocusRect, False)
+
         self.clearButton = QToolButton(self)
-
-        self.setTextMargins(0, 0, 33, 0)
-
         self.clearButton.setObjectName('clearButton')
         self.clearButton.move(self.width() - 33, 4)
         self.clearButton.setFixedSize(29, 25)
@@ -36,6 +34,7 @@ class LineEdit(QLineEdit):
 
     def setClearButtonEnabled(self, enable: bool):
         self._isClearButtonEnabled = enable
+        self.setTextMargins(0, 0, 28*enable, 0)
 
     def isClearButtonEnabled(self) -> bool:
         return self._isClearButtonEnabled
