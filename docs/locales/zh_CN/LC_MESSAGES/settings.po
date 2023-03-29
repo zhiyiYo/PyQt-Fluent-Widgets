@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-29 12:20+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/settings.md:1 94eb420fa28b4769b99ce2d3c21d3d21
+msgid "Settings"
+msgstr "设置"
+
+#: ../../source/settings.md:2 6e2b8e815e0546409f3ba068ea009974
+msgid ""
+"PyQt-Fluent-Widgets presents each configuration item as a SettingCard on "
+"the interface. The behavior of user on the SettingCard will change the "
+"value of the configuration item, and PyQt-Fluent-Widgets will update the "
+"configuration item to the json configuration file automatically."
+msgstr ""
+"PyQt-Fluent-Widgets 将每个配置项表示为界面的一个设置卡。用户在设置卡上的交互行为将会改变相应配置项的值，同时 PyQt-"
+"Fluent-Widgets 会自动更新配置文件。"
+
+#: ../../source/settings.md:4 6465c58827804f949c701668d7383493
+msgid "Config"
+msgstr "配置项"
+
+#: ../../source/settings.md:5 8488b8fab0c3475bb1a690d679cc133b
+msgid ""
+"PyQt-Fluent-Widgets uses the ConfigItem class to represent a "
+"configuration item and uses the QConfig class to read and write the value"
+" of ConfigItem. The QConfig class will automatically update the "
+"configuration file when the value of the ConfigItem changes."
+msgstr ""
+"PyQt-Fluent-Widgets 使用 `ConfigItem` 类来表示一个配置项，并使用 `QConfig` 类来读写 "
+"`ConfigItem` 项的值。当 `ConfigItem` 的值发生改变时，`QConfig` 类会自动将配置项的值同步到配置文件中。"
+
+#: ../../source/settings.md:7 c3132f30e75f47678582523ee33818d7
+msgid ""
+"Since the value in config file may be manually modified by the user to an"
+" invalid value, PyQt-Fluent-Widgets use ConfigValidator and its subclass "
+"to verify and correct the config value."
+msgstr ""
+"由于配置文件可能被用户手动篡改，导致配置项的值非法，所以 PyQt-Fluent-Widgets 使用 `ConfigValidator` "
+"类及其子类来验证和修正配置项的值。"
+
+#: ../../source/settings.md:9 f82e618d80e145a882e060fa8cffe33f
+msgid ""
+"Json files only support string, boolean value, list and dict, for "
+"enumeration classes or QColor, we can't use json.dump() to write them "
+"directly into a json file, so PyQt-Fluent-Widgets provides "
+"ConfigSerializer and its subclass to serialize and deserialize config "
+"item from config file. For example, you can use ColorSerializer to "
+"serialize config items with QColor value type."
+msgstr ""
+"PyQt-Fluent-Widgets 使用 json 文件来保存配置，由于 json 文件只支持字符串、布尔值、列表和字典，对于枚举类或者 "
+"`QColor`，无法直接将它们的值写入 json 文件中。为了解决这个问题，PyQt-Fluent-Widgets 提供了 "
+"`ConfigSerializer` 类及其子类来序列化和反序列化配置项。举个栗子，你可以使用 `ColorSerializer` "
+"来序列化值类型为 `QColor` 的配置项。"
+
+#: ../../source/settings.md:11 7aff5d8231034bb0ad894d6108f4c807
+msgid "ConfigItem has the following attributes:"
+msgstr "`ConfigItem` 的属性如下表所示："
+
+#: ../../source/settings.md:55 f4a9a608806a4d199fd0d7c6c4df627b
+msgid ""
+"You should add config items to the class attribute of QConfig subclasss,"
+"  then use qconfig.load() to load config file, for example:"
+msgstr ""
+"你应该将 `ConfigItem` 的实例添加到 `QConfig` 子类的类属性中，然后使用 `qconfig.load()` "
+"来加载配置文件。下面是一个简单的例子："
+
+#: ../../source/settings.md:89 e72ec71f16bb480585ed8e14e99d5015
+msgid "Setting card"
+msgstr "设置卡"
+
+#: ../../source/settings.md:91 8f732aa2ccd44a8fbece12588b793118
+msgid "PyQt-Fluent-Widgets provides many kinds of setting card:"
+msgstr "PyQt-Fluent-Widgets 内置了许多类型的设置卡："
+
+#: ../../source/settings.md:144 0b6ad18262fd44c9b2492a2f2e4eedcf
+msgid ""
+"You can use SettingCardGroup.addSettingCard() to add a setting card to "
+"the same group, and SettingCardGroup will adjust its layout automatically"
+" based on the height of setting cards."
+msgstr "你可以使用 `SettingCardGroup.addSettingCard()` 将多个设置卡添加到同一个组中，`SettingCardGroup` 会根据设置卡的高度自动调整自己的布局。"
+
+#: ../../source/settings.md:146 793ebd8ec76445bfb7ecf053abc47866
+msgid ""
+"For the usage of these components, see settings_interface.py."
+msgstr "对于上述组件的具体使用方式，参见 [settings_interface.py](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/settings/setting_interface.py)."
+

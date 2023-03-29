@@ -9,7 +9,13 @@
 project = 'PyQt-Fluent-Widgets'
 copyright = '2023, zhiyiYo'
 author = 'zhiyiYo'
-release = 'v0.4.0'
+release = 'v0.4.6'
+
+# multi-language docs
+language = 'en'
+locale_dirs = ['../locales/']   # path is example but recommended.
+gettext_compact = False  # optional.
+gettext_uuid = True  # optional
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

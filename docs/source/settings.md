@@ -72,6 +72,6 @@ PyQt-Fluent-Widgets provides many kinds of setting card:
 
 You can use `SettingCardGroup.addSettingCard()` to add a setting card to the same group, and `SettingCardGroup` will adjust its layout automatically based on the height of setting cards.
 
-For the usage of these components, see [settings_ interface.py](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/settings/setting_interface.py).
+For the usage of these components, see [settings_interface.py](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/settings/setting_interface.py).
 
 

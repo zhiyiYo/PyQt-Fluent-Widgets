@@ -3,7 +3,7 @@
 Here are some projects that use PyQt-Fluent-Widgets:
 
 - [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
-  ![](./_static/Groove音乐.jpg)
+  ![](./_static/Groove.jpg)
 
 <br>
 

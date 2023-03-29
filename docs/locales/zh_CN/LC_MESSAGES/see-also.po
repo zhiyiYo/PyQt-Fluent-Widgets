@@ -1,0 +1,38 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-28 22:55+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/see-also.md:1 c80cb92b33484dc3aafa7756bce20fea
+msgid "See also"
+msgstr "另见"
+
+#: ../../source/see-also.md:3 fed9cb8f9be44f64aa1752391f29e390
+msgid "Here are some projects that use PyQt-Fluent-Widgets:"
+msgstr "下面是一些使用了 PyQt-Fluent-Widgets 的项目："
+
+#: ../../source/see-also.md:5 d6de9dbd45724e84b73fe3a63c469dca
+msgid "zhiyiYo/Groove: A cross-platform music player based on PyQt5"
+msgstr ""
+
+#: ../../source/see-also.md:10 21c5df315c094748b864a552b46f9e95
+msgid "zhiyiYo/Alpha-Gobang-Zero: A gobang robot based on reinforcement learning"
+msgstr ""
+

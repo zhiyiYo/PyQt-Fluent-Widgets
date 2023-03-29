@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-28 22:55+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/icon.md:1 a197ec2774db4dadaae18ccc4731fd35
+msgid "Icon"
+msgstr "图标"
+
+#: ../../source/icon.md:2 9c6f0b217b1e44e389ca951122d8c3e8
+msgid ""
+"Many widgets need icons, if you want PyQt-Fluent-Widgets change your "
+"icons automatically when the theme changes, then you can inherit "
+"FluentIconBase and overide path() method. Here is an example:"
+msgstr "许多组件需要图标（尺寸一般是 16 × 16 ），如果想在切换主题时自动切换图标，可以继承 `FluentIconBase` 类并重写 `path()` 函数来给出不同主题下图标的路径。下面是一个示例："
+

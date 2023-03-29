@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-28 22:55+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/quick-start.md:1 e4ba38be8b3c44ecb70f88a4d7fb4c64
+msgid "Quick start"
+msgstr "快速上手"
+
+#: ../../source/quick-start.md:3 8bb39caf07cf41f88e5816bf7ea7e2cd
+msgid "Install"
+msgstr "安装"
+
+#: ../../source/quick-start.md:4 d0c9e0040a6742f888a0f6cde7543616
+msgid "To install lite version (AcrylicLabel is not available) use pip:"
+msgstr "安装轻量版（`AcrylicLabel` 不可用）："
+
+#: ../../source/quick-start.md:8 a43e52670f1d45e09e297a23e00e21bc
+msgid "Or install full-featured version use pip:"
+msgstr "安装完整版："
+
+#: ../../source/quick-start.md:13 e1c0444109024d88ad63810808036cce
+msgid "Run example"
+msgstr "运行示例"
+
+#: ../../source/quick-start.md:14 c3dad089b10d4bafaf806dc08b0f7fa1
+msgid ""
+"After installing PyQt-Fluent-Widgets package using pip, you can run any "
+"demo in the examples directory, for example:"
+msgstr "使用 pip 安装好 PyQt-Fluent-Widgets 包之后，你可以运行 examples 目录下的任意示例，比如："
+
