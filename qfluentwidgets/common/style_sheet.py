@@ -122,10 +122,6 @@ def setTheme(theme: Theme, save=False):
     save: bool
         whether to save the change to config file
     """
-    if theme == Theme.AUTO:
-        theme = darkdetect.theme()
-        theme = Theme(theme) if theme else Theme.LIGHT
-
     qconfig.set(qconfig.themeMode, theme, save)
     updateStyleSheet()
 

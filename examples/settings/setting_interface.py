@@ -4,7 +4,7 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, CustomColorSettingCard,
-                            setTheme, setThemeColor)
+                            setTheme, setThemeColor, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 from PyQt6.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt6.QtGui import QDesktopServices
@@ -214,7 +214,7 @@ class SettingInterface(ScrollArea):
         self.setWidgetResizable(True)
 
         # initialize style sheet
-        self.__setQss(cfg.theme)
+        self.__setQss()
 
         # initialize layout
         self.__initLayout()
@@ -262,12 +262,12 @@ class SettingInterface(ScrollArea):
         self.expandLayout.addWidget(self.updateSoftwareGroup)
         self.expandLayout.addWidget(self.aboutGroup)
 
-    def __setQss(self, theme: Theme):
+    def __setQss(self):
         """ set style sheet """
         self.scrollWidget.setObjectName('scrollWidget')
         self.settingLabel.setObjectName('settingLabel')
 
-        theme = 'dark' if theme == Theme.DARK else 'light'
+        theme = 'dark' if isDarkTheme() else 'light'
         with open(f'resource/qss/{theme}/setting_interface.qss', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
