@@ -21,12 +21,14 @@ class BasicInputInterface(GalleryInterface):
             parent=parent
         )
 
+        # simple push button
         self.addExampleCard(
             self.tr('A simple button with text content'),
             PushButton(self.tr('Standard push button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
+        # tool button
         button = ToolButton('app/resource/images/kunkun.png')
         button.setIconSize(QSize(40, 40))
         button.resize(70, 70)
@@ -36,7 +38,7 @@ class BasicInputInterface(GalleryInterface):
         self.player.setAudioOutput(self.audioOutput)
         self.player.setSource(QUrl.fromLocalFile('app/resource/audio/ZhiYinJi.wav'))
         self.audioOutput.setVolume(0.1)
-        button.clicked.connect(self.player.play)
+        # button.clicked.connect(self.player.play)
 
         self.addExampleCard(
             self.tr('A button with graphical content'),
@@ -44,24 +46,28 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
+        # primary color button
         self.addExampleCard(
             self.tr('Accent style applied to button'),
             PrimaryPushButton(self.tr('Accent style button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
+        # hyperlink button
         self.addExampleCard(
             self.tr('A hyperlink button that navigates to a URI'),
             HyperlinkButton('http://github.com', self.tr('GitHub home page')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
+        # 2-state check box
         self.addExampleCard(
             self.tr('A 2-state CheckBox'),
             CheckBox(self.tr('Two-state CheckBox')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/check_box/demo.py'
         )
 
+        # 3-state check box
         checkBox = CheckBox(self.tr('Three-state CheckBox'))
         checkBox.setTristate(True)
         self.addExampleCard(
@@ -70,6 +76,7 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/check_box/demo.py'
         )
 
+        # combo box
         comboBox = ComboBox()
         comboBox.addItems(['shoko 🥰', '西宫硝子 😊', '一级棒卡哇伊的硝子酱 😘'])
         comboBox.setCurrentIndex(0)
@@ -80,6 +87,7 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
         )
 
+        # radio button
         radioWidget = QWidget()
         radioLayout = QVBoxLayout(radioWidget)
         radioLayout.setContentsMargins(2, 0, 0, 0)
@@ -101,6 +109,7 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/radio_button/demo.py'
         )
 
+        # horizontal slider
         slider = Slider(Qt.Horizontal)
         slider.setRange(0, 100)
         slider.setValue(30)
@@ -111,6 +120,7 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/slider/demo.py'
         )
 
+        # switch button
         self.switchButton = SwitchButton(self.tr('Off'))
         self.switchButton.checkedChanged.connect(self.onSwitchCheckedChanged)
         self.addExampleCard(
