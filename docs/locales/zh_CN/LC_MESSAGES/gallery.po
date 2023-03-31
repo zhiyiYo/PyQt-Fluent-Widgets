@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-28 22:55+0800\n"
+"POT-Creation-Date: 2023-03-31 19:48+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -104,11 +104,15 @@ msgstr "进度提示条"
 msgid "Tool Tip"
 msgstr "工具提示"
 
-#: ../../source/gallery.md:60 ebcbe04c72ff471c9c7b2943ab248666
+#: ../../source/gallery.md:59 7580f714014e4d69ad31efc51f5a4621
+msgid "Info Bar"
+msgstr "消息条"
+
+#: ../../source/gallery.md:63 ebcbe04c72ff471c9c7b2943ab248666
 msgid "Material"
 msgstr "材料"
 
-#: ../../source/gallery.md:61 fa7e4d18292b46da907d8a2dbe65ad2d
+#: ../../source/gallery.md:64 fa7e4d18292b46da907d8a2dbe65ad2d
 msgid "Acrylic Label"
 msgstr "亚克力标签"
 

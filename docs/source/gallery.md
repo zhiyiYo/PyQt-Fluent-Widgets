@@ -56,6 +56,9 @@
 #### Tool Tip
 ![](./_static/gallery/tool_tip.gif)
 
+#### Info Bar
+![](./_static/gallery/info_bar.gif)
+
 
 ### Material
 #### Acrylic Label
