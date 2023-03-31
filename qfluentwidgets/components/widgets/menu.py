@@ -174,6 +174,8 @@ class MenuActionListWidget(QListWidget):
 class RoundMenu(QWidget):
     """ Round corner menu """
 
+    closedSignal = Signal()
+
     def __init__(self, title="", parent=None):
         super().__init__(parent=parent)
         self._title = title
@@ -490,6 +492,10 @@ class RoundMenu(QWidget):
 
         self.isHideBySystem = True
         e.accept()
+
+    def closeEvent(self, e):
+        e.accept()
+        self.closedSignal.emit()
 
     def menuActions(self):
         return self._actions
