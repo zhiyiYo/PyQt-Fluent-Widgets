@@ -3,7 +3,6 @@ from enum import Enum
 from string import Template
 import weakref
 
-import darkdetect
 from PySide6.QtCore import QFile, QObject
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QWidget
