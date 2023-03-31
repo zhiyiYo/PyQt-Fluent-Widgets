@@ -1,6 +1,6 @@
 # coding:utf-8
 from PyQt6.QtCore import Qt, pyqtSignal, QRect, QRectF, QPoint
-from PyQt6.QtGui import QColor, QPainter, QAction
+from PyQt6.QtGui import QColor, QPainter, QAction, QCursor
 from PyQt6.QtWidgets import QPushButton, QWidget
 
 from .menu import RoundMenu
@@ -21,6 +21,7 @@ class ComboBox(QPushButton):
         self.isPressed = False
         self.items = []
         self._currentIndex = -1
+        self.dropMenu = None
         setStyleSheet(self, 'combo_box')
 
     def addItem(self, text):
@@ -119,7 +120,23 @@ class ComboBox(QPushButton):
         super().mouseReleaseEvent(e)
         self.isPressed = False
         self.update()
-        self._showComboMenu()
+
+        if self.dropMenu:
+            self._closeComboMenu()
+        else:
+            self._showComboMenu()
+
+    def _closeComboMenu(self):
+        if not self.dropMenu:
+            return
+
+        self.dropMenu.close()
+        self.dropMenu = None
+
+    def _onDropMenuClosed(self):
+        pos = self.mapFromGlobal(QCursor.pos())
+        if not self.rect().contains(pos):
+            self.dropMenu = None
 
     def _showComboMenu(self):
         if not self.items:
@@ -132,6 +149,9 @@ class ComboBox(QPushButton):
 
         menu.view.setMinimumWidth(self.width())
         menu.adjustSize()
+
+        menu.closedSignal.connect(self._onDropMenuClosed)
+        self.dropMenu = menu
 
         # set the selected item
         menu.setDefaultAction(menu.menuActions()[self.currentIndex()])

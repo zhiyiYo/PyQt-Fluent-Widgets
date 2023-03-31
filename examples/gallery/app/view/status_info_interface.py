@@ -57,7 +57,7 @@ class StatusInfoInterface(GalleryInterface):
         infoBar = InfoBar(
             icon=InfoBarIcon.SUCCESS,
             title=self.tr('Success'),
-            content=self.tr("Essential app message for your users."),
+            content=self.tr("The Anthem of man is the Anthem of courage."),
             orient=Qt.Orientation.Horizontal,
             isClosable=True,
             duration=-1,
@@ -71,7 +71,7 @@ class StatusInfoInterface(GalleryInterface):
         )
 
         # long info bar
-        content = self.tr("A long essential app message for your users to be informed of, acknowledge, or take action on. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus dolor vitae justo rutrum, ut lobortis nibh mattis. Aenean id elit commodo, semper felis nec.")
+        content = self.tr("My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don't smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I'm normal.")
         infoBar = InfoBar(
             icon=InfoBarIcon.WARNING,
             title=self.tr('Warning'),
@@ -99,7 +99,7 @@ class StatusInfoInterface(GalleryInterface):
             position=InfoBarPosition.NONE,
             parent=self
         )
-        infoBar.addWidget(PushButton('Action'))
+        infoBar.addWidget(PushButton(self.tr('Action')))
         infoBar.setCustomBackgroundColor("white", "#202020")
         self.addExampleCard(
             self.tr('An InfoBar with custom icon, background color and widget.'),
@@ -147,25 +147,21 @@ class StatusInfoInterface(GalleryInterface):
             self.stateTooltip.show()
 
     def createInfoInfoBar(self):
-        content = "A long essential app message for your users to be informed of, acknowledge, or take action on. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dapibus dolor vitae justo rutrum, ut lobortis nibh mattis. Aenean id elit commodo, semper felis nec."
-        w = InfoBar(
-            icon=InfoBarIcon.INFORMATION,
-            title='Information',
-            content=content,
-            orient=Qt.Orientation.Vertical,    # vertical layout
+        InfoBar.info(
+            title=self.tr('Lesson 3'),
+            content=self.tr("Believe in the spin, just keep believing!"),
+            orient=Qt.Orientation.Horizontal,
             isClosable=True,
             position=InfoBarPosition.TOP_RIGHT,
             duration=2000,
             parent=self
         )
-        w.show()
 
     def createSuccessInfoBar(self):
-        content = "A short essential success app message."
         # convenient static mothod
         InfoBar.success(
-            title='Title',
-            content=content,
+            title=self.tr('Lesson 4'),
+            content=self.tr("With respect, let's advance towards a new stage of the spin."),
             orient=Qt.Orientation.Horizontal,
             isClosable=True,
             position=InfoBarPosition.TOP,
@@ -175,8 +171,8 @@ class StatusInfoInterface(GalleryInterface):
 
     def createWarningInfoBar(self):
         InfoBar.warning(
-            title='Title',
-            content="A short essential app warning message.",
+            title=self.tr('Lesson 5'),
+            content=self.tr("迂回路を行けば最短ルート。"),
             orient=Qt.Orientation.Horizontal,
             isClosable=False,   # disable close button
             position=InfoBarPosition.TOP_LEFT,
@@ -187,7 +183,7 @@ class StatusInfoInterface(GalleryInterface):
     def createErrorInfoBar(self):
         InfoBar.error(
             title=self.tr('No Internet'),
-            content="A error message which won't disappear automatically.",
+            content=self.tr("An error message which won't disappear automatically."),
             orient=Qt.Orientation.Horizontal,
             isClosable=True,
             position=InfoBarPosition.BOTTOM_RIGHT,
