@@ -5,6 +5,7 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, CustomColorSettingCard,
                             setTheme, setThemeColor, RangeSettingCard, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
+from qfluentwidgets import InfoBar
 from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtWidgets import QWidget, QLabel, QFileDialog
@@ -194,10 +195,11 @@ class SettingInterface(ScrollArea):
 
     def __showRestartTooltip(self):
         """ show restart tooltip """
-        ToastToolTip.warn(
-            self.tr('Configuration updated successfully'),
+        InfoBar.success(
+            self.tr('Updated successfully'),
             self.tr('Configuration takes effect after restart'),
-            self.window()
+            duration=1500,
+            parent=self
         )
 
     def __onDownloadFolderCardClicked(self):
