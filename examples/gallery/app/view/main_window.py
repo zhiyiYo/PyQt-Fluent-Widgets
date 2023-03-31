@@ -211,7 +211,7 @@ class MainWindow(FramelessWindow):
 
     def initWindow(self):
         self.resize(960, 780)
-        self.setMinimumWidth(580)
+        self.setMinimumWidth(760)
         self.setWindowIcon(QIcon('app/resource/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
         self.titleBar.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)

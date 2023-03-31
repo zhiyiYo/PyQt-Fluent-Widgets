@@ -1,8 +1,9 @@
 # coding:utf-8
 from enum import Enum
 
-from PyQt6.QtCore import QPoint, QRect, QRectF, Qt
-from PyQt6.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap
+from PyQt6.QtXml import QDomDocument
+from PyQt6.QtCore import QPoint, QRect, QRectF, Qt, QFile
+from PyQt6.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap, QColor
 from PyQt6.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
@@ -52,13 +53,13 @@ def getIconColor():
     return "white" if isDarkTheme() else 'black'
 
 
-def drawSvgIcon(iconPath, painter, rect):
+def drawSvgIcon(icon, painter, rect):
     """ draw svg icon
 
     Parameters
     ----------
-    iconPath: str
-        the path of svg icon
+    icon: str | bytes | QByteArray
+        the path or code of svg icon
 
     painter: QPainter
         painter
@@ -66,8 +67,50 @@ def drawSvgIcon(iconPath, painter, rect):
     rect: QRect | QRectF
         the rect to render icon
     """
-    renderer = QSvgRenderer(iconPath)
+    renderer = QSvgRenderer(icon)
     renderer.render(painter, QRectF(rect))
+
+
+def writeSvg(iconPath: str, indexes=None, **attributes):
+    """ write svg with specified attributes
+
+    Parameters
+    ----------
+    iconPath: str
+        svg icon path
+
+    indexes: List[int]
+        the path to be filled
+
+    **attributes:
+        the attributes of path
+
+    Returns
+    -------
+    svg: str
+        svg code
+    """
+    if not iconPath.lower().endswith('.svg'):
+        return ""
+
+    f = QFile(iconPath)
+    f.open(QFile.OpenModeFlag.ReadOnly)
+
+    dom = QDomDocument()
+    dom.setContent(f.readAll())
+
+    f.close()
+
+    # change the color of each path
+    pathNodes = dom.elementsByTagName('path')
+    indexes = range(pathNodes.length()) if not indexes else indexes
+    for i in indexes:
+        element = pathNodes.at(i).toElement()
+
+        for k, v in attributes.items():
+            element.setAttribute(k, v)
+
+    return dom.toString()
 
 
 def drawIcon(icon, painter, rect):
@@ -142,7 +185,6 @@ class FluentIconBase:
         drawSvgIcon(self.path(theme), painter, rect)
 
 
-
 class FluentIcon(FluentIconBase, Enum):
     """ Fluent icon """
 
@@ -204,4 +246,3 @@ class FluentIcon(FluentIconBase, Enum):
             c = "white" if theme == Theme.DARK else "black"
 
         return f':/qfluentwidgets/images/icons/{self.value}_{c}.svg'
-

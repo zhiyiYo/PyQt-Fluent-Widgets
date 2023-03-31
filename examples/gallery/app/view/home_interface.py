@@ -257,5 +257,13 @@ class HomeInterface(ScrollArea):
             routeKey="statusInfoInterface",
             index=1
         )
+        stateInfoView.addSampleCard(
+            icon="app/resource/images/controls/InfoBar.png",
+            title="InfoBar",
+            content=self.tr(
+                "An inline message to display app-wide status change information."),
+            routeKey="statusInfoInterface",
+            index=3
+        )
         self.vBoxLayout.addWidget(stateInfoView)
 
