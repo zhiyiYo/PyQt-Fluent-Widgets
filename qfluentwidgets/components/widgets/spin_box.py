@@ -69,6 +69,7 @@ class Ui_SpinBox:
         self.upButton.clicked.connect(self.stepUp)
         self.downButton.clicked.connect(self.stepDown)
 
+        self.setAttribute(Qt.WidgetAttribute.WA_MacShowFocusRect, False)
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.customContextMenuRequested.connect(self._showContextMenu)
 
