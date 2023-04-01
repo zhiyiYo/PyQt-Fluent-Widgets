@@ -1,9 +1,8 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
-from PyQt5.QtMultimedia import QSound
 from qfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
-                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton, IndicatorPosition)
+                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -30,7 +29,6 @@ class BasicInputInterface(GalleryInterface):
         # tool button
         button = ToolButton('app/resource/images/kunkun.png')
         button.setIconSize(QSize(40, 40))
-        # button.clicked.connect(lambda: QSound.play('app/resource/audio/ZhiYinJi.wav'))
         button.resize(70, 70)
         self.addExampleCard(
             self.tr('A button with graphical content'),

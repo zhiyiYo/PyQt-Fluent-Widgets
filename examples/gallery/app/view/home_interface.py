@@ -267,3 +267,20 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(stateInfoView)
 
+        textView = SampleCardView(self.tr('Text samples'), self.view)
+        textView.addSampleCard(
+            icon="app/resource/images/controls/TextBox.png",
+            title="LineEdit",
+            content=self.tr("A single-line plain text field."),
+            routeKey="textInterface",
+            index=0
+        )
+        textView.addSampleCard(
+            icon="app/resource/images/controls/NumberBox.png",
+            title="NumberBox",
+            content=self.tr(
+                "A text control used for numeric input and evaluation of algebraic equations."),
+            routeKey="textInterface",
+            index=1
+        )
+        self.vBoxLayout.addWidget(textView)

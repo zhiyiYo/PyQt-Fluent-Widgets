@@ -126,6 +126,10 @@
         <file>images/info_bar/Warning_dark.svg</file>
         <file>images/info_bar/Info_light.svg</file>
         <file>images/info_bar/Info_dark.svg</file>
+        <file>images/spin_box/Up_white.svg</file>
+        <file>images/spin_box/Up_black.svg</file>
+        <file>images/spin_box/Down_white.svg</file>
+        <file>images/spin_box/Down_black.svg</file>
 
         <file>qss/dark/color_dialog.qss</file>
         <file>qss/dark/dialog.qss</file>
@@ -145,6 +149,7 @@
         <file>qss/dark/line_edit.qss</file>
         <file>qss/dark/check_box.qss</file>
         <file>qss/dark/info_bar.qss</file>
+        <file>qss/dark/spin_box.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -164,5 +169,6 @@
         <file>qss/light/line_edit.qss</file>
         <file>qss/light/check_box.qss</file>
         <file>qss/light/info_bar.qss</file>
+        <file>qss/light/spin_box.qss</file>
     </qresource>
 </RCC>

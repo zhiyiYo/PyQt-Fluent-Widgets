@@ -13,3 +13,4 @@ class Translator(QObject):
         self.statusInfo = self.tr('Status & info')
         self.scroll = self.tr('Scrolling')
         self.layout = self.tr('Layout')
+        self.text = self.tr('Text')
