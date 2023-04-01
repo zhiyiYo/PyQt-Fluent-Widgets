@@ -11,7 +11,7 @@ from ..widgets.button import PrimaryPushButton
 from .mask_dialog_base import MaskDialogBase
 
 
-class Ui_MessageBox(QObject):
+class Ui_MessageBox:
     """ Ui of message box """
 
     yesSignal = Signal()
