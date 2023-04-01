@@ -10,6 +10,7 @@ class Icon(FluentIconBase, Enum):
     CHAT = "Chat"
     CODE = "Code"
     MENU = "Menu"
+    TEXT = "Text"
     ALBUM = "Album"
     SCROLL = "Scroll"
     LAYOUT = "Layout"

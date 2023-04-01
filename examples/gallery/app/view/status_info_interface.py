@@ -110,20 +110,26 @@ class StatusInfoInterface(GalleryInterface):
         # different type info bar
         w = QWidget(self)
         hBoxLayout = QHBoxLayout(w)
-        button1 = PushButton(self.tr('Information'), w)
-        button2 = PushButton(self.tr('Success'), w)
-        button3 = PushButton(self.tr('Warning'), w)
-        button4 = PushButton(self.tr('Error'), w)
+        button1 = PushButton(self.tr('Top right'), w)
+        button2 = PushButton(self.tr('Top'), w)
+        button3 = PushButton(self.tr('Top left'), w)
+        button4 = PushButton(self.tr('Bottom right'), w)
+        button5 = PushButton(self.tr('Bottom'), w)
+        button6 = PushButton(self.tr('Bottom left'), w)
 
-        button1.clicked.connect(self.createInfoInfoBar)
-        button2.clicked.connect(self.createSuccessInfoBar)
-        button3.clicked.connect(self.createWarningInfoBar)
-        button4.clicked.connect(self.createErrorInfoBar)
+        button1.clicked.connect(self.createTopRightInfoBar)
+        button2.clicked.connect(self.createTopInfoBar)
+        button3.clicked.connect(self.createTopLeftInfoBar)
+        button4.clicked.connect(self.createBottomRightInfoBar)
+        button5.clicked.connect(self.createBottomInfoBar)
+        button6.clicked.connect(self.createBottomLeftInfoBar)
 
         hBoxLayout.addWidget(button1)
         hBoxLayout.addWidget(button2)
         hBoxLayout.addWidget(button3)
         hBoxLayout.addWidget(button4)
+        hBoxLayout.addWidget(button5)
+        hBoxLayout.addWidget(button6)
         hBoxLayout.setContentsMargins(0, 0, 0, 0)
         hBoxLayout.setSpacing(15)
         self.addExampleCard(
@@ -146,7 +152,7 @@ class StatusInfoInterface(GalleryInterface):
             self.stateTooltip.move(self.stateTooltip.getSuitablePos())
             self.stateTooltip.show()
 
-    def createInfoInfoBar(self):
+    def createTopRightInfoBar(self):
         InfoBar.info(
             title=self.tr('Lesson 3'),
             content=self.tr("Believe in the spin, just keep believing!"),
@@ -157,7 +163,7 @@ class StatusInfoInterface(GalleryInterface):
             parent=self
         )
 
-    def createSuccessInfoBar(self):
+    def createTopInfoBar(self):
         # convenient static mothod
         InfoBar.success(
             title=self.tr('Lesson 4'),
@@ -169,7 +175,7 @@ class StatusInfoInterface(GalleryInterface):
             parent=self
         )
 
-    def createWarningInfoBar(self):
+    def createTopLeftInfoBar(self):
         InfoBar.warning(
             title=self.tr('Lesson 5'),
             content=self.tr("迂回路を行けば最短ルート。"),
@@ -180,7 +186,7 @@ class StatusInfoInterface(GalleryInterface):
             parent=self
         )
 
-    def createErrorInfoBar(self):
+    def createBottomRightInfoBar(self):
         InfoBar.error(
             title=self.tr('No Internet'),
             content=self.tr("An error message which won't disappear automatically."),
@@ -188,5 +194,27 @@ class StatusInfoInterface(GalleryInterface):
             isClosable=True,
             position=InfoBarPosition.BOTTOM_RIGHT,
             duration=-1,    # won't disappear automatically
+            parent=self
+        )
+
+    def createBottomInfoBar(self):
+        InfoBar.success(
+            title=self.tr('Lesson 1'),
+            content=self.tr("Don't have any strange expectations of me."),
+            orient=Qt.Orientation.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM,
+            duration=2000,    # won't disappear automatically
+            parent=self
+        )
+
+    def createBottomLeftInfoBar(self):
+        InfoBar.warning(
+            title=self.tr('Lesson 2'),
+            content=self.tr("Don't let your muscles notice."),
+            orient=Qt.Orientation.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1500,    # won't disappear automatically
             parent=self
         )

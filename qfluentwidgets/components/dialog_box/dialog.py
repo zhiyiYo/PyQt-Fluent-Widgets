@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt6.QtCore import Qt, pyqtSignal, QObject, QEvent
+from PyQt6.QtCore import Qt, pyqtSignal, QEvent
 from PyQt6.QtGui import QColor
 from PyQt6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushButton
 from qframelesswindow import FramelessDialog
@@ -11,7 +11,7 @@ from ..widgets.button import PrimaryPushButton
 from .mask_dialog_base import MaskDialogBase
 
 
-class Ui_MessageBox(QObject):
+class Ui_MessageBox:
     """ Ui of message box """
 
     yesSignal = pyqtSignal()
