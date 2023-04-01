@@ -79,7 +79,7 @@ The navigation panel has four display modes:
 * `NavigationDisplayMode.MENU`: An expanded left menu (1007px or less).
   ![](_static/NavigationInterface_Menu.jpg)
 
-* `NavigationDisplayMode.MINIMAL`: Only a menu button on small window widths (you should add and manage the menu button to main window by yourself).
+* `NavigationDisplayMode.MINIMAL`: Only a menu button on small window widths (you should add and manage the menu button to main window by yourself like [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3) does).
 
 If you call `NavigationInterface.setExpandWidth()`, the large window width (1008px) will change accordingly.
 
@@ -89,4 +89,6 @@ Here is an another style of navigation interface, and its corresponding example 
 
 ![](_static/NavigationInterface.jpg)
 
+Minimal displaymode navigation interface is available at [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3).
 
+![](_static/NavigationInterface_Minimal.jpg)
