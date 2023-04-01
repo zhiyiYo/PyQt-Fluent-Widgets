@@ -163,8 +163,12 @@ class InfoBar(QFrame):
 
         self.vBoxLayout.addLayout(self.hBoxLayout)
         self.hBoxLayout.addWidget(self.iconWidget)
-        self.hBoxLayout.addSpacing(15)
-        self.hBoxLayout.addWidget(self.titleLabel)
+
+        if self.title:
+            self.hBoxLayout.addSpacing(15)
+            self.hBoxLayout.addWidget(self.titleLabel)
+        else:
+            self.titleLabel.hide()
 
         # add content label to layout
         if self.orient == Qt.Horizontal:
@@ -173,15 +177,14 @@ class InfoBar(QFrame):
             self.contentLayout.setContentsMargins(0, 0, 20*self.isClosable, 0)
             self.contentLayout.setSpacing(12)
             self.hBoxLayout.addLayout(self.contentLayout)
-            self.contentLabel.setText(self.content)
         else:
             self.vBoxLayout.setAlignment(Qt.AlignTop)
             self.contentLayout.setContentsMargins(47, 0, 40, 18)
             self.contentLayout.setSpacing(14)
             self.vBoxLayout.addLayout(self.contentLayout)
             self.contentLayout.setAlignment(Qt.AlignTop)
-            self._adjustText()
 
+        self._adjustText()
         self.contentLayout.addWidget(self.contentLabel)
 
         # add close button to layout
