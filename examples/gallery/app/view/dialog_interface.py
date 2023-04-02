@@ -22,7 +22,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A frameless message box'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/dialog/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -30,7 +30,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A message box with mask'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/message_dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/message_dialog/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -38,7 +38,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A color dialog'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/color_dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/color_dialog/demo.py'
         )
 
     def showDialog(self):

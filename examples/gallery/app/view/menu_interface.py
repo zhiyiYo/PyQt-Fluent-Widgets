@@ -26,7 +26,7 @@ class MenuInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Rounded corners menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/menu/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/menu/demo.py'
         )
 
     def createMenu(self, pos):

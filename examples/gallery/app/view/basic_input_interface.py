@@ -23,7 +23,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple button with text content'),
             PushButton(self.tr('Standard push button')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/button/demo.py'
         )
 
         # tool button
@@ -33,28 +33,28 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A button with graphical content'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/button/demo.py'
         )
 
         # primary color button
         self.addExampleCard(
             self.tr('Accent style applied to button'),
             PrimaryPushButton(self.tr('Accent style button')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/button/demo.py'
         )
 
         # hyperlink button
         self.addExampleCard(
             self.tr('A hyperlink button that navigates to a URI'),
             HyperlinkButton('http://github.com', self.tr('GitHub home page')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/button/demo.py'
         )
 
         # 2-state check box
         self.addExampleCard(
             self.tr('A 2-state CheckBox'),
             CheckBox(self.tr('Two-state CheckBox')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/check_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/check_box/demo.py'
         )
 
         # 3-state check box
@@ -63,7 +63,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A 3-state CheckBox'),
             checkBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/check_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/check_box/demo.py'
         )
 
         # combo box
@@ -74,7 +74,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A ComboBox with items'),
             comboBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/combo_box/demo.py'
         )
 
         # radio button
@@ -96,7 +96,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A group of RadioButton controls in a button group'),
             radioWidget,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/radio_button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/radio_button/demo.py'
         )
 
         # horizontal slider
@@ -107,7 +107,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple horizontal slider'),
             slider,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/slider/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/slider/demo.py'
         )
 
         # switch button
@@ -116,7 +116,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple switch button'),
             self.switchButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/switch_button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/switch_button/demo.py'
         )
 
     def onSwitchCheckedChanged(self, isChecked):

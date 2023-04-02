@@ -33,7 +33,7 @@ class ScrollInterface(GalleryInterface):
         card = self.addExampleCard(
             self.tr('Smooth scroll area'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/scroll_area/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll_area/demo.py',
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is too hot 🥵'))
