@@ -29,7 +29,7 @@ ComboBoxMenu>MenuActionListWidget {
 }
 
 ComboBoxMenu>MenuActionListWidget::item {
-    margin-top:4px;
+    margin-top: 4px;
     padding-left: 0px;
     padding-right: 10px;
     border-radius: 5px;
