@@ -277,10 +277,18 @@ class HomeInterface(ScrollArea):
         )
         textView.addSampleCard(
             icon="app/resource/images/controls/NumberBox.png",
-            title="NumberBox",
+            title="SpinBox",
             content=self.tr(
                 "A text control used for numeric input and evaluation of algebraic equations."),
             routeKey="textInterface",
             index=1
+        )
+        textView.addSampleCard(
+            icon="app/resource/images/controls/RichEditBox.png",
+            title="TextEdit",
+            content=self.tr(
+                "A rich text editing control that supports formatted text, hyperlinks, and other rich content."),
+            routeKey="textInterface",
+            index=6
         )
         self.vBoxLayout.addWidget(textView)

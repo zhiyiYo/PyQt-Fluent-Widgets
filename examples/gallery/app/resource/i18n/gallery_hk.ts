@@ -273,7 +273,7 @@
     <message>
         <location filename="../../view/main_window.py" line="189"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>文本</translation>
     </message>
 </context>
 <context>
@@ -688,52 +688,52 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="113"/>
         <source>Top right</source>
-        <translation type="unfinished"></translation>
+        <translation>右上角</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="114"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>頂部居中</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="115"/>
         <source>Top left</source>
-        <translation type="unfinished"></translation>
+        <translation>左上角</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="116"/>
         <source>Bottom right</source>
-        <translation type="unfinished"></translation>
+        <translation>右下角</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="117"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>底部居中</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="118"/>
         <source>Bottom left</source>
-        <translation type="unfinished"></translation>
+        <translation>左下角</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="201"/>
         <source>Lesson 1</source>
-        <translation type="unfinished">Lesson 1</translation>
+        <translation>Lesson 1</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="201"/>
         <source>Don&apos;t have any strange expectations of me.</source>
-        <translation type="unfinished"></translation>
+        <translation>別對我抱有什麼奇怪的期待</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="212"/>
         <source>Lesson 2</source>
-        <translation type="unfinished">Lesson 2</translation>
+        <translation>Lesson 2</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="212"/>
         <source>Don&apos;t let your muscles notice.</source>
-        <translation type="unfinished"></translation>
+        <translation>不要讓肌肉察覺</translation>
     </message>
 </context>
 <context>
@@ -741,37 +741,42 @@
     <message>
         <location filename="../../view/text_interface.py" line="23"/>
         <source>ko no dio da！</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="25"/>
         <source>A LineEdit with a clear button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶清空按鈕的 LineEdit</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="39"/>
         <source>A DoubleSpinBox with a spin button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶調節按鈕的 DoubleSpinBox</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="46"/>
         <source>A DateEdit with a spin button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶調節按鈕的 DateEdit</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="53"/>
         <source>A TimeEdit with a spin button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶調節按鈕的 TimeEdit</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="60"/>
         <source>A DateTimeEdit with a spin button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶調節按鈕的 DateTimeEdit</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="32"/>
         <source>A SpinBox with a spin button</source>
-        <translation type="unfinished"></translation>
+        <translation>帶調節按鈕的 SpinBox</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="71"/>
+        <source>A simple TextEdit</source>
+        <translation>富文本框</translation>
     </message>
 </context>
 <context>
@@ -837,7 +842,7 @@
     <message>
         <location filename="../../common/translator.py" line="16"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>文本</translation>
     </message>
 </context>
 </TS>
