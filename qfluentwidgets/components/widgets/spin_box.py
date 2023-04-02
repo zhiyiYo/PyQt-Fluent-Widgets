@@ -2,11 +2,11 @@
 from enum import Enum
 
 from PySide6.QtCore import Qt, QSize, QRectF
-from PySide6.QtGui import QPainter, QTextCursor
+from PySide6.QtGui import QPainter, QPainterPath
 from PySide6.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
-                             QDateEdit, QDateTimeEdit, QTimeEdit)
+                             QDateEdit, QDateTimeEdit, QTimeEdit, QLineEdit, QAbstractSpinBox)
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import setStyleSheet, themeColor
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...components.widgets import LineEditMenu
 
@@ -77,6 +77,24 @@ class Ui_SpinBox:
         menu = LineEditMenu(self.lineEdit())
         menu.exec_(self.mapToGlobal(pos))
 
+    def _drawBorderBottom(self):
+        if not self.hasFocus():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+
+        path = QPainterPath()
+        w, h = self.width() - 2, self.height()
+        path.addRoundedRect(QRectF(1, h-12, w, 12), 6, 6)
+
+        rectPath = QPainterPath()
+        rectPath.addRect(1, h-12, w, 9.5)
+        path = path.subtracted(rectPath)
+
+        painter.fillPath(path, themeColor())
+
 
 class SpinBox(QSpinBox, Ui_SpinBox):
     """ Spin box """
@@ -84,6 +102,10 @@ class SpinBox(QSpinBox, Ui_SpinBox):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._setUpUi()
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
 
 
 class DoubleSpinBox(QDoubleSpinBox, Ui_SpinBox):
@@ -93,6 +115,10 @@ class DoubleSpinBox(QDoubleSpinBox, Ui_SpinBox):
         super().__init__(parent)
         self._setUpUi()
 
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
+
 
 class TimeEdit(QTimeEdit, Ui_SpinBox):
     """ Time edit """
@@ -100,6 +126,10 @@ class TimeEdit(QTimeEdit, Ui_SpinBox):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._setUpUi()
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
 
 
 class DateTimeEdit(QDateTimeEdit, Ui_SpinBox):
@@ -109,6 +139,10 @@ class DateTimeEdit(QDateTimeEdit, Ui_SpinBox):
         super().__init__(parent)
         self._setUpUi()
 
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
+
 
 class DateEdit(QDateEdit, Ui_SpinBox):
     """ Date edit """
@@ -116,4 +150,8 @@ class DateEdit(QDateEdit, Ui_SpinBox):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._setUpUi()
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
 

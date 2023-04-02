@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtWidgets import QApplication, QWidget
-from qfluentwidgets import LineEdit, PushButton
+from qfluentwidgets import LineEdit, PushButton, TextEdit
 
 
 class Demo(QWidget):
@@ -11,9 +11,13 @@ class Demo(QWidget):
         super().__init__()
         self.lineEdit = LineEdit('', self)
         self.button = PushButton('按钮', self)
+        self.textEdit = TextEdit(self)
+
         self.resize(500, 500)
-        self.lineEdit.move(110, 220)
-        self.button.move(320, 220)
+        self.textEdit.move(110, 200)
+        self.lineEdit.move(110, 50)
+        self.button.move(320, 52)
+
         self.lineEdit.resize(200, 33)
         self.lineEdit.setClearButtonEnabled(True)
 

@@ -125,6 +125,7 @@ QScrollBar::sub-page:vertical {
     color: white;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     padding: 5px 9px 6px 9px;
+    outline: none;
 }
 
 #cancelButton:hover {

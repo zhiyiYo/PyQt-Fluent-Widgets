@@ -773,6 +773,11 @@
         <source>A SpinBox with a spin button</source>
         <translation>带调节按钮的 SpinBox</translation>
     </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="71"/>
+        <source>A simple TextEdit</source>
+        <translation>富文本框</translation>
+    </message>
 </context>
 <context>
     <name>ToolBar</name>

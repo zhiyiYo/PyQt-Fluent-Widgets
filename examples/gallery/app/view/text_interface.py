@@ -1,8 +1,5 @@
 # coding:utf-8
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPixmap, QColor
-from PySide6.QtWidgets import QWidget, QHBoxLayout
-from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit
+from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -61,4 +58,16 @@ class TextInterface(GalleryInterface):
             title=self.tr("A DateTimeEdit with a spin button"),
             widget=DateTimeEdit(self),
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/spin_box/demo.py'
+        )
+
+        # text edit
+        textEdit = TextEdit(self)
+        textEdit.setMarkdown(
+            "## Steel Ball Run \n * Johnny Joestar 🦄 \n * Gyro Zeppeli 🐴 ")
+        textEdit.setFixedHeight(150)
+        self.addExampleCard(
+            title=self.tr("A simple TextEdit"),
+            widget=textEdit,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/line_edit/demo.py',
+            stretch=1
         )
