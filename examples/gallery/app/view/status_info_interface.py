@@ -27,7 +27,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('State tool tip'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/status_tool_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/status_tool_tip/demo.py'
         )
 
         # tool tip
@@ -37,7 +37,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('State tool tip'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tool_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/tool_tip/demo.py'
         )
 
         label = PixmapLabel()
@@ -50,7 +50,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A label with a ToolTip'),
             label,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tool_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/tool_tip/demo.py'
         )
 
         # short info bar
@@ -67,7 +67,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A closable InfoBar'),
             infoBar,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/info_bar/demo.py'
         )
 
         # long info bar
@@ -85,7 +85,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A closable InfoBar with long message'),
             infoBar,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/info_bar/demo.py',
         )
 
         # add custom widget to info bar
@@ -104,7 +104,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('An InfoBar with custom icon, background color and widget.'),
             infoBar,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/info_bar/demo.py',
         )
 
         # different type info bar
@@ -135,7 +135,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('InfoBar with different pop-up locations'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/info_bar/demo.py',
         )
 
     def onStateButtonClicked(self):
