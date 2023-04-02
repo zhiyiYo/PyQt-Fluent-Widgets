@@ -3,13 +3,15 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 
-from qfluentwidgets import StateToolTip, PushButton
+from qfluentwidgets import StateToolTip, PushButton, setTheme, Theme
 
 
 class Demo(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        # setTheme(Theme.DARK)
+
         self.resize(800, 300)
         self.btn = PushButton('Click Me', parent=self)
         self.btn.move(360, 225)

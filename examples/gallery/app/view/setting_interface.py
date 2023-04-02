@@ -2,7 +2,7 @@
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, PushSettingCard,
                             HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, CustomColorSettingCard,
+                            ComboBoxSettingCard, ExpandLayout, Theme, CustomColorSettingCard,
                             setTheme, setThemeColor, RangeSettingCard, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 from qfluentwidgets import InfoBar
