@@ -1,4 +1,4 @@
-QLineEdit {
+LineEdit, TextEdit {
     background-color: rgb(55, 55, 55);
     border: 1px solid rgb(58, 58, 58);
     border-bottom: 1px solid rgb(159, 159, 159);
@@ -10,21 +10,25 @@ QLineEdit {
     selection-color: black;
 }
 
-QLineEdit:hover {
+TextEdit {
+    padding: 0px 0px 0px 10px;
+}
+
+LineEdit:hover, TextEdit:hover {
     background-color: rgb(60, 60, 60);
 }
 
-QLineEdit:!focus {
+LineEdit:!focus, TextEdit:!focus {
     background-color: rgb(55, 55, 55);
     border-bottom: 1px solid rgb(159, 159, 159);
 }
 
-QLineEdit:focus {
+LineEdit:focus, TextEdit:focus {
     border-bottom: 1px solid --ThemeColorPrimary;
     background-color: rgb(34, 34, 34);
 }
 
-QLineEdit:disabled {
+LineEdit:disabled, TextEdit:disabled {
     color: rgba(255, 255, 255, 150);
     background-color: rgb(59, 59, 59);
     border: 1px solid rgb(73, 73, 73);
@@ -42,4 +46,50 @@ QLineEdit:disabled {
 
 #clearButton:pressed {
     background-color: rgba(255, 255, 255, 6);
+}
+
+QScrollBar {
+    background: transparent;
+    width: 4px;
+    margin-top: 12px;
+    margin-bottom: 0;
+    padding-right: 2px;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 4px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-bottom: 2px;
+}
+
+
+QScrollBar::sub-line {
+    background: transparent;
+}
+
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(122, 122, 122);
+    border: 2px solid rgb(128, 128, 128);
+    border-radius: 1px;
+}
+
+QScrollBar::handle:vertical {
+    min-height: 32px;
+}
+
+QScrollBar::handle:horizontal {
+    min-width: 32px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: none;
 }

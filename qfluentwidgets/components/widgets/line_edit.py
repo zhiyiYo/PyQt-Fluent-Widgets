@@ -1,12 +1,13 @@
 # coding: utf-8
-from PyQt6.QtCore import QSize, Qt, QRectF
-from PyQt6.QtGui import QPainter
-from PyQt6.QtWidgets import QLineEdit, QToolButton
+from PyQt6.QtCore import QSize, Qt, QRectF, QEvent
+from PyQt6.QtGui import QPainter, QPainterPath
+from PyQt6.QtWidgets import QLineEdit, QToolButton, QTextEdit
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import setStyleSheet, themeColor
 from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon
 from ...common.icon import FluentIcon as FIF
-from .menu import LineEditMenu
+from ...common.smooth_scroll import SmoothMode, SmoothScroll
+from .menu import LineEditMenu, TextEditMenu
 
 
 class ClearButton(QToolButton):
@@ -23,7 +24,8 @@ class ClearButton(QToolButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing |
+                               QPainter.RenderHint.SmoothPixmapTransform)
         if isDarkTheme():
             FIF.CLOSE.render(painter, QRectF(9.5, 7, 10, 10))
         else:
@@ -76,3 +78,43 @@ class LineEdit(QLineEdit):
 
     def resizeEvent(self, e):
         self.clearButton.move(self.width() - 33, 4)
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        if not self.hasFocus():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+
+        path = QPainterPath()
+        w, h = self.width() - 2, self.height()
+        path.addRoundedRect(QRectF(1, h-12, w, 12), 6, 6)
+
+        rectPath = QPainterPath()
+        rectPath.addRect(1, h-12, w, 9.5)
+        path = path.subtracted(rectPath)
+
+        painter.fillPath(path, themeColor())
+
+
+class TextEdit(QTextEdit):
+    """ Text edit """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.verticalSmoothScroll = SmoothScroll(self, Qt.Orientation.Vertical)
+        self.horizonSmoothScroll = SmoothScroll(self, Qt.Orientation.Horizontal)
+        setStyleSheet(self, 'line_edit')
+
+    def contextMenuEvent(self, e):
+        menu = TextEditMenu(self)
+        menu.exec(e.globalPos())
+
+    def wheelEvent(self, e):
+        if e.modifiers() == Qt.KeyboardModifier.NoModifier:
+            self.verticalSmoothScroll.wheelEvent(e)
+        else:
+            self.horizonSmoothScroll.wheelEvent(e)
+
