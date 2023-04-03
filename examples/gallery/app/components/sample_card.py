@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
+from qtpy.QtCore import Qt, pyqtSignal
+from qtpy.QtGui import QPixmap
+from qtpy.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
 
 from qfluentwidgets import IconWidget, TextWrap, FlowLayout, isDarkTheme
 from ..common.signal_bus import signalBus

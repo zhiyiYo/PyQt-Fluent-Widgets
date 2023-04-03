@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QLabel, QWidget, QVBoxLayout
+from qtpy.QtCore import Qt
+from qtpy.QtGui import QIcon
+from qtpy.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QLabel, QWidget, QVBoxLayout
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme, setThemeColor, NavigationToolButton, NavigationPanel)

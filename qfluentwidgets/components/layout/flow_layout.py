@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
-from PyQt5.QtWidgets import QLayout, QWidgetItem
+from qtpy.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
+from qtpy.QtWidgets import QLayout, QWidgetItem
 
 
 class FlowLayout(QLayout):

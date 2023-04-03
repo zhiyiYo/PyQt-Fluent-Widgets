@@ -1,10 +1,10 @@
 # coding:utf-8
 from typing import Union
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
+from qtpy.QtGui import QIcon
+from qtpy.QtCore import (QEvent, Qt, QPropertyAnimation, QEasingCurve,
                           QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
-from PyQt5.QtGui import QColor, QPainter
-from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
+from qtpy.QtGui import QColor, QPainter
+from qtpy.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
 
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
@@ -82,7 +82,7 @@ class ExpandButton(QAbstractButton):
         self.__angle = angle
         self.update()
 
-    angle = pyqtProperty(float, getAngle, setAngle)
+    angle = property(float, getAngle, setAngle)
 
 
 class ExpandSettingCard(QFrame):

@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PyQt5.QtSvg import QSvgWidget
+from qtpy.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal, QSize, QPoint, QRectF
+from qtpy.QtGui import QPainter
+from qtpy.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
+from qtpy.QtSvg import QSvgWidget
 
 from ...common import setStyleSheet, drawSvgIcon, isDarkTheme, Theme
 from ...common.icon import FluentIcon as FIF
@@ -50,7 +50,7 @@ class StateCloseButton(QToolButton):
 class StateToolTip(QWidget):
     """ State tooltip """
 
-    closedSignal = pyqtSignal()
+    closedSignal = Signal()
 
     def __init__(self, title, content, parent=None):
         """

@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtWidgets import QWidget
+from qtpy.QtWidgets import QWidget
 from qfluentwidgets import FlowLayout, PushButton
 
 from .gallery_interface import GalleryInterface

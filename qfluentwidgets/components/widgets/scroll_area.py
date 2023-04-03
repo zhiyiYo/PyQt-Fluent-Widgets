@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, Qt, pyqtSignal, QPropertyAnimation
-from PyQt5.QtWidgets import QScrollArea, QScrollBar
+from qtpy.QtCore import QEasingCurve, Qt, Signal, QPropertyAnimation
+from qtpy.QtWidgets import QScrollArea, QScrollBar
 
 from ...common.smooth_scroll import SmoothScroll, SmoothMode
 
@@ -38,7 +38,7 @@ class ScrollArea(QScrollArea):
 class SmoothScrollBar(QScrollBar):
     """ Smooth scroll bar """
 
-    scrollFinished = pyqtSignal()
+    scrollFinished = Signal()
 
     def __init__(self, parent=None):
         QScrollBar.__init__(self, parent)

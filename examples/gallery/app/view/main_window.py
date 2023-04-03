@@ -1,8 +1,8 @@
 # coding: utf-8
 from typing import List
-from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
+from qtpy.QtCore import Qt, Signal, QEasingCurve
+from qtpy.QtGui import QIcon
+from qtpy.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPostion, MessageBox,
                             isDarkTheme, PopUpAniStackedWidget)
@@ -29,7 +29,7 @@ from ..common.signal_bus import signalBus
 class StackedWidget(QFrame):
     """ Stacked widget """
 
-    currentWidgetChanged = pyqtSignal(QWidget)
+    currentWidgetChanged = Signal(QWidget)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

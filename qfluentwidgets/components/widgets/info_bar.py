@@ -3,10 +3,10 @@ from enum import Enum
 from typing import Union
 import weakref
 
-from PyQt5.QtCore import (Qt, QEvent, QSize, QRectF, QObject, QPropertyAnimation,
-                          QEasingCurve, QTimer, pyqtSignal, QParallelAnimationGroup, QPoint)
-from PyQt5.QtGui import QPainter, QIcon, QColor
-from PyQt5.QtWidgets import (QWidget, QFrame, QLabel, QHBoxLayout, QVBoxLayout,
+from qtpy.QtCore import (Qt, QEvent, QSize, QRectF, QObject, QPropertyAnimation,
+                          QEasingCurve, QTimer, Signal, QParallelAnimationGroup, QPoint)
+from qtpy.QtGui import QPainter, QIcon, QColor
+from qtpy.QtWidgets import (QWidget, QFrame, QLabel, QHBoxLayout, QVBoxLayout,
                              QToolButton, QGraphicsOpacityEffect)
 
 from ...common.auto_wrap import TextWrap
@@ -85,7 +85,7 @@ class InfoIconWidget(QWidget):
 class InfoBar(QFrame):
     """ Information bar """
 
-    closedSignal = pyqtSignal()
+    closedSignal = Signal()
 
     def __init__(self, icon: Union[InfoBarIcon, FluentIconBase, QIcon, str], title: str, content: str,
                  orient=Qt.Horizontal, isClosable=True, duration=1000, position=InfoBarPosition.TOP_RIGHT,

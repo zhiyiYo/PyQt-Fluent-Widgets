@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QVBoxLayout, QWidget
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QVBoxLayout, QWidget
 
 
 class VBoxLayout(QVBoxLayout):

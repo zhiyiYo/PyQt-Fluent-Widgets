@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF
-from PyQt5.QtGui import QColor, QPainter, QPen, QIcon
-from PyQt5.QtWidgets import QWidget
+from qtpy.QtCore import Qt, Signal, QRect, QRectF
+from qtpy.QtGui import QColor, QPainter, QPen, QIcon
+from qtpy.QtWidgets import QWidget
 
 from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
@@ -14,7 +14,7 @@ from ...common.icon import FluentIcon as FIF
 class NavigationWidget(QWidget):
     """ Navigation widget """
 
-    clicked = pyqtSignal(bool)  # whether triggered by the user
+    clicked = Signal(bool)  # whether triggered by the user
     EXPAND_WIDTH = 312
 
     def __init__(self, isSelectable: bool, parent=None):

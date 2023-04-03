@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
 
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from qtpy.QtCore import Qt, QSize
+from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
 from qfluentwidgets import PushButton, PrimaryPushButton, HyperlinkButton, setTheme, Theme, ToolButton
 from qfluentwidgets import FluentIcon as FIF
 

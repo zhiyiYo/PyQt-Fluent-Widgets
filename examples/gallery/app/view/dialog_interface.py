@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
+from qtpy.QtCore import Qt
 
 from qfluentwidgets import PushButton, Dialog, MessageBox, ColorDialog
 from ..common.translator import Translator
