@@ -234,6 +234,7 @@ class ComboBoxMenu(RoundMenu):
 
     def __init__(self, parent=None):
         super().__init__(title="", parent=parent)
+        self.view.setViewportMargins(5, 2, 5, 6)
         setStyleSheet(self, 'combo_box')
         self.setItemHeight(33)
 
