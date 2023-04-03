@@ -6,7 +6,7 @@ ToastToolTip {
 }
 
 QLabel {
-    color: white;
+    color: black;
     background-color: transparent;
     font-family: 'Segoe UI', 'Microsoft YaHei';
     border: none;
