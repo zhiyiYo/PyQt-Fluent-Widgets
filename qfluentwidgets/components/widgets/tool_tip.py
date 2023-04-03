@@ -100,7 +100,7 @@ class ToolTip(QFrame):
 
 
 class ToolTipFilter(QObject):
-    """ Tool button with a tool tip """
+    """ Tool tip filter """
 
     def __init__(self, parent: QWidget, showDelay=300):
         """
