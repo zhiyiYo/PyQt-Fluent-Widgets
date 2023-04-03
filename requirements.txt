@@ -1,3 +1,4 @@
+PyQt6>=6.3.1
 PyQt6-Frameless-Window
 darkdetect
 colorthief

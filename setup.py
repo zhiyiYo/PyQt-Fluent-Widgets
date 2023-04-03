@@ -17,6 +17,7 @@ setuptools.setup(
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6",
     packages=setuptools.find_packages(),
     install_requires=[
+        "PyQt6>=6.3.1",
         "PyQt6-Frameless-Window",
         "darkdetect",
     ],
