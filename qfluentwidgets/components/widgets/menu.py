@@ -724,7 +724,6 @@ class TextEditMenu(EditMenu):
     def _parentSelectedText(self):
         return self.parent().textCursor().selectedText()
 
-
     def _onItemClicked(self, item):
         if self.selectionStart >= 0:
             cursor = self.parent().textCursor()
