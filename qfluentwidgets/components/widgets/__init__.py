@@ -10,6 +10,6 @@ from .scroll_area import ScrollArea, SmoothScrollArea, SmoothScrollBar
 from .slider import Slider, HollowHandleStyle
 from .spin_box import SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
-from .state_tool_tip import StateToolTip, ToastToolTip
+from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .tool_tip import ToolTip, ToolTipFilter

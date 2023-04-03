@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="" width="16" height="16" style="width:16px;height:16px;" version="1.1"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" enable-background="new 0 0 2048 2048"
+    xml:space="preserve"><path fill="#000000" transform="translate(0, 40)" d="M2 82 q-1 -2 -1.5 -8 q-0.5 -6 -0.5 -9 q0 -28 18 -46.5 q18 -18.5 46 -18.5 q15 0 27 6 l1920 896 q37 17 37 58 q0 19 -10 34.5 q-10 15.5 -27 23.5 l-1920 896 q-12 6 -27 6 q-28 0 -46 -18.5 q-18 -18.5 -18 -46.5 q0 -3 0.5 -9 q0.5 -6 1.5 -8 l251 -878 l-251 -878 ZM164 181 l205 715 l847 0 q26 0 45 19 q19 19 19 45 q0 26 -19 45 q-19 19 -45 19 l-847 0 l-205 715 l1669 -779 l-1669 -779 Z"/></svg>

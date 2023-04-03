@@ -103,12 +103,38 @@
         <file>images/icons/Constract_white.svg</file>
         <file>images/icons/Code_black.svg</file>
         <file>images/icons/Code_white.svg</file>
-        <file>images/state_tool_tip/close_normal.svg</file>
-        <file>images/state_tool_tip/close_hover.svg</file>
-        <file>images/state_tool_tip/close_pressed.svg</file>
-        <file>images/state_tool_tip/completed.svg</file>
-        <file>images/state_tool_tip/info.svg</file>
-        <file>images/state_tool_tip/running.svg</file>
+        <file>images/icons/Completed_black.svg</file>
+        <file>images/icons/Completed_white.svg</file>
+        <file>images/icons/Mail_black.svg</file>
+        <file>images/icons/Mail_white.svg</file>
+        <file>images/icons/Edit_black.svg</file>
+        <file>images/icons/Edit_white.svg</file>
+        <file>images/icons/More_black.svg</file>
+        <file>images/icons/More_white.svg</file>
+        <file>images/icons/Phone_black.svg</file>
+        <file>images/icons/Phone_white.svg</file>
+        <file>images/icons/Pin_black.svg</file>
+        <file>images/icons/Pin_white.svg</file>
+        <file>images/icons/ZoomOut_black.svg</file>
+        <file>images/icons/ZoomOut_white.svg</file>
+        <file>images/icons/Microphone_black.svg</file>
+        <file>images/icons/Microphone_white.svg</file>
+        <file>images/icons/Camera_black.svg</file>
+        <file>images/icons/Camera_white.svg</file>
+        <file>images/icons/ZoomIn_black.svg</file>
+        <file>images/icons/ZoomIn_white.svg</file>
+        <file>images/icons/BookShelf_black.svg</file>
+        <file>images/icons/BookShelf_white.svg</file>
+        <file>images/icons/Tag_black.svg</file>
+        <file>images/icons/Tag_white.svg</file>
+        <file>images/icons/Heart_black.svg</file>
+        <file>images/icons/Heart_white.svg</file>
+        <file>images/icons/Photo_black.svg</file>
+        <file>images/icons/Photo_white.svg</file>
+        <file>images/icons/Send_black.svg</file>
+        <file>images/icons/Send_white.svg</file>
+        <file>images/icons/SendFill_black.svg</file>
+        <file>images/icons/SendFill_white.svg</file>
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
         <file>images/folder_list_dialog/Close_black.png</file>

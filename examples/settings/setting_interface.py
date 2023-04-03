@@ -3,7 +3,7 @@ from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
-                            ComboBoxSettingCard, ExpandLayout, Theme, ToastToolTip, CustomColorSettingCard,
+                            ComboBoxSettingCard, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
                             setTheme, setThemeColor, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 from PySide6.QtCore import Qt, Signal, QUrl, QStandardPaths
@@ -273,10 +273,10 @@ class SettingInterface(ScrollArea):
 
     def __showRestartTooltip(self):
         """ show restart tooltip """
-        ToastToolTip.warn(
-            self.tr('Configuration updated successfully'),
+        InfoBar.warning(
+            '',
             self.tr('Configuration takes effect after restart'),
-            self.window()
+            parent=self.window()
         )
 
     def __onDeskLyricFontCardClicked(self):
