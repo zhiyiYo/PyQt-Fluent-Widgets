@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import QPoint
-from PyQt5.QtWidgets import QAction
+from qtpy.QtCore import QPoint
+from qtpy.QtWidgets import QAction
 from qfluentwidgets import RoundMenu, PushButton
 from qfluentwidgets import FluentIcon as FIF
 

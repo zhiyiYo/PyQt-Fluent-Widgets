@@ -2,8 +2,8 @@
 import os
 import sys
 
-from PyQt5.QtCore import Qt, QLocale, QTranslator
-from PyQt5.QtWidgets import QApplication
+from qtpy.QtCore import Qt, QLocale, QTranslator
+from qtpy.QtWidgets import QApplication
 
 from app.common.config import cfg, Language
 from app.view.main_window import MainWindow

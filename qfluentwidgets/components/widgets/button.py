@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import QUrl, Qt, QRectF, QSize
-from PyQt5.QtGui import QDesktopServices, QIcon, QPainter
-from PyQt5.QtWidgets import QPushButton, QRadioButton, QToolButton, QAbstractButton
+from qtpy.QtCore import QUrl, Qt, QRectF, QSize
+from qtpy.QtGui import QDesktopServices, QIcon, QPainter
+from qtpy.QtWidgets import QPushButton, QRadioButton, QToolButton, QAbstractButton
 
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme
 from ...common.style_sheet import setStyleSheet

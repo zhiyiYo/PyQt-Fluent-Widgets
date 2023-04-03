@@ -1,6 +1,6 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QPainter, QImage, QBrush, QColor, QFont
+from qtpy.QtCore import Qt, QRect
+from qtpy.QtGui import QPainter, QImage, QBrush, QColor, QFont
 from qfluentwidgets import NavigationWidget, isDarkTheme
 
 

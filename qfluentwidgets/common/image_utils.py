@@ -4,14 +4,13 @@ from math import floor
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
-from PyQt5.QtGui import QImage, QPixmap
-from scipy.ndimage.filters import gaussian_filter
-
+from qtpy.QtGui import QImage, QPixmap
+from skimage.filters import gaussian
 from .exception_handler import exceptionHandler
 
 
-
-def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
+def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
+    """ gaussian blur image """
     if not imagePath.startswith(':'):
         image = Image.open(imagePath)
     else:
@@ -20,6 +19,7 @@ def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
     if blurPicSize:
         # adjust image size to reduce computation
         w, h = image.size
+        # keep original ratio
         ratio = min(blurPicSize[0] / w, blurPicSize[1] / h)
         w_, h_ = w * ratio, h * ratio
 
@@ -30,16 +30,15 @@ def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
 
     # handle gray image
     if len(image.shape) == 2:
-        image = np.stack([image, image, image], axis=-1)
+        image = np.dstack([image] * 3)
 
-    # blur each channel
-    for i in range(3):
-        image[:, :, i] = gaussian_filter(
-            image[:, :, i], blurRadius) * brightFactor
+    image = gaussian(image, blurRadius, channel_axis=-1) * brightFactor
 
-    # convert ndarray to QPixmap
-    h, w, _ = image.shape
-    return QPixmap.fromImage(QImage(image.data, w, h, 3*w, QImage.Format_RGB888))
+    # convert floating point array to integer array between 0-255
+    image = np.uint8(np.clip(image * 255, 0, 255))
+    h, w, c = image.shape
+
+    return QPixmap.fromImage(QImage(image.data, w, h, w * c, QImage.Format_RGB888))
 
 
 class DominantColor:

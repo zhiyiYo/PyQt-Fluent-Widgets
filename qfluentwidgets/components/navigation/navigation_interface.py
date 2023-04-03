@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import Qt, QEvent, pyqtSignal
-from PyQt5.QtGui import QResizeEvent, QIcon
-from PyQt5.QtWidgets import QWidget
+from qtpy.QtCore import Qt, QEvent, Signal
+from qtpy.QtGui import QResizeEvent, QIcon
+from qtpy.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationWidget, NavigationDisplayMode
 from ...common.style_sheet import setStyleSheet
@@ -13,7 +13,7 @@ from ...common.icon import FluentIconBase
 class NavigationInterface(QWidget):
     """ Navigation interface """
 
-    displayModeChanged = pyqtSignal(NavigationDisplayMode)
+    displayModeChanged = Signal(NavigationDisplayMode)
 
     def __init__(self, parent=None, showMenuButton=True, showReturnButton=False):
         """

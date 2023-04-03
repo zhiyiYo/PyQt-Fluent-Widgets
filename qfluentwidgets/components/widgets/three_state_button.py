@@ -1,9 +1,9 @@
 # coding:utf-8
 from enum import Enum
 
-from PyQt5.QtCore import QEvent, QSize, Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QToolButton
+from qtpy.QtCore import QEvent, QSize, Qt
+from qtpy.QtGui import QIcon
+from qtpy.QtWidgets import QToolButton
 
 
 class ButtonState(Enum):

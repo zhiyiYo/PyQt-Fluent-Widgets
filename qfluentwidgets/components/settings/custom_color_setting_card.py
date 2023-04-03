@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import Union
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QIcon, QColor
-from PyQt5.QtWidgets import QWidget, QLabel, QButtonGroup, QVBoxLayout, QPushButton, QHBoxLayout
+from qtpy.QtCore import Qt, Signal
+from qtpy.QtGui import QIcon, QColor
+from qtpy.QtWidgets import QWidget, QLabel, QButtonGroup, QVBoxLayout, QPushButton, QHBoxLayout
 
 from ..dialog_box import ColorDialog
 from .expand_setting_card import ExpandGroupSettingCard
@@ -14,7 +14,7 @@ from ...common.icon import FluentIconBase
 class CustomColorSettingCard(ExpandGroupSettingCard):
     """ Custom color setting card """
 
-    colorChanged = pyqtSignal(QColor)
+    colorChanged = Signal(QColor)
 
     def __init__(self, configItem: ColorConfigItem, icon: Union[str, QIcon, FluentIconBase], title: str,
                  content=None, parent=None):

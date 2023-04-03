@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QLabel, QPushButton
+from qtpy.QtCore import Signal
+from qtpy.QtWidgets import QLabel, QPushButton
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import setStyleSheet
@@ -10,8 +10,8 @@ from .mask_dialog_base import MaskDialogBase
 class MessageDialog(MaskDialogBase):
     """ Win10 style message dialog box with a mask """
 
-    yesSignal = pyqtSignal()
-    cancelSignal = pyqtSignal()
+    yesSignal = Signal()
+    cancelSignal = Signal()
 
     def __init__(self, title: str, content: str, parent):
         super().__init__(parent=parent)

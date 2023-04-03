@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap, QColor
-from PyQt5.QtWidgets import QWidget, QHBoxLayout
+from qtpy.QtCore import Qt
+from qtpy.QtGui import QPixmap, QColor
+from qtpy.QtWidgets import QWidget, QHBoxLayout
 from qfluentwidgets import (StateToolTip, ToolTipFilter, PushButton, PixmapLabel,
                             InfoBar, InfoBarIcon, FluentIcon, InfoBarPosition)
 

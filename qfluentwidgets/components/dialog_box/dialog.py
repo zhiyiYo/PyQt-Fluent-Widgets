@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QObject, QEvent
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushButton
+from qtpy.QtCore import Qt, Signal, QObject, QEvent
+from qtpy.QtGui import QColor
+from qtpy.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushButton
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
@@ -14,8 +14,8 @@ from .mask_dialog_base import MaskDialogBase
 class Ui_MessageBox:
     """ Ui of message box """
 
-    yesSignal = pyqtSignal()
-    cancelSignal = pyqtSignal()
+    yesSignal = Signal()
+    cancelSignal = Signal()
 
     def _setUpUi(self, title, content, parent):
         self.content = content
@@ -102,8 +102,8 @@ class Ui_MessageBox:
 class Dialog(FramelessDialog, Ui_MessageBox):
     """ Dialog box """
 
-    yesSignal = pyqtSignal()
-    cancelSignal = pyqtSignal()
+    yesSignal = Signal()
+    cancelSignal = Signal()
 
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent=parent)
@@ -124,8 +124,8 @@ class Dialog(FramelessDialog, Ui_MessageBox):
 class MessageBox(MaskDialogBase, Ui_MessageBox):
     """ Message box """
 
-    yesSignal = pyqtSignal()
-    cancelSignal = pyqtSignal()
+    yesSignal = Signal()
+    cancelSignal = Signal()
 
     def __init__(self, title: str, content: str, parent=None):
         super().__init__(parent=parent)

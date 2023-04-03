@@ -2,9 +2,9 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QObject
-from PyQt5.QtGui import QResizeEvent, QIcon
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
+from qtpy.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, Signal, QObject
+from qtpy.QtGui import QResizeEvent, QIcon
+from qtpy.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
@@ -31,7 +31,7 @@ class NavigationItemPostion(Enum):
 class NavigationPanel(QFrame):
     """ Navigation panel """
 
-    displayModeChanged = pyqtSignal(NavigationDisplayMode)
+    displayModeChanged = Signal(NavigationDisplayMode)
 
     def __init__(self, parent=None, isMinimalEnabled=False):
         super().__init__(parent=parent)
@@ -365,7 +365,7 @@ class NavigationItemLayout(QVBoxLayout):
 class NavigationHistory(QObject):
     """ Navigation history """
 
-    emptyChanged = pyqtSignal(bool)
+    emptyChanged = Signal(bool)
 
     def __init__(self, items: Dict[str, NavigationWidget]):
         super().__init__()

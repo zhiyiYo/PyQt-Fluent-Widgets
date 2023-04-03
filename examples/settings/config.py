@@ -1,8 +1,8 @@
 # coding:utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication, QFont
+from qtpy.QtCore import Qt
+from qtpy.QtGui import QGuiApplication, QFont
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             ColorConfigItem, OptionsValidator, RangeConfigItem, RangeValidator,
                             FolderListValidator, EnumSerializer, FolderValidator)

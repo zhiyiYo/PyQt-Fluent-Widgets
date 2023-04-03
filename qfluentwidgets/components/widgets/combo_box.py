@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF, QPoint
-from PyQt5.QtGui import QColor, QPainter, QCursor
-from PyQt5.QtWidgets import QAction, QPushButton, QWidget
+from qtpy.QtCore import Qt, Signal, QRect, QRectF, QPoint
+from qtpy.QtGui import QColor, QPainter, QCursor
+from qtpy.QtWidgets import QAction, QPushButton, QWidget
 
 from .menu import RoundMenu
 from ...common.config import isDarkTheme
@@ -12,8 +12,8 @@ from ...common.style_sheet import setStyleSheet, themeColor
 class ComboBox(QPushButton):
     """ Combo box """
 
-    currentIndexChanged = pyqtSignal(int)
-    currentTextChanged = pyqtSignal(str)
+    currentIndexChanged = Signal(int)
+    currentTextChanged = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__("", parent)
