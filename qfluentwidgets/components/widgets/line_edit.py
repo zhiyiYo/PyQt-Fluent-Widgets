@@ -1,7 +1,7 @@
 # coding: utf-8
 from PySide6.QtCore import QSize, Qt, QRectF, QEvent
 from PySide6.QtGui import QPainter, QPainterPath
-from PySide6.QtWidgets import QLineEdit, QToolButton, QTextEdit
+from PySide6.QtWidgets import QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
 
 from ...common.style_sheet import setStyleSheet, themeColor
 from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon
@@ -101,6 +101,26 @@ class LineEdit(QLineEdit):
 
 class TextEdit(QTextEdit):
     """ Text edit """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
+        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
+        setStyleSheet(self, 'line_edit')
+
+    def contextMenuEvent(self, e):
+        menu = TextEditMenu(self)
+        menu.exec_(e.globalPos())
+
+    def wheelEvent(self, e):
+        if e.modifiers() == Qt.NoModifier:
+            self.verticalSmoothScroll.wheelEvent(e)
+        else:
+            self.horizonSmoothScroll.wheelEvent(e)
+
+
+class PlainTextEdit(QPlainTextEdit):
+    """ Plain text edit """
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
