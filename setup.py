@@ -17,6 +17,7 @@ setuptools.setup(
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets",
     packages=setuptools.find_packages(),
     install_requires=[
+        "PyQt5>=5.15.0",
         "PyQt5-Frameless-Window",
         "darkdetect",
     ],
