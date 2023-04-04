@@ -28,11 +28,11 @@
 ## Install
 To install lite version (`AcrylicLabel` is not available):
 ```shell
-pip install PySide6-Fluent-Widgets
+pip install PySide6-Fluent-Widgets -i https://pypi.org/simple/
 ```
 Or install full-featured version:
 ```shell
-pip install "PySide6-Fluent-Widgets[full]"
+pip install "PySide6-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
 ## Run Example
@@ -41,6 +41,8 @@ After installing PySide6-Fluent-Widgets package using pip, you can run any demo 
 cd examples/gallery
 python demo.py
 ```
+
+If you encounter `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`, it indicates that the package version you installed is too low. You can replace the mirror source with https://pypi.org/simple and reinstall again.
 
 ## Documentation
 Want to know more about PySide6-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈
