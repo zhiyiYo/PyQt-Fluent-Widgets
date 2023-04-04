@@ -1,5 +1,5 @@
 # coding: utf-8
-from qtpy.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QCheckBox
 
 from ...common.style_sheet import setStyleSheet
 

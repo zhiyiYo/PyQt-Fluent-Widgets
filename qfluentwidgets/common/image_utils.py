@@ -4,13 +4,14 @@ from math import floor
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
-from qtpy.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap
 from skimage.filters import gaussian
+
 from .exception_handler import exceptionHandler
 
 
-def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
-    """ gaussian blur image """
+
+def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
     if not imagePath.startswith(':'):
         image = Image.open(imagePath)
     else:
@@ -38,6 +39,8 @@ def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
     image = np.uint8(np.clip(image * 255, 0, 255))
     h, w, c = image.shape
 
+    # convert ndarray to QPixmap
+    h, w, _ = image.shape
     return QPixmap.fromImage(QImage(image.data, w, h, w * c, QImage.Format_RGB888))
 
 

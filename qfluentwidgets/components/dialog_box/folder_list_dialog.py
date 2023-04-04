@@ -1,10 +1,10 @@
 # coding:utf-8
 import os
 
-from qtpy.QtCore import Qt, Signal
-from qtpy.QtGui import (QBrush, QColor, QFont, QFontMetrics, QMouseEvent,
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import (QBrush, QColor, QFont, QFontMetrics, QMouseEvent,
                          QPainter, QPen, QPixmap)
-from qtpy.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
+from PyQt5.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
                              QVBoxLayout, QWidget, QPushButton)
 
 from ...common.config import isDarkTheme
@@ -18,7 +18,7 @@ from ..widgets.scroll_area import ScrollArea
 class FolderListDialog(MaskDialogBase):
     """ Folder list dialog box """
 
-    folderChanged = Signal(list)
+    folderChanged = pyqtSignal(list)
 
     def __init__(self, folderPaths: list, title: str, content: str, parent):
         super().__init__(parent=parent)
@@ -175,7 +175,7 @@ class FolderListDialog(MaskDialogBase):
 class ClickableWindow(QWidget):
     """ Clickable window """
 
-    clicked = Signal()
+    clicked = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)

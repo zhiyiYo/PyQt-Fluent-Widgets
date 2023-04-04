@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
-from qtpy.QtGui import QColor, QResizeEvent
-from qtpy.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
+from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
+from PyQt5.QtGui import QColor, QResizeEvent
+from PyQt5.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
                              QGraphicsOpacityEffect, QHBoxLayout, QWidget, QFrame)
 
 from ...common.config import isDarkTheme

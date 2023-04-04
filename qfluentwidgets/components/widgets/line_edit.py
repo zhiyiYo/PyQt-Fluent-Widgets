@@ -1,7 +1,7 @@
 # coding: utf-8
-from qtpy.QtCore import QSize, Qt, QRectF, QEvent
-from qtpy.QtGui import QPainter, QPainterPath
-from qtpy.QtWidgets import QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
+from PyQt5.QtCore import QSize, Qt, QRectF, QEvent
+from PyQt5.QtGui import QPainter, QPainterPath
+from PyQt5.QtWidgets import QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
 
 from ...common.style_sheet import setStyleSheet, themeColor
 from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon

@@ -1,9 +1,9 @@
 # coding:utf-8
 from qframelesswindow import WindowEffect
-from qtpy.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
-                          Qt, QSize, QRectF, Signal, QPoint, QTimer)
-from qtpy.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor
-from qtpy.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
+from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
+                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer)
+from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor
+from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QLineEdit, QTextEdit)
 
@@ -71,7 +71,7 @@ class MenuSeparator(QWidget):
 class SubMenuItemWidget(QWidget):
     """ Sub menu item """
 
-    showMenuSig = Signal(QListWidgetItem)
+    showMenuSig = pyqtSignal(QListWidgetItem)
 
     def __init__(self, menu, item, parent=None):
         """
@@ -173,7 +173,7 @@ class MenuActionListWidget(QListWidget):
 class RoundMenu(QWidget):
     """ Round corner menu """
 
-    closedSignal = Signal()
+    closedSignal = pyqtSignal()
 
     def __init__(self, title="", parent=None):
         super().__init__(parent=parent)

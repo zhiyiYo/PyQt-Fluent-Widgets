@@ -1,9 +1,9 @@
 # coding: utf-8
 from enum import Enum
 
-from qtpy.QtCore import Qt, QTimer, Signal
-from qtpy.QtGui import QColor, QPainter
-from qtpy.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
+from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
+from PyQt5.QtGui import QColor, QPainter
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
 from ...common.style_sheet import setStyleSheet
 
@@ -11,7 +11,7 @@ from ...common.style_sheet import setStyleSheet
 class Indicator(QToolButton):
     """ Indicator of switch button """
 
-    checkedChanged = Signal(bool)
+    checkedChanged = pyqtSignal(bool)
 
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -112,9 +112,9 @@ class Indicator(QToolButton):
         self.__sliderDisabledColor = color
         self.update()
 
-    sliderOnColor = property(QColor, getSliderOnColor, setSliderOnColor)
-    sliderOffColor = property(QColor, getSliderOffColor, setSliderOffColor)
-    sliderDisabledColor = property(
+    sliderOnColor = pyqtProperty(QColor, getSliderOnColor, setSliderOnColor)
+    sliderOffColor = pyqtProperty(QColor, getSliderOffColor, setSliderOffColor)
+    sliderDisabledColor = pyqtProperty(
         QColor, getSliderDisabledColor, setSliderDisabledColor)
 
 
@@ -127,7 +127,7 @@ class IndicatorPosition(Enum):
 class SwitchButton(QWidget):
     """ Switch button class """
 
-    checkedChanged = Signal(bool)
+    checkedChanged = pyqtSignal(bool)
 
     def __init__(self, text='Off', parent=None, indicatorPos=IndicatorPosition.LEFT):
         """
@@ -199,4 +199,4 @@ class SwitchButton(QWidget):
         self.hBox.setSpacing(spacing)
         self.update()
 
-    spacing = property(int, getSpacing, setSpacing)
+    spacing = pyqtProperty(int, getSpacing, setSpacing)

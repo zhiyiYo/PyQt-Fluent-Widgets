@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import Qt
-from qtpy.QtGui import QPixmap, QPainter
-from qtpy.QtWidgets import QLabel
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QPainter
+from PyQt5.QtWidgets import QLabel
 
 
 class PixmapLabel(QLabel):

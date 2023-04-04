@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import Union
-from qtpy.QtCore import Signal
-from qtpy.QtGui import QIcon
-from qtpy.QtWidgets import QButtonGroup, QLabel
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QButtonGroup, QLabel
 
 from ...common.config import OptionsConfigItem, qconfig
 from ...common.icon import FluentIconBase
@@ -13,7 +13,7 @@ from .expand_setting_card import ExpandSettingCard
 class OptionsSettingCard(ExpandSettingCard):
     """ setting card with a group of options """
 
-    optionChanged = Signal(OptionsConfigItem)
+    optionChanged = pyqtSignal(OptionsConfigItem)
 
     def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, texts=None, parent=None):
         """

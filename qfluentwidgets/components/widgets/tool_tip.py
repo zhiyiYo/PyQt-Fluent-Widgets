@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import QEvent, QObject, QPoint, QTimer, Qt
-from qtpy.QtGui import QColor, QCursor
-from qtpy.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
+from PyQt5.QtCore import QEvent, QObject, QPoint, QTimer, Qt
+from PyQt5.QtGui import QColor, QCursor
+from PyQt5.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel, QWidget)
 
 from ...common import setStyleSheet

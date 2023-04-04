@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import Qt, pyqtSignal, QUrl, QEvent
-from qtpy.QtGui import QDesktopServices
-from qtpy.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
+from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QEvent
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 
 from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
                             isDarkTheme, IconWidget, Theme, ToolTipFilter)

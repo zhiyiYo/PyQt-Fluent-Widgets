@@ -6,7 +6,7 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             setTheme, setThemeColor, RangeSettingCard, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 from qfluentwidgets import InfoBar
-from PyQt5.QtCore import Qt, Signal, QUrl, QStandardPaths
+from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtWidgets import QWidget, QLabel, QFileDialog
 
@@ -17,11 +17,11 @@ from ..common.config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
 class SettingInterface(ScrollArea):
     """ Setting interface """
 
-    checkUpdateSig = Signal()
-    musicFoldersChanged = Signal(list)
-    acrylicEnableChanged = Signal(bool)
-    downloadFolderChanged = Signal(str)
-    minimizeToTrayChanged = Signal(bool)
+    checkUpdateSig = pyqtSignal()
+    musicFoldersChanged = pyqtSignal(list)
+    acrylicEnableChanged = pyqtSignal(bool)
+    downloadFolderChanged = pyqtSignal(str)
+    minimizeToTrayChanged = pyqtSignal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

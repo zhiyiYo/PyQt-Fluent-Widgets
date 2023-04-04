@@ -1,10 +1,10 @@
 # coding:utf-8
 from enum import Enum
 
-from qtpy.QtXml import QDomDocument
-from qtpy.QtCore import QPoint, QRect, QRectF, Qt, QFile
-from qtpy.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap, QColor
-from qtpy.QtSvg import QSvgRenderer
+from PyQt5.QtXml import QDomDocument
+from PyQt5.QtCore import QPoint, QRect, QRectF, Qt, QFile
+from PyQt5.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap, QColor
+from PyQt5.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
 

@@ -3,9 +3,9 @@ from enum import Enum
 from string import Template
 import weakref
 
-from qtpy.QtCore import QFile, QObject
-from qtpy.QtGui import QColor
-from qtpy.QtWidgets import QWidget
+from PyQt5.QtCore import QFile, QObject
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QWidget
 
 from .config import qconfig, Theme, isDarkTheme
 
@@ -14,7 +14,6 @@ class StyleSheetManager(QObject):
     """ Style sheet manager """
 
     def __init__(self):
-        super().__init__()
         self.widgets = weakref.WeakKeyDictionary()
 
     def register(self, file: str, widget: QWidget):

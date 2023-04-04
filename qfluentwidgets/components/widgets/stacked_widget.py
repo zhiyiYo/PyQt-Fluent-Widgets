@@ -2,10 +2,10 @@
 from typing import List
 from dataclasses import dataclass
 
-from qtpy.QtCore import (QAbstractAnimation, QEasingCurve,
+from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve,
                           QParallelAnimationGroup, QPoint, QPropertyAnimation,
-                          Signal)
-from qtpy.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
+                          pyqtSignal)
+from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
 
 
 class OpacityAniStackedWidget(QStackedWidget):
@@ -67,8 +67,8 @@ class PopUpAniInfo:
 class PopUpAniStackedWidget(QStackedWidget):
     """ Stacked widget with pop up animation """
 
-    aniFinished = Signal()
-    aniStart = Signal()
+    aniFinished = pyqtSignal()
+    aniStart = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)

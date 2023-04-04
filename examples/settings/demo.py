@@ -2,9 +2,9 @@
 import os
 import sys
 
-from qtpy.QtCore import Qt, QLocale, QTranslator
-from qtpy.QtGui import QIcon
-from qtpy.QtWidgets import QApplication, QHBoxLayout
+from PyQt5.QtCore import Qt, QLocale, QTranslator
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from qfluentwidgets import isDarkTheme

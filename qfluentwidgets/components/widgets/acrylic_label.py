@@ -1,9 +1,9 @@
 # coding:utf-8
 import warnings
 
-from qtpy.QtCore import Qt, QThread, Signal
-from qtpy.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
-from qtpy.QtWidgets import QLabel
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
+from PyQt5.QtWidgets import QLabel
 
 try:
     from ...common.image_utils import gaussianBlur
@@ -18,7 +18,7 @@ except ImportError as e:
 class BlurCoverThread(QThread):
     """ Blur album cover thread """
 
-    blurFinished = Signal(QPixmap)
+    blurFinished = pyqtSignal(QPixmap)
 
     def __init__(self, parent=None):
         super().__init__(parent)

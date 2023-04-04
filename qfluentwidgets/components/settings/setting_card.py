@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import Union
 
-from qtpy.QtCore import Qt, Signal
-from qtpy.QtGui import QColor, QIcon, QPainter
-from qtpy.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import QColor, QIcon, QPainter
+from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QToolButton,
                              QVBoxLayout, QPushButton)
 
 from ..dialog_box.color_dialog import ColorDialog
@@ -87,7 +87,7 @@ class SettingCard(QFrame):
 class SwitchSettingCard(SettingCard):
     """ Setting card with switch button """
 
-    checkedChanged = Signal(bool)
+    checkedChanged = pyqtSignal(bool)
 
     def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, content=None,
                  configItem: ConfigItem = None, parent=None):
@@ -144,7 +144,7 @@ class SwitchSettingCard(SettingCard):
 class RangeSettingCard(SettingCard):
     """ Setting card with a slider """
 
-    valueChanged = Signal(int)
+    valueChanged = pyqtSignal(int)
 
     def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
@@ -200,7 +200,7 @@ class RangeSettingCard(SettingCard):
 class PushSettingCard(SettingCard):
     """ Setting card with a push button """
 
-    clicked = Signal()
+    clicked = pyqtSignal()
 
     def __init__(self, text, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """
@@ -273,7 +273,7 @@ class HyperlinkCard(SettingCard):
 class ColorPickerButton(QToolButton):
     """ Color picker button """
 
-    colorChanged = Signal(QColor)
+    colorChanged = pyqtSignal(QColor)
 
     def __init__(self, color: QColor, title: str, parent=None):
         super().__init__(parent=parent)
@@ -315,7 +315,7 @@ class ColorPickerButton(QToolButton):
 class ColorSettingCard(SettingCard):
     """ Setting card with color picker """
 
-    colorChanged = Signal(QColor)
+    colorChanged = pyqtSignal(QColor)
 
     def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, parent=None):
         """

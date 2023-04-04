@@ -1,5 +1,5 @@
 # coding:utf-8
-from qtpy.QtGui import QColor
+from PyQt5.QtGui import QColor
 from qfluentwidgets.components.widgets.acrylic_label import AcrylicLabel
 from qfluentwidgets import FluentIcon as FIF
 

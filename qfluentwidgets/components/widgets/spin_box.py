@@ -1,9 +1,9 @@
 # coding:utf-8
 from enum import Enum
 
-from qtpy.QtCore import Qt, QSize, QRectF
-from qtpy.QtGui import QPainter, QPainterPath
-from qtpy.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
+from PyQt5.QtCore import Qt, QSize, QRectF
+from PyQt5.QtGui import QPainter, QPainterPath
+from PyQt5.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
                              QDateEdit, QDateTimeEdit, QTimeEdit, QLineEdit, QAbstractSpinBox)
 
 from ...common.style_sheet import setStyleSheet, themeColor

@@ -1,8 +1,8 @@
 # coding:utf-8
 import sys
-from qtpy.QtCore import Qt
-from qtpy.QtGui import QColor
-from qtpy.QtWidgets import QApplication, QWidget, QSlider
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QApplication, QWidget, QSlider
 
 from qfluentwidgets import HollowHandleStyle, Slider, setTheme, Theme
 

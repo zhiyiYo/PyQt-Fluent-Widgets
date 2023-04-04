@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import Union
 
-from qtpy.QtGui import QIcon, QPainter
-from qtpy.QtWidgets import QWidget
+from PyQt5.QtGui import QIcon, QPainter
+from PyQt5.QtWidgets import QWidget
 
 from ...common.icon import FluentIconBase, drawIcon
 

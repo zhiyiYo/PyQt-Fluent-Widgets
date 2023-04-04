@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import List
 
 import darkdetect
-from qtpy.QtCore import QObject, Signal
-from qtpy.QtGui import QColor
+from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtGui import QColor
 
 from .exception_handler import exceptionHandler
 
@@ -157,7 +157,7 @@ class ColorSerializer(ConfigSerializer):
 class ConfigItem(QObject):
     """ Config item """
 
-    valueChanged = Signal(object)
+    valueChanged = pyqtSignal(object)
 
     def __init__(self, group, name, default, validator=None, serializer=None, restart=False):
         """
@@ -256,9 +256,9 @@ class ColorConfigItem(ConfigItem):
 class QConfig(QObject):
     """ Config of app """
 
-    appRestartSig = Signal()
-    themeChanged = Signal(Theme)
-    themeColorChanged = Signal(QColor)
+    appRestartSig = pyqtSignal()
+    themeChanged = pyqtSignal(Theme)
+    themeColorChanged = pyqtSignal(QColor)
 
     themeMode = OptionsConfigItem(
         "QFluentWidgets", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))

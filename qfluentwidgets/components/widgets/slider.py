@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import QSize, Qt, Signal, QPoint, QRectF
-from qtpy.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
-from qtpy.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
+from PyQt5.QtCore import QSize, Qt, pyqtSignal, QPoint, QRectF
+from PyQt5.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
+from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
 from ...common.style_sheet import setStyleSheet
@@ -10,7 +10,7 @@ from ...common.style_sheet import setStyleSheet
 class Slider(QSlider):
     """ A slider can be clicked """
 
-    clicked = Signal(int)
+    clicked = pyqtSignal(int)
 
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)

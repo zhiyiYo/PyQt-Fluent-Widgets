@@ -1,7 +1,7 @@
 # coding:utf-8
-from qtpy.QtCore import QSize, QPoint, Qt, QEvent, QRect
-from qtpy.QtGui import QResizeEvent
-from qtpy.QtWidgets import QLayout, QWidget
+from PyQt5.QtCore import QSize, QPoint, Qt, QEvent, QRect
+from PyQt5.QtGui import QResizeEvent
+from PyQt5.QtWidgets import QLayout, QWidget
 
 
 class ExpandLayout(QLayout):

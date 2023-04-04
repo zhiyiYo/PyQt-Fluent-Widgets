@@ -1,9 +1,9 @@
 # coding:utf-8
 import json
 
-from qtpy.QtCore import Qt, Signal, QRectF
-from qtpy.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath
-from qtpy.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtCore import Qt, pyqtSignal, QRectF
+from PyQt5.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
 
 from qfluentwidgets import ScrollArea, isDarkTheme, FluentIcon
 from ..common.config import cfg, HELP_URL, REPO_URL, EXAMPLE_URL, FEEDBACK_URL

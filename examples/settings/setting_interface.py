@@ -6,9 +6,9 @@ from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSetti
                             ComboBoxSettingCard, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
                             setTheme, setThemeColor, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
-from qtpy.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
-from qtpy.QtGui import QDesktopServices
-from qtpy.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
+from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 
 
 class SettingInterface(ScrollArea):

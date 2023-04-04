@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QApplication, QWidget, QAction, QHBoxLayout, QLabel
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QAction, QHBoxLayout, QLabel
 from qfluentwidgets import RoundMenu, setTheme, Theme
 from qfluentwidgets import FluentIcon as FIF
 

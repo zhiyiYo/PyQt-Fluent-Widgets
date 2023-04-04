@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QApplication, QWidget
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget
 
 from qfluentwidgets import CheckBox
 
