@@ -126,7 +126,7 @@ class CodeBlock(QTextBrowser):
 class Demo(QWidget):
     def __init__(self):
         super().__init__()
-        self.codeblock = CodeBlock(self, [CodeBlock])
+        self.codeblock = CodeBlock(self, [PythonHightlighter,TextCopyMenu,CodeBlock])
         self.highlighter=PythonHightlighter(self.codeblock.document())
         _layout = QVBoxLayout()
         _layout.addWidget(self.codeblock)
