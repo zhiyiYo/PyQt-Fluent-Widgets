@@ -1,20 +1,23 @@
 # coding:utf-8
 import sys
 import PySide6
-from PySide6.QtWidgets import QApplication, QWidget, QTextBrowser, QVBoxLayout,QPushButton
-from PySide6.QtGui import QAction
+from PySide6.QtWidgets import (
+    QApplication,
+    QWidget,
+    QTextBrowser,
+    QVBoxLayout,
+)
+from PySide6.QtGui import QAction,QFont
 from PySide6.QtCore import Qt
-from qfluentwidgets import SmoothScroll, setStyleSheet,SwitchButton
+from qfluentwidgets import SmoothScroll, setStyleSheet, SwitchButton
 from qfluentwidgets.components import RoundMenu
 from qfluentwidgets.common.icon import FluentIcon as FIF
 import inspect
-from pygments import highlight
-from pygments.lexers import PythonLexer
-from pygments.formatters import HtmlFormatter
 
 
 class TextCopyMenu(RoundMenu):
     """Only copy menu"""
+
     def __init__(self, parent: QTextBrowser):
         super().__init__(parent=parent)
 
@@ -41,38 +44,29 @@ class TextCopyMenu(RoundMenu):
 
 
 class CodeBlock(QTextBrowser):
-    """ Show code block in a pretty way """
-    def __init__(self, parent=None, class_name=None,minShowHeight=25,maxShowHeight=500):
+    """Show code block in a pretty way"""
+
+    def __init__(
+        self, parent=None, class_name=None, minShowHeight=25, maxShowHeight=500
+    ):
         super().__init__(parent=parent)
         self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
         self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
         setStyleSheet(self, "line_edit")
-        # pretty code
-        self.__lexer = PythonLexer()
-        self.__formatter = HtmlFormatter(style="xcode")
-        self.__template = '<!DOCTYPE html>\
-            <html lang="en">\
-            <head>\
-                <meta charset="UTF-8">\
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">\
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-                <style>{}</style>\
-            </head>\
-            <body>{}</body>\
-            </html>'
+        # set code
+        self.setFont(QFont("Hack",12))
         if callable(class_name):
             self.setCodeName(class_name=class_name)
         # changable ui
-        self.__minShowHeight=minShowHeight
-        self.__maxShowHeight=maxShowHeight
+        self.__minShowHeight = minShowHeight
+        self.__maxShowHeight = maxShowHeight
         self.setFixedHeight(self.__minShowHeight)
-        self.__dropButton=SwitchButton(parent=self)
+        self.__dropButton = SwitchButton(parent=self)
         self.__dropButton.setText(None)
         self.__dropButton.checkedChanged.connect(self.__drop)
 
-    
     def resizeEvent(self, e: PySide6.QtGui.QResizeEvent) -> None:
-        self.__dropButton.move(self.width()-self.__dropButton.width(),0)
+        self.__dropButton.move(self.width() - self.__dropButton.width(), 0)
         return super().resizeEvent(e)
 
     def contextMenuEvent(self, e):
@@ -85,32 +79,32 @@ class CodeBlock(QTextBrowser):
         else:
             self.horizonSmoothScroll.wheelEvent(e)
 
+    def highlight(self,code:str)->str:
+        """ Highlight code string"""
+        return code
+
     def setCodeName(self, class_name):
         code = inspect.getsource(class_name)
-        code = highlight(code, lexer=self.__lexer, formatter=self.__formatter)
-        css = self.__formatter.get_style_defs(".highlight")
-        pretty = self.__template.format(css, code)
-        self.setText(pretty)
-            
-    def __drop(self,isChecked:bool):
-        self.setFixedHeight(self.__maxShowHeight if isChecked else self.__minShowHeight)
-        # self.__dropButton.setText("Show" if isChecked else "Hide")
+        self.setText(self.highlight(code))
 
-    def setMinShowHeight(self,height:float):
-        self.__minShowHeight=height
-    
-    def setMaxShowHeight(self,height:float):
-        self.__maxShowHeight=height
+    def __drop(self, isChecked: bool):
+        self.setFixedHeight(self.__maxShowHeight if isChecked else self.__minShowHeight)
+
+    def setMinShowHeight(self, height: float):
+        self.__minShowHeight = height
+
+    def setMaxShowHeight(self, height: float):
+        self.__maxShowHeight = height
 
 
 class Demo(QWidget):
     def __init__(self):
         super().__init__()
-        self.codeblock = CodeBlock(self,CodeBlock)
+        self.codeblock = CodeBlock(self, CodeBlock)
         _layout = QVBoxLayout()
         _layout.addWidget(self.codeblock)
         self.setLayout(_layout)
-        self.resize(700,600)
+        self.resize(700, 600)
 
 
 if __name__ == "__main__":
