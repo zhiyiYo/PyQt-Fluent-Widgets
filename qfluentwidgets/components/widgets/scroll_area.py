@@ -1,5 +1,5 @@
 # coding:utf-8
-from PySide6.QtCore import QEasingCurve, Qt, Signal, QPropertyAnimation
+from PySide6.QtCore import QEasingCurve, Qt, Signal, QPropertyAnimation, QEvent
 from PySide6.QtWidgets import QScrollArea, QScrollBar
 
 from ...common.smooth_scroll import SmoothScroll
@@ -20,6 +20,7 @@ class ScrollArea(QScrollArea):
         """
         super().__init__(parent)
         self.smoothScroll = SmoothScroll(self, orient)
+        self.viewport().installEventFilter(self)
 
     def setSmoothMode(self, mode):
         """ set smooth mode
@@ -31,8 +32,16 @@ class ScrollArea(QScrollArea):
         """
         self.smoothScroll.setSmoothMode(mode)
 
-    def wheelEvent(self, e):
-        self.smoothScroll.wheelEvent(e)
+    def eventFilter(self, obj, e):
+        if obj is self.viewport():
+            if e.type() == QEvent.Wheel:
+                self.smoothScroll.wheelEvent(e)
+
+                # stop event propagation
+                e.setAccepted(True)
+                return True
+
+        return super().eventFilter(obj, e)
 
 
 class SmoothScrollBar(QScrollBar):
