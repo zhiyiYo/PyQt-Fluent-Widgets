@@ -1,10 +1,10 @@
 # coding:utf-8
 import sys
-
-from PySide6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout
+import PySide6
+from PySide6.QtWidgets import QApplication, QWidget, QTextBrowser, QVBoxLayout,QPushButton
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt
-from qfluentwidgets import SmoothScroll, setStyleSheet
+from qfluentwidgets import SmoothScroll, setStyleSheet,SwitchButton
 from qfluentwidgets.components import RoundMenu
 from qfluentwidgets.common.icon import FluentIcon as FIF
 import inspect
@@ -15,7 +15,7 @@ from pygments.formatters import HtmlFormatter
 
 class TextCopyMenu(RoundMenu):
     """Only copy menu"""
-    def __init__(self, parent: QTextEdit):
+    def __init__(self, parent: QTextBrowser):
         super().__init__(parent=parent)
 
     def createActions(self):
@@ -35,22 +35,22 @@ class TextCopyMenu(RoundMenu):
         super().exec(pos, ani)
 
     def copyAll(self):
-        parent: QTextEdit = self.parent()
+        parent: QTextBrowser = self.parent()
         parent.selectAll()
         parent.copy()
 
 
-class CodeBlock(QTextEdit):
+class CodeBlock(QTextBrowser):
     """ Show code block in a pretty way """
-    def __init__(self, parent=None, class_name=None):
+    def __init__(self, parent=None, class_name=None,minShowHeight=25,maxShowHeight=500):
         super().__init__(parent=parent)
         self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
         self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
         setStyleSheet(self, "line_edit")
-        self.setReadOnly(True)
-        self.lexer = PythonLexer()
-        self.formatter = HtmlFormatter(style="xcode")
-        self.template = '<!DOCTYPE html>\
+        # pretty code
+        self.__lexer = PythonLexer()
+        self.__formatter = HtmlFormatter(style="xcode")
+        self.__template = '<!DOCTYPE html>\
             <html lang="en">\
             <head>\
                 <meta charset="UTF-8">\
@@ -62,6 +62,18 @@ class CodeBlock(QTextEdit):
             </html>'
         if callable(class_name):
             self.setCodeName(class_name=class_name)
+        # changable ui
+        self.__minShowHeight=minShowHeight
+        self.__maxShowHeight=maxShowHeight
+        self.setFixedHeight(self.__minShowHeight)
+        self.__dropButton=SwitchButton(parent=self)
+        self.__dropButton.setText(None)
+        self.__dropButton.checkedChanged.connect(self.__drop)
+
+    
+    def resizeEvent(self, e: PySide6.QtGui.QResizeEvent) -> None:
+        self.__dropButton.move(self.width()-self.__dropButton.width(),0)
+        return super().resizeEvent(e)
 
     def contextMenuEvent(self, e):
         menu = TextCopyMenu(self)
@@ -75,10 +87,20 @@ class CodeBlock(QTextEdit):
 
     def setCodeName(self, class_name):
         code = inspect.getsource(class_name)
-        code = highlight(code, lexer=self.lexer, formatter=self.formatter)
-        css = self.formatter.get_style_defs(".highlight")
-        pretty = self.template.format(css, code)
+        code = highlight(code, lexer=self.__lexer, formatter=self.__formatter)
+        css = self.__formatter.get_style_defs(".highlight")
+        pretty = self.__template.format(css, code)
         self.setText(pretty)
+            
+    def __drop(self,isChecked:bool):
+        self.setFixedHeight(self.__maxShowHeight if isChecked else self.__minShowHeight)
+        # self.__dropButton.setText("Show" if isChecked else "Hide")
+
+    def setMinShowHeight(self,height:float):
+        self.__minShowHeight=height
+    
+    def setMaxShowHeight(self,height:float):
+        self.__maxShowHeight=height
 
 
 class Demo(QWidget):
