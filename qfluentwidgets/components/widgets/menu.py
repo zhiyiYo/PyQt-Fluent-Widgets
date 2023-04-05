@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
 from ...common.smooth_scroll import SmoothScroll
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import MenuIconEngine
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ...common.config import isDarkTheme
 
 
@@ -44,7 +44,7 @@ class DWMMenu(QMenu):
             Qt.FramelessWindowHint | Qt.Popup | Qt.NoDropShadowWindowHint)
         self.setAttribute(Qt.WA_StyledBackground)
         self.setStyle(CustomMenuStyle())
-        setStyleSheet(self, 'menu')
+        FluentStyleSheet.MENU.apply(self)
 
     def event(self, e: QEvent):
         if e.type() == QEvent.WinIdChange:
@@ -208,7 +208,7 @@ class RoundMenu(QWidget):
         self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
 
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
-        setStyleSheet(self, 'menu')
+        FluentStyleSheet.MENU.apply(self)
 
         self.view.itemClicked.connect(self._onItemClicked)
         self.view.itemEntered.connect(self._onItemEntered)

@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import ScrollArea
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
 
@@ -87,7 +87,7 @@ class NavigationPanel(QFrame):
 
         self.scrollWidget.setObjectName('scrollWidget')
         self.setProperty('menu', False)
-        setStyleSheet(self, 'navigation_interface')
+        FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
         self.__initLayout()
 
     def __initLayout(self):

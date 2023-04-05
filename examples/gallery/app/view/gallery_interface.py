@@ -7,6 +7,7 @@ from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
                             isDarkTheme, IconWidget, Theme, ToolTipFilter)
 from ..common.icon import Icon
 from ..common.config import cfg, FEEDBACK_URL, HELP_URL, EXAMPLE_URL
+from ..common.style_sheet import StyleSheet
 
 
 class ToolBar(QWidget):
@@ -176,8 +177,8 @@ class GalleryInterface(ScrollArea):
         self.vBoxLayout.setAlignment(Qt.AlignTop)
         self.vBoxLayout.setContentsMargins(36, 20, 36, 36)
 
-        self.__setQss()
-        cfg.themeChanged.connect(self.__setQss)
+        self.view.setObjectName('view')
+        StyleSheet.GALLERY_INTERFACE.apply(self)
 
     def addExampleCard(self, title, widget, sourcePath: str, stretch=0):
         card = ExampleCard(title, widget, sourcePath, stretch, self.view)
@@ -192,9 +193,3 @@ class GalleryInterface(ScrollArea):
     def resizeEvent(self, e):
         super().resizeEvent(e)
         self.toolBar.resize(self.width(), self.toolBar.height())
-
-    def __setQss(self):
-        self.view.setObjectName('view')
-        theme = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{theme}/gallery_interface.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())

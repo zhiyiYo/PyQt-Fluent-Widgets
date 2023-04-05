@@ -4,7 +4,7 @@ from PySide6.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
 from PySide6.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 
 
 class Slider(QSlider):
@@ -14,7 +14,7 @@ class Slider(QSlider):
 
     def __init__(self, orientation, parent=None):
         super().__init__(orientation, parent=parent)
-        setStyleSheet(self, 'slider')
+        FluentStyleSheet.SLIDER.apply(self)
 
     def mousePressEvent(self, e: QMouseEvent):
         super().mousePressEvent(e)

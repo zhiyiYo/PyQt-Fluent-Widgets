@@ -10,6 +10,7 @@ from ..common.config import cfg, HELP_URL, REPO_URL, EXAMPLE_URL, FEEDBACK_URL
 from ..common.icon import Icon
 from ..components.link_card import LinkCardView
 from ..components.sample_card import SampleCardView
+from ..common.style_sheet import StyleSheet
 
 
 class BannerWidget(QWidget):
@@ -100,7 +101,8 @@ class HomeInterface(ScrollArea):
         self.loadSamples()
 
     def __initWidget(self):
-        self.__setQss()
+        self.view.setObjectName('view')
+        StyleSheet.HOME_INTERFACE.apply(self)
 
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setWidget(self.view)
@@ -110,14 +112,6 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout.setSpacing(40)
         self.vBoxLayout.addWidget(self.banner)
         self.vBoxLayout.setAlignment(Qt.AlignTop)
-
-        cfg.themeChanged.connect(self.__setQss)
-
-    def __setQss(self):
-        self.view.setObjectName('view')
-        theme = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{theme}/home_interface.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
 
     def loadSamples(self):
         """ load samples """

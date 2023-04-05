@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt, QTimer, Property, Signal
 from PySide6.QtGui import QColor, QPainter
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 
 
 class Indicator(QToolButton):
@@ -169,7 +169,7 @@ class SwitchButton(QWidget):
             self.hBox.setAlignment(Qt.AlignRight)
 
         # set default style sheet
-        setStyleSheet(self, 'switch_button')
+        FluentStyleSheet.SWITCH_BUTTON.apply(self)
 
         # connect signal to slot
         self.indicator.checkedChanged.connect(self.checkedChanged)

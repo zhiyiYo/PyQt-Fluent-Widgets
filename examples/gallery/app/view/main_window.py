@@ -25,6 +25,7 @@ from .text_interface import TextInterface
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
+from ..common.style_sheet import StyleSheet
 
 
 class StackedWidget(QFrame):
@@ -241,13 +242,7 @@ class MainWindow(FramelessWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
 
-        cfg.themeChanged.connect(self.setQss)
-        self.setQss()
-
-    def setQss(self):
-        color = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{color}/main_window.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
+        StyleSheet.MAIN_WINDOW.apply(self)
 
     def switchTo(self, widget, triggerByUser=True):
         self.stackWidget.setCurrentWidget(widget, not triggerByUser)

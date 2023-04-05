@@ -3,9 +3,9 @@ from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
 
-from qfluentwidgets import IconWidget, TextWrap, FlowLayout, isDarkTheme
+from qfluentwidgets import IconWidget, TextWrap, FlowLayout
 from ..common.signal_bus import signalBus
-from ..common.config import cfg
+from ..common.style_sheet import StyleSheet
 
 
 class SampleCard(QFrame):
@@ -67,15 +67,9 @@ class SampleCardView(QWidget):
         self.vBoxLayout.addLayout(self.flowLayout, 1)
 
         self.titleLabel.setObjectName('viewTitleLabel')
-        self.__setQss()
-        cfg.themeChanged.connect(self.__setQss)
+        StyleSheet.SAMPLE_CARD.apply(self)
 
     def addSampleCard(self, icon, title, content, routeKey, index):
         """ add sample card """
         card = SampleCard(icon, title, content, routeKey, index, self)
         self.flowLayout.addWidget(card)
-
-    def __setQss(self):
-        theme = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{theme}/sample_card.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())

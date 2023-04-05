@@ -1,6 +1,7 @@
 # coding:utf-8
 from enum import Enum
 from string import Template
+from typing import Union
 import weakref
 
 from PySide6.QtCore import QFile, QObject
@@ -66,19 +67,65 @@ def applyThemeColor(qss: str):
     return template.safe_substitute(mappings)
 
 
-def getStyleSheet(file, theme=Theme.AUTO):
+class StyleSheetBase:
+    """ Style sheet base class """
+
+    def path(self, theme=Theme.AUTO):
+        """ get the path of style sheet """
+        raise NotImplementedError
+
+    def content(self, theme=Theme.AUTO):
+        """ get the content of style sheet """
+        return getStyleSheet(self, theme)
+
+    def apply(self, widget: QWidget, theme=Theme.AUTO):
+        """ apply style sheet to widget """
+        setStyleSheet(widget, self, theme)
+
+
+class FluentStyleSheet(StyleSheetBase, Enum):
+    """ Fluent style sheet """
+
+    MENU = "menu"
+    BUTTON = "button"
+    DIALOG = "dialog"
+    SLIDER = "slider"
+    INFO_BAR = "info_bar"
+    SPIN_BOX = "spin_box"
+    TOOL_TIP = "tool_tip"
+    CHECK_BOX = "check_box"
+    COMBO_BOX = "combo_box"
+    LINE_EDIT = "line_edit"
+    SETTING_CARD = "setting_card"
+    COLOR_DIALOG = "color_dialog"
+    SWITCH_BUTTON = "switch_button"
+    MESSAGE_DIALOG = "message_dialog"
+    STATE_TOOL_TIP = "state_tool_tip"
+    FOLDER_LIST_DIALOG = "folder_list_dialog"
+    SETTING_CARD_GROUP = "setting_card_group"
+    EXPAND_SETTING_CARD = "expand_setting_card"
+    NAVIGATION_INTERFACE = "navigation_interface"
+
+    def path(self, theme=Theme.AUTO):
+        theme = qconfig.theme if theme == Theme.AUTO else theme
+        return f":/qfluentwidgets/qss/{theme.value.lower()}/{self.value}.qss"
+
+
+def getStyleSheet(file: Union[str, StyleSheetBase], theme=Theme.AUTO):
     """ get style sheet from `qfluentwidgets` embedded qss file
 
     Parameters
     ----------
-    file: str
-        qss file name, without `.qss` suffix
+    file: str | StyleSheetBase
+        qss file
 
     theme: Theme
         the theme of style sheet
     """
-    theme = qconfig.theme if theme == Theme.AUTO else theme
-    f = QFile(f":/qfluentwidgets/qss/{theme.value.lower()}/{file}.qss")
+    if isinstance(file, StyleSheetBase):
+        file = file.path(theme)
+
+    f = QFile(file)
     f.open(QFile.ReadOnly)
     qss = str(f.readAll(), encoding='utf-8')
     f.close()
@@ -86,16 +133,16 @@ def getStyleSheet(file, theme=Theme.AUTO):
     return applyThemeColor(qss)
 
 
-def setStyleSheet(widget, file, theme=Theme.AUTO, register=True):
-    """ set the style sheet of widget using `qfluentwidgets` embedded qss file
+def setStyleSheet(widget, file: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
+    """ set the style sheet of widget
 
     Parameters
     ----------
     widget: QWidget
         the widget to set style sheet
 
-    file: str
-        qss file name, without `.qss` suffix
+    file: str | StyleSheetBase
+        qss file
 
     theme: Theme
         the theme of style sheet

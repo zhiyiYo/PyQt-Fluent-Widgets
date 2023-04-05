@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushBut
 from qframelesswindow import FramelessDialog
 
 from ...common.auto_wrap import TextWrap
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ..widgets.button import PrimaryPushButton
 
 from .mask_dialog_base import MaskDialogBase
@@ -93,7 +93,7 @@ class Ui_MessageBox:
         self.buttonGroup.setObjectName('buttonGroup')
         self.cancelButton.setObjectName('cancelButton')
 
-        setStyleSheet(self, 'dialog')
+        FluentStyleSheet.DIALOG.apply(self)
 
         self.yesButton.adjustSize()
         self.cancelButton.adjustSize()
@@ -117,7 +117,7 @@ class Dialog(FramelessDialog, Ui_MessageBox):
 
         self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignTop)
         self.windowTitleLabel.setObjectName('windowTitleLabel')
-        setStyleSheet(self, 'dialog')
+        FluentStyleSheet.DIALOG.apply(self)
         self.setFixedSize(self.size())
 
 

@@ -71,7 +71,7 @@
     </message>
     <message>
         <source> folder and remove it from the list, the folder will no longer appear in the list, but will not be deleted.</source>
-        <translation> 文件夾從列表中移除，則該文件夾不會再出現在列表中，但不會被刪除。</translation>
+        <translation> 文件夾從列錶中移除，則該文件夾不會再出現在列錶中，但不會被刪除。</translation>
     </message>
 </context>
 <context>
@@ -127,7 +127,7 @@
     </message>
     <message>
         <source> folder and remove it from the list, the folder will no longer appear in the list, but will not be deleted.</source>
-        <translation> 文件夾從列表中移除，則該文件夾不會再出現在列表中，但不會被刪除。</translation>
+        <translation> 文件夾從列錶中移除，則該文件夾不會再出現在列錶中，但不會被刪除。</translation>
     </message>
 </context>
 <context>
@@ -138,11 +138,34 @@
     </message>
     <message>
         <source>Copy</source>
-        <translation>復製</translation>
+        <translation>復制</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>粘貼</translation>
+        <translation>黏貼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>撤回</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>TextEditMenu</name>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>復制</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>黏貼</translation>
     </message>
     <message>
         <source>Cancel</source>

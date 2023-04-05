@@ -69,8 +69,8 @@
         <file>images/icons/Update_white.svg</file>
         <file>images/icons/Video_black.svg</file>
         <file>images/icons/Video_white.svg</file>
-        <file>images/icons/Web_black.svg</file>
-        <file>images/icons/Web_white.svg</file>
+        <file>images/icons/Globe_black.svg</file>
+        <file>images/icons/Globe_white.svg</file>
         <file>images/icons/Zoom_black.svg</file>
         <file>images/icons/Zoom_white.svg</file>
         <file>images/icons/Language_black.svg</file>
@@ -135,6 +135,30 @@
         <file>images/icons/Send_white.svg</file>
         <file>images/icons/SendFill_black.svg</file>
         <file>images/icons/SendFill_white.svg</file>
+        <file>images/icons/Share_black.svg</file>
+        <file>images/icons/Share_white.svg</file>
+        <file>images/icons/Unpin_black.svg</file>
+        <file>images/icons/Unpin_white.svg</file>
+        <file>images/icons/SaveAs_black.svg</file>
+        <file>images/icons/SaveAs_white.svg</file>
+        <file>images/icons/Save_black.svg</file>
+        <file>images/icons/Save_white.svg</file>
+        <file>images/icons/Ringer_black.svg</file>
+        <file>images/icons/Ringer_white.svg</file>
+        <file>images/icons/ZipFolder_black.svg</file>
+        <file>images/icons/ZipFolder_white.svg</file>
+        <file>images/icons/History_black.svg</file>
+        <file>images/icons/History_white.svg</file>
+        <file>images/icons/Print_black.svg</file>
+        <file>images/icons/Print_white.svg</file>
+        <file>images/icons/Media_black.svg</file>
+        <file>images/icons/Media_white.svg</file>
+        <file>images/icons/View_black.svg</file>
+        <file>images/icons/View_white.svg</file>
+        <file>images/icons/Hide_black.svg</file>
+        <file>images/icons/Hide_white.svg</file>
+        <file>images/icons/Delete_black.svg</file>
+        <file>images/icons/Delete_white.svg</file>
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
         <file>images/folder_list_dialog/Close_black.png</file>
