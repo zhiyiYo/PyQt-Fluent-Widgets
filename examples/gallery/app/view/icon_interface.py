@@ -133,7 +133,7 @@ class IconCardView(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
         self.hBoxLayout = QHBoxLayout(self.view)
-        self.flowLayout = FlowLayout(self.scrollWidget)
+        self.flowLayout = FlowLayout(self.scrollWidget, isTight=True)
 
         self.cards = []     # type:List[IconCard]
         self.icons = []
