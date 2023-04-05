@@ -10,6 +10,7 @@ SOURCES += app/view/main_window.py \
         app/view/material_interface.py \
         app/view/layout_interface.py \
         app/view/text_interface.py \
+        app/view/icon_interface.py \
 
 TRANSLATIONS += app/resource/i18n/gallery_zh.ts \
         app/resource/i18n/gallery_hk.ts

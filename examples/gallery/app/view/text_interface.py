@@ -1,7 +1,4 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap, QColor
-from PyQt5.QtWidgets import QWidget, QHBoxLayout
 from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit
 
 from .gallery_interface import GalleryInterface

@@ -15,6 +15,7 @@ from .home_interface import HomeInterface
 from .basic_input_interface import BasicInputInterface
 from .dialog_interface import DialogInterface
 from .layout_interface import LayoutInterface
+from .icon_interface import IconInterface
 from .material_interface import MaterialInterface
 from .menu_interface import MenuInterface
 from .scroll_interface import ScrollInterface
@@ -71,6 +72,7 @@ class MainWindow(FramelessWindow):
 
         # create sub interface
         self.homeInterface = HomeInterface(self)
+        self.iconInterface = IconInterface(self)
         self.basicInputInterface = BasicInputInterface(self)
         self.dialogInterface = DialogInterface(self)
         self.layoutInterface = LayoutInterface(self)
@@ -82,6 +84,7 @@ class MainWindow(FramelessWindow):
         self.textInterface = TextInterface(self)
 
         self.stackWidget.addWidget(self.homeInterface)
+        self.stackWidget.addWidget(self.iconInterface)
         self.stackWidget.addWidget(self.basicInputInterface)
         self.stackWidget.addWidget(self.dialogInterface)
         self.stackWidget.addWidget(self.layoutInterface)
@@ -118,6 +121,7 @@ class MainWindow(FramelessWindow):
 
     def initNavigation(self):
         self.homeInterface.setObjectName('homeInterface')
+        self.iconInterface.setObjectName('iconInterface')
         self.basicInputInterface.setObjectName('basicInputInterface')
         self.dialogInterface.setObjectName('dialogInterface')
         self.layoutInterface.setObjectName('layoutInterface')
@@ -134,6 +138,12 @@ class MainWindow(FramelessWindow):
             icon=Icon.HOME,
             text=self.tr('Home'),
             onClick=lambda t: self.switchTo(self.homeInterface, t)
+        )
+        self.navigationInterface.addItem(
+            routeKey=self.iconInterface.objectName(),
+            icon=Icon.EMOJI_TAB_SYMBOLS,
+            text=self.tr('Icons'),
+            onClick=lambda t: self.switchTo(self.iconInterface, t)
         )
         self.navigationInterface.addSeparator()
 

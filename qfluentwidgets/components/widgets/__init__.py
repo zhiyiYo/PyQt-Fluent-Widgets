@@ -1,7 +1,7 @@
 from .button import PrimaryPushButton, PushButton, RadioButton, HyperlinkButton, ToolButton
 from .check_box import CheckBox
 from .combo_box import ComboBox
-from .line_edit import LineEdit, TextEdit, PlainTextEdit
+from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import PixmapLabel
 from .menu import DWMMenu, LineEditMenu, RoundMenu
