@@ -52,6 +52,20 @@ class QssTemplate(Template):
     delimiter = '--'
 
 
+def applyThemeColor(qss: str):
+    """ apply theme color to style sheet
+
+    Parameters
+    ----------
+    qss: str
+        the style sheet string to apply theme color, the substituted variable
+        should be equal to the value of `ThemeColor` and starts width `--`, i.e `--ThemeColorPrimary`
+    """
+    template = QssTemplate(qss)
+    mappings = {c.value: c.name() for c in ThemeColor._member_map_.values()}
+    return template.safe_substitute(mappings)
+
+
 def getStyleSheet(file, theme=Theme.AUTO):
     """ get style sheet from `qfluentwidgets` embedded qss file
 
@@ -66,11 +80,10 @@ def getStyleSheet(file, theme=Theme.AUTO):
     theme = qconfig.theme if theme == Theme.AUTO else theme
     f = QFile(f":/qfluentwidgets/qss/{theme.value.lower()}/{file}.qss")
     f.open(QFile.OpenModeFlag.ReadOnly)
-    template = QssTemplate(str(f.readAll(), encoding='utf-8'))
+    qss = str(f.readAll(), encoding='utf-8')
     f.close()
 
-    mappings = {c.value: c.name() for c in ThemeColor._member_map_.values()}
-    return template.safe_substitute(mappings)
+    return applyThemeColor(qss)
 
 
 def setStyleSheet(widget, file, theme=Theme.AUTO, register=True):

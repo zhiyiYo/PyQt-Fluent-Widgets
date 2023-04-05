@@ -143,7 +143,7 @@ class SettingInterface(ScrollArea):
         )
         self.deskLyricStrokeSizeCard = RangeSettingCard(
             cfg.deskLyricStrokeSize,
-            FIF.FLUORESCENT_PEN,
+            FIF.HIGHTLIGHT,
             self.tr('Stroke size'),
             parent=self.deskLyricGroup
         )

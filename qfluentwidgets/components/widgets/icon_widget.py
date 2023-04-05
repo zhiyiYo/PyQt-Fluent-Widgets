@@ -14,6 +14,10 @@ class IconWidget(QWidget):
         super().__init__(parent=parent)
         self.icon = icon
 
+    def setIcon(self, icon: Union[str, QIcon, FluentIconBase]):
+        self.icon = icon
+        self.update()
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |

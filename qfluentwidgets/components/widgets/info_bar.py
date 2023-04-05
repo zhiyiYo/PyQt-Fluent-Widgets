@@ -31,7 +31,7 @@ class InfoBarCloseButton(QToolButton):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |
                                QPainter.RenderHint.SmoothPixmapTransform)
-        FIF.CLOSE.render(painter, QRectF(11, 12, 12, 12))
+        FIF.CLOSE.render(painter, QRectF(12, 12, 12, 12))
 
 
 class InfoBarIcon(FluentIconBase, Enum):

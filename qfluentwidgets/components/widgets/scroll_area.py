@@ -20,7 +20,6 @@ class ScrollArea(QScrollArea):
         """
         super().__init__(parent)
         self.smoothScroll = SmoothScroll(self, orient)
-        self.viewport().installEventFilter(self)
 
     def setSmoothMode(self, mode):
         """ set smooth mode
@@ -32,32 +31,23 @@ class ScrollArea(QScrollArea):
         """
         self.smoothScroll.setSmoothMode(mode)
 
-    def eventFilter(self, obj, e):
-        if obj is self.viewport():
-            if e.type() == QEvent.Type.Wheel:
-                self.smoothScroll.wheelEvent(e)
-
-                # stop event propagation
-                e.setAccepted(True)
-                return True
-
-        return super().eventFilter(obj, e)
+    def wheelEvent(self, e):
+        self.smoothScroll.wheelEvent(e)
+        e.setAccepted(True)
 
 
 class SmoothScrollBar(QScrollBar):
     """ Smooth scroll bar """
 
-    scrollFinished = pyqtSignal()
-
     def __init__(self, parent=None):
         QScrollBar.__init__(self, parent)
+        self.duration = 500
         self.ani = QPropertyAnimation()
         self.ani.setTargetObject(self)
         self.ani.setPropertyName(b"value")
         self.ani.setEasingCurve(QEasingCurve.Type.OutCubic)
-        self.ani.setDuration(500)
+        self.ani.setDuration(self.duration)
         self.__value = self.value()
-        self.ani.finished.connect(self.scrollFinished)
 
     def setValue(self, value):
         if value == self.value():
@@ -65,7 +55,13 @@ class SmoothScrollBar(QScrollBar):
 
         # stop running animation
         self.ani.stop()
-        self.scrollFinished.emit()
+
+        # adjust the duration
+        dv = abs(value - self.value())
+        if dv < 50:
+            self.ani.setDuration(self.duration * dv / 70)
+        else:
+            self.ani.setDuration(self.duration)
 
         self.ani.setStartValue(self.value())
         self.ani.setEndValue(value)
@@ -103,6 +99,21 @@ class SmoothScrollBar(QScrollBar):
         super().mouseMoveEvent(e)
         self.__value = self.value()
 
+    def setScrollAnimation(self, duration, easing=QEasingCurve.Type.OutCubic):
+        """ set scroll animation
+
+        Parameters
+        ----------
+        duration: int
+            scroll duration
+
+        easing: QEasingCurve
+            animation type
+        """
+        self.duration = duration
+        self.ani.setDuration(duration)
+        self.ani.setEasingCurve(easing)
+
 
 class SmoothScrollArea(QScrollArea):
     """ Smooth scroll area """
@@ -131,8 +142,7 @@ class SmoothScrollArea(QScrollArea):
             animation type
         """
         bar = self.hScrollBar if orient == Qt.Orientation.Horizontal else self.vScrollBar
-        bar.ani.setDuration(duration)
-        bar.ani.setEasingCurve(easing)
+        bar.setScrollAnimation(duration, easing)
 
     def wheelEvent(self, e):
         if e.modifiers() == Qt.KeyboardModifier.NoModifier:

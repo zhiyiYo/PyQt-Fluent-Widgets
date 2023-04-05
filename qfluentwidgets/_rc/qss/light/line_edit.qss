@@ -38,17 +38,17 @@ PlainTextEdit:disabled {
     border: 1px solid rgb(237, 237, 237);
 }
 
-#clearButton {
+#lineEditButton {
     background-color: transparent;
     border-radius: 4px;
     margin: 0;
 }
 
-#clearButton:hover {
+#lineEditButton:hover {
     background-color: rgba(0, 0, 0, 9);
 }
 
-#clearButton:pressed {
+#lineEditButton:pressed {
     background-color: rgba(0, 0, 0, 6);
 }
 

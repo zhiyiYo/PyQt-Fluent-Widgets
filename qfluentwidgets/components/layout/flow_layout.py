@@ -1,6 +1,8 @@
 # coding:utf-8
+from typing import List
+
 from PyQt6.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
-from PyQt6.QtWidgets import QLayout, QWidgetItem
+from PyQt6.QtWidgets import QLayout, QWidgetItem, QLayoutItem
 
 
 class FlowLayout(QLayout):
@@ -17,7 +19,7 @@ class FlowLayout(QLayout):
             whether to add moving animation
         """
         super().__init__(parent)
-        self._items = []
+        self._items = []    # type: List[QLayoutItem]
         self._anis = []
         self._aniGroup = QParallelAnimationGroup(self)
         self._verticalSpacing = 10
@@ -33,6 +35,7 @@ class FlowLayout(QLayout):
             return
 
         ani = QPropertyAnimation(w, b'geometry')
+        ani.setEndValue(QRect(QPoint(0, 0), w.size()))
         ani.setDuration(300)
         w.setProperty('flowAni', ani)
         self._anis.append(ani)
@@ -98,11 +101,11 @@ class FlowLayout(QLayout):
 
     def heightForWidth(self, width: int):
         """ get the minimal height according to width """
-        return self.__doLayout(QRect(0, 0, width, 0), False)
+        return self._doLayout(QRect(0, 0, width, 0), False)
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        self.__doLayout(rect, True)
+        self._doLayout(rect, True)
 
     def sizeHint(self):
         return self.minimumSize()
@@ -134,7 +137,7 @@ class FlowLayout(QLayout):
         """ get horizontal spacing between widgets """
         return self._horizontalSpacing
 
-    def __doLayout(self, rect: QRect, move: bool):
+    def _doLayout(self, rect: QRect, move: bool):
         """ adjust widgets position according to the window size """
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
@@ -144,6 +147,9 @@ class FlowLayout(QLayout):
         spaceY = self.verticalSpacing()
 
         for i, item in enumerate(self._items):
+            if item.widget() and not item.widget().isVisible() and not self.needAni:
+                continue
+
             nextX = x + item.sizeHint().width() + spaceX
 
             if nextX - spaceX > rect.right() and rowHeight > 0:

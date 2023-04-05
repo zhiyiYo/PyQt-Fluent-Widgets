@@ -425,8 +425,12 @@ class RoundMenu(QWidget):
     def _onShowMenuTimeOut(self):
         if self.lastHoverSubMenuItem is None or not self.lastHoverItem is self.lastHoverSubMenuItem:
             return
-
+        
         w = self.view.itemWidget(self.lastHoverSubMenuItem)
+
+        if w.menu.parentMenu.isHidden():
+            return
+        
         pos = w.mapToGlobal(QPoint(w.width()+5, -5))
         w.menu.exec(pos)
 
