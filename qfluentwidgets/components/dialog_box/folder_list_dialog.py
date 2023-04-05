@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
 
 from ...common.config import isDarkTheme
 from ...common.icon import getIconColor
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from .dialog import Dialog
 from .mask_dialog_base import MaskDialogBase
 from ..widgets.scroll_area import ScrollArea
@@ -150,7 +150,7 @@ class FolderListDialog(MaskDialogBase):
         self.completeButton.setObjectName('completeButton')
         self.scrollWidget.setObjectName('scrollWidget')
 
-        setStyleSheet(self, 'folder_list_dialog')
+        FluentStyleSheet.FOLDER_LIST_DIALOG.apply(self)
         self.setStyle(QApplication.style())
 
         self.titleLabel.adjustSize()

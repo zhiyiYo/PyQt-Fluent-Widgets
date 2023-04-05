@@ -9,6 +9,7 @@ from qfluentwidgets import (FluentIcon, IconWidget, FlowLayout, isDarkTheme,
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
 from ..common.config import cfg
+from ..common.style_sheet import StyleSheet
 from ..common.trie import Trie
 
 
@@ -132,7 +133,7 @@ class IconCardView(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
         self.hBoxLayout = QHBoxLayout(self.view)
-        self.flowLayout = FlowLayout(self.scrollWidget)
+        self.flowLayout = FlowLayout(self.scrollWidget, isTight=True)
 
         self.cards = []     # type:List[IconCard]
         self.icons = []
@@ -197,9 +198,7 @@ class IconCardView(QWidget):
         self.scrollWidget.setObjectName('scrollWidget')
         self.iconLibraryLabel.setObjectName('iconLibraryLabel')
 
-        theme = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{theme}/icon_interface.qss', encoding='utf-8') as f:
-            self.setStyleSheet(applyThemeColor(f.read()))
+        StyleSheet.ICON_INTERFACE.apply(self)
 
         if self.currentIndex >= 0:
             self.cards[self.currentIndex].setSelected(True, True)

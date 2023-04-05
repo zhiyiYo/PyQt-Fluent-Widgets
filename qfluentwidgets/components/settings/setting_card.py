@@ -12,7 +12,7 @@ from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ..widgets.button import HyperlinkButton
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ...common.config import qconfig, isDarkTheme, ConfigItem
 from ...common.icon import FluentIconBase
 
@@ -68,7 +68,7 @@ class SettingCard(QFrame):
         self.hBoxLayout.addStretch(1)
 
         self.contentLabel.setObjectName('contentLabel')
-        setStyleSheet(self, 'setting_card')
+        FluentStyleSheet.SETTING_CARD.apply(self)
 
     def setTitle(self, title: str):
         """ set the title of card """

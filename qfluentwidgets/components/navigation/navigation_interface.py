@@ -6,7 +6,7 @@ from PyQt6.QtGui import QResizeEvent, QIcon
 from PyQt6.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationWidget, NavigationDisplayMode
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 
 
@@ -38,9 +38,10 @@ class NavigationInterface(QWidget):
         self.resize(48, self.height())
         self.setMinimumWidth(48)
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
-        setStyleSheet(self, 'navigation_interface')
+        FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
 
-    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True,
+                position=NavigationItemPostion.TOP):
         """ add navigation item
 
         Parameters

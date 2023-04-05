@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import QLayout, QWidgetItem, QLayoutItem
 class FlowLayout(QLayout):
     """ Flow layout """
 
-    def __init__(self, parent=None, needAni=False):
+    def __init__(self, parent=None, needAni=False, isTight=False):
         """
         Parameters
         ----------
@@ -17,6 +17,9 @@ class FlowLayout(QLayout):
 
         needAni: bool
             whether to add moving animation
+
+        isTight: bool
+            whether to use the tight layout when widgets are hidden
         """
         super().__init__(parent)
         self._items = []    # type: List[QLayoutItem]
@@ -25,6 +28,7 @@ class FlowLayout(QLayout):
         self._verticalSpacing = 10
         self._horizontalSpacing = 10
         self.needAni = needAni
+        self.isTight = isTight
 
     def addItem(self, item):
         self._items.append(item)
@@ -147,7 +151,7 @@ class FlowLayout(QLayout):
         spaceY = self.verticalSpacing()
 
         for i, item in enumerate(self._items):
-            if item.widget() and not item.widget().isVisible() and not self.needAni:
+            if item.widget() and not item.widget().isVisible() and self.isTight:
                 continue
 
             nextX = x + item.sizeHint().width() + spaceX

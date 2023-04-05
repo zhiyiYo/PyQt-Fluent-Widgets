@@ -12,6 +12,7 @@ from PyQt6.QtWidgets import QWidget, QLabel, QFileDialog
 
 from ..common.icon import Icon
 from ..common.config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
+from ..common.style_sheet import StyleSheet
 
 
 class SettingInterface(ScrollArea):
@@ -145,7 +146,9 @@ class SettingInterface(ScrollArea):
         self.setWidgetResizable(True)
 
         # initialize style sheet
-        self.__setQss()
+        self.scrollWidget.setObjectName('scrollWidget')
+        self.settingLabel.setObjectName('settingLabel')
+        StyleSheet.SETTING_INTERFACE.apply(self)
 
         # initialize layout
         self.__initLayout()
@@ -180,15 +183,6 @@ class SettingInterface(ScrollArea):
         self.expandLayout.addWidget(self.updateSoftwareGroup)
         self.expandLayout.addWidget(self.aboutGroup)
 
-    def __setQss(self):
-        """ set style sheet """
-        self.scrollWidget.setObjectName('scrollWidget')
-        self.settingLabel.setObjectName('settingLabel')
-
-        theme = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{theme}/setting_interface.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
-
     def __showRestartTooltip(self):
         """ show restart tooltip """
         InfoBar.success(
@@ -208,18 +202,10 @@ class SettingInterface(ScrollArea):
         cfg.set(cfg.downloadFolder, folder)
         self.downloadFolderCard.setContent(folder)
 
-    def __onThemeChanged(self, theme: Theme):
-        """ theme changed slot """
-        # change the theme of qfluentwidgets
-        setTheme(theme)
-
-        # chang the theme of setting interface
-        self.__setQss()
-
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.appRestartSig.connect(self.__showRestartTooltip)
-        cfg.themeChanged.connect(self.__onThemeChanged)
+        cfg.themeChanged.connect(setTheme)
 
         # music in the pc
         self.musicFolderCard.folderChanged.connect(

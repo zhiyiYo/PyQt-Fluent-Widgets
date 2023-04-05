@@ -149,3 +149,5 @@ class SmoothScrollArea(QScrollArea):
             self.vScrollBar.scrollValue(-e.angleDelta().y())
         else:
             self.hScrollBar.scrollValue(-e.angleDelta().x())
+
+        e.setAccepted(True)

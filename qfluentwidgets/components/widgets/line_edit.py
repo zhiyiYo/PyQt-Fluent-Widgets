@@ -4,7 +4,7 @@ from PyQt6.QtCore import QSize, Qt, QRectF, pyqtSignal
 from PyQt6.QtGui import QPainter, QPainterPath, QIcon
 from PyQt6.QtWidgets import QHBoxLayout, QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
 
-from ...common.style_sheet import setStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon, FluentIconBase
 from ...common.icon import FluentIcon as FIF
 from ...common.smooth_scroll import SmoothMode, SmoothScroll
@@ -21,7 +21,7 @@ class LineEditButton(QToolButton):
         self.setIconSize(QSize(10, 10))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setObjectName('lineEditButton')
-        setStyleSheet(self, 'line_edit')
+        FluentStyleSheet.LINE_EDIT.apply(self)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -47,7 +47,7 @@ class LineEdit(QLineEdit):
         super().__init__(contents, parent)
         self._isClearButtonEnabled = False
 
-        setStyleSheet(self, 'line_edit')
+        FluentStyleSheet.LINE_EDIT.apply(self)
         self.setFixedHeight(33)
         self.setAttribute(Qt.WidgetAttribute.WA_MacShowFocusRect, False)
 
@@ -143,7 +143,7 @@ class TextEdit(QTextEdit):
         super().__init__(parent=parent)
         self.verticalSmoothScroll = SmoothScroll(self, Qt.Orientation.Vertical)
         self.horizonSmoothScroll = SmoothScroll(self, Qt.Orientation.Horizontal)
-        setStyleSheet(self, 'line_edit')
+        FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
@@ -163,7 +163,7 @@ class PlainTextEdit(QPlainTextEdit):
         super().__init__(parent=parent)
         self.verticalSmoothScroll = SmoothScroll(self, Qt.Orientation.Vertical)
         self.horizonSmoothScroll = SmoothScroll(self, Qt.Orientation.Horizontal)
-        setStyleSheet(self, 'line_edit')
+        FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
@@ -183,7 +183,7 @@ class PlainTextEdit(QPlainTextEdit):
         super().__init__(parent=parent)
         self.verticalSmoothScroll = SmoothScroll(self, Qt.Orientation.Vertical)
         self.horizonSmoothScroll = SmoothScroll(self, Qt.Orientation.Horizontal)
-        setStyleSheet(self, 'line_edit')
+        FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)

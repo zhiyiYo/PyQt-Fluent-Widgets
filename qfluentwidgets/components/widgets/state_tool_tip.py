@@ -3,7 +3,7 @@ from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSigna
 from PyQt6.QtGui import QPainter
 from PyQt6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
 
-from ...common import setStyleSheet, drawSvgIcon, isDarkTheme, Theme
+from ...common import FluentStyleSheet, isDarkTheme, Theme
 from ...common.icon import FluentIcon as FIF
 
 
@@ -112,7 +112,7 @@ class StateToolTip(QWidget):
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
 
-        setStyleSheet(self, 'state_tool_tip')
+        FluentStyleSheet.STATE_TOOL_TIP.apply(self)
 
         self.titleLabel.adjustSize()
         self.contentLabel.adjustSize()

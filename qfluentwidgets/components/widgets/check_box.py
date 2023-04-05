@@ -1,7 +1,7 @@
 # coding: utf-8
 from PyQt6.QtWidgets import QCheckBox
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 
 
 class CheckBox(QCheckBox):
@@ -9,4 +9,4 @@ class CheckBox(QCheckBox):
 
     def __init__(self, text: str, parent=None):
         super().__init__(text, parent)
-        setStyleSheet(self, 'check_box')
+        FluentStyleSheet.CHECK_BOX.apply(self)

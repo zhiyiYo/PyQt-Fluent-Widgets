@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
 from ...common.smooth_scroll import SmoothScroll
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import MenuIconEngine
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ...common.config import isDarkTheme
 
 
@@ -44,7 +44,7 @@ class DWMMenu(QMenu):
             Qt.WindowType.FramelessWindowHint | Qt.WindowType.Popup | Qt.WindowType.NoDropShadowWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.setStyle(CustomMenuStyle())
-        setStyleSheet(self, 'menu')
+        FluentStyleSheet.MENU.apply(self)
 
     def event(self, e: QEvent):
         if e.type() == QEvent.Type.WinIdChange:
@@ -208,7 +208,7 @@ class RoundMenu(QWidget):
         self.hBoxLayout.addWidget(self.view, 1, Qt.AlignmentFlag.AlignCenter)
 
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
-        setStyleSheet(self, 'menu')
+        FluentStyleSheet.MENU.apply(self)
 
         self.view.itemClicked.connect(self._onItemClicked)
         self.view.itemEntered.connect(self._onItemEntered)
@@ -425,12 +425,12 @@ class RoundMenu(QWidget):
     def _onShowMenuTimeOut(self):
         if self.lastHoverSubMenuItem is None or not self.lastHoverItem is self.lastHoverSubMenuItem:
             return
-        
+
         w = self.view.itemWidget(self.lastHoverSubMenuItem)
 
         if w.menu.parentMenu.isHidden():
             return
-        
+
         pos = w.mapToGlobal(QPoint(w.width()+5, -5))
         w.menu.exec(pos)
 
@@ -594,7 +594,7 @@ class RoundMenu(QWidget):
         pos.setY(min(pos.y() - 4, rect.bottom() - h))
 
         if ani:
-            self.ani.setStartValue(pos-QPoint(0, h/2))
+            self.ani.setStartValue(pos-QPoint(0, int(h/2)))
             self.ani.setEndValue(pos)
             self.ani.setDuration(250)
             self.ani.setEasingCurve(QEasingCurve.Type.OutQuad)

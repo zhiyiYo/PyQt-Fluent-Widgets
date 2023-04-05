@@ -95,7 +95,7 @@ class SmoothScroll:
             self.lastPos,
             self.lastGlobalPos,
             pixelDelta,
-            QPoint(totalDelta, 0),
+            QPoint(round(totalDelta), 0),
             Qt.MouseButton.LeftButton,
             Qt.KeyboardModifier.NoModifier,
             Qt.ScrollPhase.ScrollBegin,
