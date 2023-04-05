@@ -16,9 +16,6 @@ from ..common.trie import Trie
 class LineEdit(SearchLineEdit):
     """ Search line edit """
 
-    searchSignal = Signal(str)
-    clearSignal = Signal()
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setPlaceholderText(self.tr('Search icons'))
