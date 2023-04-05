@@ -127,7 +127,8 @@ class PopUpAniStackedWidget(QStackedWidget):
             return
 
         if self._ani and self._ani.state() == QAbstractAnimation.Running:
-            return
+            self._ani.stop()
+            self.__onAniFinished()
 
         # get the index of widget to be displayed
         self._nextIndex = index
