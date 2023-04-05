@@ -79,8 +79,11 @@ html_theme_options = {
 }
 
 html_show_sourcelink = True
-html_title = "🦄qfluentwidgets"
+html_title = "PyQt-Fluent-Widgets"
 html_favicon = "_static/logo.png"
+html_css_files = [
+    'css/custom.css',
+]
 
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
 copybutton_prompt_is_regexp = True

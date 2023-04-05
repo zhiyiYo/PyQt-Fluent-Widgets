@@ -1,0 +1,44 @@
+.sidebar-brand-text {
+    font-size: 1.3rem;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .sig-inline,
+    body:not([data-theme="light"]) code.literal {
+        padding: 2px 5px;
+    }
+
+    body[data-theme="light"] .sig-inline,
+    body[data-theme="light"] code.literal {
+        background: white;
+        padding: 2px 5px;
+        color: #e74c3c;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    body:not([data-theme="dark"]) .sig-inline,
+    body:not([data-theme="dark"]) code.literal {
+        background: white;
+        padding: 2px 5px;
+        color: #e74c3c;
+    }
+}
+
+article table.align-default {
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+
+table.docutils th {
+    border-top: 1px solid var(--color-table-border);
+}
+
+table.docutils td,
+table.docutils th {
+    border-left: 1px solid var(--color-table-border);
+    border-right: 1px solid var(--color-table-border);
+}
