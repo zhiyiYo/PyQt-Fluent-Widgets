@@ -245,15 +245,15 @@ class FluentIcon(FluentIconBase, Enum):
     CONSTRACT = "Constract"
     ALIGNMENT = "Alignment"
     BOOK_SHELF = "BookShelf"
-    PENCIL_INK = "PencilInk"
+    HIGHTLIGHT = "Highlight"
     FOLDER_ADD = "FolderAdd"
+    PENCIL_INK = "PencilInk"
     MICROPHONE = "Microphone"
     ARROW_DOWN = "ChevronDown"
     TRANSPARENT = "Transparent"
     MUSIC_FOLDER = "MusicFolder"
     CHEVRON_RIGHT = "ChevronRight"
     BACKGROUND_FILL = "BackgroundColor"
-    FLUORESCENT_PEN = "FluorescentPen"
 
     def path(self, theme=Theme.AUTO):
         if theme == Theme.AUTO:

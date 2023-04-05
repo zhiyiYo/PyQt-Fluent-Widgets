@@ -427,6 +427,10 @@ class RoundMenu(QWidget):
             return
 
         w = self.view.itemWidget(self.lastHoverSubMenuItem)
+
+        if w.menu.parentMenu.isHidden():
+            return
+
         pos = w.mapToGlobal(QPoint(w.width()+5, -5))
         w.menu.exec(pos)
 
@@ -572,7 +576,7 @@ class RoundMenu(QWidget):
         pos.setY(min(pos.y() - 4, rect.bottom() - h))
 
         if ani:
-            self.ani.setStartValue(pos-QPoint(0, h/2))
+            self.ani.setStartValue(pos-QPoint(0, int(h/2)))
             self.ani.setEndValue(pos)
             self.ani.setDuration(250)
             self.ani.setEasingCurve(QEasingCurve.OutQuad)

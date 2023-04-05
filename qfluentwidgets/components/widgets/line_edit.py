@@ -1,24 +1,26 @@
 # coding: utf-8
-from PySide6.QtCore import QSize, Qt, QRectF, QEvent
-from PySide6.QtGui import QPainter, QPainterPath
-from PySide6.QtWidgets import QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
+from typing import Union
+from PySide6.QtCore import QSize, Qt, QRectF, Signal
+from PySide6.QtGui import QPainter, QPainterPath, QIcon
+from PySide6.QtWidgets import QHBoxLayout, QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
 
 from ...common.style_sheet import setStyleSheet, themeColor
-from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon
+from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon, FluentIconBase
 from ...common.icon import FluentIcon as FIF
 from ...common.smooth_scroll import SmoothMode, SmoothScroll
 from .menu import LineEditMenu, TextEditMenu
 
 
-class ClearButton(QToolButton):
-    """ Clear button """
+class LineEditButton(QToolButton):
+    """ Line edit button """
 
-    def __init__(self, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
         super().__init__(parent=parent)
-        self.setFixedSize(29, 25)
+        self._icon = icon
+        self.setFixedSize(31, 23)
         self.setIconSize(QSize(10, 10))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setObjectName('clearButton')
+        self.setObjectName('lineEditButton')
         setStyleSheet(self, 'line_edit')
 
     def paintEvent(self, e):
@@ -26,11 +28,16 @@ class ClearButton(QToolButton):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing |
                                QPainter.SmoothPixmapTransform)
+
+        iw, ih = self.iconSize().width(), self.iconSize().height()
+        w, h = self.width(), self.height()
+        rect = QRectF((w - iw)/2, (h - ih)/2, iw, ih)
+
         if isDarkTheme():
-            FIF.CLOSE.render(painter, QRectF(9.5, 7, 10, 10))
+            self._icon.render(painter, rect)
         else:
-            svg = writeSvg(FIF.CLOSE.path(), fill='#656565')
-            drawSvgIcon(svg.encode(), painter, QRectF(9.5, 7, 10, 10))
+            svg = writeSvg(self._icon.path(), fill='#656565')
+            drawSvgIcon(svg.encode(), painter, rect)
 
 
 class LineEdit(QLineEdit):
@@ -44,9 +51,16 @@ class LineEdit(QLineEdit):
         self.setFixedHeight(33)
         self.setAttribute(Qt.WA_MacShowFocusRect, False)
 
-        self.clearButton = ClearButton(self)
-        self.clearButton.move(self.width() - 33, 4)
+        self.hBoxLayout = QHBoxLayout(self)
+        self.clearButton = LineEditButton(FIF.CLOSE, self)
+
+        self.clearButton.setFixedSize(29, 25)
         self.clearButton.hide()
+
+        self.hBoxLayout.setSpacing(3)
+        self.hBoxLayout.setContentsMargins(4, 4, 4, 4)
+        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.clearButton, 0, Qt.AlignRight)
 
         self.clearButton.clicked.connect(self.clear)
         self.textChanged.connect(self.__onTextChanged)
@@ -76,9 +90,6 @@ class LineEdit(QLineEdit):
         menu = LineEditMenu(self)
         menu.exec_(e.globalPos())
 
-    def resizeEvent(self, e):
-        self.clearButton.move(self.width() - 33, 4)
-
     def paintEvent(self, e):
         super().paintEvent(e)
         if not self.hasFocus():
@@ -97,6 +108,32 @@ class LineEdit(QLineEdit):
         path = path.subtracted(rectPath)
 
         painter.fillPath(path, themeColor())
+
+
+class SearchLineEdit(LineEdit):
+    """ Search line edit """
+
+    searchSignal = Signal(str)
+    clearSignal = Signal()
+
+    def __init__(self, parent=None):
+        super().__init__('', parent)
+        self.searchButton = LineEditButton(FIF.SEARCH, self)
+
+        self.hBoxLayout.addWidget(self.searchButton, 0, Qt.AlignRight)
+        self.setClearButtonEnabled(True)
+        self.setTextMargins(0, 0, 59, 0)
+
+        self.searchButton.clicked.connect(self.search)
+        self.clearButton.clicked.connect(self.clearSignal)
+
+    def search(self, text: str):
+        """ emit search signal """
+        text = text.strip()
+        if text:
+            self.searchSignal.emit(text)
+        else:
+            self.clearSignal.emit()
 
 
 class TextEdit(QTextEdit):
@@ -137,4 +174,3 @@ class PlainTextEdit(QPlainTextEdit):
             self.verticalSmoothScroll.wheelEvent(e)
         else:
             self.horizonSmoothScroll.wheelEvent(e)
-

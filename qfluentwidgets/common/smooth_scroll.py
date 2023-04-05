@@ -1,7 +1,7 @@
 # coding:utf-8
 from collections import deque
 from enum import Enum
-from math import cos, pi
+from math import cos, pi, ceil
 
 from PySide6.QtCore import QDateTime, Qt, QTimer, QPoint
 from PySide6.QtGui import QWheelEvent
@@ -95,7 +95,7 @@ class SmoothScroll:
             self.lastWheelPos,
             self.lastWheelGlobalPos,
             pixelDelta,
-            QPoint(totalDelta, 0),
+            QPoint(round(totalDelta), 0),
             Qt.MouseButton.LeftButton,
             Qt.KeyboardModifier.NoModifier,
             Qt.ScrollPhase.ScrollBegin,

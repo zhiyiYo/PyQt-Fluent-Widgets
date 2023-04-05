@@ -40,7 +40,7 @@ class ToolButton(QToolButton):
         painter.setOpacity(0.63 if self.isPressed else 1)
         w, h = self._iconSize
         drawIcon(self._icon, painter, QRectF(
-            (self.width()-w)//2, (self.height()-h)//2, w, h))
+            (self.width()-w)/2, (self.height()-h)/2, w, h))
 
 
 class PushButton(QPushButton):

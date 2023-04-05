@@ -18,6 +18,7 @@ class Icon(FluentIconBase, Enum):
     CHECKBOX = "CheckBox"
     DOCUMENT = "Document"
     CONSTRACT = "Constract"
+    EMOJI_TAB_SYMBOLS = "EmojiTabSymbols"
 
     def path(self, theme=Theme.AUTO):
         if theme == Theme.AUTO:
