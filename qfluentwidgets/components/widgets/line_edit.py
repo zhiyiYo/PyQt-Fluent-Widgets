@@ -127,9 +127,9 @@ class SearchLineEdit(LineEdit):
         self.searchButton.clicked.connect(self.search)
         self.clearButton.clicked.connect(self.clearSignal)
 
-    def search(self, text: str):
+    def search(self):
         """ emit search signal """
-        text = text.strip()
+        text = self.text().strip()
         if text:
             self.searchSignal.emit(text)
         else:
