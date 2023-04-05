@@ -3,7 +3,7 @@ from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QLabel, QPushButton
 
 from ...common.auto_wrap import TextWrap
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from .mask_dialog_base import MaskDialogBase
 
 
@@ -64,4 +64,4 @@ class MessageDialog(MaskDialogBase):
         self.windowMask.setObjectName('windowMask')
         self.titleLabel.setObjectName('titleLabel')
         self.contentLabel.setObjectName('contentLabel')
-        setStyleSheet(self, 'message_dialog')
+        FluentStyleSheet.MESSAGE_DIALOG.apply(self)

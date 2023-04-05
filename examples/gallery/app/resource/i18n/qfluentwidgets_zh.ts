@@ -153,4 +153,27 @@
         <translation>全选</translation>
     </message>
 </context>
+<context>
+    <name>TextEditMenu</name>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>撤回</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全选</translation>
+    </message>
+</context>
 </TS>

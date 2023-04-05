@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (QWidget, QFrame, QLabel, QHBoxLayout, QVBoxLayout,
                              QToolButton, QGraphicsOpacityEffect)
 
 from ...common.auto_wrap import TextWrap
-from ...common.style_sheet import setStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import FluentIconBase, Theme, isDarkTheme, writeSvg, drawSvgIcon, drawIcon
 from ...common.icon import FluentIcon as FIF
 
@@ -24,7 +24,7 @@ class InfoBarCloseButton(QToolButton):
         self.setIconSize(QSize(12, 12))
         self.setCursor(Qt.PointingHandCursor)
         self.setObjectName('infoBarCloseButton')
-        setStyleSheet(self, 'info_bar')
+        FluentStyleSheet.INFO_BAR.apply(self)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -201,7 +201,7 @@ class InfoBar(QFrame):
         if isinstance(self.icon, Enum):
             self.setProperty('type', self.icon.value)
 
-        setStyleSheet(self, 'info_bar')
+        FluentStyleSheet.INFO_BAR.apply(self)
 
     def __fadeOut(self):
         """ fade out """

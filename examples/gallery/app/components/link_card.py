@@ -1,10 +1,10 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl
+from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QPixmap, QDesktopServices
 from PyQt5.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget, QHBoxLayout
 
-from qfluentwidgets import IconWidget, FluentIcon, TextWrap, isDarkTheme, ScrollArea
-from ..common.config import cfg
+from qfluentwidgets import IconWidget, FluentIcon, TextWrap, ScrollArea
+from ..common.style_sheet import StyleSheet
 
 
 class LinkCard(QFrame):
@@ -62,16 +62,9 @@ class LinkCardView(ScrollArea):
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.view.setObjectName('view')
-        self.__setQss()
-        cfg.themeChanged.connect(self.__setQss)
+        StyleSheet.LINK_CARD.apply(self)
 
     def addCard(self, icon, title, content, url):
         """ add link card """
         card = LinkCard(icon, title, content, url, self.view)
         self.hBoxLayout.addWidget(card, 0, Qt.AlignLeft)
-
-    def __setQss(self):
-        color = 'dark' if isDarkTheme() else 'light'
-        with open(f'app/resource/qss/{color}/link_card.qss', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
-

@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPainter, QPainterPath
 from PyQt5.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
                              QDateEdit, QDateTimeEdit, QTimeEdit, QLineEdit, QAbstractSpinBox)
 
-from ...common.style_sheet import setStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...components.widgets import LineEditMenu
 
@@ -34,7 +34,7 @@ class SpinButton(QToolButton):
         self._icon = icon
         self.setFixedSize(31, 23)
         self.setIconSize(QSize(10, 10))
-        setStyleSheet(self, 'spin_box')
+        FluentStyleSheet.SPIN_BOX.apply(self)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -52,7 +52,7 @@ class Ui_SpinBox:
         pass
 
     def _setUpUi(self):
-        setStyleSheet(self, 'spin_box')
+        FluentStyleSheet.SPIN_BOX.apply(self)
         self.setButtonSymbols(QSpinBox.NoButtons)
         self.setFixedHeight(33)
 

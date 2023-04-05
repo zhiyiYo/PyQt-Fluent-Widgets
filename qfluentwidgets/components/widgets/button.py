@@ -3,10 +3,10 @@ from typing import Union
 
 from PyQt5.QtCore import QUrl, Qt, QRectF, QSize
 from PyQt5.QtGui import QDesktopServices, QIcon, QPainter
-from PyQt5.QtWidgets import QPushButton, QRadioButton, QToolButton, QAbstractButton
+from PyQt5.QtWidgets import QPushButton, QRadioButton, QToolButton
 
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 
 
 class PushButton(QPushButton):
@@ -14,7 +14,7 @@ class PushButton(QPushButton):
 
     def __init__(self, text: str, parent=None, icon: Union[QIcon, str, FluentIconBase] = None):
         super().__init__(text=text, parent=parent)
-        setStyleSheet(self, 'button')
+        FluentStyleSheet.BUTTON.apply(self)
         self._icon = icon
         self.isPressed = False
         self.setProperty('hasIcon', icon is not None)
@@ -84,7 +84,7 @@ class HyperlinkButton(QPushButton):
         super().__init__(text, parent)
         self.url = QUrl(url)
         self.clicked.connect(lambda i: QDesktopServices.openUrl(self.url))
-        setStyleSheet(self, 'button')
+        FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.PointingHandCursor)
 
 
@@ -93,7 +93,7 @@ class RadioButton(QRadioButton):
 
     def __init__(self, text: str, parent=None):
         super().__init__(text, parent)
-        setStyleSheet(self, 'button')
+        FluentStyleSheet.BUTTON.apply(self)
 
 
 class ToolButton(QToolButton):
@@ -103,7 +103,7 @@ class ToolButton(QToolButton):
         super().__init__(parent)
         self._icon = icon
         self.isPressed = False
-        setStyleSheet(self, 'button')
+        FluentStyleSheet.BUTTON.apply(self)
 
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
         self._icon = icon

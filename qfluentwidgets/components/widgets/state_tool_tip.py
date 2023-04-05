@@ -1,10 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, pyqtSignal, QSize, QPoint, QRectF
+from PyQt5.QtCore import QPropertyAnimation, Qt, QTimer, pyqtSignal, QPoint, QRectF
 from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PyQt5.QtSvg import QSvgWidget
 
-from ...common import setStyleSheet, drawSvgIcon, isDarkTheme, Theme
+from ...common import FluentStyleSheet, isDarkTheme, Theme
 from ...common.icon import FluentIcon as FIF
 
 
@@ -113,7 +112,7 @@ class StateToolTip(QWidget):
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
 
-        setStyleSheet(self, 'state_tool_tip')
+        FluentStyleSheet.STATE_TOOL_TIP.apply(self)
 
         self.titleLabel.adjustSize()
         self.contentLabel.adjustSize()

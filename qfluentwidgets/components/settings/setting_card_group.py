@@ -4,7 +4,7 @@ from typing import List
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 
-from ...common.style_sheet import setStyleSheet
+from ...common.style_sheet import FluentStyleSheet
 from ..layout.expand_layout import ExpandLayout
 
 
@@ -27,7 +27,7 @@ class SettingCardGroup(QWidget):
         self.vBoxLayout.addSpacing(12)
         self.vBoxLayout.addLayout(self.cardLayout, 1)
 
-        setStyleSheet(self, 'setting_card_group')
+        FluentStyleSheet.SETTING_CARD_GROUP.apply(self)
         self.titleLabel.adjustSize()
 
     def addSettingCard(self, card: QWidget):

@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QAction, QPushButton, QWidget
 from .menu import RoundMenu
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
-from ...common.style_sheet import setStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor
 
 
 class ComboBox(QPushButton):
@@ -22,7 +22,7 @@ class ComboBox(QPushButton):
         self.items = []
         self._currentIndex = -1
         self.dropMenu = None
-        setStyleSheet(self, 'combo_box')
+        FluentStyleSheet.COMBO_BOX.apply(self)
 
     def addItem(self, text):
         """ add item
@@ -232,7 +232,7 @@ class ComboBoxMenu(RoundMenu):
     def __init__(self, parent=None):
         super().__init__(title="", parent=parent)
         self.view.setViewportMargins(5, 2, 5, 6)
-        setStyleSheet(self, 'combo_box')
+        FluentStyleSheet.COMBO_BOX.apply(self)
         self.setItemHeight(33)
 
     def addAction(self, action):
