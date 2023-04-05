@@ -173,6 +173,7 @@ class FlowLayout(QLayout):
             rowHeight = max(rowHeight, item.sizeHint().height())
 
         if self.needAni:
+            self._aniGroup.stop()
             self._aniGroup.start()
 
         return y + rowHeight - rect.y()
