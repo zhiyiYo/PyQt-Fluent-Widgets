@@ -173,8 +173,7 @@ class FlowLayout(QLayout):
             rowHeight = max(rowHeight, item.sizeHint().height())
 
         if self.needAni:
-            if self._aniGroup.state()==QParallelAnimationGroup.State.Running:
-                self._aniGroup.stop()
+            self._aniGroup.stop()
             self._aniGroup.start()
 
         return y + rowHeight - rect.y()
