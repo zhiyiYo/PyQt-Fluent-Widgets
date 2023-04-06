@@ -38,7 +38,7 @@ QMenu::item:selected {
 
 MenuActionListWidget {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 9px;
+    border-radius: 8px;
     background-color: rgb(43, 43, 43);
     outline: none;
     font: 14px 'Segoe UI', 'Microsoft YaHei';

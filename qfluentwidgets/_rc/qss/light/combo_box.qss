@@ -22,7 +22,7 @@ ComboBox:pressed {
 
 ComboBoxMenu>MenuActionListWidget {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 9px;
+    border-radius: 8px;
     background-color: rgb(249, 249, 249);
     outline: none;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
