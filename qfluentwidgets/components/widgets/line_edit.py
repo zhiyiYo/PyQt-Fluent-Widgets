@@ -100,11 +100,11 @@ class LineEdit(QLineEdit):
         painter.setPen(Qt.PenStyle.NoPen)
 
         path = QPainterPath()
-        w, h = self.width() - 2, self.height()
-        path.addRoundedRect(QRectF(1, h-12, w, 12), 6, 6)
+        w, h = self.width(), self.height()
+        path.addRoundedRect(QRectF(0, h-10, w, 10), 5, 5)
 
         rectPath = QPainterPath()
-        rectPath.addRect(1, h-12, w, 9.5)
+        rectPath.addRect(0, h-10, w, 8)
         path = path.subtracted(rectPath)
 
         painter.fillPath(path, themeColor())
