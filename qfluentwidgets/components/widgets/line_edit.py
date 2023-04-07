@@ -5,7 +5,7 @@ from PyQt6.QtGui import QPainter, QPainterPath, QIcon
 from PyQt6.QtWidgets import QHBoxLayout, QLineEdit, QToolButton, QTextEdit, QPlainTextEdit
 
 from ...common.style_sheet import FluentStyleSheet, themeColor
-from ...common.icon import writeSvg, isDarkTheme, drawSvgIcon, FluentIconBase
+from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.smooth_scroll import SmoothMode, SmoothScroll
 from .menu import LineEditMenu, TextEditMenu
@@ -34,17 +34,16 @@ class LineEditButton(QToolButton):
         rect = QRectF((w - iw)/2, (h - ih)/2, iw, ih)
 
         if isDarkTheme():
-            self._icon.render(painter, rect)
+            drawIcon(self._icon, painter, rect)
         else:
-            svg = writeSvg(self._icon.path(), fill='#656565')
-            drawSvgIcon(svg.encode(), painter, rect)
+            drawIcon(self._icon, painter, rect, fill='#656565')
 
 
 class LineEdit(QLineEdit):
     """ Line edit """
 
-    def __init__(self, contents='', parent=None):
-        super().__init__(contents, parent)
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
         self._isClearButtonEnabled = False
 
         FluentStyleSheet.LINE_EDIT.apply(self)
@@ -117,7 +116,7 @@ class SearchLineEdit(LineEdit):
     clearSignal = pyqtSignal()
 
     def __init__(self, parent=None):
-        super().__init__('', parent)
+        super().__init__(parent)
         self.searchButton = LineEditButton(FIF.SEARCH, self)
 
         self.hBoxLayout.addWidget(self.searchButton, 0, Qt.AlignmentFlag.AlignRight)

@@ -1,6 +1,6 @@
 from .button import PrimaryPushButton, PushButton, RadioButton, HyperlinkButton, ToolButton
 from .check_box import CheckBox
-from .combo_box import ComboBox
+from .combo_box import ComboBox, EditableComboBox
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import PixmapLabel

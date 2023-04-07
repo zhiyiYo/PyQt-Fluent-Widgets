@@ -13,7 +13,7 @@ from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ..widgets.button import HyperlinkButton
 from ...common.style_sheet import FluentStyleSheet
-from ...common.config import qconfig, isDarkTheme, ConfigItem
+from ...common.config import qconfig, isDarkTheme, ConfigItem, OptionsConfigItem
 from ...common.icon import FluentIconBase
 
 
@@ -357,7 +357,7 @@ class ColorSettingCard(SettingCard):
 class ComboBoxSettingCard(SettingCard):
     """ Setting card with a combo box """
 
-    def __init__(self, configItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, texts=None, parent=None):
+    def __init__(self, configItem: OptionsConfigItem, icon: Union[str, QIcon, FluentIconBase], title, content=None, texts=None, parent=None):
         """
         Parameters
         ----------
@@ -385,16 +385,21 @@ class ComboBoxSettingCard(SettingCard):
         self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
-        self.textToOption = {t: o for t, o in zip(texts, configItem.options)}
         self.optionToText = {o: t for o, t in zip(configItem.options, texts)}
-        self.comboBox.addItems(texts)
+        for text, option in zip(texts, configItem.options):
+            self.comboBox.addItem(text, userData=option)
+
         self.comboBox.setCurrentText(self.optionToText[qconfig.get(configItem)])
-        self.comboBox.currentTextChanged.connect(self._onCurrentTextChanged)
+        self.comboBox.currentIndexChanged.connect(self._onCurrentIndexChanged)
         configItem.valueChanged.connect(self.setValue)
 
-    def _onCurrentTextChanged(self, text):
-        qconfig.set(self.configItem, self.textToOption[text])
+    def _onCurrentIndexChanged(self, index: int):
+
+        qconfig.set(self.configItem, self.comboBox.itemData(index))
 
     def setValue(self, value):
+        if value not in self.optionToText:
+            return
+
         self.comboBox.setCurrentText(self.optionToText[value])
         qconfig.set(self.configItem, value)

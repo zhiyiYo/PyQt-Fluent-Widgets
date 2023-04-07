@@ -165,7 +165,7 @@ class MenuActionListWidget(QListWidget):
         """ set the height of item """
         for i in range(self.count()):
             item = self.item(i)
-            item.setSizeHint(item.sizeHint().width(), i)
+            item.setSizeHint(item.sizeHint().width(), height)
 
         self.adjustSize()
 
