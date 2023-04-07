@@ -46,7 +46,7 @@ class ExpandButton(QAbstractButton):
         # draw icon
         painter.translate(self.width()//2, self.height()//2)
         painter.rotate(self.__angle)
-        FIF.ARROW_DOWN.render(painter, QRectF(-6, -6, 9.6, 9.6))
+        FIF.ARROW_DOWN.render(painter, QRectF(-5, -5, 9.6, 9.6))
 
     def enterEvent(self, e):
         self.setHover(True)

@@ -2,7 +2,7 @@
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
 from qfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
-                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton)
+                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -73,6 +73,22 @@ class BasicInputInterface(GalleryInterface):
         comboBox.setMinimumWidth(210)
         self.addExampleCard(
             self.tr('A ComboBox with items'),
+            comboBox,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
+        )
+
+        # editable combo box
+        comboBox = EditableComboBox()
+        comboBox.addItems([
+            self.tr('Star Platinum'),
+            self.tr('Crazy Diamond'),
+            self.tr("Gold Experience"),
+            self.tr('Sticky Fingers'),
+        ])
+        comboBox.setPlaceholderText(self.tr('Choose your stand'))
+        comboBox.setMinimumWidth(210)
+        self.addExampleCard(
+            self.tr('An editable ComboBox'),
             comboBox,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
         )

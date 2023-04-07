@@ -30,14 +30,14 @@ ComboBoxMenu>MenuActionListWidget {
 
 ComboBoxMenu>MenuActionListWidget::item {
     margin-top: 4px;
-    padding-left: 0px;
+    padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
     border: none;
 }
 
 ComboBoxMenu>MenuActionListWidget::item:disbaled {
-    padding-left: 0px;
+    padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
     border: none;
