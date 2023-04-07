@@ -243,6 +243,9 @@ class ComboBoxBase(QObject):
 
     def clear(self):
         """ Clears the combobox, removing all items. """
+        if self.currentIndex() >= 0:
+            self.setText('')
+
         self.items.clear()
         self.itemMap.clear()
         self._currentIndex = -1
