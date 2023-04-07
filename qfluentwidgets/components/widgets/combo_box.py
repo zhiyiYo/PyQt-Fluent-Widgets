@@ -31,10 +31,7 @@ class ComboItem:
         """
         self.text = text
         self.userData = userData
-        if icon:
-            self._icon = QIcon(icon) if isinstance(icon, str) else icon
-        else:
-            self._icon = QIcon()
+        self.icon = icon
 
     @property
     def icon(self):
@@ -42,6 +39,13 @@ class ComboItem:
             return self._icon
 
         return self._icon.icon()
+
+    @icon.setter
+    def icon(self, ico: Union[str, QIcon, FluentIconBase]):
+        if ico:
+            self._icon = QIcon(ico) if isinstance(ico, str) else ico
+        else:
+            self._icon = QIcon()
 
 
 class ComboBoxBase(QObject):
@@ -75,7 +79,7 @@ class ComboBoxBase(QObject):
 
         return super().eventFilter(obj, e)
 
-    def addItem(self, text, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
+    def addItem(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
         """ add item
 
         Parameters
@@ -127,7 +131,7 @@ class ComboBoxBase(QObject):
     def currentIndex(self):
         return self._currentIndex
 
-    def setCurrentIndex(self, index):
+    def setCurrentIndex(self, index: int):
         """ set current index
 
         Parameters
@@ -150,6 +154,12 @@ class ComboBoxBase(QObject):
             return ''
 
         return self.items[self.currentIndex()].text
+
+    def currentData(self):
+        if not 0 <= self.currentIndex() < len(self.items):
+            return None
+
+        return self.items[self.currentIndex()].userData
 
     def setCurrentText(self, text):
         """ set the current text displayed in combo box,
@@ -186,16 +196,35 @@ class ComboBoxBase(QObject):
             self.setText(text)
 
     def itemData(self, index: int):
-        """ Returns the data for the given role in the given index in the combobox """
+        """ Returns the data in the given index """
         if not 0 <= index < len(self.items):
             return None
 
         return self.items[index].userData
 
+    def itemText(self, index: int):
+        """ Returns the text in the given index """
+        if not 0 <= index < len(self.items):
+            return ''
+
+        return self.items[index].text
+
+    def itemIcon(self, index: int):
+        """ Returns the icon in the given index """
+        if not 0 <= index < len(self.items):
+            return QIcon()
+
+        return self.items[index].icon
+
     def setItemData(self, index: int, value):
-        """ Sets the data role for the item on the given index in the combobox to the specified value """
+        """ Sets the data role for the item on the given index """
         if 0 <= index < len(self.items):
             self.items[index].userData = value
+
+    def setItemIcon(self, index: int, icon: Union[str, QIcon, FluentIconBase]):
+        """ Sets the data role for the item on the given index """
+        if 0 <= index < len(self.items):
+            self.items[index].icon = icon
 
     def findData(self, data):
         """ Returns the index of the item containing the given data, otherwise returns -1 """
@@ -211,6 +240,43 @@ class ComboBoxBase(QObject):
             return -1
 
         return self.items.index(self.itemMap[text])
+
+    def clear(self):
+        """ Clears the combobox, removing all items. """
+        self.items.clear()
+        self.itemMap.clear()
+        self._currentIndex = -1
+
+    def count(self):
+        """ Returns the number of items in the combobox """
+        return len(self.items)
+
+    def insertItem(self, index: int, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
+        """ Inserts item into the combobox at the given index. """
+        if not text or text in self.itemMap:
+            return
+
+        item = ComboItem(text, icon, userData)
+        self.items.insert(index, item)
+        self.itemMap[text] = item
+
+        if index <= self.currentIndex():
+            self._onItemClicked(self.currentIndex() + 1)
+
+    def insertItems(self, index: int, texts: Iterable[str]):
+        """ Inserts items into the combobox, starting at the index specified. """
+        pos = index
+        for text in texts:
+            if not text or text in self.itemMap:
+                continue
+
+            item = ComboItem(text)
+            self.items.insert(pos, item)
+            self.itemMap[text] = item
+            pos += 1
+
+        if index <= self.currentIndex():
+            self._onItemClicked(self.currentIndex() + pos - index)
 
     def _closeComboMenu(self):
         if not self.dropMenu:
