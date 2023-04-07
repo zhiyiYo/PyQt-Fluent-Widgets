@@ -39,27 +39,27 @@
         <translation>下拉框</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="96"/>
+        <location filename="../../view/basic_input_interface.py" line="112"/>
         <source>A group of RadioButton controls in a button group</source>
         <translation>单选按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="107"/>
+        <location filename="../../view/basic_input_interface.py" line="123"/>
         <source>A simple horizontal slider</source>
         <translation>水平滑动条</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="116"/>
+        <location filename="../../view/basic_input_interface.py" line="132"/>
         <source>A simple switch button</source>
         <translation>开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="126"/>
+        <location filename="../../view/basic_input_interface.py" line="142"/>
         <source>Off</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="124"/>
+        <location filename="../../view/basic_input_interface.py" line="140"/>
         <source>On</source>
         <translation>开</translation>
     </message>
@@ -89,19 +89,39 @@
         <translation>GItHub 主页</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="85"/>
+        <location filename="../../view/basic_input_interface.py" line="101"/>
         <source>Star Platinum</source>
         <translation>白金之星</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="86"/>
+        <location filename="../../view/basic_input_interface.py" line="102"/>
         <source>Crazy Diamond</source>
         <translation>疯狂钻石</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="87"/>
+        <location filename="../../view/basic_input_interface.py" line="103"/>
         <source>Soft and Wet</source>
         <translation>软又湿</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="82"/>
+        <source>Gold Experience</source>
+        <translation>黄金体验</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="82"/>
+        <source>Sticky Fingers</source>
+        <translation>钢链手指</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="88"/>
+        <source>Choose your stand</source>
+        <translation>选择你的替身</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="90"/>
+        <source>An editable ComboBox</source>
+        <translation>可编辑的下拉框</translation>
     </message>
 </context>
 <context>
@@ -158,7 +178,7 @@
 <context>
     <name>IconCardView</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="126"/>
+        <location filename="../../view/icon_interface.py" line="123"/>
         <source>Fluent Icons Library</source>
         <translation>流畅图标库</translation>
     </message>
@@ -166,12 +186,12 @@
 <context>
     <name>IconInfoPanel</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="84"/>
+        <location filename="../../view/icon_interface.py" line="81"/>
         <source>Icon name</source>
         <translation>图标名字</translation>
     </message>
     <message>
-        <location filename="../../view/icon_interface.py" line="86"/>
+        <location filename="../../view/icon_interface.py" line="83"/>
         <source>Enum member</source>
         <translation>枚举成员</translation>
     </message>
@@ -242,7 +262,7 @@
 <context>
     <name>LineEdit</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="24"/>
+        <location filename="../../view/icon_interface.py" line="21"/>
         <source>Search icons</source>
         <translation>搜索图标</translation>
     </message>
@@ -783,42 +803,42 @@
 <context>
     <name>TextInterface</name>
     <message>
-        <location filename="../../view/text_interface.py" line="20"/>
+        <location filename="../../view/text_interface.py" line="21"/>
         <source>ko no dio da！</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="22"/>
+        <location filename="../../view/text_interface.py" line="23"/>
         <source>A LineEdit with a clear button</source>
         <translation>带清空按钮的 LineEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="36"/>
+        <location filename="../../view/text_interface.py" line="37"/>
         <source>A DoubleSpinBox with a spin button</source>
         <translation>带调节按钮的 DoubleSpinBox</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="43"/>
+        <location filename="../../view/text_interface.py" line="44"/>
         <source>A DateEdit with a spin button</source>
         <translation>带调节按钮的 DateEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="50"/>
+        <location filename="../../view/text_interface.py" line="51"/>
         <source>A TimeEdit with a spin button</source>
         <translation>带调节按钮的 TimeEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="57"/>
+        <location filename="../../view/text_interface.py" line="58"/>
         <source>A DateTimeEdit with a spin button</source>
         <translation>带调节按钮的 DateTimeEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="29"/>
+        <location filename="../../view/text_interface.py" line="30"/>
         <source>A SpinBox with a spin button</source>
         <translation>带调节按钮的 SpinBox</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="68"/>
+        <location filename="../../view/text_interface.py" line="69"/>
         <source>A simple TextEdit</source>
         <translation>富文本框</translation>
     </message>

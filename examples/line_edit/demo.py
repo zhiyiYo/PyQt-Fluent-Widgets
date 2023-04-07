@@ -9,7 +9,7 @@ class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.lineEdit = LineEdit('', self)
+        self.lineEdit = LineEdit(self)
         self.button = PushButton('按钮', self)
         self.textEdit = TextEdit(self)
 

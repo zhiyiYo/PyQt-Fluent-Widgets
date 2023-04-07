@@ -113,7 +113,7 @@ def writeSvg(iconPath: str, indexes=None, **attributes):
     return dom.toString()
 
 
-def drawIcon(icon, painter, rect):
+def drawIcon(icon, painter, rect, **attributes):
     """ draw icon
 
     Parameters
@@ -126,9 +126,12 @@ def drawIcon(icon, painter, rect):
 
     rect: QRect | QRectF
         the rect to render icon
+
+    **attribute:
+        the attribute of svg icon
     """
     if isinstance(icon, FluentIconBase):
-        icon.render(painter, rect)
+        icon.render(painter, rect, **attributes)
     else:
         icon = QIcon(icon)
         rect = QRectF(rect).toRect()
@@ -165,7 +168,7 @@ class FluentIconBase:
         """
         return QIcon(self.path(theme))
 
-    def render(self, painter, rect, theme=Theme.AUTO):
+    def render(self, painter, rect, theme=Theme.AUTO, indexes=None, **attributes):
         """ draw svg icon
 
         Parameters
@@ -181,8 +184,19 @@ class FluentIconBase:
             * `Theme.Light`: black icon
             * `Theme.DARK`: white icon
             * `Theme.AUTO`: icon color depends on `config.theme`
+
+        indexes: List[int]
+            the svg path to be modified
+
+        **attributes:
+            the attributes of modified path
         """
-        drawSvgIcon(self.path(theme), painter, rect)
+        if attributes:
+            svg = writeSvg(self.path(theme), indexes, **attributes).encode()
+        else:
+            svg = self.path(theme)
+
+        drawSvgIcon(svg, painter, rect)
 
 
 class FluentIcon(FluentIconBase, Enum):

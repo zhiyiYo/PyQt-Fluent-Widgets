@@ -78,8 +78,7 @@ class InfoIconWidget(QWidget):
         if self.icon != InfoBarIcon.INFORMATION:
             drawIcon(self.icon, painter, self.rect())
         else:
-            svg = writeSvg(self.icon.path(), [0], fill=themeColor().name())
-            drawSvgIcon(svg.encode(), painter, self.rect())
+            drawIcon(self.icon, painter, self.rect(), indexes=[0], fill=themeColor().name())
 
 
 class InfoBar(QFrame):

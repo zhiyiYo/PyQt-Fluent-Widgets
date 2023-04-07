@@ -17,7 +17,8 @@ class TextInterface(GalleryInterface):
         )
 
         # spin box
-        lineEdit = LineEdit(self.tr('ko no dio da！'), self)
+        lineEdit = LineEdit(self)
+        lineEdit.setText(self.tr('ko no dio da！'))
         lineEdit.setClearButtonEnabled(True)
         self.addExampleCard(
             title=self.tr("A LineEdit with a clear button"),

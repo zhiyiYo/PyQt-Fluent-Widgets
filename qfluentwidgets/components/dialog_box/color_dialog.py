@@ -134,7 +134,8 @@ class ColorLineEdit(LineEdit):
     valueChanged = Signal(str)
 
     def __init__(self, value, parent=None):
-        super().__init__(str(value), parent)
+        super().__init__(parent)
+        self.setText(str(value))
         self.setFixedSize(136, 33)
         self.setClearButtonEnabled(True)
         self.setValidator(QIntValidator(0, 255, self))
