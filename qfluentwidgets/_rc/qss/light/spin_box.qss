@@ -3,7 +3,7 @@ SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 13);
     border-bottom: 1px solid rgba(0, 0, 0, 100);
-    border-radius: 6px;
+    border-radius: 5px;
     font: 14px "Segoe UI", "Microsoft YaHei";
     padding: 0px 80px 0 10px;
     selection-background-color: --ThemeColorLight1;
@@ -33,7 +33,7 @@ DoubleSpinBox:focus,
 DateEdit:focus,
 DateTimeEdit:focus,
 TimeEdit:focus {
-    border-bottom: 1px solid --ThemeColorPrimary;
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
     background-color: white;
 }
 
