@@ -206,7 +206,6 @@ class RoundMenu(QWidget):
 
         self.setShadowEffect()
         self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
-        self.hBoxLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
 
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
         FluentStyleSheet.MENU.apply(self)
@@ -236,6 +235,12 @@ class RoundMenu(QWidget):
         self.parentMenu = parent
         self.menuItem = item
         self.isSubMenu = True if parent else False
+
+    def adjustSize(self):
+        m = self.layout().contentsMargins()
+        w = self.view.width() + m.left() + m.right()
+        h = self.view.height() + m.top() + m.bottom()
+        self.setFixedSize(w, h)
 
     def icon(self):
         return self._icon

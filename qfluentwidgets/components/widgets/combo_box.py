@@ -44,14 +44,13 @@ class ComboItem:
         return self._icon.icon()
 
 
-class ComboBoxBase(QObject):
+class ComboBoxBase:
     """ Combo box base """
 
-    currentIndexChanged = Signal(int)
-    currentTextChanged = Signal(str)
-
     def __init__(self, parent=None, **kwargs):
-        super().__init__(parent=parent)
+        pass
+
+    def _setUpUi(self):
         self.isHover = False
         self.isPressed = False
         self.items = []     # type: List[ComboItem]
@@ -61,19 +60,6 @@ class ComboBoxBase(QObject):
 
         FluentStyleSheet.COMBO_BOX.apply(self)
         self.installEventFilter(self)
-
-    def eventFilter(self, obj, e: QEvent):
-        if obj is self:
-            if e.type() == QEvent.MouseButtonPress:
-                self.isPressed = True
-            elif e.type() == QEvent.MouseButtonRelease:
-                self.isPressed = False
-            elif e.type() == QEvent.Enter:
-                self.isHover = True
-            elif e.type() == QEvent.Leave:
-                self.isHover = False
-
-        return super().eventFilter(obj, e)
 
     def addItem(self, text, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
         """ add item
@@ -272,6 +258,20 @@ class ComboBox(QPushButton, ComboBoxBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._setUpUi()
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self:
+            if e.type() == QEvent.MouseButtonPress:
+                self.isPressed = True
+            elif e.type() == QEvent.MouseButtonRelease:
+                self.isPressed = False
+            elif e.type() == QEvent.Enter:
+                self.isHover = True
+            elif e.type() == QEvent.Leave:
+                self.isHover = False
+
+        return super().eventFilter(obj, e)
 
     def setPlaceholderText(self, text: str):
         self.setText(text)
@@ -304,6 +304,8 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._setUpUi()
+
         self.dropButton = LineEditButton(FIF.ARROW_DOWN, self)
 
         self.setTextMargins(0, 0, 29, 0)
@@ -313,6 +315,21 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.dropButton.clicked.connect(self._toggleComboMenu)
         self.textEdited.connect(self._onTextEdited)
         self.returnPressed.connect(lambda: self.addItem(self.text()))
+
+        FluentStyleSheet.LINE_EDIT.apply(self)
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self:
+            if e.type() == QEvent.MouseButtonPress:
+                self.isPressed = True
+            elif e.type() == QEvent.MouseButtonRelease:
+                self.isPressed = False
+            elif e.type() == QEvent.Enter:
+                self.isHover = True
+            elif e.type() == QEvent.Leave:
+                self.isHover = False
+
+        return super().eventFilter(obj, e)
 
     def _onTextEdited(self, text: str):
         if text not in self.itemMap:
