@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-28 22:55+0800\n"
+"POT-Creation-Date: 2023-04-08 09:10+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -20,29 +20,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../../source/quick-start.md:1 e4ba38be8b3c44ecb70f88a4d7fb4c64
+#: ../../source/quick-start.md:1 682ed71ddb194cb8938c2ce491e83485
 msgid "Quick start"
 msgstr "快速上手"
 
-#: ../../source/quick-start.md:3 8bb39caf07cf41f88e5816bf7ea7e2cd
+#: ../../source/quick-start.md:3 a8f4e066f4464d7d811d89200d2b8d35
 msgid "Install"
 msgstr "安装"
 
-#: ../../source/quick-start.md:4 d0c9e0040a6742f888a0f6cde7543616
+#: ../../source/quick-start.md:4 aa46b5b9d8bc46a284603a71862c6264
 msgid "To install lite version (AcrylicLabel is not available) use pip:"
 msgstr "安装轻量版（`AcrylicLabel` 不可用）："
 
-#: ../../source/quick-start.md:8 a43e52670f1d45e09e297a23e00e21bc
+#: ../../source/quick-start.md:8 e867a91e9ac54f63a42a284708c0d3fa
 msgid "Or install full-featured version use pip:"
 msgstr "安装完整版："
 
-#: ../../source/quick-start.md:13 e1c0444109024d88ad63810808036cce
+#: ../../source/quick-start.md:13 1b5931d0f8454277b394768ba73d133e
+msgid ""
+"If you are using PySide2, PySide6 or PyQt6, you can download the code in "
+"PySide2, PySide6 or PyQt6 branch."
+msgstr "如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。"
+
+#: ../../source/quick-start.md:15 b72f91005f2c4d0b9bc1cc86734cfdfd
 msgid "Run example"
 msgstr "运行示例"
 
-#: ../../source/quick-start.md:14 c3dad089b10d4bafaf806dc08b0f7fa1
+#: ../../source/quick-start.md:16 cf2de2aba8ba459e8bc689880b8bbf4f
 msgid ""
 "After installing PyQt-Fluent-Widgets package using pip, you can run any "
 "demo in the examples directory, for example:"
-msgstr "使用 pip 安装好 PyQt-Fluent-Widgets 包之后，就可以运行 [examples](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples) 目录下的任意示例，比如："
+msgstr ""
+"使用 pip 安装好 PyQt-Fluent-Widgets 包之后，就可以运行 "
+"[examples](https://github.com/zhiyiYo/PyQt-Fluent-"
+"Widgets/tree/master/examples) 目录下的任意示例，比如："
 
