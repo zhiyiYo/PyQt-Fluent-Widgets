@@ -40,7 +40,8 @@ class SmoothScroll:
         self.smoothMode = smoothMode
 
     def wheelEvent(self, e):
-        if self.smoothMode == SmoothMode.NO_SMOOTH:
+        # only process the wheel events triggered by mouse, fixes issue #75
+        if self.smoothMode == SmoothMode.NO_SMOOTH or abs(e.angleDelta().y()) % 120 != 0:
             QAbstractScrollArea.wheelEvent(self.widget, e)
             return
 
