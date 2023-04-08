@@ -68,8 +68,8 @@ class SmoothScroll:
         # form a list of moving distances and steps, and insert it into the queue for processing.
         self.stepsLeftQueue.append([delta, self.stepsTotal])
 
-        # overflow time of timer: 1000ms/frames
-        self.smoothMoveTimer.start(int(1000 / self.fps))
+        # fix issue #75
+        self.smoothMoveTimer.start(0)
 
     def __smoothMove(self):
         """ scroll smoothly when timer time out """
@@ -84,6 +84,11 @@ class SmoothScroll:
         # If the event has been processed, move it out of the queue
         while self.stepsLeftQueue and self.stepsLeftQueue[0][1] == 0:
             self.stepsLeftQueue.popleft()
+            
+        # promote sensitivity according to issue #75
+        roundDelta = round(totalDelta)
+        if roundDelta==0:
+            roundDelta=1 if totalDelta>0 else -1
 
         # construct wheel event
         if self.orient == Qt.Vertical:
