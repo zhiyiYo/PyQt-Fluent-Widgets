@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-02 00:10+0800\n"
+"POT-Creation-Date: 2023-04-08 21:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../../source/navigation.md:1 bee8bcb23caf4088bdd67ae3c6757db1
+#: ../../source/navigation.md:1 79597a28d43044e1902b08933feb6ff5
 msgid "Navigation"
 msgstr "导航"
 
-#: ../../source/navigation.md:2 be9b97a18ada485e9aaa1b46188b5faf
+#: ../../source/navigation.md:2 a4108f9949d64c09894285f2e961a108
 msgid "Structure"
 msgstr "结构"
 
-#: ../../source/navigation.md:4 d4bab8e68b104c09ba7b3c7b36f65e81
+#: ../../source/navigation.md:4 fe3631f938b34d18aafbcf4ada9d23bc
 msgid ""
 "PyQt Fluent Widgets provides a side navigation class NavigationInterface."
 " You can use it with QStackWidget and put them in QHBoxLayout. Examples "
@@ -38,7 +38,7 @@ msgstr ""
 " `QHBoxLayout` 中。示例程序参见 [navigation2](https://github.com/zhiyiYo/PyQt-"
 "Fluent-Widgets/tree/master/examples/navigation2)"
 
-#: ../../source/navigation.md:8 5c57ef2be90248b9a3f1e009604a4186
+#: ../../source/navigation.md:8 d40576ae35444a6d847cf64a325b7a9a
 msgid ""
 "NavigationInterface contains NavigationPanel which is used to place "
 "navigation menu items. All navigation menu items should inherit from "
@@ -53,7 +53,7 @@ msgstr ""
 "`NavigationPushButton` ，同时提供了一个便捷的方法 `NavigationInterface.addItem()` "
 "来创建导航项并将其到导航界面上。"
 
-#: ../../source/navigation.md:10 16fc97d21d764ab8a6ada33071319d6c
+#: ../../source/navigation.md:10 a860fa2ba6e241abb2307bc50e9aabfa
 msgid ""
 "If you want to customize a navigation menu item, you should inherit the "
 "NavigationWidget and rewrite its paintEvent() and "
@@ -63,17 +63,17 @@ msgstr ""
 "如果希望自定义一个导航项，可以创建 `NavigationWidget` 的子类并实现它的 `paintEvent()` 和 "
 "`setCompacted()`（可选） 方法。下面是一个简单例子，展示了如何定义头像导航项："
 
-#: ../../source/navigation.md:53 806c4ccf0eee4d70b04adb32285a0112
+#: ../../source/navigation.md:53 58c48d9e81414816aead9e1a7201a635
 msgid ""
 "Now let's take a look at the parameters required for the addWidget() "
 "method:"
 msgstr "现在让我们看看 `addWidget()` 方法的各个参数："
 
-#: ../../source/navigation.md:59 cbd9f836fafe4cfc96b9fc076b4017a9
+#: ../../source/navigation.md:59 a6c49b7a35fe4005ab7977cf4e20c0f4
 msgid "As you can see, this method requires four parameters:"
 msgstr "可以看到，这个方法需要四个参数："
 
-#: ../../source/navigation.md:61 619a568376e04698969aea3c51858df8
+#: ../../source/navigation.md:61 7c428a4b17ab4e10b1e042be21d4e95a
 msgid ""
 "routeKey: A unique name for the widget to be added. You can consider the "
 "sub interface in the QStackWidget as a web page, and the routeKey is the "
@@ -92,11 +92,11 @@ msgstr ""
 " `defaultRouteKey` 对应的子界面，因此在运行 app 之前需要调用 "
 "`NavigationInterface.setDefaultRouteKey()` 设置一下默认子界面。"
 
-#: ../../source/navigation.md:62 f98a1d25695143c1941beb209f1d99b0
+#: ../../source/navigation.md:62 a8265566cccc4656bf10e73440a5e2bf
 msgid "widget: The widget to be added to panel."
 msgstr "`widget`：被添加到导航界面上的导航项。"
 
-#: ../../source/navigation.md:63 3680d4f4a6b34ede890208031dc742fa
+#: ../../source/navigation.md:63 d50f454560b24bc780d3c95409e88427
 msgid ""
 "onClick: Slot function connected to the widget's clicked signal. If you "
 "want to switch sub interfaces when clicking widget, it is recommended to "
@@ -106,42 +106,42 @@ msgstr ""
 "`onClick`：点击导航项时触发的槽函数。如果想在点击导航项时切换子界面，一种推荐的写法是将槽函数写作：`lambda: "
 "self.stackWidget.setCurrentWidget(self.xxxInterface)`。"
 
-#: ../../source/navigation.md:64 e994d25d1bb7497589e3864363b28bd0
+#: ../../source/navigation.md:64 0ac5601f1611479880774eaf926ef39d
 msgid ""
 "position: Where to add the widget to the panel. The following values are "
 "available:"
 msgstr "`position`：导航项的位置。可以是下述值中的一种："
 
-#: ../../source/navigation.md:65 c8a74ec55b91427c9c1c9bf9fdac70bf
+#: ../../source/navigation.md:65 fb93ac308db7433aac643e5cb4b3323b
 msgid "NavigationItemPostion.TOP: add widget to the top layout of panel."
 msgstr "`NavigationItemPostion.TOP`：添加到导航面板的顶部"
 
-#: ../../source/navigation.md:66 a7a98d81cf574168822222986de96e8e
+#: ../../source/navigation.md:66 39907f60028e4e09845a977cf76331e8
 msgid ""
 "NavigationItemPostion.SCROLL: add widget to the scroll layout of panel. "
 "You can scroll the widgets in scroll layout when there are too many menu "
 "items."
 msgstr "`NavigationItemPostion.SCROLL`：添加到导航面板的滚动区域。当导航菜单项太多时，滚动区域中导航项可以被滚动"
 
-#: ../../source/navigation.md:67 a20c133d80814427b44ac9367e2b5ad4
+#: ../../source/navigation.md:67 497c2a8d524e46439197e3a29cea8ce9
 msgid "NavigationItemPostion.BOTTOM: add widget to the bottom layout of panel."
 msgstr "`NavigationItemPostion.BOTTOM`: 添加到导航面板的底部"
 
-#: ../../source/navigation.md:69 a639385e937d47d284be8d7bd8a55f6a
+#: ../../source/navigation.md:69 1366840db80d4e528f15a5243fcf499d
 msgid "Display mode"
 msgstr "显示模式"
 
-#: ../../source/navigation.md:71 08a382969def4021838ccba46eea0dc1
+#: ../../source/navigation.md:71 d8936ef10cad495e8ea3836df8b8b943
 msgid "The navigation panel has four display modes:"
 msgstr "导航面板有以下四种显示模式："
 
-#: ../../source/navigation.md:73 65fce4e342b641d1a819ed9ca71713d5
+#: ../../source/navigation.md:73 0687c25d3d48492fbe3a877f6581c4f6
 msgid ""
 "NavigationDisplayMode.EXPAND: An expanded left pane on large window "
 "widths (1008px or greater)."
 msgstr "`NavigationDisplayMode.EXPAND`：左侧面板完全展开（当窗口的宽度大于等于 1008px 时可用）"
 
-#: ../../source/navigation.md:76 64ae2e7ae9124674a45e3df30a5753b7
+#: ../../source/navigation.md:76 99efe33e98b047bf926b91dc72254405
 msgid ""
 "NavigationDisplayMode.COMPACT: A left, icon-only, nav panel on medium "
 "window widths (1007px or less)."
@@ -149,30 +149,32 @@ msgstr ""
 "`NavigationDisplayMode.COMPACT`：只在导航面板上显示图标，所有导航项都处于折叠状态（当窗口宽度小于 1007px "
 "时默认使用这种显示模式）。"
 
-#: ../../source/navigation.md:79 d67d5205cf934e5ebc13a7e7a691b4a3
+#: ../../source/navigation.md:79 66844ec34c8c44aca395270666fd66eb
 msgid "NavigationDisplayMode.MENU: An expanded left menu (1007px or less)."
 msgstr "`NavigationDisplayMode.MENU`：展开的导航菜单（当窗口窗口小于 1007px 并点击菜单按钮时使用此显示模式）"
 
-#: ../../source/navigation.md:82 eb3dc643439a47ada5dd642bf6d5680c
+#: ../../source/navigation.md:82 4702f330493143ab9fbcad524636d320
 msgid ""
 "NavigationDisplayMode.MINIMAL: Only a menu button on small window widths "
 "(you should add and manage the menu button to main window by yourself "
 "like navigation3 does)."
 msgstr ""
 "`NavigationDisplayMode.MINIMAL`：只显示一个菜单按钮。在这种显示模式下，应该自己创建并管理菜单按钮和 "
-"`NavigationPanel`，然后将菜单按钮的点击信号连接到 `NavigationPanel.toggle()` 函数上，具体写法可以参见 [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3)。"
+"`NavigationPanel`，然后将菜单按钮的点击信号连接到 `NavigationPanel.toggle()` 函数上，具体写法可以参见"
+" [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-"
+"Widgets/tree/master/examples/navigation3)。"
 
-#: ../../source/navigation.md:84 d43aacaf91354d439d3ff15b48fb1313
+#: ../../source/navigation.md:84 398b5dd49b114bf39b9e00fbce558c44
 msgid ""
 "If you call NavigationInterface.setExpandWidth(), the large window width "
 "(1008px) will change accordingly."
 msgstr "如果调用了 `NavigationInterface.setExpandWidth()`，上述的窗口宽度阈值（1008px）将相应进行调整。"
 
-#: ../../source/navigation.md:87 e972c4a2aeb8418eb5d2c92db5e3eaa2
+#: ../../source/navigation.md:87 61301b761ea24c82913cbf756c6cce1d
 msgid "More examples"
 msgstr "更多示例"
 
-#: ../../source/navigation.md:88 cba062836d004b8ead9a68b0f9e70965
+#: ../../source/navigation.md:88 91fe03433b734648b6a45a745872059a
 msgid ""
 "Here is an another style of navigation interface, and its corresponding "
 "example program is available at navigation."
@@ -180,7 +182,7 @@ msgstr ""
 "下面是另外一种风格的导航界面，对应的示例程序为 [navigation](https://github.com/zhiyiYo/PyQt-"
 "Fluent-Widgets/tree/master/examples/navigation)。"
 
-#: ../../source/navigation.md:92 cb119e519e63499cbf7e70c8940f54cb
-msgid "Minimal displaymode navigation interface is available at navigation3."
+#: ../../source/navigation.md:92 548475e725f9447ca1deb71574e3db56
+msgid "Minimal display mode navigation interface is available at navigation3."
 msgstr "迷你导航界面如下图所示，可以在 [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3) 获取完整代码。"
 

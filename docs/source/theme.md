@@ -21,7 +21,7 @@ class StyleSheet(StyleSheetBase, Enum):
     MAIN_WINDOW = "main_window"
 
     def path(self, theme=Theme.AUTO):
-        theme = qconfig.theme if isDarkTheme() else theme
+        theme = qconfig.theme if theme == Theme.AUTO else theme
         return f"app/resource/qss/{theme.value.lower()}/{self.value}.qss"
 
 

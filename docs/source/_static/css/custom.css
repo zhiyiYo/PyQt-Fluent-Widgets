@@ -15,15 +15,34 @@
         padding: 2px 5px;
         color: #e74c3c;
     }
+
+    body:not([data-theme="light"]) hr {
+        border: none;
+        border-bottom: 1px solid rgb(33 38 45);
+    }
+
+    body[data-theme="light"] hr {
+        border: none;
+        border-bottom: 1px solid rgb(216 222 228);
+    }
 }
 
 @media (prefers-color-scheme: light) {
-
     body:not([data-theme="dark"]) .sig-inline,
     body:not([data-theme="dark"]) code.literal {
         background: white;
         padding: 2px 5px;
         color: #e74c3c;
+    }
+
+    body:not([data-theme="dark"]) hr {
+        border: none;
+        border-bottom: 1px solid rgb(216 222 228);
+    }
+
+    body[data-theme="dark"] hr {
+        border: none;
+        border-bottom: 1px solid rgb(33 38 45);
     }
 }
 

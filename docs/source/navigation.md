@@ -89,6 +89,6 @@ Here is an another style of navigation interface, and its corresponding example 
 
 ![](_static/NavigationInterface.jpg)
 
-Minimal displaymode navigation interface is available at [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3).
+Minimal display mode navigation interface is available at [navigation3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation3).
 
 ![](_static/NavigationInterface_Minimal.jpg)
