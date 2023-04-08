@@ -69,7 +69,7 @@ class SmoothScroll:
         self.stepsLeftQueue.append([delta, self.stepsTotal])
 
         # fix issue #75
-        self.smoothMoveTimer.start(0)
+        self.smoothMoveTimer.start(1)
 
     def __smoothMove(self):
         """ scroll smoothly when timer time out """
