@@ -22,6 +22,7 @@ from .scroll_interface import ScrollInterface
 from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
 from .text_interface import TextInterface
+from .view_interface import ViewInterface
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
@@ -83,6 +84,7 @@ class MainWindow(FramelessWindow):
         self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
         self.textInterface = TextInterface(self)
+        self.viewInterface = ViewInterface(self)
 
         self.stackWidget.addWidget(self.homeInterface)
         self.stackWidget.addWidget(self.iconInterface)
@@ -95,6 +97,7 @@ class MainWindow(FramelessWindow):
         self.stackWidget.addWidget(self.statusInfoInterface)
         self.stackWidget.addWidget(self.settingInterface)
         self.stackWidget.addWidget(self.textInterface)
+        self.stackWidget.addWidget(self.viewInterface)
 
         # initialize layout
         self.initLayout()
@@ -132,6 +135,7 @@ class MainWindow(FramelessWindow):
         self.scrollInterface.setObjectName('scrollInterface')
         self.settingInterface.setObjectName('settingsInterface')
         self.textInterface.setObjectName('textInterface')
+        self.viewInterface.setObjectName('viewInterface')
 
         # add navigation items
         self.navigationInterface.addItem(
@@ -202,6 +206,13 @@ class MainWindow(FramelessWindow):
             icon=Icon.TEXT,
             text=self.tr('Text'),
             onClick=lambda t: self.switchTo(self.textInterface, t),
+            position=NavigationItemPostion.SCROLL
+        )
+        self.navigationInterface.addItem(
+            routeKey=self.viewInterface.objectName(),
+            icon=Icon.GRID,
+            text=self.tr('View'),
+            onClick=lambda t: self.switchTo(self.viewInterface, t),
             position=NavigationItemPostion.SCROLL
         )
 
