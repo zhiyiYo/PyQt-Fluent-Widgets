@@ -13,3 +13,4 @@ from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
 from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .tool_tip import ToolTip, ToolTipFilter
+from .tree_view import TreeWidget, TreeView
