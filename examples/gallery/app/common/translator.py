@@ -15,3 +15,4 @@ class Translator(QObject):
         self.layout = self.tr('Layout')
         self.text = self.tr('Text')
         self.icons = self.tr('Icons')
+        self.view = self.tr('View')

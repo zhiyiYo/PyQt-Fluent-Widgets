@@ -180,6 +180,10 @@
         <file>images/spin_box/Up_black.svg</file>
         <file>images/spin_box/Down_white.svg</file>
         <file>images/spin_box/Down_black.svg</file>
+        <file>images/tree_view/TreeViewClose_black.svg</file>
+        <file>images/tree_view/TreeViewOpen_black.svg</file>
+        <file>images/tree_view/TreeViewClose_white.svg</file>
+        <file>images/tree_view/TreeViewOpen_white.svg</file>
 
         <file>qss/dark/color_dialog.qss</file>
         <file>qss/dark/dialog.qss</file>
@@ -200,6 +204,7 @@
         <file>qss/dark/check_box.qss</file>
         <file>qss/dark/info_bar.qss</file>
         <file>qss/dark/spin_box.qss</file>
+        <file>qss/dark/tree_view.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -220,5 +225,6 @@
         <file>qss/light/check_box.qss</file>
         <file>qss/light/info_bar.qss</file>
         <file>qss/light/spin_box.qss</file>
+        <file>qss/light/tree_view.qss</file>
     </qresource>
 </RCC>

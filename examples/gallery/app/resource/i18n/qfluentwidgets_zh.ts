@@ -41,6 +41,17 @@
     </message>
 </context>
 <context>
+    <name>MessageBox</name>
+    <message>
+        <source>OK</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>Dialog</name>
     <message>
         <source>OK</source>
