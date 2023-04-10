@@ -19,9 +19,9 @@ class ToolBar(QWidget):
         self.subtitleLabel = QLabel(subtitle, self)
 
         self.documentButton = PushButton(
-            self.tr('Documentation'), self, Icon.DOCUMENT)
+            self.tr('Documentation'), self, FluentIcon.DOCUMENT)
         self.sourceButton = PushButton(self.tr('Source'), self, FluentIcon.GITHUB)
-        self.themeButton = ToolButton(Icon.CONSTRACT, self)
+        self.themeButton = ToolButton(FluentIcon.CONSTRACT, self)
         self.feedbackButton = ToolButton(FluentIcon.FEEDBACK, self)
 
         self.vBoxLayout = QVBoxLayout(self)

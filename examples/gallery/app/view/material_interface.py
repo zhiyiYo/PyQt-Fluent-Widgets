@@ -21,7 +21,7 @@ class MaterialInterface(GalleryInterface):
 
         self.label = AcrylicLabel(
             cfg.get(cfg.blurRadius), QColor(105, 114, 168, 102))
-        self.label.setImage('app/resource/images/chidanta.jpg')
+        self.label.setImage(':/gallery/images/chidanta.jpg')
         self.label.setMaximumSize(787, 579)
         self.label.setMinimumSize(197, 145)
         cfg.blurRadius.valueChanged.connect(self.onBlurRadiusChanged)
@@ -35,4 +35,4 @@ class MaterialInterface(GalleryInterface):
 
     def onBlurRadiusChanged(self, radius: int):
         self.label.blurRadius = radius
-        self.label.setImage('app/resource/images/chidanta.jpg')
+        self.label.setImage(':/gallery/images/chidanta.jpg')

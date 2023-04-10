@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator
 from qfluentwidgets import TreeWidget
 
 from .gallery_interface import GalleryInterface
@@ -82,6 +82,6 @@ class TreeFrame(Frame):
 
         if enableCheck:
             it = QTreeWidgetItemIterator(self.tree)
-            while(it.value()):
-                it.value().setCheckState(0, Qt.Unchecked)
+            while it.value():
+                it.value().setCheckState(0, Qt.CheckState.Unchecked)
                 it += 1

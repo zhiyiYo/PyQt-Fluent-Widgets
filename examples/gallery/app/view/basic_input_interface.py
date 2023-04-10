@@ -27,7 +27,7 @@ class BasicInputInterface(GalleryInterface):
         )
 
         # tool button
-        button = ToolButton('app/resource/images/kunkun.png')
+        button = ToolButton(':/gallery/images/kunkun.png')
         button.setIconSize(QSize(40, 40))
         button.resize(70, 70)
         self.addExampleCard(

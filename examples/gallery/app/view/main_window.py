@@ -26,6 +26,7 @@ from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
+from ..common import resource
 
 
 class StackedWidget(QFrame):
@@ -139,7 +140,7 @@ class MainWindow(FramelessWindow):
         # add navigation items
         self.navigationInterface.addItem(
             routeKey=self.homeInterface.objectName(),
-            icon=Icon.HOME,
+            icon=FIF.HOME,
             text=self.tr('Home'),
             onClick=lambda t: self.switchTo(self.homeInterface, t)
         )
@@ -160,14 +161,14 @@ class MainWindow(FramelessWindow):
         )
         self.navigationInterface.addItem(
             routeKey=self.dialogInterface.objectName(),
-            icon=Icon.MESSAGE,
+            icon=FIF.MESSAGE,
             text=self.tr('Dialogs'),
             onClick=lambda t: self.switchTo(self.dialogInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.layoutInterface.objectName(),
-            icon=Icon.LAYOUT,
+            icon=FIF.LAYOUT,
             text=self.tr('Layout'),
             onClick=lambda t: self.switchTo(self.layoutInterface, t),
             position=NavigationItemPostion.SCROLL
@@ -188,14 +189,14 @@ class MainWindow(FramelessWindow):
         )
         self.navigationInterface.addItem(
             routeKey=self.scrollInterface.objectName(),
-            icon=Icon.SCROLL,
+            icon=FIF.SCROLL,
             text=self.tr('Scrolling'),
             onClick=lambda t: self.switchTo(self.scrollInterface, t),
             position=NavigationItemPostion.SCROLL
         )
         self.navigationInterface.addItem(
             routeKey=self.statusInfoInterface.objectName(),
-            icon=Icon.CHAT,
+            icon=FIF.CHAT,
             text=self.tr('Status & info'),
             onClick=lambda t: self.switchTo(self.statusInfoInterface, t),
             position=NavigationItemPostion.SCROLL
@@ -218,7 +219,7 @@ class MainWindow(FramelessWindow):
         # add custom widget to bottom
         self.navigationInterface.addWidget(
             routeKey='avatar',
-            widget=AvatarWidget('app/resource/images/shoko.png'),
+            widget=AvatarWidget(':/gallery/images/shoko.png'),
             onClick=self.showMessageBox,
             position=NavigationItemPostion.BOTTOM
         )
@@ -244,7 +245,7 @@ class MainWindow(FramelessWindow):
     def initWindow(self):
         self.resize(960, 780)
         self.setMinimumWidth(760)
-        self.setWindowIcon(QIcon('app/resource/images/logo.png'))
+        self.setWindowIcon(QIcon(':/gallery/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
         self.titleBar.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
 

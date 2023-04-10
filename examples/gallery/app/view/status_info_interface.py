@@ -41,7 +41,7 @@ class StatusInfoInterface(GalleryInterface):
         )
 
         label = PixmapLabel()
-        label.setPixmap(QPixmap('app/resource/images/kunkun.png').scaled(
+        label.setPixmap(QPixmap(':/gallery/images/kunkun.png').scaled(
             160, 160, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         label.installEventFilter(ToolTipFilter(label, showDelay=500))
         label.setToolTip(self.tr('Label with a ToolTip'))
