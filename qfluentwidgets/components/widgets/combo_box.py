@@ -1,9 +1,9 @@
 # coding:utf-8
-from typing import Dict, Union, List, Iterable
+from typing import Union, List, Iterable
 
-from PySide6.QtCore import Qt, Signal, QRect, QRectF, QPoint, QObject, QEvent
-from PySide6.QtGui import QColor, QPainter, QAction, QCursor, QIcon
-from PySide6.QtWidgets import QPushButton, QWidget, QStyledItemDelegate, QStyle
+from PySide6.QtCore import Qt, Signal, QRectF, QPoint, QObject, QEvent
+from PySide6.QtGui import QPainter, QAction, QCursor, QIcon
+from PySide6.QtWidgets import QPushButton, QStyledItemDelegate, QStyle
 
 from .menu import RoundMenu
 from .line_edit import LineEdit, LineEditButton
@@ -58,7 +58,6 @@ class ComboBoxBase:
         self.isHover = False
         self.isPressed = False
         self.items = []     # type: List[ComboItem]
-        self.itemMap = {}   # type: Dict[str, ComboItem]
         self._currentIndex = -1
         self.dropMenu = None
 
@@ -75,11 +74,7 @@ class ComboBoxBase:
 
         icon: str | QIcon | FluentIconBase
         """
-        if not text or text in self.itemMap:
-            return
-
         item = ComboItem(text, icon, userData)
-        self.itemMap[text] = item
         self.items.append(item)
 
     def addItems(self, texts: Iterable[str]):
@@ -100,9 +95,7 @@ class ComboBoxBase:
         if not 0 <= index < len(self.items):
             return
 
-        item = self.items[index]
         self.items.pop(index)
-        self.itemMap.pop(item.text)
 
         if index < self.currentIndex():
             self._onItemClicked(self._currentIndex - 1)
@@ -156,12 +149,14 @@ class ComboBoxBase:
         text: str
             text displayed in combo box
         """
-        if text not in self.itemMap or text == self.currentText():
+        if text == self.currentText():
             return
 
-        self.setCurrentIndex(self.items.index(self.itemMap[text]))
+        index = self.findText(text)
+        if index >= 0:
+            self.setCurrentIndex(index)
 
-    def setItemText(self, index, text):
+    def setItemText(self, index: int, text: str):
         """ set the text of item
 
         Parameters
@@ -172,12 +167,10 @@ class ComboBoxBase:
         text: str
             new text of item
         """
-        if text in self.itemMap or not 0 <= index < len(self.items):
+        if not 0 <= index < len(self.items):
             return
 
-        item = self.itemMap.pop()
-        item.text = text
-        self.itemMap[text] = item
+        self.items[index].text = text
         if self.currentIndex() == index:
             self.setText(text)
 
@@ -222,10 +215,11 @@ class ComboBoxBase:
 
     def findText(self, text: str):
         """ Returns the index of the item containing the given text; otherwise returns -1. """
-        if text not in self.itemMap:
-            return -1
+        for i, item in enumerate(self.items):
+            if item.text == text:
+                return i
 
-        return self.items.index(self.itemMap[text])
+        return -1
 
     def clear(self):
         """ Clears the combobox, removing all items. """
@@ -233,7 +227,6 @@ class ComboBoxBase:
             self.setText('')
 
         self.items.clear()
-        self.itemMap.clear()
         self._currentIndex = -1
 
     def count(self):
@@ -242,12 +235,8 @@ class ComboBoxBase:
 
     def insertItem(self, index: int, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
         """ Inserts item into the combobox at the given index. """
-        if not text or text in self.itemMap:
-            return
-
         item = ComboItem(text, icon, userData)
         self.items.insert(index, item)
-        self.itemMap[text] = item
 
         if index <= self.currentIndex():
             self._onItemClicked(self.currentIndex() + 1)
@@ -256,12 +245,8 @@ class ComboBoxBase:
         """ Inserts items into the combobox, starting at the index specified. """
         pos = index
         for text in texts:
-            if not text or text in self.itemMap:
-                continue
-
             item = ComboItem(text)
             self.items.insert(pos, item)
-            self.itemMap[text] = item
             pos += 1
 
         if index <= self.currentIndex():
@@ -383,9 +368,19 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
         self.dropButton.clicked.connect(self._toggleComboMenu)
         self.textEdited.connect(self._onTextEdited)
-        self.returnPressed.connect(lambda: self.addItem(self.text()))
+        self.returnPressed.connect(self._onReturnPressed)
 
-        FluentStyleSheet.LINE_EDIT.apply(self)
+    def _onReturnPressed(self):
+        if not self.text():
+            return
+
+        index = self.findText(self.text())
+        if index >= 0 and index != self.currentIndex():
+            self._currentIndex = index
+            self.currentIndexChanged.emit(index)
+        elif index == -1:
+            self.addItem(self.text())
+            self.setCurrentIndex(self.count() - 1)
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self:
@@ -401,12 +396,14 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         return super().eventFilter(obj, e)
 
     def _onTextEdited(self, text: str):
-        if text not in self.itemMap:
-            self._currentIndex = -1
-        else:
-            self._currentIndex = self.items.index(self.itemMap[text])
-
+        self._currentIndex = -1
         self.currentTextChanged.emit(text)
+
+        for i, item in enumerate(self.items):
+            if item.text == text:
+                self._currentIndex = i
+                self.currentIndexChanged.emit(i)
+                return
 
     def _onDropMenuClosed(self):
         self.dropMenu = None

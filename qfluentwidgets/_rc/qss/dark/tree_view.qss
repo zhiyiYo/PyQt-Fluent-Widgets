@@ -5,6 +5,7 @@ QTreeView {
     outline: 0;
     padding-right: 5px;
     font: 13px 'Segoe UI', 'Microsoft YaHei';
+    selection-background-color: transparent;
 }
 
 QTreeView::item {
