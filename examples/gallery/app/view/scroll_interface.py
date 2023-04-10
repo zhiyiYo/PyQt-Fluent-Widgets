@@ -1,8 +1,8 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QEasingCurve
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QWidget
-from qfluentwidgets import ScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel
+from qtpy.QtCore import Qt, QEasingCurve
+from qtpy.QtGui import QPixmap
+from qtpy.QtWidgets import QWidget
+from qtfluentwidgets import ScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -15,7 +15,7 @@ class ScrollInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.scroll,
-            subtitle="qfluentwidgets.components.widgets",
+            subtitle="qtfluentwidgets.components.widgets",
             parent=parent
         )
 

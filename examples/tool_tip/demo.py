@@ -1,10 +1,11 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEvent, QPoint, Qt, QUrl
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from qfluentwidgets import ToolTip, ToolTipFilter, setTheme, Theme, PushButton
+from qtfluentwidgets import ToolTip, ToolTipFilter, setTheme, Theme, PushButton
+from qtpy.QtCore import QEvent, QPoint, Qt, QUrl
+from qtpy.QtGui import QDesktopServices
+from qtpy.QtWidgets import QApplication, QWidget, QHBoxLayout
+
 
 
 class Demo(QWidget):

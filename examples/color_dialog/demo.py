@@ -1,10 +1,10 @@
 # coding:utf-8
 import sys
+from qtfluentwidgets import ColorPickerButton, setTheme, Theme
+from qtpy.QtCore import Qt
+from qtpy.QtGui import QColor
+from qtpy.QtWidgets import QApplication, QWidget
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QApplication, QWidget
-from qfluentwidgets import ColorPickerButton, setTheme, Theme
 
 
 class Demo(QWidget):

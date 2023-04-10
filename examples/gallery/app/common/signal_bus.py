@@ -1,11 +1,11 @@
 # coding: utf-8
-from PyQt5.QtCore import QObject, pyqtSignal
+from qtpy.QtCore import QObject, Signal
 
 
 class SignalBus(QObject):
     """ Signal bus """
 
-    switchToSampleCard = pyqtSignal(str, int)
+    switchToSampleCard = Signal(str, int)
 
 
 signalBus = SignalBus()

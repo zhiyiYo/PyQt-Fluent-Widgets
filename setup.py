@@ -5,20 +5,20 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="PyQt-Fluent-Widgets",
-    version="0.6.8",
-    keywords="pyqt fluent widgets",
+    name="QtPy-Fluent-Widgets",
+    version="0.0.1",
+    keywords="qtpy fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
-    description="A fluent design widgets library based on PyQt5",
+    description="A fluent design widgets library based on QtPy",
     long_description=long_description,
     long_description_content_type='text/markdown',
     license="GPLv3",
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets",
     packages=setuptools.find_packages(),
     install_requires=[
-        "PyQt5>=5.15.0",
-        "PyQt5-Frameless-Window",
+        "QtPy",
+        "QtPy-Frameless-Window",
         "darkdetect",
     ],
     extras_require = {

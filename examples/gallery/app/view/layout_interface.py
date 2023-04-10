@@ -1,6 +1,6 @@
 # coding:utf-8
-from PyQt5.QtWidgets import QWidget
-from qfluentwidgets import FlowLayout, PushButton
+from qtpy.QtWidgets import QWidget
+from qtfluentwidgets import FlowLayout, PushButton
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -13,7 +13,7 @@ class LayoutInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.layout,
-            subtitle="qfluentwidgets.components.layout",
+            subtitle="qtfluentwidgets.components.layout",
             parent=parent
         )
 

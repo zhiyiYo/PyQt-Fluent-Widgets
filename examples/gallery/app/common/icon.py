@@ -1,7 +1,7 @@
 # coding: utf-8
 from enum import Enum
 
-from qfluentwidgets import FluentIconBase, getIconColor, Theme
+from qtfluentwidgets import FluentIconBase, getIconColor, Theme
 
 
 class Icon(FluentIconBase, Enum):
@@ -9,6 +9,7 @@ class Icon(FluentIconBase, Enum):
     HOME = "Home"
     CHAT = "Chat"
     CODE = "Code"
+    GRID = "Grid"
     MENU = "Menu"
     TEXT = "Text"
     ALBUM = "Album"

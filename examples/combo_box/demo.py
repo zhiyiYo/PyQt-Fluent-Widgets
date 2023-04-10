@@ -1,8 +1,9 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget
-from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox
+from qtfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QWidget
+
 
 class Demo(QWidget):
 

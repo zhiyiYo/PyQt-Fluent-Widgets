@@ -1,9 +1,10 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget
 
-from qfluentwidgets import FolderListDialog, setTheme, Theme, PrimaryPushButton
+from qtfluentwidgets import FolderListDialog, setTheme, Theme, PrimaryPushButton
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QWidget
+
 
 
 class Demo(QWidget):
