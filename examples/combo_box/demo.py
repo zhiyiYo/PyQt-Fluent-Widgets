@@ -2,13 +2,13 @@
 import sys
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QWidget
-from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor
+from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox
 
 class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.comboBox = ComboBox(self)
+        self.comboBox = EditableComboBox(self)
 
         self.comboBox.addItems(['shoko 🥰', '西宫硝子', 'aiko', '柳井爱子'])
         self.comboBox.setCurrentIndex(0)
