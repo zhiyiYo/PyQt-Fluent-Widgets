@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
+from qtpy.QtCore import Qt
 
-from qfluentwidgets import PushButton, Dialog, MessageBox, ColorDialog
+from qtfluentwidgets import PushButton, Dialog, MessageBox, ColorDialog
 from ..common.translator import Translator
 from .gallery_interface import GalleryInterface
 
@@ -13,7 +13,7 @@ class DialogInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.dialogs,
-            subtitle='qfluentwidgets.components.dialog_box',
+            subtitle='qtfluentwidgets.components.dialog_box',
             parent=parent
         )
 

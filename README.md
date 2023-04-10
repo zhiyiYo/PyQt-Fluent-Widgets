@@ -2,10 +2,10 @@
   <img width="18%" align="center" src="https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/logo.png" alt="logo">
 </p>
   <h1 align="center">
-  PyQt-Fluent-Widgets
+  QtPy-Fluent-Widgets
 </h1>
 <p align="center">
-  A fluent design widgets library based on PyQt5
+  A fluent design widgets library based on QtPy
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://static.pepy.tech/personalized-badge/pyqt-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
+    <img src="https://static.pepy.tech/personalized-badge/qtpy-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
   </a>
 
   <a style="text-decoration:none">
@@ -28,11 +28,11 @@
 ## Install
 To install lite version (`AcrylicLabel` is not available):
 ```shell
-pip install PyQt-Fluent-Widgets -i https://pypi.org/simple/
+pip install QtPy-Fluent-Widgets -i https://pypi.org/simple/
 ```
 Or install full-featured version:
 ```shell
-pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
+pip install "QtPy-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
 If you are using PySide2, PySide6 or PyQt6, you can download the code in [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2), [PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) or [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) branch.
@@ -40,12 +40,17 @@ If you are using PySide2, PySide6 or PyQt6, you can download the code in [PySide
 
 ## Run Example
 After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
-```python
+```sh
 cd examples/gallery
 python demo.py
 ```
-
-If you encounter `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`, it indicates that the package version you installed is too low. You can replace the mirror source with https://pypi.org/simple and reinstall again.
+```python
+# you can specify qt api through
+python demo.py --api pyside6
+# or specify qt api in the beginning of program through
+from qtfluentwidgets import set_qt_api
+set_qt_api("pyside6")
+```
 
 ## Documentation
 Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://pyqt-fluent-widgets.readthedocs.io/) 👈

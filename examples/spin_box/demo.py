@@ -1,9 +1,10 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from qtfluentwidgets import SpinBox, DoubleSpinBox, DateTimeEdit, DateEdit, TimeEdit
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-from qfluentwidgets import SpinBox, DoubleSpinBox, DateTimeEdit, DateEdit, TimeEdit
+
 
 
 class Demo(QWidget):

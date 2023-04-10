@@ -1,9 +1,8 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget
-
-from qfluentwidgets import StateToolTip, PushButton, setTheme, Theme
+from qtfluentwidgets import StateToolTip, PushButton, setTheme, Theme
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QWidget
 
 
 class Demo(QWidget):

@@ -1,9 +1,8 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QTreeWidgetItem, QFileSystemModel, QHBoxLayout
-
-from qfluentwidgets import TreeWidget, setTheme, Theme, TreeView
+from qtfluentwidgets import TreeWidget, setTheme, Theme, TreeView
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QApplication, QWidget, QTreeWidgetItem, QFileSystemModel, QHBoxLayout
 
 
 class Demo(QWidget):

@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
-from qfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
+from qtpy.QtCore import Qt, QSize
+from qtpy.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
+from qtfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
                             ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox)
 
 from .gallery_interface import GalleryInterface
@@ -15,7 +15,7 @@ class BasicInputInterface(GalleryInterface):
         translator = Translator()
         super().__init__(
             title=translator.basicInput,
-            subtitle='qfluentwidgets.components.widgets',
+            subtitle='qtfluentwidgets.components.widgets',
             parent=parent
         )
 

@@ -1,9 +1,10 @@
 # coding:utf-8
 import sys
-from PyQt5.QtCore import QEasingCurve
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from qtfluentwidgets import FlowLayout
+from qtpy.QtCore import QEasingCurve
+from qtpy.QtWidgets import QApplication, QWidget, QPushButton
 
-from qfluentwidgets import FlowLayout
+
 
 
 class Demo(QWidget):

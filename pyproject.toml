@@ -1,0 +1,43 @@
+[tool.pdm]
+
+[project]
+authors = [
+  {name = "TaoChenyue", email = "3038816978@qq.com"},
+  {name = "zhiyiYo", email = "shokokawaii@outlook.com"},
+]
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+]
+dependencies = ["QtPy", "QtPy-Frameless-Window", "darkdetect"]
+description = "A fluent design widgets library based on QtPy"
+keywords = ["qtpy fluent widgets"]
+license = {text = "GPLv3"}
+name = "QtPy-Fluent-Widgets"
+readme = "README.md"
+requires-python = ">=3.7,<3.10"
+version = "0.0.1"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
+Documentation = "https://pyqt-fluent-widgets.readthedocs.io/"
+Homepage = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
+"Source Code" = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
+
+[project.optional-dependencies]
+full = [
+  "colorthief",
+  "pillow",
+  "scipy",
+]
+pyqt = [
+    "pyside2>=5.15.2.1",
+    "pyside6>=6.5.0",
+    "pyqt5>=5.15.9",
+    "pyqt6>=6.4.2",
+]
+
+[build-system]
+build-backend = "pdm.pep517.api"
+requires = ["pdm-pep517>=1.0.0"]

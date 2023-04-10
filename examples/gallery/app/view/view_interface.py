@@ -1,7 +1,7 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator
-from qfluentwidgets import TreeWidget
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QWidget, QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator
+from qtfluentwidgets import TreeWidget
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -15,7 +15,7 @@ class ViewInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.view,
-            subtitle="qfluentwidgets.components.widgets",
+            subtitle="qtfluentwidgets.components.widgets",
             parent=parent
         )
 
