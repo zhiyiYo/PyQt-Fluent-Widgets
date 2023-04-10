@@ -1,9 +1,9 @@
 # coding:utf-8
-from qtpy.QtCore import Qt, QRectF
-from qtpy.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath
-from qtpy.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtCore import Qt, QRectF
+from PyQt5.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
 
-from qtfluentwidgets import ScrollArea, isDarkTheme, FluentIcon
+from qfluentwidgets import ScrollArea, isDarkTheme, FluentIcon
 from ..common.config import cfg, HELP_URL, REPO_URL, EXAMPLE_URL, FEEDBACK_URL
 from ..common.icon import Icon
 from ..components.link_card import LinkCardView

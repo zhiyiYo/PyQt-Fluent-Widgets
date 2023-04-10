@@ -1,8 +1,9 @@
 # coding:utf-8
 import sys
-from qtfluentwidgets import SwitchButton
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QApplication, QWidget
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget
+
+from qfluentwidgets import SwitchButton
 
 
 class Window(QWidget):

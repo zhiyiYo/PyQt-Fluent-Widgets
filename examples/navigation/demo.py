@@ -1,14 +1,13 @@
 # coding:utf-8
 import sys
-from qtfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
+from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
+
+from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme, setThemeColor)
-from qtfluentwidgets import FluentIcon as FIF
-from qtframelesswindow import FramelessWindow, StandardTitleBar
-from qtpy.QtCore import Qt, QRect
-from qtpy.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
-from qtpy.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
-
-
+from qfluentwidgets import FluentIcon as FIF
+from qframelesswindow import FramelessWindow, StandardTitleBar
 
 
 class Widget(QFrame):

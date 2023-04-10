@@ -1,8 +1,8 @@
 # coding:utf-8
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
 
-from qtfluentwidgets import IconWidget, TextWrap, FlowLayout
+from qfluentwidgets import IconWidget, TextWrap, FlowLayout
 from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
 

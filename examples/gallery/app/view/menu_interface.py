@@ -1,8 +1,8 @@
 # coding:utf-8
-from qtpy.QtCore import QPoint
-from qtpy.QtWidgets import QAction
-from qtfluentwidgets import RoundMenu, PushButton
-from qtfluentwidgets import FluentIcon as FIF
+from PyQt5.QtCore import QPoint
+from PyQt5.QtWidgets import QAction
+from qfluentwidgets import RoundMenu, PushButton
+from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -15,7 +15,7 @@ class MenuInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.menus,
-            subtitle='qtfluentwidgets.components.widgets',
+            subtitle='qfluentwidgets.components.widgets',
             parent=parent
         )
 

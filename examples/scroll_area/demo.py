@@ -1,10 +1,9 @@
 # coding:utf-8
 import sys
-from qtfluentwidgets import SmoothScrollArea, PixmapLabel
-from qtpy.QtCore import QEasingCurve, Qt
-from qtpy.QtGui import QPixmap
-from qtpy.QtWidgets import QApplication
-
+from PyQt5.QtCore import QEasingCurve, Qt
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication
+from qfluentwidgets import SmoothScrollArea, PixmapLabel
 
 
 class Demo(SmoothScrollArea):

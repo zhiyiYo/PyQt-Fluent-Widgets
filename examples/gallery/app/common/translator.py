@@ -1,5 +1,5 @@
 # coding: utf-8
-from qtpy.QtCore import QObject
+from PyQt5.QtCore import QObject
 
 
 class Translator(QObject):
@@ -15,4 +15,3 @@ class Translator(QObject):
         self.layout = self.tr('Layout')
         self.text = self.tr('Text')
         self.icons = self.tr('Icons')
-        self.view = self.tr('View')

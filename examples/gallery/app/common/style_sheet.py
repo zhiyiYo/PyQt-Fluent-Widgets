@@ -1,7 +1,7 @@
 # coding: utf-8
 from enum import Enum
 
-from qtfluentwidgets import StyleSheetBase, Theme, isDarkTheme, qconfig
+from qfluentwidgets import StyleSheetBase, Theme, isDarkTheme, qconfig
 
 
 class StyleSheet(StyleSheetBase, Enum):
@@ -12,7 +12,6 @@ class StyleSheet(StyleSheetBase, Enum):
     SAMPLE_CARD = "sample_card"
     HOME_INTERFACE = "home_interface"
     ICON_INTERFACE = "icon_interface"
-    VIEW_INTERFACE = "view_interface"
     SETTING_INTERFACE = "setting_interface"
     GALLERY_INTERFACE = "gallery_interface"
 

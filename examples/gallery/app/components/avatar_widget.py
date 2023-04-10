@@ -1,7 +1,7 @@
 # coding: utf-8
-from qtpy.QtCore import Qt, QRect
-from qtpy.QtGui import QPainter, QImage, QBrush, QColor, QFont
-from qtfluentwidgets import NavigationWidget, isDarkTheme
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtGui import QPainter, QImage, QBrush, QColor, QFont
+from qfluentwidgets import NavigationWidget, isDarkTheme
 
 
 class AvatarWidget(NavigationWidget):

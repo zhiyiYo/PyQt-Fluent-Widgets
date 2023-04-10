@@ -1,13 +1,13 @@
 # coding: utf-8
 from typing import List
-from qtpy.QtCore import Qt, Signal, QEasingCurve
-from qtpy.QtGui import QIcon
-from qtpy.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
+from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
-from qtfluentwidgets import (NavigationInterface, NavigationItemPostion, MessageBox,
+from qfluentwidgets import (NavigationInterface, NavigationItemPostion, MessageBox,
                             isDarkTheme, PopUpAniStackedWidget)
-from qtfluentwidgets import FluentIcon as FIF
-from qtframelesswindow import FramelessWindow
+from qfluentwidgets import FluentIcon as FIF
+from qframelesswindow import FramelessWindow
 
 from .title_bar import CustomTitleBar
 from .gallery_interface import GalleryInterface
@@ -22,7 +22,6 @@ from .scroll_interface import ScrollInterface
 from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
 from .text_interface import TextInterface
-from .view_interface import ViewInterface
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
@@ -32,7 +31,7 @@ from ..common.style_sheet import StyleSheet
 class StackedWidget(QFrame):
     """ Stacked widget """
 
-    currentWidgetChanged = Signal(QWidget)
+    currentWidgetChanged = pyqtSignal(QWidget)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -84,7 +83,6 @@ class MainWindow(FramelessWindow):
         self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
         self.textInterface = TextInterface(self)
-        self.viewInterface = ViewInterface(self)
 
         self.stackWidget.addWidget(self.homeInterface)
         self.stackWidget.addWidget(self.iconInterface)
@@ -97,7 +95,6 @@ class MainWindow(FramelessWindow):
         self.stackWidget.addWidget(self.statusInfoInterface)
         self.stackWidget.addWidget(self.settingInterface)
         self.stackWidget.addWidget(self.textInterface)
-        self.stackWidget.addWidget(self.viewInterface)
 
         # initialize layout
         self.initLayout()
@@ -135,7 +132,6 @@ class MainWindow(FramelessWindow):
         self.scrollInterface.setObjectName('scrollInterface')
         self.settingInterface.setObjectName('settingsInterface')
         self.textInterface.setObjectName('textInterface')
-        self.viewInterface.setObjectName('viewInterface')
 
         # add navigation items
         self.navigationInterface.addItem(
@@ -206,13 +202,6 @@ class MainWindow(FramelessWindow):
             icon=Icon.TEXT,
             text=self.tr('Text'),
             onClick=lambda t: self.switchTo(self.textInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.viewInterface.objectName(),
-            icon=Icon.GRID,
-            text=self.tr('View'),
-            onClick=lambda t: self.switchTo(self.viewInterface, t),
             position=NavigationItemPostion.SCROLL
         )
 

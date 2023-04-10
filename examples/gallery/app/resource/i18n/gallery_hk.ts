@@ -270,69 +270,64 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="141"/>
+        <location filename="../../view/main_window.py" line="137"/>
         <source>Home</source>
         <translation>主頁</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="155"/>
+        <location filename="../../view/main_window.py" line="151"/>
         <source>Basic input</source>
         <translation>基本輸入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="162"/>
+        <location filename="../../view/main_window.py" line="158"/>
         <source>Dialogs</source>
         <translation>對話框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="169"/>
+        <location filename="../../view/main_window.py" line="165"/>
         <source>Layout</source>
         <translation>佈局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="183"/>
+        <location filename="../../view/main_window.py" line="179"/>
         <source>Menus</source>
         <translation>菜單</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="176"/>
+        <location filename="../../view/main_window.py" line="172"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="190"/>
+        <location filename="../../view/main_window.py" line="186"/>
         <source>Scrolling</source>
         <translation>滾動</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="197"/>
+        <location filename="../../view/main_window.py" line="193"/>
         <source>Status &amp; info</source>
         <translation>狀態和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="266"/>
+        <location filename="../../view/main_window.py" line="255"/>
         <source>This is a help message</source>
         <translation>一條友善的提示</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="266"/>
+        <location filename="../../view/main_window.py" line="255"/>
         <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
         <translation>你點擊了一個自定義的導航項。你可以通過 `NavigationInterface.addWidget()` 添加更多的自定義導航項。</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="204"/>
+        <location filename="../../view/main_window.py" line="200"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="147"/>
+        <location filename="../../view/main_window.py" line="143"/>
         <source>Icons</source>
         <translation>圖標</translation>
-    </message>
-    <message>
-        <location filename="../../view/main_window.py" line="211"/>
-        <source>View</source>
-        <translation>視圖</translation>
     </message>
 </context>
 <context>
@@ -917,57 +912,6 @@
         <location filename="../../common/translator.py" line="17"/>
         <source>Icons</source>
         <translation>圖標</translation>
-    </message>
-    <message>
-        <location filename="../../common/translator.py" line="18"/>
-        <source>View</source>
-        <translation>視圖</translation>
-    </message>
-</context>
-<context>
-    <name>TreeFrame</name>
-    <message>
-        <location filename="../../view/view_interface.py" line="59"/>
-        <source>JoJo 1 - Phantom Blood</source>
-        <translation>JoJo 1 - 幻影之血</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="60"/>
-        <source>Jonathan Joestar</source>
-        <translation>喬納森·喬斯達</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="60"/>
-        <source>Dio Brando</source>
-        <translation>迪奧·佈蘭度</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="60"/>
-        <source>Will A. Zeppeli</source>
-        <translation>威廉·A·齊貝林</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="67"/>
-        <source>JoJo 3 - Stardust Crusaders</source>
-        <translation>JoJo3 - 星塵鬥士</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="68"/>
-        <source>Jotaro Kujo</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>ViewInterface</name>
-    <message>
-        <location filename="../../view/view_interface.py" line="23"/>
-        <source>A simple TreeView</source>
-        <translation>簡單的樹狀組件</translation>
-    </message>
-    <message>
-        <location filename="../../view/view_interface.py" line="30"/>
-        <source>A TreeView with Multi-selection enabled</source>
-        <translation>啟用複選框的樹狀組件</translation>
     </message>
 </context>
 </TS>

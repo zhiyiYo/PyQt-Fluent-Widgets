@@ -1,9 +1,9 @@
 # coding:utf-8
 import sys
-from qtfluentwidgets import InfoBarIcon, InfoBar, PushButton, setTheme, Theme, FluentIcon, InfoBarPosition
-from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QApplication, QWidget, QHBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
 
+from qfluentwidgets import InfoBarIcon, InfoBar, PushButton, setTheme, Theme, FluentIcon, InfoBarPosition
 
 
 class Demo(QWidget):

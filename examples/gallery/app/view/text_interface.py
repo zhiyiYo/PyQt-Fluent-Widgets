@@ -1,5 +1,5 @@
 # coding:utf-8
-from qtfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit
+from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -12,7 +12,7 @@ class TextInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.text,
-            subtitle="qtfluentwidgets.components.widgets",
+            subtitle="qfluentwidgets.components.widgets",
             parent=parent
         )
 

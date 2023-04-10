@@ -1,7 +1,7 @@
 # coding:utf-8
 from enum import Enum
 
-from qtfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
+from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             OptionsValidator, RangeConfigItem, RangeValidator,
                             FolderListValidator, EnumSerializer, FolderValidator)
 

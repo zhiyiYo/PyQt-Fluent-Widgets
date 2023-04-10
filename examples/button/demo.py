@@ -1,10 +1,10 @@
 # coding:utf-8
 import sys
-from qtfluentwidgets import PushButton, PrimaryPushButton, HyperlinkButton, setTheme, Theme, ToolButton
-from qtfluentwidgets import FluentIcon as FIF
-from qtpy.QtCore import Qt, QSize
-from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
 
+from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from qfluentwidgets import PushButton, PrimaryPushButton, HyperlinkButton, setTheme, Theme, ToolButton
+from qfluentwidgets import FluentIcon as FIF
 
 
 class Demo(QWidget):

@@ -1,12 +1,13 @@
 # coding:utf-8
 import os
 import sys
-from qtframelesswindow import FramelessWindow, StandardTitleBar
-from qtfluentwidgets import isDarkTheme
-from qtpy.QtCore import Qt, QLocale, QTranslator
-from qtpy.QtGui import QIcon
-from qtpy.QtWidgets import QApplication, QHBoxLayout
 
+from PyQt5.QtCore import Qt, QLocale, QTranslator
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QHBoxLayout
+
+from qframelesswindow import FramelessWindow, StandardTitleBar
+from qfluentwidgets import isDarkTheme
 from setting_interface import SettingInterface
 from config import cfg, Language
 
@@ -63,9 +64,9 @@ if __name__ == '__main__':
     language = cfg.get(cfg.language)
 
     if language == Language.AUTO:
-        translator.load(QLocale.system(), "resource/i18n/qtfluentwidgets_")
+        translator.load(QLocale.system(), "resource/i18n/qfluentwidgets_")
     elif language != Language.ENGLISH:
-        translator.load(f"resource/i18n/qtfluentwidgets_{language.value}.qm")
+        translator.load(f"resource/i18n/qfluentwidgets_{language.value}.qm")
 
     app.installTranslator(translator)
 
