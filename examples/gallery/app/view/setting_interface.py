@@ -96,7 +96,7 @@ class SettingInterface(ScrollArea):
             self.tr('Material'), self.scrollWidget)
         self.blurRadiusCard = RangeSettingCard(
             cfg.blurRadius,
-            Icon.ALBUM,
+            FIF.ALBUM,
             self.tr('Acrylic blur radius'),
             self.tr('The greater the radius, the more blurred the image'),
             self.materialGroup

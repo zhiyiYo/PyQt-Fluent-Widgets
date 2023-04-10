@@ -21,7 +21,7 @@ class ScrollInterface(GalleryInterface):
 
         w = ScrollArea()
         label = PixmapLabel(self)
-        label.setPixmap(QPixmap("app/resource/images/chidanta2.jpg").scaled(
+        label.setPixmap(QPixmap(":/gallery/images/chidanta2.jpg").scaled(
             775, 1229, Qt.KeepAspectRatio, Qt.SmoothTransformation
         ))
 
@@ -41,7 +41,7 @@ class ScrollInterface(GalleryInterface):
 
         w = SmoothScrollArea()
         label = PixmapLabel(self)
-        label.setPixmap(QPixmap("app/resource/images/chidanta3.jpg"))
+        label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
 
         w.setWidget(label)
         w.setFixedSize(659, 540)
