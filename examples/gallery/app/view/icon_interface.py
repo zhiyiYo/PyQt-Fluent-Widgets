@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import List
 
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QApplication, QFrame, QVBoxLayout, QLabel, QWidget, QHBoxLayout
-from qfluentwidgets import (FluentIcon, IconWidget, FlowLayout, isDarkTheme,
+from qtpy.QtCore import Qt, Signal
+from qtpy.QtWidgets import QApplication, QFrame, QVBoxLayout, QLabel, QWidget, QHBoxLayout
+from qtfluentwidgets import (FluentIcon, IconWidget, FlowLayout, isDarkTheme,
                             Theme, applyThemeColor, SmoothScrollArea, SearchLineEdit)
 
 from .gallery_interface import GalleryInterface
@@ -26,7 +26,7 @@ class LineEdit(SearchLineEdit):
 class IconCard(QFrame):
     """ Icon card """
 
-    clicked = pyqtSignal(FluentIcon)
+    clicked = Signal(FluentIcon)
 
     def __init__(self, icon: FluentIcon, parent=None):
         super().__init__(parent=parent)
@@ -219,7 +219,7 @@ class IconInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.icons,
-            subtitle="qfluentwidgets.common.icon",
+            subtitle="qtfluentwidgets.common.icon",
             parent=parent
         )
 

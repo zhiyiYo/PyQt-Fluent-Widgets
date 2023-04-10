@@ -1,9 +1,10 @@
 # coding:utf-8
 import os
 import sys
-
-from PyQt5.QtCore import Qt, QLocale, QTranslator
-from PyQt5.QtWidgets import QApplication
+from qtfluentwidgets import set_qt_api
+set_qt_api("pyqt5",parse=True)
+from qtpy.QtCore import Qt, QLocale, QTranslator
+from qtpy.QtWidgets import QApplication
 
 from app.common.config import cfg, Language
 from app.view.main_window import MainWindow
@@ -30,10 +31,10 @@ galleryTranslator = QTranslator()
 language = cfg.get(cfg.language)
 
 if language == Language.AUTO:
-    translator.load(QLocale.system(), "app/resource/i18n/qfluentwidgets_")
+    translator.load(QLocale.system(), "app/resource/i18n/qtfluentwidgets_")
     galleryTranslator.load(QLocale.system(), "app/resource/i18n/gallery_")
 elif language != Language.ENGLISH:
-    translator.load(f"app/resource/i18n/qfluentwidgets_{language.value}.qm")
+    translator.load(f"app/resource/i18n/qtfluentwidgets_{language.value}.qm")
     galleryTranslator.load(f"app/resource/i18n/gallery_{language.value}.qm")
 
 app.installTranslator(translator)

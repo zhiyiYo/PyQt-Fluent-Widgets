@@ -19,7 +19,7 @@ config.json
 # 忽略下载文件夹
 download/
 
-# 忽略测试文件夹
+# 忽略测试文件
 test/
 
 # Byte-compiled / optimized / DLL files

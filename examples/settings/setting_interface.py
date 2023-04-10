@@ -1,24 +1,24 @@
 # coding:utf-8
 from config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
-from qfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
+from qtfluentwidgets import (SettingCardGroup, SwitchSettingCard, FolderListSettingCard,
                             OptionsSettingCard, RangeSettingCard, PushSettingCard,
                             ColorSettingCard, HyperlinkCard, PrimaryPushSettingCard, ScrollArea,
                             ComboBoxSettingCard, ExpandLayout, Theme, InfoBar, CustomColorSettingCard,
                             setTheme, setThemeColor, isDarkTheme)
-from qfluentwidgets import FluentIcon as FIF
-from PyQt5.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
+from qtfluentwidgets import FluentIcon as FIF
+from qtpy.QtCore import Qt, Signal, QUrl, QStandardPaths
+from qtpy.QtGui import QDesktopServices
+from qtpy.QtWidgets import QWidget, QLabel, QFontDialog, QFileDialog
 
 
 class SettingInterface(ScrollArea):
     """ Setting interface """
 
-    checkUpdateSig = pyqtSignal()
-    musicFoldersChanged = pyqtSignal(list)
-    acrylicEnableChanged = pyqtSignal(bool)
-    downloadFolderChanged = pyqtSignal(str)
-    minimizeToTrayChanged = pyqtSignal(bool)
+    checkUpdateSig = Signal()
+    musicFoldersChanged = Signal(list)
+    acrylicEnableChanged = Signal(bool)
+    downloadFolderChanged = Signal(str)
+    minimizeToTrayChanged = Signal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -298,7 +298,7 @@ class SettingInterface(ScrollArea):
 
     def __onThemeChanged(self, theme: Theme):
         """ theme changed slot """
-        # change the theme of qfluentwidgets
+        # change the theme of qtfluentwidgets
         setTheme(theme)
 
         # chang the theme of setting interface

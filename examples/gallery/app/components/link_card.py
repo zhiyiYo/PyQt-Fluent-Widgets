@@ -1,9 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QUrl
-from PyQt5.QtGui import QPixmap, QDesktopServices
-from PyQt5.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget, QHBoxLayout
+from qtpy.QtCore import Qt, QUrl
+from qtpy.QtGui import QPixmap, QDesktopServices
+from qtpy.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget, QHBoxLayout
 
-from qfluentwidgets import IconWidget, FluentIcon, TextWrap, ScrollArea
+from qtfluentwidgets import IconWidget, FluentIcon, TextWrap, ScrollArea
 from ..common.style_sheet import StyleSheet
 
 
