@@ -59,7 +59,6 @@ class ComboBoxBase(QObject):
         self.isHover = False
         self.isPressed = False
         self.items = []     # type: List[ComboItem]
-        self.itemMap = {}   # type: Dict[str, ComboItem]
         self._currentIndex = -1
         self.dropMenu = None
 
@@ -91,7 +90,6 @@ class ComboBoxBase(QObject):
         """
 
         item = ComboItem(text, icon, userData)
-        self.itemMap[text] = item
         self.items.append(item)
 
     def addItems(self, texts: Iterable[str]):
@@ -114,7 +112,6 @@ class ComboBoxBase(QObject):
 
         item = self.items[index]
         self.items.pop(index)
-        self.itemMap.pop(item.text)
 
         if index < self.currentIndex():
             self._onItemClicked(self._currentIndex - 1)
@@ -168,10 +165,12 @@ class ComboBoxBase(QObject):
         text: str
             text displayed in combo box
         """
-        if text not in self.itemMap or text == self.currentText():
+        if text == self.currentText():
             return
 
-        self.setCurrentIndex(self.items.index(self.itemMap[text]))
+        index = self.findText(text)
+
+        self.setCurrentIndex(self.items.index(index))
 
     def setItemText(self, index, text):
         """ set the text of item
@@ -184,7 +183,7 @@ class ComboBoxBase(QObject):
         text: str
             new text of item
         """
-        if text in self.itemMap or not 0 <= index < len(self.items):
+        if not 0 <= index < len(self.items):
             return
 
         self.items[index].text = text
@@ -232,10 +231,10 @@ class ComboBoxBase(QObject):
 
     def findText(self, text: str):
         """ Returns the index of the item containing the given text; otherwise returns -1. """
-        if text not in self.itemMap:
-            return -1
-
-        return self.items.index(self.itemMap[text])
+        for i, item in enumerate(self.items):
+            if item.text == text:
+                return i
+        return -1
 
     def clear(self):
         """ Clears the combobox, removing all items. """
@@ -243,7 +242,6 @@ class ComboBoxBase(QObject):
             self.setText('')
 
         self.items.clear()
-        self.itemMap.clear()
         self._currentIndex = -1
 
     def count(self):
@@ -252,12 +250,11 @@ class ComboBoxBase(QObject):
 
     def insertItem(self, index: int, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
         """ Inserts item into the combobox at the given index. """
-        if not text or text in self.itemMap:
+        if not text:
             return
 
         item = ComboItem(text, icon, userData)
         self.items.insert(index, item)
-        self.itemMap[text] = item
 
         if index <= self.currentIndex():
             self._onItemClicked(self.currentIndex() + 1)
@@ -266,12 +263,9 @@ class ComboBoxBase(QObject):
         """ Inserts items into the combobox, starting at the index specified. """
         pos = index
         for text in texts:
-            if not text or text in self.itemMap:
-                continue
 
             item = ComboItem(text)
             self.items.insert(pos, item)
-            self.itemMap[text] = item
             pos += 1
 
         if index <= self.currentIndex():
@@ -379,13 +373,21 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.textEdited.connect(self._onTextEdited)
         self.returnPressed.connect(lambda: self.addItem(self.text()))
 
-    def _onTextEdited(self, text: str):
-        if text not in self.itemMap:
-            self._currentIndex = -1
-        else:
-            self._currentIndex = self.items.index(self.itemMap[text])
+    def addItem(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
+        if not text or self.findText(text) >= 0:
+            return
 
-        self.currentTextChanged.emit(text)
+        item = ComboItem(text, icon, userData)
+        self.items.append(item)
+
+    def _onTextEdited(self, text: str):
+        self._currentIndex = -1
+        for i, item in enumerate(self.items):
+            if item.text == text:
+                self._currentIndex = i
+                self.currentTextChanged.emit(text)
+                self.currentIndexChanged.emit(i)
+                return
 
     def _onDropMenuClosed(self):
         self.dropMenu = None
