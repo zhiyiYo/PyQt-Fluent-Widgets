@@ -89,8 +89,6 @@ class ComboBoxBase(QObject):
 
         icon: str | QIcon | FluentIconBase
         """
-        if not text or text in self.itemMap:
-            return
 
         item = ComboItem(text, icon, userData)
         self.itemMap[text] = item
@@ -189,9 +187,7 @@ class ComboBoxBase(QObject):
         if text in self.itemMap or not 0 <= index < len(self.items):
             return
 
-        item = self.itemMap.pop(self.items[index].text)
-        item.text = text
-        self.itemMap[text] = item
+        self.items[index].text = text
         if self.currentIndex() == index:
             self.setText(text)
 
