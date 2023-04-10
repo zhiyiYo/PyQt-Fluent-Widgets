@@ -26,7 +26,7 @@ class TreeItemDelegate(QStyledItemDelegate):
         c = 255 if isDarkTheme() else 0
         painter.setBrush(QColor(c, c, c, 9))
         painter.drawRoundedRect(
-            4, option.rect.y() + 2, self.parent().width() - 12, h, 4, 4)
+            4, option.rect.y() + 2, self.parent().width() - 8, h, 4, 4)
 
         # draw indicator
         if option.state & QStyle.State_Selected:

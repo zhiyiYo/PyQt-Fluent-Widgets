@@ -1,0 +1,85 @@
+GalleryInterface,
+ToolBar,
+#view {
+    background-color: transparent;
+}
+
+QScrollArea {
+    border: none;
+}
+
+ToolBar > #titleLabel {
+    font: 28px 'Segoe UI SemiBold', 'Microsoft YaHei';
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+}
+
+ToolBar > #subtitleLabel {
+    font: 12px 'Segoe UI', 'Microsoft YaHei';
+    background-color: transparent;
+    color: white;
+}
+
+ExampleCard {
+    background-color: transparent;
+}
+
+ExampleCard>#card {
+    border: 1px solid rgb(32, 32, 32);
+    border-radius: 10px;
+    background-color: rgb(36, 36, 36);
+}
+
+ExampleCard>#titleLabel {
+    font: 14px 'Segoe UI Light', 'Microsoft YaHei';
+    background-color: transparent;
+    font-weight: 700;
+    color: white;
+}
+
+#sourceWidget {
+    background-color: rgb(51, 51, 51);
+    border-top: 1px solid rgb(36, 36, 36);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#sourcePathLabel {
+    color: white;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+QScrollBar {
+    background: transparent;
+    width: 4px;
+    margin-top: 132px;
+    margin-bottom: 0;
+    padding-right: 2px;
+}
+
+#imageViewer QScrollBar {
+    margin-top: 0px;
+}
+
+/*隐藏上箭头*/
+QScrollBar::sub-line {
+    background: transparent;
+}
+
+/*隐藏下箭头*/
+QScrollBar::add-line {
+    background: transparent;
+}
+
+QScrollBar::handle {
+    background: rgb(122, 122, 122);
+    border: 2px solid rgb(128, 128, 128);
+    border-radius: 1px;
+    min-height: 32px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
