@@ -189,7 +189,7 @@ class ComboBoxBase(QObject):
         if text in self.itemMap or not 0 <= index < len(self.items):
             return
 
-        item = self.itemMap.pop()
+        item = self.itemMap.pop(self.items[index].text)
         item.text = text
         self.itemMap[text] = item
         if self.currentIndex() == index:
