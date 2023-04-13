@@ -98,6 +98,16 @@ class NavigationInterface(QWidget):
         self.panel.addSeparator(position)
         self.setMinimumHeight(self.panel.layoutMinHeight())
 
+    def removeWidget(self, routeKey: str):
+        """ remove widget
+
+        Parameters
+        ----------
+        routKey: str
+            the unique name of item
+        """
+        self.panel.removeWidget(routeKey)
+
     def setCurrentItem(self, name: str):
         """ set current selected item
 
