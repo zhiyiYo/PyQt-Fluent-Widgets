@@ -26,9 +26,9 @@ ExampleCard {
 }
 
 ExampleCard>#card {
-    border: 1px solid rgb(32, 32, 32);
+    border: 1px solid rgb(36, 36, 36);
     border-radius: 10px;
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(32, 32, 32);
 }
 
 ExampleCard>#titleLabel {

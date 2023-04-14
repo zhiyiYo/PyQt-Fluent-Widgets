@@ -1,7 +1,7 @@
 PushButton, ToolButton {
-    background: rgb(53, 53, 53);
-    border: 1px solid rgb(55, 55, 55);
-    border-top: 1px solid rgb(60, 60, 60);
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 5px;
     color: white;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
@@ -22,20 +22,20 @@ PushButton[hasIcon=true] {
 }
 
 PushButton:hover, ToolButton:hover {
-    background: rgb(58, 58, 58);
+    background: rgba(255, 255, 255, 0.0837);
 }
 
 PushButton:pressed, ToolButton:pressed {
-    color: rgba(255, 255, 255, 0.63);
-    background: rgb(47, 47, 47);
-    border: 1px solid rgb(55, 55, 55);
-    border-top: 1px solid rgb(55, 55, 55);
+    color: rgba(255, 255, 255, 0.786);
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
 PushButton:disabled, ToolButton:disabled {
-    color: rgba(255, 255, 255, 0.43);
-    background: rgb(50, 50, 50);
-    border: 1px solid rgb(54, 54, 54);
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
 
@@ -151,4 +151,18 @@ RadioButton:disabled {
 RadioButton::indicator:disabled {
     border: 2px solid #646464;
     background-color: transparent;
+}
+
+TransparentToolButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+TransparentToolButton:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+TransparentToolButton:pressed {
+    background-color: rgba(255, 255, 255, 6);
 }
