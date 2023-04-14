@@ -311,10 +311,9 @@ class ColorDialog(MaskDialogBase):
 
     def __onYesButtonClicked(self):
         """ yes button clicked slot """
+        self.accept()
         if self.color != self.oldColor:
             self.colorChanged.emit(self.color)
-
-        self.close()
 
     def updateStyle(self):
         """ update style sheet """
@@ -324,7 +323,7 @@ class ColorDialog(MaskDialogBase):
 
     def __connectSignalToSlot(self):
         """ connect signal to slot """
-        self.cancelButton.clicked.connect(self.close)
+        self.cancelButton.clicked.connect(self.reject)
         self.yesButton.clicked.connect(self.__onYesButtonClicked)
 
         self.huePanel.colorChanged.connect(self.__onHueChanged)
