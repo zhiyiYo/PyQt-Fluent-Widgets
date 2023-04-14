@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QLabel, QWidget, QVBoxLayout
 
-from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
+from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme, setThemeColor, NavigationToolButton, NavigationPanel)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
@@ -52,7 +52,7 @@ class NavigationBar(QWidget):
         self.navigationPanel.raise_()
         self.navigationPanel.expand()
 
-    def addItem(self, routeKey, icon, text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey, icon, text: str, onClick, selectable=True, position=NavigationItemPosition.TOP):
         def wrapper():
             onClick()
             self.setTitle(text)
@@ -60,7 +60,7 @@ class NavigationBar(QWidget):
         self.navigationPanel.addItem(
             routeKey, icon, text, wrapper, selectable, position)
 
-    def addSeparator(self, position=NavigationItemPostion.TOP):
+    def addSeparator(self, position=NavigationItemPosition.TOP):
         self.navigationPanel.addSeparator(position)
 
     def setCurrentItem(self, routeKey: str):
@@ -144,7 +144,7 @@ class Window(FramelessWindow):
             icon=FIF.FOLDER,
             text='Folder library',
             onClick=lambda: self.switchTo(self.folderInterface),
-            position=NavigationItemPostion.SCROLL
+            position=NavigationItemPosition.SCROLL
         )
 
         # add custom widget to bottom
@@ -153,7 +153,7 @@ class Window(FramelessWindow):
             icon=FIF.SETTING,
             text='Settings',
             onClick=lambda: self.switchTo(self.settingInterface),
-            position=NavigationItemPostion.BOTTOM
+            position=NavigationItemPosition.BOTTOM
         )
 
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
