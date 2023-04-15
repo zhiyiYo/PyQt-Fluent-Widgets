@@ -4,6 +4,7 @@
 
 
 @media (prefers-color-scheme: dark) {
+
     body:not([data-theme="light"]) .sig-inline,
     body:not([data-theme="light"]) code.literal {
         padding: 2px 5px;
@@ -28,6 +29,7 @@
 }
 
 @media (prefers-color-scheme: light) {
+
     body:not([data-theme="dark"]) .sig-inline,
     body:not([data-theme="dark"]) code.literal {
         background: white;
@@ -60,4 +62,39 @@ table.docutils td,
 table.docutils th {
     border-left: 1px solid var(--color-table-border);
     border-right: 1px solid var(--color-table-border);
+}
+
+a[data-fancybox] img {
+    cursor: zoom-in;
+}
+
+a[data-fancybox]::after {
+    display: none !important;
+}
+
+.fancybox-zoomIn {
+    animation: 0.5s ease both fancybox-zoom-in;
+}
+
+.fancybox-zoomOut {
+    animation: 0.5s ease both fancybox-zoom-out;
+}
+
+@keyframes fancybox-zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fancybox-zoom-out {
+    to {
+        opacity: 0;
+        transform: scale(1.25);
+    }
 }

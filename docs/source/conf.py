@@ -82,7 +82,12 @@ html_show_sourcelink = True
 html_title = "PyQt-Fluent-Widgets"
 html_favicon = "_static/logo.png"
 html_css_files = [
+    'css/fancybox.css',
     'css/custom.css',
+]
+html_js_files = [
+    'js/fancybox.umd.js',
+    'js/fancybox.js',
 ]
 
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
