@@ -113,19 +113,19 @@ msgid ""
 msgstr "`position`：导航项的位置。可以是下述值中的一种："
 
 #: ../../source/navigation.md:65 fb93ac308db7433aac643e5cb4b3323b
-msgid "NavigationItemPostion.TOP: add widget to the top layout of panel."
-msgstr "`NavigationItemPostion.TOP`：添加到导航面板的顶部"
+msgid "NavigationItemPosition.TOP: add widget to the top layout of panel."
+msgstr "`NavigationItemPosition.TOP`：添加到导航面板的顶部"
 
 #: ../../source/navigation.md:66 39907f60028e4e09845a977cf76331e8
 msgid ""
-"NavigationItemPostion.SCROLL: add widget to the scroll layout of panel. "
+"NavigationItemPosition.SCROLL: add widget to the scroll layout of panel. "
 "You can scroll the widgets in scroll layout when there are too many menu "
 "items."
-msgstr "`NavigationItemPostion.SCROLL`：添加到导航面板的滚动区域。当导航菜单项太多时，滚动区域中导航项可以被滚动"
+msgstr "`NavigationItemPosition.SCROLL`：添加到导航面板的滚动区域。当导航菜单项太多时，滚动区域中导航项可以被滚动"
 
 #: ../../source/navigation.md:67 497c2a8d524e46439197e3a29cea8ce9
-msgid "NavigationItemPostion.BOTTOM: add widget to the bottom layout of panel."
-msgstr "`NavigationItemPostion.BOTTOM`: 添加到导航面板的底部"
+msgid "NavigationItemPosition.BOTTOM: add widget to the bottom layout of panel."
+msgstr "`NavigationItemPosition.BOTTOM`: 添加到导航面板的底部"
 
 #: ../../source/navigation.md:69 1366840db80d4e528f15a5243fcf499d
 msgid "Display mode"

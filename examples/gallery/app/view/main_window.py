@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
-from qfluentwidgets import (NavigationInterface, NavigationItemPostion, MessageBox,
+from qfluentwidgets import (NavigationInterface, NavigationItemPosition, MessageBox,
                             isDarkTheme, PopUpAniStackedWidget)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
@@ -125,113 +125,43 @@ class MainWindow(FramelessWindow):
         self.titleBar.raise_()
 
     def initNavigation(self):
-        self.homeInterface.setObjectName('homeInterface')
-        self.iconInterface.setObjectName('iconInterface')
-        self.basicInputInterface.setObjectName('basicInputInterface')
-        self.dialogInterface.setObjectName('dialogInterface')
-        self.layoutInterface.setObjectName('layoutInterface')
-        self.menuInterface.setObjectName('menuInterface')
-        self.materialInterface.setObjectName('materialInterface')
-        self.statusInfoInterface.setObjectName('statusInfoInterface')
-        self.scrollInterface.setObjectName('scrollInterface')
         self.settingInterface.setObjectName('settingsInterface')
-        self.textInterface.setObjectName('textInterface')
-        self.viewInterface.setObjectName('viewInterface')
 
         # add navigation items
-        self.navigationInterface.addItem(
-            routeKey=self.homeInterface.objectName(),
-            icon=FIF.HOME,
-            text=self.tr('Home'),
-            onClick=lambda t: self.switchTo(self.homeInterface, t)
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.iconInterface.objectName(),
-            icon=Icon.EMOJI_TAB_SYMBOLS,
-            text=self.tr('Icons'),
-            onClick=lambda t: self.switchTo(self.iconInterface, t)
-        )
+        self.addSubInterface(
+            self.homeInterface, 'homeInterface', FIF.HOME, self.tr('Home'), NavigationItemPosition.TOP)
+        self.addSubInterface(
+            self.iconInterface, 'iconInterface', Icon.EMOJI_TAB_SYMBOLS, self.tr('Icons'), NavigationItemPosition.TOP)
         self.navigationInterface.addSeparator()
 
-        self.navigationInterface.addItem(
-            routeKey=self.basicInputInterface.objectName(),
-            icon=Icon.CHECKBOX,
-            text=self.tr('Basic input'),
-            onClick=lambda t: self.switchTo(self.basicInputInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.dialogInterface.objectName(),
-            icon=FIF.MESSAGE,
-            text=self.tr('Dialogs'),
-            onClick=lambda t: self.switchTo(self.dialogInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.layoutInterface.objectName(),
-            icon=FIF.LAYOUT,
-            text=self.tr('Layout'),
-            onClick=lambda t: self.switchTo(self.layoutInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.materialInterface.objectName(),
-            icon=FIF.PALETTE,
-            text=self.tr('Material'),
-            onClick=lambda t: self.switchTo(self.materialInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.menuInterface.objectName(),
-            icon=Icon.MENU,
-            text=self.tr('Menus'),
-            onClick=lambda t: self.switchTo(self.menuInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.scrollInterface.objectName(),
-            icon=FIF.SCROLL,
-            text=self.tr('Scrolling'),
-            onClick=lambda t: self.switchTo(self.scrollInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.statusInfoInterface.objectName(),
-            icon=FIF.CHAT,
-            text=self.tr('Status & info'),
-            onClick=lambda t: self.switchTo(self.statusInfoInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.textInterface.objectName(),
-            icon=Icon.TEXT,
-            text=self.tr('Text'),
-            onClick=lambda t: self.switchTo(self.textInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.viewInterface.objectName(),
-            icon=Icon.GRID,
-            text=self.tr('View'),
-            onClick=lambda t: self.switchTo(self.viewInterface, t),
-            position=NavigationItemPostion.SCROLL
-        )
+        self.addSubInterface(
+            self.basicInputInterface, 'basicInputInterface', FIF.CHECKBOX, self.tr('Basic input'))
+        self.addSubInterface(
+            self.dialogInterface, 'dialogInterface', FIF.MESSAGE, self.tr('Dialogs'))
+        self.addSubInterface(
+            self.layoutInterface, 'layoutInterface', FIF.LAYOUT, self.tr('Layout'))
+        self.addSubInterface(
+            self.materialInterface, 'materialInterface', FIF.PALETTE, self.tr('Material'))
+        self.addSubInterface(
+            self.menuInterface, 'menuInterface', Icon.MENU, self.tr('Menus'))
+        self.addSubInterface(
+            self.scrollInterface, 'scrollInterface', FIF.SCROLL, self.tr('Scrolling'))
+        self.addSubInterface(
+            self.statusInfoInterface, 'statusInfoInterface', FIF.CHAT, self.tr('Status & info'))
+        self.addSubInterface(
+            self.textInterface, 'textInterface', Icon.TEXT, self.tr('Text'))
+        self.addSubInterface(
+            self.viewInterface, 'viewInterface', Icon.GRID, self.tr('View'))
 
         # add custom widget to bottom
         self.navigationInterface.addWidget(
             routeKey='avatar',
             widget=AvatarWidget(':/gallery/images/shoko.png'),
             onClick=self.showMessageBox,
-            position=NavigationItemPostion.BOTTOM
+            position=NavigationItemPosition.BOTTOM
         )
-
-        self.navigationInterface.addItem(
-            routeKey=self.settingInterface.objectName(),
-            icon=FIF.SETTING,
-            text='Settings',
-            onClick=lambda t: self.switchTo(self.settingInterface, t),
-            position=NavigationItemPostion.BOTTOM
-        )
+        self.addSubInterface(
+            self.settingInterface, 'settingInterface', FIF.SETTING, self.tr('Settings'), NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
         self.navigationInterface.setDefaultRouteKey(
@@ -242,6 +172,17 @@ class MainWindow(FramelessWindow):
         self.navigationInterface.setCurrentItem(
             self.homeInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
+
+    def addSubInterface(self, interface: QWidget, objectName: str, icon, text:str, position=NavigationItemPosition.SCROLL):
+        """ add sub interface """
+        interface.setObjectName(objectName)
+        self.navigationInterface.addItem(
+            routeKey=objectName,
+            icon=icon,
+            text=text,
+            onClick=lambda t: self.switchTo(interface, t),
+            position=position
+        )
 
     def initWindow(self):
         self.resize(960, 780)

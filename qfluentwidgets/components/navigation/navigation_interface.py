@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QEvent, pyqtSignal
 from PyQt5.QtGui import QResizeEvent, QIcon
 from PyQt5.QtWidgets import QWidget
 
-from .navigation_panel import NavigationPanel, NavigationItemPostion, NavigationWidget, NavigationDisplayMode
+from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationWidget, NavigationDisplayMode
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 
@@ -41,7 +41,7 @@ class NavigationInterface(QWidget):
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True,
-                position=NavigationItemPostion.TOP):
+                position=NavigationItemPosition.TOP):
         """ add navigation item
 
         Parameters
@@ -58,7 +58,7 @@ class NavigationInterface(QWidget):
         onClick: callable
             the slot connected to item clicked signal
 
-        position: NavigationItemPostion
+        position: NavigationItemPosition
             where the button is added
 
         selectable: bool
@@ -67,7 +67,7 @@ class NavigationInterface(QWidget):
         self.panel.addItem(routeKey, icon, text, onClick, selectable, position)
         self.setMinimumHeight(self.panel.layoutMinHeight())
 
-    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
+    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP):
         """ add custom widget
 
         Parameters
@@ -81,13 +81,13 @@ class NavigationInterface(QWidget):
         onClick: callable
             the slot connected to item clicked signal
 
-        position: NavigationItemPostion
+        position: NavigationItemPosition
             where the button is added
         """
         self.panel.addWidget(routeKey, widget, onClick, position)
         self.setMinimumHeight(self.panel.layoutMinHeight())
 
-    def addSeparator(self, position=NavigationItemPostion.TOP):
+    def addSeparator(self, position=NavigationItemPosition.TOP):
         """ add separator
 
         Parameters
