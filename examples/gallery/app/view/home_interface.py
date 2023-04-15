@@ -166,7 +166,7 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout.addWidget(basicInputView)
 
         # date time samples
-        dateTimeView = SampleCardView(self.tr('Dialog samples'), self.view)
+        dateTimeView = SampleCardView(self.tr('Date & time samples'), self.view)
         dateTimeView.addSampleCard(
             icon=":/gallery/images/controls/DatePicker.png",
             title="DatePicker",
@@ -258,7 +258,7 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout.addWidget(scrollView)
 
         # state info samples
-        stateInfoView = SampleCardView(self.tr('Scrolling samples'), self.view)
+        stateInfoView = SampleCardView(self.tr('Status & info samples'), self.view)
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/ProgressRing.png",
             title="StateToolTip",
