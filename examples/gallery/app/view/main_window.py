@@ -13,6 +13,7 @@ from .title_bar import CustomTitleBar
 from .gallery_interface import GalleryInterface
 from .home_interface import HomeInterface
 from .basic_input_interface import BasicInputInterface
+from .date_time_interface import DateTimeInterface
 from .dialog_interface import DialogInterface
 from .layout_interface import LayoutInterface
 from .icon_interface import IconInterface
@@ -77,6 +78,7 @@ class MainWindow(FramelessWindow):
         self.homeInterface = HomeInterface(self)
         self.iconInterface = IconInterface(self)
         self.basicInputInterface = BasicInputInterface(self)
+        self.dateTimeInterface = DateTimeInterface(self)
         self.dialogInterface = DialogInterface(self)
         self.layoutInterface = LayoutInterface(self)
         self.menuInterface = MenuInterface(self)
@@ -86,19 +88,6 @@ class MainWindow(FramelessWindow):
         self.settingInterface = SettingInterface(self)
         self.textInterface = TextInterface(self)
         self.viewInterface = ViewInterface(self)
-
-        self.stackWidget.addWidget(self.homeInterface)
-        self.stackWidget.addWidget(self.iconInterface)
-        self.stackWidget.addWidget(self.basicInputInterface)
-        self.stackWidget.addWidget(self.dialogInterface)
-        self.stackWidget.addWidget(self.layoutInterface)
-        self.stackWidget.addWidget(self.materialInterface)
-        self.stackWidget.addWidget(self.menuInterface)
-        self.stackWidget.addWidget(self.scrollInterface)
-        self.stackWidget.addWidget(self.statusInfoInterface)
-        self.stackWidget.addWidget(self.settingInterface)
-        self.stackWidget.addWidget(self.textInterface)
-        self.stackWidget.addWidget(self.viewInterface)
 
         # initialize layout
         self.initLayout()
@@ -125,8 +114,6 @@ class MainWindow(FramelessWindow):
         self.titleBar.raise_()
 
     def initNavigation(self):
-        self.settingInterface.setObjectName('settingsInterface')
-
         # add navigation items
         self.addSubInterface(
             self.homeInterface, 'homeInterface', FIF.HOME, self.tr('Home'), NavigationItemPosition.TOP)
@@ -136,6 +123,8 @@ class MainWindow(FramelessWindow):
 
         self.addSubInterface(
             self.basicInputInterface, 'basicInputInterface', FIF.CHECKBOX, self.tr('Basic input'))
+        self.addSubInterface(
+            self.dateTimeInterface, 'dateTimeInterface', FIF.DATE_TIME, self.tr('Date & time'))
         self.addSubInterface(
             self.dialogInterface, 'dialogInterface', FIF.MESSAGE, self.tr('Dialogs'))
         self.addSubInterface(
@@ -173,9 +162,10 @@ class MainWindow(FramelessWindow):
             self.homeInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
 
-    def addSubInterface(self, interface: QWidget, objectName: str, icon, text:str, position=NavigationItemPosition.SCROLL):
+    def addSubInterface(self, interface: QWidget, objectName: str, icon, text: str, position=NavigationItemPosition.SCROLL):
         """ add sub interface """
         interface.setObjectName(objectName)
+        self.stackWidget.addWidget(interface)
         self.navigationInterface.addItem(
             routeKey=objectName,
             icon=icon,

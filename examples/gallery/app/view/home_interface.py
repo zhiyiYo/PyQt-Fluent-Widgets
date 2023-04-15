@@ -113,6 +113,7 @@ class HomeInterface(ScrollArea):
 
     def loadSamples(self):
         """ load samples """
+        # basic input samples
         basicInputView = SampleCardView(
             self.tr("Basic input samples"), self.view)
         basicInputView.addSampleCard(
@@ -164,6 +165,26 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(basicInputView)
 
+        # date time samples
+        dateTimeView = SampleCardView(self.tr('Dialog samples'), self.view)
+        dateTimeView.addSampleCard(
+            icon=":/gallery/images/controls/DatePicker.png",
+            title="DatePicker",
+            content=self.tr("A control that lets a user pick a date value."),
+            routeKey="dateTimeInterface",
+            index=0
+        )
+        dateTimeView.addSampleCard(
+            icon=":/gallery/images/controls/TimePicker.png",
+            title="TimePicker",
+            content=self.tr(
+                "A configurable control that lets a user pick a time value."),
+            routeKey="dateTimeInterface",
+            index=2
+        )
+        self.vBoxLayout.addWidget(dateTimeView)
+
+        # dialog samples
         dialogView = SampleCardView(self.tr('Dialog samples'), self.view)
         dialogView.addSampleCard(
             icon=":/gallery/images/controls/Flyout.png",
@@ -188,6 +209,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(dialogView)
 
+        # layout samples
         layoutView = SampleCardView(self.tr('Layout samples'), self.view)
         layoutView.addSampleCard(
             icon=":/gallery/images/controls/Grid.png",
@@ -199,6 +221,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(layoutView)
 
+        # material samples
         materialView = SampleCardView(self.tr('Material samples'), self.view)
         materialView.addSampleCard(
             icon=":/gallery/images/controls/Acrylic.png",
@@ -210,6 +233,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(materialView)
 
+        # menu samples
         menuView = SampleCardView(self.tr('Menu samples'), self.view)
         menuView.addSampleCard(
             icon=":/gallery/images/controls/MenuFlyout.png",
@@ -221,6 +245,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(menuView)
 
+        # scroll samples
         scrollView = SampleCardView(self.tr('Scrolling samples'), self.view)
         scrollView.addSampleCard(
             icon=":/gallery/images/controls/ScrollViewer.png",
@@ -232,6 +257,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(scrollView)
 
+        # state info samples
         stateInfoView = SampleCardView(self.tr('Scrolling samples'), self.view)
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/ProgressRing.png",
@@ -259,6 +285,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(stateInfoView)
 
+        # text samples
         textView = SampleCardView(self.tr('Text samples'), self.view)
         textView.addSampleCard(
             icon=":/gallery/images/controls/TextBox.png",
@@ -285,6 +312,7 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(textView)
 
+        # view samples
         collectionView = SampleCardView(self.tr('View samples'), self.view)
         collectionView.addSampleCard(
             icon=":/gallery/images/controls/TreeView.png",
