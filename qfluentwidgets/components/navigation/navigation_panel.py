@@ -21,7 +21,7 @@ class NavigationDisplayMode(Enum):
     MENU = 3
 
 
-class NavigationItemPostion(Enum):
+class NavigationItemPosition(Enum):
     """ Navigation item position """
     TOP = 0
     SCROLL = 1
@@ -112,7 +112,7 @@ class NavigationPanel(QFrame):
         self.topLayout.addWidget(self.returnButton, 0, Qt.AlignmentFlag.AlignTop)
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignmentFlag.AlignTop)
 
-    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPostion.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPosition.TOP):
         """ add navigation item
 
         Parameters
@@ -129,7 +129,7 @@ class NavigationPanel(QFrame):
         onClick: callable
             the slot connected to item clicked signal
 
-        position: NavigationItemPostion
+        position: NavigationItemPosition
             where the button is added
 
         selectable: bool
@@ -141,7 +141,7 @@ class NavigationPanel(QFrame):
         button = NavigationPushButton(icon, text, selectable, self)
         self.addWidget(routeKey, button, onClick, position)
 
-    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP):
+    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP):
         """ add custom widget
 
         Parameters
@@ -155,7 +155,7 @@ class NavigationPanel(QFrame):
         onClick: callable
             the slot connected to item clicked signal
 
-        position: NavigationItemPostion
+        position: NavigationItemPosition
             where the button is added
         """
         if routeKey in self.items:
@@ -168,7 +168,7 @@ class NavigationPanel(QFrame):
 
         self._addWidgetToLayout(widget, position)
 
-    def addSeparator(self, position=NavigationItemPostion.TOP):
+    def addSeparator(self, position=NavigationItemPosition.TOP):
         """ add separator
 
         Parameters
@@ -179,12 +179,12 @@ class NavigationPanel(QFrame):
         separator = NavigationSeparator(self)
         self._addWidgetToLayout(separator, position)
 
-    def _addWidgetToLayout(self, widget: NavigationWidget, position: NavigationItemPostion):
+    def _addWidgetToLayout(self, widget: NavigationWidget, position: NavigationItemPosition):
         """ add widget to layout """
-        if position == NavigationItemPostion.TOP:
+        if position == NavigationItemPosition.TOP:
             widget.setParent(self)
             self.topLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignTop)
-        elif position == NavigationItemPostion.SCROLL:
+        elif position == NavigationItemPosition.SCROLL:
             widget.setParent(self.scrollWidget)
             self.scrollLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignTop)
         else:

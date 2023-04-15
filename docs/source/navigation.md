@@ -53,7 +53,7 @@ class AvatarWidget(NavigationWidget):
 Now let's take a look at the parameters required for the `addWidget()` methed:
 
 ```python
-def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPostion.TOP)
+def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP)
 ```
 
 As you can see, this method requires four parameters:
@@ -62,9 +62,9 @@ As you can see, this method requires four parameters:
 * `widget`: The widget to be added to panel.
 * `onClick`: Slot function connected to the widget's `clicked` signal. If you want to switch sub interfaces when clicking `widget`t, it is recommended to write this slot function as `lambda: self.stackWidget.setCurrentWidget(self.xxxInterface) `.
 * `position`: Where to add the `widget` to the panel. The following values are available:
-  * `NavigationItemPostion.TOP`: add `widget` to the top layout of panel.
-  * `NavigationItemPostion.SCROLL`: add `widget` to the scroll layout of panel. You can scroll the widgets in scroll layout When there are too many menu items.
-  * `NavigationItemPostion.BOTTOM`: add `widget` to the bottom layout of panel.
+  * `NavigationItemPosition.TOP`: add `widget` to the top layout of panel.
+  * `NavigationItemPosition.SCROLL`: add `widget` to the scroll layout of panel. You can scroll the widgets in scroll layout When there are too many menu items.
+  * `NavigationItemPosition.BOTTOM`: add `widget` to the bottom layout of panel.
 
 ### Display mode
 
