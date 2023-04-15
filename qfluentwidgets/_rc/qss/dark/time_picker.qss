@@ -1,0 +1,102 @@
+ScrollButton {
+    background-color: rgb(44, 44, 44);
+    border: none;
+    border-radius: 7px;
+}
+
+CycleListWidget {
+    background-color: transparent;
+    border: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+CycleListWidget::item {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    margin: 0 4px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+CycleListWidget::item:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+CycleListWidget::item:selected {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+CycleListWidget::item:selected:active {
+    background-color: rgba(255, 255, 255, 6);
+}
+
+PickerPanel > #view {
+    background-color: rgb(44, 44, 44);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+}
+
+SeparatorWidget {
+    background-color: rgb(61, 61, 61);
+}
+
+ItemMaskWidget {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+PickerBase {
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+}
+
+PickerBase:hover {
+    background: rgba(255, 255, 255, 0.0837);
+}
+
+PickerBase:pressed {
+    color: rgba(255, 255, 255, 0.786);
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: rgba(255, 255, 255, 0.786);
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#pickerButton[hasBorder=true] {
+    border-right: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton[hasBorder=false] {
+    border-right: transparent;
+}
+
+#pickerButton[enter=true],
+#pickerButton[hasValue=true] {
+    color: rgba(255, 255, 255, 1);
+}
+
+#pickerButton[pressed=true] {
+    color: rgba(255, 255, 255, 0.786);
+}
+
+#pickerButton[align="left"] {
+    text-align: left;
+    padding-left: 10px;
+}
+
+#pickerButton[align="right"] {
+    text-align: right;
+    padding-right: 10px;
+}

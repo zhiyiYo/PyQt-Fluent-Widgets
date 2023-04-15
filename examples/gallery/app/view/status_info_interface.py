@@ -100,7 +100,7 @@ class StatusInfoInterface(GalleryInterface):
             parent=self
         )
         infoBar.addWidget(PushButton(self.tr('Action')))
-        infoBar.setCustomBackgroundColor("white", "#202020")
+        infoBar.setCustomBackgroundColor("white", "#2a2a2a")
         self.addExampleCard(
             self.tr('An InfoBar with custom icon, background color and widget.'),
             infoBar,
