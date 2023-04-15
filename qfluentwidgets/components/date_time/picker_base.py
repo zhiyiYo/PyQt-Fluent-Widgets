@@ -92,7 +92,16 @@ class PickerColumn:
         self.items = items
         self.width = width
         self.align = align
-        self.value = None   # type: str
+        self._value = None   # type: str
+        self.isVisible = True
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, v):
+        self._value = str(v)
 
 
 class PickerBase(QPushButton):
@@ -148,18 +157,40 @@ class PickerBase(QPushButton):
         self.hBoxLayout.addWidget(button, 0, Qt.AlignLeft)
         self.buttons.append(button)
 
-        if align == Qt.AlignLeft:
-            button.setProperty('align', 'left')
-        elif align == Qt.AlignRight:
-            button.setProperty('align', 'right')
+        self._setButtonAlignment(button, align)
 
         # update the style of buttons
         for btn in self.buttons[:-1]:
             btn.setProperty('hasBorder', True)
             btn.setStyle(QApplication.style())
 
+    def _setButtonAlignment(self, button: QPushButton, align=Qt.AlignCenter):
+        """ set the text alignment of button """
+        if align == Qt.AlignLeft:
+            button.setProperty('align', 'left')
+        elif align == Qt.AlignRight:
+            button.setProperty('align', 'right')
+        else:
+            button.setProperty('align', 'center')
+
+    def setColumnAlignment(self, index: int, align=Qt.AlignCenter):
+        """ set the text alignment of specified column """
+        if not 0 <= index < len(self.columns):
+            return
+
+        self.columns[index].align = align
+        self._setButtonAlignment(self.buttons[index], align)
+
+    def setColumnVisible(self, index: int, isVisible: bool):
+        """ set the text alignment of specified column """
+        if not 0 <= index < len(self.columns):
+            return
+
+        self.columns[index].isVisible = isVisible
+        self.buttons[index].setVisible(isVisible)
+
     def value(self):
-        return [c.value for c in self.columns]
+        return [c.value for c in self.columns if c.isVisible]
 
     def setColumnValue(self, index: int, value):
         if not 0 <= index < len(self.columns):
@@ -169,6 +200,48 @@ class PickerBase(QPushButton):
         self.columns[index].value = value
         self.buttons[index].setText(value)
         self._setButtonProperty('hasValue', True)
+
+    def setColumn(self, index: int, name: str, items: Iterable, width: int, align=Qt.AlignCenter):
+        """ set column
+
+        Parameters
+        ----------
+        index: int
+            the index of column
+
+        name: str
+            the name of column
+
+        items: Iterable
+            the items of column
+
+        width: int
+            the width of column
+
+        align: Qt.AlignmentFlag
+            the text alignment of button
+        """
+        if not 0 <= index < len(self.columns):
+            return
+
+        column = self.columns[index]
+        self.columnMap.pop(column.name)
+
+        column = PickerColumn(name, items, width, align)
+        self.columns[index] = column
+        self.columnMap[name] = column
+
+        self.buttons[index].setText(name)
+        self.buttons[index].setFixedWidth(width)
+        self._setButtonAlignment(self.buttons[index], align)
+
+    def clearColumns(self):
+        """ clear columns """
+        self.columns.clear()
+        self.columnMap.clear()
+        while self.buttons:
+            btn = self.buttons.pop()
+            btn.deleteLater()
 
     def enterEvent(self, e):
         self._setButtonProperty('enter', True)
@@ -194,21 +267,31 @@ class PickerBase(QPushButton):
         """ show panel """
         panel = PickerPanel(self)
         for column in self.columns:
-            panel.addColumn(column.items, column.width, column.align)
+            if column.isVisible:
+                panel.addColumn(column.items, column.width, column.align)
 
         panel.setValue(self.value())
+
         panel.confirmed.connect(self._onConfirmed)
+        panel.columnValueChanged.connect(
+            lambda i, v: self._onColumnValueChanged(panel, i, v))
+
         panel.exec(self.mapToGlobal(QPoint(0, -37*4)))
 
     def _onConfirmed(self, value: list):
         for i, v in enumerate(value):
             self.setColumnValue(i, v)
 
+    def _onColumnValueChanged(self, panel, index: int, value: str):
+        """ column value changed slot """
+        pass
+
 
 class PickerPanel(QWidget):
     """ picker panel """
 
     confirmed = Signal(list)
+    columnValueChanged = Signal(int, str)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -296,6 +379,10 @@ class PickerPanel(QWidget):
         w = CycleListWidget(items, QSize(width, self.itemHeight), align, self)
         w.vScrollBar.valueChanged.connect(self.itemMaskWidget.update)
 
+        N = len(self.listWidgets)
+        w.currentItemChanged.connect(
+            lambda i, n=N: self.columnValueChanged.emit(n, i.text()))
+
         self.listWidgets.append(w)
         self.listLayout.addWidget(w)
 
@@ -305,14 +392,37 @@ class PickerPanel(QWidget):
         self.itemMaskWidget.move(m.left()+2, m.top() + 148)
 
     def value(self):
+        """ return the value of columns """
         return [i.currentItem().text() for i in self.listWidgets]
 
     def setValue(self, value: list):
+        """ set the value of columns """
+        if len(value) != len(self.listWidgets):
+            return
+
         for v, w in zip(value, self.listWidgets):
             w.setSelectedItem(v)
 
+    def columnValue(self, index: int) -> str:
+        """ return the value of specified column """
+        if not 0 <= index < len(self.listWidgets):
+            return
+
+        return self.listWidgets[index].currentItem().text()
+
+    def setColumnValue(self, index: int, value: str):
+        """ set the value of specified column """
+        if not 0 <= index < len(self.listWidgets):
+            return
+
+        self.listWidgets[index].setSelectedItem(value)
+
+    def column(self, index: int):
+        """ return the list widget of specified column """
+        return self.listWidgets[index]
+
     def exec(self, pos, ani=True):
-        """ show menu
+        """ show panel
 
         Parameters
         ----------
@@ -325,15 +435,15 @@ class PickerPanel(QWidget):
         if self.isVisible():
             return
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        w, h = self.width() + 5, self.height() + 5
-        pos.setX(
-            min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w))
-        pos.setY(max(rect.top(), min(pos.y() - 4, rect.bottom() - h)))
-        self.move(pos)
-
         # show before running animation, or the height calculation will be wrong
         self.show()
+
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = self.width() + 5, self.height()
+        pos.setX(
+            min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w))
+        pos.setY(max(rect.top(), min(pos.y() - 4, rect.bottom() - h + 5)))
+        self.move(pos)
 
         if not ani:
             return
