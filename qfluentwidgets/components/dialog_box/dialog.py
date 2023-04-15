@@ -79,12 +79,12 @@ class Ui_MessageBox:
         self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
 
     def __onCancelButtonClicked(self):
-        self.cancelSignal.emit()
         self.reject()
+        self.cancelSignal.emit()
 
     def __onYesButtonClicked(self):
-        self.yesSignal.emit()
         self.accept()
+        self.yesSignal.emit()
 
     def __setQss(self):
         """ 设置层叠样式 """
