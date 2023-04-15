@@ -162,14 +162,14 @@ class TransparentToolButton(QToolButton):
     def __init__(self, icon: Union[QIcon, str, FluentIconBase], parent=None):
         super().__init__(parent)
         self._icon = icon
-        self.setCursor(Qt.PointingHandCursor)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         FluentStyleSheet.BUTTON.apply(self)
 
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing |
+                               QPainter.RenderHint.SmoothPixmapTransform)
 
         iw, ih = self.iconSize().width(), self.iconSize().height()
         w, h = self.width(), self.height()

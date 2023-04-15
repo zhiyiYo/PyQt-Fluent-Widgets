@@ -240,6 +240,7 @@ class FluentIcon(FluentIconBase, Enum):
     SHARE = "Share"
     UNPIN = "Unpin"
     VIDEO = "Video"
+    ACCEPT = "Accept"
     CAMERA = "Camera"
     CANCEL = "Cancel"
     DELETE = "Delete"
