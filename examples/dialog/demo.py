@@ -21,6 +21,7 @@ class Demo(QWidget):
         title = 'Are you sure you want to delete the folder?'
         content = """If you delete the "Music" folder from the list, the folder will no longer appear in the list, but will not be deleted."""
         w = Dialog(title, content, self)
+        # w.setTitleBarVisible(False)
         if w.exec():
             print('Yes button is pressed')
         else:

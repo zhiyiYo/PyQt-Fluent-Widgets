@@ -52,7 +52,7 @@ class Ui_MessageBox:
         if self.isWindow():
             if self.parent():
                 w = max(self.titleLabel.width(), self.parent().width())
-                chars = max(min(w / 9, 100), 30)
+                chars = max(min(w / 9, 140), 30)
             else:
                 chars = 100
         else:
@@ -79,12 +79,12 @@ class Ui_MessageBox:
         self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignmentFlag.AlignVCenter)
 
     def __onCancelButtonClicked(self):
-        self.cancelSignal.emit()
         self.reject()
+        self.cancelSignal.emit()
 
     def __onYesButtonClicked(self):
-        self.yesSignal.emit()
         self.accept()
+        self.yesSignal.emit()
 
     def __setQss(self):
         """ 设置层叠样式 """
@@ -119,6 +119,9 @@ class Dialog(FramelessDialog, Ui_MessageBox):
         self.windowTitleLabel.setObjectName('windowTitleLabel')
         FluentStyleSheet.DIALOG.apply(self)
         self.setFixedSize(self.size())
+
+    def setTitleBarVisible(self, isVisible: bool):
+        self.windowTitleLabel.setVisible(isVisible)
 
 
 class MessageBox(MaskDialogBase, Ui_MessageBox):

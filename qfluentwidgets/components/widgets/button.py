@@ -56,9 +56,9 @@ class PushButton(QPushButton):
                                QPainter.RenderHint.SmoothPixmapTransform)
 
         if not self.isEnabled():
-            painter.setOpacity(0.43)
+            painter.setOpacity(0.3628)
         elif self.isPressed:
-            painter.setOpacity(0.63)
+            painter.setOpacity(0.786)
 
         w, h = self.iconSize().width(), self.iconSize().height()
         y = (self.height() - h) / 2
@@ -78,7 +78,7 @@ class PrimaryPushButton(PushButton):
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
             icon = icon.icon(theme)
         elif not self.isEnabled():
-            painter.setOpacity(0.63 if isDarkTheme() else 0.9)
+            painter.setOpacity(0.786 if isDarkTheme() else 0.9)
             icon = icon.icon(Theme.DARK)
 
         super()._drawIcon(icon, painter, rect)
