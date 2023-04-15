@@ -30,3 +30,24 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+html_theme_options = {
+    "sidebar_hide_name": False,
+}
+
+html_show_sourcelink = True
+html_title = "PyQt-Fluent-Widgets"
+html_favicon = "_static/logo.png"
+html_css_files = [
+    'css/fancybox.css',
+    'css/custom.css',
+]
+html_js_files = [
+    'js/fancybox.umd.js',
+    'js/fancybox.js',
+]
+
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True

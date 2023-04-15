@@ -3,7 +3,7 @@
 
 PyQt Fluent Widgets provides a side navigation class `NavigationInterface`. You can use it with `QStackWidget` and put them in `QHBoxLayout`. Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples/navigation2.
 
-![](_static/NvigationInterface_Structure.jpg)
+![](_static/NavigationInterface_Structure.jpg)
 
 `NavigationInterface` contains `NavigationPanel` which is used to place navigation menu items. All navigation menu items should inherit from `NavigationWidget` and you can add them to the panel by calling `NavigationInterface.addWidget()` or `NavigationPanel.addWidget()`. PyQt-Fluent-Widgets implements subclass `NavigationPushButton` and provides a convenient method `NavigationInterface.addItem()` to add it to the panel.
 
