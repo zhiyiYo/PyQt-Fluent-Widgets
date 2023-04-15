@@ -166,6 +166,9 @@ class NavigationPanel(QFrame):
         widget.setProperty('routeKey', routeKey)
         self.items[routeKey] = widget
 
+        if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
+            widget.setCompacted(False)
+
         self._addWidgetToLayout(widget, position)
 
     def addSeparator(self, position=NavigationItemPosition.TOP):

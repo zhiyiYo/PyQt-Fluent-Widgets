@@ -266,6 +266,7 @@ class FluentIcon(FluentIconBase, Enum):
     LANGUAGE = "Language"
     DOWNLOAD = "Download"
     QUESTION = "Question"
+    DATE_TIME = "DateTime"
     SEND_FILL = "SendFill"
     COMPLETED = "Completed"
     CONSTRACT = "Constract"

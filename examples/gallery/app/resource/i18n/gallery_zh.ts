@@ -125,6 +125,34 @@
     </message>
 </context>
 <context>
+    <name>DateTimeInterface</name>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="21"/>
+        <source>A simple DatePicker</source>
+        <translation>日期选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="27"/>
+        <source>A DatePicker in another format</source>
+        <translation>另一种格式的日期选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="34"/>
+        <source>A simple TimePicker</source>
+        <translation>时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="41"/>
+        <source>A TimePicker using a 24-hour clock</source>
+        <translation>24 小时制的时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="48"/>
+        <source>A TimePicker with seconds column</source>
+        <translation>显示秒的时间选择器</translation>
+    </message>
+</context>
+<context>
     <name>DialogInterface</name>
     <message>
         <location filename="../../view/dialog_interface.py" line="36"/>
@@ -270,74 +298,79 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="131"/>
+        <location filename="../../view/main_window.py" line="118"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="137"/>
+        <location filename="../../view/main_window.py" line="124"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="139"/>
+        <location filename="../../view/main_window.py" line="128"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="141"/>
+        <location filename="../../view/main_window.py" line="130"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="145"/>
+        <location filename="../../view/main_window.py" line="134"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="143"/>
+        <location filename="../../view/main_window.py" line="132"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="147"/>
+        <location filename="../../view/main_window.py" line="136"/>
         <source>Scrolling</source>
         <translation>滚动</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="149"/>
+        <location filename="../../view/main_window.py" line="138"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="208"/>
+        <location filename="../../view/main_window.py" line="198"/>
         <source>This is a help message</source>
         <translation>一条友善的提示</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="208"/>
+        <location filename="../../view/main_window.py" line="198"/>
         <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
         <translation>你点击了一个自定义的导航项。你可以通过 `NavigationInterface.addWidget()` 添加更多的自定义导航项。</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="151"/>
+        <location filename="../../view/main_window.py" line="140"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="133"/>
+        <location filename="../../view/main_window.py" line="120"/>
         <source>Icons</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="153"/>
+        <location filename="../../view/main_window.py" line="142"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="163"/>
+        <location filename="../../view/main_window.py" line="152"/>
         <source>Settings</source>
         <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="126"/>
+        <source>Date &amp; time</source>
+        <translation>日期和时间</translation>
     </message>
 </context>
 <context>
@@ -879,54 +912,59 @@
 <context>
     <name>Translator</name>
     <message>
-        <location filename="../../common/translator.py" line="9"/>
+        <location filename="../../common/translator.py" line="18"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="10"/>
+        <location filename="../../common/translator.py" line="11"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="11"/>
+        <location filename="../../common/translator.py" line="14"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="12"/>
+        <location filename="../../common/translator.py" line="16"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="13"/>
+        <location filename="../../common/translator.py" line="19"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="14"/>
+        <location filename="../../common/translator.py" line="15"/>
         <source>Scrolling</source>
         <translation>滚动</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="15"/>
+        <location filename="../../common/translator.py" line="13"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="16"/>
+        <location filename="../../common/translator.py" line="9"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="17"/>
+        <location filename="../../common/translator.py" line="12"/>
         <source>Icons</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="18"/>
+        <location filename="../../common/translator.py" line="10"/>
         <source>View</source>
         <translation>视图</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="17"/>
+        <source>Date &amp; time</source>
+        <translation>日期和时间</translation>
     </message>
 </context>
 <context>

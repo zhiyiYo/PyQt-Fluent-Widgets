@@ -2,7 +2,7 @@
 from enum import Enum
 from typing import Iterable
 
-from PyQt6.QtCore import Qt, QSize, QEvent, QRectF
+from PyQt6.QtCore import Qt, pyqtSignal, QSize, QEvent, QRectF
 from PyQt6.QtGui import QPainter
 from PyQt6.QtWidgets import QListWidget, QListWidgetItem, QToolButton
 
@@ -63,6 +63,8 @@ class ScrollButton(QToolButton):
 class CycleListWidget(QListWidget):
     """ Cycle list widget """
 
+    currentItemChanged = pyqtSignal(QListWidgetItem)
+
     def __init__(self, items: Iterable, itemSize: QSize, align=Qt.AlignmentFlag.AlignCenter, parent=None):
         """
         Parameters
@@ -81,6 +83,8 @@ class CycleListWidget(QListWidget):
         """
         super().__init__(parent=parent)
         self.itemSize = itemSize
+        self.align = align
+
         self.upButton = ScrollButton(ScrollIcon.UP, self)
         self.downButton = ScrollButton(ScrollIcon.DOWN, self)
         self.scrollDuration = 250
@@ -90,14 +94,15 @@ class CycleListWidget(QListWidget):
         self.visibleNumber = 9
 
         # repeat adding items to achieve circular scrolling
-        self._createItems(items, itemSize, align)
+        self.setItems(items)
 
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
         self.setVerticalScrollBar(self.vScrollBar)
         self.vScrollBar.setScrollAnimation(self.scrollDuration)
 
         self.setViewportMargins(0, 0, 0, 0)
-        self.setFixedSize(itemSize.width()+8, itemSize.height()*self.visibleNumber)
+        self.setFixedSize(itemSize.width()+8,
+                          itemSize.height()*self.visibleNumber)
 
         # hide scroll bar
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -111,13 +116,30 @@ class CycleListWidget(QListWidget):
 
         self.installEventFilter(self)
 
-    def _createItems(self, items: list, itemSize: QSize, align=Qt.AlignmentFlag.AlignCenter):
+    def setItems(self, items: list):
+        """ set items in the list
+
+        Parameters
+        ----------
+        items: Iterable[Any]
+            the items to be added
+
+        itemSize: QSize
+            the size of item
+
+        align: Qt.AlignmentFlag
+            the text alignment of item
+        """
+        self.clear()
+        self._createItems(items)
+
+    def _createItems(self, items: list):
         N = len(items)
         self.isCycle = N > self.visibleNumber
 
         if self.isCycle:
             for _ in range(2):
-                self._addColumnItems(items, itemSize, align)
+                self._addColumnItems(items)
 
             self._currentIndex = len(items)
             super().scrollToItem(
@@ -125,17 +147,17 @@ class CycleListWidget(QListWidget):
         else:
             n = self.visibleNumber // 2  # add empty items to enable scrolling
 
-            self._addColumnItems(['']*n, itemSize, align, True)
-            self._addColumnItems(items, itemSize, align)
-            self._addColumnItems(['']*n, itemSize, align, True)
+            self._addColumnItems(['']*n, True)
+            self._addColumnItems(items)
+            self._addColumnItems(['']*n, True)
 
             self._currentIndex = n
 
-    def _addColumnItems(self, items, itemSize, align, disabled=False):
+    def _addColumnItems(self, items, disabled=False):
         for i in items:
             item = QListWidgetItem(str(i), self)
-            item.setSizeHint(itemSize)
-            item.setTextAlignment(align | Qt.AlignmentFlag.AlignVCenter)
+            item.setSizeHint(self.itemSize)
+            item.setTextAlignment(self.align | Qt.AlignmentFlag.AlignVCenter)
             if disabled:
                 item.setFlags(Qt.ItemFlag.NoItemFlags)
 
@@ -171,6 +193,8 @@ class CycleListWidget(QListWidget):
         # clear selection
         self.clearSelection()
         item.setSelected(False)
+
+        self.currentItemChanged.emit(item)
 
     def wheelEvent(self, e):
         if e.angleDelta().y() < 0:
@@ -223,7 +247,8 @@ class CycleListWidget(QListWidget):
     def setCurrentIndex(self, index: int):
         if not self.isCycle:
             n = self.visibleNumber // 2
-            self._currentIndex = max(n, min(n + len(self.originItems) - 1, index))
+            self._currentIndex = max(
+                n, min(n + len(self.originItems) - 1, index))
         else:
             N = self.count() // 2
             m = (self.visibleNumber + 1) // 2

@@ -12,6 +12,7 @@ SOURCES += app/view/main_window.py \
         app/view/text_interface.py \
         app/view/icon_interface.py \
         app/view/view_interface.py \
+        app/view/date_time_interface.py \
 
 TRANSLATIONS += app/resource/i18n/gallery_zh.ts \
         app/resource/i18n/gallery_hk.ts
