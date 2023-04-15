@@ -372,6 +372,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
         FluentStyleSheet.LINE_EDIT.apply(self)
 
+    def currentText(self):
+        return self.text()
+
     def _onReturnPressed(self):
         if not self.text():
             return

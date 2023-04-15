@@ -52,7 +52,7 @@ class Ui_MessageBox:
         if self.isWindow():
             if self.parent():
                 w = max(self.titleLabel.width(), self.parent().width())
-                chars = max(min(w / 9, 100), 30)
+                chars = max(min(w / 9, 140), 30)
             else:
                 chars = 100
         else:
@@ -119,6 +119,9 @@ class Dialog(FramelessDialog, Ui_MessageBox):
         self.windowTitleLabel.setObjectName('windowTitleLabel')
         FluentStyleSheet.DIALOG.apply(self)
         self.setFixedSize(self.size())
+
+    def setTitleBarVisible(self, isVisible: bool):
+        self.windowTitleLabel.setVisible(isVisible)
 
 
 class MessageBox(MaskDialogBase, Ui_MessageBox):

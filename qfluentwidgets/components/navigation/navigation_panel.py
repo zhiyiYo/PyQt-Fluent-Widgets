@@ -193,6 +193,21 @@ class NavigationPanel(QFrame):
 
         widget.show()
 
+    def removeWidget(self, routeKey: str):
+        """ remove widget
+
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of item
+        """
+        if routeKey not in self.items:
+            return
+
+        w = self.items.pop(routeKey)
+        w.deleteLater()
+        self.history.remove(routeKey, True)
+
     def setMenuButtonVisible(self, isVisible: bool):
         """ set whether the menu button is visible """
         self._isMenuButtonVisible = isVisible
@@ -350,6 +365,7 @@ class NavigationPanel(QFrame):
         """ set the routing key to use when the navigation history is empty """
         self.history.defaultRouteKey = key
 
+
 class NavigationItemLayout(QVBoxLayout):
     """ Navigation layout """
 
@@ -380,11 +396,13 @@ class NavigationHistory(QObject):
     @defaultRouteKey.setter
     def defaultRouteKey(self, key):
         if key not in self.items:
-            raise ValueError(f'The route key `{key}` has not been registered yet.')
+            raise ValueError(
+                f'The route key `{key}` has not been registered yet.')
 
         self._defaultRouteKey = key
 
     def push(self, routeKey: str):
+        """ push history """
         if not self.history and self.defaultRouteKey != routeKey:
             self.history.append(routeKey)
             self.emptyChanged.emit(False)
@@ -392,11 +410,29 @@ class NavigationHistory(QObject):
             self.history.append(routeKey)
 
     def pop(self):
+        """ pop history """
         if not self.history:
             return
 
         self.history.pop()
+        self._navigate()
 
+    def remove(self, routeKey: str, all=False):
+        """ remove history """
+        if routeKey not in self.history:
+            return
+
+        if all:
+            self.history = [i for i in self.history if i != routeKey]
+        else:
+            for i in range(len(self.history)-1, -1, -1):
+                if self.history[i] == routeKey:
+                    self.history.pop(i)
+                    break
+
+        self._navigate()
+
+    def _navigate(self):
         if self.history:
             self.items[self.history[-1]].clicked.emit(False)
         else:
