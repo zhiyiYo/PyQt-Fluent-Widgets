@@ -26,7 +26,7 @@ class DatePicker(DatePickerBase):
     MM_DD_YYYY = 0
     YYYY_MM_DD = 1
 
-    def __init__(self, parent=None, format=MM_DD_YYYY):
+    def __init__(self, parent=None, format=MM_DD_YYYY, isMonthTight=True):
         """
         Parameters
         ----------
@@ -35,8 +35,12 @@ class DatePicker(DatePickerBase):
 
         format: int
             the format of date, could be `DatePicker.MM_DD_YYYY` or `DatePicker.YYYY_MM_DD`
+
+        isMonthTight: bool
+            is the month column tight
         """
         super().__init__(parent=parent)
+        self.isMonthTight = isMonthTight
         self.months = [
             self.tr('January'), self.tr('February'), self.tr('March'),
             self.tr('April'), self.tr('May'), self.tr('June'),
@@ -55,12 +59,7 @@ class DatePicker(DatePickerBase):
         """
         self.clearColumns()
         y = QDate.currentDate().year()
-
-        font = QFont()
-        font.setFamilies(['Segoe UI', 'Microsoft YaHei'])
-        font.setPixelSize(14)
-        fm = QFontMetrics(font)
-        w = max(fm.boundingRect(i).width() for i in self.months) + 69
+        w = self._monthColumnWidth()
 
         if format == self.MM_DD_YYYY:
             self.monthIndex = 0
@@ -84,6 +83,24 @@ class DatePicker(DatePickerBase):
         self.columns[self.monthIndex].value = self.months[date.month() - 1]
         self.columns[self.dayIndex].value = date.day()
         self.columns[self.yearIndex].value = date.year()
+
+    def setMonthTight(self, isTight: bool):
+        """ set whether the month column is tight """
+        if self.isMonthTight == isTight:
+            return
+
+        self.isMonthTight = isTight
+        self.setColumnWidth(self.monthIndex, self._monthColumnWidth())
+
+    def _monthColumnWidth(self):
+        fm = self.fontMetrics()
+        wm = max(fm.boundingRect(i).width() for i in self.months) + 20
+
+        # don't use tight layout for english
+        if self.tr('month') == 'month':
+            return wm + 49
+
+        return max(80, wm) if self.isMonthTight else wm + 49
 
     def _onColumnValueChanged(self, panel: PickerPanel, index, value):
         if index == self.dayIndex:
