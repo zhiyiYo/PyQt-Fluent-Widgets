@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
-from qfluentwidgets import (NavigationInterface, NavigationItemPostion, NavigationWidget, MessageBox,
+from qfluentwidgets import (NavigationInterface,NavigationItemPosition, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
@@ -161,7 +161,7 @@ class Window(FramelessWindow):
             icon=FIF.FOLDER,
             text='Folder library',
             onClick=lambda: self.switchTo(self.folderInterface),
-            position=NavigationItemPostion.SCROLL
+            position=NavigationItemPosition.SCROLL
         )
         # for i in range(1, 21):
         #     self.navigationInterface.addItem(
@@ -169,7 +169,7 @@ class Window(FramelessWindow):
         #         FIF.FOLDER,
         #         f'Folder {i}',
         #         lambda: print('Folder clicked'),
-        #         position=NavigationItemPostion.SCROLL
+        #         position=NavigationItemPosition.SCROLL
         #     )
 
         # add custom widget to bottom
@@ -177,7 +177,7 @@ class Window(FramelessWindow):
             routeKey='avatar',
             widget=AvatarWidget(),
             onClick=self.showMessageBox,
-            position=NavigationItemPostion.BOTTOM
+            position=NavigationItemPosition.BOTTOM
         )
 
         self.navigationInterface.addItem(
@@ -185,7 +185,7 @@ class Window(FramelessWindow):
             icon=FIF.SETTING,
             text='Settings',
             onClick=lambda: self.switchTo(self.settingInterface),
-            position=NavigationItemPostion.BOTTOM
+            position=NavigationItemPosition.BOTTOM
         )
 
         #!IMPORTANT: don't forget to set the default route key
