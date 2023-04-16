@@ -5,16 +5,20 @@ from PyQt6.QtCore import QDate, Qt, QTime
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-from qfluentwidgets import TimePicker, AMTimePicker, DatePicker
+from qfluentwidgets import TimePicker, AMTimePicker, DatePicker, setTheme, Theme
 
 
 class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.setStyleSheet('Demo{background: white}')
+        # setTheme(Theme.DARK)
+        # self.setStyleSheet('Demo{background: rgb(32, 32, 32)}')
+
         self.vBoxLayout = QVBoxLayout(self)
 
-        self.picker0 = DatePicker(self, DatePicker.YYYY_MM_DD)
+        self.picker0 = DatePicker(self, isMonthTight=True)
         self.picker1 = AMTimePicker(self)
         self.picker2 = TimePicker(self)
         self.picker3 = TimePicker(self, True)

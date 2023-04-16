@@ -50,6 +50,7 @@ ItemMaskWidget {
 }
 
 PickerBase {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
     background: rgba(255, 255, 255, 0.0605);
     border: 1px solid rgba(255, 255, 255, 0.053);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -66,6 +67,13 @@ PickerBase:pressed {
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
+PickerBase:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
 #pickerButton {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: rgba(255, 255, 255, 0.786);
@@ -76,7 +84,15 @@ PickerBase:pressed {
     padding-right: 10px;
 }
 
+#pickerButton:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+}
+
 #pickerButton[hasBorder=true] {
+    border-right: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton[hasBorder=true]:disabled {
     border-right: 1px solid rgba(255, 255, 255, 0.053);
 }
 
@@ -84,8 +100,8 @@ PickerBase:pressed {
     border-right: transparent;
 }
 
-#pickerButton[enter=true],
-#pickerButton[hasValue=true] {
+#pickerButton[enter=true]:enabled,
+#pickerButton[hasValue=true]:enabled {
     color: rgba(255, 255, 255, 1);
 }
 
