@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import Iterable, List
 
-from PyQt5.QtCore import QEvent, Qt, pyqtSignal, QSize, QRectF, QPoint, QPropertyAnimation, QEasingCurve
-from PyQt5.QtGui import QColor, QPainter, QCursor, QRegion
+from PyQt5.QtCore import Qt, pyqtSignal, QSize, QRectF, QPoint, QPropertyAnimation, QEasingCurve
+from PyQt5.QtGui import QColor, QPainter, QCursor, QRegion, QFont, QFontMetrics
 from PyQt5.QtWidgets import (QApplication, QWidget, QFrame, QVBoxLayout, QHBoxLayout,
                              QGraphicsDropShadowEffect, QSizePolicy, QPushButton, QListWidgetItem)
 
@@ -180,6 +180,23 @@ class PickerBase(QPushButton):
 
         self.columns[index].align = align
         self._setButtonAlignment(self.buttons[index], align)
+
+    def setColumnWidth(self, index: int, width: int):
+        """ set the width of specified column """
+        if not 0 <= index < len(self.columns):
+            return
+
+        self.columns[index].width = width
+        self.buttons[index].setFixedWidth(width)
+
+    def setColumnTight(self, index: int):
+        """ make the specified column to be tight """
+        if not 0 <= index < len(self.columns):
+            return
+
+        fm = self.fontMetrics()
+        w = max(fm.width(i) for i in self.columns[index].items) + 30
+        self.setColumnWidth(index, w)
 
     def setColumnVisible(self, index: int, isVisible: bool):
         """ set the text alignment of specified column """
