@@ -63,69 +63,6 @@
     </message>
 </context>
 <context>
-    <name>DatePicker</name>
-    <message>
-        <source>month</source>
-        <translation>月</translation>
-    </message>
-    <message>
-        <source>day</source>
-        <translation>日</translation>
-    </message>
-    <message>
-        <source>year</source>
-        <translation>年</translation>
-    </message>
-    <message>
-        <source>January</source>
-        <translation>一月</translation>
-    </message>
-    <message>
-        <source>February</source>
-        <translation>二月</translation>
-    </message>
-    <message>
-        <source>March</source>
-        <translation>三月</translation>
-    </message>
-    <message>
-        <source>April</source>
-        <translation>四月</translation>
-    </message>
-    <message>
-        <source>May</source>
-        <translation>五月</translation>
-    </message>
-    <message>
-        <source>June</source>
-        <translation>六月</translation>
-    </message>
-    <message>
-        <source>July</source>
-        <translation>七月</translation>
-    </message>
-    <message>
-        <source>August</source>
-        <translation>八月</translation>
-    </message>
-    <message>
-        <source>September</source>
-        <translation>九月</translation>
-    </message>
-    <message>
-        <source>October</source>
-        <translation>十月</translation>
-    </message>
-    <message>
-        <source>November</source>
-        <translation>十一月</translation>
-    </message>
-    <message>
-        <source>December</source>
-        <translation>十二月</translation>
-    </message>
-</context>
-<context>
     <name>FolderListDialog</name>
     <message>
         <source>Done</source>

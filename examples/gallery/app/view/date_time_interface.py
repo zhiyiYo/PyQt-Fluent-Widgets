@@ -1,6 +1,6 @@
 # coding:utf-8
 from PyQt6.QtCore import Qt
-from qfluentwidgets import DatePicker, TimePicker, AMTimePicker
+from qfluentwidgets import DatePicker, TimePicker, AMTimePicker, ZhDatePicker
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -26,7 +26,7 @@ class DateTimeInterface(GalleryInterface):
 
         self.addExampleCard(
             title=self.tr('A DatePicker in another format'),
-            widget=DatePicker(self, DatePicker.YYYY_MM_DD),
+            widget=ZhDatePicker(self),
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/date_time/demo.py'
         )
 

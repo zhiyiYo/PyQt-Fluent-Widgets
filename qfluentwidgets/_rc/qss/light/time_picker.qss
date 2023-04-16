@@ -99,9 +99,12 @@ PickerBase:disabled {
     border-right: transparent;
 }
 
-#pickerButton[enter=true]:enabled,
-#pickerButton[hasValue=true]:enabled {
+#pickerButton[enter=true]:enabled {
     color: rgba(0, 0, 0, 0.896);
+}
+
+#pickerButton[hasValue=true]:enabled{
+    color: rgb(0, 0, 0);
 }
 
 #pickerButton[pressed=true] {

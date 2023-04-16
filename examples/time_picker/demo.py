@@ -5,7 +5,18 @@ from PyQt6.QtCore import QDate, Qt, QTime
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-from qfluentwidgets import TimePicker, AMTimePicker, DatePicker, setTheme, Theme
+from qfluentwidgets import TimePicker, AMTimePicker, DatePicker, ZhDatePicker, setTheme, Theme, PickerColumnFormatter
+
+
+class SecondsFormatter(PickerColumnFormatter):
+    """ Seconds formatter """
+
+    def encode(self, value):
+        return str(value) + "秒"
+
+    def decode(self, value: str):
+        return int(value[:-1])
+
 
 
 class Demo(QWidget):
@@ -18,26 +29,32 @@ class Demo(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
 
-        self.picker0 = DatePicker(self, isMonthTight=True)
-        self.picker1 = AMTimePicker(self)
-        self.picker2 = TimePicker(self)
-        self.picker3 = TimePicker(self, True)
+        self.datePicker1 = DatePicker(self)
+        self.datePicker2 = ZhDatePicker(self)
+        self.timePicker1 = AMTimePicker(self)
+        self.timePicker2 = TimePicker(self)
+        self.timePicker3 = TimePicker(self, showSeconds=True)
 
-        self.picker0.dateChanged.connect(lambda t: print(t.toString()))
-        self.picker1.timeChanged.connect(lambda t: print(t.toString()))
-        self.picker2.timeChanged.connect(lambda t: print(t.toString()))
-        self.picker3.timeChanged.connect(lambda t: print(t.toString()))
+        # customize column format
+        self.timePicker3.setColumnFormatter(2, SecondsFormatter())
+
+        self.datePicker1.dateChanged.connect(lambda t: print(t.toString()))
+        self.datePicker2.dateChanged.connect(lambda t: print(t.toString()))
+        self.timePicker1.timeChanged.connect(lambda t: print(t.toString()))
+        self.timePicker2.timeChanged.connect(lambda t: print(t.toString()))
+        self.timePicker3.timeChanged.connect(lambda t: print(t.toString()))
 
         # set current date/time
-        # self.picker0.setDate(QDate.currentDate())
-        # self.picker1.setTime(QTime(13, 15))
-        # self.picker2.setTime(QTime(13, 15))
+        # self.datePicker1.setDate(QDate.currentDate())
+        # self.timePicker1.setTime(QTime(13, 15))
+        # self.timePicker2.setTime(QTime(13, 15))
 
         self.resize(500, 500)
-        self.vBoxLayout.addWidget(self.picker0, 0, Qt.AlignmentFlag.AlignHCenter)
-        self.vBoxLayout.addWidget(self.picker1, 0, Qt.AlignmentFlag.AlignHCenter)
-        self.vBoxLayout.addWidget(self.picker2, 0, Qt.AlignmentFlag.AlignHCenter)
-        self.vBoxLayout.addWidget(self.picker3, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.datePicker1, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.datePicker2, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker1, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker2, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker3, 0, Qt.AlignmentFlag.AlignHCenter)
 
 
 if __name__ == '__main__':
