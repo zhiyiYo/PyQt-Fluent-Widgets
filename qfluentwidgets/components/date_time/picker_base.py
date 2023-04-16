@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Iterable, List
 
-from PySide6.QtCore import Qt, Signal, QSize, QRectF, QPoint, QPropertyAnimation, QEasingCurve
+from PySide6.QtCore import Qt, Signal, QSize, QRectF, QPoint, QPropertyAnimation, QEasingCurve, QObject
 from PySide6.QtGui import QColor, QPainter, QCursor, QRegion
 from PySide6.QtWidgets import (QApplication, QWidget, QFrame, QVBoxLayout, QHBoxLayout,
                              QGraphicsDropShadowEffect, QSizePolicy, QPushButton, QListWidgetItem)
@@ -84,24 +84,108 @@ class ItemMaskWidget(QWidget):
         painter.drawText(rect, align, item.text())
 
 
-class PickerColumn:
-    """ Picker column """
+class PickerColumnFormatter(QObject):
+    """ Picker column formatter """
 
-    def __init__(self, name: str, items: list, width: int, align=Qt.AlignLeft):
-        self.name = name
-        self.items = items
-        self.width = width
-        self.align = align
+    def __init__(self):
+        super().__init__()
+
+    def encode(self, value):
+        """ convert original value to formatted value """
+        return str(value)
+
+    def decode(self, value: str):
+        """ convert formatted value to original value """
+        return str(value)
+
+
+class DigitFormatter(PickerColumnFormatter):
+    """ Digit formatter """
+
+    def decode(self, value):
+        return int(value)
+
+
+class PickerColumnButton(QPushButton):
+    """ Picker column button """
+
+    def __init__(self, name: str, items: Iterable, width: int, align=Qt.AlignLeft, formatter=None, parent=None):
+        super().__init__(text=name, parent=parent)
+        self._name = name
         self._value = None   # type: str
-        self.isVisible = True
 
-    @property
-    def value(self):
-        return self._value
+        self.setItems(items)
+        self.setAlignment(align)
+        self.setFormatter(formatter)
+        self.setFixedSize(width, 30)
+        self.setObjectName('pickerButton')
+        self.setProperty('hasBorder', False)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
 
-    @value.setter
-    def value(self, v):
-        self._value = str(v)
+    def align(self):
+        return self._align
+
+    def setAlignment(self, align=Qt.AlignCenter):
+        """ set the text alignment """
+        if align == Qt.AlignLeft:
+            self.setProperty('align', 'left')
+        elif align == Qt.AlignRight:
+            self.setProperty('align', 'right')
+        else:
+            self.setProperty('align', 'center')
+
+        self._align = align
+        self.setStyle(QApplication.style())
+
+    def value(self) -> str:
+        if self._value is None:
+            return None
+
+        return self.formatter().encode(self._value)
+
+    def setValue(self, v):
+        self._value = v
+        if v is None:
+            self.setText(self.name())
+            self.setProperty('hasValue', False)
+        else:
+            self.setText(self.value())
+            self.setProperty('hasValue', True)
+
+        self.setStyle(QApplication.style())
+
+    def items(self):
+        return [self._formatter.encode(i) for i in self._items]
+
+    def setItems(self, items: Iterable):
+        self._items = list(items)
+
+    def formatter(self):
+        return self._formatter
+
+    def setFormatter(self, formatter):
+        self._formatter = formatter or PickerColumnFormatter()
+
+    def name(self):
+        return self._name
+
+    def setName(self, name: str):
+        if self.text() == self.name():
+            self.setText(name)
+
+        self._name = name
+
+
+def checkColumnIndex(func):
+    """ check whether the index is out of range """
+
+    def wrapper(picker, index: int, *args, **kwargs):
+        if not 0 <= index < len(picker.columns):
+            return
+
+        return func(picker, index, *args, **kwargs)
+
+    return wrapper
 
 
 class PickerBase(QPushButton):
@@ -109,9 +193,7 @@ class PickerBase(QPushButton):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.columns = []   # type: List[PickerColumn]
-        self.columnMap = {}
-        self.buttons = []   # type: List[QPushButton]
+        self.columns = []   # type: List[PickerColumnButton]
 
         self.hBoxLayout = QHBoxLayout(self)
 
@@ -122,7 +204,8 @@ class PickerBase(QPushButton):
         FluentStyleSheet.TIME_PICKER.apply(self)
         self.clicked.connect(self._showPanel)
 
-    def addColumn(self, name: str, items: Iterable, width: int, align=Qt.AlignCenter):
+    def addColumn(self, name: str, items: Iterable, width: int, align=Qt.AlignCenter,
+                  formatter: PickerColumnFormatter = None):
         """ add column
 
         Parameters
@@ -138,86 +221,76 @@ class PickerBase(QPushButton):
 
         align: Qt.AlignmentFlag
             the text alignment of button
+
+        formatter: PickerColumnFormatter
+            the formatter of column
         """
-        if name in self.columnMap:
-            return
-
-        # create column
-        column = PickerColumn(name, list(items), width, align)
-        self.columns.append(column)
-        self.columnMap[name] = column
-
-        # create button
-        button = QPushButton(name, self)
-        button.setFixedSize(width, 30)
-        button.setObjectName('pickerButton')
-        button.setProperty('hasBorder', False)
-        button.setAttribute(Qt.WA_TransparentForMouseEvents)
+        # create column button
+        button = PickerColumnButton(name, items, width, align, formatter, self)
+        self.columns.append(button)
 
         self.hBoxLayout.addWidget(button, 0, Qt.AlignLeft)
-        self.buttons.append(button)
-
-        self._setButtonAlignment(button, align)
 
         # update the style of buttons
-        for btn in self.buttons[:-1]:
+        for btn in self.columns[:-1]:
             btn.setProperty('hasBorder', True)
             btn.setStyle(QApplication.style())
 
-    def _setButtonAlignment(self, button: QPushButton, align=Qt.AlignCenter):
-        """ set the text alignment of button """
-        if align == Qt.AlignLeft:
-            button.setProperty('align', 'left')
-        elif align == Qt.AlignRight:
-            button.setProperty('align', 'right')
-        else:
-            button.setProperty('align', 'center')
-
+    @checkColumnIndex
     def setColumnAlignment(self, index: int, align=Qt.AlignCenter):
         """ set the text alignment of specified column """
-        if not 0 <= index < len(self.columns):
-            return
+        self.columns[index].setTextAlignment(align)
 
-        self.columns[index].align = align
-        self._setButtonAlignment(self.buttons[index], align)
-
+    @checkColumnIndex
     def setColumnWidth(self, index: int, width: int):
         """ set the width of specified column """
-        if not 0 <= index < len(self.columns):
-            return
+        self.columns[index].setFixedWidth(width)
 
-        self.columns[index].width = width
-        self.buttons[index].setFixedWidth(width)
-
+    @checkColumnIndex
     def setColumnTight(self, index: int):
         """ make the specified column to be tight """
-        if not 0 <= index < len(self.columns):
-            return
-
         fm = self.fontMetrics()
         w = max(fm.width(i) for i in self.columns[index].items) + 30
         self.setColumnWidth(index, w)
 
+    @checkColumnIndex
     def setColumnVisible(self, index: int, isVisible: bool):
         """ set the text alignment of specified column """
-        if not 0 <= index < len(self.columns):
-            return
-
-        self.columns[index].isVisible = isVisible
-        self.buttons[index].setVisible(isVisible)
+        self.columns[index].setVisible(isVisible)
 
     def value(self):
-        return [c.value for c in self.columns if c.isVisible]
+        return [c.value() for c in self.columns if c.isVisible()]
 
+    def initialValue(self):
+        return [c.initialValue() for c in self.columns if c.isVisible()]
+
+    @checkColumnIndex
     def setColumnValue(self, index: int, value):
-        if not 0 <= index < len(self.columns):
-            return
+        self.columns[index].setValue(value)
 
-        value = str(value)
-        self.columns[index].value = value
-        self.buttons[index].setText(value)
-        self._setButtonProperty('hasValue', True)
+    @checkColumnIndex
+    def setColumnInitialValue(self, index: int, value):
+        self.columns[index].setInitialValue(value)
 
+    @checkColumnIndex
+    def setColumnFormatter(self, index: int, formatter: PickerColumnFormatter):
+        self.columns[index].setFormatter(formatter)
+
+    @checkColumnIndex
+    def setColumnItems(self, index: int, items: Iterable):
+        self.columns[index].setItems(items)
+
+    @checkColumnIndex
+    def encodeValue(self, index: int, value):
+        """ convert original value to formatted value """
+        return self.columns[index].formatter().encode(value)
+
+    @checkColumnIndex
+    def decodeValue(self, index: int, value):
+        """ convert formatted value to origin value """
+        return self.columns[index].formatter().decode(value)
+
+    @checkColumnIndex
     def setColumn(self, index: int, name: str, items: Iterable, width: int, align=Qt.AlignCenter):
         """ set column
 
@@ -238,26 +311,15 @@ class PickerBase(QPushButton):
         align: Qt.AlignmentFlag
             the text alignment of button
         """
-        if not 0 <= index < len(self.columns):
-            return
-
-        column = self.columns[index]
-        self.columnMap.pop(column.name)
-
-        column = PickerColumn(name, items, width, align)
-        self.columns[index] = column
-        self.columnMap[name] = column
-
-        self.buttons[index].setText(name)
-        self.buttons[index].setFixedWidth(width)
-        self._setButtonAlignment(self.buttons[index], align)
+        button = self.columns[index]
+        button.setText(name)
+        button.setFixedWidth(width)
+        button.setAlignment(align)
 
     def clearColumns(self):
         """ clear columns """
-        self.columns.clear()
-        self.columnMap.clear()
-        while self.buttons:
-            btn = self.buttons.pop()
+        while self.columns:
+            btn = self.columns.pop()
             btn.deleteLater()
 
     def enterEvent(self, e):
@@ -276,18 +338,22 @@ class PickerBase(QPushButton):
 
     def _setButtonProperty(self, name, value):
         """ send event to picker buttons """
-        for button in self.buttons:
+        for button in self.columns:
             button.setProperty(name, value)
             button.setStyle(QApplication.style())
+
+    def panelInitialValue(self):
+        """ initial value of panel """
+        return self.value()
 
     def _showPanel(self):
         """ show panel """
         panel = PickerPanel(self)
         for column in self.columns:
-            if column.isVisible:
-                panel.addColumn(column.items, column.width, column.align)
+            if column.isVisible():
+                panel.addColumn(column.items(), column.width(), column.align())
 
-        panel.setValue(self.value())
+        panel.setValue(self.panelInitialValue())
 
         panel.confirmed.connect(self._onConfirmed)
         panel.columnValueChanged.connect(

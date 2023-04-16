@@ -61,7 +61,7 @@ class SmoothScrollBar(QScrollBar):
         # adjust the duration
         dv = abs(value - self.value())
         if dv < 50:
-            self.ani.setDuration(self.duration * dv / 70)
+            self.ani.setDuration(int(self.duration * dv / 70))
         else:
             self.ani.setDuration(self.duration)
 
