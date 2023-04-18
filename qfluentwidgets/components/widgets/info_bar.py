@@ -216,6 +216,10 @@ class InfoBar(QFrame):
         self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
         self.adjustSize()
 
+    def adjustSize(self):
+        super().adjustSize()
+        self.resize(self.width(), max(self.height(), 50))
+
     def addWidget(self, widget: QWidget, stretch=0):
         """ add widget to info bar """
         self.contentLayout.addWidget(widget, stretch, Qt.AlignmentFlag.AlignLeft)
