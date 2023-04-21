@@ -361,7 +361,7 @@ class PickerBase(QPushButton):
             lambda i, v: self._onColumnValueChanged(panel, i, v))
 
         w = panel.vBoxLayout.sizeHint().width() - self.width()
-        panel.exec(self.mapToGlobal(QPoint(-w/2, -37 * 4)))
+        panel.exec(self.mapToGlobal(QPoint(-w//2, -37 * 4)))
 
     def _onConfirmed(self, value: list):
         for i, v in enumerate(value):
