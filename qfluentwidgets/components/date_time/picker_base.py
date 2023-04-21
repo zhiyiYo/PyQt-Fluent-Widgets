@@ -239,7 +239,7 @@ class PickerBase(QPushButton):
     @checkColumnIndex
     def setColumnAlignment(self, index: int, align=Qt.AlignmentFlag.AlignCenter):
         """ set the text alignment of specified column """
-        self.columns[index].setTextAlignment(align)
+        self.columns[index].setAlignment(align)
 
     @checkColumnIndex
     def setColumnWidth(self, index: int, width: int):
@@ -320,6 +320,7 @@ class PickerBase(QPushButton):
         """ clear columns """
         while self.columns:
             btn = self.columns.pop()
+            self.hBoxLayout.removeWidget(btn)
             btn.deleteLater()
 
     def enterEvent(self, e):
