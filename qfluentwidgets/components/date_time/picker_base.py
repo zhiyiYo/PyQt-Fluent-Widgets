@@ -320,6 +320,7 @@ class PickerBase(QPushButton):
         """ clear columns """
         while self.columns:
             btn = self.columns.pop()
+            btn.setParent(None)
             btn.deleteLater()
 
     def enterEvent(self, e):
