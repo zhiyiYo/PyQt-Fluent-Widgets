@@ -1,9 +1,7 @@
 # coding:utf-8
 from typing import List
-from dataclasses import dataclass
 
-from PySide6.QtCore import (QAbstractAnimation, QEasingCurve,
-                          QParallelAnimationGroup, QPoint, QPropertyAnimation,
+from PySide6.QtCore import (QAbstractAnimation, QEasingCurve, QPoint, QPropertyAnimation,
                           Signal)
 from PySide6.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
 
@@ -55,13 +53,14 @@ class OpacityAniStackedWidget(QStackedWidget):
         super().setCurrentIndex(self.__nextIndex)
 
 
-@dataclass
 class PopUpAniInfo:
     """ Pop up ani info """
-    widget: QWidget
-    deltaX: int
-    deltaY: int
-    ani: QPropertyAnimation
+
+    def __init__(self, widget: QWidget, deltaX: int, deltaY, ani: QPropertyAnimation):
+        self.widget = widget
+        self.deltaX = deltaX
+        self.deltaY = deltaY
+        self.ani = ani
 
 
 class PopUpAniStackedWidget(QStackedWidget):
