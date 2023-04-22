@@ -1,12 +1,19 @@
 # coding: utf-8
-from PyQt5.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QCheckBox, QWidget
 
 from ...common.style_sheet import FluentStyleSheet
+from ...common.overload import singledispatchmethod
 
 
 class CheckBox(QCheckBox):
     """ Check box """
 
-    def __init__(self, text: str, parent=None):
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        FluentStyleSheet.CHECK_BOX.apply(self)
+
+    @__init__.register
+    def _(self, text: str, parent: QWidget = None):
         super().__init__(text, parent)
         FluentStyleSheet.CHECK_BOX.apply(self)

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
 from ...common.style_sheet import FluentStyleSheet
+from ...common.overload import singledispatchmethod
 
 
 class Slider(QSlider):
@@ -12,7 +13,13 @@ class Slider(QSlider):
 
     clicked = pyqtSignal(int)
 
-    def __init__(self, orientation, parent=None):
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        FluentStyleSheet.SLIDER.apply(self)
+
+    @__init__.register
+    def _(self, orientation: Qt.Orientation, parent: QWidget = None):
         super().__init__(orientation, parent=parent)
         FluentStyleSheet.SLIDER.apply(self)
 
