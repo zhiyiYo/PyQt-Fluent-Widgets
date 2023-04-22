@@ -41,7 +41,7 @@ class Config(QConfig):
 YEAR = 2023
 AUTHOR = "zhiyiYo"
 VERSION = "v0.7.0"
-HELP_URL = "https://pyqt-fluent-widgets.readthedocs.io"
+HELP_URL = "https://pyqt-fluent-widgets.readthedocs.io/zh_CN/latest"
 REPO_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
 EXAMPLE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples"
 FEEDBACK_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
