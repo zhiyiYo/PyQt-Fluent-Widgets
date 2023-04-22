@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:2
+#: a0c94c52e5b2478884cabda7c6f9c45b
+msgid "navigation_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:8
+#: 455c9ccc0095437898a1a45d17aba7ef
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 0ae9256a61464f49959b21eaa383e1aa
+msgid ""
+":py:obj:`NavigationWidget "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:26
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: b494ea771a0e4d31836f38fb915d30c0 f2464f95bb0d4948b3a4506634ad12c1
+msgid "Navigation widget"
+msgstr "导航小部件基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 0ba1521dd9ff4bcb9ae4a3468e380a6f
+msgid ""
+":py:obj:`NavigationPushButton "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 8f43fd973a4841b8823879133cef2f89 d0bed057cd9e42aabb454220f9409e65
+msgid "Navigation push button"
+msgstr "导航按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 3e745dbe66b44959a3c4d7ade862aaf1
+msgid ""
+":py:obj:`NavigationToolButton "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 3c6a13d3d2f140e6ac1db44d6f6f7e1c fd9f8d1be89647538bbff47b2b430648
+msgid "Navigation tool button"
+msgstr "导航工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: bef342fedcdf430ab809ef20217b326d
+msgid ""
+":py:obj:`NavigationSeparator "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:21:<autosummary>:1
+#: 3ba09d3fc19948c3abb673820ad79aef 6a7472616172409f8300832cd714fb18
+msgid "Navigation Separator"
+msgstr "导航分隔符"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:24
+#: 26e1840bab794445b0a29824baea3b0a
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:98
+#: 53195543b8f84a3aa6351010e9ac1d78 706aa6951c4045699f87447bd5f93037
+#: a18e67da98b943468bb79cf4baec5a84
+msgid "set whether the widget is compacted"
+msgstr "设置小部件是否被折叠"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:56
+#: 42bc4f005bf541caa3703c7b68a675b8
+msgid "set whether the button is selected"
+msgstr "设置是否被选中"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:59
+#: bfe9074051d14480a3335e4d5649ed03
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:60
+#: 68c52455a25f4902a953e62adee06fff
+msgid "isSelected: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:61
+#: 873b59ae0b194d2caf273bd4edeb4e84
+msgid "whether the button is selected"
+msgstr "是否被选中"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:67
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:92
+#: 689ebb232be041d38dc017412ee51fe3 bf95369d53014cf7ae1540b3f31c25fe
+msgid "Bases: :py:obj:`NavigationWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:80
+#: 550948e52ed84f7681e97f8dc5cd3fc5
+msgid "Bases: :py:obj:`NavigationPushButton`"
+msgstr ""
+

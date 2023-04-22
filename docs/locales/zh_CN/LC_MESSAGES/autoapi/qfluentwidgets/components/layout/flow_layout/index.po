@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:2
+#: 29dfeaabd0094cfc9f46d70d66d96dae
+msgid "flow_layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:8
+#: 1d5963fbf8f846edb4f6191a5b79fb8d
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:18:<autosummary>:1
+#: 532654c44f634553a4e48447e77f6602
+msgid ""
+":py:obj:`FlowLayout "
+"<qfluentwidgets.components.layout.flow_layout.FlowLayout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:18:<autosummary>:1
+#: 014281748a0342678eec5b67d8a74058 6621dc3caf2b4db79d0dff611085b23c
+msgid "Flow layout"
+msgstr "流式布局"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:21
+#: 12e831d2e0964220ac4d217a193046d5
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLayout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:33
+#: d51bda6e59a44e93a50603cf6ab01a39
+msgid "set the moving animation"
+msgstr "设置移动动画"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:36
+#: 141c551f58034832a5b8544af92a6b34
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:38
+#: 2b0865cbb7a7460ca0e1afd18dbb9ba3
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:38
+#: f687c31d46c542b1818fe39310dadb3a
+msgid "the duration of animation in milliseconds"
+msgstr "动画持续时间，单位为毫秒"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:40
+#: e6474898374a47c697169bfbf95de995
+msgid "ease: QEasingCurve"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:41
+#: 294a4efd35e3427dbc338d15238ee8de
+msgid "the easing curve of animation"
+msgstr "动画插值方式"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:55
+#: b6094d7280c94339ba49a613b67e89ea
+msgid "remove all widgets from layout"
+msgstr "从布局中移除所以小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:60
+#: eb3638c0cd7647b59956e8753b925c00
+msgid "remove all widgets from layout and delete them"
+msgstr "从布局中移除所以小部件并删除它们"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:71
+#: 451e77c0dd1f467db69fc820a8689c9d
+msgid "get the minimal height according to width"
+msgstr "根据宽度获取最小高度"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:85
+#: 13d9098fcd6f4a2cbc15b11d233d9008
+msgid "set vertical spacing between widgets"
+msgstr "设置小部件间的垂直间距"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:90
+#: 723641c4cbee4632abbc3d713efe84d3
+msgid "get vertical spacing between widgets"
+msgstr "返回小部件间的垂直间距"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:95
+#: 40332f8bdbcc4cd982500b22176c9a82
+msgid "set horizontal spacing between widgets"
+msgstr "设置小部件间的水平间距"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/flow_layout/index.rst:100
+#: b7a4abd2c07249eda34871b6787b3301
+msgid "get horizontal spacing between widgets"
+msgstr "返回小部件间的水平间距"
+

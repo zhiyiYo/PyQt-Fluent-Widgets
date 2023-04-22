@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:2
+#: b36341bd8faf44ba8c143539494c1233
+msgid "button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:8
+#: f76f81fd13eb461abdbcf1b8dcf27292
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 2ebd438773ef4aa1b167360e28fb09af
+msgid ""
+":py:obj:`PushButton "
+"<qfluentwidgets.components.widgets.button.PushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 10d9c932c7734cc3bf6f0255060272d7 6fe40ffa84724032871522f73e9b41b7
+msgid "push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: e93d051f385e4c26b3e78472489f8713
+msgid ""
+":py:obj:`PrimaryPushButton "
+"<qfluentwidgets.components.widgets.button.PrimaryPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 72adee013b7c47c8ab82b28776ab7702 75a8a86083444cf08d2f64f2a500cf1e
+msgid "Primary color push button"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: ad7e7cd55e99473e8448fb479bc10eae
+msgid ""
+":py:obj:`HyperlinkButton "
+"<qfluentwidgets.components.widgets.button.HyperlinkButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:57
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 610ee792b67b444d81171a63757933cb 9df667dbd25441dbb011663662fbdb15
+msgid "Hyperlink button"
+msgstr "超链接按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 3adfbe2c506042e89defd4971563db5a
+msgid ""
+":py:obj:`RadioButton "
+"<qfluentwidgets.components.widgets.button.RadioButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:64
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 5649f3da770e4b26a7712630fae2330b c98513654f014ae69ae32f9a5d8a074d
+msgid "Radio button"
+msgstr "单选按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: c88a6358a3f04785b638ef4d885e035c
+msgid ""
+":py:obj:`ToolButton "
+"<qfluentwidgets.components.widgets.button.ToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:71
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 225109398e3b46a3a2e13ba659ffdb9f 4f6a17052d2041f3ba9311ab1b772da6
+msgid "Tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 49a03505c2fe4870aefcc4b67710b3c7
+msgid ""
+":py:obj:`TransparentToolButton "
+"<qfluentwidgets.components.widgets.button.TransparentToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:23:<autosummary>:1
+#: 6bda351a29b349439eed141e519fa9bd 81935f63d8bf4691bacf9fcd890fbc48
+msgid "Transparent background tool button"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:26
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:55
+#: 0ceee8defe6d4363baf8c2afbc94d640 665c6a9d6d1f4700bb3abf2cb537ce55
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:48
+#: 5228c433d0554bd7934a62486ba0d3de
+msgid "Bases: :py:obj:`PushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:62
+#: f620a27707144665b89cbdc05a70e628
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QRadioButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:69
+#: f6432c8852d647b1965aee557479e2d0
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:91
+#: a5d9f342a2bd4e41ac0640b23371acbf
+msgid "Bases: :py:obj:`ToolButton`"
+msgstr ""
+

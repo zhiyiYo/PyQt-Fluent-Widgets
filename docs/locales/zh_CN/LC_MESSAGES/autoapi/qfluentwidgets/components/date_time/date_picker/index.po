@@ -1,0 +1,219 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:2
+#: 8179a0c304fe44639fd3dc95f5c401cc
+msgid "date_picker"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:8
+#: 0368f8a3111c4ecebd29d498103ad99f
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 4a3b8b7d7161485188fb1948c0b7a5e5
+msgid ""
+":py:obj:`DatePickerBase "
+"<qfluentwidgets.components.date_time.date_picker.DatePickerBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 07e6ab24b5e24bae81c098520075860f 5bf28be9000f458d8217b196240b25b4
+msgid "Date picker base class"
+msgstr "日期选择器基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 185a378e477547ce966af1c98d9985b5
+msgid ""
+":py:obj:`MonthFormatter "
+"<qfluentwidgets.components.date_time.date_picker.MonthFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 921cc9edd38b4e53a57119722c151d35 ff7d3f1ab98a41e78d640006d42ac147
+msgid "Month formatter"
+msgstr "月份格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 56f270358d5642d8b7e12bf56112e545
+msgid ""
+":py:obj:`DatePicker "
+"<qfluentwidgets.components.date_time.date_picker.DatePicker>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: adbf9cd262dc4759bdf56843c5f68f7f eda15d78353d4853926e60ac37fdb8ac
+msgid "Date picker"
+msgstr "日期选择器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: e0cd55eaea7f4f6fa5d00a1035425142
+msgid ""
+":py:obj:`ZhFormatter "
+"<qfluentwidgets.components.date_time.date_picker.ZhFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:124
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 07bf1e0897d34d808ce47c42e4b33e05 af79c263b8784053a4e960a4dadcb98a
+msgid "Chinese date formatter"
+msgstr "中文日期格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: beec9abfba9242879a654d055eed8fbb
+msgid ""
+":py:obj:`ZhYearFormatter "
+"<qfluentwidgets.components.date_time.date_picker.ZhYearFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:146
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 863d52d90350438dbd9fb8873b5e715c 9f45980dcd444e678db27aae9ddfc6d2
+msgid "Chinese year formatter"
+msgstr "中文年份格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: cc976201f35b4764806b0683306d4f8e
+msgid ""
+":py:obj:`ZhMonthFormatter "
+"<qfluentwidgets.components.date_time.date_picker.ZhMonthFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:158
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: a839898cafda4573beb3a196420462b0 beebb683b2074ec49e6ed8076ef5ed7d
+msgid "Chinese month formatter"
+msgstr "中文月份格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 6938db54c3284b88a4283bd4978424b4
+msgid ""
+":py:obj:`ZhDayFormatter "
+"<qfluentwidgets.components.date_time.date_picker.ZhDayFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:170
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 4abde06c2d3f40c3ba84ca3ef4f4b47e a98456b5996e4d94ab0ba45009c2d66f
+msgid "Chinese day formatter"
+msgstr "中文日格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: e8be83593bcb49b0b4bd241bb27b6bad
+msgid ""
+":py:obj:`ZhDatePicker "
+"<qfluentwidgets.components.date_time.date_picker.ZhDatePicker>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:182
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:25:<autosummary>:1
+#: 38d3c179018c4712b6acf0a367106c10 acd144c4d6064d06a3d6bf7b1958cc69
+msgid "Chinese date picker"
+msgstr "中文日期选择器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:28
+#: 21918a3510184af4ada8cac964b35136
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.date_time.picker_base.PickerBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:116
+#: 2e06e0a99fbb4496a6fceefd558b4df1 cd55c486d89e4a84927e2364f8e2842e
+msgid "set current date"
+msgstr "设置当前日期"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:63
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:122
+#: 0c0132b27b8646ec9f8fd74982d262c7 538a973141a94b9595ee7b8b3d9ff000
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.date_time.picker_base.PickerColumnFormatter`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:133
+#: 800f8d46340f44ca8324dd9c3e194ad9 b48304d318b5441dbc1e0b17c3fc13bb
+msgid "convert original value to formatted value"
+msgstr "将原始值转换为格式后的字符串"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:138
+#: 52c2e84a40704fe7873257b4eabc7ca0 d7ffb92ad15845e190455387b6cdca98
+msgid "convert formatted value to original value"
+msgstr "将格式化字符串转换为原始值"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:80
+#: da9481ee4d874a6385adaa159a2f9b35
+msgid "Bases: :py:obj:`DatePickerBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:96
+#: 96c2136b041c4b8ca967e0396e86594b
+msgid "set the format of date"
+msgstr "设置日期格式"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:99
+#: 2b44f4cf08fc4ce0be5e322304befa67
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:100
+#: 418819a9fbc640498dbdb1dcad2b5e38
+msgid "format: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:101
+#: 5784a286395847b2bd47f29b0c9491cf
+msgid ""
+"the format of date, could be `DatePicker.MM_DD_YYYY` or "
+"`DatePicker.YYYY_MM_DD`"
+msgstr "日期格式，可以是 `DatePicker.MM_DD_YYYY` 或者 `DatePicker.YYYY_MM_DD`"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:106
+#: 80770ecddfd7482287092a14a4643b1f
+msgid "initial value of panel"
+msgstr "选择面板的初始值"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:111
+#: 769b34db9e244063bcdd413bdcc41b9c
+msgid "set whether the month column is tight"
+msgstr "设置年份月份列是否紧凑"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:144
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:156
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:168
+#: 573ddf9a37b743fcb759214d0019e703 83237f8af9254755b6a7b2aeae4fcb0a
+#: 946357f1c5794bc097e32bfec2555dce
+msgid "Bases: :py:obj:`ZhFormatter`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/date_picker/index.rst:180
+#: b2258e0474624490b3dfbfd32bb6fae9
+msgid "Bases: :py:obj:`DatePicker`"
+msgstr ""
+

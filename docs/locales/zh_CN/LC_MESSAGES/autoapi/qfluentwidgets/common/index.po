@@ -1,0 +1,1023 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 21:37+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:2
+#: 04ea72c62b064981baa4be95f4b4970e
+msgid "common"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:24
+#: 429188ac085c47b185e30aab85247563
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 877b12ac0c06447999ede3e1b4fbc51f
+msgid ":py:obj:`Theme <qfluentwidgets.common.Theme>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:99
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 80d08203858743f18d074fc9695b4f0c 903a080cd844491f9c1ab2f52ac4f350
+msgid "Theme enumeration"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 4104bcaaa116467bb0ff632cc17adc8d
+msgid ":py:obj:`ConfigValidator <qfluentwidgets.common.ConfigValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 00ea5a19330040b286cb5a3892e71622 17069df28e774cadae1b44419826f8e2
+msgid "Config validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 2d790f345cf04837b8fa5d1e79c4bb49
+msgid ":py:obj:`RangeValidator <qfluentwidgets.common.RangeValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:136
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 44897252e7c94eb2be359196de346095 4825fa59b84245cf8297ba98edbbe377
+msgid "Range validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 0eafa8183d5d414091f8837e8e10e8ac
+msgid ":py:obj:`OptionsValidator <qfluentwidgets.common.OptionsValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:153
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: bd39a24d58654f40bfc68b7fa5e8cdde de0f86a0e406400c82da1503fcef50b2
+msgid "Options validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: f2b727ce7606418297ae5ad2de583879
+msgid ":py:obj:`BoolValidator <qfluentwidgets.common.BoolValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:170
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 3481253ea9ee4023b4c3b341a0b27b15 c44e072aff104ee8ba13643aede3b038
+msgid "Boolean validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 9c67d384720d455882785c9ef192f8fb
+msgid ":py:obj:`FolderValidator <qfluentwidgets.common.FolderValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:177
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 767514f9e0414d02bbe8cc7dab6cedce eedaaa54926045f7a892a7cd47c1de74
+msgid "Folder validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: b2271f0f1ff34bc98a69a46042fc6f17
+msgid ""
+":py:obj:`FolderListValidator "
+"<qfluentwidgets.common.FolderListValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:194
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 15c63502547e429b8ef26682465b9201 2f54a2e624ca4648b25a8bc8da872566
+msgid "Folder list validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 9160a25ad4464e068410d3fa7aefa0db
+msgid ":py:obj:`ColorValidator <qfluentwidgets.common.ColorValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:211
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: dd4f0088fc814b11a720957aa2a5a1ce fb777307b9dc410abc22a4df9e4466a5
+msgid "RGB color validator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 0dffc9b3bc7742aa9f201fb7f8bb4c31
+msgid ":py:obj:`ConfigSerializer <qfluentwidgets.common.ConfigSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:226
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 25ba21ee4f6a4583b3bda693d47da67a 9b94d914b44d439da2a26115c5bb679f
+msgid "Config serializer"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 103dd7d1c5e74411a80c05e3e64ae58e
+msgid ":py:obj:`EnumSerializer <qfluentwidgets.common.EnumSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 74c2c40db6e849dab45fe968b4e77b62 f6e4d2b11935479c94bd18b337edb91e
+msgid "enumeration class serializer"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 21cd9c5fa08049a18e5ba214054e8d67
+msgid ":py:obj:`ColorSerializer <qfluentwidgets.common.ColorSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:260
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 54e9f5d818cd4045b6bbbaedd20c93f8 dac30c5ee914427c900a28e883cbea14
+msgid "QColor serializer"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 8da77f64b36e45a5b22acefd2d5dc42c
+msgid ":py:obj:`ConfigItem <qfluentwidgets.common.ConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:277
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 069634be96dd4fa487a1e89dc75bd3f0 e3ca15a7cd114c27b687750ff144d7ea
+msgid "Config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: dbb2505d64794248bea1d0d6de8e5b90
+msgid ":py:obj:`RangeConfigItem <qfluentwidgets.common.RangeConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:307
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 53c56b83bd344244b404afcf03d37647 9d355c888f2c463f97a706772deba858
+msgid "Config item of range"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 597c1866b967459da295c06d2de175e4
+msgid ":py:obj:`OptionsConfigItem <qfluentwidgets.common.OptionsConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:322
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: af9a7438aa7145e3a814ddc98e9786ae dcef98667c6d498095f526b8fe43079c
+msgid "Config item with options"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: e0253d2bc031481aa24e2d3bfd87422f
+msgid ":py:obj:`ColorConfigItem <qfluentwidgets.common.ColorConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:335
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 5554506b8dfd45b3906a4a037b00684f a052298dd4fa444ebaac6c867a769490
+msgid "Color config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 274f20a8cae943b0b7c1dcb68f08b1e7
+msgid ":py:obj:`QConfig <qfluentwidgets.common.QConfig>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:345
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 11d00d2696ed4f1b8eb1fab90f520f69 b0f9f67e237d45d0871ce6f76e089211
+msgid "Config of app"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 97922bb76a024ea7975f2d05e73b43ac
+msgid ":py:obj:`TextWrap <qfluentwidgets.common.TextWrap>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:433
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 135d0e3ee3924bc3aebe15fd9d597b72 94a2826a8c4a4ca8a5ce9f7a45f7cb2f
+msgid "Text wrap"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: e1908171158a4f9187cbd3a6c4f6fc05
+msgid ":py:obj:`Icon <qfluentwidgets.common.Icon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 710dd05e1add44dabaae5cadb21d17fd
+msgid ":py:obj:`FluentIcon <qfluentwidgets.common.FluentIcon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:502
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 2275a519e54b4528a92a6586813bd951 8f975fabc3d24bd9917204c2a82e92ef
+msgid "Fluent icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: abf621e9c5184ef6880351f4004f8357
+msgid ":py:obj:`FluentIconBase <qfluentwidgets.common.FluentIconBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:939
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 88a55428174c4b62a39e3c9671d094d2 f1ad705fdd05441c9b20e4dd7bc9ffbb
+msgid "Fluent icon base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 2c0142aaa1ff4553ba13aac968ac1bd9
+msgid ":py:obj:`ThemeColor <qfluentwidgets.common.ThemeColor>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1065
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: bb671e70514f486cb76b60cb8f34bb4e dbf2600cddff47608c950c8c87376af0
+msgid "Theme color type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 00d010efb54e4626a4d965074c7059ba
+msgid ":py:obj:`FluentStyleSheet <qfluentwidgets.common.FluentStyleSheet>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1144
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 1c49ca81775a4a909d607e5100c77c3c 94c1a40e0dc5490e8be86b3afb4d74ae
+msgid "Fluent style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 2420f4bf218b464d9cde63914412cf1c
+msgid ":py:obj:`StyleSheetBase <qfluentwidgets.common.StyleSheetBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1259
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 5f1b9cdcf3494666a7346e46a1cdb16b 9c6d752f8f144f42877e0519f7f8e62a
+msgid "Style sheet base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: b328cd26dd3541ce8bdae153d4f11644
+msgid ":py:obj:`SmoothScroll <qfluentwidgets.common.SmoothScroll>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1280
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: a0d56cf231c04c8b918c73f140bef715 ddcf7926fe4d4d3abc5144b51efb73a0
+msgid "Scroll smoothly"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: a5ebfabb5bc2426281ba4462d53ffc68
+msgid ":py:obj:`SmoothMode <qfluentwidgets.common.SmoothMode>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1295
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:59:<autosummary>:1
+#: 88bb7dfedd86424b8a05ca1800a4e1ef eae8ab97d2254487a26adbfc866f90f2
+msgid "Smooth mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 5ee5b94be4004939a79dab62a3be1735
+msgid ""
+":py:obj:`exceptionHandler <qfluentwidgets.common.exceptionHandler>`\\ "
+"\\(\\*default\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:87
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 16383ecc101040a7a1180e25c3a1b024 bd8c933193734e14b95f7203514f3c14
+msgid "decorator for exception handling"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 66fd96d9b3144b5e9ec6946ebea67548
+msgid ":py:obj:`isDarkTheme <qfluentwidgets.common.isDarkTheme>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:423
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 5ae4a8127eef414ea6811062635ae97e e2659023364848e3b3607519f2440826
+msgid "whether the theme is dark mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: a49a98db0b95473683fe329341b9bc08
+msgid ":py:obj:`theme <qfluentwidgets.common.theme>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:428
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 420051c08ea84d29842167daa18bdb1a d01fced584e04409bac2f696a17e2387
+msgid "get theme mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: a434e211d8464567abcd026bc00436c3
+msgid ""
+":py:obj:`getIconColor <qfluentwidgets.common.getIconColor>`\\ "
+"\\(\\[theme\\, reverse\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:479
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 3f0100c9cab749a08398fa3945b16c96 487f239a5356418c946d6a27d4d23734
+msgid "get the color of icon based on theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 2bea7cb33c6c479c94891169aa76e3bd
+msgid ""
+":py:obj:`drawSvgIcon <qfluentwidgets.common.drawSvgIcon>`\\ \\(icon\\, "
+"painter\\, rect\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:484
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:970
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 25f6378f9a3142f2a53ffcdb68a017ba 74633dc29e984e2b98de1050f682ee7d
+#: b90272ca1cc546e18d0b66ff08bf2bee
+msgid "draw svg icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 75c943563c6a4a1386ce6cfa9e4fdd0c
+msgid ""
+":py:obj:`drawIcon <qfluentwidgets.common.drawIcon>`\\ \\(icon\\, "
+"painter\\, rect\\, \\*\\*attributes\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:920
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: b932422a91e449e78b725f2af4abfafe fd9f1af8ec534c1c869570f9f4b2fd15
+msgid "draw icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 6682eb1a10864d4997cb8c5bc48544af
+msgid ""
+":py:obj:`writeSvg <qfluentwidgets.common.writeSvg>`\\ \\(iconPath\\[\\, "
+"indexes\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:996
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: a4c86e43a9f943c0b38a9c8f1adad26b cfe95132ac3a4139b8d617919f3c3635
+msgid "write svg with specified attributes"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 744e2a67d8be44ef9e554f5dccf6f926
+msgid ""
+":py:obj:`setStyleSheet <qfluentwidgets.common.setStyleSheet>`\\ "
+"\\(widget\\, file\\[\\, theme\\, register\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1017
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 7c79d5a8159844a29d97a41bf9a2fd07 f93f8a2d930a4c809d0682c73e01ec17
+msgid "set the style sheet of widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 17ff568df5ab4419b9020dfce37f995b
+msgid ""
+":py:obj:`getStyleSheet <qfluentwidgets.common.getStyleSheet>`\\ "
+"\\(file\\[\\, theme\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1037
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 0e979840bf9f4c579f9e201fee8b1e65 e53c13f1ff0f4edfacc8745b17ff5b6f
+msgid "get style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 7a4ca169f05742fc83006ff77ef820f2
+msgid ""
+":py:obj:`setTheme <qfluentwidgets.common.setTheme>`\\ \\(theme\\[\\, "
+"save\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1050
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 9e36c994a6e64e89939899db54c95149 f0d1d9a589464b09950bfe9a2ce790d2
+msgid "set the theme of application"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 5253e147125544e6880ec269c4d624fd
+msgid ":py:obj:`themeColor <qfluentwidgets.common.themeColor>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1113
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 4db81b7df67f418baacb02258123c8c4 f583497dfb844663b2366bcd74dfcab1
+msgid "get theme color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 2cda8e9c2e274bbbb2279c0ab53b1dd1
+msgid ""
+":py:obj:`setThemeColor <qfluentwidgets.common.setThemeColor>`\\ "
+"\\(color\\[\\, save\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1118
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 780b1701107a4b699790b0286f7fc167 c7c665c31a9f433dbc15f9e7fa75115a
+msgid "set theme color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: fa79809eed52408d9b23be251dd8149a
+msgid ""
+":py:obj:`applyThemeColor <qfluentwidgets.common.applyThemeColor>`\\ "
+"\\(qss\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1131
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:79:<autosummary>:1
+#: 6c554f8fc9104cbcbb4ba5a76abd7daa b9131c26e8044cde94c893c4a063275f
+msgid "apply theme color to style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:84:<autosummary>:1
+#: 22a52bd26ee74ad08574c67c54175707
+msgid ":py:obj:`qconfig <qfluentwidgets.common.qconfig>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:382
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:408
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:452
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:487
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:909
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:923
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:947
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:960
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:973
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:999
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1020
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1040
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1053
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1121
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1134
+#: 0341d1abb6b54ab2bc06597c4f693ce5 03cb586409984acf81e32d9f8d83037d
+#: 0d80febf7d6647c8a7e5d301f85cb14a 1b7bd75e84a843d5847b6ff64d6dc748
+#: 2c10c493eb794b908fa3ddd6d3d4e68c 3776091114224f059b52500a0f40c082
+#: 493dbbb8990544d3827d5935fe0e290c 6c20013f74434eb08099dcdffe5362ff
+#: 92d9cca172b849538be7e8987a34f4a5 983adff015c04216a1de607c4ecfe457
+#: a525dd50610a4ab6ba0b7a3df3a25171 bd8278537c704f7f823559a09db7178a
+#: e6ef48c117154844a1c6f61e586dcdcd f5b310c3be2d425faf6ae1e40d643de5
+#: fbe2356c9786462faa9a28619c2dc784 fc8038f58be24bacbb9603e3b5ec859c
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:91
+#: 1a70df7b107d4b6a86ccf2932d96b87c
+msgid "*default:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:92
+#: 26d51a8270394cf48490f7ec8a47c70f
+msgid "the default value returned when an exception occurs"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:97
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1063
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1293
+#: 65f4e99ffa594da5b115bf762cfc9f83 86add43bb30342a5969e2c4037f8e362
+#: c14cb3733d8f4e4792dd1e1e4206018f
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:123
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:140
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:157
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:181
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:198
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:215
+#: 250f60ca8ec94d839b3b67a029dd6cea 6c2391b21d864c0ab5bf08fcf9c2e275
+#: 95b916734a19433b97e6c2e1c50ec30f a9301f3f1f334fb8800c5a7bf1654330
+#: c517762aab9e4a3295c2a5a760fa49d4 cfb7c2bd09d44031b1f0a9a29494311b
+msgid "Verify whether the value is legal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:128
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:186
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:203
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:220
+#: 107656a8acad4ff899513c301f2f4c32 213f3d268593495fa64c8d6fee093d13
+#: 50b9fbea15304fd99bda5466826e1cf0 7047568d72884ec8838480cbcf966716
+#: c6aea2cbdf4a4ca09074a7e282e26fee f7439aec25b543f59423a9f8f91d07f7
+msgid "correct illegal value"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:134
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:151
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:175
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:192
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:209
+#: 050c06f069024181a2743ca2cd9bca3f 0ada6249a9304522a7a7943cc2e69a8e
+#: 8d9cfefe511e4a6db3e41a1ade9bbab0 a34d1f9ffe9f481fa9d4e1def13e787e
+#: f7749f5541734f699901aaa18f84c57b
+msgid "Bases: :py:obj:`ConfigValidator`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:168
+#: ece5bfd0d02e4881b9d58dfd4ff3db7e
+msgid "Bases: :py:obj:`OptionsValidator`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:230
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:247
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:264
+#: 5283c474f6a14b68a1b6ec008e1d2727 88c7da7390bc4657bed1a395b2abde2f
+#: a92c3e01bd40461386580fcdc4a297ee
+msgid "serialize config value"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:235
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:252
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:269
+#: bf45cce919cc4f708cc88dfb7e0a0fc7 db2baf9c8d574f15b95919c343b4429a
+#: fe077523602c4d89bb03994a0d456aae
+msgid "deserialize config from config file's value"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:258
+#: 04bcbf94a19e45b6a54d33251a526eae 895f46ffead543fbbd3556bc2c58b44b
+msgid "Bases: :py:obj:`ConfigSerializer`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:275
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:343
+#: 37245e389abf41608f25b9c3897afee8 cb2ce350f3914d0cb16349a771643a3e
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:281
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:374
+#: 77443769e8304ab3bab6e2aaffbd5136 b41af2761418465b817d9f5801cfef7a
+msgid "get the value of config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:286
+#: cb3bd2c260734ab890e09a131dbc791a
+msgid "get the config key separated by `.`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:305
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:320
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:333
+#: 1b045b5352864f3d8ff712fbb9dea0bc 622ae8a471b746ba910971651b3957a4
+#: b62b1907406340e6b3eade84678f6355
+msgid "Bases: :py:obj:`ConfigItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:311
+#: 90811fa2490542f7944ef8b44d1dc40d
+msgid "get the available range of config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:349
+#: 4dbcd42f2e5340049ddd29227201aa26
+msgid "get theme mode, can be `Theme.Light` or `Theme.Dark`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:379
+#: 772dcf6e228e4a0aac285c444f446cb0
+msgid "set the value of config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:384
+#: 2c9a22f06d3248eeac8eea37c79eaf1c
+msgid "item: ConfigItem"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:384
+#: a98fd05e41d24576ae7db2549db8f828
+msgid "config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:387
+#: 8ab4c4feb9134720a8b5bc6099c603a3
+msgid "value:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:387
+#: 5f280e69013b4da9bd7d93cdbb5eb887
+msgid "the new value of config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:389
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1057
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1125
+#: 35cbb54610a9497798cb5d72c046c49e 71ab9162467f4bf4a230525f2ff267f4
+#: bbe88afc0cde432da6e9ccb55de042f6
+msgid "save: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:390
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1058
+#: 7d90341a79254ecf9cbc8d0e4df87d66 efa4c4ac2e074312b73a6c2688a37607
+msgid "whether to save the change to config file"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:395
+#: 75778a80c67443789809668f5578024c
+msgid "convert config items to `dict`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:400
+#: c319db1c51bd4bfdb09e035c05d63653
+msgid "save config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:405
+#: 7e865b06042f41c592d6ff96fc2cd6d8
+msgid "load config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:410
+#: 17c7945ed04748bd958c8f690acd49f1
+msgid "file: str or Path"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:410
+#: 841ded1927b449a6915ee347199fca03
+msgid "the path of json config file"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:412
+#: aac96e7a199b49f1aa94d3219b98d499
+msgid "config: Config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:413
+#: 49015722d84647b3b333815c4cf3b0dd
+msgid "config object to be initialized"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:443
+#: 82850850a4204a3f9edf5004e63dcc54
+msgid "Return the screen column width for a char"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:449
+#: 15160eb0b41d43e49146bd4f2536fdfd
+msgid "Wrap according to string length"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:454
+#: 32c754166c614cc290b8322405582849
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:454
+#: b98754860faa43e8ae22b56fec04da88
+msgid "the text to be wrapped"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:457
+#: 04bf2105bb9c48be9fee18584093cee3
+msgid "width: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:457
+#: 8e649fa9f33c40e09d29402ebcccc7eb
+msgid "the maximum length of a single line, the length of Chinese characters is 2"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:460
+#: 69322b7a790943eb90653802f6bf5f86
+msgid "once: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:460
+#: 8136922024a64d13857de9e95cb87a14
+msgid "whether to wrap only once"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:463
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1010
+#: 19ca2be3b998436381718231b3c56656 294ad5d5ec9542d99d66775d05bbbe4d
+msgid "Returns"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:465
+#: 01f6c92fc5c047bf98f6d562a925e1d4
+msgid "wrap_text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:465
+#: dbe90bbdd9f24219ab0a19154dd4ef46
+msgid "text after auto word wrap process"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:467
+#: 2ccf194e9a5548e1a829f71f971eae10
+msgid "is_wrapped: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:468
+#: e0392428499b4f26b4d74ff213ada04a
+msgid "whether a line break occurs in the text"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:474
+#: 161c1599ed3742138dcf51feff75caaf
+msgid "Bases: :py:obj:`PyQt5.QtGui.QIcon`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:489
+#: d8509eebb012476ea8f0842efe362adc
+msgid "icon: str | bytes | QByteArray"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:489
+#: 309878c1289e42aa8b7bb00f7c876fa3
+msgid "the path or code of svg icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:492
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:928
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:975
+#: 042fd266731340bc940912820e87198b 2ee74e3d9fec49fe832f530b01225a5f
+#: cf9eae571ae54a938e4d06bc97f035e4
+msgid "painter: QPainter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:492
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:928
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:975
+#: 12988e70e0fb466ea8d0cc1ff22700a1 cbd95790836d4ff8ac7633c06ce6bbb6
+#: d7f6510d2f0f42ff91b125c464b43ce2
+msgid "painter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:494
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:931
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:978
+#: 35051a64e4cd421da64b357a74c1c7c6 5331b476fc4c438f9bd6dd84e7ed8077
+#: 53386a4c69ec424fa8cc8ccf6cc37fbb
+msgid "rect: QRect | QRectF"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:495
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:931
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:978
+#: 2556029a168e44eb89119596997c3af8 25f8eb682c4745d983d133a688142025
+#: 68d5d5c5659a4351aad5d62582d85ca0
+msgid "the rect to render icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:500
+#: 26233cbfa9f8453ba99f5181b771a47b
+msgid "Bases: :py:obj:`FluentIconBase`, :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:906
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:944
+#: 1e20ac17d37848e192330638f5a5c675 5023d8c4151746bcb92f89ed34bcecdc
+msgid "get the path of icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:913
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:951
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:964
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:984
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1028
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1044
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1055
+#: 078beb1470004a8fa5a1074818ecad3f 6312582fb40b45d89624047663cfec32
+#: 687a41a1068e4ad3a55d6574450b88d6 dfbb6920fc614f0da51168fdcdbde0a0
+#: e6f04f2495394c9cb322aae474ee137b f882ddc89b4e469f9591c52c28fbe959
+#: fb8c8f3ffb3b4f0b99478259ec78f4a9
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:911
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:949
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:962
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:981
+#: 6299181e6b534ea4a0b705461cd0025f 690a55e62fba4817b74e3c3a6ae8f32b
+#: ab3c80cfb22f486b9a3f9662cab1fb24 d5aa85aa1b004f499bdd72b7fd6ccc85
+msgid ""
+"the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
+"* `Theme.AUTO`: icon color depends on `config.theme`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:925
+#: bd7cf12bf3574130a1ac1975dda8e70b
+msgid "icon: str | QIcon | FluentIconBaseBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:925
+#: 1dfba649c2c84962b05289017c92cb47
+msgid "the icon to be drawn"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:933
+#: 7ce2e9f6900b43a7a2648de886144e4c
+msgid "**attribute:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:934
+#: 9f2a6017161f4f9ea891f43c64ea6afb
+msgid "the attribute of svg icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:957
+#: 52417891b84c470893eedffb9aab0d42
+msgid "create an fluent icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:987
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1004
+#: 7bacd7b81a87472188a9dcea30f4efac df69d52e3c3e4770902d09dc95b87e0c
+msgid "indexes: List[int]"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:987
+#: 98d937e2ec3b4e1c93caa4a3b18407f5
+msgid "the svg path to be modified"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:989
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1007
+#: 1fb670a55934455c86f3399ea57c3ec3 a410699b4e574b6d9ccc9867e82e10d1
+msgid "**attributes:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:990
+#: d3620e51e77347c5bbe06390bcc3e5f2
+msgid "the attributes of modified path"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1001
+#: 458e182d6f6c468081e3b9bbc9a5a8ca
+msgid "iconPath: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1001
+#: 90e4eaef416548459c3e8d5003cefab7
+msgid "svg icon path"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1004
+#: 35f8f8c8f68f4575af8a2956fd9ddefd
+msgid "the path to be filled"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1007
+#: df0773bb182b475ba7bac616bc699f5c
+msgid "the attributes of path"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1011
+#: dae5570b156b448882aba61d539400e1
+msgid "svg: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1012
+#: d9d5704c39fa4d048f70f029d8e06f3a
+msgid "svg code"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1022
+#: 4380e90921074063abf09801ea95f5c1
+msgid "widget: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1022
+#: 152404b7f58e48b6a78689a7fae8d727
+msgid "the widget to set style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1025
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1042
+#: 1192b07a9fcf4cc48d23965e7a3b3647 30f27b6bbbe9459dbedfb79d08613b40
+msgid "file: str | StyleSheetBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1025
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1042
+#: 1269d49143fe4e88a661d48c5a259fcb 3d3a68216158483a8bb89ffd47618f14
+msgid "qss file"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1028
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1045
+#: 2f163314999b4b8dadb62e290b0c9267 3b894495710d45969d2f4d7bf61004fe
+msgid "the theme of style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1031
+#: 0db186bbcd8f471abd407a46b6002df7
+msgid "register: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1031
+#: 18512016a4a242fbbb18fbfaa11aaf8b
+msgid ""
+"whether to register the widget to the style manager. If `register=True`, "
+"the style of the widget will be updated automatically when the theme "
+"changes"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1055
+#: 7338faeb8f7b4d2f8c7c717c3cbab913
+msgid "theme mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1104
+#: 7f0ceba48a8e482983802dbc8a33a20c
+msgid "The name of the Enum member."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1123
+#: c0b3f57c294e4d26ab846c4915311287
+msgid "color: QColor | Qt.GlobalColor | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1123
+#: 75eb0a18e68348c696449884e2016933
+msgid "theme color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1126
+#: 41ae48147fee464fa3b092af439c1e85
+msgid "whether to save to change to config file"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1136
+#: e383c7bf27b94af09d79b00b5db37ce0
+msgid "qss: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1136
+#: 35f07e43f0c547e781b022c5d522591e
+msgid ""
+"the style sheet string to apply theme color, the substituted variable "
+"should be equal to the value of `ThemeColor` and starts width `--`, i.e "
+"`--ThemeColorPrimary`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1142
+#: 466d458ad57e4bdfb87e13d812e0b5cc
+msgid "Bases: :py:obj:`StyleSheetBase`, :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1253
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1264
+#: 494c059ab0df4f3896088f56987f8341 beb1cacd7ea54127bdaa30cc0f646638
+msgid "get the path of style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1269
+#: a95920bc9c68470d9998d7a04d90ab89
+msgid "get the content of style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1274
+#: 509148749f774a18befd41efa5ed9530
+msgid "apply style sheet to widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/index.rst:1284
+#: 4593cd8dddf544139ebbe34298879f58
+msgid "set smooth mode"
+msgstr ""
+
+#~ msgid "get style sheet from `qfluentwidgets` embedded qss file"
+#~ msgstr ""
+

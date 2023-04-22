@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:2
+#: e5cb8831558e447ba924c0d8b2c52837
+msgid "smooth_scroll"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:8
+#: 8c5ff1cf11be4c2092e7ec6ed376c874
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:19:<autosummary>:1
+#: 1d93a51fbab1416e83fb68d50687f5aa
+msgid ""
+":py:obj:`SmoothScroll "
+"<qfluentwidgets.common.smooth_scroll.SmoothScroll>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:22
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:19:<autosummary>:1
+#: 81e97ec194b145ecaf47c9a23740f4c2 a7c503a6b23d4f4ebe626167203f66ee
+msgid "Scroll smoothly"
+msgstr "平滑滚动"
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:19:<autosummary>:1
+#: 3c819c30938f4c4091286a33fe1e5f09
+msgid ":py:obj:`SmoothMode <qfluentwidgets.common.smooth_scroll.SmoothMode>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:19:<autosummary>:1
+#: 28559dbbc6c445cc99253c22f0c13a4f be35e46025104b78906aa95b48498168
+msgid "Smooth mode"
+msgstr "平滑滚动模式"
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:26
+#: 486561319e944df5b0b16815bc054cc1
+msgid "set smooth mode"
+msgstr "设置平滑滚动模式"
+
+#: ../../source/autoapi/qfluentwidgets/common/smooth_scroll/index.rst:35
+#: 3bf6e0cd2b114932b313cdd0b7abe0cf
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+

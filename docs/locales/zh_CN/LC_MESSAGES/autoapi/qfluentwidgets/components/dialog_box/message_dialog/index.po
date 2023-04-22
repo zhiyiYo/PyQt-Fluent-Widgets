@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:2
+#: b03ad29d10d14f24a5bfdc1c58d507be
+msgid "message_dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:8
+#: 14bfc684126446f18348fe9d719af80d
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:18:<autosummary>:1
+#: a9cd7e55fffe41c3af9cca4f2bd9f0ef
+msgid ""
+":py:obj:`MessageDialog "
+"<qfluentwidgets.components.dialog_box.message_dialog.MessageDialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:18:<autosummary>:1
+#: 06780e98d32f4fd1880b1bea38d40342 5f48a5a05207403bbb3409aa79d39db4
+msgid "Win10 style message dialog box with a mask"
+msgstr "Win10 风格的带遮罩消息框"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_dialog/index.rst:21
+#: 25762ef026a44b5e84bb9a2cabce83b4
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`"
+msgstr ""
+

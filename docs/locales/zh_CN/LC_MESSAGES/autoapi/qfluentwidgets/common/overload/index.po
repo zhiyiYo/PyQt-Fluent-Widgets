@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:2
+#: c3034860bd424027acf8f893d8a340f5
+msgid "overload"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:8
+#: f18eb0848e0c4808b32e8426e16e11fd
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:18:<autosummary>:1
+#: c2e04ffad88248c5a8ff3ba820cbe254
+msgid ""
+":py:obj:`singledispatchmethod "
+"<qfluentwidgets.common.overload.singledispatchmethod>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:21
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:18:<autosummary>:1
+#: 2308d2084d164ef4b6e04db8715b8e77 e2d2e83bb73d4edba83b0831019dd914
+msgid "Single-dispatch generic method descriptor."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:23
+#: 4b4a826fd8234feab2b055a6f471f50b
+msgid ""
+"Supports wrapping existing descriptors and handles non-descriptor "
+"callables as instance methods."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:31
+#: 306a1148d5c44422b0050374cd95769d
+msgid "generic_method.register(cls, func) -> func"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/overload/index.rst:33
+#: a30bb4155ebc44d794edf6debc02c274
+msgid "Registers a new implementation for the given *cls* on a *generic_method*."
+msgstr ""
+

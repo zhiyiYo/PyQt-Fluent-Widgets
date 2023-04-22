@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:2
+#: 0595847debd14c418a53297093eaaf9d
+msgid "setting_card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:8
+#: 443a1d93485a4eafaf6b6d3f8ef745a8
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 07622fe7c8c5416e9019cec1c35cd105
+msgid ""
+":py:obj:`SettingCard "
+"<qfluentwidgets.components.settings.setting_card.SettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:31
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 790cd6ad6b5a49ee897970092cd818a4 81bb20ce50224eadb53825cb890f025a
+msgid "Setting card"
+msgstr "设置卡基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 23d7e858924e42b3a5339edb856e27b5
+msgid ""
+":py:obj:`SwitchSettingCard "
+"<qfluentwidgets.components.settings.setting_card.SwitchSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 480ed5d562e3452885d0abcf3defd751 89fb2dcc337d451a83c62cdd9e05b967
+msgid "Setting card with switch button"
+msgstr "开关按钮设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: b48af591be004d21b36d24f22d559842
+msgid ""
+":py:obj:`RangeSettingCard "
+"<qfluentwidgets.components.settings.setting_card.RangeSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 5ec192e47e724138b9c9e0339fc5cc86 69fa7784263140199c12fad158d535b8
+msgid "Setting card with a slider"
+msgstr "滑动条设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: de94b999842d4cd586783d782ab76936
+msgid ""
+":py:obj:`PushSettingCard "
+"<qfluentwidgets.components.settings.setting_card.PushSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 1d79ff54aed94963a3decb8d381327db 82707185a2db4dee90d03c4d210fbff9
+msgid "Setting card with a push button"
+msgstr "按钮设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: a4eca439aa8e4cf892fc1b3484b2a7d8
+msgid ""
+":py:obj:`PrimaryPushSettingCard "
+"<qfluentwidgets.components.settings.setting_card.PrimaryPushSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:99
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: d02626247aea4a46a0f983e7ff7c0fa6 ead2e2b1d219425bae37e0735cc87e1d
+msgid "Push setting card with primary color"
+msgstr "主题色按钮设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 89b86ca3e55749f4abbbcb87a9fced96
+msgid ""
+":py:obj:`HyperlinkCard "
+"<qfluentwidgets.components.settings.setting_card.HyperlinkCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 9182bfd6c60a4843b178fd964324ef2d 9ac1402933ed48c6920efca8eada54e5
+msgid "Hyperlink card"
+msgstr "超链接设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: a834b09ddc8a49ad86ea0b7b5955d5de
+msgid ""
+":py:obj:`ColorPickerButton "
+"<qfluentwidgets.components.settings.setting_card.ColorPickerButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:113
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 2e1a2d95c0114a49a1d767a48a623f99 69d3a9e4ecd24a938c5ddac3d5ede9cd
+msgid "Color picker button"
+msgstr "拾色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: f618c662323f46b5915bcd2f0cfb6334
+msgid ""
+":py:obj:`ColorSettingCard "
+"<qfluentwidgets.components.settings.setting_card.ColorSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:132
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 5c0a105a01f24e8da9840b2a465ad8d5 a8f866ee6dd444e880a2dc0bc3a5dfc3
+msgid "Setting card with color picker"
+msgstr "颜色设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 0cc5ec456a304b8e912b77ec3c1e6096
+msgid ""
+":py:obj:`ComboBoxSettingCard "
+"<qfluentwidgets.components.settings.setting_card.ComboBoxSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:26:<autosummary>:1
+#: 2ac5e116e7f4447aa9700e5c06faeb90 396a7ae1cdc04de2827cadfccfc7595a
+msgid "Setting card with a combo box"
+msgstr "下拉框设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:29
+#: abc3bd2dca2d46d1a318b458d8619a56
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:35
+#: 5310dacf40c247308ffb4aa07d5ae3c6
+msgid "set the title of card"
+msgstr "设置卡片的标题"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:40
+#: 6963dfa7e01646d4b7b00e203a27e494
+msgid "set the content of card"
+msgstr "设置卡片的内容"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:45
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:140
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:152
+#: 066664e2b98042d8a007a3f71ba6f1ae 2fb928ee11894c51964bc91b352dc529
+#: 3f1be6bcd94943898a9c22b0f9c0a662 4f1df0677f2749a5a9177fdd065d3108
+#: d529c9ed332342449296628a7ce71be5
+msgid "set the value of config item"
+msgstr "设置配置项的值"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:70
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:104
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:130
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:146
+#: 1a55074844b4449883990ee85ebb8c29 1beba629e5be457a8fdfc965ecd81048
+#: 2a96cba117d14c4d8a2a6d39f2a68003 cde955ee01234de8ac1a6d90b3519c65
+#: e3b31ef810004b73b811711a8013ee74 fcc15132f6dc4caca2751f69aa608d11
+msgid "Bases: :py:obj:`SettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:97
+#: bd131a6ea7684b88a99bc30c6bcc013b
+msgid "Bases: :py:obj:`PushSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:111
+#: 22a7d06bde9749ad9fd84a8b4a3c5955
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card/index.rst:121
+#: c8b6037d910b4212b6d5e5bf36a3a154
+msgid "set color"
+msgstr "设置颜色"
+

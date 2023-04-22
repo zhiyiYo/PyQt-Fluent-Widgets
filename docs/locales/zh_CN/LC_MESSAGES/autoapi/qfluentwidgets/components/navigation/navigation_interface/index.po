@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:2
+#: cb80bf64a083448192fca67bf79b2979
+msgid "navigation_interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:8
+#: 85d6bd68a84a4a26bc04351287af70f5
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:18:<autosummary>:1
+#: e8d1d9c313144b66bf6367a866ebe399
+msgid ""
+":py:obj:`NavigationInterface "
+"<qfluentwidgets.components.navigation.navigation_interface.NavigationInterface>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:18:<autosummary>:1
+#: 425b5cf4bb7f47deb9c1f3bba3508051 55382e2dc5024a56b3999da2e26d0bc7
+msgid "Navigation interface"
+msgstr "侧边导航界面"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:21
+#: c19acd796b2945b0a22ddc093702b219
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:31
+#: fbc2c1231f3e4fd093850933eb8c19bc
+msgid "add navigation item"
+msgstr "添加导航菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:78
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:98
+#: 0dc6c43a1e7e417e9487834f7d424149 70b64220629843be92eba94fd51d7c23
+#: 936321bf5a424042a34edd316f0c5a04 c525169ec4dc4d6b835e1ad20c741662
+#: f99390185c0347e0b461182f0c9a8914
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:89
+#: 5fad00b50c4c4379be56dbee8757560e a9bd9a98446f4f1da80704e6fc776ff4
+#: bb498687831e4ab9b9d645e0ed1da8a4
+msgid "routKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:100
+#: 0f3e10db8a6f4a2fbc556c9c5064e204 57dff8c699a14776958b6313da0a79b9
+#: 684a5772d053409aa5f9c1e899631571 b35d4e5c90bd438c968312d36dd39d32
+msgid "the unique name of item"
+msgstr "导航菜单项的唯一名字"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:39
+#: ba4f780a43d843ef8f7a7810a71dde5f
+msgid "icon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:39
+#: a26c4db5293d46448469a070f542984c
+msgid "the icon of navigation item"
+msgstr "导航菜单项的图标"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:42
+#: 7d38f6d5bcf04efa97043c210d4abb96
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:42
+#: 00efb087fceb4538928ae7c95bf84c2b
+msgid "the text of navigation item"
+msgstr "导航菜单项的文本"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:45
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:67
+#: 8d206a97ffe34874ae31531646b733fd 97c41c55a9fd491a88cd80845f0ec3f3
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:45
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:67
+#: 26777381808744e5af127247c2289c8c b08e7768b3834d8aa8ccd819a45772b6
+msgid "the slot connected to item clicked signal"
+msgstr "导航菜单项点击信号的槽函数"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:69
+#: 3b59856c76d349398f1283e09954dc34 e3f170c4d6f1400ebfe8f73f907dcb73
+msgid "position: NavigationItemPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:70
+#: 5fc3553f094b4434ba40b46c727a23fb ae12a92f05854fb7a2246f761fed0ebd
+msgid "where the button is added"
+msgstr "导航菜单项的添加位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:50
+#: a71372fbce624df3bf15682a289fe4aa
+msgid "selectable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:51
+#: e627cf498d9d40f6a08b3664fa7d9cab
+msgid "whether the item is selectable"
+msgstr "导航菜单项是否可以选中"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:56
+#: 68018fa4763b4330bc4818ecd51ec0c5
+msgid "add custom widget"
+msgstr "添加自定义导航小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:64
+#: cc8883c2b0594570b27a4ed79e00b3c3
+msgid "widget: NavigationWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:64
+#: 2481328ecc6f46ef900a5e084b3c686a
+msgid "the custom widget to be added"
+msgstr "自定义的导航小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:75
+#: f065a18bf00a4162a19b8382b3b1b602
+msgid "add separator"
+msgstr "添加分隔符"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:79
+#: bb2c2fdc3e1049969e2e124dc4e91c0a
+msgid "position: NavigationPostion"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:80
+#: 47ef352db33f466fab5270ceb871bef8
+msgid "where to add the separator"
+msgstr "分隔符的添加位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:85
+#: e69f98bd84ba45aaadd24dbffae6a2bc
+msgid "remove widget"
+msgstr "移除小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:95
+#: 9711f82e85e34187bb44f9719f7589da
+msgid "set current selected item"
+msgstr "设置当前选中的导航项"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:99
+#: 83100947a6ce42efaed71b83dc64f421
+msgid "name: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:105
+#: 8f30bf0a75a3458583bf9dfd09590461
+msgid "set the routing key to use when the navigation history is empty"
+msgstr "设置导航历史为空时的默认路由键"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_interface/index.rst:110
+#: 348f3119541c4606bfb88f3b6db38e81
+msgid "set the maximum width"
+msgstr "设置展开后最大宽度"
+

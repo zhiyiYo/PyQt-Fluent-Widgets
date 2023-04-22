@@ -1,0 +1,340 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:2
+#: 19b37f9f6b61421793d5034e0fcd5da5
+msgid "settings"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:22
+#: d59a885d2a7a413db76e82e47e474142
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 567ddf2fcb3845c885584fd085eaab30
+msgid ":py:obj:`SettingCard <qfluentwidgets.components.settings.SettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 6e156c26034a4f7fb6a66c930bb8decf 9ba32cd16f8d4708b2fc37150d932d02
+msgid "Setting card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: a44daf3548be46fba5e8e6c7c5f5ba1f
+msgid ""
+":py:obj:`SwitchSettingCard "
+"<qfluentwidgets.components.settings.SwitchSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:73
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 54e067e0151143458ba76cebd62ef6b9 de65f2bc047c4a6aac4f963d2ceea888
+msgid "Setting card with switch button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: e4b6c76ff1004f959ce709e24ea2e696
+msgid ""
+":py:obj:`RangeSettingCard "
+"<qfluentwidgets.components.settings.RangeSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:92
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: acbff0103f8842659aa314b549415bab d7d229b595f74327a5796c0938ef6175
+msgid "Setting card with a slider"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 8375a16e06154e8db79b7202b9e3cc69
+msgid ""
+":py:obj:`PushSettingCard "
+"<qfluentwidgets.components.settings.PushSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:108
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 18c2f5579c944b38af136e3d7bd87112 3d547a30ae8240ef9f84e815a303eec0
+msgid "Setting card with a push button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: c11799b828f8474b86a6f806161f859a
+msgid ""
+":py:obj:`ColorSettingCard "
+"<qfluentwidgets.components.settings.ColorSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 4f166b3c6a184e57ac3a06481606be7c ed733e058b4c42ee8b9a3e26f575a770
+msgid "Setting card with color picker"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 98a5c075db09456690c7ecd1f35a10ba
+msgid ""
+":py:obj:`HyperlinkCard "
+"<qfluentwidgets.components.settings.HyperlinkCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:135
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 2c2ce5b0658b4780850ed847a0d45c09 5cdc786a67f2451e9557dda57d6eb03d
+msgid "Hyperlink card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: bea541917b644b5da127ac3764d0d542
+msgid ""
+":py:obj:`PrimaryPushSettingCard "
+"<qfluentwidgets.components.settings.PrimaryPushSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:142
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 264c9d9958ff4fe6865ec238f8001001 6592009b60fd4bba883f66c14441275c
+msgid "Push setting card with primary color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: f0539eb7125741ce98113da71bd0c5e6
+msgid ""
+":py:obj:`ColorPickerButton "
+"<qfluentwidgets.components.settings.ColorPickerButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:149
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 0b5b0e1339a740b0914417c4ebb249c3 3ebde5d19a5d4ec4b1e7ecc401852c1c
+msgid "Color picker button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 5a5066510f8b499097ecd651c95cadc2
+msgid ""
+":py:obj:`ComboBoxSettingCard "
+"<qfluentwidgets.components.settings.ComboBoxSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:168
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 33249094728b4fd3bc13bd6b5583b833 603ff908226b49a788574d2ac1f69efb
+msgid "Setting card with a combo box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: bf55804573f44a0784af75ff63396446
+msgid ""
+":py:obj:`ExpandSettingCard "
+"<qfluentwidgets.components.settings.ExpandSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:180
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 058535dae17348808e67e37be6ba323d fdf55ff15e244df7bd2d97c2b5f4244e
+msgid "Expandable setting card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 547521c0a61b431cb302f109e319fe67
+msgid ""
+":py:obj:`ExpandGroupSettingCard "
+"<qfluentwidgets.components.settings.ExpandGroupSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:213
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 1cc9aafc84374e778f2ffc8e6b6c644f e295a7e1fcb845bea06037c0fcfe0da8
+msgid "Expand group setting card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 820196bec87145c9a4c0c1be085a5c87
+msgid ""
+":py:obj:`FolderListSettingCard "
+"<qfluentwidgets.components.settings.FolderListSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 601aeb9c0bcd4df4b6c06c4b758be4b8 aa780f0cb0794c14a0fc520a587cee4d
+msgid "Folder list setting card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 4c114db6e855499da44f1ded1e21b707
+msgid ""
+":py:obj:`OptionsSettingCard "
+"<qfluentwidgets.components.settings.OptionsSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:236
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 4b0269fd1cc6413e9fd65a291617dc37 f30f849f6b364ac2835ec41c83a7a5b6
+msgid "setting card with a group of options"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: 8e0135ec63194408b3a45b37e3e72c8e
+msgid ""
+":py:obj:`CustomColorSettingCard "
+"<qfluentwidgets.components.settings.CustomColorSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:252
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: c173c897c1c041a49345b3704f3b9f12 d589a30bf8864cc892b659d111b239bc
+msgid "Custom color setting card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: e79be4ff4c084d1f936f9292c7ddcc67
+msgid ""
+":py:obj:`SettingCardGroup "
+"<qfluentwidgets.components.settings.SettingCardGroup>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:263
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:46:<autosummary>:1
+#: ac8549cb457b4328b00110b7f3f24647 d298178023904862a5780fd0ee51365f
+msgid "Setting card group"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:178
+#: 0a37b25385a44d2a8a0225aa803f04fe e0e99530b1bf43ad922dde42e3fe14df
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:55
+#: d14a0eeae22143588f41b366677f88ed
+msgid "set the title of card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:60
+#: a34dc52319bc44709921674d129803d7
+msgid "set the content of card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:81
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:127
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:172
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:205
+#: 3c6ba3827397415eaf4e412feb25c0cf 6a5034f559624ae39d1c3315413548d3
+#: 9891770c951248dea5be564653a5b9d4 bb188f26845c45c486e7ac02446b5ea4
+#: e2653420a64846c1bc3be189426890e3 eef3182551864271b7aae77edfa97b78
+msgid "set the value of config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:71
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:117
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:133
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:166
+#: 26f89af161eb470f8b6024671de12d87 4e39f17c69ed4d05a664c753f15b2a54
+#: af5ffca3a3464f5d8a8181a70102a4a5 d9869acd4b6e488fb77e5699b3479771
+#: de2796e605594417a916b8e7715fd679 e2c7f1dcc8524ff887c9369e7913a49b
+msgid "Bases: :py:obj:`SettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:140
+#: 59abf143fa834808a3cce65103d1af14
+msgid "Bases: :py:obj:`PushSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:147
+#: f26034077eb34bfbb025cb4bd4118d8d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:157
+#: 7412709fa6e64d5eacb5e891ec2fe08a
+msgid "set color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:184
+#: 9e9bd4326b85437283e07281e6a37f0f
+msgid "add widget to tail"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:189
+#: 9a9b734337d047ac9760f56c306c6ed7
+msgid "set the expand status of card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:194
+#: 416a7539453d4d9b9b3cb8c577bbf607
+msgid "toggle expand status"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:211
+#: fc0839861310497195badf4bb94a83c6
+msgid "Bases: :py:obj:`ExpandSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:217
+#: 0a0210040c5142bb8dc9ef844fe071d7
+msgid "add widget to group"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:234
+#: 3b72be1c74504794bb1a0c15d797eb41 bbf4116a19634b97bf5f7a11c3888e7e
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.settings.expand_setting_card.ExpandSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:244
+#: 376d2bdb76304b34921f8bec3e49b769
+msgid "select button according to the value"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:250
+#: 4287b0e61f01445b8bf88a1f871fab26
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.settings.expand_setting_card.ExpandGroupSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:261
+#: 2b10b870ce3a43e6acd3499fb9a1cbbd
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:267
+#: 982440ff56144b22b6bb6e932b6fcd1b
+msgid "add setting card to group"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/index.rst:272
+#: f579474b7b3c45b3af69f1180b678068
+msgid "add setting cards to group"
+msgstr ""
+

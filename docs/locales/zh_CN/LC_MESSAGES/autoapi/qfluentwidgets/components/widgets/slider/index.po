@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:2
+#: 39148d6887d74ebbbe2cb52876b84a92
+msgid "slider"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:8
+#: 909b1f43e98d4f61a6c7a6807e2623a8
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:19:<autosummary>:1
+#: 961677cd75b643179cb79acc7b19a931
+msgid ":py:obj:`Slider <qfluentwidgets.components.widgets.slider.Slider>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:19:<autosummary>:1
+#: abe753c0f4774fdeaa15c0c168cd7df2 fc441bf00d2642d3833be584dc56c736
+msgid "A slider can be clicked"
+msgstr "可点击的滑动条"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:19:<autosummary>:1
+#: dd8a633a91054668a790c0a04c828708
+msgid ""
+":py:obj:`HollowHandleStyle "
+"<qfluentwidgets.components.widgets.slider.HollowHandleStyle>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:38
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:19:<autosummary>:1
+#: 1a5d33bbd6ca4eb587d975f5eb095bd6 dc7a69fb9ca5405e8188b8d1543c3578
+msgid "Hollow handle style"
+msgstr "滑动条中空样式"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:22
+#: 7f824e6ecb384147a1a828842d6d0e9d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QSlider`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:36
+#: 700c34b358b54fc99f7aad0d5a949dd2
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QProxyStyle`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:42
+#: 6201fc45ed154c15b4a21809f1e16f6f
+msgid "get the rectangular area occupied by the sub control"
+msgstr "返回子控件的矩形区域"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/slider/index.rst:47
+#: 34c4e7dd38ec4a02b78dd645635a95ef
+msgid "draw sub control"
+msgstr "绘制子控件"
+

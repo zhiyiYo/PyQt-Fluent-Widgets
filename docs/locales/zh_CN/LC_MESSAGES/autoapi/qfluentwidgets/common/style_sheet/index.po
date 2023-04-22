@@ -1,0 +1,366 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 21:37+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:2
+#: 6db3f5dd342446ef919bb2cab27eecd1
+msgid "style_sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:8
+#: a98eda9ff044445cbcfe28ebc3ff815f
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 8c11fef865944c8dbba204c5fe3fd719
+msgid ""
+":py:obj:`StyleSheetManager "
+"<qfluentwidgets.common.style_sheet.StyleSheetManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:47
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 23984ae656094c23b5d163019c600fd5 bd2e657d43b84cce832b5f27313a49b3
+msgid "Style sheet manager"
+msgstr "样式表管理器"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: af6b730b87e24a3bbc6f723b81989db3
+msgid ":py:obj:`QssTemplate <qfluentwidgets.common.style_sheet.QssTemplate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:79
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 4102eb3ac1f34af09c4f4bfcc2bb2187 c3e0c92cb62a459d83a9b5c671cb3cbc
+msgid "style sheet template"
+msgstr "样式表模板"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 4da2bf7dcb94427cb0d478b3818322af
+msgid ""
+":py:obj:`StyleSheetBase "
+"<qfluentwidgets.common.style_sheet.StyleSheetBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 130628006d2842d8aa5a336e99773b96 cbfc423de7d346fb8d1293a00b5828a5
+msgid "Style sheet base class"
+msgstr "样式表基类"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 245b96721a97401c8bfebd9122f7d64d
+msgid ""
+":py:obj:`FluentStyleSheet "
+"<qfluentwidgets.common.style_sheet.FluentStyleSheet>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:123
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 6f5a22b42ff248178bc86a4bcd1029c5 a33443bf51e843d1872b8e1747a75a9f
+msgid "Fluent style sheet"
+msgstr "流畅设计样式表"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: f3451d8980cb4a52abe4208d1cead71c
+msgid ":py:obj:`ThemeColor <qfluentwidgets.common.style_sheet.ThemeColor>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:291
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:23:<autosummary>:1
+#: 23d60a7981594cbf9e952d7efdf02e7b ee959bbc82434372b5ac3a0280b3a4c7
+msgid "Theme color type"
+msgstr "主题颜色"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 0ba3fc55a7f9449cbd9f1d8e18e81880
+msgid ""
+":py:obj:`applyThemeColor "
+"<qfluentwidgets.common.style_sheet.applyThemeColor>`\\ \\(qss\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:89
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 71984996c1ad46a78f730b90f13148cd 7ed25d9956e94569ad0238842746f8f4
+msgid "apply theme color to style sheet"
+msgstr "将主题色应用到样式表模板上"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: b653ae2dd8b94c56ba29d36a5a6bbf00
+msgid ""
+":py:obj:`getStyleSheet "
+"<qfluentwidgets.common.style_sheet.getStyleSheet>`\\ \\(file\\[\\, "
+"theme\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:238
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 2b64244c87fc4e5e8000254e9506bf30 41a597b309cf446c88acf5fba6f297da
+#, fuzzy
+msgid "get style sheet"
+msgstr "返回样式表"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 03242346980744bb98a1aa2813e1fd70
+msgid ""
+":py:obj:`setStyleSheet "
+"<qfluentwidgets.common.style_sheet.setStyleSheet>`\\ \\(widget\\, "
+"file\\[\\, theme\\, register\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:251
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 7d6fa96a863242dab81850a2ba51f109 ce27e3371bfa4973a31bc3e0b98fc426
+msgid "set the style sheet of widget"
+msgstr "设置小部件的样式表"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 596211d69b124852945081c425a7ad33
+msgid ""
+":py:obj:`updateStyleSheet "
+"<qfluentwidgets.common.style_sheet.updateStyleSheet>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:271
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 9916f8de11404b1b85513ba98a16ca43 b4bf823972334abc84e3383dda8a0d8b
+msgid "update the style sheet of all fluent widgets"
+msgstr "更新所有注册到管理器中的部件的样式表"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: ebbfec35b719404c93ef85ecd898fa4e
+msgid ""
+":py:obj:`setTheme <qfluentwidgets.common.style_sheet.setTheme>`\\ "
+"\\(theme\\[\\, save\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:276
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 3d80b91de81b40e38946d455afa9d086 b3d374d74762486582369912ab341907
+msgid "set the theme of application"
+msgstr "设置应用的主题"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 7e92ff7833824c1c9346709fe5db0952
+msgid ""
+":py:obj:`themeColor <qfluentwidgets.common.style_sheet.themeColor>`\\ "
+"\\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:339
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: a8c74fb4e6104bbe8ca8fa34e1f3565f b9c79f7784f24d00907892349996ffc3
+msgid "get theme color"
+msgstr "返回主题色"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: e1312ab09a7b4a1eaa18797eb97be89a
+msgid ""
+":py:obj:`setThemeColor "
+"<qfluentwidgets.common.style_sheet.setThemeColor>`\\ \\(color\\[\\, "
+"save\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:344
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:37:<autosummary>:1
+#: 179e4e02d1da438d849036dc92d36c9d 559612c996224b9cafca5bf4acb58c7c
+msgid "set theme color"
+msgstr "设置应用的主题色"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:42:<autosummary>:1
+#: c4d726bf1a28450d95702671c4ad5326
+msgid ""
+":py:obj:`styleSheetManager "
+"<qfluentwidgets.common.style_sheet.styleSheetManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:45
+#: a13a8284a0144ce9bb7aa784e0cf9914
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:51
+#: 22d30550cc5f49a4b56c13e314765356
+msgid "register widget to manager"
+msgstr "将小部件注册到样式表管理器"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:54
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:92
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:254
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:279
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:347
+#: 27ea758640b945ecbad25b38316caa61 8804e57c26e644c783530a911f5a3da6
+#: 8fb0a6db6716466fbdcd5b48218f3bc0 938ef25ea6714b9ea5296c94f0f5af7d
+#: a34b2674a8f946e7b8356c057f00b40b a91868a079da4612a5e1bbf03dcc716b
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:56
+#: c7cf4781a10e46dea3a3a9f709f537a4
+msgid "file: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:56
+#: e7e81cb213e24a2fbbf5c4772909de10
+msgid "qss file path"
+msgstr "样式表文件路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:58
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:256
+#: 50048b602cf549679c0cb2f0aa00fd4a d997557ea073477c8c94bbaa9652e970
+msgid "widget: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:256
+#: f081dd39241445ec8ea984b6643a560f fe7907c2b45941ddb06db35a8547b2bd
+msgid "the widget to set style sheet"
+msgstr "将被设置样式表的小部件"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:64
+#: 412ae69293a44778885e15f4b9d4f824
+msgid "deregister widget from manager"
+msgstr "从管理器中注销小部件"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:77
+#: b8b3ef8330fa40e6a6e8d37f3ed415ec
+msgid "Bases: :py:obj:`string.Template`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:94
+#: 779cbdb3865c49f58fb3a44a554e5efd
+msgid "qss: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:94
+#: 7795ad83a6614a07b6876016beccbd51
+msgid ""
+"the style sheet string to apply theme color, the substituted variable "
+"should be equal to the value of `ThemeColor` and starts width `--`, i.e "
+"`--ThemeColorPrimary`"
+msgstr "将被应用主题色的样式表模板字符串，被替换的变量值应该是 `ThemeColor` 枚举成员的值并以 `--` 开头，比如 `--ThemeColorPrimary`"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:105
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:232
+#: 9fa9bca63e2d463dbbee301ea2e6c7f9 f2050d977f5e4cd08319783ef64a877c
+msgid "get the path of style sheet"
+msgstr "返回样式表的路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:110
+#: 73cd650422934d4691185d8665b0c81b
+msgid "get the content of style sheet"
+msgstr "返回样式表字符串"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:115
+#: 0020c54f85534c26a50e44bf972624d3
+msgid "apply style sheet to widget"
+msgstr "将样式表应用在小部件上"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:121
+#: b777c7e74da0416ba6ab84fbf00dc284
+msgid "Bases: :py:obj:`StyleSheetBase`, :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:259
+#: 76cd67b8dfc74bf0803b3dd8983ff507 fcae0ecabbda4e30b6a8e5ee5a15f145
+msgid "file: str | StyleSheetBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:259
+#: e1623331f0f447b4bc0f5fdc3d970b31 e8b18945fd0f4628855f4e33f70201c8
+msgid "qss file"
+msgstr "样式表文件"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:245
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:262
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:281
+#: 682c9be7c501401482e9340f46147570 6c055d2c01e24c3cadbadb1264bb39c4
+#: 6d6de4a7ef05478887f8674a84f0509a
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:246
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:262
+#: 975e2e6f7e784613a2263e69c9b20d11 9fe0a8bd2ea14933889b69549c292e73
+msgid "the theme of style sheet"
+msgstr "样式表的主题"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:265
+#: 46a671c8d9e94c9ab469f4a50761916e
+msgid "register: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:265
+#: c1a535d95bb74b1a8670854ccde34e9e
+msgid ""
+"whether to register the widget to the style manager. If `register=True`, "
+"the style of the widget will be updated automatically when the theme "
+"changes"
+msgstr "是否将小部件注册到样式表管理器中，如果 `register` 为 `True`，当主题改变时小部件的样式表也会随之改变"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:281
+#: 2a3e3293af7c4b70ab1ae4fd4b386a29
+msgid "theme mode"
+msgstr "主题模式"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:283
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:351
+#: 9cc38b96600f421d8d63a55831c8bdba b0526e027e0847ca8815f09d1faec136
+msgid "save: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:284
+#: 1201888a47e34366b0c6097657748948
+msgid "whether to save the change to config file"
+msgstr "是否将改变保存到样式表中"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:289
+#: 966e772592814cfba2afed1b1f4a8f67
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:330
+#: 82cfa58afa11426cae3f69d174c4b572
+msgid "The name of the Enum member."
+msgstr "枚举类成员的名字"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:349
+#: 39db451c91cf4deba3c9cf0ac2253ca8
+msgid "color: QColor | Qt.GlobalColor | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:349
+#: d62f7e0952b94e0fb7bc05f3ae3cc9bf
+msgid "theme color"
+msgstr "主题色"
+
+#: ../../source/autoapi/qfluentwidgets/common/style_sheet/index.rst:352
+#: 61ce0377009d44cb9faefcb65bd37b60
+msgid "whether to save to change to config file"
+msgstr "是否将改变保存到样式表中"
+
+#~ msgid "get style sheet from `qfluentwidgets` embedded qss file"
+#~ msgstr ""
+

@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:2
+#: 636c5d33bc814548ad111750a4b466a2
+msgid "check_box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:8
+#: 2d56f343df7342fd8de48b325d78f488
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:19:<autosummary>:1
+#: ab98290628be4df38f4e167a4a3aa24e
+msgid ""
+":py:obj:`CheckBoxIcon "
+"<qfluentwidgets.components.widgets.check_box.CheckBoxIcon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:19:<autosummary>:1
+#: 19281b5557b94cf489d97cc2e558cc8a d84e348b46b54693b6f38647d67c8475
+msgid "CheckBoxIcon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:19:<autosummary>:1
+#: 2c5aca31114147d59a16403354112011
+msgid ""
+":py:obj:`CheckBox "
+"<qfluentwidgets.components.widgets.check_box.CheckBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:54
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:19:<autosummary>:1
+#: 19b673ab2b8643db986e3616fb04c32e 53cd4fdd1703441c9dd1c84adb8e1d3c
+msgid "Check box"
+msgstr "复选框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:22
+#: 784188ba68ed43cdb3d85c8d2ab93cc9
+msgid ""
+"Bases: :py:obj:`qfluentwidgets.common.icon.FluentIconBase`, "
+":py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:38
+#: 4dee408c754f4f0986088356c12bd537
+msgid "get the path of icon"
+msgstr "返回图标路径"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:41
+#: eed01602c0754c0e9280fcd72f5651f1
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:45
+#: 936568919ec045b1a82dc298607d582d
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:43
+#: 4f8945c054c84bb18b10cc51ce3c878b
+msgid ""
+"the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
+"* `Theme.AUTO`: icon color depends on `config.theme`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:52
+#: 0089ceee2840452bbfe2a4476a7eacd3
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QCheckBox`"
+msgstr ""
+

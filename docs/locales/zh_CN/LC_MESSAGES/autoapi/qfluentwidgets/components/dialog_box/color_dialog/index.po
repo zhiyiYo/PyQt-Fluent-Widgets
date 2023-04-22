@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-23 00:38+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:2
+#: c3bf13c266e7457881a8409501120d13
+msgid "color_dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:8
+#: 6f9c3cf245714554bcdb304614f6cf12
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 5df87324928c4ff19d9c3ba318c8968c
+msgid ""
+":py:obj:`HuePanel "
+"<qfluentwidgets.components.dialog_box.color_dialog.HuePanel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 35713682e1fb4ae8bcbf414cf231ec33 5963190d4dca41b78bcff394c534b531
+msgid "Hue panel"
+msgstr "色调面板"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 226612e9a57b4e0281e047700b005ab6
+msgid ""
+":py:obj:`BrightnessSlider "
+"<qfluentwidgets.components.dialog_box.color_dialog.BrightnessSlider>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:64
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 649efaaee48b4a18a16ef5ee7c53016b 7771d231c12a4a24a75cb53c2c3ac4f0
+msgid "Brightness slider"
+msgstr "亮度滑动条"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 58e4a0f13d8648beae6d834d3210b155
+msgid ""
+":py:obj:`ColorCard "
+"<qfluentwidgets.components.dialog_box.color_dialog.ColorCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 91a78ec1101646e792a9d71e8d03735c d760d63a963145aaa07a39a3b35fe0ac
+msgid "Color card"
+msgstr "颜色卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: a5bf2529f47c46eca9384ed0a3bf1686
+msgid ""
+":py:obj:`ColorLineEdit "
+"<qfluentwidgets.components.dialog_box.color_dialog.ColorLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:95
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 83b44190194548efb7fb776107861423 913abfab523f444984493a417b76a535
+msgid "Color line edit"
+msgstr "颜色编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 56292f207bae43e792b731208b319bcf
+msgid ""
+":py:obj:`HexColorLineEdit "
+"<qfluentwidgets.components.dialog_box.color_dialog.HexColorLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 293c5d0018e44093aa21343415c8952a 7e3acdf29d73414bbb9739563630883f
+msgid "Hex color line edit"
+msgstr "十六进制颜色编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: d2d57b7fadc44a96a554190f9620eaf5
+msgid ""
+":py:obj:`ColorDialog "
+"<qfluentwidgets.components.dialog_box.color_dialog.ColorDialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:118
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:23:<autosummary>:1
+#: 1e66ed96cd5944f48725566e2cc358e0 b89059ce9f8d454eb6e28d9ef246bca2
+msgid "Color dialog"
+msgstr "颜色对话框"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:26
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:78
+#: 6ffd065322fd420ea93d2af5be478b7d 79bc7a9da3974fa39cce1b8d3cc91a91
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:48
+#: 99cb9ec5840e4abb92581de22f412e13
+msgid "set the position of"
+msgstr "设置拾色器的位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:110
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:126
+#: 04f2e04bb2734b85963940cddf63f673 120a4ca5d1144a38bddf2c7bd825230a
+#: 2a91fee1e76d4e7ab2589e53d7c7b31f b144d5910c5e4d38bfc53df6e964cfab
+msgid "set color"
+msgstr "设置颜色"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:62
+#: 72a56f32dec64c0c94948c32080ed993
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.Slider`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:84
+#: 688771ba16a54df28a14cd6a65cc5a56
+msgid "set the color of card"
+msgstr "设置卡片的颜色"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:93
+#: d05766b5c8304ff2b26376a6b8a815b9
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.line_edit.LineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:104
+#: 876faae12b514cceb94bd8e91ec81094
+msgid "Bases: :py:obj:`ColorLineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:116
+#: beeeecced8384078b2e6ec5cf9908f5a
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:131
+#: 7f1bd0f36d8249e2bac0f917b7eb0197
+msgid "update style sheet"
+msgstr "更新样式表"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/color_dialog/index.rst:136
+#: 5fbbb12fbae14aaebe6986784f35d446
+msgid "fade in"
+msgstr ""
+

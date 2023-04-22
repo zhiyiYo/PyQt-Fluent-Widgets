@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:2
+#: f7b666fef220499ea91ff6edb639375b
+msgid "v_box_layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:8
+#: d5f24d2d0af84d37bbcc7f2fa45d3d3f
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:18:<autosummary>:1
+#: 5bde8ec026974ffa8d171bc18a13e256
+msgid ""
+":py:obj:`VBoxLayout "
+"<qfluentwidgets.components.layout.v_box_layout.VBoxLayout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:18:<autosummary>:1
+#: 894163b487e44b63a1ac65c062e1d59c a71fb467c91b44a19e9fc7d1d89ee7e7
+msgid "Vertical box layout"
+msgstr "垂直布局"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:21
+#: c3862dede9d24bd4b39c9f73382355cc
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QVBoxLayout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:27
+#: 1d0bb7df9adb4171b5a65b73a6f0c82d
+msgid "add widgets to layout"
+msgstr "添加多个小部件到布局中"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:32
+#: 1ffbfe8e84014e1a97293564d45240d2
+msgid "add widget to layout"
+msgstr "添加小部件到布局中"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:37
+#: 12394ed7e0cb4ca8b429d7baa629bebd
+msgid "remove widget from layout but not delete it"
+msgstr "从布局中移除小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:42
+#: e0e481dd651b477f826940a1b400c7f0
+msgid "remove widget from layout and delete it"
+msgstr "从布局中移除小部件并删除它"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/v_box_layout/index.rst:47
+#: d916462e9ef6421293c7882a5d98558a
+msgid "remove all widgets from layout"
+msgstr "从布局中移除所有小部件"
+

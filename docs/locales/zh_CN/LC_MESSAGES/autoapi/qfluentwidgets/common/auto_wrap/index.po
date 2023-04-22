@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:2
+#: 4f2307caabcb414a933867fe6311b434
+msgid "auto_wrap"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:8
+#: 744090c7d51b4504801062dedd37954a
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:18:<autosummary>:1
+#: 932903640d4c47c4af585a974c7bc1c6
+msgid ":py:obj:`TextWrap <qfluentwidgets.common.auto_wrap.TextWrap>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:21
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:18:<autosummary>:1
+#: 57efe97ebd6742b08cf6442076b0b41e a6c1291f94564bef817b9f908dc053af
+msgid "Text wrap"
+msgstr "文本折叠类"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:31
+#: 2c4a7011cf90489fabd71d113ff4616a
+msgid "Return the screen column width for a char"
+msgstr "返回一个字符的宽度"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:37
+#: bbb448ba2814454aa33f10cd8c0caa7a
+msgid "Wrap according to string length"
+msgstr "根据指定最大长度进行折叠"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:40
+#: fca8f87e66954e41bd3097eda8857608
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:42
+#: 074c05ce4a1b48f284873746eb624ab7
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:42
+#: 3158e155ec52455b90d275b47077498b
+msgid "the text to be wrapped"
+msgstr "将被折叠的字符串"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:45
+#: baff1a28f46842ca8dd4a4bca5c91b98
+msgid "width: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:45
+#: bae91be0e91b4c13b4b86582664973dd
+msgid "the maximum length of a single line, the length of Chinese characters is 2"
+msgstr "单行的最大长度，英文字符长度为 1，其他字符长度为 2"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:48
+#: f7442022b1664e10bb9d983079691e10
+msgid "once: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:48
+#: b4959801e49e4f99a0bd18d942856548
+msgid "whether to wrap only once"
+msgstr "是否只换行一次"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:51
+#: d2520dda02ac411b953cbb8b058599a6
+msgid "Returns"
+msgstr "返回值"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:53
+#: 4c8f2dd91ce84c5babfb84a35a6020a2
+msgid "wrap_text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:53
+#: b6813d51b3944d9d8426611f2b2c4fd6
+msgid "text after auto word wrap process"
+msgstr "折叠处理后的字符串"
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:55
+#: f9b51ab02c784e4b993073158b2f0749
+msgid "is_wrapped: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/auto_wrap/index.rst:56
+#: 1a378c4e30e742a19b00ba6a0fc9b87e
+msgid "whether a line break occurs in the text"
+msgstr "原始字符串是否发生折叠"
+

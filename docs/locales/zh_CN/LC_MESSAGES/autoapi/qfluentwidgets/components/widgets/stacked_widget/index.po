@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:2
+#: dac7d8207a81482487804f22ac009e4a
+msgid "stacked_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:8
+#: 7bbbebcc6c614b66b75fc9c618186f19
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: aea3c5a4770d491697d2de23adf6b0ee
+msgid ""
+":py:obj:`OpacityAniStackedWidget "
+"<qfluentwidgets.components.widgets.stacked_widget.OpacityAniStackedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: 17a940d9182245d389418248f902a961 8fb62ac6766c4664b68cbc548e87d577
+msgid "Stacked widget with fade in and fade out animation"
+msgstr "带淡入淡出动画的层叠组件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: e65df1ae486042aebf3078ae27470668
+msgid ""
+":py:obj:`PopUpAniInfo "
+"<qfluentwidgets.components.widgets.stacked_widget.PopUpAniInfo>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: 0865b49b695f45e294ed4bee1f1c8aef e16044647d354e5b86e6d030a3ffbb08
+msgid "Pop up ani info"
+msgstr "弹出动画信息"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: dac2eba612cf44c69a57423ddf5bb6ad
+msgid ""
+":py:obj:`PopUpAniStackedWidget "
+"<qfluentwidgets.components.widgets.stacked_widget.PopUpAniStackedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:46
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:20:<autosummary>:1
+#: 493144a276fb4018b61a138f1c837510 9069c571c3cc4f5b86cc4a6b682555d9
+msgid "Stacked widget with pop up animation"
+msgstr "带弹出动画的层叠组件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:44
+#: 0c59e83e2a2a42daa7a2c28f0eedf753 fd56ac89554145dea1d6e5f545a7d855
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStackedWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:58
+#: a95e79dcaddb4c889aabe3e8ca382f58
+msgid "add widget to window"
+msgstr "添加小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:99
+#: 1defd58ffca34d82a5ac6b63bb0d2e02 6aa06b94f22442dab511fb12cde7ef89
+#: db7c0ca47a1541b7a081f4da3c111088
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:63
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:101
+#: 553556ba5bcf42a184affaab8ba5ce83 dc420a9bd1c947f3b941c0af75bf741b
+msgid "widget:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:63
+#: 6de1f9fa86ae47f596cf22d0fec5314b
+msgid "widget to be added"
+msgstr "被添加的小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:66
+#: cd332b030f974d87bcbc682622bd6853
+msgid "deltaX: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:66
+#: ff7f4aa111f74170b976a3c70e699f9c
+msgid "the x-axis offset from the beginning to the end of animation"
+msgstr "动画开始时水平方向的偏移量"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:68
+#: 5f25d25920c1419ab4f3d147f26c4a32
+msgid "deltaY: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:69
+#: 651e18cd905349bf9465128578326d10
+msgid "the y-axis offset from the beginning to the end of animation"
+msgstr "动画开始时垂直方向的偏移量"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:74
+#: fd75c4d6a4d84a2f924958eee6684955
+msgid "set current window to display"
+msgstr "当前窗口是否立即显示"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:79
+#: 5c7f15b119284141abfa838134361e82
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:79
+#: e099f7a801084de5a96d0388214408b5
+msgid "the index of widget to display"
+msgstr "小部件的索引"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:104
+#: 377e6da52f084caa9c550fc62c7ce3b3 f24bf3ff5da74acb8c6c35efb9c8cc6f
+msgid "isNeedPopOut: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:104
+#: 3a8dd0847b464fc4ab30b9d3c725b19d 4e9fa937339e4e0d8cb350d53643b8a8
+msgid "need pop up animation or not"
+msgstr "是否需要弹出动画"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:107
+#: 24e577dc40e24f9783e5180032c364dc abe33cd7bea24f758f5aa13f027fc918
+msgid "showNextWidgetDirectly: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:107
+#: c22e476cec3140c58868ebc77e0f8e2c d81ca37dfbb9467c99c5215212a3c3ab
+msgid "whether to show next widget directly when animation started"
+msgstr "动画开始时是否立即显示下一个小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:110
+#: 6a4b912a4c834abd859a83e9accaa510 b61f903e31f74571960f741f21ca98e7
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:110
+#: 8781fcfd625f457b9c0ccfb354cee063 a83d2bf41def4fb6b11ead8175063c52
+msgid "animation duration"
+msgstr "动画时长"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:112
+#: 7542b327b5bc426c99f8e72bfd440e6d b9b3e2383ba146c28595f9d8a0196b94
+msgid "easingCurve: QEasingCurve"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:91
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:113
+#: e550742240904cb9853aa69f2cdb10b0 edf5e39e788d47f2bac73c9a9dcf4119
+msgid "the interpolation mode of animation"
+msgstr "动画类型"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:96
+#: 629ca06924e44981be1fad8ce7aa9e0b
+msgid "set currect widget"
+msgstr "设置当前部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/stacked_widget/index.rst:101
+#: de62e0ccd13a46debaed1a8e3583c82a
+msgid "the widget to be displayed"
+msgstr "将显示的小部件"
+

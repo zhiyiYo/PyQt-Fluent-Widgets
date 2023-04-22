@@ -1,0 +1,344 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:2
+#: 7af4f6907ab14878bcaaca90dc21c117
+msgid "menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:8
+#: 0fb4479625e24b8d89f1d9509ac328d4
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 33b6c705589a4a75ad65a8c65e34abe4
+msgid ""
+":py:obj:`CustomMenuStyle "
+"<qfluentwidgets.components.widgets.menu.CustomMenuStyle>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:31
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 99b19d9186da401c9300404c50166f0a cd8020e9685547c68c0857d57d6f0e79
+msgid "Custom menu style"
+msgstr "自定义菜单样式类"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: edbeb9d3a82c4b338de0ff9b9f37134b
+msgid ":py:obj:`DWMMenu <qfluentwidgets.components.widgets.menu.DWMMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: e48fbc8e68bf412dac2f55b13fe88697 e64aaec702e247f28838271a79e40339
+msgid "A menu with DWM shadow"
+msgstr "带 DWM 阴影的菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: b9e3dd99ef2f45ac99c8e218b06cb897
+msgid ""
+":py:obj:`MenuSeparator "
+"<qfluentwidgets.components.widgets.menu.MenuSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 63d79fa05e7c4351b49465b4a0aee1c5 6fb4ed70bec343fd9a9dbf0076552ecc
+msgid "Menu separator"
+msgstr "菜单分隔符"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 643a3ea9e909497281712e7f05f070ed
+msgid ""
+":py:obj:`SubMenuItemWidget "
+"<qfluentwidgets.components.widgets.menu.SubMenuItemWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: ac151486c6254236931ddac229a86805 eb699d18c2144967b8cc801f033be5de
+msgid "Sub menu item"
+msgstr "子菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 40f3d41313624baf84caf2e1c629c1a4
+msgid ""
+":py:obj:`MenuActionListWidget "
+"<qfluentwidgets.components.widgets.menu.MenuActionListWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:78
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 2b9d966acd68413f840152e81ef71dc8 95305cd6d071488a8b77a767da601391
+msgid "Menu action list widget"
+msgstr "菜单项列表部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: e126d17c987947f3b6451b006abe2aed
+msgid ":py:obj:`RoundMenu <qfluentwidgets.components.widgets.menu.RoundMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 00977b296200443996fda07af7e2d68d 22cfe64bdfbc4068a6d2c625924cd74d
+msgid "Round corner menu"
+msgstr "圆角菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 0211b82618714099983958395e84fb7c
+msgid ":py:obj:`EditMenu <qfluentwidgets.components.widgets.menu.EditMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:252
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 5b6af8aa7641417985b6b1299c3dbcaf f08bd9850b6d43da8a12d08383643630
+msgid "Edit menu"
+msgstr "编辑框右击菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 7f19a5373cf344b787d21abdefbe082d
+msgid ""
+":py:obj:`LineEditMenu "
+"<qfluentwidgets.components.widgets.menu.LineEditMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:275
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: b9a9df549e954922b47d94179c0f3f5b f6e7f4ba0bc746f08a4d88e73e23fecd
+msgid "Line edit menu"
+msgstr "单行编辑框右击菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 52055971142a4ec1b341c2c7536c0405
+msgid ""
+":py:obj:`TextEditMenu "
+"<qfluentwidgets.components.widgets.menu.TextEditMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:282
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 278c708ac7bd43efbde620cded131981 7339b1f306ae45f78c1defe16755cbbc
+msgid "Text edit menu"
+msgstr "多行编辑框右击菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:29
+#: 742cfac293d9474b9709f4c5d8588c20
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QProxyStyle`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:39
+#: b6b9ba2f4b8c490393167aed5251cbb1
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:109
+#: 148b837dbf5f4007bb6fd5085af5b39a 4f4035ddcf1142c888c9520447a5b508
+#: bdb292bf76a24567ba8a1d5b10c3cc31
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:76
+#: ab38e7f1eac6406f9b37ed57bb84d5c0
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:85
+#: 84a45badbac64d83a40f82b5081dd6d2
+msgid "inserts menu item at the position in the list given by row"
+msgstr "在指定位置插入菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:90
+#: 0bbbda24ad97465c95427d19e55855dd
+msgid "add menu item at the end"
+msgstr "添加菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:95
+#: fabbcf99670f4ebab3c6f73d0f322fd2
+msgid "delete item from list"
+msgstr "从列表中删除选项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:103
+#: 9b78bc746ab14eb3a0d081e911c53868
+msgid "set the height of item"
+msgstr "设置选项的高度"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:119
+#: 71b6376d62df4ad1b7933950b6e1fcc5
+msgid "set the height of menu item"
+msgstr "设置菜单项的高度"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:124
+#: 6e3b4d41e2534f65b3a01e94ebc7127e
+msgid "add shadow to dialog"
+msgstr "给菜单添加阴影"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:138
+#: 4b69837a70274f06bdf8f86b0049df3a
+msgid "clear all actions"
+msgstr "移除所有动作"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:143
+#: c1c1b7032d6e4ffa95e4d19830af75ec
+msgid "set the icon of menu"
+msgstr "设置菜单图标"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:148
+#: c2fc5d1bf08142d2a646dfc09dd7661c
+msgid "add action to menu"
+msgstr "添加菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:151
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:166
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:191
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:226
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:239
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:262
+#: 27d3051ea4c54602a770b937058b9ccd 39d431d411534e57832c7cdc098ea320
+#: 50fd1ec3de6a428384d8728d9c72d4f8 6343b61a563441ee916f485ea45f3084
+#: 89da1c64990149209d25461d058b790b d99ff2ab625045a28796501c76352858
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:152
+#: 39776a3bf635462a9ac96b8401e8df79
+msgid "action: QAction"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:153
+#: 0e4619d1d61a4977ab98dc04d8c4351f
+msgid "menu action"
+msgstr "菜单动作"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:158
+#: bbdcc8702f6243248a1cb9705778f87b
+msgid "inserts action to menu, before the action before"
+msgstr "在 `before` 之前插入一个菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:163
+#: 104aa9a7ca324e76b66a49645d274949
+msgid "add actions to menu"
+msgstr "添加多个菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:167
+#: 2f0890a09a3a4fd49bd9c2245bade08e
+msgid "actions: Iterable[QAction]"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:168
+#: acadfa0e389642858b334a1447b7f34e
+msgid "menu actions"
+msgstr "菜单项列表"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:173
+#: 53ee921f428442b0bb6be72879360766
+msgid "inserts the actions actions to menu, before the action before"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:178
+#: b482d452da614c46beaf6c04e67f26aa
+msgid "remove action from menu"
+msgstr "移除菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:183
+#: b6b3780fe3a34e748453dbe56e68f96c
+msgid "set the default action"
+msgstr "设置默认动作"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:188
+#: 75799f7498ca42f78c00b3b136963762
+msgid "add sub menu"
+msgstr "添加子菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:192
+#: d8a70e1753db4a6f97badc47253089e0
+msgid "menu: RoundMenu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:193
+#: a8ce1b7de5bf4dac8f959e8ee68aa952
+msgid "sub round menu"
+msgstr "子圆角菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:198
+#: 162df10711c84b578746a3bc1dceec1a
+msgid "insert menu before action `before`"
+msgstr "在 `before` 之前插入子菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:203
+#: cb22cbc7b24242ea94d40bef6189a43a
+msgid "add seperator to menu"
+msgstr "添加分隔符"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:236
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:259
+#: 24ba33fc5d024d4584d1698d73ab0749 a062c0e5c51f47d2a335394bd65a71f3
+#: e61483236c814580891c1f04c87a168f
+msgid "show menu"
+msgstr "显示菜单"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:228
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:264
+#: 027eb57733a44a60b658892fa1cbbd0a 6e952848c12b4861a9fb299bb2e6870b
+#: dd6dc0efcec34c60ad2e178a7c3d99f4
+msgid "pos: QPoint"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:228
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:264
+#: 299e2e74bd1746d6b3e967a04dfb22c1 6ee1fbc272ac497182ac83900775f496
+#: 9d80400bec1647aab2092e2cc0919f40
+msgid "pop-up position"
+msgstr "弹出位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:230
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:266
+#: 6e8d30f0039f451c864309b50e083d77 acc6c9501b024913b44f0f602ae10f6b
+#: d37db5f5c39b4302bd876fd800a2150d
+msgid "ani: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:231
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:244
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:267
+#: 6a2c0707cf42444c9ac919858ccb21b3 a7b74230f5fd4e62a5d0df40312e5c3c
+#: cab15dc59898438386e6b662c38af4c8
+msgid "Whether to show pop-up animation"
+msgstr "是否显示弹出动画"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:250
+#: 1a2b82c410604cf79111dea9b73c172c
+msgid "Bases: :py:obj:`RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:273
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:280
+#: 45ac460fb9b54a869cfcdc209d89c341 8e4f9f7844d6483487d3fafe9edf4153
+msgid "Bases: :py:obj:`EditMenu`"
+msgstr ""
+

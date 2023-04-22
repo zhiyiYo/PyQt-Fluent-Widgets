@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:2
+#: 7a1857b3e9a04871934618f3f800aa88
+msgid "icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:8
+#: 7ebcfbdedc3b43218e23abb38d3743f3
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: ae28f0af055c4e198571bb246b14e431
+msgid ":py:obj:`IconEngine <qfluentwidgets.common.icon.IconEngine>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 187d94badbf04acba5e2b3da641124bf 9337c4c9ae244ccd85f96cb0c89d8b91
+msgid "Icon engine"
+msgstr "图标引擎"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 2ab336c9de0b4c08a2f180d30e0421dd
+msgid ":py:obj:`Icon <qfluentwidgets.common.icon.Icon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 9119c289e1b64241868fa5745922ff15
+msgid ":py:obj:`MenuIconEngine <qfluentwidgets.common.icon.MenuIconEngine>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: b6c41dae1c1043d6818c47c34ac3cac2
+msgid ":py:obj:`FluentIconBase <qfluentwidgets.common.icon.FluentIconBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:122
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 35f633fd7b774061a5fe793f5b6c9f7c f57c47278ab04148b2327d74c9bbbcae
+msgid "Fluent icon base class"
+msgstr "流畅图标基类"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 1320f405cc384d45b2d7c83b5e8cf291
+msgid ":py:obj:`FluentIcon <qfluentwidgets.common.icon.FluentIcon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:181
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:23:<autosummary>:1
+#: 07b6e7a89aba46b1852e971bb111da50 420755e101ed40b3b31b87b6bc33cfaa
+msgid "Fluent icon"
+msgstr "流畅图标"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 96da2913e5994d769124e13b0cda91db
+msgid ""
+":py:obj:`getIconColor <qfluentwidgets.common.icon.getIconColor>`\\ "
+"\\(\\[theme\\, reverse\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 8c73fc22deac4d83890536df82e4527d b58f8f875a3145f89d0bba5631bd743f
+msgid "get the color of icon based on theme"
+msgstr "根据主题获取图标颜色"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 82566590097c44bf8f0d9122e85ed3cf
+msgid ""
+":py:obj:`drawSvgIcon <qfluentwidgets.common.icon.drawSvgIcon>`\\ "
+"\\(icon\\, painter\\, rect\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:66
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:153
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 85b3105c3b8b4e3a810a8b9def05d019 8a01ac26b9854b54b22c98cd55ac8179
+#: be0106769a2648f593971f5b2f86e99b
+msgid "draw svg icon"
+msgstr "绘制 svg 图标"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: f9767aba95f44c3fa09d6ab1029e74a3
+msgid ""
+":py:obj:`writeSvg <qfluentwidgets.common.icon.writeSvg>`\\ "
+"\\(iconPath\\[\\, indexes\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 78f8b9bb2bf04d67b1afdf3a6aa157bc 96821cb260314e55a425c79bdb446b69
+msgid "write svg with specified attributes"
+msgstr "向 svg 图标的路径写入属性值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: d5c324c47adc4e49b1f25289e7887e99
+msgid ""
+":py:obj:`drawIcon <qfluentwidgets.common.icon.drawIcon>`\\ \\(icon\\, "
+"painter\\, rect\\, \\*\\*attributes\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:103
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:32:<autosummary>:1
+#: 781f8b330dff4439af8b80822c91b3a8 cc49835a94394a1a8f20059c70708d0c
+msgid "draw icon"
+msgstr "绘制图标"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:53
+#: 39e77725e77c4d84a73e9158d9d80127 f2a3790eb91d48aa9fddb2f0062fb197
+msgid "Bases: :py:obj:`PyQt5.QtGui.QIconEngine`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:48
+#: cb83e86a019c4e02a37e05d2e71e9b78
+msgid "Bases: :py:obj:`PyQt5.QtGui.QIcon`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:130
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:143
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:156
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:588
+#: 19d1bd44a5a0420f9924103adcf9c09b 27d73b36417340fe848a89308fef1a50
+#: 33fdbe1130fc4ff6b06182f74e2a5ca2 5dc14d15e8574ea4bdc6261398869f42
+#: baf85490997a4c13ad6a9c21419072e0 cc417e50d7564bb2aa6cf2b63022f545
+#: f0214cba133c4642a70907073bdfbd81
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:71
+#: 94eba29a69114815819b62258e79aca0
+msgid "icon: str | bytes | QByteArray"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:71
+#: 6137d4f159094e6baf406d48df5ca1ca
+msgid "the path or code of svg icon"
+msgstr "图标路径或者 svg 图标代码"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:158
+#: 2c07ef58196d4a448f04104a8de1a25a a25686c8410045f19e564701c1f3d05c
+#: a38c21315be24c5f89fb1269b25aebf0
+msgid "painter: QPainter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:158
+#: 8cf25d507b2e4364ae4b6704b91f3bc9 95cf2095851f4b849a06814b168fce69
+#: edc0e0ddab0f4a1693bdf9992051236c
+msgid "painter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:76
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:161
+#: 0a891703072545f6bea41262992345f8 80627857ff734552a97f2111d4358f6f
+#: bb35d353665c4313ae1ad62c9fda8483
+msgid "rect: QRect | QRectF"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:161
+#: 2712d3ffb6504f0385e962b4caf0ddec 9a3e00821b0148e4b164547dc78578fd
+#: d80b89d6739a4f259105a6d36fa0e889
+msgid "the rect to render icon"
+msgstr "渲染图标的矩形区域"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:87
+#: edd1768c5b444984be0dbc781726489c
+msgid "iconPath: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:87
+#: 546128feeb994033aa5b6e8bff5eb59c
+msgid "svg icon path"
+msgstr "svg 图标路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:170
+#: 8f388dd0cc374ad3a00f987d4c7e6da5 f5876b9654e449a998f07e38a3557661
+msgid "indexes: List[int]"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:90
+#: 6b4aa18ad6b44f019fe61396b236b0b5
+msgid "the path to be filled"
+msgstr "将被写入属性值的图形路径索引，如果为 `None`，所有路径都会被写入属性值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:172
+#: 7a8b77dfa0ae414398387e76a9cbb5c9 b42836f4df02429e8e00b4b5b8677961
+msgid "**attributes:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:93
+#: 09a030254e5c4adc8f76a58d11a0e9d7
+msgid "the attributes of path"
+msgstr "图形路径的属性值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:96
+#: 2cd2b674410640f681118e5745871620
+msgid "Returns"
+msgstr "返回值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:97
+#: b8ddcf6f75374b2eb0c4b0b8d524fe33
+msgid "svg: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:98
+#: c9b5d8b3e74a462d89f5f48e91da33ec
+msgid "svg code"
+msgstr "svg 代码"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:108
+#: 4ca399d2fb8c465685e6468a5e2979cc
+msgid "icon: str | QIcon | FluentIconBaseBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:108
+#: 5167177a01424bebb677e38dfa2f8695
+msgid "the icon to be drawn"
+msgstr "将被绘制的图标"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:116
+#: b37ff862d125445ba139c07731949a33
+msgid "**attribute:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:117
+#: ef91d44bb8744f85a6b3aad557708043
+msgid "the attribute of svg icon"
+msgstr "svg 图标属性"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:127
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:585
+#: 5fd36248463d45efabd57fa36ed2251b b2e69efa1bd848aaa30e726084d04c1f
+msgid "get the path of icon"
+msgstr "返回图标路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:134
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:147
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:167
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:592
+#: 00fbd72618be41d0a69c226e8432e0b1 3b51e91d96bd4d3b8f53b7a059e55f69
+#: 9469c541ed32415b83c2c241162ab304 a1900fc8d5514e35a3df81224d85fe86
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:132
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:164
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:590
+#: 6b6234d3d64c4f2a9ec91903c71b5e09 a42d4d7f4e0143f282ddfe6b97f4b632
+#: ce92a873d0d6481399bc9629a9647305 ff21141e03f3454fae7a0de42e3c6920
+msgid ""
+"the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
+"* `Theme.AUTO`: icon color depends on `config.theme`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:140
+#: bdffff3f87af46b084a7f6e831926c92
+msgid "create an fluent icon"
+msgstr "返回一个 `QIcon` 图标实例"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:170
+#: 00a91db377c74f83a7d80ec2833d4ff9
+msgid "the svg path to be modified"
+msgstr "将被写入属性值的图形路径索引，如果为 `None`，所有路径都会被写入属性值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:173
+#: 01f37239f3a94e04a3a00fd18fd687cf
+msgid "the attributes of modified path"
+msgstr "图形路径的属性值"
+
+#: ../../source/autoapi/qfluentwidgets/common/icon/index.rst:179
+#: d54796551fdb46079c06d93f6a59b839
+msgid "Bases: :py:obj:`FluentIconBase`, :py:obj:`enum.Enum`"
+msgstr ""
+

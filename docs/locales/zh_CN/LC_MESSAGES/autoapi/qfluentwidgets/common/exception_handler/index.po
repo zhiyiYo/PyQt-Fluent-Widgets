@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:2
+#: caa0990cf53a4972939189597b674c25
+msgid "exception_handler"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:8
+#: 398829a90fc5415798d76e3a5fd92c77
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:18:<autosummary>:1
+#: 86529f3e7c4d42ec8432c0d0bd94d92a
+msgid ""
+":py:obj:`exceptionHandler "
+"<qfluentwidgets.common.exception_handler.exceptionHandler>`\\ "
+"\\(\\*default\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:21
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:18:<autosummary>:1
+#: 9747eb39f36f4c44960bee98af2244a5 d79fb683b2224f01b8a4e96a260294da
+msgid "decorator for exception handling"
+msgstr "异常处理装饰器"
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:24
+#: 14b897b40a99498b8b0e40a1fba77d17
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:25
+#: 70f1274140fc446b8d997b3e32ada3c0
+msgid "*default:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/exception_handler/index.rst:26
+#: 440d2992d3874731a8e0bb5ec48fdb1f
+msgid "the default value returned when an exception occurs"
+msgstr "异常发生时返回的默认值"
+

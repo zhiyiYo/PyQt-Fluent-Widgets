@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:2
+#: 6029d2e979a648d7bc840e9186d499e1
+msgid "line_edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:8
+#: 00fc3d4ae503468780475356095401a6
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 055ce6630dd34996b9f8d0337b38da2b
+msgid ""
+":py:obj:`LineEditButton "
+"<qfluentwidgets.components.widgets.line_edit.LineEditButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 52cd5dca280f46b2a330779d9a620128 e067ad5f70604ab6858ad4f74a9edef7
+msgid "Line edit button"
+msgstr "单行搜索框按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 1ffd561de7f440b089a169ca1692912a
+msgid ""
+":py:obj:`LineEdit "
+"<qfluentwidgets.components.widgets.line_edit.LineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:43
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 22a681e761124fa6b5da38454fcd26f9 8cfe1d28d74b47bcbfdd00039a59da2d
+msgid "Line edit"
+msgstr "单行编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 08f999ca5aff462f8a0e7a72a4d3bb86
+msgid ""
+":py:obj:`SearchLineEdit "
+"<qfluentwidgets.components.widgets.line_edit.SearchLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 352d0b9521664c4bb25bca8836791d9d 9fe4480a52a04d0e982f8167ff6ce685
+msgid "Search line edit"
+msgstr "单行搜索框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: dd02b256962b4137bfa20ced95ec3376
+msgid ""
+":py:obj:`TextEdit "
+"<qfluentwidgets.components.widgets.line_edit.TextEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 0cc53825f575448cbdd322a891d2c0b4 31af082d903c47a48526e1677f5edb23
+msgid "Text edit"
+msgstr "富文本编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: ce030f55f2cc48388a6f54152a6ff4b1
+msgid ""
+":py:obj:`PlainTextEdit "
+"<qfluentwidgets.components.widgets.line_edit.PlainTextEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:101
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:22:<autosummary>:1
+#: 3e1b23358efa49a1a148cf7f6fb46c02 8d3177c7ff454fbfb9fc6656be68a4e7
+msgid "Plain text edit"
+msgstr "文本编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25
+#: a4ce95195e4a442bb67dd84e7a703801
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:41
+#: ebb732a5f6f6428aae9f89fec1a16221
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:66
+#: a27953b64c5545789bc27b853326f4fb
+msgid "Bases: :py:obj:`LineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:80
+#: c3da447dbf604811b4d0794a66bbf946
+msgid "emit search signal"
+msgstr "发送搜索信号"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:86
+#: b20e7122a0eb4a02809ee3ed2c59d1e9
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTextEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:99
+#: 389176032bb14865ae0353edd1e6b427
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPlainTextEdit`"
+msgstr ""
+

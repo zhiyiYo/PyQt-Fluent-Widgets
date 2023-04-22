@@ -1,0 +1,421 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:2
+#: e3b3cbdb27ff4594a3f0d885639d288a
+msgid "config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:8
+#: 50cbcd95d3a440b28a33b9e7125c078c
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: c78dba3534264256a81c4c9583372f82
+msgid ":py:obj:`Theme <qfluentwidgets.common.config.Theme>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 3588fc2521054c8ba9f231bce75cdfec 36c5e78588ea43a2b6df4695ba74004a
+msgid "Theme enumeration"
+msgstr "主题枚举类"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 003a4034e99e46ba91e3d1efb68d6724
+msgid ":py:obj:`ConfigValidator <qfluentwidgets.common.config.ConfigValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:73
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 136b1e895cdc4fba845eb9b99f4b1ffe 9ba274cfa6df4683bcb7e0964195dad7
+msgid "Config validator"
+msgstr "配置校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 4f6f50ba049048939488150edafa3527
+msgid ":py:obj:`RangeValidator <qfluentwidgets.common.config.RangeValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 69cd1cec1d5e481da24cc6b4b383e9f0 955c5f0963c54316a435324625f2b325
+msgid "Range validator"
+msgstr "范围校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: e1c0c86d7e6d4436bd4105b4beb0361f
+msgid ""
+":py:obj:`OptionsValidator "
+"<qfluentwidgets.common.config.OptionsValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:107
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 2a78d949c20d4c17827c7d3d9f5989ed 66563636ef9047c3a7206b30c6799633
+msgid "Options validator"
+msgstr "选项校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: fdb401785a654f98b0b13b9d9d3aad02
+msgid ":py:obj:`BoolValidator <qfluentwidgets.common.config.BoolValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:124
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 10eb11660c9d43c49d701bcc9bb2acc4 6a734d4b68554b639f1c94fdd6bb41f4
+msgid "Boolean validator"
+msgstr "布尔校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 80437f00941c4d2988386165c9e43bbb
+msgid ":py:obj:`FolderValidator <qfluentwidgets.common.config.FolderValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:131
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 502be7dea64b46ca9c6f97ca0db8d234 e93e549da7164b158f427b33089c5878
+msgid "Folder validator"
+msgstr "文件夹校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 2f01c379f8d24edba776efe5e0778a40
+msgid ""
+":py:obj:`FolderListValidator "
+"<qfluentwidgets.common.config.FolderListValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 16817ea10fb24648be14c88f280d0eb0 7045504982d449688b764417bc51e6d2
+msgid "Folder list validator"
+msgstr "文件夹列表校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 01327abeb9ba459fb88a361e22a15d09
+msgid ":py:obj:`ColorValidator <qfluentwidgets.common.config.ColorValidator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:165
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 52067e2b5ae74fe5bb56784db2bcd87b 5feefb3ed9594fe8b7346b1dbbfa6f18
+msgid "RGB color validator"
+msgstr "颜色校验器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 3f27565c8173459aa4869fa713d1dca2
+msgid ""
+":py:obj:`ConfigSerializer "
+"<qfluentwidgets.common.config.ConfigSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:180
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 09e935a43a3147c7b4243b4eac2dc299 4cbc1730cd334ed4ad4811a23d27a32c
+msgid "Config serializer"
+msgstr "配置序列化器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 450ac4354b2041438479b9b2d191e7e8
+msgid ":py:obj:`EnumSerializer <qfluentwidgets.common.config.EnumSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:197
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 134d2a54db6c45ff9a09940e0e3f6d8f 3881df2d375443e2a62910fce804ccc9
+msgid "enumeration class serializer"
+msgstr "枚举类序列化器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: f95659fdb21c4ab4886210ddca1e51bb
+msgid ":py:obj:`ColorSerializer <qfluentwidgets.common.config.ColorSerializer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:214
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 0fbb30ab7078406cbb4a30041035194e 4c8105e17b684fcaaab013577471d5a4
+msgid "QColor serializer"
+msgstr "颜色序列化器"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 8ee37672784f4d36add8a8c5d84b778c
+msgid ":py:obj:`ConfigItem <qfluentwidgets.common.config.ConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:231
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 17968cc156244cc3a131c5876e101553 2d154fae8b4641a88806af6b3de58137
+msgid "Config item"
+msgstr "配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: a03aa2745fa24495baad69c6aba0e3ea
+msgid ":py:obj:`RangeConfigItem <qfluentwidgets.common.config.RangeConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:261
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 00e0945b49e9432a8263e9fa3c10529f 969699feb6494e7d8e34d91663dcc48a
+msgid "Config item of range"
+msgstr "取值范围配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: b9e52e99c85349f4addde814cc669baf
+msgid ""
+":py:obj:`OptionsConfigItem "
+"<qfluentwidgets.common.config.OptionsConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:276
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 394ba6b5fc684086bb3223c39915b8b8 c9785cfc03a34dd8a90ff78ba304e6ea
+msgid "Config item with options"
+msgstr "选项配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 8c1a0874331a48919f1aaddc7d57e5fd
+msgid ":py:obj:`ColorConfigItem <qfluentwidgets.common.config.ColorConfigItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:289
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 4a30d44d238e4664a4c0a5ea921b4a7c a04bfe38466a4ef891bb2c435b85ef9c
+msgid "Color config item"
+msgstr "颜色配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 60796aedd4df41d68da4905bbb570ca4
+msgid ":py:obj:`QConfig <qfluentwidgets.common.config.QConfig>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:299
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:34:<autosummary>:1
+#: 30135cb5c0ef47bd8a481776edeb6bba 3c6db362510244e0a1eeff81e55fd13f
+msgid "Config of app"
+msgstr "配置类"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:43:<autosummary>:1
+#: deb7db3a50a84c9eb339a870604d9bd6
+msgid ":py:obj:`isDarkTheme <qfluentwidgets.common.config.isDarkTheme>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:377
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:43:<autosummary>:1
+#: 4d33f35be7d24306aa0c8bb8f2f660c0 f2aaa61590d2494facc2e8fb0d1f575e
+msgid "whether the theme is dark mode"
+msgstr "当前的应用主题是否为深色模式"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:43:<autosummary>:1
+#: fde3690102944828ae443ef5a9d08a4d
+msgid ":py:obj:`theme <qfluentwidgets.common.config.theme>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:382
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:43:<autosummary>:1
+#: 1150fdccff16427797e2eb0e7c63f32c 9ebf63df78b34962a23f55e9022c0e19
+msgid "get theme mode"
+msgstr "返回当前主题"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:48:<autosummary>:1
+#: d1ef334e1eab4eaab3bfba6afdcbd12b
+msgid ":py:obj:`qconfig <qfluentwidgets.common.config.qconfig>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:51
+#: 2a0bd0a1636548b4b4b0e997d039bf36
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:135
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:152
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:169
+#: 0386c7274e4b40819cac54f4dfa5a7e5 050e2a93468049e69fedefc9d8464e00
+#: 2d6be1784d6c4951b2e69c71c3f592aa bc17b37d43cb4467999d5a4383e20318
+#: d4ff75ccf54a48bfb42476c76d2ca6b3 ddb171097bd545ca99963e19510812d1
+msgid "Verify whether the value is legal"
+msgstr "验证值是否合法"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:99
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:140
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:157
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:174
+#: 072eaf30192940099e2d25ee155d9931 19b9b59578cc40e1a47502dc155121d8
+#: 406a37b801bb4e8484039a201e92c731 42f88ea1bd5947be81cb412bdfeb3c4c
+#: d8024a84e783443b90139a3a630824f5 ef4c1b8a54094c28895ceef9ef72140f
+msgid "correct illegal value"
+msgstr "纠正非法值"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:105
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:129
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:146
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:163
+#: 34c6bb82f4f449c191a7b90d24929771 c1499e3c8a694318bad779481735abdc
+#: c2413c28741a44129c6f078e370ed8c6 c9523c11716d4636a6853366263f3cff
+#: e3c5a4c5bc454cccb41d0a70b09abc76
+msgid "Bases: :py:obj:`ConfigValidator`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:122
+#: 4bccd1a6879845f39072ee76343c5cd8
+msgid "Bases: :py:obj:`OptionsValidator`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:184
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:201
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:218
+#: 7183361c1a904746bdbab06b13ea698f 7f27c7073a914670b38a158175a586ef
+#: cd22c397814a4fd5a854af058f73af52
+msgid "serialize config value"
+msgstr "序列化配置项的值"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:189
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:206
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:223
+#: 30c4de317856496daa3370da5176e546 a67562bcffa74a95a32f9c9a86f5b36b
+#: d7ec44cf9d13441ea1dce135f44118e9
+msgid "deserialize config from config file's value"
+msgstr "从配置文件中反序列化配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:195
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:212
+#: 27f50826b91343a2bd1a4d40c347dcff 43227d0638cc41ec82c341eefceadced
+msgid "Bases: :py:obj:`ConfigSerializer`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:229
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:297
+#: 68a061bd38744c80b5b681aed046b6fe b0390236d9b6496ebaf766f4ff00037a
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:235
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:328
+#: 128db293c13a4adfb0f1fd1a7e1cac68 c6b06504dfa64287a83a62f525b91521
+msgid "get the value of config item"
+msgstr "返回配置项的值"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:240
+#: 6d4a60ecb88b45cfa025e4e94d92de47
+msgid "get the config key separated by `.`"
+msgstr "返回由 `.` 分隔的配置项 id"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:259
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:274
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:287
+#: 9bb1a4838b44405fb5435ac591cbebe6 b05a7f5fdb1d49d4a329d7d0012f4246
+#: d38fbba4ea0b47df9c2de018582059f3
+msgid "Bases: :py:obj:`ConfigItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:265
+#: 7cd7e047b9c04da3be11a7cf10745efa
+msgid "get the available range of config"
+msgstr "返回配置项合法取值返回"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:303
+#: d0027d32ad68432d8d7adeaabe6827f8
+msgid "get theme mode, can be `Theme.Light` or `Theme.Dark`"
+msgstr "返回应用主题，可以是 `Theme.Light` 或 `Theme.Dark`"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:333
+#: cb54b6c425eb4161bc7b59415b772b5a
+msgid "set the value of config item"
+msgstr "设置配置项的值"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:336
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:362
+#: 10b36f57e2294ab09d33bd86c7956eed 812e344cbece4f05a56ca72916bddc75
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:338
+#: 93fa00b3fe27401ea1c985ddcd94814d
+msgid "item: ConfigItem"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:338
+#: 0fedf7d51b244945ba0706eb3db0e89f
+msgid "config item"
+msgstr "配置项"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:341
+#: 7e4c95b7e4804f608df369d170f95f8e
+msgid "value:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:341
+#: 18097a70111b4e9597f13299f2aaedca
+msgid "the new value of config item"
+msgstr "配置项的新值"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:343
+#: 52b550fee6e648f3b03d1a815080c061
+msgid "save: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:344
+#: dd694f339b2240ba8cf5b5cb2c003215
+msgid "whether to save the change to config file"
+msgstr "是否将当前改变保存到配置文件中"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:349
+#: 955a6ed827a64076bb844ecdf32122b5
+msgid "convert config items to `dict`"
+msgstr "将配置转换为字典"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:354
+#: 2be3ce7b96114ce2a9861781590f7a2c
+msgid "save config"
+msgstr "保存配置"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:359
+#: 543313a7f0584992aa15f961d7889cfb
+msgid "load config"
+msgstr "载入配置"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:364
+#: 903c8591def24f98b3ffd9bd80a67d58
+msgid "file: str or Path"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:364
+#: bcc91dbc15b44c168328f5d114fbf886
+msgid "the path of json config file"
+msgstr "json 配置文件的路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:366
+#: c65b377519a1439093ca175a3c582984
+msgid "config: Config"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/config/index.rst:367
+#: 85317e24cdd045c7bee0f9538c5f0701
+msgid "config object to be initialized"
+msgstr "将被初始化的配置对象"
+
