@@ -289,7 +289,6 @@ class ColorPickerButton(QToolButton):
         """ show color dialog """
         w = ColorDialog(self.color, self.tr(
             'Choose ')+self.title, self.window())
-        w.updateStyle()
         w.colorChanged.connect(self.__onColorChanged)
         w.exec()
 
