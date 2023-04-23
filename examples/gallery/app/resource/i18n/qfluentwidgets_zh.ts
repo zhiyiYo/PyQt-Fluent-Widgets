@@ -28,6 +28,10 @@
         <source>Green</source>
         <translation>绿色</translation>
     </message>
+    <message>
+        <source>Opacity</source>
+        <translation>透明度</translation>
+    </message>
 </context>
 <context>
     <name>MessageDialog</name>
