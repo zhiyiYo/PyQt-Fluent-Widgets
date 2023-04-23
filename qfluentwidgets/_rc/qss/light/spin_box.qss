@@ -1,6 +1,6 @@
 SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit {
     color: black;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 0, 0, 13);
     border-bottom: 1px solid rgba(0, 0, 0, 100);
     border-radius: 5px;
@@ -14,17 +14,8 @@ DoubleSpinBox:hover,
 DateEdit:hover,
 DateTimeEdit:hover,
 TimeEdit:hover {
-    background-color: rgb(252, 252, 252);
+    background-color: rgba(249, 249, 249, 0.5);
     border: 1px solid rgba(0, 0, 0, 13);
-    border-bottom: 1px solid rgba(0, 0, 0, 100);
-}
-
-SpinBox:!focus,
-DoubleSpinBox:!focus,
-DateEdit:!focus,
-DateTimeEdit:!focus,
-TimeEdit:!focus {
-    background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 100);
 }
 
@@ -43,8 +34,9 @@ DateEdit:disabled,
 DateTimeEdit:disabled,
 TimeEdit:disabled {
     color: rgba(0, 0, 0, 150);
-    background-color: rgb(252, 252, 252);
-    border: 1px solid rgb(237, 237, 237);
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
 }
 
 SpinButton {

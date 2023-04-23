@@ -1,0 +1,10 @@
+<RCC>
+  <qresource>
+    <file>images/girl.jpg</file>
+    <file>images/background.jpg</file>
+    <file>images/logo.png</file>
+
+    <file>i18n/qfluentwidgets_zh.qm</file>
+    <file>i18n/qfluentwidgets_hk.qm</file>
+  </qresource>
+</RCC>

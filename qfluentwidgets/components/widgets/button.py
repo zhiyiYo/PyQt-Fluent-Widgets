@@ -107,6 +107,9 @@ class HyperlinkButton(QPushButton):
         self.setText(text)
         self.url.setUrl(url)
 
+    def setUrl(self, url: str):
+        self.url.setUrl(url)
+
 
 class RadioButton(QRadioButton):
     """ Radio button """
