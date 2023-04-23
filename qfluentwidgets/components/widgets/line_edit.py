@@ -17,11 +17,20 @@ class LineEditButton(QToolButton):
     def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
         super().__init__(parent=parent)
         self._icon = icon
+        self.isPressed = False
         self.setFixedSize(31, 23)
         self.setIconSize(QSize(10, 10))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setObjectName('lineEditButton')
         FluentStyleSheet.LINE_EDIT.apply(self)
+
+    def mousePressEvent(self, e):
+        self.isPressed = True
+        super().mousePressEvent(e)
+
+    def mouseReleaseEvent(self, e):
+        self.isPressed = False
+        super().mouseReleaseEvent(e)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -32,6 +41,9 @@ class LineEditButton(QToolButton):
         iw, ih = self.iconSize().width(), self.iconSize().height()
         w, h = self.width(), self.height()
         rect = QRectF((w - iw)/2, (h - ih)/2, iw, ih)
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
 
         if isDarkTheme():
             drawIcon(self._icon, painter, rect)

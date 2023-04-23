@@ -5,14 +5,31 @@ from PySide6.QtGui import QIcon, QPainter
 from PySide6.QtWidgets import QWidget
 
 from ...common.icon import FluentIconBase, drawIcon
+from ...common.overload import singledispatchmethod
 
 
 class IconWidget(QWidget):
     """ Icon widget """
 
-    def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
-        super().__init__(parent=parent)
-        self.icon = icon
+    @singledispatchmethod
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setIcon(QIcon())
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: QIcon, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: str, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
 
     def setIcon(self, icon: Union[str, QIcon, FluentIconBase]):
         self.icon = icon

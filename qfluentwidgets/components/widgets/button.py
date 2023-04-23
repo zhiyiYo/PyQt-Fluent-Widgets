@@ -3,22 +3,29 @@ from typing import Union
 
 from PySide6.QtCore import QUrl, Qt, QRectF, QSize
 from PySide6.QtGui import QDesktopServices, QIcon, QPainter
-from PySide6.QtWidgets import QPushButton, QRadioButton, QToolButton, QApplication
+from PySide6.QtWidgets import QPushButton, QRadioButton, QToolButton, QApplication, QWidget
 
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme
 from ...common.style_sheet import FluentStyleSheet
+from ...common.overload import singledispatchmethod
 
 
 class PushButton(QPushButton):
     """ push button """
 
-    def __init__(self, text: str, parent=None, icon: Union[QIcon, str, FluentIconBase] = None):
-        super().__init__(text=text, parent=parent)
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
-        self._icon = icon
         self.isPressed = False
-        self.setProperty('hasIcon', icon is not None)
         self.setIconSize(QSize(16, 16))
+        self.setIcon(None)
+
+    @__init__.register
+    def _(self, text: str, parent: QWidget = None, icon: Union[QIcon, str, FluentIconBase] = None):
+        self.__init__(parent=parent)
+        self.setText(text)
+        self.setIcon(icon)
 
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
         self.setProperty('hasIcon', icon is not None)
@@ -86,30 +93,59 @@ class PrimaryPushButton(PushButton):
 class HyperlinkButton(QPushButton):
     """ Hyperlink button """
 
-    def __init__(self, url: str, text: str, parent=None):
-        super().__init__(text, parent)
-        self.url = QUrl(url)
-        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.url))
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        self.url = QUrl()
         FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.PointingHandCursor)
+        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.url))
+
+    @__init__.register
+    def _(self, url: str, text: str, parent: QWidget = None):
+        self.__init__(parent)
+        self.setText(text)
+        self.url.setUrl(url)
 
 
 class RadioButton(QRadioButton):
     """ Radio button """
 
-    def __init__(self, text: str, parent=None):
-        super().__init__(text, parent)
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
+
+    @__init__.register
+    def _(self, text: str, parent: QWidget = None):
+        self.__init__(parent)
+        self.setText(text)
 
 
 class ToolButton(QToolButton):
     """ Tool button """
 
-    def __init__(self, icon: Union[QIcon, str, FluentIconBase], parent=None):
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
         super().__init__(parent)
-        self._icon = icon
-        self.isPressed = False
         FluentStyleSheet.BUTTON.apply(self)
+        self.isPressed = False
+        self.setIcon(QIcon())
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: QIcon, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: str, parent: QWidget = None):
+        self.__init__(parent)
+        self.setIcon(icon)
 
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
         self._icon = icon
@@ -151,26 +187,9 @@ class ToolButton(QToolButton):
 
         w, h = self.iconSize().width(), self.iconSize().height()
         y = (self.height() - h) / 2
-        x  = (self.width() - w) / 2
+        x = (self.width() - w) / 2
         self._drawIcon(self._icon, painter, QRectF(x, y, w, h))
 
 
-class TransparentToolButton(QToolButton):
+class TransparentToolButton(ToolButton):
     """ Transparent background tool button """
-
-    def __init__(self, icon: Union[QIcon, str, FluentIconBase], parent=None):
-        super().__init__(parent)
-        self._icon = icon
-        self.setCursor(Qt.PointingHandCursor)
-        FluentStyleSheet.BUTTON.apply(self)
-
-    def paintEvent(self, e):
-        super().paintEvent(e)
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-
-        iw, ih = self.iconSize().width(), self.iconSize().height()
-        w, h = self.width(), self.height()
-        rect = QRectF((w - iw)/2, (h - ih)/2, iw, ih)
-        drawIcon(self._icon, painter, rect)
