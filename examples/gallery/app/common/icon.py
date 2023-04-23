@@ -12,9 +12,4 @@ class Icon(FluentIconBase, Enum):
     EMOJI_TAB_SYMBOLS = "EmojiTabSymbols"
 
     def path(self, theme=Theme.AUTO):
-        if theme == Theme.AUTO:
-            c = getIconColor()
-        else:
-            c = "white" if theme == Theme.DARK else "black"
-
-        return f":/gallery/images/icons/{self.value}_{c}.svg"
+        return f":/gallery/images/icons/{self.value}_{getIconColor(theme)}.svg"
