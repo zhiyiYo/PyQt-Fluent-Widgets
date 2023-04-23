@@ -41,7 +41,7 @@ QLabel {
     font-size: 16px;
 }
 
-#prefixLabel {
+#prefixLabel, #suffixLabel  {
     padding: 0;
     font-size: 14px;
 }

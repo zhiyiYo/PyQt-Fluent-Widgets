@@ -4,7 +4,7 @@ from PyQt5.QtGui import (QBrush, QColor, QPixmap,
                          QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QFrame, QVBoxLayout
 
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme
 from ..widgets import Slider, ScrollArea, PushButton, PrimaryPushButton
 from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
@@ -101,7 +101,7 @@ class BrightnessSlider(Slider):
 
     def __onValueChanged(self, value):
         """ slider value changed slot """
-        self.color.setHsv(self.color.hue(), self.color.saturation(), value)
+        self.color.setHsv(self.color.hue(), self.color.saturation(), value, self.color.alpha())
         self.setColor(self.color)
         self.colorChanged.emit(self.color)
 
@@ -109,10 +109,24 @@ class BrightnessSlider(Slider):
 class ColorCard(QWidget):
     """ Color card """
 
-    def __init__(self, color, parent=None):
+    def __init__(self, color, parent=None, enableAlpha=False):
         super().__init__(parent)
         self.setFixedSize(44, 128)
         self.setColor(color)
+        self.enableAlpha = enableAlpha
+        self.titledPixmap = self._createTitledBackground()
+
+    def _createTitledBackground(self):
+        pixmap = QPixmap(8, 8)
+        pixmap.fill(Qt.transparent)
+        painter = QPainter(pixmap)
+
+        c = 255 if isDarkTheme() else 0
+        color = QColor(c, c, c, 26)
+        painter.fillRect(4, 0, 4, 4, color)
+        painter.fillRect(0, 4, 4, 4, color)
+        painter.end()
+        return pixmap
 
     def setColor(self, color):
         """ set the color of card """
@@ -123,6 +137,13 @@ class ColorCard(QWidget):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
 
+        # draw tiled background
+        if self.enableAlpha:
+            painter.setBrush(QBrush(self.titledPixmap))
+            painter.setPen(QColor(0, 0, 0, 13))
+            painter.drawRoundedRect(self.rect(), 4, 4)
+
+        # draw color
         painter.setBrush(self.color)
         painter.setPen(QColor(0, 0, 0, 13))
         painter.drawRoundedRect(self.rect(), 4, 4)
@@ -152,9 +173,15 @@ class ColorLineEdit(LineEdit):
 class HexColorLineEdit(ColorLineEdit):
     """ Hex color line edit """
 
-    def __init__(self, color, parent=None):
-        super().__init__(QColor(color).name()[1:], parent)
-        self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{6}')))
+    def __init__(self, color, parent=None, enableAlpha=False):
+        f = QColor.HexArgb if enableAlpha else QColor.HexRgb
+        super().__init__(QColor(color).name(f)[1:], parent)
+
+        if enableAlpha:
+            self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{8}')))
+        else:
+            self.setValidator(QRegExpValidator(QRegExp(r'[A-Fa-f0-9]{6}')))
+
         self.setTextMargins(4, 0, 33, 0)
         self.prefixLabel = QLabel('#', self)
         self.prefixLabel.move(7, 2)
@@ -165,12 +192,32 @@ class HexColorLineEdit(ColorLineEdit):
         self.setText(color.name()[1:])
 
 
+class OpacityLineEdit(ColorLineEdit):
+    """ Opacity line edit """
+
+    def __init__(self, value, parent=None, enableAlpha=False):
+        super().__init__(int(value/255*100), parent)
+        self.setValidator(QRegExpValidator(QRegExp(r'[0-9][0-9]{0,1}|100')))
+        self.setTextMargins(4, 0, 33, 0)
+        self.suffixLabel = QLabel('%', self)
+        self.suffixLabel.setObjectName('suffixLabel')
+        self.textChanged.connect(self._adjustSuffixPos)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        self._adjustSuffixPos()
+
+    def _adjustSuffixPos(self):
+        x = self.fontMetrics().width(self.text()) + 18
+        self.suffixLabel.move(x, 2)
+
+
 class ColorDialog(MaskDialogBase):
     """ Color dialog """
 
     colorChanged = pyqtSignal(QColor)
 
-    def __init__(self, color, title: str, parent=None):
+    def __init__(self, color, title: str, parent=None, enableAlpha=False):
         """
         Parameters
         ----------
@@ -182,8 +229,16 @@ class ColorDialog(MaskDialogBase):
 
         parent: QWidget
             parent widget
+
+        enableAlpha: bool
+            whether to enable the alpha channel
         """
         super().__init__(parent)
+        self.enableAlpha = enableAlpha
+        if not enableAlpha:
+            color = QColor(color)
+            color.setAlpha(255)
+
         self.oldColor = QColor(color)
         self.color = QColor(color)
 
@@ -196,18 +251,20 @@ class ColorDialog(MaskDialogBase):
 
         self.titleLabel = QLabel(title, self.scrollWidget)
         self.huePanel = HuePanel(color, self.scrollWidget)
-        self.newColorCard = ColorCard(color, self.scrollWidget)
-        self.oldColorCard = ColorCard(color, self.scrollWidget)
+        self.newColorCard = ColorCard(color, self.scrollWidget, enableAlpha)
+        self.oldColorCard = ColorCard(color, self.scrollWidget, enableAlpha)
         self.brightSlider = BrightnessSlider(color, self.scrollWidget)
 
         self.editLabel = QLabel(self.tr('Edit Color'), self.scrollWidget)
         self.redLabel = QLabel(self.tr('Red'), self.scrollWidget)
         self.blueLabel = QLabel(self.tr('Blue'), self.scrollWidget)
         self.greenLabel = QLabel(self.tr('Green'), self.scrollWidget)
-        self.hexLineEdit = HexColorLineEdit(color, self.scrollWidget)
+        self.opacityLabel = QLabel(self.tr('Opacity'), self.scrollWidget)
+        self.hexLineEdit = HexColorLineEdit(color, self.scrollWidget, enableAlpha)
         self.redLineEdit = ColorLineEdit(self.color.red(), self.scrollWidget)
         self.greenLineEdit = ColorLineEdit(self.color.green(), self.scrollWidget)
         self.blueLineEdit = ColorLineEdit(self.color.blue(), self.scrollWidget)
+        self.opacityLineEdit = OpacityLineEdit(self.color.alpha(), self.scrollWidget)
 
         self.vBoxLayout = QVBoxLayout(self.widget)
 
@@ -218,9 +275,9 @@ class ColorDialog(MaskDialogBase):
         self.scrollArea.setViewportMargins(48, 24, 0, 24)
         self.scrollArea.setWidget(self.scrollWidget)
 
-        self.widget.setMaximumSize(488, 696)
-        self.widget.resize(488, 696)
-        self.scrollWidget.resize(440, 560)
+        self.widget.setMaximumSize(488, 696+40*self.enableAlpha)
+        self.widget.resize(488, 696+40*self.enableAlpha)
+        self.scrollWidget.resize(440, 560+40*self.enableAlpha)
         self.buttonGroup.setFixedSize(486, 81)
         self.yesButton.setFixedWidth(216)
         self.cancelButton.setFixedWidth(216)
@@ -246,6 +303,13 @@ class ColorDialog(MaskDialogBase):
         self.greenLabel.move(144, 478)
         self.blueLabel.move(144, 524)
         self.hexLineEdit.move(196, 381)
+
+        if self.enableAlpha:
+            self.opacityLineEdit.move(0, 560)
+            self.opacityLabel.move(144, 567)
+        else:
+            self.opacityLineEdit.hide()
+            self.opacityLabel.hide()
 
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setAlignment(Qt.AlignTop)
@@ -280,13 +344,14 @@ class ColorDialog(MaskDialogBase):
 
     def __onHueChanged(self, color):
         """ hue changed slot """
-        self.color.setHsv(color.hue(), color.saturation(), self.color.value())
+        self.color.setHsv(
+            color.hue(), color.saturation(), self.color.value(), self.color.alpha())
         self.setColor(self.color)
 
     def __onBrightnessChanged(self, color):
         """ brightness changed slot """
-        self.color.setHsv(self.color.hue(),
-                          self.color.saturation(), color.value())
+        self.color.setHsv(
+            self.color.hue(), self.color.saturation(), color.value(), color.alpha())
         self.setColor(self.color, False)
 
     def __onRedChanged(self, red):
@@ -302,6 +367,11 @@ class ColorDialog(MaskDialogBase):
     def __onGreenChanged(self, green):
         """ green channel changed slot """
         self.color.setGreen(int(green))
+        self.setColor(self.color)
+
+    def __onOpacityChanged(self, opacity):
+        """ opacity channel changed slot """
+        self.color.setAlpha(int(int(opacity)/100*255))
         self.setColor(self.color)
 
     def __onHexColorChanged(self, color):
@@ -323,6 +393,7 @@ class ColorDialog(MaskDialogBase):
         self.redLabel.adjustSize()
         self.greenLabel.adjustSize()
         self.blueLabel.adjustSize()
+        self.opacityLabel.adjustSize()
 
     def showEvent(self, e):
         self.updateStyle()
@@ -340,3 +411,4 @@ class ColorDialog(MaskDialogBase):
         self.blueLineEdit.valueChanged.connect(self.__onBlueChanged)
         self.greenLineEdit.valueChanged.connect(self.__onGreenChanged)
         self.hexLineEdit.valueChanged.connect(self.__onHexColorChanged)
+        self.opacityLineEdit.valueChanged.connect(self.__onOpacityChanged)
