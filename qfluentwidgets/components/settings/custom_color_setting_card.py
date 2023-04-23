@@ -17,7 +17,7 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
     colorChanged = Signal(QColor)
 
     def __init__(self, configItem: ColorConfigItem, icon: Union[str, QIcon, FluentIconBase], title: str,
-                 content=None, parent=None):
+                 content=None, parent=None, enableAlpha=False):
         """
         Parameters
         ----------
@@ -35,8 +35,12 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
 
         parent: QWidget
             parent window
+
+        enableAlpha: bool
+            whether to enable the alpha channel
         """
         super().__init__(icon, title, content, parent=parent)
+        self.enableAlpha = enableAlpha
         self.configItem = configItem
         self.defaultColor = QColor(configItem.defaultValue)
         self.customColor = QColor(qconfig.get(configItem))
@@ -123,9 +127,8 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
 
     def __showColorDialog(self):
         """ show color dialog """
-        w = ColorDialog(qconfig.get(self.configItem),
-                        self.tr('Choose color'), self.window())
-        w.updateStyle()
+        w = ColorDialog(
+            qconfig.get(self.configItem), self.tr('Choose color'), self.window(), self.enableAlpha)
         w.colorChanged.connect(self.__onCustomColorChanged)
         w.exec()
 

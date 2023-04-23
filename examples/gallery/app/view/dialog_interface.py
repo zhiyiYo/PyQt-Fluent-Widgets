@@ -63,6 +63,5 @@ class DialogInterface(GalleryInterface):
 
     def showColorDialog(self):
         w = ColorDialog(Qt.cyan, self.tr('Choose color'), self.window())
-        w.updateStyle()
         w.colorChanged.connect(lambda c: print(c.name()))
         w.exec()

@@ -10,7 +10,7 @@ class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.button = ColorPickerButton(QColor("#12aaa2"), 'Background Color', self)
+        self.button = ColorPickerButton(QColor("#5012aaa2"), 'Background Color', self, enableAlpha=True)
         self.resize(800, 720)
         self.button.move(352, 312)
         self.setStyleSheet("Demo{background:white}")
