@@ -372,6 +372,16 @@ class PickerBase(QPushButton):
         pass
 
 
+class PickerToolButton(TransparentToolButton):
+    """ Picker tool button """
+
+    def _drawIcon(self, icon, painter, rect):
+        if self.isPressed:
+            painter.setOpacity(1)
+
+        super()._drawIcon(icon, painter, rect)
+
+
 class PickerPanel(QWidget):
     """ picker panel """
 
@@ -386,8 +396,8 @@ class PickerPanel(QWidget):
         self.view = QFrame(self)
         self.itemMaskWidget = ItemMaskWidget(self.listWidgets, self)
         self.hSeparatorWidget = SeparatorWidget(Qt.Orientation.Horizontal, self.view)
-        self.yesButton = TransparentToolButton(FluentIcon.ACCEPT, self.view)
-        self.cancelButton = TransparentToolButton(FluentIcon.CLOSE, self.view)
+        self.yesButton = PickerToolButton(FluentIcon.ACCEPT, self.view)
+        self.cancelButton = PickerToolButton(FluentIcon.CLOSE, self.view)
 
         self.hBoxLayout = QHBoxLayout(self)
         self.listLayout = QHBoxLayout()

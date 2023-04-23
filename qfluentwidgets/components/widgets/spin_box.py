@@ -31,16 +31,28 @@ class SpinButton(QToolButton):
 
     def __init__(self, icon: SpinIcon, parent=None):
         super().__init__(parent=parent)
+        self.isPressed = False
         self._icon = icon
         self.setFixedSize(31, 23)
         self.setIconSize(QSize(10, 10))
         FluentStyleSheet.SPIN_BOX.apply(self)
+
+    def mousePressEvent(self, e):
+        self.isPressed = True
+        super().mousePressEvent(e)
+
+    def mouseReleaseEvent(self, e):
+        self.isPressed = False
+        super().mouseReleaseEvent(e)
 
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |
                                QPainter.RenderHint.SmoothPixmapTransform)
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
 
         self._icon.render(painter, QRectF(10, 9, 11, 11))
 
