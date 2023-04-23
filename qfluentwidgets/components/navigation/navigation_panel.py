@@ -217,7 +217,7 @@ class NavigationPanel(QFrame):
         self.menuButton.setVisible(isVisible)
 
     def setReturnButtonVisible(self, isVisible: bool):
-        """ set whether the menu button is visible """
+        """ set whether the return button is visible """
         self._isReturnButtonVisible = isVisible
         self.returnButton.setVisible(isVisible)
 
