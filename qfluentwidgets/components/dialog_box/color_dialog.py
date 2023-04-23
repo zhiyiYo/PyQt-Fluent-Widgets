@@ -238,7 +238,7 @@ class ColorDialog(MaskDialogBase):
         self.oldColorCard.move(288, self.newColorCard.geometry().bottom()+1)
         self.brightSlider.move(0, 324)
 
-        self.editLabel.move(0, 381)
+        self.editLabel.move(0, 385)
         self.redLineEdit.move(0, 426)
         self.greenLineEdit.move(0, 470)
         self.blueLineEdit.move(0, 515)
@@ -320,6 +320,13 @@ class ColorDialog(MaskDialogBase):
         self.setStyle(QApplication.style())
         self.titleLabel.adjustSize()
         self.editLabel.adjustSize()
+        self.redLabel.adjustSize()
+        self.greenLabel.adjustSize()
+        self.blueLabel.adjustSize()
+
+    def showEvent(self, e):
+        self.updateStyle()
+        super().showEvent(e)
 
     def __connectSignalToSlot(self):
         """ connect signal to slot """

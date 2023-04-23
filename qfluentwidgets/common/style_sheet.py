@@ -114,7 +114,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
 
 
 def getStyleSheet(file: Union[str, StyleSheetBase], theme=Theme.AUTO):
-    """ get style sheet from `qfluentwidgets` embedded qss file
+    """ get style sheet
 
     Parameters
     ----------
