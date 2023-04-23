@@ -48,9 +48,19 @@ class MenuIconEngine(QIconEngine):
         self.icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
 
 
-def getIconColor():
+def getIconColor(theme=Theme.AUTO, reverse=False):
     """ get the color of icon based on theme """
-    return "white" if isDarkTheme() else 'black'
+    if not reverse:
+        lc, dc = "black", "white"
+    else:
+        lc, dc = "white", "black"
+
+    if theme == Theme.AUTO:
+        color = dc if isDarkTheme() else lc
+    else:
+        color = dc if theme == Theme.DARK else lc
+
+    return color
 
 
 def drawSvgIcon(icon, painter, rect):
@@ -284,9 +294,4 @@ class FluentIcon(FluentIconBase, Enum):
     BACKGROUND_FILL = "BackgroundColor"
 
     def path(self, theme=Theme.AUTO):
-        if theme == Theme.AUTO:
-            c = getIconColor()
-        else:
-            c = "white" if theme == Theme.DARK else "black"
-
-        return f':/qfluentwidgets/images/icons/{self.value}_{c}.svg'
+        return f':/qfluentwidgets/images/icons/{self.value}_{getIconColor(theme)}.svg'

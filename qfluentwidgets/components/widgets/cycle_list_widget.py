@@ -17,12 +17,7 @@ class ScrollIcon(FluentIconBase, Enum):
     DOWN = "Down"
 
     def path(self, theme=Theme.AUTO):
-        if theme == Theme.AUTO:
-            c = getIconColor()
-        else:
-            c = "white" if theme == Theme.DARK else "black"
-
-        return f':/qfluentwidgets/images/time_picker/{self.value}_{c}.svg'
+        return f':/qfluentwidgets/images/time_picker/{self.value}_{getIconColor(theme)}.svg'
 
 
 class ScrollButton(QToolButton):

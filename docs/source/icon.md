@@ -15,10 +15,5 @@ class MyFluentIcon(FluentIconBase, Enum):
     COPY = "Copy"
 
     def path(self, theme=Theme.AUTO):
-        if theme == Theme.AUTO:
-            c = getIconColor()
-        else:
-            c = "white" if theme == Theme.DARK else "black"
-
-        return f':/icons/{self.value}_{c}.svg'
+        return f':/icons/{self.value}_{getIconColor(theme)}.svg'
 ```

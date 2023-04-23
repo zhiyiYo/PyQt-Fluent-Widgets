@@ -10,18 +10,18 @@ CheckBox::indicator {
     width: 18px;
     height: 18px;
     border-radius: 5px;
-    border: 1px solid rgb(135, 135, 135);
-    background-color: rgb(241, 241, 241);
+    border: 1px solid rgba(0, 0, 0, 0.48);
+    background-color: rgba(0, 0, 0, 0.022);
 }
 
 CheckBox::indicator:hover {
-    border: 1px solid rgb(132, 132, 132);
-    background-color: rgb(232, 232, 232);
+    border: 1px solid rgba(0, 0, 0, 0.56);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 CheckBox::indicator:pressed {
-    border: 1px solid rgb(184, 184, 184);
-    background-color: rgb(224, 224, 224);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: rgba(0, 0, 0, 0.12);
 }
 
 CheckBox::indicator:checked,
@@ -30,13 +30,6 @@ CheckBox::indicator:indeterminate {
     background-color: --ThemeColorPrimary;
 }
 
-CheckBox::indicator:checked {
-    image: url(:/qfluentwidgets/images/check_box/Accept_white.svg);
-}
-
-CheckBox::indicator:indeterminate {
-    image: url(:/qfluentwidgets/images/check_box/PartialAccept_white.svg);
-}
 
 CheckBox::indicator:checked:hover,
 CheckBox::indicator:indeterminate:hover {
@@ -55,8 +48,8 @@ CheckBox:disabled {
 }
 
 CheckBox::indicator:disabled {
-    border: 1px solid #bbbbbb;
-    background-color: rgb(224, 224, 224);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: transparent;
 }
 
 CheckBox::indicator:checked:disabled,
