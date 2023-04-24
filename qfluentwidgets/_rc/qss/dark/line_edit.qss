@@ -1,5 +1,5 @@
 LineEdit, TextEdit, PlainTextEdit {
-    background-color: rgb(55, 55, 55);
+    background-color: rgba(255, 255, 255, 0.0605);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5442);
     border-radius: 5px;
@@ -15,27 +15,23 @@ TextEdit, PlainTextEdit  {
 }
 
 LineEdit:hover, TextEdit:hover, PlainTextEdit:hover {
-    background-color: rgb(60, 60, 60);
-}
-
-LineEdit:!focus, TextEdit:!focus, PlainTextEdit:!focus {
-    background-color: rgb(55, 55, 55);
-    border-bottom: 1px solid rgb(159, 159, 159);
+    background: rgba(255, 255, 255, 0.0837);
 }
 
 LineEdit:focus {
+    background: rgba(30, 30, 30, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 TextEdit:focus, PlainTextEdit:focus {
     border-bottom: 1px solid --ThemeColorPrimary;
-    background-color: rgb(34, 34, 34);
+    background-color: rgba(30, 30, 30, 0.7);
 }
 
 LineEdit:disabled, TextEdit:disabled, PlainTextEdit:disabled {
     color: rgba(255, 255, 255, 150);
-    background-color: rgb(59, 59, 59);
-    border: 1px solid rgb(73, 73, 73);
+    background-color: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.0698);
 }
 
 #lineEditButton {

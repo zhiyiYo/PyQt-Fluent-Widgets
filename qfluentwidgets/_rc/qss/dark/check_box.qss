@@ -4,6 +4,7 @@ CheckBox {
     spacing: 8px;
     min-width: 28px;
     min-height: 20px;
+    outline: none;
 }
 
 CheckBox::indicator {
