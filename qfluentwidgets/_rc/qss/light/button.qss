@@ -33,7 +33,7 @@ PushButton:pressed, ToolButton:pressed {
 
 PushButton:disabled, ToolButton:disabled {
     color: rgba(0, 0, 0, 0.36);
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(249, 249, 249, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }

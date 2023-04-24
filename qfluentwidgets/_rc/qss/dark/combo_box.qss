@@ -1,22 +1,29 @@
 ComboBox {
-    border: 1px solid rgba(255, 255, 255, 24);
+    border: 1px solid rgba(255, 255, 255, 0.053);
     border-radius: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 17);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding: 5px 31px 6px 11px;
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
-    background-color: rgb(62, 63, 62);
+    background-color: rgba(255, 255, 255, 0.0605);
     text-align: left;
 }
 
 ComboBox:hover {
-    background-color: rgb(67, 68, 67);
+    background-color: rgba(255, 255, 255, 0.0837);
 }
 
 ComboBox:pressed {
-    background-color: rgb(56, 56, 56);
-    border-bottom: 1px solid rgba(255, 255, 255, 24);
+    background-color: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
     color: rgba(255, 255, 255, 0.63);
+}
+
+ComboBox:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
 
