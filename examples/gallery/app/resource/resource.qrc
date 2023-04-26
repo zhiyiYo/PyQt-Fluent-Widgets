@@ -133,10 +133,8 @@
         <file>qss/light/setting_interface.qss</file>
         <file>qss/light/view_interface.qss</file>
 
-        <file>i18n/qfluentwidgets_hk.qm</file>
-        <file>i18n/qfluentwidgets_zh.qm</file>
-        <file>i18n/gallery_zh.qm</file>
-        <file>i18n/gallery_hk.qm</file>
+        <file>i18n/gallery.zh_CN.qm</file>
+        <file>i18n/gallery.zh_HK.qm</file>
 
     </qresource>
 </RCC>

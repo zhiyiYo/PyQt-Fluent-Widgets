@@ -4,3 +4,4 @@ from .icon import Icon, getIconColor, drawSvgIcon, FluentIcon, drawIcon, FluentI
 from .style_sheet import (setStyleSheet, getStyleSheet, setTheme, ThemeColor, themeColor,
                           setThemeColor, applyThemeColor, FluentStyleSheet, StyleSheetBase)
 from .smooth_scroll import SmoothScroll, SmoothMode
+from .translator import FluentTranslator

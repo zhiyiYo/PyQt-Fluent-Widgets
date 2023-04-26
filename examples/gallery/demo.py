@@ -2,10 +2,11 @@
 import os
 import sys
 
-from PyQt6.QtCore import Qt, QLocale, QTranslator
+from PyQt6.QtCore import Qt, QTranslator
 from PyQt6.QtWidgets import QApplication
+from qfluentwidgets import FluentTranslator
 
-from app.common.config import cfg, Language
+from app.common.config import cfg
 from app.view.main_window import MainWindow
 
 
@@ -19,16 +20,10 @@ app = QApplication(sys.argv)
 app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
 # internationalization
-translator = QTranslator()
+locale = cfg.get(cfg.language).value
+translator = FluentTranslator(locale)
 galleryTranslator = QTranslator()
-language = cfg.get(cfg.language)
-
-if language == Language.AUTO:
-    translator.load(QLocale.system(), ":/gallery/i18n/qfluentwidgets_")
-    galleryTranslator.load(QLocale.system(), ":/gallery/i18n/gallery_")
-elif language != Language.ENGLISH:
-    translator.load(f":/gallery/i18n/qfluentwidgets_{language.value}.qm")
-    galleryTranslator.load(f":/gallery/i18n/gallery_{language.value}.qm")
+galleryTranslator.load(locale, "gallery", ".", ":/gallery/i18n")
 
 app.installTranslator(translator)
 app.installTranslator(galleryTranslator)

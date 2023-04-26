@@ -144,7 +144,7 @@ class ColorSerializer(ConfigSerializer):
     """ QColor serializer """
 
     def serialize(self, value: QColor):
-        return value.name(QColor.HexArgb)
+        return value.name(QColor.NameFormat.HexArgb)
 
     def deserialize(self, value):
         if isinstance(value, list):
