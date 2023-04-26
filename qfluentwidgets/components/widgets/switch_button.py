@@ -6,6 +6,7 @@ from PyQt6.QtGui import QColor, QPainter
 from PyQt6.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
 
 from ...common.style_sheet import FluentStyleSheet
+from ...common.overload import singledispatchmethod
 
 
 class Indicator(QToolButton):
@@ -129,7 +130,28 @@ class SwitchButton(QWidget):
 
     checkedChanged = pyqtSignal(bool)
 
-    def __init__(self, text='Off', parent=None, indicatorPos=IndicatorPosition.LEFT):
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None, indicatorPos=IndicatorPosition.LEFT):
+        """
+        Parameters
+        ----------
+        parent: QWidget
+            parent widget
+
+        indicatorPosition: IndicatorPosition
+            the position of indicator
+        """
+        super().__init__(parent=parent)
+        self.text = 'Off'
+        self.__spacing = 12
+        self.indicatorPos = indicatorPos
+        self.hBox = QHBoxLayout(self)
+        self.indicator = Indicator(self)
+        self.label = QLabel(self.text, self)
+        self.__initWidget()
+
+    @__init__.register
+    def _(self, text: str = 'Off', parent: QWidget = None, indicatorPos=IndicatorPosition.LEFT):
         """
         Parameters
         ----------
@@ -142,14 +164,8 @@ class SwitchButton(QWidget):
         indicatorPosition: IndicatorPosition
             the position of indicator
         """
-        super().__init__(parent=parent)
-        self.text = text
-        self.__spacing = 12
-        self.indicatorPos = indicatorPos
-        self.hBox = QHBoxLayout(self)
-        self.indicator = Indicator(self)
-        self.label = QLabel(text, self)
-        self.__initWidget()
+        self.__init__(parent, indicatorPos)
+        self.setText(text)
 
     def __initWidget(self):
         """ initialize widgets """
