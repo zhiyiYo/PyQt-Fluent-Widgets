@@ -13,25 +13,8 @@ from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import FluentIconBase, Theme, isDarkTheme, writeSvg, drawSvgIcon, drawIcon
 from ...common.icon import FluentIcon as FIF
+from .button import TransparentToolButton
 
-
-class InfoBarCloseButton(QToolButton):
-    """ Close button """
-
-    def __init__(self, parent=None):
-        super().__init__(parent=parent)
-        self.setFixedSize(36, 36)
-        self.setIconSize(QSize(12, 12))
-        self.setCursor(Qt.PointingHandCursor)
-        self.setObjectName('infoBarCloseButton')
-        FluentStyleSheet.INFO_BAR.apply(self)
-
-    def paintEvent(self, e):
-        super().paintEvent(e)
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        FIF.CLOSE.render(painter, QRectF(12, 12, 12, 12))
 
 
 class InfoBarIcon(FluentIconBase, Enum):
@@ -67,7 +50,7 @@ class InfoIconWidget(QWidget):
 
     def __init__(self, icon: InfoBarIcon, parent=None):
         super().__init__(parent=parent)
-        self.setFixedSize(15, 15)
+        self.setFixedSize(36, 36)
         self.icon = icon
 
     def paintEvent(self, e):
@@ -75,10 +58,11 @@ class InfoIconWidget(QWidget):
         painter.setRenderHints(QPainter.Antialiasing |
                                QPainter.SmoothPixmapTransform)
 
+        rect = QRectF(10, 10, 15, 15)
         if self.icon != InfoBarIcon.INFORMATION:
-            drawIcon(self.icon, painter, self.rect())
+            drawIcon(self.icon, painter, rect)
         else:
-            drawIcon(self.icon, painter, self.rect(), indexes=[0], fill=themeColor().name())
+            drawIcon(self.icon, painter, rect, indexes=[0], fill=themeColor().name())
 
 
 class InfoBar(QFrame):
@@ -123,14 +107,14 @@ class InfoBar(QFrame):
         self.isClosable = isClosable
         self.position = position
 
-        self.titleLabel = QLabel(title, self)
+        self.titleLabel = QLabel(self)
         self.contentLabel = QLabel(self)
-        self.closeButton = InfoBarCloseButton(self)
+        self.closeButton = TransparentToolButton(FIF.CLOSE, self)
         self.iconWidget = InfoIconWidget(icon)
 
-        self.vBoxLayout = QVBoxLayout(self)
-        self.hBoxLayout = QHBoxLayout()
-        self.contentLayout = QHBoxLayout() if self.orient == Qt.Horizontal else QVBoxLayout()
+        self.hBoxLayout = QHBoxLayout(self)
+        self.textLayout = QHBoxLayout() if self.orient == Qt.Horizontal else QVBoxLayout()
+        self.widgetLayout = QHBoxLayout() if self.orient == Qt.Horizontal else QVBoxLayout()
 
         self.opacityEffect = QGraphicsOpacityEffect(self)
         self.opacityAni = QPropertyAnimation(
@@ -142,57 +126,56 @@ class InfoBar(QFrame):
         self.__initWidget()
 
     def __initWidget(self):
-        self.titleLabel.setMinimumHeight(36)
         self.opacityEffect.setOpacity(1)
         self.setGraphicsEffect(self.opacityEffect)
+
+        self.closeButton.setFixedSize(36, 36)
+        self.closeButton.setIconSize(QSize(12, 12))
+        self.closeButton.setCursor(Qt.PointingHandCursor)
         self.closeButton.setVisible(self.isClosable)
 
-        self.__initLayout()
         self.__setQss()
+        self.__initLayout()
 
         self.closeButton.clicked.connect(self.close)
 
     def __initLayout(self):
-        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
-        self.contentLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
+        self.hBoxLayout.setContentsMargins(6, 6, 6, 6)
+        self.hBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
+        self.textLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
+        self.textLayout.setAlignment(Qt.AlignTop)
+        self.textLayout.setContentsMargins(1, 8, 0, 8)
 
-        self.vBoxLayout.setSpacing(0)
         self.hBoxLayout.setSpacing(0)
+        self.textLayout.setSpacing(5)
 
-        self.vBoxLayout.addLayout(self.hBoxLayout)
-        self.hBoxLayout.addWidget(self.iconWidget)
+        # add icon to layout
+        self.hBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignTop | Qt.AlignLeft)
 
-        if self.title:
-            self.hBoxLayout.addSpacing(15)
-            self.hBoxLayout.addWidget(self.titleLabel)
-        else:
-            self.titleLabel.hide()
+        # add title to layout
+        self.textLayout.addWidget(self.titleLabel, 1, Qt.AlignTop)
+        self.titleLabel.setVisible(bool(self.title))
 
         # add content label to layout
         if self.orient == Qt.Horizontal:
-            self.vBoxLayout.setAlignment(Qt.AlignVCenter)
-            self.hBoxLayout.addSpacing(12)
-            self.contentLayout.setContentsMargins(0, 0, 20*self.isClosable, 0)
-            self.contentLayout.setSpacing(12)
-            self.hBoxLayout.addLayout(self.contentLayout)
-        else:
-            self.vBoxLayout.setAlignment(Qt.AlignTop)
-            self.contentLayout.setContentsMargins(47, 0, 40, 18)
-            self.contentLayout.setSpacing(14)
-            self.vBoxLayout.addLayout(self.contentLayout)
-            self.contentLayout.setAlignment(Qt.AlignTop)
+            self.textLayout.addSpacing(7)
 
-        self._adjustText()
-        self.contentLayout.addWidget(self.contentLabel)
+        self.textLayout.addWidget(self.contentLabel, 1, Qt.AlignTop)
+        self.contentLabel.setVisible(bool(self.content))
+        self.hBoxLayout.addLayout(self.textLayout)
+
+        # add widget layout
+        if self.orient == Qt.Horizontal:
+            self.hBoxLayout.addLayout(self.widgetLayout)
+            self.widgetLayout.setSpacing(10)
+        else:
+            self.textLayout.addLayout(self.widgetLayout)
 
         # add close button to layout
-        if self.isClosable:
-            self.hBoxLayout.addWidget(self.closeButton)
-            mb = 6 if self.orient == Qt.Horizontal else 0
-            self.hBoxLayout.setContentsMargins(16, 6, 7, mb)
-        else:
-            self.hBoxLayout.setContentsMargins(16, 6, 16, 6)
+        self.hBoxLayout.addSpacing(12)
+        self.hBoxLayout.addWidget(self.closeButton, 0, Qt.AlignTop | Qt.AlignLeft)
+
+        self._adjustText()
 
     def __setQss(self):
         self.titleLabel.setObjectName('titleLabel')
@@ -212,17 +195,21 @@ class InfoBar(QFrame):
 
     def _adjustText(self):
         w = 900 if not self.parent() else (self.parent().width() - 50)
+
+        # adjust title
+        chars = max(min(w / 10, 120), 30)
+        self.titleLabel.setText(TextWrap.wrap(self.title, chars, False)[0])
+
+        # adjust content
         chars = max(min(w / 9, 120), 30)
         self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
         self.adjustSize()
 
-    def adjustSize(self):
-        super().adjustSize()
-        self.resize(self.width(), max(self.height(), 50))
-
     def addWidget(self, widget: QWidget, stretch=0):
         """ add widget to info bar """
-        self.contentLayout.addWidget(widget, stretch, Qt.AlignLeft)
+        self.widgetLayout.addSpacing(6)
+        align = Qt.AlignTop if self.orient == Qt.Vertical else Qt.AlignVCenter
+        self.widgetLayout.addWidget(widget, stretch, Qt.AlignLeft | align)
 
     def setCustomBackgroundColor(self, light, dark):
         """ set the custom background color
