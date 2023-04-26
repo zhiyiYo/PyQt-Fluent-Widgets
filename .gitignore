@@ -5,6 +5,9 @@
 # 忽略工作区文件
 *.code-workspace
 
+# 忽略 .idea
+.idea/
+
 # 忽略python缓存文件
 */__pycache__
 *.py[cod]

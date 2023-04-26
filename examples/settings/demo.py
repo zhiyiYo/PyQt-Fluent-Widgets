@@ -6,7 +6,7 @@ from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QHBoxLayout
 
 from qframelesswindow import FramelessWindow, StandardTitleBar
-from qfluentwidgets import isDarkTheme
+from qfluentwidgets import isDarkTheme, FluentTranslator
 from setting_interface import SettingInterface
 from config import cfg, Language
 
@@ -52,15 +52,13 @@ if __name__ == '__main__':
     app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
     # internationalization
-    translator = QTranslator()
-    language = cfg.get(cfg.language)
+    locale = cfg.get(cfg.language).value
+    fluentTranslator = FluentTranslator(locale)
+    settingTranslator = QTranslator()
+    settingTranslator.load(locale, "settings", ".", "resource/i18n")
 
-    if language == Language.AUTO:
-        translator.load(QLocale.system(), "resource/i18n/qfluentwidgets_")
-    elif language != Language.ENGLISH:
-        translator.load(f"resource/i18n/qfluentwidgets_{language.value}.qm")
-
-    app.installTranslator(translator)
+    app.installTranslator(fluentTranslator)
+    app.installTranslator(settingTranslator)
 
     # create main window
     w = Window()

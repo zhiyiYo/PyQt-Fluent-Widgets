@@ -236,5 +236,10 @@
         <file>qss/light/spin_box.qss</file>
         <file>qss/light/tree_view.qss</file>
         <file>qss/light/time_picker.qss</file>
+
+        <file>i18n/qfluentwidgets.zh_CN.qm</file>
+        <file>i18n/qfluentwidgets.zh_HK.qm</file>
+        <file>i18n/qfluentwidgets.zh_TW.qm</file>
+        <file>i18n/qfluentwidgets.en_US.qm</file>
     </qresource>
 </RCC>

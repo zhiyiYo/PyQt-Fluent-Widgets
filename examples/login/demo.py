@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt, QTranslator, QLocale
 from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QApplication
 from qframelesswindow import FramelessWindow, StandardTitleBar, AcrylicWindow
-from qfluentwidgets import setThemeColor
+from qfluentwidgets import setThemeColor, FluentTranslator
 from Ui_LoginWindow import Ui_Form
 
 
@@ -48,8 +48,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     # Internationalization
-    translator = QTranslator()
-    translator.load(QLocale.system(), ":/i18n/qfluentwidgets_")
+    translator = FluentTranslator(QLocale())
     app.installTranslator(translator)
 
     w = LoginWindow()
