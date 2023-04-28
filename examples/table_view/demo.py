@@ -65,7 +65,7 @@ class Demo(QWidget):
         self.setStyleSheet("Demo{background: rgb(249, 249, 249)} ")
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.tableView)
-        self.resize(625, 600)
+        self.resize(625, 700)
 
 
 if __name__ == "__main__":
