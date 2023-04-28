@@ -1,4 +1,6 @@
 # coding: utf-8
+from typing import List
+
 from PySide6.QtCore import Qt, QMargins, QModelIndex
 from PySide6.QtGui import QPainter, QColor
 from PySide6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
@@ -16,7 +18,7 @@ class TableItemDelegate(QStyledItemDelegate):
         self.margin = 2
         self.hoverRow = -1
         self.pressedRow = -1
-        self.currentRow = -1
+        self.selectedRows = set()
 
     def setHoverRow(self, row: int):
         self.hoverRow = row
@@ -24,10 +26,12 @@ class TableItemDelegate(QStyledItemDelegate):
     def setPressedRow(self, row: int):
         self.pressedRow = row
 
-    def setCurrentRow(self, row: int):
-        self.currentRow = row
-        if row == self.pressedRow:
-            self.pressedRow = -1
+    def setSelectedRows(self, indexes: List[QModelIndex]):
+        self.selectedRows.clear()
+        for index in indexes:
+            self.selectedRows.add(index.row())
+            if index.row() == self.pressedRow:
+                self.pressedRow = -1
 
     def sizeHint(self, option, index):
         # increase original sizeHint to accommodate space needed for border
@@ -87,7 +91,7 @@ class TableItemDelegate(QStyledItemDelegate):
         c = 255 if isDark else 0
         alpha = 0
 
-        if self.currentRow != index.row():
+        if index.row() not in self.selectedRows:
             if isPressed:
                 alpha = 9 if isDark else 6
             elif isHover:
@@ -133,6 +137,7 @@ class TableBase:
         self.setShowGrid(False)
         self.setMouseTracking(True)
         self.setItemDelegate(self.delegate)
+        self.setSelectionBehavior(TableWidget.SelectRows)
         self.setVerticalScrollMode(QTableView.ScrollPerPixel)
         self.setHorizontalScrollMode(QTableView.ScrollPerPixel)
 
@@ -153,8 +158,8 @@ class TableBase:
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
-    def setCurrentRow(self, row: int):
-        self.delegate.setCurrentRow(row)
+    def setSelectedRows(self, indexes: List[QModelIndex]):
+        self.delegate.setSelectedRows(indexes)
         self.viewport().update()
 
     def leaveEvent(self, e):
@@ -176,7 +181,7 @@ class TableBase:
     def mouseReleaseEvent(self, e):
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.RightButton:
-            self.setCurrentRow(row)
+            self.setSelectedRows(self.selectedIndexes())
         else:
             self.setPressedRow(-1)
 

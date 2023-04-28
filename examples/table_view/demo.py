@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication, QHeaderView, QTableWidgetItem, QWidget, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout
 
 from qfluentwidgets import TableWidget, setTheme, Theme, TableView
 
@@ -58,6 +58,7 @@ class Demo(QWidget):
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(['标题', '艺人', '专辑', '年份', '时长'])
+        self.tableView.resizeColumnsToContents()
         # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
 
@@ -65,7 +66,7 @@ class Demo(QWidget):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.tableView)
         self.tableView.resizeColumnsToContents()
-        self.resize(625, 600)
+        self.resize(625, 700)
 
 
 if __name__ == "__main__":
