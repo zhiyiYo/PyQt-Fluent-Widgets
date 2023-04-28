@@ -3,8 +3,9 @@ CheckBox {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     spacing: 8px;
     min-width: 28px;
-    min-height: 20px;
+    min-height: 22px;
     outline: none;
+    margin-left: 1px;
 }
 
 CheckBox::indicator {

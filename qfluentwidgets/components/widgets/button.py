@@ -1,13 +1,15 @@
 # coding:utf-8
 from typing import Union
 
-from PySide6.QtCore import QUrl, Qt, QRectF, QSize
+from PySide6.QtCore import QEvent, QUrl, Qt, QRectF, QSize, QPoint
 from PySide6.QtGui import QDesktopServices, QIcon, QPainter
-from PySide6.QtWidgets import QPushButton, QRadioButton, QToolButton, QApplication, QWidget
+from PySide6.QtWidgets import QMenu, QPushButton, QRadioButton, QToolButton, QApplication, QWidget
 
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme
+from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import FluentStyleSheet
 from ...common.overload import singledispatchmethod
+from .menu import RoundMenu
 
 
 class PushButton(QPushButton):
@@ -18,6 +20,7 @@ class PushButton(QPushButton):
         super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
         self.isPressed = False
+        self.isHover = False
         self.setIconSize(QSize(16, 16))
         self.setIcon(None)
 
@@ -48,6 +51,14 @@ class PushButton(QPushButton):
     def mouseReleaseEvent(self, e):
         self.isPressed = False
         super().mouseReleaseEvent(e)
+
+    def enterEvent(self, e):
+        self.isHover = True
+        self.update()
+
+    def leaveEvent(self, e):
+        self.isHover = False
+        self.update()
 
     def _drawIcon(self, icon, painter, rect):
         """ draw icon """
@@ -87,7 +98,28 @@ class PrimaryPushButton(PushButton):
             painter.setOpacity(0.786 if isDarkTheme() else 0.9)
             icon = icon.icon(Theme.DARK)
 
-        super()._drawIcon(icon, painter, rect)
+        PushButton._drawIcon(self, icon, painter, rect)
+
+
+class ToggleButton(PushButton):
+
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        self.setCheckable(True)
+        super().setChecked(False)
+
+    @__init__.register
+    def _(self, text: str, parent: QWidget = None, icon: Union[QIcon, str, FluentIconBase] = None):
+        self.__init__(parent=parent)
+        self.setText(text)
+        self.setIcon(icon)
+
+    def _drawIcon(self, icon, painter, rect):
+        if not self.isChecked():
+            return PushButton._drawIcon(self, icon, painter, rect)
+
+        PrimaryPushButton._drawIcon(self, icon, painter, rect)
 
 
 class HyperlinkButton(QPushButton):
@@ -133,6 +165,7 @@ class ToolButton(QToolButton):
         super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
         self.isPressed = False
+        self.isHover = False
         self.setIcon(QIcon())
 
     @__init__.register
@@ -170,6 +203,14 @@ class ToolButton(QToolButton):
         self.isPressed = False
         super().mouseReleaseEvent(e)
 
+    def enterEvent(self, e):
+        self.isHover = True
+        self.update()
+
+    def leaveEvent(self, e):
+        self.isHover = False
+        self.update()
+
     def _drawIcon(self, icon, painter, rect):
         """ draw icon """
         drawIcon(icon, painter, rect)
@@ -196,3 +237,85 @@ class ToolButton(QToolButton):
 
 class TransparentToolButton(ToolButton):
     """ Transparent background tool button """
+
+
+class DropDownButtonBase:
+    """ Drop down button base class """
+
+    def __init__(self, *args, **kwargs):
+        self._menu = None
+
+    def setMenu(self, menu: RoundMenu):
+        self._menu = menu
+
+    def menu(self) -> RoundMenu:
+        return self._menu
+
+    def _showMenu(self):
+        if not self.menu():
+            return
+
+        menu = self.menu()
+
+        # show menu
+        x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
+        y = self.height()
+        menu.exec(self.mapToGlobal(QPoint(x, y)))
+
+    def _hideMenu(self):
+        if self.menu():
+            self.menu().hide()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        if self.isHover:
+            painter.setOpacity(0.8)
+        elif self.isPressed:
+            painter.setOpacity(0.7)
+
+        rect = QRectF(self.width()-22, self.height()/2-5, 10, 10)
+        if isDarkTheme():
+            FIF.ARROW_DOWN.render(painter, rect)
+        else:
+            FIF.ARROW_DOWN.render(painter, rect, fill="#646464")
+
+
+class DropDownPushButton(PushButton, DropDownButtonBase):
+    """ Drop down push button """
+
+    def setMenu(self, menu: RoundMenu):
+        DropDownButtonBase.setMenu(self, menu)
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self._showMenu()
+
+    def menu(self):
+        return DropDownButtonBase.menu(self)
+
+    def paintEvent(self, e):
+        PushButton.paintEvent(self, e)
+        DropDownButtonBase.paintEvent(self, e)
+
+
+class DropDownToolButton(ToolButton, DropDownButtonBase):
+    """ Drop down tool button """
+
+    def setMenu(self, menu: RoundMenu):
+        DropDownButtonBase.setMenu(self, menu)
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self._showMenu()
+
+    def menu(self):
+        return DropDownButtonBase.menu(self)
+
+    def _drawIcon(self, icon, painter, rect: QRectF):
+        rect.moveLeft(12)
+        return super()._drawIcon(icon, painter, rect)
+
+    def paintEvent(self, e):
+        ToolButton.paintEvent(self, e)
+        DropDownButtonBase.paintEvent(self, e)

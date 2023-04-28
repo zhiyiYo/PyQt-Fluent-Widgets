@@ -1,15 +1,17 @@
 # coding:utf-8
+from typing import List, Union
+
 from qframelesswindow import WindowEffect
 from PySide6.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
-                          Qt, QSize, QRectF, Signal, QPoint, QTimer)
-from PySide6.QtGui import QAction, QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor
+                          Qt, QSize, QRectF, Signal, QPoint, QTimer, QModelIndex)
+from PySide6.QtGui import QAction, QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent
 from PySide6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
                                QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
-                               QListWidgetItem, QLineEdit, QTextEdit)
+                               QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
 
 from ...common.smooth_scroll import SmoothScroll
 from ...common.icon import FluentIcon as FIF
-from ...common.icon import MenuIconEngine
+from ...common.icon import MenuIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet
 from ...common.config import isDarkTheme
 
@@ -52,21 +54,6 @@ class DWMMenu(QMenu):
         return QMenu.event(self, e)
 
 
-class MenuSeparator(QWidget):
-    """ Menu separator """
-
-    def __init__(self, parent=None):
-        super().__init__(parent=parent)
-        self.setFixedHeight(9)
-
-    def paintEvent(self, e):
-        painter = QPainter(self)
-        c = 0 if not isDarkTheme() else 255
-        pen = QPen(QColor(c, c, c, 25), 1)
-        pen.setCosmetic(True)
-        painter.setPen(pen)
-        painter.drawLine(0, 4, self.width(), 4)
-
 
 class SubMenuItemWidget(QWidget):
     """ Sub menu item """
@@ -103,12 +90,32 @@ class SubMenuItemWidget(QWidget):
             self.width()-10, self.height()/2-9/2, 9, 9))
 
 
+class MenuItemDelegate(QStyledItemDelegate):
+    """ Menu item delegate """
+
+    def paint(self, painter, option, index):
+        if index.model().data(index, Qt.DecorationRole) != "seperator":
+            return super().paint(painter, option, index)
+
+        # draw seperator
+        painter.save()
+
+        c = 0 if not isDarkTheme() else 255
+        pen = QPen(QColor(c, c, c, 25), 1)
+        pen.setCosmetic(True)
+        painter.setPen(pen)
+        rect = option.rect
+        painter.drawLine(0, rect.y() + 4, rect.width() + 12, rect.y() + 4)
+
+        painter.restore()
+
+
 class MenuActionListWidget(QListWidget):
     """ Menu action list widget """
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setViewportMargins(5, 6, 5, 6)
+        self.setViewportMargins(0, 6, 0, 6)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setTextElideMode(Qt.ElideNone)
@@ -116,6 +123,8 @@ class MenuActionListWidget(QListWidget):
         self.setMouseTracking(True)
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
         self.setIconSize(QSize(14, 14))
+        self.setItemDelegate(MenuItemDelegate(self))
+
         self.smoothScroll = SmoothScroll(self)
         self.setStyleSheet(
             'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei"}')
@@ -179,7 +188,7 @@ class RoundMenu(QWidget):
         super().__init__(parent=parent)
         self._title = title
         self._icon = QIcon()
-        self._actions = []
+        self._actions = []  # type: List[QAction]
         self._subMenus = []
         self.isSubMenu = False
         self.parentMenu = None
@@ -253,11 +262,14 @@ class RoundMenu(QWidget):
         for i in range(len(self._actions)-1, -1, -1):
             self.removeAction(self._actions[i])
 
-    def setIcon(self, icon):
+    def setIcon(self, icon: Union[QIcon, FluentIconBase]):
         """ set the icon of menu """
+        if isinstance(icon, FluentIconBase):
+            icon = Icon(icon)
+
         self._icon = icon
 
-    def addAction(self, action):
+    def addAction(self, action: Union[QAction, Action]):
         """ add action to menu
 
         Parameters
@@ -310,7 +322,7 @@ class RoundMenu(QWidget):
 
         return icon
 
-    def insertAction(self, before, action):
+    def insertAction(self, before: Union[QAction, Action], action: Union[QAction, Action]):
         """ inserts action to menu, before the action before """
         if before not in self._actions:
             return
@@ -324,7 +336,7 @@ class RoundMenu(QWidget):
         self.view.insertItem(index, item)
         self.adjustSize()
 
-    def addActions(self, actions):
+    def addActions(self, actions: List[Union[QAction, Action]]):
         """ add actions to menu
 
         Parameters
@@ -335,12 +347,12 @@ class RoundMenu(QWidget):
         for action in actions:
             self.addAction(action)
 
-    def insertActions(self, before, actions):
+    def insertActions(self, before: Union[QAction, Action], actions: List[Union[QAction, Action]]):
         """ inserts the actions actions to menu, before the action before """
         for action in actions:
             self.insertAction(before, action)
 
-    def removeAction(self, action):
+    def removeAction(self, action: Union[QAction, Action]):
         """ remove action from menu """
         if action not in self._actions:
             return
@@ -356,7 +368,7 @@ class RoundMenu(QWidget):
         if widget:
             widget.deleteLater()
 
-    def setDefaultAction(self, action):
+    def setDefaultAction(self, action: Union[QAction, Action]):
         """ set the default action """
         if action not in self._actions:
             return
@@ -380,7 +392,7 @@ class RoundMenu(QWidget):
         self.view.setItemWidget(item, w)
         self.adjustSize()
 
-    def insertMenu(self, before, menu):
+    def insertMenu(self, before: Union[QAction, Action], menu):
         """ insert menu before action `before` """
         if not isinstance(menu, RoundMenu):
             raise ValueError('`menu` should be an instance of `RoundMenu`.')
@@ -398,11 +410,11 @@ class RoundMenu(QWidget):
 
         item = QListWidgetItem(self._createItemIcon(menu), menu.title())
         if not self._hasItemIcon():
-            w = 48 + self.view.fontMetrics().boundingRect(menu.title()).width()
+            w = 60 + self.view.fontMetrics().boundingRect(menu.title()).width()
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + item.text())
-            w = 60 + self.view.fontMetrics().boundingRect(item.text()).width()
+            w = 72 + self.view.fontMetrics().boundingRect(item.text()).width()
 
         # add submenu item
         menu._setParentMenu(self, item)
@@ -439,16 +451,12 @@ class RoundMenu(QWidget):
         m = self.view.viewportMargins()
         w = self.view.width()-m.left()-m.right()
 
-        # icon separator
-        separator = MenuSeparator(self.view)
-        separator.resize(w, separator.height())
-
         # add separator to list widget
         item = QListWidgetItem(self.view)
         item.setFlags(Qt.NoItemFlags)
-        item.setSizeHint(QSize(w, separator.height()))
+        item.setSizeHint(QSize(w, 9))
         self.view.addItem(item)
-        self.view.setItemWidget(item, separator)
+        item.setData(Qt.DecorationRole, "seperator")
         self.adjustSize()
 
     def _onItemClicked(self, item):
@@ -468,11 +476,9 @@ class RoundMenu(QWidget):
 
     def _closeParentMenu(self):
         menu = self
-        while menu.parentMenu:
+        while menu:
             menu.close()
             menu = menu.parentMenu
-
-        menu.close()
 
     def _onItemEntered(self, item):
         self.lastHoverItem = item
@@ -499,6 +505,7 @@ class RoundMenu(QWidget):
     def closeEvent(self, e):
         e.accept()
         self.closedSignal.emit()
+        self.view.clearSelection()
 
     def menuActions(self):
         return self._actions
@@ -524,13 +531,6 @@ class RoundMenu(QWidget):
             view.clearSelection()
             self._hideMenu(False)
 
-            # update style
-            index = view.row(self.menuItem)
-            if index > 0:
-                view.item(index-1).setFlags(Qt.ItemIsEnabled)
-            if index < view.count()-1:
-                view.item(index+1).setFlags(Qt.ItemIsEnabled)
-
     def _onActionChanged(self):
         """ action changed slot """
         action = self.sender()
@@ -555,6 +555,12 @@ class RoundMenu(QWidget):
         h = self.view.height() + m.top() + m.bottom() + 20
         y = self.ani.endValue().y() - pos.y()
         self.setMask(QRegion(0, y, w, h))
+
+        # update view port
+        self.view.viewport().update()
+        self.view.setAttribute(Qt.WA_UnderMouse, True)
+        e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
+        QApplication.sendEvent(self.view, e)
 
     def exec(self, pos, ani=True):
         """ show menu
@@ -586,18 +592,8 @@ class RoundMenu(QWidget):
 
         self.show()
 
-        if not self.isSubMenu:
-            return
-
-        self.menuItem.setSelected(True)
-
-        # temporarily disable item to change style
-        view = self.parentMenu.view
-        index = view.row(self.menuItem)
-        if index > 0:
-            view.item(index-1).setFlags(Qt.NoItemFlags)
-        if index < view.count()-1:
-            view.item(index+1).setFlags(Qt.NoItemFlags)
+        if self.isSubMenu:
+            self.menuItem.setSelected(True)
 
     def exec_(self, pos: QPoint, ani=True):
         """ show menu

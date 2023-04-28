@@ -1,8 +1,9 @@
 # coding:utf-8
 from PySide6.QtCore import Qt, QSize, QUrl
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
-from qfluentwidgets import (PushButton, ToolButton, PrimaryPushButton, HyperlinkButton,
-                            ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox)
+from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, ToolButton, PrimaryPushButton,
+                            HyperlinkButton, ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox,
+                            ToggleButton, RoundMenu, FluentIcon)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -93,6 +94,26 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
         )
 
+        # drop down button
+        menu = RoundMenu(parent=self)
+        menu.addAction(Action(FluentIcon.SEND, self.tr('Send')))
+        menu.addAction(Action(FluentIcon.SAVE, self.tr('Save')))
+        button = DropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A push button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        button = DropDownToolButton(FluentIcon.MAIL, self)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A tool button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
         # radio button
         radioWidget = QWidget()
         radioLayout = QVBoxLayout(radioWidget)
@@ -133,6 +154,13 @@ class BasicInputInterface(GalleryInterface):
             self.tr('A simple switch button'),
             self.switchButton,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/switch_button/demo.py'
+        )
+
+        # toggle button
+        self.addExampleCard(
+            self.tr('A simple ToggleButton with text content'),
+            ToggleButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
     def onSwitchCheckedChanged(self, isChecked):

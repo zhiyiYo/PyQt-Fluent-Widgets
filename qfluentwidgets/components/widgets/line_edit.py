@@ -58,6 +58,7 @@ class LineEdit(QLineEdit):
         super().__init__(parent=parent)
         self._isClearButtonEnabled = False
 
+        self.setProperty("transparent", True)
         FluentStyleSheet.LINE_EDIT.apply(self)
         self.setFixedHeight(33)
         self.setAttribute(Qt.WA_MacShowFocusRect, False)

@@ -163,6 +163,8 @@
         <file>images/icons/Accept_white.svg</file>
         <file>images/icons/DateTime_black.svg</file>
         <file>images/icons/DateTime_white.svg</file>
+        <file>images/icons/Basketball_black.svg</file>
+        <file>images/icons/Basketball_white.svg</file>
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
         <file>images/folder_list_dialog/Close_black.png</file>
@@ -192,6 +194,10 @@
         <file>images/time_picker/Up_black.svg</file>
         <file>images/time_picker/Down_white.svg</file>
         <file>images/time_picker/Down_black.svg</file>
+        <file>images/table_view/Up_black.svg</file>
+        <file>images/table_view/Up_white.svg</file>
+        <file>images/table_view/Down_black.svg</file>
+        <file>images/table_view/Down_white.svg</file>
 
         <file>qss/dark/color_dialog.qss</file>
         <file>qss/dark/dialog.qss</file>
@@ -213,6 +219,7 @@
         <file>qss/dark/info_bar.qss</file>
         <file>qss/dark/spin_box.qss</file>
         <file>qss/dark/tree_view.qss</file>
+        <file>qss/dark/table_view.qss</file>
         <file>qss/dark/time_picker.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
@@ -234,6 +241,7 @@
         <file>qss/light/check_box.qss</file>
         <file>qss/light/info_bar.qss</file>
         <file>qss/light/spin_box.qss</file>
+        <file>qss/light/table_view.qss</file>
         <file>qss/light/tree_view.qss</file>
         <file>qss/light/time_picker.qss</file>
 

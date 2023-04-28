@@ -41,7 +41,8 @@ class SmoothScroll:
 
     def wheelEvent(self, e):
         # only process the wheel events triggered by mouse, fixes issue #75
-        if self.smoothMode == SmoothMode.NO_SMOOTH or abs(e.angleDelta().y()) % 120 != 0:
+        delta = e.angleDelta().y() if e.angleDelta().y() != 0 else e.angleDelta().x()
+        if self.smoothMode == SmoothMode.NO_SMOOTH or abs(delta) % 120 != 0:
             QAbstractScrollArea.wheelEvent(self.widget, e)
             return
 
@@ -60,7 +61,7 @@ class SmoothScroll:
         self.stepsTotal = self.fps * self.duration / 1000
 
         # get the moving distance corresponding to each event
-        delta = e.angleDelta().y() * self.stepRatio
+        delta = delta* self.stepRatio
         if self.acceleration > 0:
             delta += delta * self.acceleration * accerationRatio
 

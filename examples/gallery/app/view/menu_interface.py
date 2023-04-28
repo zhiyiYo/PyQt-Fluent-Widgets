@@ -1,7 +1,7 @@
 # coding:utf-8
 from PySide6.QtCore import QPoint
 from PySide6.QtGui import QAction
-from qfluentwidgets import RoundMenu, PushButton
+from qfluentwidgets import RoundMenu, PushButton, Action
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -33,22 +33,22 @@ class MenuInterface(GalleryInterface):
         menu = RoundMenu(parent=self)
 
         # add actions
-        menu.addAction(QAction(FIF.COPY.icon(), self.tr('Copy')))
-        menu.addAction(QAction(FIF.CUT.icon(), self.tr('Cut')))
+        menu.addAction(Action(FIF.COPY, self.tr('Copy')))
+        menu.addAction(Action(FIF.CUT, self.tr('Cut')))
 
         # add sub menu
         submenu = RoundMenu(self.tr("Add to"), self)
-        submenu.setIcon(FIF.ADD.icon())
+        submenu.setIcon(FIF.ADD)
         submenu.addActions([
-            QAction(FIF.VIDEO.icon(), self.tr('Video')),
-            QAction(FIF.MUSIC.icon(), self.tr('Music')),
+            Action(FIF.VIDEO, self.tr('Video')),
+            Action(FIF.MUSIC, self.tr('Music')),
         ])
         menu.addMenu(submenu)
 
         # add actions
         menu.addActions([
-            QAction(FIF.PASTE.icon(), self.tr('Paste')),
-            QAction(FIF.CANCEL.icon(), self.tr('Undo'))
+            Action(FIF.PASTE, self.tr('Paste')),
+            Action(FIF.CANCEL, self.tr('Undo'))
         ])
 
         # add separator
@@ -57,14 +57,13 @@ class MenuInterface(GalleryInterface):
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], QAction(FIF.SETTING.icon(), self.tr('Settings')))
+            menu.menuActions()[-1], Action(FIF.SETTING, self.tr('Settings')))
         menu.insertActions(
             menu.menuActions()[-1],
             [
-                QAction(FIF.HELP.icon(), self.tr('Help')),
-                QAction(FIF.FEEDBACK.icon(), self.tr('Feedback'))
+                Action(FIF.HELP, self.tr('Help')),
+                Action(FIF.FEEDBACK, self.tr('Feedback'))
             ]
         )
 
-        # show menu
         menu.exec(pos, ani=True)
