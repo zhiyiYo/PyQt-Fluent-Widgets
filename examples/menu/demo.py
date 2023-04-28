@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QLabel
-from qfluentwidgets import RoundMenu, setTheme, Theme
+from qfluentwidgets import RoundMenu, setTheme, Theme, Action
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -19,28 +19,28 @@ class Demo(QWidget):
 
         self.setStyleSheet('Demo{background: white} QLabel{font-size: 20px}')
 
-        # setTheme(Theme.DARK)
+        setTheme(Theme.DARK)
 
     def contextMenuEvent(self, e):
         menu = RoundMenu(parent=self)
 
         # add actions
-        menu.addAction(QAction(FIF.COPY.icon(), 'Copy'))
-        menu.addAction(QAction(FIF.CUT.icon(), 'Cut'))
+        menu.addAction(Action(FIF.COPY, 'Copy'))
+        menu.addAction(Action(FIF.CUT, 'Cut'))
 
         # add sub menu
         submenu = RoundMenu("Add to", self)
-        submenu.setIcon(FIF.ADD.icon())
+        submenu.setIcon(FIF.ADD)
         submenu.addActions([
-            QAction(FIF.VIDEO.icon(), 'Video'),
-            QAction(FIF.MUSIC.icon(), 'Music'),
+            Action(FIF.VIDEO, 'Video'),
+            Action(FIF.MUSIC, 'Music'),
         ])
         menu.addMenu(submenu)
 
         # add actions
         menu.addActions([
-            QAction(FIF.PASTE.icon(), 'Paste'),
-            QAction(FIF.CANCEL.icon(), 'Undo')
+            Action(FIF.PASTE, 'Paste'),
+            Action(FIF.CANCEL, 'Undo')
         ])
 
         # add separator
@@ -49,10 +49,10 @@ class Demo(QWidget):
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], QAction(FIF.SETTING.icon(), 'Settings'))
+            menu.menuActions()[-1], Action(FIF.SETTING, 'Settings'))
         menu.insertActions(
             menu.menuActions()[-1],
-            [QAction(FIF.HELP.icon(), 'Help'), QAction(FIF.FEEDBACK.icon(), 'Feedback')]
+            [Action(FIF.HELP, 'Help'), Action(FIF.FEEDBACK, 'Feedback')]
         )
 
         # show menu

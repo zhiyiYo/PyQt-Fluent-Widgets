@@ -1,9 +1,9 @@
 # coding: utf-8
 from enum import Enum
 
-from PyQt6.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal
-from PyQt6.QtGui import QColor, QPainter
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QToolButton, QWidget
+from PyQt6.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal, QEvent, QPointF
+from PyQt6.QtGui import QColor, QPainter, QHoverEvent
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
 
 from ...common.style_sheet import FluentStyleSheet
 from ...common.overload import singledispatchmethod
@@ -57,6 +57,9 @@ class Indicator(QToolButton):
         self.sliderEndX = self.width()-2*self.sliderRadius - \
             self.padding if isChecked else self.padding
         self.timer.start(5)
+
+    def toggle(self):
+        self.setChecked(not self.isChecked())
 
     def mouseReleaseEvent(self, e):
         """ toggle checked state when mouse release"""
@@ -170,10 +173,11 @@ class SwitchButton(QWidget):
     def __initWidget(self):
         """ initialize widgets """
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
+        self.installEventFilter(self)
 
         # set layout
         self.hBox.setSpacing(self.__spacing)
-        self.hBox.setContentsMargins(0, 0, 0, 0)
+        self.hBox.setContentsMargins(2, 0, 0, 0)
 
         if self.indicatorPos == IndicatorPosition.LEFT:
             self.hBox.addWidget(self.indicator)
@@ -188,7 +192,25 @@ class SwitchButton(QWidget):
         FluentStyleSheet.SWITCH_BUTTON.apply(self)
 
         # connect signal to slot
-        self.indicator.checkedChanged.connect(self.checkedChanged)
+        self.indicator.toggled.connect(self.checkedChanged)
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self:
+            if e.type() == QEvent.Type.MouseButtonPress:
+                self.indicator.setDown(True)
+            elif e.type() == QEvent.Type.MouseButtonRelease:
+                self.indicator.setDown(False)
+                self.indicator.toggle()
+            elif e.type() == QEvent.Type.Enter:
+                self.indicator.setAttribute(Qt.WidgetAttribute.WA_UnderMouse, True)
+                e = QHoverEvent(QEvent.Type.HoverEnter, QPointF(), QPointF(1, 1))
+                QApplication.sendEvent(self.indicator, e)
+            elif e.type() == QEvent.Type.Leave:
+                self.indicator.setAttribute(Qt.WidgetAttribute.WA_UnderMouse, False)
+                e = QHoverEvent(QEvent.Type.HoverLeave, QPointF(1, 1), QPointF())
+                QApplication.sendEvent(self.indicator, e)
+
+        return super().eventFilter(obj, e)
 
     def isChecked(self):
         return self.indicator.isChecked()

@@ -97,6 +97,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     COMBO_BOX = "combo_box"
     LINE_EDIT = "line_edit"
     TREE_VIEW = "tree_view"
+    TABLE_VIEW = "table_view"
     TIME_PICKER = "time_picker"
     SETTING_CARD = "setting_card"
     COLOR_DIALOG = "color_dialog"

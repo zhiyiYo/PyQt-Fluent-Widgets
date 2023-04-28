@@ -1,4 +1,4 @@
-PushButton, ToolButton {
+PushButton, ToolButton, ToggleButton {
     background: rgba(255, 255, 255, 0.0605);
     border: 1px solid rgba(255, 255, 255, 0.053);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -21,17 +21,29 @@ PushButton[hasIcon=true] {
     padding: 5px 12px 6px 36px;
 }
 
-PushButton:hover, ToolButton:hover {
+DropDownToolButton {
+    padding: 5px 31px 6px 8px;
+}
+
+DropDownPushButton[hasIcon=false] {
+    padding: 5px 31px 6px 12px;
+}
+
+DropDownPushButton[hasIcon=true] {
+    padding: 5px 31px 6px 36px;
+}
+
+PushButton:hover, ToolButton:hover, ToggleButton:hover {
     background: rgba(255, 255, 255, 0.0837);
 }
 
-PushButton:pressed, ToolButton:pressed {
+PushButton:pressed, ToolButton:pressed, ToggleButton:pressed {
     color: rgba(255, 255, 255, 0.786);
     background: rgba(255, 255, 255, 0.0326);
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
-PushButton:disabled, ToolButton:disabled {
+PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
     color: rgba(255, 255, 255, 0.3628);
     background: rgba(255, 255, 255, 0.0419);
     border: 1px solid rgba(255, 255, 255, 0.053);
@@ -39,26 +51,26 @@ PushButton:disabled, ToolButton:disabled {
 }
 
 
-PrimaryPushButton {
+PrimaryPushButton, ToggleButton:checked {
     color: black;
     background-color: --ThemeColorPrimary;
     border: 1px solid --ThemeColorLight1;
     border-bottom: 1px solid --ThemeColorLight2;
 }
 
-PrimaryPushButton:hover {
+PrimaryPushButton:hover, ToggleButton:checked:hover {
     background-color: --ThemeColorDark1;
     border: 1px solid --ThemeColorLight1;
     border-bottom: 1px solid --ThemeColorLight2;
 }
 
-PrimaryPushButton:pressed {
+PrimaryPushButton:pressed, ToggleButton:checked:pressed {
     color: rgba(0, 0, 0, 0.63);
     background-color: --ThemeColorDark2;
     border: 1px solid --ThemeColorDark2;
 }
 
-PrimaryPushButton:disabled {
+PrimaryPushButton:disabled, ToggleButton:checked:disabled {
     color: rgba(255, 255, 255, 0.43);
     background-color: rgb(52, 52, 52);
     border: 1px solid rgb(52, 52, 52);

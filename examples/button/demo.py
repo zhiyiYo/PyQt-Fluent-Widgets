@@ -2,8 +2,10 @@
 import sys
 
 from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
-from qfluentwidgets import PushButton, PrimaryPushButton, HyperlinkButton, setTheme, Theme, ToolButton
+from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, PrimaryPushButton,
+                            HyperlinkButton, setTheme, Theme, ToolButton, ToggleButton, RoundMenu)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -25,6 +27,16 @@ class Demo(QWidget):
         self.primaryButton1 = PrimaryPushButton('Accent style button', self)
         self.primaryButton2 = PrimaryPushButton('Accent style button with icon', self, FIF.UPDATE)
 
+        self.toggleButton = ToggleButton('Toggle Button', self, FIF.SEND)
+
+        self.dropDownPushButton = DropDownPushButton('Email', self, FIF.MAIL)
+        self.dropDownToolButton = DropDownToolButton(FIF.MAIL, self)
+        self.menu = RoundMenu(parent=self)
+        self.menu.addAction(QAction(FIF.SEND_FILL.icon(), 'Send'))
+        self.menu.addAction(Action(FIF.SAVE, 'Save'))
+        self.dropDownPushButton.setMenu(self.menu)
+        self.dropDownToolButton.setMenu(self.menu)
+
         self.hyperlinkButton = HyperlinkButton(
             url='https://github.com/zhiyiYo/PyQt-Fluent-Widgets',
             text='Hyper link button',
@@ -37,10 +49,13 @@ class Demo(QWidget):
         self.vBoxLayout.addWidget(self.pushButton2, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.addWidget(self.primaryButton1, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.addWidget(self.primaryButton2, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.toggleButton, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.dropDownPushButton, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.dropDownToolButton, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.addWidget(self.hyperlinkButton, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.setSizeConstraint(QVBoxLayout.SizeConstraint.SetMinAndMaxSize)
 
-        self.resize(400, 400)
+        self.resize(500, 600)
         self.setStyleSheet('Demo{background:white}')
 
 

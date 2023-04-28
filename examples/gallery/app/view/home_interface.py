@@ -140,12 +140,20 @@ class HomeInterface(ScrollArea):
             index=6
         )
         basicInputView.addSampleCard(
+            icon=":/gallery/images/controls/DropDownButton.png",
+            title="DropDownButton",
+            content=self.tr(
+                "A button that displays a flyout of choices when clicked."),
+            routeKey="basicInputInterface",
+            index=8
+        )
+        basicInputView.addSampleCard(
             icon=":/gallery/images/controls/RadioButton.png",
             title="RadioButton",
             content=self.tr(
                 "A control that allows a user to select a single option from a group of options."),
             routeKey="basicInputInterface",
-            index=7
+            index=10
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/Slider.png",
@@ -153,7 +161,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A control that lets the user select from a range of values by moving a Thumb control along a track."),
             routeKey="basicInputInterface",
-            index=8
+            index=11
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleSwitch.png",
@@ -161,7 +169,15 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A switch that can be toggled between 2 states."),
             routeKey="basicInputInterface",
-            index=9
+            index=12
+        )
+        basicInputView.addSampleCard(
+            icon=":/gallery/images/controls/ToggleButton.png",
+            title="ToggleButton",
+            content=self.tr(
+                "A button that can be switched between two states like a CheckBox."),
+            routeKey="basicInputInterface",
+            index=13
         )
         self.vBoxLayout.addWidget(basicInputView)
 
@@ -315,11 +331,19 @@ class HomeInterface(ScrollArea):
         # view samples
         collectionView = SampleCardView(self.tr('View samples'), self.view)
         collectionView.addSampleCard(
+            icon=":/gallery/images/controls/DataGrid.png",
+            title="TableView",
+            content=self.tr(
+                "The DataGrid control provides a flexible way to display a collection of data in rows and columns."),
+            routeKey="viewInterface",
+            index=0
+        )
+        collectionView.addSampleCard(
             icon=":/gallery/images/controls/TreeView.png",
             title="TreeView",
             content=self.tr(
                 "The TreeView control is a hierarchical list pattern with expanding and collapsing nodes that contain nested items."),
             routeKey="viewInterface",
-            index=0
+            index=1
         )
         self.vBoxLayout.addWidget(collectionView)

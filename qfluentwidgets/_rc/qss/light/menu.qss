@@ -47,6 +47,8 @@ MenuActionListWidget::item {
     padding-right: 10px;
     border-radius: 5px;
     border: none;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 MenuActionListWidget::item:disabled {
@@ -54,7 +56,6 @@ MenuActionListWidget::item:disabled {
     padding-right: 10px;
     border-radius: 5px;
     border: none;
-    color: black;
 }
 
 MenuActionListWidget::item:hover {

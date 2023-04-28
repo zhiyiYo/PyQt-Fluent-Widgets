@@ -3,26 +3,27 @@ CheckBox {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     spacing: 8px;
     min-width: 28px;
-    min-height: 20px;
+    min-height: 22px;
     outline: none;
+    margin-left: 1px;
 }
 
 CheckBox::indicator {
     width: 18px;
     height: 18px;
     border-radius: 5px;
-    border: 1px solid rgb(159, 159, 159);
-    background-color: rgb(42, 42, 42);
+    border: 1px solid rgba(255, 255, 255, 0.5547);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 CheckBox::indicator:hover {
-    border: 1px solid rgb(161, 161, 161);
-    background-color: rgb(56, 56, 56);
+    border: 1px solid rgba(255, 255, 255, 0.5547);
+    background-color: rgba(255, 255, 255, 0.0419);
 }
 
 CheckBox::indicator:pressed {
-    border: 1px solid rgb(86, 86, 86);
-    background-color: rgb(62, 62, 62);
+    border: 1px solid rgba(255, 255, 255, 0.1581);
+    background-color: rgba(255, 255, 255, 0.0698);
 }
 
 CheckBox::indicator:checked,
@@ -49,8 +50,8 @@ CheckBox:disabled {
 }
 
 CheckBox::indicator:disabled {
-    border: 1px solid rgb(82, 82, 82);
-    background-color: rgb(45, 45, 45);
+    border: 1px solid rgba(255, 255, 255, 0.1581);
+    background-color: transparent
 }
 
 CheckBox::indicator:checked:disabled,
