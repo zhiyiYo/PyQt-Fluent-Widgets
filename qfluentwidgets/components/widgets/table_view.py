@@ -2,7 +2,7 @@
 from typing import List
 
 from PyQt6.QtCore import Qt, QMargins, QModelIndex
-from PyQt6.QtGui import QPainter, QColor
+from PyQt6.QtGui import QPainter, QColor, QKeyEvent
 from PyQt6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget)
 
@@ -178,6 +178,16 @@ class TableBase:
 
         e.setAccepted(True)
 
+    def keyPressEvent(self, e: QKeyEvent):
+        QTableView.keyPressEvent(self, e)
+        self.setSelectedRows(self.selectedIndexes())
+
+    def mousePressEvent(self, e: QKeyEvent):
+        if e.button() == Qt.MouseButton.LeftButton:
+            QTableView.mousePressEvent(self, e)
+        else:
+            self.setPressedRow(self.indexAt(e.pos()).row())
+
     def mouseReleaseEvent(self, e):
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.MouseButton.RightButton:
@@ -195,10 +205,8 @@ class TableWidget(QTableWidget, TableBase):
         super().__init__(parent)
 
 
-
 class TableView(QTableView, TableBase):
     """ Table view """
 
     def __init__(self, parent=None):
         super().__init__(parent)
-
