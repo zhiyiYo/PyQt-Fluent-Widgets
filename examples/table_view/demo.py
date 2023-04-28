@@ -2,7 +2,7 @@
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QHeaderView, QTableWidgetItem, QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout
 
 from qfluentwidgets import TableWidget, setTheme, Theme, TableView
 
@@ -58,13 +58,14 @@ class Demo(QWidget):
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(['标题', '艺人', '专辑', '年份', '时长'])
+        self.tableView.resizeColumnsToContents()
         # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
 
         self.setStyleSheet("Demo{background: rgb(249, 249, 249)} ")
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.tableView)
-        self.resize(800, 700)
+        self.resize(625, 700)
 
 
 if __name__ == "__main__":
