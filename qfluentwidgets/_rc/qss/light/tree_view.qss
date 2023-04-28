@@ -35,18 +35,18 @@ QTreeView::indicator {
     width: 18px;
     height: 18px;
     border-radius: 5px;
-    border: 1px solid rgb(135, 135, 135);
-    background-color: rgb(241, 241, 241);
+    border: 1px solid rgba(0, 0, 0, 0.48);
+    background-color: rgba(0, 0, 0, 0.022);
 }
 
 QTreeView::indicator:hover {
-    border: 1px solid rgb(132, 132, 132);
-    background-color: rgb(232, 232, 232);
+    border: 1px solid rgba(0, 0, 0, 0.56);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 QTreeView::indicator:pressed {
-    border: 1px solid rgb(184, 184, 184);
-    background-color: rgb(224, 224, 224);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: rgba(0, 0, 0, 0.12);
 }
 
 QTreeView::indicator:checked,
@@ -76,8 +76,8 @@ QTreeView::indicator:indeterminate:pressed {
 }
 
 QTreeView::indicator:disabled {
-    border: 1px solid #bbbbbb;
-    background-color: rgb(224, 224, 224);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: transparent;
 }
 
 QTreeView::indicator:checked:disabled,
@@ -86,13 +86,18 @@ QTreeView::indicator:indeterminate:disabled {
     background-color: rgb(199, 199, 199);
 }
 
-
-QScrollBar {
+QScrollBar:vertical {
     background: transparent;
     width: 4px;
-    margin-top: 12px;
+    margin-top: 50px;
     margin-bottom: 0;
     padding-right: 2px;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 4px;
+    padding-bottom: 2px;
 }
 
 QScrollBar::sub-line {
@@ -107,10 +112,19 @@ QScrollBar::handle {
     background: rgb(122, 122, 122);
     border: 2px solid rgb(128, 128, 128);
     border-radius: 1px;
+}
+
+QScrollBar::handle:vertical {
     min-height: 32px;
 }
 
+QScrollBar::handle:horizontal {
+    min-width: 32px;
+}
+
 QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
     background: none;
 }

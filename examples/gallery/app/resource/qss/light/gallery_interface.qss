@@ -60,12 +60,11 @@ QScrollBar {
     margin-top: 0px;
 }
 
-/*隐藏上箭头*/
+
 QScrollBar::sub-line {
     background: transparent;
 }
 
-/*隐藏下箭头*/
 QScrollBar::add-line {
     background: transparent;
 }

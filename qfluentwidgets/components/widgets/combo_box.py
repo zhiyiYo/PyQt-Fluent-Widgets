@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, pyqtSignal, QRectF, QPoint, QObject, QEvent
 from PyQt5.QtGui import QPainter, QCursor, QIcon
 from PyQt5.QtWidgets import QAction, QPushButton, QStyledItemDelegate, QStyle
 
-from .menu import RoundMenu
+from .menu import RoundMenu, MenuItemDelegate
 from .line_edit import LineEdit, LineEditButton
 from ...common.icon import FluentIconBase, isDarkTheme
 from ...common.icon import FluentIcon as FIF
@@ -397,7 +397,7 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.dropMenu = None
 
 
-class ComboMenuItemDelegate(QStyledItemDelegate):
+class ComboMenuItemDelegate(MenuItemDelegate):
     """ Combo box drop menu item delegate """
 
     def paint(self, painter: QPainter, option, index):

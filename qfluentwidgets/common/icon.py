@@ -1,41 +1,17 @@
 # coding:utf-8
 from enum import Enum
+from typing import Union
+from PyQt5 import QtGui
 
 from PyQt5.QtXml import QDomDocument
-from PyQt5.QtCore import QPoint, QRect, QRectF, Qt, QFile
-from PyQt5.QtGui import QIcon, QIconEngine, QImage, QPainter, QPixmap, QColor
+from PyQt5.QtCore import QRectF, Qt, QFile, QObject
+from PyQt5.QtGui import QIcon, QIconEngine
+from PyQt5.QtWidgets import QAction
 from PyQt5.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
+from .overload import singledispatchmethod
 
-
-class IconEngine(QIconEngine):
-    """ Icon engine """
-
-    def __init__(self, iconPath):
-        self.iconPath = iconPath
-        super().__init__()
-
-    def paint(self, painter, rect, mode, state):
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        if not self.iconPath.lower().endswith('svg'):
-            painter.drawImage(rect, QImage(self.iconPath))
-        else:
-            drawSvgIcon(self.iconPath, painter, rect)
-
-    def pixmap(self, size, mode, state):
-        pixmap = QPixmap(size)
-        pixmap.fill(Qt.transparent)
-        self.paint(QPainter(pixmap), QRect(QPoint(0, 0), size), mode, state)
-        return pixmap
-
-
-class Icon(QIcon):
-
-    def __init__(self, iconPath):
-        self.iconPath = iconPath
-        super().__init__(IconEngine(iconPath))
 
 
 class MenuIconEngine(QIconEngine):
@@ -45,7 +21,19 @@ class MenuIconEngine(QIconEngine):
         self.icon = icon
 
     def paint(self, painter, rect, mode, state):
-        self.icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
+        painter.save()
+
+        if mode == QIcon.Disabled:
+            painter.setOpacity(0.5)
+        elif mode == QIcon.Selected:
+            painter.setOpacity(0.7)
+
+        icon = self.icon
+        if isinstance(self.icon, Icon):
+            icon = self.icon.fluentIcon.icon()
+
+        icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
+        painter.restore()
 
 
 def getIconColor(theme=Theme.AUTO, reverse=False):
@@ -286,6 +274,7 @@ class FluentIcon(FluentIconBase, Enum):
     FOLDER_ADD = "FolderAdd"
     PENCIL_INK = "PencilInk"
     ZIP_FOLDER = "ZipFolder"
+    BASKETBALL = "Basketball"
     MICROPHONE = "Microphone"
     ARROW_DOWN = "ChevronDown"
     TRANSPARENT = "Transparent"
@@ -295,3 +284,47 @@ class FluentIcon(FluentIconBase, Enum):
 
     def path(self, theme=Theme.AUTO):
         return f':/qfluentwidgets/images/icons/{self.value}_{getIconColor(theme)}.svg'
+
+
+class Icon(QIcon):
+
+    def __init__(self, fluentIcon: FluentIcon):
+        super().__init__(fluentIcon.path())
+        self.fluentIcon = fluentIcon
+
+
+class Action(QAction):
+    """ Fluent action """
+
+    @singledispatchmethod
+    def __init__(self, parent: QObject = None, **kwargs):
+        super().__init__(parent, **kwargs)
+        self.fluentIcon = None
+
+    @__init__.register
+    def _(self, text: str, parent: QObject = None, **kwargs):
+        super().__init__(text, parent, **kwargs)
+        self.fluentIcon = None
+
+    @__init__.register
+    def _(self, icon: QIcon, text: str, parent: QObject = None, **kwargs):
+        super().__init__(icon, text, parent, **kwargs)
+        self.fluentIcon = None
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, text: str, parent: QObject = None, **kwargs):
+        super().__init__(icon.icon(), text, parent, **kwargs)
+        self.fluentIcon = icon
+
+    def icon(self) -> QIcon:
+        if self.fluentIcon:
+            return Icon(self.fluentIcon)
+
+        return super().icon()
+
+    def setIcon(self, icon: Union[FluentIconBase, QIcon]):
+        if isinstance(icon, FluentIconBase):
+            self.fluentIcon = icon
+            icon = icon.icon()
+
+        super().setIcon(icon)

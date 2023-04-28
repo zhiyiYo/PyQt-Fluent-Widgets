@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QLocale
 from PyQt5.QtGui import QGuiApplication, QFont
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             ColorConfigItem, OptionsValidator, RangeConfigItem, RangeValidator,
-                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer)
+                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer, __version__)
 
 
 class SongQuality(Enum):
@@ -110,7 +110,7 @@ class Config(QConfig):
 
 YEAR = 2023
 AUTHOR = "zhiyiYo"
-VERSION = "v0.2.0"
+VERSION = __version__
 HELP_URL = "https://pyqt-fluent-widgets.readthedocs.io"
 FEEDBACK_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
 RELEASE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases/latest"
