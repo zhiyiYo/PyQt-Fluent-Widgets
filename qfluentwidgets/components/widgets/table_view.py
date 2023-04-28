@@ -2,7 +2,7 @@
 from typing import List
 
 from PySide6.QtCore import Qt, QMargins, QModelIndex
-from PySide6.QtGui import QPainter, QColor
+from PySide6.QtGui import QPainter, QColor, QKeyEvent
 from PySide6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget)
 
@@ -177,6 +177,16 @@ class TableBase:
             self.horizonSmoothScroll.wheelEvent(e)
 
         e.setAccepted(True)
+
+    def keyPressEvent(self, e: QKeyEvent):
+        QTableView.keyPressEvent(self, e)
+        self.setSelectedRows(self.selectedIndexes())
+
+    def mousePressEvent(self, e: QKeyEvent):
+        if e.button() == Qt.LeftButton:
+            QTableView.mousePressEvent(self, e)
+        else:
+            self.setPressedRow(self.indexAt(e.pos()).row())
 
     def mouseReleaseEvent(self, e):
         row = self.indexAt(e.pos()).row()
