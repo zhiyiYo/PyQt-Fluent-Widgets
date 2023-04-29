@@ -189,13 +189,13 @@ class TableBase:
             self.setPressedRow(self.indexAt(e.pos()).row())
 
     def mouseReleaseEvent(self, e):
+        QTableView.mouseReleaseEvent(self, e)
+        
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.MouseButton.RightButton:
             self.setSelectedRows(self.selectedIndexes())
         else:
             self.setPressedRow(-1)
-
-        return QTableView.mouseReleaseEvent(self, e)
 
 
 class TableWidget(QTableWidget, TableBase):
