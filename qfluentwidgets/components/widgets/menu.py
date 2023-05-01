@@ -293,7 +293,7 @@ class RoundMenu(QWidget):
 
         item = QListWidgetItem(self._createItemIcon(action), action.text())
         if not self._hasItemIcon():
-            w = 28 + self.view.fontMetrics().width(action.text())
+            w = 40 + self.view.fontMetrics().width(action.text())
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + item.text())

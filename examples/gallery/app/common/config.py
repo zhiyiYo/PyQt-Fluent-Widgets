@@ -4,7 +4,7 @@ from enum import Enum
 from PyQt5.QtCore import QLocale
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             OptionsValidator, RangeConfigItem, RangeValidator,
-                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer)
+                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer, __version__)
 
 
 class Language(Enum):
@@ -50,7 +50,7 @@ class Config(QConfig):
 
 YEAR = 2023
 AUTHOR = "zhiyiYo"
-VERSION = "v0.7.0"
+VERSION = __version__
 HELP_URL = "https://pyqt-fluent-widgets.readthedocs.io/zh_CN/latest"
 REPO_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
 EXAMPLE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples"
