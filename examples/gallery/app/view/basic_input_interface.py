@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt, QSize, QUrl
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
 from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, ToolButton, PrimaryPushButton,
                             HyperlinkButton, ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox,
-                            ToggleButton, RoundMenu, FluentIcon)
+                            ToggleButton, RoundMenu, FluentIcon, SplitPushButton, SplitToolButton)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -145,6 +145,37 @@ class BasicInputInterface(GalleryInterface):
             self.tr('A simple horizontal slider'),
             slider,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/slider/demo.py'
+        )
+
+        # split button
+        button = SplitPushButton(self.tr('Choose your stand'), self, FluentIcon.BASKETBALL)
+        menu = RoundMenu(parent=self)
+        menu.addActions([
+            Action(self.tr('Star Platinum'), triggered=lambda c, b=button: b.setText(self.tr('Star Platinum'))),
+            Action(self.tr('Crazy Diamond'), triggered=lambda c, b=button: b.setText(self.tr('Crazy Diamond'))),
+            Action(self.tr("Gold Experience"), triggered=lambda c, b=button: b.setText(self.tr("Gold Experience"))),
+            Action(self.tr('Sticky Fingers'), triggered=lambda c, b=button: b.setText(self.tr('Sticky Fingers'))),
+        ])
+        button.setFlyout(menu)
+        self.addExampleCard(
+            self.tr('A split push button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        button = SplitToolButton(":/gallery/images/kunkun.png", self)
+        menu = RoundMenu(parent=self)
+        menu.addActions([
+            Action(self.tr('Sing')),
+            Action(self.tr('Jump')),
+            Action(self.tr("Rap")),
+            Action(self.tr('Music')),
+        ])
+        button.setFlyout(menu)
+        self.addExampleCard(
+            self.tr('A split tool button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
         # switch button

@@ -49,17 +49,17 @@
         <translation>水平滑动条</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="153"/>
+        <location filename="../../view/basic_input_interface.py" line="184"/>
         <source>A simple switch button</source>
         <translation>开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="170"/>
+        <location filename="../../view/basic_input_interface.py" line="201"/>
         <source>Off</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="168"/>
+        <location filename="../../view/basic_input_interface.py" line="199"/>
         <source>On</source>
         <translation>开</translation>
     </message>
@@ -89,12 +89,12 @@
         <translation>GItHub 主页</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="122"/>
+        <location filename="../../view/basic_input_interface.py" line="153"/>
         <source>Star Platinum</source>
         <translation>白金之星</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="123"/>
+        <location filename="../../view/basic_input_interface.py" line="153"/>
         <source>Crazy Diamond</source>
         <translation>疯狂钻石</translation>
     </message>
@@ -104,17 +104,17 @@
         <translation>软又湿</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="83"/>
+        <location filename="../../view/basic_input_interface.py" line="153"/>
         <source>Gold Experience</source>
         <translation>黄金体验</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="83"/>
+        <location filename="../../view/basic_input_interface.py" line="153"/>
         <source>Sticky Fingers</source>
         <translation>钢链手指</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="89"/>
+        <location filename="../../view/basic_input_interface.py" line="151"/>
         <source>Choose your stand</source>
         <translation>选择你的替身</translation>
     </message>
@@ -149,14 +149,44 @@
         <translation>带下拉菜单的工具按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="160"/>
+        <location filename="../../view/basic_input_interface.py" line="191"/>
         <source>A simple ToggleButton with text content</source>
         <translation>带文本的状态开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="160"/>
+        <location filename="../../view/basic_input_interface.py" line="191"/>
         <source>Start practicing</source>
         <translation>开始练习</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="160"/>
+        <source>A split push button with drop down menu</source>
+        <translation>带下拉菜单的拆分按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="168"/>
+        <source>Sing</source>
+        <translation>唱</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="168"/>
+        <source>Jump</source>
+        <translation>跳</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="168"/>
+        <source>Rap</source>
+        <translation>Rap</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="168"/>
+        <source>Music</source>
+        <translation>Music</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="175"/>
+        <source>A split tool button with drop down menu</source>
+        <translation>带下拉菜单的工具按钮</translation>
     </message>
 </context>
 <context>

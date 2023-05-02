@@ -26,9 +26,13 @@ class MenuIconEngine(QIconEngine):
         elif mode == QIcon.Mode.Selected:
             painter.setOpacity(0.7)
 
+        # change icon color according to the theme
         icon = self.icon
         if isinstance(self.icon, Icon):
             icon = self.icon.fluentIcon.icon()
+
+        # prevent the left side of the icon from being cropped
+        rect.adjust(-1, 0, 0, 0)
 
         icon.paint(painter, rect, Qt.AlignmentFlag.AlignHCenter, QIcon.Mode.Normal, state)
         painter.restore()

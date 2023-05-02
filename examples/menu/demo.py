@@ -19,7 +19,7 @@ class Demo(QWidget):
 
         self.setStyleSheet('Demo{background: white} QLabel{font-size: 20px}')
 
-        setTheme(Theme.DARK)
+        # setTheme(Theme.DARK)
 
     def contextMenuEvent(self, e):
         menu = RoundMenu(parent=self)

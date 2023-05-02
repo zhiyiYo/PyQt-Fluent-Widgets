@@ -164,12 +164,20 @@ class HomeInterface(ScrollArea):
             index=11
         )
         basicInputView.addSampleCard(
+            icon=":/gallery/images/controls/SplitButton.png",
+            title="SplitButton",
+            content=self.tr(
+                "A two-part button that displays a flyout when its secondary part is clicked."),
+            routeKey="basicInputInterface",
+            index=12
+        )
+        basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleSwitch.png",
             title="SwitchButton",
             content=self.tr(
                 "A switch that can be toggled between 2 states."),
             routeKey="basicInputInterface",
-            index=12
+            index=14
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleButton.png",
@@ -177,7 +185,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that can be switched between two states like a CheckBox."),
             routeKey="basicInputInterface",
-            index=13
+            index=15
         )
         self.vBoxLayout.addWidget(basicInputView)
 
