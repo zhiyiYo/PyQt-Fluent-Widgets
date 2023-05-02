@@ -66,7 +66,7 @@ class Window(FramelessWindow):
         self.setTitleBar(StandardTitleBar(self))
 
         # use dark theme mode
-        setTheme(Theme.DARK)
+        # setTheme(Theme.DARK)
 
         # change the theme color
         # setThemeColor('#0078d4')
@@ -81,12 +81,6 @@ class Window(FramelessWindow):
         self.videoInterface = Widget('Video Interface', self)
         self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
-
-        self.stackWidget.addWidget(self.searchInterface)
-        self.stackWidget.addWidget(self.musicInterface)
-        self.stackWidget.addWidget(self.videoInterface)
-        self.stackWidget.addWidget(self.folderInterface)
-        self.stackWidget.addWidget(self.settingInterface)
 
         # initialize layout
         self.initLayout()
@@ -104,35 +98,14 @@ class Window(FramelessWindow):
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
     def initNavigation(self):
-        self.navigationInterface.addItem(
-            routeKey=self.searchInterface.objectName(),
-            icon=FIF.SEARCH,
-            text='Search',
-            onClick=lambda: self.switchTo(self.searchInterface)
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.musicInterface.objectName(),
-            icon=FIF.MUSIC,
-            text='Music library',
-            onClick=lambda: self.switchTo(self.musicInterface)
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.videoInterface.objectName(),
-            icon=FIF.VIDEO,
-            text='Video library',
-            onClick=lambda: self.switchTo(self.videoInterface)
-        )
+        self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
+        self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
+        self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
         self.navigationInterface.addSeparator()
 
         # add navigation items to scroll area
-        self.navigationInterface.addItem(
-            routeKey=self.folderInterface.objectName(),
-            icon=FIF.FOLDER,
-            text='Folder library',
-            onClick=lambda: self.switchTo(self.folderInterface),
-            position=NavigationItemPosition.SCROLL
-        )
+        self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
         # for i in range(1, 21):
         #     self.navigationInterface.addItem(
         #         f'folder{i}',
@@ -150,13 +123,7 @@ class Window(FramelessWindow):
             position=NavigationItemPosition.BOTTOM
         )
 
-        self.navigationInterface.addItem(
-            routeKey=self.settingInterface.objectName(),
-            icon=FIF.SETTING,
-            text='Settings',
-            onClick=lambda: self.switchTo(self.settingInterface),
-            position=NavigationItemPosition.BOTTOM
-        )
+        self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
         # self.navigationInterface.setDefaultRouteKey(self.musicInterface.objectName())
@@ -178,6 +145,18 @@ class Window(FramelessWindow):
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
 
         self.setQss()
+
+    def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP):
+        """ add sub interface """
+        self.stackWidget.addWidget(interface)
+        self.navigationInterface.addItem(
+            routeKey=interface.objectName(),
+            icon=icon,
+            text=text,
+            onClick=lambda: self.switchTo(interface),
+            position=position,
+            tooltip=text
+        )
 
     def setQss(self):
         color = 'dark' if isDarkTheme() else 'light'
