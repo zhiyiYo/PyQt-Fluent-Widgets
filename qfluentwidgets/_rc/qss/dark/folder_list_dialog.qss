@@ -50,35 +50,6 @@ QScrollArea{
     background-color: rgb(23, 23, 23);
 }
 
-/*滚动条*/
-QScrollBar:vertical {
-    background: transparent;
-    border: none;
-    width: 3px;
-}
-
-/*隐藏上箭头*/
-QScrollBar::sub-line {
-    background: transparent;
-}
-
-/*隐藏下箭头*/
-QScrollBar::add-line {
-    background: transparent;
-}
-
-QScrollBar::handle {
-    background: rgb(128, 128, 128);
-    min-height: 40px;
-    border: 1px solid transparent;
-    border-radius: 1px;
-}
-
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: none;
-}
-
 
 #scrollWidget{
     border: none;

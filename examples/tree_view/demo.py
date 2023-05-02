@@ -21,7 +21,7 @@ class Demo(QWidget):
         self.view.setModel(model)
 
         self.hBoxLayout.addWidget(self.view)
-        self.hBoxLayout.setContentsMargins(30, 30, 30, 30)
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.resize(700, 600)
 
 

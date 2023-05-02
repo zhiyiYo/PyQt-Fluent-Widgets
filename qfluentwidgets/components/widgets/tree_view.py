@@ -1,12 +1,11 @@
 # coding:utf-8
 import typing
-from PyQt5 import QtCore
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
-from ...common.smooth_scroll import SmoothScroll
+from .scroll_area import SmoothScrollDelegate
 
 
 class TreeItemDelegate(QStyledItemDelegate):
@@ -45,9 +44,8 @@ class TreeViewBase:
     """ Tree view base class """
 
     def __init__(self, *args, **kwargs):
-        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
-
+        self.scrollDelagate = SmoothScrollDelegate(self)
+        
         self.setHorizontalScrollMode(QTreeView.ScrollPerPixel)
         self.setVerticalScrollMode(QTreeView.ScrollPerPixel)
         self.setItemDelegate(TreeItemDelegate(self))
@@ -60,14 +58,6 @@ class TreeViewBase:
     def drawBranches(self, painter, rect, index):
         rect.moveLeft(15)
         return QTreeView.drawBranches(self, painter, rect, index)
-
-    def wheelEvent(self, e):
-        if e.angleDelta().y() != 0:
-            self.verticalSmoothScroll.wheelEvent(e)
-        else:
-            self.horizonSmoothScroll.wheelEvent(e)
-
-        e.setAccepted(True)
 
 
 class TreeWidget(QTreeWidget, TreeViewBase):

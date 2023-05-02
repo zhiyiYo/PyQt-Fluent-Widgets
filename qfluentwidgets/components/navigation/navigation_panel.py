@@ -7,7 +7,7 @@ from PyQt5.QtGui import QResizeEvent, QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
-from ..widgets.scroll_area import ScrollArea
+from ..widgets.scroll_area import SingleDirectionScrollArea
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
@@ -39,7 +39,7 @@ class NavigationPanel(QFrame):
         self._isMenuButtonVisible = True
         self._isReturnButtonVisible = False
 
-        self.scrollArea = ScrollArea(self)
+        self.scrollArea = SingleDirectionScrollArea(self)
         self.scrollWidget = QWidget()
 
         self.menuButton = NavigationToolButton(FIF.MENU, self)

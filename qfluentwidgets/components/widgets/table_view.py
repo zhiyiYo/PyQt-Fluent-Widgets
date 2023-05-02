@@ -6,9 +6,9 @@ from PyQt5.QtGui import QPainter, QColor, QKeyEvent
 from PyQt5.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget)
 
-from ...common.smooth_scroll import SmoothScroll
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
 from .line_edit import LineEdit
+from .scroll_bar import SmoothScrollDelegate
 
 
 class TableItemDelegate(QStyledItemDelegate):
@@ -126,8 +126,7 @@ class TableBase:
 
     def __init__(self, *args, **kwargs):
         self.delegate = TableItemDelegate(self)
-        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
+        self.scrollDelagate = SmoothScrollDelegate(self)
 
         # set style sheet
         FluentStyleSheet.TABLE_VIEW.apply(self)
@@ -170,14 +169,6 @@ class TableBase:
         QTableView.resizeEvent(self, e)
         self.viewport().update()
 
-    def wheelEvent(self, e):
-        if e.angleDelta().y() != 0:
-            self.verticalSmoothScroll.wheelEvent(e)
-        else:
-            self.horizonSmoothScroll.wheelEvent(e)
-
-        e.setAccepted(True)
-
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
         self.setSelectedRows(self.selectedIndexes())
@@ -190,7 +181,7 @@ class TableBase:
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
-        
+
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.RightButton:
             self.setSelectedRows(self.selectedIndexes())

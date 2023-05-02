@@ -47,32 +47,6 @@ QScrollArea{
     border: none;
 }
 
-QScrollBar:vertical {
-    background: white;
-    border: none;
-    width: 3px;
-}
-
-QScrollBar::sub-line {
-    background: transparent;
-}
-
-QScrollBar::add-line {
-    background: transparent;
-}
-
-QScrollBar::handle {
-    background: rgb(128, 128, 128);
-    min-height: 32px;
-    border: 1px solid transparent;
-    border-radius: 1px;
-}
-
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: none;
-}
-
 
 #scrollWidget{
     border: none;

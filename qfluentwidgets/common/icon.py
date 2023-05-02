@@ -283,8 +283,12 @@ class FluentIcon(FluentIconBase, Enum):
     ARROW_DOWN = "ChevronDown"
     TRANSPARENT = "Transparent"
     MUSIC_FOLDER = "MusicFolder"
+    CARE_UP_SOLID = "CareUpSolid"
     CHEVRON_RIGHT = "ChevronRight"
+    CARE_DOWN_SOLID = "CareDownSolid"
+    CARE_LEFT_SOLID = "CareLeftSolid"
     BACKGROUND_FILL = "BackgroundColor"
+    CARE_RIGHT_SOLID = "CareRightSolid"
 
     def path(self, theme=Theme.AUTO):
         return f':/qfluentwidgets/images/icons/{self.value}_{getIconColor(theme)}.svg'
