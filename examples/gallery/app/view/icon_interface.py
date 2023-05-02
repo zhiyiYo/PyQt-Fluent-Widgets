@@ -204,12 +204,19 @@ class IconCardView(QWidget):
         """ search icons """
         items = self.trie.items(keyWord.lower())
         indexes = {i[1] for i in items}
-        for i in range(len(self.cards)):
-            self.cards[i].setVisible(i in indexes)
+        self.flowLayout.removeAllWidgets()
+
+        for i, card in enumerate(self.cards):
+            isVisible = i in indexes
+            card.setVisible(isVisible)
+            if isVisible:
+                self.flowLayout.addWidget(card)
 
     def showAllIcons(self):
+        self.flowLayout.removeAllWidgets()
         for card in self.cards:
             card.show()
+            self.flowLayout.addWidget(card)
 
 
 class IconInterface(GalleryInterface):
