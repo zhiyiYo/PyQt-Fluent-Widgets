@@ -8,7 +8,7 @@ from .icon_widget import IconWidget
 from .label import PixmapLabel
 from .menu import DWMMenu, LineEditMenu, RoundMenu
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition
-from .scroll_area import ScrollArea, SmoothMode, SmoothScrollArea, SmoothScrollBar
+from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea, ScrollArea
 from .slider import Slider, HollowHandleStyle
 from .spin_box import SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
@@ -18,3 +18,4 @@ from .table_view import TableView, TableWidget, TableItemDelegate
 from .tool_tip import ToolTip, ToolTipFilter
 from .tree_view import TreeWidget, TreeView
 from .cycle_list_widget import CycleListWidget
+from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate

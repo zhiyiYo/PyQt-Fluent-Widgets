@@ -2,7 +2,7 @@
 from PyQt6.QtCore import Qt, QEasingCurve
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QWidget
-from qfluentwidgets import ScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel
+from qfluentwidgets import SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -19,7 +19,7 @@ class ScrollInterface(GalleryInterface):
             parent=parent
         )
 
-        w = ScrollArea()
+        w = SingleDirectionScrollArea()
         label = PixmapLabel(self)
         label.setPixmap(QPixmap(":/gallery/images/chidanta2.jpg").scaled(
             775, 1229, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation
@@ -27,7 +27,7 @@ class ScrollInterface(GalleryInterface):
 
         w.horizontalScrollBar().setValue(0)
         w.setWidget(label)
-        w.setFixedSize(780, 430)
+        w.setFixedSize(775, 430)
         w.setObjectName('imageViewer')
 
         card = self.addExampleCard(
@@ -44,7 +44,7 @@ class ScrollInterface(GalleryInterface):
         label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
 
         w.setWidget(label)
-        w.setFixedSize(659, 540)
+        w.setFixedSize(654, 540)
         w.setObjectName('imageViewer')
 
         card = self.addExampleCard(

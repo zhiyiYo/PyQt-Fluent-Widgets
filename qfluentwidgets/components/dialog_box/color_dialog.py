@@ -5,7 +5,7 @@ from PyQt6.QtGui import (QBrush, QColor, QPixmap, QPainter, QPen, QIntValidator,
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QPushButton, QFrame, QVBoxLayout
 
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
-from ..widgets import Slider, ScrollArea, PushButton, PrimaryPushButton
+from ..widgets import Slider, SingleDirectionScrollArea, PushButton, PrimaryPushButton
 from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
 
@@ -242,7 +242,7 @@ class ColorDialog(MaskDialogBase):
         self.oldColor = QColor(color)
         self.color = QColor(color)
 
-        self.scrollArea = ScrollArea(self.widget)
+        self.scrollArea = SingleDirectionScrollArea(self.widget)
         self.scrollWidget = QWidget(self.scrollArea)
 
         self.buttonGroup = QFrame(self.widget)

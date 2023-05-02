@@ -3,6 +3,7 @@ import os
 import sys
 
 from PyQt6.QtCore import Qt, QTranslator
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QApplication
 from qfluentwidgets import FluentTranslator
 
@@ -18,6 +19,11 @@ if cfg.get(cfg.dpiScale) != "Auto":
 # create application
 app = QApplication(sys.argv)
 app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
+
+# font anti aliasing
+font = app.font()
+font.setHintingPreference(QFont.HintingPreference.PreferNoHinting)
+app.setFont(font)
 
 # internationalization
 locale = cfg.get(cfg.language).value

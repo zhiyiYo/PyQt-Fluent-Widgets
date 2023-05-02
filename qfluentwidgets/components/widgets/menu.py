@@ -131,6 +131,7 @@ class MenuActionListWidget(QListWidget):
 
     def wheelEvent(self, e):
         self.smoothScroll.wheelEvent(e)
+        e.setAccepted(True)
 
     def insertItem(self, row, item):
         """ inserts menu item at the position in the list given by row """

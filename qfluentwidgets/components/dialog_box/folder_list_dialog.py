@@ -12,7 +12,7 @@ from ...common.icon import getIconColor
 from ...common.style_sheet import FluentStyleSheet
 from .dialog import Dialog
 from .mask_dialog_base import MaskDialogBase
-from ..widgets.scroll_area import ScrollArea
+from ..widgets.scroll_area import SingleDirectionScrollArea
 
 
 class FolderListDialog(MaskDialogBase):
@@ -30,7 +30,7 @@ class FolderListDialog(MaskDialogBase):
         self.vBoxLayout = QVBoxLayout(self.widget)
         self.titleLabel = QLabel(title, self.widget)
         self.contentLabel = QLabel(content, self.widget)
-        self.scrollArea = ScrollArea(self.widget)
+        self.scrollArea = SingleDirectionScrollArea(self.widget)
         self.scrollWidget = QWidget(self.scrollArea)
         self.completeButton = QPushButton(self.tr('Done'), self.widget)
         self.addFolderCard = AddFolderCard(self.scrollWidget)
