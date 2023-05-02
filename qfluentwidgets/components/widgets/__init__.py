@@ -15,7 +15,7 @@ from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
 from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .table_view import TableView, TableWidget, TableItemDelegate
-from .tool_tip import ToolTip, ToolTipFilter
+from .tool_tip import ToolTip, ToolTipFilter, ToolTipPosition
 from .tree_view import TreeWidget, TreeView
 from .cycle_list_widget import CycleListWidget
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate

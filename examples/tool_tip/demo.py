@@ -4,7 +4,7 @@ from PyQt6.QtCore import QEvent, QPoint, QUrl
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from qfluentwidgets import ToolTip, ToolTipFilter, setTheme, Theme, PushButton
+from qfluentwidgets import ToolTip, ToolTipFilter, setTheme, Theme, PushButton, ToolTipPosition
 
 
 class Demo(QWidget):
@@ -15,7 +15,6 @@ class Demo(QWidget):
         self.button1 = PushButton('キラキラ', self)
         self.button2 = PushButton('食べた愛', self)
         self.button3 = PushButton('シアワセ', self)
-        self._toolTip = ToolTip(parent=self)
 
         # use dark theme
         # setTheme(Theme.DARK)
@@ -24,11 +23,11 @@ class Demo(QWidget):
         self.button2.setToolTip('aiko - 食べた愛 🥰')
         self.button3.setToolTip('aiko - シアワセ 😊')
         self.button1.setToolTipDuration(1000)
-        self.button2.setToolTipDuration(5000)
+        # self.button2.setToolTipDuration(-1)  # won't disappear
 
-        self.button1.installEventFilter(self)
-        self.button2.installEventFilter(self)
-        self.button3.installEventFilter(ToolTipFilter(self.button3))
+        self.button1.installEventFilter(ToolTipFilter(self.button1, 0, ToolTipPosition.TOP))
+        self.button2.installEventFilter(ToolTipFilter(self.button2, 0, ToolTipPosition.BOTTOM))
+        self.button3.installEventFilter(ToolTipFilter(self.button3, 300, ToolTipPosition.RIGHT))
 
         self.button1.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
             'https://www.youtube.com/watch?v=S0bXDRY1DGM&list=RDMM&index=1')))
@@ -44,26 +43,9 @@ class Demo(QWidget):
         self.hBox.addWidget(self.button3)
 
         self.resize(480, 240)
-        self._toolTip.hide()
 
         self.setStyleSheet('Demo{background:white}')
 
-    def eventFilter(self, obj, e: QEvent):
-        if obj is self:
-            return super().eventFilter(obj, e)
-
-        tip = self._toolTip
-        if e.type() == QEvent.Type.Enter:
-            tip.setText(obj.toolTip())
-            tip.setDuration(obj.toolTipDuration())
-            tip.adjustPos(obj.mapToGlobal(QPoint()), obj.size())
-            tip.show()
-        elif e.type() == QEvent.Type.Leave:
-            tip.hide()
-        elif e.type() == QEvent.Type.ToolTip:
-            return True
-
-        return super().eventFilter(obj, e)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import SingleDirectionScrollArea
+from ..widgets.tool_tip import ToolTipFilter
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
@@ -85,6 +86,13 @@ class NavigationPanel(QFrame):
         self.history.emptyChanged.connect(self.returnButton.setDisabled)
         self.returnButton.clicked.connect(self.history.pop)
 
+        # add tool tip
+        self.returnButton.installEventFilter(ToolTipFilter(self.returnButton, 1000))
+        self.returnButton.setToolTip(self.tr('Back'))
+
+        self.menuButton.installEventFilter(ToolTipFilter(self.menuButton, 1000))
+        self.menuButton.setToolTip(self.tr('Open Navigation'))
+
         self.setProperty('menu', False)
         self.scrollWidget.setObjectName('scrollWidget')
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
@@ -112,7 +120,8 @@ class NavigationPanel(QFrame):
         self.topLayout.addWidget(self.returnButton, 0, Qt.AlignmentFlag.AlignTop)
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignmentFlag.AlignTop)
 
-    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True, position=NavigationItemPosition.TOP):
+    def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True,
+                position=NavigationItemPosition.TOP, tooltip: str = None):
         """ add navigation item
 
         Parameters
@@ -134,14 +143,20 @@ class NavigationPanel(QFrame):
 
         selectable: bool
             whether the item is selectable
+
+        tooltip: str
+            the tooltip of item
         """
         if routeKey in self.items:
             return
 
         button = NavigationPushButton(icon, text, selectable, self)
-        self.addWidget(routeKey, button, onClick, position)
+        self.addWidget(routeKey, button, onClick, position, tooltip)
 
-    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP):
+        return button
+
+    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP,
+                  tooltip: str = None):
         """ add custom widget
 
         Parameters
@@ -157,6 +172,9 @@ class NavigationPanel(QFrame):
 
         position: NavigationItemPosition
             where the button is added
+
+        tooltip: str
+            the tooltip of widget
         """
         if routeKey in self.items:
             return
@@ -168,6 +186,10 @@ class NavigationPanel(QFrame):
 
         if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
             widget.setCompacted(False)
+
+        if tooltip:
+            widget.setToolTip(tooltip)
+            widget.installEventFilter(ToolTipFilter(widget, 1000))
 
         self._addWidgetToLayout(widget, position)
 
@@ -233,6 +255,7 @@ class NavigationPanel(QFrame):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
         self.expandAni.setProperty('expand', True)
+        self.menuButton.setToolTip(self.tr('Close Navigation'))
 
         # determine the display mode according to the width of window
         # https://learn.microsoft.com/en-us/windows/apps/design/controls/navigationview#default
@@ -269,6 +292,8 @@ class NavigationPanel(QFrame):
             QRect(self.pos(), QSize(48, self.height())))
         self.expandAni.setProperty('expand', False)
         self.expandAni.start()
+
+        self.menuButton.setToolTip(self.tr('Open Navigation'))
 
     def toggle(self):
         """ toggle navigation panel """
