@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QPushButton, QStyledItemDelegate, QStyle
 
 from .menu import RoundMenu, MenuItemDelegate
 from .line_edit import LineEdit, LineEditButton
+from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, isDarkTheme
 from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import FluentStyleSheet, themeColor
@@ -312,6 +313,7 @@ class ComboBox(QPushButton, ComboBoxBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.arrowAni = TranslateYAnimation(self)
         self._setUpUi()
 
     def eventFilter(self, obj, e: QEvent):
@@ -343,7 +345,7 @@ class ComboBox(QPushButton, ComboBoxBase):
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        rect = QRectF(self.width()-22, self.height()/2-5, 10, 10)
+        rect = QRectF(self.width()-22, self.height()/2-5+self.arrowAni.y, 10, 10)
         if isDarkTheme():
             FIF.ARROW_DOWN.render(painter, rect)
         else:

@@ -50,6 +50,25 @@ PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
+#splitPushButton,
+#splitToolButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+SplitDropButton {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#splitPushButton:pressed,
+#splitToolButton:pressed,
+SplitDropButton:pressed {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 
 PrimaryPushButton, ToggleButton:checked {
     color: black;

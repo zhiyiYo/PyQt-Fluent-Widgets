@@ -133,7 +133,7 @@ class SettingInterface(ScrollArea):
             FIF.INFO,
             self.tr('About'),
             '© ' + self.tr('Copyright') + f" {YEAR}, {AUTHOR}. " +
-            self.tr('Version') + f" {VERSION[1:]}",
+            self.tr('Version') + " " + VERSION,
             self.aboutGroup
         )
 
