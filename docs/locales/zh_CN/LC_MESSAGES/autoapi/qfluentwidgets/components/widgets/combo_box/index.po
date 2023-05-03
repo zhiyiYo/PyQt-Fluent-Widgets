@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -277,11 +277,14 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:223
 #: f48101962a4843d19d2b6e3f60bb0ac1
-msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.MenuItemDelegate`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:233
 #: 9ae4fdd52c4a4fcb8737f7ef7952941c
 msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
 msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+#~ msgstr ""
 

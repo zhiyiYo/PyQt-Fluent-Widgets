@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:2
+#: 159a580a13f24fc096cacbaa6b242071
+msgid "animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:8
+#: ba53627a32d2403a9f7c78b642027bec
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
+#: 2391e9ce09a24747b29d7c194a99dccd
+msgid ":py:obj:`AnimationBase <qfluentwidgets.common.animation.AnimationBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
+#: 088f7370e00d4c07ae732ab1e42b862d 3d6d843b701c4d169e27f2467f7bf8cf
+#: 7ac9eedc8f174ecf9902952bdac9aad7 d76a62d885b946b6a68ec5c3e8f73c5f
+msgid "Animation base class"
+msgstr "动画基类"
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
+#: c0ef1d83b7674c57a169c00bb9855dd9
+msgid ""
+":py:obj:`TranslateYAnimation "
+"<qfluentwidgets.common.animation.TranslateYAnimation>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22
+#: b438b3ce7b77471bab11022eb4317d84
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:32
+#: fcad6f5d108e45d3b4a9f0d4ca88e141
+msgid "Bases: :py:obj:`AnimationBase`"
+msgstr ""
+

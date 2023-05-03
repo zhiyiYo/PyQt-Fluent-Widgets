@@ -52,4 +52,5 @@ This document will show you all the features of PyQt-Fluent-Widgets and the best
    navigation
    icon
    gallery
+   support
    see-also

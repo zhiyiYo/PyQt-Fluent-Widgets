@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:2
+#: 250f7dbbc48746feb49222af7a028687
+msgid "translator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:8
+#: 981f5c5ef7704eca871ca04711c1a192
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:18:<autosummary>:1
+#: 44fba70c3936451aaa8ddfbf4d711d6c
+msgid ""
+":py:obj:`FluentTranslator "
+"<qfluentwidgets.common.translator.FluentTranslator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:18:<autosummary>:1
+#: 39990d8788fa4c0e9fd31d1c3634fd0f a33e1c07219d41a2a3d618be0f63d3dc
+msgid "Translator of fluent widgets"
+msgstr "fluent widgets 翻译器"
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:21
+#: 6f87ff88fd884e469f900568e37a0c5c
+msgid "Bases: :py:obj:`PyQt5.QtCore.QTranslator`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/translator/index.rst:27
+#: 6158261bd5d542b9872b667446baec3c
+msgid "load translation file"
+msgstr "载入翻译文件"
+

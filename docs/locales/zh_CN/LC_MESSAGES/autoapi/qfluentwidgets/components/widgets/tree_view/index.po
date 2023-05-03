@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -30,57 +30,76 @@ msgstr ""
 msgid "Module Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
 #: b8de3ba320b64512bdebb118dc655f00
 msgid ""
 ":py:obj:`TreeItemDelegate "
 "<qfluentwidgets.components.widgets.tree_view.TreeItemDelegate>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:25
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:26
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
 #: 5c290ae1822a4fa1b97c416bca34cd34 f91107e009a443a2ae511da8d664c4ae
 msgid "Tree item delegate"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
+#: f6c94d4f9e714719abf4c9073ac61212
+msgid ""
+":py:obj:`TreeViewBase "
+"<qfluentwidgets.components.widgets.tree_view.TreeViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
+#: f91107e009a443a2ae511da8d664c4ae
+msgid "Tree view base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
 #: e1b64a52e1754968947f294be7197587
 msgid ""
 ":py:obj:`TreeWidget "
 "<qfluentwidgets.components.widgets.tree_view.TreeWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:35
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
-#: 3edfa5f5a15548e787bbcecb94614ffa 92fef19293d1428797d35613b445cff4
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
+#: 92fef19293d1428797d35613b445cff4
 msgid "Tree widget"
 msgstr "树状部件"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
 #: f6c94d4f9e714719abf4c9073ac61212
 msgid ""
 ":py:obj:`TreeView "
 "<qfluentwidgets.components.widgets.tree_view.TreeView>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:48
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:20:<autosummary>:1
-#: 37aaf267782b4f4997695ac1164df28e 94fa9a4897814aca8da40f34e5b015de
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
+#: 94fa9a4897814aca8da40f34e5b015de
 msgid "Tree view"
 msgstr "树状视图"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:24
 #: 706f72312b5f46efb75f2c42e7739d2d
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:33
-#: a905fc1847ed4ae79cfa4f5136697afa
-msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeWidget`"
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:42
+#: 706f72312b5f46efb75f2c42e7739d2d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeWidget`, :py:obj:`TreeViewBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:46
-#: 0e11d6ecdedb44dd833bf0bc9b441aa5
-msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeView`"
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:49
+#: 706f72312b5f46efb75f2c42e7739d2d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeView`, :py:obj:`TreeViewBase`"
 msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeWidget`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeView`"
+#~ msgstr ""
 

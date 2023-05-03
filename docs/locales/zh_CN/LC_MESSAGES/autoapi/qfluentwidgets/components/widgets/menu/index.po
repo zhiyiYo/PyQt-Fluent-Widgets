@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -55,30 +55,31 @@ msgid "A menu with DWM shadow"
 msgstr "带 DWM 阴影的菜单"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
-#: b9e3dd99ef2f45ac99c8e218b06cb897
-msgid ""
-":py:obj:`MenuSeparator "
-"<qfluentwidgets.components.widgets.menu.MenuSeparator>`\\"
-msgstr ""
-
-#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:51
-#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
-#: 63d79fa05e7c4351b49465b4a0aee1c5 6fb4ed70bec343fd9a9dbf0076552ecc
-msgid "Menu separator"
-msgstr "菜单分隔符"
-
-#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
 #: 643a3ea9e909497281712e7f05f070ed
 msgid ""
 ":py:obj:`SubMenuItemWidget "
 "<qfluentwidgets.components.widgets.menu.SubMenuItemWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:51
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
-#: ac151486c6254236931ddac229a86805 eb699d18c2144967b8cc801f033be5de
+#: ac151486c6254236931ddac229a86805
 msgid "Sub menu item"
 msgstr "子菜单项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 643a3ea9e909497281712e7f05f070ed
+msgid ""
+":py:obj:`MenuItemDelegate "
+"<qfluentwidgets.components.widgets.menu.MenuItemDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
+#: 631e8642378f4d68be7a02a52063721a 783a9b2e1c93480ebdb44cc2ce15b378
+#, fuzzy
+msgid "Menu item delegate"
+msgstr "添加菜单项"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:26:<autosummary>:1
 #: 40f3d41313624baf84caf2e1c629c1a4
@@ -152,11 +153,14 @@ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QMenu`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:49
-#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:59
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:109
 #: 148b837dbf5f4007bb6fd5085af5b39a 4f4035ddcf1142c888c9520447a5b508
-#: bdb292bf76a24567ba8a1d5b10c3cc31
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:66
+#: bdb292bf76a24567ba8a1d5b10c3cc31
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/menu/index.rst:76
@@ -341,4 +345,12 @@ msgstr ""
 #: 45ac460fb9b54a869cfcdc209d89c341 8e4f9f7844d6483487d3fafe9edf4153
 msgid "Bases: :py:obj:`EditMenu`"
 msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`MenuSeparator "
+#~ "<qfluentwidgets.components.widgets.menu.MenuSeparator>`\\"
+#~ msgstr ""
+
+#~ msgid "Menu separator"
+#~ msgstr "菜单分隔符"
 

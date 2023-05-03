@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:2
+#: 0876afc92acf4821b9953cd75c372db7
+msgid "scroll_bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:8
+#: 340b5c4667b74c16bf261f709c8acedf
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 043ea77eb95f4344b3bbb2556c177ebb
+msgid ""
+":py:obj:`ArrowButton "
+"<qfluentwidgets.components.widgets.scroll_bar.ArrowButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 5093bebeeb54438589d39e2d8a1d87d9 e689d13ce445418a89fafb88780a0209
+msgid "Arrow button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 8e296b37c3b048dc89d7a94df479e741
+msgid ""
+":py:obj:`ScrollBarGroove "
+"<qfluentwidgets.components.widgets.scroll_bar.ScrollBarGroove>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:38
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 54e9790d3f824785926d7f802975793f fcfc57694ae5485b88a3aee704c533e3
+msgid "Scroll bar groove"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 6f8615328631417b87ff235cd6dc6e9d
+msgid ""
+":py:obj:`ScrollBarHandle "
+"<qfluentwidgets.components.widgets.scroll_bar.ScrollBarHandle>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:54
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 68c56e3c36ac4ba09728c1518c91eef6 882a354082fe408487a89c7b3ec0eba7
+msgid "Scroll bar handle"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: a7b68a3e6b294a93b14d9d50f0de4e99
+msgid ""
+":py:obj:`ScrollBar "
+"<qfluentwidgets.components.widgets.scroll_bar.ScrollBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:64
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 0894b92728314efcb706b3e1a090da92 4694931e624c449e850c93b56f0a444c
+msgid "Fluent scroll bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 063a2360fce7489cbdb32d949e3ab0b3
+msgid ""
+":py:obj:`SmoothScrollBar "
+"<qfluentwidgets.components.widgets.scroll_bar.SmoothScrollBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:175
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 4def387538be4f3e819bba8adde220f0 4f81afb47c32495c8cff2578e66431b1
+msgid "Smooth scroll bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 79190b0421924dbcbd4ec61f8f2ca55b
+msgid ""
+":py:obj:`SmoothScrollDelegate "
+"<qfluentwidgets.components.widgets.scroll_bar.SmoothScrollDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:217
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:23:<autosummary>:1
+#: 8b7776f1afc74a80a558832b5655f821 c24fed26e30743448bce6b37bac9dd1a
+msgid "Smooth scroll delegate"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:26
+#: ea919bd88ecc43ea9c02e956163f1583
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:52
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:62
+#: 318183aadea244f989ffd77e70fcf9b6 5c0fc83741b64f74ade031f55595b8a5
+#: b2161dd1909b41ebb6023d8528be45ab
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:133
+#: 947356eb8ed7478ab014efebfe097c04
+msgid "expand scroll bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:138
+#: 4889bec757b64e55a3d59db6fe851845
+msgid "collapse scroll bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:164
+#: 671436019cbb457b981993ebd8ef3c26
+msgid "whether to force the scrollbar to be hidden"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:173
+#: 1c11a9e94c6e47c796ddaa5c896f7baf
+msgid "Bases: :py:obj:`ScrollBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:182
+#: 61ec08d6a8894fdfb0d17ca47e32370c
+msgid "scroll the specified distance"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:187
+#: d54fe4974e28492aaf89fb0d166b24cc
+msgid "scroll to the specified position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:201
+#: 8256bc1f2efd4d6b853cccf617586742
+msgid "set scroll animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:204
+#: 3ed550d811554b61b73495972024f1a8
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:206
+#: 846f8dae28d043f694d4f0db03e077d0
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:206
+#: 976d6e341f48402aac7dd9cf13a29899
+msgid "scroll duration"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:208
+#: dc485c052f7d4c049ed5eee74e58d12d
+msgid "easing: QEasingCurve"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:209
+#: 7638d17ed75e4180a85a03e3d412533f
+msgid "animation type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_bar/index.rst:215
+#: 949b198434d2481c91f7559cf7407f2b
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+

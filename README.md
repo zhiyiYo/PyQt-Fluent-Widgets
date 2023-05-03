@@ -56,6 +56,9 @@ Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) 
 ## Join with Us
 You can join our [🚩 Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
 
+## Support
+If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me via [爱发电](https://afdian.net/a/zhiyiYo) or [ko-fi](https://ko-fi.com/zhiyiYo). Your support is highly appreciated 🥰
+
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
 * [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
