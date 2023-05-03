@@ -6,6 +6,7 @@ from PySide6.QtGui import QResizeEvent, QIcon
 from PySide6.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationWidget, NavigationDisplayMode
+from .navigation_widget import NavigationPushButton
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 
@@ -41,7 +42,7 @@ class NavigationInterface(QWidget):
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick, selectable=True,
-                position=NavigationItemPosition.TOP):
+                position=NavigationItemPosition.TOP, tooltip: str = None) -> NavigationPushButton:
         """ add navigation item
 
         Parameters
@@ -58,16 +59,21 @@ class NavigationInterface(QWidget):
         onClick: callable
             the slot connected to item clicked signal
 
+        selectable: bool
+            whether the item is selectable
+
         position: NavigationItemPosition
             where the button is added
 
-        selectable: bool
-            whether the item is selectable
+        tooltip: str
+            the tooltip of item
         """
-        self.panel.addItem(routeKey, icon, text, onClick, selectable, position)
+        button = self.panel.addItem(routeKey, icon, text, onClick, selectable, position, tooltip)
         self.setMinimumHeight(self.panel.layoutMinHeight())
+        return button
 
-    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP):
+    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP,
+                  tooltip: str = None):
         """ add custom widget
 
         Parameters
@@ -83,8 +89,11 @@ class NavigationInterface(QWidget):
 
         position: NavigationItemPosition
             where the button is added
+
+        tooltip: str
+            the tooltip of widget
         """
-        self.panel.addWidget(routeKey, widget, onClick, position)
+        self.panel.addWidget(routeKey, widget, onClick, position, tooltip)
         self.setMinimumHeight(self.panel.layoutMinHeight())
 
     def addSeparator(self, position=NavigationItemPosition.TOP):
