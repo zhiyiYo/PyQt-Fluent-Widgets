@@ -56,6 +56,21 @@
     </message>
 </context>
 <context>
+    <name>NavigationPanel</name>
+    <message>
+        <source>Open Navigation</source>
+        <translation>打開導航</translation>
+    </message>
+    <message>
+        <source>Close Navigation</source>
+        <translation>關閉導航</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+</context>
+<context>
     <name>Dialog</name>
     <message>
         <source>OK</source>

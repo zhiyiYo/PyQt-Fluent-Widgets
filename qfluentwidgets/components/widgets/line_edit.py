@@ -153,7 +153,7 @@ class TextEdit(QTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.installEventFilter(SmoothScrollDelegate(self))
+        self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):

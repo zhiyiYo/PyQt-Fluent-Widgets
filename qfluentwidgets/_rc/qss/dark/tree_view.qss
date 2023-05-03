@@ -10,8 +10,8 @@ QTreeView {
 
 QTreeView::item {
     padding: 4px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     padding-left: 20px;
     border-radius: 5px;
     color: white;
