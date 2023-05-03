@@ -29,6 +29,15 @@ class NavigationItemPosition(Enum):
     BOTTOM = 2
 
 
+class NavigationToolTipFilter(ToolTipFilter):
+    """ Navigation tool tip filter """
+
+    def _canShowToolTip(self) -> bool:
+        isVisible = super()._canShowToolTip()
+        parent = self.parent()  # type: NavigationWidget
+        return isVisible and parent.isCompacted
+
+
 class NavigationPanel(QFrame):
     """ Navigation panel """
 
@@ -189,7 +198,7 @@ class NavigationPanel(QFrame):
 
         if tooltip:
             widget.setToolTip(tooltip)
-            widget.installEventFilter(ToolTipFilter(widget, 1000))
+            widget.installEventFilter(NavigationToolTipFilter(widget, 1000))
 
         self._addWidgetToLayout(widget, position)
 

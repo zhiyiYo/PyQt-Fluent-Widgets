@@ -171,7 +171,8 @@ class MainWindow(FramelessWindow):
             icon=icon,
             text=text,
             onClick=lambda t: self.switchTo(interface, t),
-            position=position
+            position=position,
+            tooltip=text
         )
 
     def initWindow(self):

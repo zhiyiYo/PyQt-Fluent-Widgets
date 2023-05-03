@@ -334,7 +334,7 @@ class ScrollBar(QWidget):
     def _adjustHandleSize(self):
         total = self.maximum() - self.minimum() + self.parent().height()
         if total != 0:
-            s = self._grooveLength() * self.parent().height() / total
+            s = int(self._grooveLength() * self.parent().height() / total)
         else:
             s = 1
 
@@ -345,7 +345,7 @@ class ScrollBar(QWidget):
 
     def _adjustHandlePos(self):
         total = max(self.maximum() - self.minimum(), 1)
-        delta = self.value() / total * self._slideLength()
+        delta = int(self.value() / total * self._slideLength())
 
         if self.orientation() == Qt.Vertical:
             x = self.width() - self.handle.width() - 3
