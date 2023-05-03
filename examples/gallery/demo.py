@@ -20,11 +20,6 @@ if cfg.get(cfg.dpiScale) != "Auto":
 app = QApplication(sys.argv)
 app.setAttribute(Qt.AA_DontCreateNativeWidgetSiblings)
 
-# font anti aliasing
-font = app.font()
-font.setHintingPreference(QFont.PreferNoHinting)
-app.setFont(font)
-
 # internationalization
 locale = cfg.get(cfg.language).value
 translator = FluentTranslator(locale)
