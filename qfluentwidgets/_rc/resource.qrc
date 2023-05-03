@@ -165,6 +165,14 @@
         <file>images/icons/DateTime_white.svg</file>
         <file>images/icons/Basketball_black.svg</file>
         <file>images/icons/Basketball_white.svg</file>
+        <file>images/icons/CareDownSolid_black.svg</file>
+        <file>images/icons/CareDownSolid_white.svg</file>
+        <file>images/icons/CareUpSolid_black.svg</file>
+        <file>images/icons/CareUpSolid_white.svg</file>
+        <file>images/icons/CareLeftSolid_black.svg</file>
+        <file>images/icons/CareLeftSolid_white.svg</file>
+        <file>images/icons/CareRightSolid_black.svg</file>
+        <file>images/icons/CareRightSolid_white.svg</file>
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
         <file>images/folder_list_dialog/Close_black.png</file>
@@ -190,10 +198,6 @@
         <file>images/tree_view/TreeViewOpen_black.svg</file>
         <file>images/tree_view/TreeViewClose_white.svg</file>
         <file>images/tree_view/TreeViewOpen_white.svg</file>
-        <file>images/time_picker/Up_white.svg</file>
-        <file>images/time_picker/Up_black.svg</file>
-        <file>images/time_picker/Down_white.svg</file>
-        <file>images/time_picker/Down_black.svg</file>
         <file>images/table_view/Up_black.svg</file>
         <file>images/table_view/Up_white.svg</file>
         <file>images/table_view/Down_black.svg</file>

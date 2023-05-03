@@ -7,8 +7,8 @@ from PySide6.QtWidgets import QHBoxLayout, QLineEdit, QToolButton, QTextEdit, QP
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
-from ...common.smooth_scroll import SmoothMode, SmoothScroll
 from .menu import LineEditMenu, TextEditMenu
+from .scroll_bar import SmoothScrollDelegate
 
 
 class LineEditButton(QToolButton):
@@ -153,19 +153,12 @@ class TextEdit(QTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
+        self.installEventFilter(SmoothScrollDelegate(self))
         FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
         menu.exec_(e.globalPos())
-
-    def wheelEvent(self, e):
-        if e.modifiers() == Qt.NoModifier:
-            self.verticalSmoothScroll.wheelEvent(e)
-        else:
-            self.horizonSmoothScroll.wheelEvent(e)
 
 
 class PlainTextEdit(QPlainTextEdit):
@@ -173,16 +166,10 @@ class PlainTextEdit(QPlainTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
+        self.installEventFilter(SmoothScrollDelegate(self))
         FluentStyleSheet.LINE_EDIT.apply(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
         menu.exec_(e.globalPos())
 
-    def wheelEvent(self, e):
-        if e.modifiers() == Qt.NoModifier:
-            self.verticalSmoothScroll.wheelEvent(e)
-        else:
-            self.horizonSmoothScroll.wheelEvent(e)

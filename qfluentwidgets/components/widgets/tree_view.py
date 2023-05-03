@@ -6,7 +6,7 @@ from PySide6.QtGui import QPainter, QColor
 from PySide6.QtWidgets import QWidget, QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
-from ...common.smooth_scroll import SmoothScroll
+from .scroll_area import SmoothScrollDelegate
 
 
 class TreeItemDelegate(QStyledItemDelegate):
@@ -45,8 +45,7 @@ class TreeViewBase:
     """ Tree view base class """
 
     def _initView(self):
-        self.verticalSmoothScroll = SmoothScroll(self, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(self, Qt.Horizontal)
+        self.scrollDelagate = SmoothScrollDelegate(self)
 
         self.setHorizontalScrollMode(QTreeView.ScrollPerPixel)
         self.setVerticalScrollMode(QTreeView.ScrollPerPixel)
@@ -60,14 +59,6 @@ class TreeViewBase:
     def drawBranches(self, painter, rect, index):
         rect.moveLeft(15)
         return QTreeView.drawBranches(self, painter, rect, index)
-
-    def wheelEvent(self, e):
-        if e.angleDelta().y() != 0:
-            self.verticalSmoothScroll.wheelEvent(e)
-        else:
-            self.horizonSmoothScroll.wheelEvent(e)
-
-        e.setAccepted(True)
 
 
 class TreeWidget(TreeViewBase, QTreeWidget):

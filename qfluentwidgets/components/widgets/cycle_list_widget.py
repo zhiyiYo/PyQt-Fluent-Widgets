@@ -1,5 +1,4 @@
 # coding:utf-8
-from enum import Enum
 from typing import Iterable
 
 from PySide6.QtCore import Qt, Signal, QSize, QEvent, QRectF
@@ -7,23 +6,13 @@ from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import QListWidget, QListWidgetItem, QToolButton
 
 from .scroll_area import SmoothScrollBar
-from ...common.icon import FluentIconBase, Theme, getIconColor
-
-
-class ScrollIcon(FluentIconBase, Enum):
-    """ Scroll icon """
-
-    UP = "Up"
-    DOWN = "Down"
-
-    def path(self, theme=Theme.AUTO):
-        return f':/qfluentwidgets/images/time_picker/{self.value}_{getIconColor(theme)}.svg'
+from ...common.icon import FluentIcon, isDarkTheme
 
 
 class ScrollButton(QToolButton):
     """ Scroll button """
 
-    def __init__(self, icon: ScrollIcon, parent=None):
+    def __init__(self, icon: FluentIcon, parent=None):
         super().__init__(parent=parent)
         self._icon = icon
         self.isPressed = False
@@ -52,7 +41,11 @@ class ScrollButton(QToolButton):
 
         x = (self.width() - w) / 2
         y = (self.height() - h) / 2
-        self._icon.render(painter, QRectF(x, y, w, h))
+
+        if not isDarkTheme():
+            self._icon.render(painter, QRectF(x, y, w, h), fill="#5e5e5e")
+        else:
+            self._icon.render(painter, QRectF(x, y, w, h))
 
 
 class CycleListWidget(QListWidget):
@@ -80,20 +73,20 @@ class CycleListWidget(QListWidget):
         self.itemSize = itemSize
         self.align = align
 
-        self.upButton = ScrollButton(ScrollIcon.UP, self)
-        self.downButton = ScrollButton(ScrollIcon.DOWN, self)
+        self.upButton = ScrollButton(FluentIcon.CARE_UP_SOLID, self)
+        self.downButton = ScrollButton(FluentIcon.CARE_DOWN_SOLID, self)
         self.scrollDuration = 250
         self.originItems = list(items)
 
-        self.vScrollBar = SmoothScrollBar(self)
+        self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
         self.visibleNumber = 9
 
         # repeat adding items to achieve circular scrolling
         self.setItems(items)
 
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
-        self.setVerticalScrollBar(self.vScrollBar)
         self.vScrollBar.setScrollAnimation(self.scrollDuration)
+        self.vScrollBar.setForceHidden(True)
 
         self.setViewportMargins(0, 0, 0, 0)
         self.setFixedSize(itemSize.width()+8,

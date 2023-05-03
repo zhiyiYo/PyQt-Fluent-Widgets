@@ -10,8 +10,8 @@ QTreeView {
 
 QTreeView::item {
     padding: 4px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     padding-left: 20px;
     border-radius: 5px;
     color: white;
@@ -85,46 +85,4 @@ QTreeView::indicator:checked:disabled,
 QTreeView::indicator:indeterminate:disabled {
     border: 1px solid rgb(82, 82, 82);
     background-color: rgb(82, 82, 82);
-}
-QScrollBar:vertical {
-    background: transparent;
-    width: 4px;
-    margin-top: 50px;
-    margin-bottom: 0;
-    padding-right: 2px;
-}
-
-QScrollBar:horizontal {
-    background: transparent;
-    height: 4px;
-    padding-bottom: 2px;
-}
-
-QScrollBar::sub-line {
-    background: transparent;
-}
-
-QScrollBar::add-line {
-    background: transparent;
-}
-
-QScrollBar::handle {
-    background: rgb(122, 122, 122);
-    border: 2px solid rgb(128, 128, 128);
-    border-radius: 1px;
-}
-
-QScrollBar::handle:vertical {
-    min-height: 32px;
-}
-
-QScrollBar::handle:horizontal {
-    min-width: 32px;
-}
-
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical,
-QScrollBar::add-page:horizontal,
-QScrollBar::sub-page:horizontal {
-    background: none;
 }

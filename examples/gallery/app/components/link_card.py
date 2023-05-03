@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt, Signal, QUrl
 from PySide6.QtGui import QPixmap, QDesktopServices
 from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget, QHBoxLayout
 
-from qfluentwidgets import IconWidget, FluentIcon, TextWrap, ScrollArea
+from qfluentwidgets import IconWidget, FluentIcon, TextWrap, SingleDirectionScrollArea
 from ..common.style_sheet import StyleSheet
 
 
@@ -45,7 +45,7 @@ class LinkCard(QFrame):
         QDesktopServices.openUrl(self.url)
 
 
-class LinkCardView(ScrollArea):
+class LinkCardView(SingleDirectionScrollArea):
     """ Link card view """
 
     def __init__(self, parent=None):
