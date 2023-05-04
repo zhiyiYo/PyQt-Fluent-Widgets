@@ -22,6 +22,10 @@
   </a>
 </p>
 
+<p align="center">
+English | <a href="docs/README_zh.md">简体中文</a>
+</p>
+
 ![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
 
 
