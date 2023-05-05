@@ -3,7 +3,7 @@ from PyQt5.QtCore import (QEvent, QEasingCurve, Qt, pyqtSignal, QPropertyAnimati
                           QTimer, QPoint, QObject)
 from PyQt5.QtGui import QPainter, QColor, QMouseEvent
 from PyQt5.QtWidgets import (QWidget, QToolButton, QAbstractScrollArea, QGraphicsOpacityEffect,
-                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView)
+                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView, QListView)
 
 from ...common.icon import FluentIcon
 from ...common.style_sheet import isDarkTheme
@@ -488,6 +488,9 @@ class SmoothScrollDelegate(QObject):
         if isinstance(parent, QAbstractItemView):
             parent.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
             parent.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        if isinstance(parent, QListView):
+            parent.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+            parent.horizontalScrollBar().setStyleSheet("QScrollBar:horizontal{height: 0px}")
 
         parent.viewport().installEventFilter(self)
         parent.setVerticalScrollBarPolicy = self.setVerticalScrollBarPolicy
