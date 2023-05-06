@@ -363,79 +363,89 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="118"/>
+        <location filename="../../view/main_window.py" line="119"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="124"/>
+        <location filename="../../view/main_window.py" line="125"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="128"/>
+        <location filename="../../view/main_window.py" line="129"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="130"/>
+        <location filename="../../view/main_window.py" line="131"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="134"/>
+        <location filename="../../view/main_window.py" line="135"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="132"/>
+        <location filename="../../view/main_window.py" line="133"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="136"/>
+        <location filename="../../view/main_window.py" line="137"/>
         <source>Scrolling</source>
         <translation>滚动</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="138"/>
+        <location filename="../../view/main_window.py" line="139"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="198"/>
-        <source>This is a help message</source>
-        <translation>一条友善的提示</translation>
-    </message>
-    <message>
-        <location filename="../../view/main_window.py" line="198"/>
-        <source>You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉</source>
-        <translation>你点击了一个自定义的导航项。你可以通过 `NavigationInterface.addWidget()` 添加更多的自定义导航项。</translation>
-    </message>
-    <message>
-        <location filename="../../view/main_window.py" line="140"/>
+        <location filename="../../view/main_window.py" line="141"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="120"/>
+        <location filename="../../view/main_window.py" line="121"/>
         <source>Icons</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="142"/>
+        <location filename="../../view/main_window.py" line="143"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="152"/>
+        <location filename="../../view/main_window.py" line="153"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="126"/>
+        <location filename="../../view/main_window.py" line="127"/>
         <source>Date &amp; time</source>
         <translation>日期和时间</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="205"/>
+        <source>Sure</source>
+        <translation>来啦老弟</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="206"/>
+        <source>Cancel</source>
+        <translation>下次一定</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="200"/>
+        <source>Buy me a coffee</source>
+        <translation>请作者喝杯奶茶</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="200"/>
+        <source>If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me. Your support is highly appreciated 🥰</source>
+        <translation>如果您正在使用这个项目并感觉良好，或者是想支持作者继续开发，您可以考虑请作者喝一杯奶茶。非常感谢您的支持与鼓励 🥰</translation>
     </message>
 </context>
 <context>

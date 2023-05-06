@@ -11,14 +11,8 @@ QTableView::item {
     border: 0px;
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
     height: 35px;
 }
-
-QTableView::item:selected {
-    color: white
-}
-
 
 QTableView::indicator {
     width: 18px;
