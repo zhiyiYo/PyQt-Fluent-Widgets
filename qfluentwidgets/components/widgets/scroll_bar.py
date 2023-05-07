@@ -3,7 +3,7 @@ from PySide6.QtCore import (QEvent, QEasingCurve, Qt, Signal, QPropertyAnimation
                           QTimer, QPoint, QObject)
 from PySide6.QtGui import QPainter, QColor, QMouseEvent
 from PySide6.QtWidgets import (QWidget, QToolButton, QAbstractScrollArea, QGraphicsOpacityEffect,
-                             QHBoxLayout, QVBoxLayout, QApplication)
+                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView)
 
 from ...common.icon import FluentIcon
 from ...common.style_sheet import isDarkTheme
@@ -484,6 +484,10 @@ class SmoothScrollDelegate(QObject):
         self.hScrollBar = SmoothScrollBar(Qt.Horizontal, parent)
         self.verticalSmoothScroll = SmoothScroll(parent, Qt.Vertical)
         self.horizonSmoothScroll = SmoothScroll(parent, Qt.Horizontal)
+
+        if isinstance(parent, QAbstractItemView):
+            parent.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+            parent.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
 
         parent.viewport().installEventFilter(self)
         parent.setVerticalScrollBarPolicy = self.setVerticalScrollBarPolicy
