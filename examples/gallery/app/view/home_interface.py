@@ -310,6 +310,14 @@ class HomeInterface(ScrollArea):
             routeKey="statusInfoInterface",
             index=3
         )
+        stateInfoView.addSampleCard(
+            icon=":/gallery/images/controls/ProgressBar.png",
+            title="ProgressBar",
+            content=self.tr(
+                "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction."),
+            routeKey="statusInfoInterface",
+            index=7
+        )
         self.vBoxLayout.addWidget(stateInfoView)
 
         # text samples

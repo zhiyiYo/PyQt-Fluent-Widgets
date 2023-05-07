@@ -1,9 +1,10 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QColor
-from PyQt5.QtWidgets import QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from qfluentwidgets import (StateToolTip, ToolTipFilter, PushButton, PixmapLabel,
-                            InfoBar, InfoBarIcon, FluentIcon, InfoBarPosition)
+                            InfoBar, InfoBarIcon, FluentIcon, InfoBarPosition, ProgressBar,
+                            IndeterminateProgressBar, SpinBox)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -137,6 +138,41 @@ class StatusInfoInterface(GalleryInterface):
             w,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py',
         )
+
+        # indeterminate progress bar
+        bar = IndeterminateProgressBar(self)
+        bar.setFixedWidth(200)
+        card = self.addExampleCard(
+            self.tr('An indeterminate progress bar'),
+            bar,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/progress_bar/demo.py',
+        )
+        card.topLayout.setContentsMargins(12, 24, 12, 24)
+
+        # progress bar
+        w = QWidget(self)
+        hBoxLayout = QHBoxLayout(w)
+
+        bar = ProgressBar(self)
+        bar.setFixedWidth(200)
+
+        spinBox = SpinBox(self)
+        spinBox.valueChanged.connect(bar.setValue)
+        spinBox.setRange(0, 100)
+
+        hBoxLayout.addWidget(bar)
+        hBoxLayout.addSpacing(50)
+        hBoxLayout.addWidget(QLabel(self.tr('Progress')))
+        hBoxLayout.addSpacing(5)
+        hBoxLayout.addWidget(spinBox)
+        hBoxLayout.setContentsMargins(0, 0, 0, 0)
+
+        self.addExampleCard(
+            self.tr('An determinate progress bar'),
+            w,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/progress_bar/demo.py',
+        )
+
 
     def onStateButtonClicked(self):
         if self.stateTooltip:
