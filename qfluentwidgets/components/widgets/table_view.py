@@ -130,15 +130,11 @@ class TableBase:
 
         # set style sheet
         FluentStyleSheet.TABLE_VIEW.apply(self)
-        FluentStyleSheet.TABLE_VIEW.apply(self.verticalScrollBar())
-        FluentStyleSheet.TABLE_VIEW.apply(self.horizontalScrollBar())
 
         self.setShowGrid(False)
         self.setMouseTracking(True)
         self.setItemDelegate(self.delegate)
-        self.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
-        self.setVerticalScrollMode(QTableView.ScrollMode.ScrollPerPixel)
-        self.setHorizontalScrollMode(QTableView.ScrollMode.ScrollPerPixel)
+        self.setSelectionBehavior(TableWidget.SelectionBehavior.SelectRows)
 
         self.entered.connect(lambda i: self.setHoverRow(i.row()))
         self.pressed.connect(lambda i: self.setPressedRow(i.row()))
