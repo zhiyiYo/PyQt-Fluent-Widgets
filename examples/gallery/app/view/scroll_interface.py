@@ -44,13 +44,13 @@ class ScrollInterface(GalleryInterface):
         label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
 
         w.setWidget(label)
-        w.setFixedSize(654, 540)
+        w.setFixedSize(660, 540)
         w.setObjectName('imageViewer')
 
         card = self.addExampleCard(
             self.tr('Smooth scroll area implemented by animation'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/scroll_area/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/scroll_area/demo.py',
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵'))

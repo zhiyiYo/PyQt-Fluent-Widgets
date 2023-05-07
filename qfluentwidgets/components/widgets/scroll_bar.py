@@ -152,6 +152,7 @@ class ScrollBar(QWidget):
 
         self.setRange(self.partnerBar.minimum(), self.partnerBar.maximum())
         self.setVisible(self.maximum() > 0 and not self._isForceHidden)
+        self._adjustPos(self.parent().size())
 
     def _onPageUp(self):
         self.setValue(self.value() - self.pageStep())

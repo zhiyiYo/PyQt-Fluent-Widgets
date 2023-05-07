@@ -91,7 +91,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('An editable ComboBox'),
             comboBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/combo_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/combo_box/demo.py'
         )
 
         # drop down button
@@ -103,7 +103,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
         button = DropDownToolButton(FluentIcon.MAIL, self)
@@ -111,7 +111,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
         # radio button
@@ -160,7 +160,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A split push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
         button = SplitToolButton(":/gallery/images/kunkun.png", self)
@@ -175,7 +175,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A split tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
         # switch button
@@ -191,7 +191,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple ToggleButton with text content'),
             ToggleButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
     def onSwitchCheckedChanged(self, isChecked):
