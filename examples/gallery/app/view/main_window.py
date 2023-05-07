@@ -1,6 +1,6 @@
 # coding: utf-8
-from PyQt6.QtCore import Qt, pyqtSignal, QEasingCurve
-from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import Qt, pyqtSignal, QEasingCurve, QUrl
+from PyQt6.QtGui import QIcon, QDesktopServices
 from PyQt6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, MessageBox,
@@ -23,6 +23,7 @@ from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
 from .text_interface import TextInterface
 from .view_interface import ViewInterface
+from ..common.config import SUPPORT_URL
 from ..components.avatar_widget import AvatarWidget
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
@@ -196,11 +197,14 @@ class MainWindow(FramelessWindow):
 
     def showMessageBox(self):
         w = MessageBox(
-            self.tr('This is a help message'),
-            self.tr('You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉'),
+            self.tr('Buy me a coffee'),
+            self.tr('If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me. Your support is highly appreciated 🥰'),
             self
         )
-        w.exec()
+        w.yesButton.setText(self.tr('Sure'))
+        w.cancelButton.setText(self.tr('Cancel'))
+        if w.exec():
+            QDesktopServices.openUrl(QUrl(SUPPORT_URL))
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """

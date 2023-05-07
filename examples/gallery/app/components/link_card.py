@@ -60,6 +60,7 @@ class LinkCardView(SingleDirectionScrollArea):
         self.setWidget(self.view)
         self.setWidgetResizable(True)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.view.setObjectName('view')
         StyleSheet.LINK_CARD.apply(self)
