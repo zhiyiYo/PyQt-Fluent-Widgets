@@ -1,7 +1,8 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator, QTableWidgetItem
-from qfluentwidgets import TreeWidget, TableWidget
+from PyQt5.QtWidgets import (QListWidgetItem, QFrame, QTreeWidgetItem, QHBoxLayout,
+                             QTreeWidgetItemIterator, QTableWidgetItem)
+from qfluentwidgets import TreeWidget, TableWidget, ListWidget
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -17,6 +18,13 @@ class ViewInterface(GalleryInterface):
             title=t.view,
             subtitle="qfluentwidgets.components.widgets",
             parent=parent
+        )
+
+        # list view
+        self.addExampleCard(
+            title=self.tr('A simple ListView'),
+            widget=ListFrame(self),
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/list_view/demo.py'
         )
 
         # table view
@@ -54,6 +62,39 @@ class Frame(QFrame):
 
     def addWidget(self, widget):
         self.hBoxLayout.addWidget(widget)
+
+
+class ListFrame(Frame):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.listWidget = ListWidget(self)
+        self.addWidget(self.listWidget)
+
+        stands = [
+            self.tr("Star Platinum"), self.tr("Hierophant Green"),
+            self.tr("Made in Haven"), self.tr("King Crimson"),
+            self.tr("Silver Chariot"), self.tr("Crazy diamond"),
+            self.tr("Metallica"), self.tr("Another One Bites The Dust"),
+            self.tr("Heaven's Door"), self.tr("Killer Queen"),
+            self.tr("The Grateful Dead"), self.tr("Stone Free"),
+            self.tr("The World"), self.tr("Sticky Fingers"),
+            self.tr("Ozone Baby"), self.tr("Love Love Deluxe"),
+            self.tr("Hermit Purple"), self.tr("Gold Experience"),
+            self.tr("King Nothing"), self.tr("Paper Moon King"),
+            self.tr("Scary Monster"), self.tr("Mandom"),
+            self.tr("20th Century Boy"), self.tr("Tusk Act 4"),
+            self.tr("Ball Breaker"), self.tr("Sex Pistols"),
+            self.tr("D4C • Love Train"), self.tr("Born This Way"),
+            self.tr("SOFT & WET"), self.tr("Paisley Park"),
+            self.tr("Wonder of U"), self.tr("Walking Heart"),
+            self.tr("Cream Starter"), self.tr("November Rain"),
+            self.tr("Smooth Operators"), self.tr("The Matte Kudasai")
+        ]
+        for stand in stands:
+            self.listWidget.addItem(QListWidgetItem(stand))
+
+        self.setFixedSize(300, 380)
 
 
 class TreeFrame(Frame):

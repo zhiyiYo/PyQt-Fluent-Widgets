@@ -222,6 +222,7 @@
         <file>qss/dark/check_box.qss</file>
         <file>qss/dark/info_bar.qss</file>
         <file>qss/dark/spin_box.qss</file>
+        <file>qss/dark/list_view.qss</file>
         <file>qss/dark/tree_view.qss</file>
         <file>qss/dark/table_view.qss</file>
         <file>qss/dark/time_picker.qss</file>
@@ -245,6 +246,7 @@
         <file>qss/light/check_box.qss</file>
         <file>qss/light/info_bar.qss</file>
         <file>qss/light/spin_box.qss</file>
+        <file>qss/light/list_view.qss</file>
         <file>qss/light/table_view.qss</file>
         <file>qss/light/tree_view.qss</file>
         <file>qss/light/time_picker.qss</file>

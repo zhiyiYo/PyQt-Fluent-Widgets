@@ -4,6 +4,7 @@ QTableView {
     border: none;
     font: 13px 'Segoe UI', 'Microsoft YaHei';
     selection-background-color: transparent;
+    alternate-background-color: transparent;
 }
 
 QTableView::item {

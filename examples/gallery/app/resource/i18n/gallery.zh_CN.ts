@@ -361,6 +361,189 @@
     </message>
 </context>
 <context>
+    <name>ListFrame</name>
+    <message>
+        <location filename="../../view/view_interface.py" line="75"/>
+        <source>Star Platinum</source>
+        <translation>白金之星</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="75"/>
+        <source>Hierophant Green</source>
+        <translation>法皇之绿</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="76"/>
+        <source>Made in Haven</source>
+        <translation>天堂制造</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="76"/>
+        <source>King Crimson</source>
+        <translation>绯红之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="77"/>
+        <source>Silver Chariot</source>
+        <translation>银色战车</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="77"/>
+        <source>Crazy diamond</source>
+        <translation>疯狂钻石</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="78"/>
+        <source>Metallica</source>
+        <translation>金属制品</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="78"/>
+        <source>Another One Bites The Dust</source>
+        <translation>败者食尘</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="79"/>
+        <source>Heaven&apos;s Door</source>
+        <translation>黑蚊子多</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="80"/>
+        <source>The Grateful Dead</source>
+        <translation>壮烈成仁</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="80"/>
+        <source>Stone Free</source>
+        <translation>石之自由</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="81"/>
+        <source>The World</source>
+        <translation>砸瓦鲁多</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="81"/>
+        <source>Sticky Fingers</source>
+        <translation>钢链手指</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="82"/>
+        <source>Ozone Baby</source>
+        <translation>臭氧宝宝</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="82"/>
+        <source>Love Love Deluxe</source>
+        <translation>华丽挚爱</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="83"/>
+        <source>Hermit Purple</source>
+        <translation>隐者之紫</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="83"/>
+        <source>Gold Experience</source>
+        <translation>黄金体验</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="84"/>
+        <source>King Nothing</source>
+        <translation>虚无之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="84"/>
+        <source>Paper Moon King</source>
+        <translation>纸月之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="85"/>
+        <source>Scary Monster</source>
+        <translation>骇人恶兽</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="85"/>
+        <source>Mandom</source>
+        <translation>男子领域</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="86"/>
+        <source>20th Century Boy</source>
+        <translation>20世纪男孩</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="86"/>
+        <source>Tusk Act 4</source>
+        <translation>牙 Act 4</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="87"/>
+        <source>Ball Breaker</source>
+        <translation>铁球破坏者</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="87"/>
+        <source>Sex Pistols</source>
+        <translation>性感手枪</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="88"/>
+        <source>D4C • Love Train</source>
+        <translation>D4C • 爱之列车</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="88"/>
+        <source>Born This Way</source>
+        <translation>天生完美</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="89"/>
+        <source>SOFT &amp; WET</source>
+        <translation>软又湿</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="89"/>
+        <source>Paisley Park</source>
+        <translation>佩斯利公园</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="90"/>
+        <source>Wonder of U</source>
+        <translation>奇迹于你</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="90"/>
+        <source>Walking Heart</source>
+        <translation>行走的心</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="91"/>
+        <source>Cream Starter</source>
+        <translation>护霜旅行者</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="91"/>
+        <source>November Rain</source>
+        <translation>十一月雨</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="92"/>
+        <source>Smooth Operators</source>
+        <translation>调情圣手</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="92"/>
+        <source>The Matte Kudasai</source>
+        <translation>片刻静候</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="79"/>
+        <source>Killer Queen</source>
+        <translation>杀手皇后💀</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../view/main_window.py" line="119"/>
@@ -921,27 +1104,27 @@
 <context>
     <name>TableFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="107"/>
+        <location filename="../../view/view_interface.py" line="146"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="107"/>
+        <location filename="../../view/view_interface.py" line="146"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="107"/>
+        <location filename="../../view/view_interface.py" line="146"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="107"/>
+        <location filename="../../view/view_interface.py" line="146"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="107"/>
+        <location filename="../../view/view_interface.py" line="146"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>
@@ -1073,32 +1256,32 @@
 <context>
     <name>TreeFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="66"/>
+        <location filename="../../view/view_interface.py" line="105"/>
         <source>JoJo 1 - Phantom Blood</source>
         <translation>JoJo 1 - 幻影之血</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="67"/>
+        <location filename="../../view/view_interface.py" line="106"/>
         <source>Jonathan Joestar</source>
         <translation>乔纳森·乔斯达</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="67"/>
+        <location filename="../../view/view_interface.py" line="106"/>
         <source>Dio Brando</source>
         <translation>迪奥·布兰度</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="67"/>
+        <location filename="../../view/view_interface.py" line="106"/>
         <source>Will A. Zeppeli</source>
         <translation>威廉·A·齐贝林</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="74"/>
+        <location filename="../../view/view_interface.py" line="113"/>
         <source>JoJo 3 - Stardust Crusaders</source>
         <translation>JoJo3 - 星尘斗士</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="75"/>
+        <location filename="../../view/view_interface.py" line="114"/>
         <source>Jotaro Kujo</source>
         <translation></translation>
     </message>
@@ -1106,19 +1289,24 @@
 <context>
     <name>ViewInterface</name>
     <message>
-        <location filename="../../view/view_interface.py" line="31"/>
+        <location filename="../../view/view_interface.py" line="39"/>
         <source>A simple TreeView</source>
         <translation>简单的树状组件</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="38"/>
+        <location filename="../../view/view_interface.py" line="46"/>
         <source>A TreeView with Multi-selection enabled</source>
         <translation>启用复选框的树状组件</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="23"/>
+        <location filename="../../view/view_interface.py" line="31"/>
         <source>A simple TableView</source>
         <translation>简单的表格组件</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="24"/>
+        <source>A simple ListView</source>
+        <translation>简单的列表组件</translation>
     </message>
 </context>
 </TS>
