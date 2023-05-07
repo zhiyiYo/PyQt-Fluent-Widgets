@@ -462,7 +462,7 @@ class RoundMenu(QWidget):
 
     def _onItemClicked(self, item):
         action = item.data(Qt.ItemDataRole.UserRole)
-        if action not in self._actions:
+        if action not in self._actions or not action.isEnabled():
             return
 
         self._hideMenu(False)
@@ -534,8 +534,8 @@ class RoundMenu(QWidget):
 
     def _onActionChanged(self):
         """ action changed slot """
-        action = self.sender()
-        item = action.property('item')
+        action = self.sender()  # type: QAction
+        item = action.property('item')  # type: QListWidgetItem
         item.setIcon(self._createItemIcon(action))
 
         if not self._hasItemIcon():
@@ -547,6 +547,12 @@ class RoundMenu(QWidget):
             w = 60 + self.view.fontMetrics().boundingRect(item.text()).width()
 
         item.setSizeHint(QSize(w, self.itemHeight))
+
+        if action.isEnabled():
+            item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
+        else:
+            item.setFlags(Qt.ItemFlag.NoItemFlags)
+
         self.view.adjustSize()
         self.adjustSize()
 
