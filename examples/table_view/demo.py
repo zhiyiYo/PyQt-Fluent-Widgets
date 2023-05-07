@@ -1,10 +1,27 @@
 # coding: utf-8
 import sys
 
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout
+from PySide6.QtCore import QModelIndex, Qt
+from PySide6.QtGui import QPalette
+from PySide6.QtWidgets import QApplication, QStyleOptionViewItem, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout
 
-from qfluentwidgets import TableWidget, setTheme, Theme, TableView
+from qfluentwidgets import TableWidget, isDarkTheme, setTheme, Theme, TableView, TableItemDelegate
+
+
+class CustomTableItemDelegate(TableItemDelegate):
+    """ Custom table item delegate """
+
+    def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
+        super().initStyleOption(option, index)
+        if index.column() != 1:
+            return
+
+        if isDarkTheme():
+            option.palette.setColor(QPalette.Text, Qt.white)
+            option.palette.setColor(QPalette.HighlightedText, Qt.white)
+        else:
+            option.palette.setColor(QPalette.Text, Qt.red)
+            option.palette.setColor(QPalette.HighlightedText, Qt.red)
 
 
 class Demo(QWidget):
@@ -15,6 +32,9 @@ class Demo(QWidget):
 
         self.hBoxLayout = QHBoxLayout(self)
         self.tableView = TableWidget(self)
+
+        # NOTE: use custom item delegate
+        # self.tableView.setItemDelegate(CustomTableItemDelegate(self.tableView))
 
         self.tableView.setWordWrap(False)
         self.tableView.setRowCount(60)
@@ -57,7 +77,7 @@ class Demo(QWidget):
                 self.tableView.setItem(i, j, QTableWidgetItem(songInfo[j]))
 
         self.tableView.verticalHeader().hide()
-        self.tableView.setHorizontalHeaderLabels(['标题', '艺人', '专辑', '年份', '时长'])
+        self.tableView.setHorizontalHeaderLabels(['Title', 'Artist', 'Album', 'Year', 'Duration'])
         self.tableView.resizeColumnsToContents()
         # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
@@ -65,8 +85,7 @@ class Demo(QWidget):
         self.setStyleSheet("Demo{background: rgb(249, 249, 249)} ")
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.tableView)
-        self.tableView.resizeColumnsToContents()
-        self.resize(625, 700)
+        self.resize(635, 700)
 
 
 if __name__ == "__main__":

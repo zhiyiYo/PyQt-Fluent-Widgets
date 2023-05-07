@@ -2,7 +2,7 @@
 from typing import List
 
 from PySide6.QtCore import Qt, QMargins, QModelIndex
-from PySide6.QtGui import QPainter, QColor, QKeyEvent
+from PySide6.QtGui import QPainter, QColor, QKeyEvent, QPalette
 from PySide6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget)
 
@@ -69,6 +69,15 @@ class TableItemDelegate(QStyledItemDelegate):
         else:
             rect = option.rect.adjusted(-1, 0, 1, 0)
             painter.drawRect(rect)
+
+    def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
+        super().initStyleOption(option, index)
+        if isDarkTheme():
+            option.palette.setColor(QPalette.Text, Qt.white)
+            option.palette.setColor(QPalette.HighlightedText, Qt.white)
+        else:
+            option.palette.setColor(QPalette.Text, Qt.black)
+            option.palette.setColor(QPalette.HighlightedText, Qt.black)
 
     def paint(self, painter, option, index):
         painter.save()
@@ -183,6 +192,10 @@ class TableBase:
             self.setSelectedRows(self.selectedIndexes())
         else:
             self.setPressedRow(-1)
+
+    def setItemDelegate(self, delegate: TableItemDelegate):
+        self.delegate = delegate
+        super().setItemDelegate(delegate)
 
 
 class TableWidget(TableBase, QTableWidget):
