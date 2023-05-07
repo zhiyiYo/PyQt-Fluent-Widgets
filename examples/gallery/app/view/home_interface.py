@@ -342,12 +342,20 @@ class HomeInterface(ScrollArea):
         # view samples
         collectionView = SampleCardView(self.tr('View samples'), self.view)
         collectionView.addSampleCard(
+            icon=":/gallery/images/controls/ListView.png",
+            title="ListView",
+            content=self.tr(
+                "A control that presents a collection of items in a vertical list."),
+            routeKey="viewInterface",
+            index=0
+        )
+        collectionView.addSampleCard(
             icon=":/gallery/images/controls/DataGrid.png",
             title="TableView",
             content=self.tr(
                 "The DataGrid control provides a flexible way to display a collection of data in rows and columns."),
             routeKey="viewInterface",
-            index=0
+            index=1
         )
         collectionView.addSampleCard(
             icon=":/gallery/images/controls/TreeView.png",
@@ -355,6 +363,6 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "The TreeView control is a hierarchical list pattern with expanding and collapsing nodes that contain nested items."),
             routeKey="viewInterface",
-            index=1
+            index=2
         )
         self.vBoxLayout.addWidget(collectionView)

@@ -70,6 +70,13 @@ class TableItemDelegate(QStyledItemDelegate):
             rect = option.rect.adjusted(-1, 0, 1, 0)
             painter.drawRect(rect)
 
+    def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        """ draw indicator """
+        y, h = option.rect.y(), option.rect.height()
+        ph = round(0.35*h if self.pressedRow == index.row() else 0.257*h)
+        painter.setBrush(themeColor())
+        painter.drawRoundedRect(4, ph + y, 3, h - 2*ph, 1.5, 1.5)
+
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
         super().initStyleOption(option, index)
         if isDarkTheme():
@@ -94,7 +101,7 @@ class TableItemDelegate(QStyledItemDelegate):
         # draw highlight background
         isHover = self.hoverRow == index.row()
         isPressed = self.pressedRow == index.row()
-        isAlternate = index.row() % 2 == 0
+        isAlternate = index.row() % 2 == 0 and self.parent().alternatingRowColors()
         isDark = isDarkTheme()
 
         c = 255 if isDark else 0
@@ -117,10 +124,7 @@ class TableItemDelegate(QStyledItemDelegate):
 
             # draw indicator
             if index.column() == 0 and self.parent().horizontalScrollBar().value() == 0:
-                y, h = option.rect.y() ,option.rect.height()
-                ph = round(0.35*h if isPressed else 0.257*h)
-                painter.setBrush(themeColor())
-                painter.drawRoundedRect(4, ph + y, 3, h - 2*ph, 1.5, 1.5)
+                self._drawIndicator(painter, option, index)
 
         painter.setBrush(QColor(c, c, c, alpha))
         self._drawBackground(painter, option, index)
@@ -143,6 +147,7 @@ class TableBase:
 
         self.setShowGrid(False)
         self.setMouseTracking(True)
+        self.setAlternatingRowColors(True)
         self.setItemDelegate(self.delegate)
         self.setSelectionBehavior(TableWidget.SelectionBehavior.SelectRows)
 

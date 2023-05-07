@@ -44,7 +44,7 @@ class ScrollInterface(GalleryInterface):
         label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
 
         w.setWidget(label)
-        w.setFixedSize(654, 540)
+        w.setFixedSize(660, 540)
         w.setObjectName('imageViewer')
 
         card = self.addExampleCard(
