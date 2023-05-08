@@ -1,10 +1,10 @@
 # coding: utf-8
-from typing import List
+from typing import List, Union
 
-from PyQt5.QtCore import Qt, QMargins, QModelIndex
+from PyQt5.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel
 from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette
 from PyQt5.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem)
 
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
 from .line_edit import LineEdit
@@ -151,30 +151,30 @@ class TableBase:
         self.setItemDelegate(self.delegate)
         self.setSelectionBehavior(TableWidget.SelectRows)
 
-        self.entered.connect(lambda i: self.setHoverRow(i.row()))
-        self.pressed.connect(lambda i: self.setPressedRow(i.row()))
+        self.entered.connect(lambda i: self._setHoverRow(i.row()))
+        self.pressed.connect(lambda i: self._setPressedRow(i.row()))
 
     def showEvent(self, e):
         QTableView.showEvent(self, e)
         self.resizeRowsToContents()
 
-    def setHoverRow(self, row: int):
+    def _setHoverRow(self, row: int):
         """ set hovered row """
         self.delegate.setHoverRow(row)
         self.viewport().update()
 
-    def setPressedRow(self, row: int):
+    def _setPressedRow(self, row: int):
         """ set pressed row """
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
-    def setSelectedRows(self, indexes: List[QModelIndex]):
+    def _setSelectedRows(self, indexes: List[QModelIndex]):
         self.delegate.setSelectedRows(indexes)
         self.viewport().update()
 
     def leaveEvent(self, e):
         QTableView.leaveEvent(self, e)
-        self.setHoverRow(-1)
+        self._setHoverRow(-1)
 
     def resizeEvent(self, e):
         QTableView.resizeEvent(self, e)
@@ -182,26 +182,49 @@ class TableBase:
 
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
-        self.setSelectedRows(self.selectedIndexes())
+        self._updateSelectedRows()
 
     def mousePressEvent(self, e: QKeyEvent):
         if e.button() == Qt.LeftButton:
             QTableView.mousePressEvent(self, e)
         else:
-            self.setPressedRow(self.indexAt(e.pos()).row())
+            self._setPressedRow(self.indexAt(e.pos()).row())
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.RightButton:
-            self.setSelectedRows(self.selectedIndexes())
+            self._updateSelectedRows()
         else:
-            self.setPressedRow(-1)
+            self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: TableItemDelegate):
         self.delegate = delegate
         super().setItemDelegate(delegate)
+
+    def selectAll(self):
+        QTableView.selectAll(self)
+        self._updateSelectedRows()
+
+    def selectRow(self, row: int):
+        QTableView.selectRow(self, row)
+        self._updateSelectedRows()
+
+    def setSelection(self, rect, command):
+        QTableView.setSelection(self, rect, command)
+        self._updateSelectedRows()
+
+    def clearSelection(self):
+        QTableView.clearSelection(self)
+        self._updateSelectedRows()
+
+    def setCurrentIndex(self, index: QModelIndex):
+        QTableView.setCurrentIndex(self, index)
+        self._updateSelectedRows()
+
+    def _updateSelectedRows(self):
+        self._setSelectedRows(self.selectedIndexes())
 
 
 class TableWidget(TableBase, QTableWidget):
@@ -209,6 +232,17 @@ class TableWidget(TableBase, QTableWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+    def setCurrentCell(self, row: int, column: int, command: Union[QItemSelectionModel.SelectionFlag, QItemSelectionModel.SelectionFlags] = None):
+        self.setCurrentItem(self.item(row, column), command)
+
+    def setCurrentItem(self, item: QTableWidgetItem, command: Union[QItemSelectionModel.SelectionFlag, QItemSelectionModel.SelectionFlags] = None):
+        if not command:
+            super().setCurrentItem(item)
+        else:
+            super().setCurrentItem(item, command)
+
+        self._updateSelectedRows()
 
 
 class TableView(TableBase, QTableView):
