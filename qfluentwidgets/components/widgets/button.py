@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt5.QtCore import pyqtSignal, QUrl, Qt, QRectF, QSize, QPoint
+from PyQt5.QtCore import pyqtSignal, QUrl, Qt, QRectF, QSize, QPoint, pyqtProperty
 from PyQt5.QtGui import QDesktopServices, QIcon, QPainter
 from PyQt5.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
@@ -127,10 +127,10 @@ class HyperlinkButton(QPushButton):
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
         super().__init__(parent)
-        self.url = QUrl()
+        self._url = QUrl()
         FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.PointingHandCursor)
-        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.url))
+        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
 
     @__init__.register
     def _(self, url: str, text: str, parent: QWidget = None):
@@ -138,8 +138,13 @@ class HyperlinkButton(QPushButton):
         self.setText(text)
         self.url.setUrl(url)
 
+    def getUrl(self):
+        return self._url
+
     def setUrl(self, url: str):
-        self.url.setUrl(url)
+        self._url.setUrl(url)
+
+    url = pyqtProperty(QUrl, getUrl, setUrl)
 
 
 class RadioButton(QRadioButton):

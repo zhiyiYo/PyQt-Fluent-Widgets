@@ -3,6 +3,7 @@
         <file>images/color_dialog/Clear_black.svg</file>
         <file>images/color_dialog/Clear_white.svg</file>
         <file>images/color_dialog/HuePanel.png</file>
+        
         <file>images/icons/Cancel_black.svg</file>
         <file>images/icons/Cancel_white.svg</file>
         <file>images/icons/ChevronRight_black.svg</file>
@@ -173,6 +174,9 @@
         <file>images/icons/CareLeftSolid_white.svg</file>
         <file>images/icons/CareRightSolid_black.svg</file>
         <file>images/icons/CareRightSolid_white.svg</file>
+        <file>images/icons/EmojiTabSymbols_black.svg</file>
+        <file>images/icons/EmojiTabSymbols_white.svg</file>
+
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
         <file>images/folder_list_dialog/Close_black.png</file>
@@ -255,5 +259,76 @@
         <file>i18n/qfluentwidgets.zh_HK.qm</file>
         <file>i18n/qfluentwidgets.zh_TW.qm</file>
         <file>i18n/qfluentwidgets.en_US.qm</file>
+
+        <file>images/controls/Acrylic.png</file>
+        <file>images/controls/AnimatedIcon.png</file>
+        <file>images/controls/AppBarButton.png</file>
+        <file>images/controls/AppBarSeparator.png</file>
+        <file>images/controls/AppBarToggleButton.png</file>
+        <file>images/controls/AutoSuggestBox.png</file>
+        <file>images/controls/BreadcrumbBar.png</file>
+        <file>images/controls/Button.png</file>
+        <file>images/controls/CalendarDatePicker.png</file>
+        <file>images/controls/CalendarView.png</file>
+        <file>images/controls/Canvas.png</file>
+        <file>images/controls/Checkbox.png</file>
+        <file>images/controls/Clipboard.png</file>
+        <file>images/controls/ColorPaletteResources.png</file>
+        <file>images/controls/ColorPicker.png</file>
+        <file>images/controls/ComboBox.png</file>
+        <file>images/controls/CommandBar.png</file>
+        <file>images/controls/CommandBarFlyout.png</file>
+        <file>images/controls/ConnectedAnimation.png</file>
+        <file>images/controls/ContentDialog.png</file>
+        <file>images/controls/DataGrid.png</file>
+        <file>images/controls/DatePicker.png</file>
+        <file>images/controls/DropDownButton.png</file>
+        <file>images/controls/EasingFunction.png</file>
+        <file>images/controls/Expander.png</file>
+        <file>images/controls/FlipView.png</file>
+        <file>images/controls/Flyout.png</file>
+        <file>images/controls/Grid.png</file>
+        <file>images/controls/GridView.png</file>
+        <file>images/controls/HyperlinkButton.png</file>
+        <file>images/controls/IconElement.png</file>
+        <file>images/controls/Image.png</file>
+        <file>images/controls/InfoBadge.png</file>
+        <file>images/controls/InfoBar.png</file>
+        <file>images/controls/ListBox.png</file>
+        <file>images/controls/ListView.png</file>
+        <file>images/controls/MediaPlayerElement.png</file>
+        <file>images/controls/MenuBar.png</file>
+        <file>images/controls/MenuFlyout.png</file>
+        <file>images/controls/NavigationView.png</file>
+        <file>images/controls/NumberBox.png</file>
+        <file>images/controls/PasswordBox.png</file>
+        <file>images/controls/PersonPicture.png</file>
+        <file>images/controls/PipsPager.png</file>
+        <file>images/controls/Pivot.png</file>
+        <file>images/controls/ProgressBar.png</file>
+        <file>images/controls/ProgressRing.png</file>
+        <file>images/controls/RadioButton.png</file>
+        <file>images/controls/RadioButtons.png</file>
+        <file>images/controls/RatingControl.png</file>
+        <file>images/controls/RelativePanel.png</file>
+        <file>images/controls/RepeatButton.png</file>
+        <file>images/controls/RichEditBox.png</file>
+        <file>images/controls/RichTextBlock.png</file>
+        <file>images/controls/ScrollViewer.png</file>
+        <file>images/controls/Slider.png</file>
+        <file>images/controls/SplitButton.png</file>
+        <file>images/controls/StackPanel.png</file>
+        <file>images/controls/TabView.png</file>
+        <file>images/controls/TeachingTip.png</file>
+        <file>images/controls/TextBlock.png</file>
+        <file>images/controls/TextBox.png</file>
+        <file>images/controls/TimePicker.png</file>
+        <file>images/controls/ToggleButton.png</file>
+        <file>images/controls/ToggleSplitButton.png</file>
+        <file>images/controls/ToggleSwitch.png</file>
+        <file>images/controls/ToolTip.png</file>
+        <file>images/controls/TreeView.png</file>
+        <file>images/controls/VariableSizedWrapGrid.png</file>
+        <file>images/controls/Viewbox.png</file>
     </qresource>
 </RCC>

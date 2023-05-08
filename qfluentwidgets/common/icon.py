@@ -289,6 +289,7 @@ class FluentIcon(FluentIconBase, Enum):
     CARE_LEFT_SOLID = "CareLeftSolid"
     BACKGROUND_FILL = "BackgroundColor"
     CARE_RIGHT_SOLID = "CareRightSolid"
+    EMOJI_TAB_SYMBOLS = "EmojiTabSymbols"
 
     def path(self, theme=Theme.AUTO):
         return f':/qfluentwidgets/images/icons/{self.value}_{getIconColor(theme)}.svg'
