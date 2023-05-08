@@ -708,6 +708,14 @@
     </message>
 </context>
 <context>
+    <name>ProgressWidget</name>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="265"/>
+        <source>Progress</source>
+        <translation>进度</translation>
+    </message>
+</context>
+<context>
     <name>ScrollInterface</name>
     <message>
         <location filename="../../view/scroll_interface.py" line="33"/>
@@ -921,7 +929,7 @@
         <translation>带有工具提示的标签</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="181"/>
+        <location filename="../../view/status_info_interface.py" line="175"/>
         <source>Show StateToolTip</source>
         <translation>显示进度提示条</translation>
     </message>
@@ -936,22 +944,22 @@
         <translation>简单工具提示</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="179"/>
+        <location filename="../../view/status_info_interface.py" line="173"/>
         <source>The model training is complete!</source>
         <translation>模型训练完成啦！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="185"/>
+        <location filename="../../view/status_info_interface.py" line="179"/>
         <source>Training model</source>
         <translation>正在训练模型</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="185"/>
+        <location filename="../../view/status_info_interface.py" line="179"/>
         <source>Please wait patiently</source>
         <translation>心急吃不了热豆腐，请耐心等待哦~</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="187"/>
+        <location filename="../../view/status_info_interface.py" line="181"/>
         <source>Hide StateToolTip</source>
         <translation>隐藏进度提示条</translation>
     </message>
@@ -996,17 +1004,17 @@
         <translation>不同弹出位置的消息条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="226"/>
+        <location filename="../../view/status_info_interface.py" line="220"/>
         <source>No Internet</source>
         <translation>无网络连接</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="204"/>
+        <location filename="../../view/status_info_interface.py" line="198"/>
         <source>Lesson 4</source>
         <translation>Lesson 4</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="215"/>
+        <location filename="../../view/status_info_interface.py" line="209"/>
         <source>Lesson 5</source>
         <translation>Lesson 5</translation>
     </message>
@@ -1016,27 +1024,27 @@
         <translation>我的名字是吉良吉影，年龄33岁，家住杜王町东北部别墅区，未婚。我在“龟友百货连锁公司”上班，每天最晚也是八点前回家，不吸烟，酒也是浅尝辄止，晚上十一点上床，保证八个小时的充足睡眠，睡前喝一杯热牛奶，再做二十分钟伸展运动暖身，然后再睡觉，基本可以熟睡到天亮。像婴儿一样不留下疲劳与压力，迎来第二天的早晨，健康检查结果也显示我很健康。我的意思是我是一个随时都想追求平静生活的人，不拘泥于胜负与烦恼，不树立令我夜不能寐的敌人，这就是我对于这个社会的生活态度，我也清楚这就是我的幸福。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="192"/>
+        <location filename="../../view/status_info_interface.py" line="186"/>
         <source>Lesson 3</source>
         <translation>Lesson 3</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="192"/>
+        <location filename="../../view/status_info_interface.py" line="186"/>
         <source>Believe in the spin, just keep believing!</source>
         <translation>相信回旋吧，只管相信就是了！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="204"/>
+        <location filename="../../view/status_info_interface.py" line="198"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表达敬意吧，表达出敬意，然后迈向回旋的另一个全新阶段！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="215"/>
+        <location filename="../../view/status_info_interface.py" line="209"/>
         <source>迂回路を行けば最短ルート。</source>
         <translation>最短的捷径就是绕远路，绕远路才是我的最短捷径。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="226"/>
+        <location filename="../../view/status_info_interface.py" line="220"/>
         <source>An error message which won&apos;t disappear automatically.</source>
         <translation>一条不会自动消失的消息。</translation>
     </message>
@@ -1081,22 +1089,22 @@
         <translation>左下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="237"/>
+        <location filename="../../view/status_info_interface.py" line="231"/>
         <source>Lesson 1</source>
         <translation>Lesson 1</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="237"/>
+        <location filename="../../view/status_info_interface.py" line="231"/>
         <source>Don&apos;t have any strange expectations of me.</source>
         <translation>别对我抱有什么奇怪的期待</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="248"/>
+        <location filename="../../view/status_info_interface.py" line="242"/>
         <source>Lesson 2</source>
         <translation>Lesson 2</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="248"/>
+        <location filename="../../view/status_info_interface.py" line="242"/>
         <source>Don&apos;t let your muscles notice.</source>
         <translation>不要让肌肉察觉</translation>
     </message>
@@ -1106,14 +1114,14 @@
         <translation>不确定进度条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="165"/>
-        <source>Progress</source>
-        <translation>进度</translation>
-    </message>
-    <message>
-        <location filename="../../view/status_info_interface.py" line="170"/>
+        <location filename="../../view/status_info_interface.py" line="155"/>
         <source>An determinate progress bar</source>
         <translation>确定的进度条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="165"/>
+        <source>An determinate progress ring</source>
+        <translation>确定的圆形进度条</translation>
     </message>
 </context>
 <context>

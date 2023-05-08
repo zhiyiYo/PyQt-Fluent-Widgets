@@ -2,9 +2,9 @@
 from math import floor
 
 from PyQt5.QtCore import (QEasingCurve, Qt, pyqtSignal, QPropertyAnimation, pyqtProperty,
-                          QParallelAnimationGroup, QSequentialAnimationGroup)
+                          QParallelAnimationGroup, QSequentialAnimationGroup, QLocale)
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QProgressBar, QWidget
+from PyQt5.QtWidgets import QProgressBar
 
 from ...common.style_sheet import themeColor, isDarkTheme
 
@@ -12,27 +12,118 @@ from ...common.style_sheet import themeColor, isDarkTheme
 
 class ProgressBar(QProgressBar):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, useAni=True):
         super().__init__(parent)
+        self._val = 0
         self.setFixedHeight(4)
+
+        self.useAni = useAni
+        self.lightBackgroundColor = QColor(0, 0, 0, 155)
+        self.darkBackgroundColor = QColor(255, 255, 255, 155)
+        self.ani = QPropertyAnimation(self, b'val', self)
+
+        self._isPaused = False
+        self._isError = False
+        self.setValue(0)
+
+    @pyqtProperty(float)
+    def val(self):
+        return self._val
+
+    @val.setter
+    def val(self, v):
+        self._val = v
+        self.update()
+
+    def setValue(self, value: int):
+        if not self.useAni:
+            self._val = value
+            return super().setValue(value)
+
+        self.ani.stop()
+        self.ani.setStartValue(self.value())
+        self.ani.setEndValue(value)
+        self.ani.setDuration(150)
+        self.ani.start()
+        super().setValue(value)
+
+    def setCustomBackgroundColor(self, light, dark):
+        """ set the custom background color
+
+        Parameters
+        ----------
+        light, dark: str | Qt.GlobalColor | QColor
+            background color in light/dark theme mode
+        """
+        self.lightBackgroundColor = QColor(light)
+        self.darkBackgroundColor = QColor(dark)
+        self.update()
+
+    def resume(self):
+        self._isPaused = False
+        self._isError = False
+        self.update()
+
+    def pause(self):
+        self._isPaused = True
+        self.update()
+
+    def setPaused(self, isPaused: bool):
+        self._isPaused = isPaused
+        self.update()
+
+    def isPaused(self):
+        return self._isPaused
+
+    def error(self):
+        self._isError = True
+        self.update()
+
+    def setError(self, isError: bool):
+        self._isError = isError
+        if isError:
+            self.error()
+        else:
+            self.resume()
+
+    def isError(self):
+        return self._isError
+
+    def valText(self):
+        if self.maximum() <= self.minimum():
+            return ""
+
+        total = self.maximum() - self.minimum()
+        result = self.format()
+        locale = self.locale()
+        locale.setNumberOptions(locale.numberOptions()
+                                | QLocale.OmitGroupSeparator)
+        result = result.replace("%m", locale.toString(total))
+        result = result.replace("%v", locale.toString(self.val))
+
+        if total == 0:
+            return result.replace("%p", locale.toString(100))
+
+        progress = int((self.val - self.minimum()) * 100 / total)
+        return result.replace("%p", locale.toString(progress))
 
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
 
         # draw background
-        c = 255 if isDarkTheme() else 0
-        painter.setPen(QColor(c, c, c, 155))
+        bc = self.darkBackgroundColor if isDarkTheme() else self.lightBackgroundColor
+        painter.setPen(bc)
         y =  floor(self.height() / 2)
         painter.drawLine(0, y, self.width(), y)
 
-        if self.minimum() == self.maximum():
+        if self.minimum() >= self.maximum():
             return
 
         # draw bar
         painter.setPen(Qt.NoPen)
         painter.setBrush(themeColor())
-        w = int(self.value() / (self.maximum() - self.minimum()) * self.width())
+        w = int(self.val / (self.maximum() - self.minimum()) * self.width())
         r = self.height() / 2
         painter.drawRoundedRect(0, 0, w, self.height(), r, r)
 
@@ -57,7 +148,7 @@ class IndeterminateProgressBar(QProgressBar):
         self.shortBarAni.setStartValue(0)
         self.longBarAni.setStartValue(0)
         self.shortBarAni.setEndValue(1.45)
-        self.longBarAni.setEndValue(1.65)
+        self.longBarAni.setEndValue(1.75)
         self.longBarAni.setEasingCurve(QEasingCurve.OutQuad)
 
         self.aniGroup.addAnimation(self.shortBarAni)

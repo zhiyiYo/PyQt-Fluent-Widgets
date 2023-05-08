@@ -49,11 +49,10 @@ class TableItemDelegate(QStyledItemDelegate):
 
     def updateEditorGeometry(self, editor: QWidget, option: QStyleOptionViewItem, index: QModelIndex):
         rect = option.rect
-        h = super().sizeHint(option, index).height()
-        y = rect.y() + self.margin + (h - editor.height()) // 2
-        x, w = max(4, rect.x()), rect.width()
+        y = rect.y() + (rect.height() - editor.height()) // 2
+        x, w = max(8, rect.x()), rect.width()
         if index.column() == 0:
-            w -= 4
+            w -= 8
 
         editor.setGeometry(x, y, w, rect.height())
 
@@ -153,6 +152,7 @@ class TableBase:
 
         self.entered.connect(lambda i: self._setHoverRow(i.row()))
         self.pressed.connect(lambda i: self._setPressedRow(i.row()))
+        self.verticalHeader().sectionClicked.connect(self.selectRow)
 
     def showEvent(self, e):
         QTableView.showEvent(self, e)

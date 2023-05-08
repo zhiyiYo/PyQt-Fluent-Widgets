@@ -290,17 +290,9 @@ class HomeInterface(ScrollArea):
             icon=":/gallery/images/controls/ProgressRing.png",
             title="StateToolTip",
             content=self.tr(
-                "Shows the apps progress on a task,or that the app is performing ongoing work that does block user interaction."),
+                "Shows the apps progress on a task, or that the app is performing ongoing work that does block user interaction."),
             routeKey="statusInfoInterface",
             index=0
-        )
-        stateInfoView.addSampleCard(
-            icon=":/gallery/images/controls/ToolTip.png",
-            title="ToolTip",
-            content=self.tr(
-                "Displays information for an element in a pop-up window."),
-            routeKey="statusInfoInterface",
-            index=1
         )
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/InfoBar.png",
@@ -317,6 +309,22 @@ class HomeInterface(ScrollArea):
                 "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction."),
             routeKey="statusInfoInterface",
             index=7
+        )
+        stateInfoView.addSampleCard(
+            icon=":/gallery/images/controls/ProgressRing.png",
+            title="ProgressRing",
+            content=self.tr(
+                "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction."),
+            routeKey="statusInfoInterface",
+            index=9
+        )
+        stateInfoView.addSampleCard(
+            icon=":/gallery/images/controls/ToolTip.png",
+            title="ToolTip",
+            content=self.tr(
+                "Displays information for an element in a pop-up window."),
+            routeKey="statusInfoInterface",
+            index=1
         )
         self.vBoxLayout.addWidget(stateInfoView)
 

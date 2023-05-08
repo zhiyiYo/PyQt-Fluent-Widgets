@@ -33,7 +33,7 @@ ExampleCard>#card {
 
 ExampleCard>#card QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
-    color: black;
+    color: white;
 }
 
 ExampleCard>#titleLabel {
