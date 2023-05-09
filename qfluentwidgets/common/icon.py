@@ -1,7 +1,6 @@
 # coding:utf-8
 from enum import Enum
 from typing import Union
-from PyQt5 import QtGui
 
 from PyQt5.QtXml import QDomDocument
 from PyQt5.QtCore import QRectF, Qt, QFile, QObject
@@ -300,6 +299,17 @@ class Icon(QIcon):
     def __init__(self, fluentIcon: FluentIcon):
         super().__init__(fluentIcon.path())
         self.fluentIcon = fluentIcon
+
+
+def toQIcon(icon: Union[QIcon, FluentIconBase, str]) -> QIcon:
+    """ convet `icon` to `QIcon` """
+    if isinstance(icon, str):
+        return QIcon(icon)
+
+    if isinstance(icon, FluentIconBase):
+        return icon.icon()
+
+    return icon
 
 
 class Action(QAction):

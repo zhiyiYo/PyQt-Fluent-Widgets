@@ -2,6 +2,9 @@
 from distutils.sysconfig import get_python_lib
 import os
 import sys
+import shutil
+import warnings
+
 from pathlib import Path
 
 import PyQt5
@@ -12,16 +15,33 @@ def get_designer_path():
     """ get the path of qt designer """
     site_packages = get_python_lib()
     ext = '.exe' if os.name == 'nt' else ''
-    bins = [
-        f"{QLibraryInfo.location(QLibraryInfo.BinariesPath)}/designer{ext}",
-        f"{site_packages}/pyqt5_tools/designer{ext}",
-        f"{site_packages}/qt5_applications/Qt/bin/designer{ext}",
-    ]
-    for f in bins:
-        if os.path.exists(f):
-            return f
+    path = Path(f"{site_packages}/qt5_applications/Qt/bin/designer{ext}")
+    if not path.exists():
+        raise Exception(
+            "Can't find available QtDesigner for current environment. You can try `pip install pyqt5-tools` to solve this problem.")
 
-    raise Exception("Can't find avalibale QtDesigner")
+    # check pyqt5 dll
+    if sys.platform == "win32":
+        dll_name = "pyqt5.dll"
+    elif sys.platform == "darwin":
+        dll_name = "libpyqt5.dylib"
+    else:
+        dll_name = "libpyqt5.so"
+
+    dll_path = Path(f"{site_packages}/qt5_applications/Qt/plugins/designer/{dll_name}")
+    if dll_path.exists():
+        return str(path)
+
+    plugin_dll_path = Path(f"{site_packages}/pyqt5_plugins/Qt/plugins/designer/{dll_name}")
+    if not plugin_dll_path.exists():
+        warnings.warn(f"Can't find avaliable {dll_name}, which may cause PyQt-Fluent-Widgets not being visible in QtDesigner.")
+        return str(path)
+
+    # copy pyqt5 dll
+    dll_path.parent.mkdir(exist_ok=True, parents=True)
+    shutil.copy(plugin_dll_path, dll_path)
+    print(f'Copy {plugin_dll_path} to {dll_path}.')
+    return str(path)
 
 
 tools_dir = Path(__file__).absolute().parent

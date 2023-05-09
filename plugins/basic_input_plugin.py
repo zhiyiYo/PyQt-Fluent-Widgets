@@ -1,12 +1,14 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import (PushButton, PrimaryPushButton, SplitPushButton, DropDownPushButton,
+from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButton,
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
-                            SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget)
+                            SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
+                            EditableComboBox, PixmapLabel, PushButton)
 
 from plugin_base import PluginBase
+from task_menu_fatcory import EditTextTaskMenuFactory
+
 
 
 class BasicInputPlugin(PluginBase):
@@ -39,6 +41,19 @@ class ComboBoxPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "ComboBox"
+
+
+class EditableComboBoxPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Editable box plugin """
+
+    def createWidget(self, parent):
+        return EditableComboBox(parent)
+
+    def icon(self):
+        return super().icon('ComboBox')
+
+    def name(self):
+        return "EditableComboBox"
 
 
 class HyperlinkButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
@@ -92,7 +107,7 @@ class DropDownPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
     def name(self):
         return "DropDownPushButton"
 
-
+@EditTextTaskMenuFactory.register
 class SplitPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
     """ Split push button plugin """
 
@@ -145,6 +160,7 @@ class SplitToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "SplitToolButton"
 
 
+@EditTextTaskMenuFactory.register
 class SwitchButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
     """ Switch button plugin """
 
@@ -211,4 +227,17 @@ class IconWidgetPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "IconWidget"
+
+
+class PixmapLabelPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Pixmap label plugin """
+
+    def createWidget(self, parent):
+        return PixmapLabel(parent)
+
+    def icon(self):
+        return super().icon('Image')
+
+    def name(self):
+        return "PixmapLabel"
 

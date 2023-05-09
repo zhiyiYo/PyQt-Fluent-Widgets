@@ -2,19 +2,30 @@
 import re
 
 from PyQt5.QtGui import QIcon
+from PyQt5.QtDesigner import QDesignerFormEditorInterface
 
 
 class PluginBase:
 
+	Factory = None
+
 	def __init__(self, parent=None):
 		super().__init__(parent)
 		self.initialized = False
+		self.factory = None
 		self.pattern = re.compile(r'(?<!^)(?=[A-Z])')
 
-	def initialize(self, core):
+	def initialize(self, editor: QDesignerFormEditorInterface):
 		if self.initialized:
 			return
+
 		self.initialized = True
+		if not self.Factory:
+			return
+
+		manager = editor.extensionManager()
+		self.factory = self.Factory(manager)
+		manager.registerExtensions(self.factory, self.factory.IID)
 
 	def isInitialized(self):
 		return self.initialized

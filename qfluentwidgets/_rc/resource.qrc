@@ -3,7 +3,7 @@
         <file>images/color_dialog/Clear_black.svg</file>
         <file>images/color_dialog/Clear_white.svg</file>
         <file>images/color_dialog/HuePanel.png</file>
-        
+
         <file>images/icons/Cancel_black.svg</file>
         <file>images/icons/Cancel_white.svg</file>
         <file>images/icons/ChevronRight_black.svg</file>
@@ -330,5 +330,6 @@
         <file>images/controls/TreeView.png</file>
         <file>images/controls/VariableSizedWrapGrid.png</file>
         <file>images/controls/Viewbox.png</file>
+        <file>images/controls/TitleBar.png</file>
     </qresource>
 </RCC>

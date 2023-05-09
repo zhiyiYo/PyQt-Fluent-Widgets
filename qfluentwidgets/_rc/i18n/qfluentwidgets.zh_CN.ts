@@ -116,6 +116,17 @@
     </message>
 </context>
 <context>
+    <name>SwitchButton</name>
+    <message>
+        <source>Off</source>
+        <translation>关</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation>开</translation>
+    </message>
+</context>
+<context>
     <name>CustomColorSettingCard</name>
     <message>
         <source>Custom color</source>

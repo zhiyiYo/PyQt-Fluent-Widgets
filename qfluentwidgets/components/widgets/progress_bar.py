@@ -17,31 +17,35 @@ class ProgressBar(QProgressBar):
         self._val = 0
         self.setFixedHeight(4)
 
-        self.useAni = useAni
+        self._useAni = useAni
         self.lightBackgroundColor = QColor(0, 0, 0, 155)
         self.darkBackgroundColor = QColor(255, 255, 255, 155)
         self.ani = QPropertyAnimation(self, b'val', self)
 
         self._isPaused = False
         self._isError = False
+        self.valueChanged.connect(self._onValueChanged)
         self.setValue(0)
 
-    @pyqtProperty(float)
-    def val(self):
+    def getVal(self):
         return self._val
 
-    @val.setter
-    def val(self, v):
+    def setVal(self, v: float):
         self._val = v
         self.update()
 
-    def setValue(self, value: int):
+    def isUseAni(self):
+        return self._useAni
+
+    def setUseAni(self, isUSe: bool):
+        self._useAni = isUSe
+
+    def _onValueChanged(self, value):
         if not self.useAni:
             self._val = value
-            return super().setValue(value)
+            return
 
         self.ani.stop()
-        self.ani.setStartValue(self.value())
         self.ani.setEndValue(value)
         self.ani.setDuration(150)
         self.ani.start()
@@ -126,6 +130,9 @@ class ProgressBar(QProgressBar):
         w = int(self.val / (self.maximum() - self.minimum()) * self.width())
         r = self.height() / 2
         painter.drawRoundedRect(0, 0, w, self.height(), r, r)
+
+    useAni = pyqtProperty(bool, isUseAni, setUseAni)
+    val = pyqtProperty(float, getVal, setVal)
 
 
 class IndeterminateProgressBar(QProgressBar):
