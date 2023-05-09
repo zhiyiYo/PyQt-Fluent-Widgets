@@ -17,6 +17,9 @@ class Ui_MessageBox:
     yesSignal = Signal()
     cancelSignal = Signal()
 
+    def __init__(self, parent):
+        self.parent = parent
+
     def _setUpUi(self, title, content, parent):
         self.content = content
         self.titleLabel = QLabel(title, parent)
