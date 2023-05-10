@@ -41,7 +41,7 @@ pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 
 如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。
 
-> **Note**
+> **Warning**
 > 请勿同时安装 PyQt-Fluent-Widgets、PyQt6-Fluent-Widgets、PySide2-Fluent-Widgets 和 PySide6-Fluent-Widgets，因为他们的包名都是 `qfluentwidgets`
 
 
@@ -60,11 +60,17 @@ python demo.py
 ## 演示视频📽️
 请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PyQt-Fluent-Widgets 的全部组件和特性 🎉
 
-## 加入我们🚩
-可以在 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
+## 搭配 QtDesigner🚀
+可以运行 `python ./tools/designer.py` 来启动安装了 PyQt-Fluent-Widgets 插件的 QtDesigner。如果操作成功，QtDesigner 的侧边栏中将会显示 PyQt-Fluent-Widgets 的组件。对于旧项目的改造，推荐使用 [视频教程](https://www.bilibili.com/video/BV1na4y1V7jH) 中介绍的 `提升为...`。
+
+> **Note**
+> 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，不然可能出现各种奇怪的问题。
 
 ## 支持💖
-如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，您可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 为爱发电。非常感谢您的支持与鼓励 🥰
+如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶。非常感谢您的支持与鼓励 🥰
+
+## 加入我们🚩
+可以在 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
 
 ## 另见👀
 下面是一些使用了 PyQt-Fluent-Widgets 的项目：

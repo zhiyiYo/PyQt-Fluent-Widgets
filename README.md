@@ -41,6 +41,9 @@ pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 
 If you are using PySide2, PySide6 or PyQt6, you can download the code in [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2), [PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) or [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) branch.
 
+> **Warning**
+> Don't install PyQt-Fluent-Widgets, PyQt6-Fluent-Widgets, PySide2-Fluent-Widgets and PySide6-Fluent-Widgets at the same time, because their package names are all `qfluentwidgets`.
+
 
 ## Run Example
 After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
@@ -57,11 +60,16 @@ Want to know more about PyQt-Fluent-Widgets? Please read the [help document](htt
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
-## Join with Us
-You can join our [🚩 Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
+## Work with QtDesigner
+You can use PyQt-Fluent-Widgets in QtDesigner directly by running `python ./tools/designer.py`. If the operation is successful, you should be able to see the PyQt-Fluent-Widgets in the sidebar of QtDesigner.
+> **Note**
+> It is recommended to install pyqt5-tools and PyQt-Fluent-Widgets in a virtual environment.
 
 ## Support
 If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me via [爱发电](https://afdian.net/a/zhiyiYo) or [ko-fi](https://ko-fi.com/zhiyiYo). Your support is highly appreciated 🥰
+
+## Join with Us
+You can join our [🚩 Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
