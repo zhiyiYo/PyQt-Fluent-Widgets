@@ -14,8 +14,15 @@ from PyQt5.QtCore import QProcessEnvironment, QProcess, QLibraryInfo
 def get_designer_path():
     """ get the path of qt designer """
     site_packages = get_python_lib()
-    ext = '.exe' if os.name == 'nt' else ''
-    path = Path(f"{site_packages}/qt5_applications/Qt/bin/designer{ext}")
+
+    if sys.platform == "win32":
+        designer_name = "designer.exe"
+    elif sys.platform == "darwin":
+        designer_name = "designer.app"
+    else:
+        designer_name = "designer"
+
+    path = Path(f"{site_packages}/qt5_applications/Qt/bin/{designer_name}")
     if not path.exists():
         raise Exception(
             "Can't find available QtDesigner for current environment. You can try `pip install pyqt5-tools` to solve this problem.")
