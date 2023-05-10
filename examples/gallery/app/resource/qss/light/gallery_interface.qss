@@ -28,6 +28,11 @@ ExampleCard > #card {
     background-color: rgb(243, 243, 243);
 }
 
+ExampleCard > #card QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: black;
+}
+
 ExampleCard > #titleLabel {
     font: 14px 'Segoe UI Light', 'Microsoft YaHei';
     font-weight: 700;

@@ -116,3 +116,11 @@ QHeaderView::up-arrow {
     margin-right: 6px;
     image: url(:/qfluentwidgets/images/table_view/Up_black.svg);
 }
+QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 19);
+}
+
+QTableCornerButton::section:pressed {
+    background-color: rgba(0, 0, 0, 12);
+}

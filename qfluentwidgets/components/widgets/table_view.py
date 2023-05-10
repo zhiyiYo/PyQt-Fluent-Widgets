@@ -1,10 +1,10 @@
 # coding: utf-8
-from typing import List
+from typing import List, Union
 
-from PySide6.QtCore import Qt, QMargins, QModelIndex
+from PySide6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel
 from PySide6.QtGui import QPainter, QColor, QKeyEvent, QPalette
 from PySide6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem)
 
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
 from .line_edit import LineEdit
@@ -49,11 +49,10 @@ class TableItemDelegate(QStyledItemDelegate):
 
     def updateEditorGeometry(self, editor: QWidget, option: QStyleOptionViewItem, index: QModelIndex):
         rect = option.rect
-        h = super().sizeHint(option, index).height()
-        y = rect.y() + self.margin + (h - editor.height()) // 2
-        x, w = max(4, rect.x()), rect.width()
+        y = rect.y() + (rect.height() - editor.height()) // 2
+        x, w = max(8, rect.x()), rect.width()
         if index.column() == 0:
-            w -= 4
+            w -= 8
 
         editor.setGeometry(x, y, w, rect.height())
 
@@ -137,7 +136,8 @@ class TableItemDelegate(QStyledItemDelegate):
 class TableBase:
     """ Table base class """
 
-    def _initView(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.delegate = TableItemDelegate(self)
         self.scrollDelagate = SmoothScrollDelegate(self)
 
@@ -150,30 +150,31 @@ class TableBase:
         self.setItemDelegate(self.delegate)
         self.setSelectionBehavior(TableWidget.SelectRows)
 
-        self.entered.connect(lambda i: self.setHoverRow(i.row()))
-        self.pressed.connect(lambda i: self.setPressedRow(i.row()))
+        self.entered.connect(lambda i: self._setHoverRow(i.row()))
+        self.pressed.connect(lambda i: self._setPressedRow(i.row()))
+        self.verticalHeader().sectionClicked.connect(self.selectRow)
 
     def showEvent(self, e):
         QTableView.showEvent(self, e)
         self.resizeRowsToContents()
 
-    def setHoverRow(self, row: int):
+    def _setHoverRow(self, row: int):
         """ set hovered row """
         self.delegate.setHoverRow(row)
         self.viewport().update()
 
-    def setPressedRow(self, row: int):
+    def _setPressedRow(self, row: int):
         """ set pressed row """
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
-    def setSelectedRows(self, indexes: List[QModelIndex]):
+    def _setSelectedRows(self, indexes: List[QModelIndex]):
         self.delegate.setSelectedRows(indexes)
         self.viewport().update()
 
     def leaveEvent(self, e):
         QTableView.leaveEvent(self, e)
-        self.setHoverRow(-1)
+        self._setHoverRow(-1)
 
     def resizeEvent(self, e):
         QTableView.resizeEvent(self, e)
@@ -181,26 +182,49 @@ class TableBase:
 
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
-        self.setSelectedRows(self.selectedIndexes())
+        self._updateSelectedRows()
 
     def mousePressEvent(self, e: QKeyEvent):
         if e.button() == Qt.LeftButton:
             QTableView.mousePressEvent(self, e)
         else:
-            self.setPressedRow(self.indexAt(e.pos()).row())
+            self._setPressedRow(self.indexAt(e.pos()).row())
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.RightButton:
-            self.setSelectedRows(self.selectedIndexes())
+            self._updateSelectedRows()
         else:
-            self.setPressedRow(-1)
+            self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: TableItemDelegate):
         self.delegate = delegate
         super().setItemDelegate(delegate)
+
+    def selectAll(self):
+        QTableView.selectAll(self)
+        self._updateSelectedRows()
+
+    def selectRow(self, row: int):
+        QTableView.selectRow(self, row)
+        self._updateSelectedRows()
+
+    def setSelection(self, rect, command):
+        QTableView.setSelection(self, rect, command)
+        self._updateSelectedRows()
+
+    def clearSelection(self):
+        QTableView.clearSelection(self)
+        self._updateSelectedRows()
+
+    def setCurrentIndex(self, index: QModelIndex):
+        QTableView.setCurrentIndex(self, index)
+        self._updateSelectedRows()
+
+    def _updateSelectedRows(self):
+        self._setSelectedRows(self.selectedIndexes())
 
 
 class TableWidget(TableBase, QTableWidget):
@@ -208,7 +232,28 @@ class TableWidget(TableBase, QTableWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._initView()
+
+    def setCurrentCell(self, row: int, column: int, command=None):
+        self.setCurrentItem(self.item(row, column), command)
+
+    def setCurrentItem(self, item: QTableWidgetItem, command=None):
+        if not command:
+            super().setCurrentItem(item)
+        else:
+            super().setCurrentItem(item, command)
+
+        self._updateSelectedRows()
+
+    def setCurrentCell(self, row: int, column: int, command=None):
+        self.setCurrentItem(self.item(row, column), command)
+
+    def setCurrentItem(self, item: QTableWidgetItem, command=None):
+        if not command:
+            super().setCurrentItem(item)
+        else:
+            super().setCurrentItem(item, command)
+
+        self._updateSelectedRows()
 
 
 class TableView(TableBase, QTableView):
@@ -216,4 +261,3 @@ class TableView(TableBase, QTableView):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._initView()

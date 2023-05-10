@@ -145,12 +145,14 @@ class SwitchButton(QWidget):
             the position of indicator
         """
         super().__init__(parent=parent)
-        self.text = 'Off'
+        self._text = self.tr('Off')
+        self._offText =  self.tr('Off')
+        self._onText =  self.tr('On')
         self.__spacing = 12
         self.indicatorPos = indicatorPos
         self.hBox = QHBoxLayout(self)
         self.indicator = Indicator(self)
-        self.label = QLabel(self.text, self)
+        self.label = QLabel(self._text, self)
         self.__initWidget()
 
     @__init__.register
@@ -168,6 +170,7 @@ class SwitchButton(QWidget):
             the position of indicator
         """
         self.__init__(parent, indicatorPos)
+        self._offText = text
         self.setText(text)
 
     def __initWidget(self):
@@ -192,6 +195,7 @@ class SwitchButton(QWidget):
         FluentStyleSheet.SWITCH_BUTTON.apply(self)
 
         # connect signal to slot
+        self.indicator.toggled.connect(self._updateText)
         self.indicator.toggled.connect(self.checkedChanged)
 
     def eventFilter(self, obj, e: QEvent):
@@ -217,15 +221,22 @@ class SwitchButton(QWidget):
 
     def setChecked(self, isChecked):
         """ set checked state """
-        self.adjustSize()
+        self._updateText()
         self.indicator.setChecked(isChecked)
 
     def toggleChecked(self):
         """ toggle checked state """
         self.indicator.setChecked(not self.indicator.isChecked())
 
+    def _updateText(self):
+        self.setText(self.onText if self.isChecked() else self.offText)
+        self.adjustSize()
+
+    def getText(self):
+        return self._text
+
     def setText(self, text):
-        self.text = text
+        self._text = text
         self.label.setText(text)
         self.adjustSize()
 
@@ -237,4 +248,22 @@ class SwitchButton(QWidget):
         self.hBox.setSpacing(spacing)
         self.update()
 
+    def getOnText(self):
+        return self._onText
+
+    def setOnText(self, text):
+        self._onText = text
+        self._updateText()
+
+    def getOffText(self):
+        return self._offText
+
+    def setOffText(self, text):
+        self._offText = text
+        self._updateText()
+
     spacing = Property(int, getSpacing, setSpacing)
+    checked = Property(bool, isChecked, setChecked)
+    text = Property(str, getText, setText)
+    onText = Property(str, getOnText, setOnText)
+    offText = Property(str, getOffText, setOffText)

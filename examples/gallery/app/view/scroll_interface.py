@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt, QEasingCurve
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget
-from qfluentwidgets import SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel
+from qfluentwidgets import SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel, ScrollArea
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -19,7 +19,8 @@ class ScrollInterface(GalleryInterface):
             parent=parent
         )
 
-        w = SingleDirectionScrollArea()
+        # scroll area
+        w = ScrollArea()
         label = PixmapLabel(self)
         label.setPixmap(QPixmap(":/gallery/images/chidanta2.jpg").scaled(
             775, 1229, Qt.KeepAspectRatio, Qt.SmoothTransformation
@@ -28,7 +29,6 @@ class ScrollInterface(GalleryInterface):
         w.horizontalScrollBar().setValue(0)
         w.setWidget(label)
         w.setFixedSize(775, 430)
-        w.setObjectName('imageViewer')
 
         card = self.addExampleCard(
             self.tr('Smooth scroll area'),
@@ -39,13 +39,13 @@ class ScrollInterface(GalleryInterface):
         card.card.setToolTip(self.tr('Chitanda Eru is too hot 🥵'))
         card.card.setToolTipDuration(2000)
 
+        # smooth scroll area
         w = SmoothScrollArea()
         label = PixmapLabel(self)
         label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
 
         w.setWidget(label)
         w.setFixedSize(660, 540)
-        w.setObjectName('imageViewer')
 
         card = self.addExampleCard(
             self.tr('Smooth scroll area implemented by animation'),
@@ -54,4 +54,21 @@ class ScrollInterface(GalleryInterface):
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵'))
+        card.card.setToolTipDuration(2000)
+
+        # single direction scroll area
+        w = SingleDirectionScrollArea(self, Qt.Horizontal)
+        label = PixmapLabel(self)
+        label.setPixmap(QPixmap(":/gallery/images/chidanta4.jpg"))
+
+        w.setWidget(label)
+        w.setFixedSize(660, 498)
+
+        card = self.addExampleCard(
+            self.tr('Single direction scroll scroll area'),
+            w,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/scroll_area/demo.py',
+        )
+        card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
+        card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵🥵'))
         card.card.setToolTipDuration(2000)
