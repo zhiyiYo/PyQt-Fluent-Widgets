@@ -1,4 +1,6 @@
 function buildFancybox() {
+    if (location.href.endsWith("support.html")) return;
+    
     $(".article-container section img").unwrap();
     let images = Array.from($('.article-container section img'));
     if (!images.length) return;

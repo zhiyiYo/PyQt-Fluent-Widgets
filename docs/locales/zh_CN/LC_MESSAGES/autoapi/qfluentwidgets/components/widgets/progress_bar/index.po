@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-10 23:18+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:2
+#: ae5ea4936a0e4d9e89e39aa9e9db5bdc
+msgid "progress_bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:8
+#: c66f436303d94d148c764b13a5bfb168
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:19:<autosummary>:1
+#: 573f05bb89c24816881837449a9b508b
+msgid ""
+":py:obj:`ProgressBar "
+"<qfluentwidgets.components.widgets.progress_bar.ProgressBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:19:<autosummary>:1
+#: 8871d0bdd5ab45ca936f9755cc857e43
+msgid ""
+":py:obj:`IndeterminateProgressBar "
+"<qfluentwidgets.components.widgets.progress_bar.IndeterminateProgressBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:19:<autosummary>:1
+#: c558ba72f59f473e809ea0a4befb0e5a e3cc15f011d34dacb5a752d1631cda8d
+msgid "Indeterminate progress bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:22
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:84
+#: 02ecdbd595684c24adda817037def98d d3895c7a42bf4be6a551a6d1f5886dae
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QProgressBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:46
+#: 80ca84219fb545c0a7dfa88fab149521
+msgid "set the custom background color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:49
+#: ecf2ec41f75f4264bd61d9da0b5353be
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:50
+#: 9289f3a87aff44718c31caae696781fe
+msgid "light, dark: str | Qt.GlobalColor | QColor"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_bar/index.rst:51
+#: b159baab64d047e18a8f83b0dbfd6051
+msgid "background color in light/dark theme mode"
+msgstr ""
+
