@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_HK" sourcelanguage="en_US">
+<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
 <context>
     <name>BasicInputInterface</name>
     <message>
@@ -708,6 +708,14 @@
     </message>
 </context>
 <context>
+    <name>ProgressWidget</name>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="265"/>
+        <source>Progress</source>
+        <translation>進度</translation>
+    </message>
+</context>
+<context>
     <name>ScrollInterface</name>
     <message>
         <location filename="../../view/scroll_interface.py" line="33"/>
@@ -728,6 +736,16 @@
         <location filename="../../view/scroll_interface.py" line="56"/>
         <source>Chitanda Eru is so hot 🥵🥵</source>
         <translation>春寒賜浴華清池，温泉水滑洗凝脂 🥵🥵</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="67"/>
+        <source>Single direction scroll scroll area</source>
+        <translation>單方向平滑滾動區域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="73"/>
+        <source>Chitanda Eru is so hot 🥵🥵🥵</source>
+        <translation>春宵苦短日高起，從此君王不早朝🥵🥵🥵</translation>
     </message>
 </context>
 <context>
@@ -906,225 +924,240 @@
 <context>
     <name>StatusInfoInterface</name>
     <message>
-        <location filename="../../view/status_info_interface.py" line="37"/>
+        <location filename="../../view/status_info_interface.py" line="38"/>
         <source>State tool tip</source>
         <translation>進度提示條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="47"/>
+        <location filename="../../view/status_info_interface.py" line="48"/>
         <source>Label with a ToolTip</source>
         <translation>多看一眼就會爆炸</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="50"/>
+        <location filename="../../view/status_info_interface.py" line="51"/>
         <source>A label with a ToolTip</source>
         <translation>帶有工具提示的標籤</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="145"/>
+        <location filename="../../view/status_info_interface.py" line="175"/>
         <source>Show StateToolTip</source>
         <translation>顯示進度提示條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="34"/>
+        <location filename="../../view/status_info_interface.py" line="35"/>
         <source>Button with a simple ToolTip</source>
         <translation>帶有工具提示的按鈕</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="36"/>
+        <location filename="../../view/status_info_interface.py" line="37"/>
         <source>Simple ToolTip</source>
         <translation>簡單工具提示</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="143"/>
+        <location filename="../../view/status_info_interface.py" line="173"/>
         <source>The model training is complete!</source>
         <translation>模型訓練完成啦！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="149"/>
+        <location filename="../../view/status_info_interface.py" line="179"/>
         <source>Training model</source>
         <translation>正在訓練模型</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="149"/>
+        <location filename="../../view/status_info_interface.py" line="179"/>
         <source>Please wait patiently</source>
         <translation>心急吃不了熱豆腐，請耐心等待哦~</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="151"/>
+        <location filename="../../view/status_info_interface.py" line="181"/>
         <source>Hide StateToolTip</source>
         <translation>隱藏進度提示條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="57"/>
+        <location filename="../../view/status_info_interface.py" line="58"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="67"/>
+        <location filename="../../view/status_info_interface.py" line="68"/>
         <source>A closable InfoBar</source>
         <translation>可關閉的消息條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="75"/>
+        <location filename="../../view/status_info_interface.py" line="76"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="85"/>
+        <location filename="../../view/status_info_interface.py" line="86"/>
         <source>A closable InfoBar with long message</source>
         <translation>可關閉的長消息條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="92"/>
+        <location filename="../../view/status_info_interface.py" line="93"/>
         <source>GitHub</source>
         <translation>GitHub</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="92"/>
+        <location filename="../../view/status_info_interface.py" line="93"/>
         <source>When you look long into an abyss, the abyss looks into you.</source>
         <translation>當你長時間凝視深淵時，深淵也在凝視你。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="104"/>
+        <location filename="../../view/status_info_interface.py" line="105"/>
         <source>An InfoBar with custom icon, background color and widget.</source>
         <translation>自定義圖標、背景和小部件的消息條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="135"/>
+        <location filename="../../view/status_info_interface.py" line="136"/>
         <source>InfoBar with different pop-up locations</source>
         <translation>不同彈出位置的消息條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="190"/>
+        <location filename="../../view/status_info_interface.py" line="220"/>
         <source>No Internet</source>
         <translation>無網絡連接</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="168"/>
+        <location filename="../../view/status_info_interface.py" line="198"/>
         <source>Lesson 4</source>
         <translation>Lesson 4</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="179"/>
+        <location filename="../../view/status_info_interface.py" line="209"/>
         <source>Lesson 5</source>
         <translation>Lesson 5</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="74"/>
+        <location filename="../../view/status_info_interface.py" line="75"/>
         <source>My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don&apos;t smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I&apos;m normal.</source>
-        <translation>我的名字叫吉良吉影，33歲。住在杜王町東北部的別墅區一帶，未婚。我在龜友連鎖店服務。每天都要加班到晚上8點才能回家。我不抽煙，酒僅止於淺嘗。晚上11點睡，每天要睡足8個小時。睡前，我一定喝一杯温牛奶，然後做20分鐘的柔軟操，上了牀，馬上熟睡。一覺到天亮，決不把疲勞和壓力留到第二天。醫生都説我很正常。</translation>
+        <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在“龜友百貨連鎖公司”上班，每天最晚也是八點前回家，不吸煙，酒也是淺嘗輒止，晚上十一點上牀，保證八個小時的充足睡眠，睡前喝一杯熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="156"/>
+        <location filename="../../view/status_info_interface.py" line="186"/>
         <source>Lesson 3</source>
         <translation>Lesson 3</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="156"/>
+        <location filename="../../view/status_info_interface.py" line="186"/>
         <source>Believe in the spin, just keep believing!</source>
         <translation>相信迴旋吧，只管相信就是了！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="168"/>
+        <location filename="../../view/status_info_interface.py" line="198"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表達敬意吧，表達出敬意，然後邁向迴旋的另一個全新階段！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="179"/>
+        <location filename="../../view/status_info_interface.py" line="209"/>
         <source>迂迴路を行けば最短ルート。</source>
         <translation>最短的捷徑就是繞遠路，繞遠路才是我的最短捷徑。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="190"/>
+        <location filename="../../view/status_info_interface.py" line="220"/>
         <source>An error message which won&apos;t disappear automatically.</source>
         <translation>一條不會自動消失的消息。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="57"/>
+        <location filename="../../view/status_info_interface.py" line="58"/>
         <source>The Anthem of man is the Anthem of courage.</source>
         <translation>人類的讚歌就是勇氣的讚歌！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="102"/>
+        <location filename="../../view/status_info_interface.py" line="103"/>
         <source>Action</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="113"/>
+        <location filename="../../view/status_info_interface.py" line="114"/>
         <source>Top right</source>
         <translation>右上角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="114"/>
+        <location filename="../../view/status_info_interface.py" line="115"/>
         <source>Top</source>
         <translation>頂部居中</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="115"/>
+        <location filename="../../view/status_info_interface.py" line="116"/>
         <source>Top left</source>
         <translation>左上角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="116"/>
+        <location filename="../../view/status_info_interface.py" line="117"/>
         <source>Bottom right</source>
         <translation>右下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="117"/>
+        <location filename="../../view/status_info_interface.py" line="118"/>
         <source>Bottom</source>
         <translation>底部居中</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="118"/>
+        <location filename="../../view/status_info_interface.py" line="119"/>
         <source>Bottom left</source>
         <translation>左下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="201"/>
+        <location filename="../../view/status_info_interface.py" line="231"/>
         <source>Lesson 1</source>
         <translation>Lesson 1</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="201"/>
+        <location filename="../../view/status_info_interface.py" line="231"/>
         <source>Don&apos;t have any strange expectations of me.</source>
         <translation>別對我抱有什麼奇怪的期待</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="212"/>
+        <location filename="../../view/status_info_interface.py" line="242"/>
         <source>Lesson 2</source>
         <translation>Lesson 2</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="212"/>
+        <location filename="../../view/status_info_interface.py" line="242"/>
         <source>Don&apos;t let your muscles notice.</source>
         <translation>不要讓肌肉察覺</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="145"/>
+        <source>An indeterminate progress bar</source>
+        <translation>不確定進度條</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="155"/>
+        <source>An determinate progress bar</source>
+        <translation>確定的進度條</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="165"/>
+        <source>An determinate progress ring</source>
+        <translation>確定的圓形進度條</translation>
     </message>
 </context>
 <context>
     <name>TableFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="146"/>
+        <location filename="../../view/view_interface.py" line="148"/>
         <source>Title</source>
         <translation>標題</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="146"/>
+        <location filename="../../view/view_interface.py" line="148"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="146"/>
+        <location filename="../../view/view_interface.py" line="148"/>
         <source>Album</source>
         <translation>專輯</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="146"/>
+        <location filename="../../view/view_interface.py" line="148"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="146"/>
+        <location filename="../../view/view_interface.py" line="148"/>
         <source>Duration</source>
         <translation>時長</translation>
     </message>
@@ -1256,32 +1289,32 @@
 <context>
     <name>TreeFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="105"/>
+        <location filename="../../view/view_interface.py" line="107"/>
         <source>JoJo 1 - Phantom Blood</source>
         <translation>JoJo 1 - 幻影之血</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="106"/>
+        <location filename="../../view/view_interface.py" line="108"/>
         <source>Jonathan Joestar</source>
         <translation>喬納森·喬斯達</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="106"/>
+        <location filename="../../view/view_interface.py" line="108"/>
         <source>Dio Brando</source>
         <translation>迪奧·布蘭度</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="106"/>
+        <location filename="../../view/view_interface.py" line="108"/>
         <source>Will A. Zeppeli</source>
         <translation>威廉·A·齊貝林</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="113"/>
+        <location filename="../../view/view_interface.py" line="115"/>
         <source>JoJo 3 - Stardust Crusaders</source>
         <translation>JoJo3 - 星塵鬥士</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="114"/>
+        <location filename="../../view/view_interface.py" line="116"/>
         <source>Jotaro Kujo</source>
         <translation></translation>
     </message>

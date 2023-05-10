@@ -287,6 +287,7 @@ class FluentIcon(FluentIconBase, Enum):
     CARE_LEFT_SOLID = "CareLeftSolid"
     BACKGROUND_FILL = "BackgroundColor"
     CARE_RIGHT_SOLID = "CareRightSolid"
+    EMOJI_TAB_SYMBOLS = "EmojiTabSymbols"
 
     def path(self, theme=Theme.AUTO):
         return f':/qfluentwidgets/images/icons/{self.value}_{getIconColor(theme)}.svg'
@@ -297,6 +298,17 @@ class Icon(QIcon):
     def __init__(self, fluentIcon: FluentIcon):
         super().__init__(fluentIcon.path())
         self.fluentIcon = fluentIcon
+
+
+def toQIcon(icon: Union[QIcon, FluentIconBase, str]) -> QIcon:
+    """ convet `icon` to `QIcon` """
+    if isinstance(icon, str):
+        return QIcon(icon)
+
+    if isinstance(icon, FluentIconBase):
+        return icon.icon()
+
+    return icon
 
 
 class Action(QAction):

@@ -78,7 +78,7 @@ class CycleListWidget(QListWidget):
         self.scrollDuration = 250
         self.originItems = list(items)
 
-        self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
+        self.vScrollBar = SmoothScrollBar(Qt.Orientation.Vertical, self)
         self.visibleNumber = 9
 
         # repeat adding items to achieve circular scrolling

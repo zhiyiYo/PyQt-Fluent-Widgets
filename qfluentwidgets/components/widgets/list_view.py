@@ -1,9 +1,9 @@
 # coding:utf-8
-from typing import List
+from typing import List, Union
 
-from PyQt6.QtCore import Qt, pyqtSignal, QModelIndex
+from PyQt6.QtCore import Qt, pyqtSignal, QModelIndex, QItemSelectionModel
 from PyQt6.QtGui import QPainter
-from PyQt6.QtWidgets import QStyleOptionViewItem, QListView, QWidget, QListView, QListWidget
+from PyQt6.QtWidgets import QStyleOptionViewItem, QListView, QListWidgetItem, QListView, QListWidget
 
 from .scroll_bar import SmoothScrollDelegate
 from .table_view import TableItemDelegate
@@ -37,26 +37,26 @@ class ListBase:
         self.setItemDelegate(self.delegate)
         self.setMouseTracking(True)
 
-        self.entered.connect(lambda i: self.setHoverRow(i.row()))
-        self.pressed.connect(lambda i: self.setPressedRow(i.row()))
+        self.entered.connect(lambda i: self._setHoverRow(i.row()))
+        self.pressed.connect(lambda i: self._setPressedRow(i.row()))
 
-    def setHoverRow(self, row: int):
+    def _setHoverRow(self, row: int):
         """ set hovered row """
         self.delegate.setHoverRow(row)
         self.viewport().update()
 
-    def setPressedRow(self, row: int):
+    def _setPressedRow(self, row: int):
         """ set pressed row """
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
-    def setSelectedRows(self, indexes: List[QModelIndex]):
+    def _setSelectedRows(self, indexes: List[QModelIndex]):
         self.delegate.setSelectedRows(indexes)
         self.viewport().update()
 
     def leaveEvent(self, e):
         QListView.leaveEvent(self, e)
-        self.setHoverRow(-1)
+        self._setHoverRow(-1)
 
     def resizeEvent(self, e):
         QListView.resizeEvent(self, e)
@@ -64,26 +64,41 @@ class ListBase:
 
     def keyPressEvent(self, e):
         QListView.keyPressEvent(self, e)
-        self.setSelectedRows(self.selectedIndexes())
+        self._updateSelectedRows()
 
     def mousePressEvent(self, e):
         if e.button() == Qt.MouseButton.LeftButton:
             QListView.mousePressEvent(self, e)
         else:
-            self.setPressedRow(self.indexAt(e.pos()).row())
+            self._setPressedRow(self.indexAt(e.pos()).row())
 
     def mouseReleaseEvent(self, e):
         QListView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.MouseButton.RightButton:
-            self.setSelectedRows(self.selectedIndexes())
+            self._updateSelectedRows()
         else:
-            self.setPressedRow(-1)
+            self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: ListItemDelegate):
         self.delegate = delegate
         super().setItemDelegate(delegate)
+
+    def setSelection(self, rect, command):
+        QListView.setSelection(self, rect, command)
+        self._updateSelectedRows()
+
+    def clearSelection(self):
+        QListView.clearSelection(self)
+        self._updateSelectedRows()
+
+    def setCurrentIndex(self, index: QModelIndex):
+        QListView.setCurrentIndex(self, index)
+        self._updateSelectedRows()
+
+    def _updateSelectedRows(self):
+        self._setSelectedRows(self.selectedIndexes())
 
 
 class ListWidget(ListBase, QListWidget):
@@ -91,6 +106,17 @@ class ListWidget(ListBase, QListWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+    def setCurrentItem(self, item: QListWidgetItem, command: QItemSelectionModel.SelectionFlag = None):
+        self.setCurrentRow(self.row(item), command)
+
+    def setCurrentRow(self, row: int, command: QItemSelectionModel.SelectionFlag = None):
+        if not command:
+            super().setCurrentRow(row)
+        else:
+            super().setCurrentRow(row, command)
+
+        self._updateSelectedRows()
 
 
 class ListView(ListBase, QListView):

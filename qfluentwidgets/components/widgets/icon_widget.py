@@ -1,10 +1,11 @@
 # coding:utf-8
 from typing import Union
 
+from PyQt6.QtCore import pyqtProperty
 from PyQt6.QtGui import QIcon, QPainter
 from PyQt6.QtWidgets import QWidget
 
-from ...common.icon import FluentIconBase, drawIcon
+from ...common.icon import FluentIconBase, drawIcon, toQIcon
 from ...common.overload import singledispatchmethod
 
 
@@ -31,12 +32,17 @@ class IconWidget(QWidget):
         self.__init__(parent)
         self.setIcon(icon)
 
+    def getIcon(self):
+        return toQIcon(self._icon)
+
     def setIcon(self, icon: Union[str, QIcon, FluentIconBase]):
-        self.icon = icon
+        self._icon = icon
         self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |
                                QPainter.RenderHint.SmoothPixmapTransform)
-        drawIcon(self.icon, painter, self.rect())
+        drawIcon(self._icon, painter, self.rect())
+
+    icon = pyqtProperty(QIcon, getIcon, setIcon)

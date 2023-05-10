@@ -50,6 +50,11 @@ Want to know more about PyQt-Fluent-Widgets? Please read the [help document](htt
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
+## Work with QtDesigner
+You can use PyQt6-Fluent-Widgets in QtDesigner directly by running `python ./tools/designer.py`. If the operation is successful, you should be able to see the PyQt-Fluent-Widgets in the sidebar of QtDesigner.
+> **NOTE**
+> It is recommended to install pyqt6-plugins and PyQt6-Fluent-Widgets in a virtual environment.
+
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
 * [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)

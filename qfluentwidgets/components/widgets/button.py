@@ -1,12 +1,12 @@
 # coding:utf-8
 from typing import Union
 
-from PyQt6.QtCore import pyqtSignal, QUrl, Qt, QRectF, QSize, QPoint
+from PyQt6.QtCore import pyqtSignal, QUrl, Qt, QRectF, QSize, QPoint, pyqtProperty
 from PyQt6.QtGui import QDesktopServices, QIcon, QPainter
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
 from ...common.animation import TranslateYAnimation
-from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme
+from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import FluentStyleSheet
 from ...common.overload import singledispatchmethod
@@ -38,16 +38,18 @@ class PushButton(QPushButton):
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
         self.setProperty('hasIcon', icon is not None)
         self.setStyle(QApplication.style())
-        self._icon = icon
+        self._icon = icon or QIcon()
         self.update()
 
     def icon(self):
-        if isinstance(self._icon, str):
-            return QIcon(self._icon)
-        if isinstance(self._icon, FluentIconBase):
-            return self._icon.icon()
+        return toQIcon(self._icon)
 
-        return self._icon
+    def setProperty(self, name: str, value) -> bool:
+        if name != 'icon':
+            return super().setProperty(name, value)
+
+        self.setIcon(value)
+        return True
 
     def mousePressEvent(self, e):
         self.isPressed = True
@@ -71,7 +73,7 @@ class PushButton(QPushButton):
 
     def paintEvent(self, e):
         super().paintEvent(e)
-        if self._icon is None:
+        if self.icon().isNull():
             return
 
         painter = QPainter(self)
@@ -127,10 +129,10 @@ class HyperlinkButton(QPushButton):
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
         super().__init__(parent)
-        self.url = QUrl()
+        self._url = QUrl()
         FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.url))
+        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
 
     @__init__.register
     def _(self, url: str, text: str, parent: QWidget = None):
@@ -138,8 +140,13 @@ class HyperlinkButton(QPushButton):
         self.setText(text)
         self.url.setUrl(url)
 
-    def setUrl(self, url: str):
-        self.url.setUrl(url)
+    def getUrl(self):
+        return self._url
+
+    def setUrl(self, url: Union[str, QUrl]):
+        self._url = QUrl(url)
+
+    url = pyqtProperty(QUrl, getUrl, setUrl)
 
 
 class RadioButton(QRadioButton):
@@ -192,12 +199,14 @@ class ToolButton(QToolButton):
         self.update()
 
     def icon(self):
-        if isinstance(self._icon, str):
-            return QIcon(self._icon)
-        if isinstance(self._icon, FluentIconBase):
-            return self._icon.icon()
+        return toQIcon(self._icon)
 
-        return self._icon
+    def setProperty(self, name: str, value) -> bool:
+        if name != 'icon':
+            return super().setProperty(name, value)
+
+        self.setIcon(value)
+        return True
 
     def mousePressEvent(self, e):
         self.isPressed = True
@@ -415,12 +424,16 @@ class SplitPushButton(SplitWidgetBase):
 
     def setText(self, text: str):
         self.button.setText(text)
+        self.adjustSize()
 
     def icon(self):
         return self.button.icon()
 
     def setIcon(self, icon: Union[QIcon, FluentIconBase, str]):
         self.button.setIcon(icon)
+
+    text_ = pyqtProperty(str, text, setText)
+    icon_ = pyqtProperty(QIcon, icon, setIcon)
 
 
 class SplitToolButton(SplitWidgetBase):
@@ -451,14 +464,10 @@ class SplitToolButton(SplitWidgetBase):
         self.__init__(parent)
         self.setIcon(icon)
 
-    def text(self):
-        return self.button.text()
-
-    def setText(self, text: str):
-        self.button.setText(text)
-
     def icon(self):
         return self.button.icon()
 
     def setIcon(self, icon: Union[QIcon, FluentIconBase, str]):
         self.button.setIcon(icon)
+
+    icon_ = pyqtProperty(QIcon, icon, setIcon)
