@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_HK" sourcelanguage="en_US">
+<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
 <context>
     <name>BasicInputInterface</name>
     <message>
@@ -736,6 +736,16 @@
         <location filename="../../view/scroll_interface.py" line="56"/>
         <source>Chitanda Eru is so hot 🥵🥵</source>
         <translation>春寒賜浴華清池，温泉水滑洗凝脂 🥵🥵</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="67"/>
+        <source>Single direction scroll scroll area</source>
+        <translation>單方向平滑滾動區域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="73"/>
+        <source>Chitanda Eru is so hot 🥵🥵🥵</source>
+        <translation>春宵苦短日高起，從此君王不早朝🥵🥵🥵</translation>
     </message>
 </context>
 <context>

@@ -737,6 +737,16 @@
         <source>Chitanda Eru is so hot 🥵🥵</source>
         <translation>春寒赐浴华清池，温泉水滑洗凝脂 🥵🥵</translation>
     </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="67"/>
+        <source>Single direction scroll scroll area</source>
+        <translation>单方向平滑滚动区域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="73"/>
+        <source>Chitanda Eru is so hot 🥵🥵🥵</source>
+        <translation>春宵苦短日高起，从此君王不早朝🥵🥵🥵</translation>
+    </message>
 </context>
 <context>
     <name>SettingInterface</name>
