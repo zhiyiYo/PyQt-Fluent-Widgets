@@ -64,7 +64,7 @@ python demo.py
 可以运行 `python ./tools/designer.py` 来启动安装了 PyQt-Fluent-Widgets 插件的 QtDesigner。如果操作成功，QtDesigner 的侧边栏中将会显示 PyQt-Fluent-Widgets 的组件。对于旧项目的改造，推荐使用 [视频教程](https://www.bilibili.com/video/BV1na4y1V7jH) 中介绍的 `提升为...`。
 
 > **Note**
-> 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，不然可能出现各种奇怪的问题。
+> 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
 
 ## 支持💖
 如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶。非常感谢您的支持与鼓励 🥰
