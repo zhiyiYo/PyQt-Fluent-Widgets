@@ -8,7 +8,7 @@ import warnings
 from pathlib import Path
 
 import PyQt6
-from PyQt6.QtCore import QProcessEnvironment, QProcess, QLibraryInfo
+from PyQt6.QtCore import QProcessEnvironment, QProcess
 
 
 def get_designer_path():
@@ -27,7 +27,7 @@ def get_designer_path():
         raise Exception(
             "Can't find available QtDesigner for current environment. You can try `pyqt6-plugins` to solve this problem.")
 
-    # check pyqt5 dll
+    # check pyqt6 dll
     if sys.platform == "win32":
         dll_name = "pyqt6.dll"
     elif sys.platform == "darwin":
@@ -44,7 +44,7 @@ def get_designer_path():
         warnings.warn(f"Can't find avaliable {dll_name}, which may cause PyQt-Fluent-Widgets not being visible in QtDesigner.")
         return str(path)
 
-    # copy pyqt5 dll
+    # copy pyqt6 dll
     dll_path.parent.mkdir(exist_ok=True, parents=True)
     shutil.copy(plugin_dll_path, dll_path)
     print(f'Copy {plugin_dll_path} to {dll_path}.')
@@ -61,6 +61,9 @@ PATH = f"{os.path.dirname(PyQt6.__file__)};{sys.prefix};{env.value('PATH', '')}"
 env.insert('PATH', PATH)
 env.insert('PYQTDESIGNERPATH', str(project_dir / 'plugins'))
 env.insert('PYTHONPATH', str(project_dir))
+
+if sys.platform == "darwin":
+    env.insert('DYLD_LIBRARY_PATH', get_python_lib() + "/../..")
 
 # launch QtDesigner
 designer = QProcess()
