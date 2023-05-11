@@ -62,6 +62,9 @@ env.insert('PATH', PATH)
 env.insert('PYQTDESIGNERPATH', str(project_dir / 'plugins'))
 env.insert('PYTHONPATH', str(project_dir))
 
+if sys.platform == "darwin":
+    env.insert('DYLD_LIBRARY_PATH', get_python_lib() + "/../..")
+    
 # launch QtDesigner
 designer = QProcess()
 designer.setProcessEnvironment(env)
