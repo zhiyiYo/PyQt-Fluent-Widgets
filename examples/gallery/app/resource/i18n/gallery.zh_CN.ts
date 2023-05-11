@@ -263,7 +263,7 @@
 <context>
     <name>ExampleCard</name>
     <message>
-        <location filename="../../view/gallery_interface.py" line="87"/>
+        <location filename="../../view/gallery_interface.py" line="113"/>
         <source>Source code</source>
         <translation>源代码</translation>
     </message>
@@ -546,89 +546,89 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="119"/>
+        <location filename="../../view/main_window.py" line="120"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="125"/>
+        <location filename="../../view/main_window.py" line="126"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="129"/>
+        <location filename="../../view/main_window.py" line="130"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="131"/>
+        <location filename="../../view/main_window.py" line="132"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="135"/>
+        <location filename="../../view/main_window.py" line="136"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="133"/>
+        <location filename="../../view/main_window.py" line="134"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="137"/>
+        <location filename="../../view/main_window.py" line="138"/>
         <source>Scrolling</source>
         <translation>滚动</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="139"/>
+        <location filename="../../view/main_window.py" line="140"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="141"/>
+        <location filename="../../view/main_window.py" line="142"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="121"/>
+        <location filename="../../view/main_window.py" line="122"/>
         <source>Icons</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="143"/>
+        <location filename="../../view/main_window.py" line="144"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="153"/>
+        <location filename="../../view/main_window.py" line="154"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="127"/>
+        <location filename="../../view/main_window.py" line="128"/>
         <source>Date &amp; time</source>
         <translation>日期和时间</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="205"/>
+        <location filename="../../view/main_window.py" line="206"/>
         <source>Sure</source>
         <translation>来啦老弟</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="206"/>
+        <location filename="../../view/main_window.py" line="207"/>
         <source>Cancel</source>
         <translation>下次一定</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="200"/>
+        <location filename="../../view/main_window.py" line="201"/>
         <source>Buy me a coffee</source>
         <translation>请作者喝杯奶茶</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="200"/>
+        <location filename="../../view/main_window.py" line="201"/>
         <source>If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me. Your support is highly appreciated 🥰</source>
-        <translation>如果您正在使用这个项目并感觉良好，或者是想支持作者继续开发，您可以考虑请作者喝一杯奶茶。非常感谢您的支持与鼓励 🥰</translation>
+        <translation>如果您正在使用这个项目并感觉良好，或者是想支持作者继续开发，您可以考虑请作者喝一杯奶茶，还能获得相应的奖励哦😊。非常感谢您的支持与鼓励 🥰</translation>
     </message>
 </context>
 <context>
@@ -1208,24 +1208,29 @@
 <context>
     <name>ToolBar</name>
     <message>
-        <location filename="../../view/gallery_interface.py" line="21"/>
+        <location filename="../../view/gallery_interface.py" line="40"/>
         <source>Documentation</source>
         <translation>在线文档</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="23"/>
+        <location filename="../../view/gallery_interface.py" line="42"/>
         <source>Source</source>
         <translation>源代码</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="55"/>
+        <location filename="../../view/gallery_interface.py" line="79"/>
         <source>Toggle theme</source>
         <translation>切换主题</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="56"/>
+        <location filename="../../view/gallery_interface.py" line="81"/>
         <source>Send feedback</source>
         <translation>提供反馈</translation>
+    </message>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="80"/>
+        <source>Support me</source>
+        <translation>支持作者🥰</translation>
     </message>
 </context>
 <context>

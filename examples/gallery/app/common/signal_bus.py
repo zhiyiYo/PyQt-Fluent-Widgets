@@ -6,6 +6,7 @@ class SignalBus(QObject):
     """ Signal bus """
 
     switchToSampleCard = pyqtSignal(str, int)
+    supportSignal = pyqtSignal()
 
 
 signalBus = SignalBus()

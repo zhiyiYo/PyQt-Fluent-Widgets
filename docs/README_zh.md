@@ -67,7 +67,7 @@ python demo.py
 > 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
 
 ## 支持💖
-如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶。非常感谢您的支持与鼓励 🥰
+如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶，还能获得相应的奖励哦😊。非常感谢您的支持与鼓励 🥰
 
 ## 加入我们🚩
 可以在 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
