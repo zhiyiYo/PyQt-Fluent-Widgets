@@ -109,6 +109,7 @@ class MainWindow(FramelessWindow):
         self.widgetLayout.setContentsMargins(0, 48, 0, 0)
 
         signalBus.switchToSampleCard.connect(self.switchToSample)
+        signalBus.supportSignal.connect(self.showMessageBox)
 
         self.navigationInterface.displayModeChanged.connect(
             self.titleBar.raise_)

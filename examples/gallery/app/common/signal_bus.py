@@ -6,6 +6,7 @@ class SignalBus(QObject):
     """ Signal bus """
 
     switchToSampleCard = Signal(str, int)
+    supportSignal = Signal()
 
 
 signalBus = SignalBus()
