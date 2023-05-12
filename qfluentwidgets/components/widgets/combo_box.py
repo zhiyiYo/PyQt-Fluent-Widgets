@@ -398,6 +398,119 @@ class EditableComboBox(LineEdit, ComboBoxBase):
     def _onDropMenuClosed(self):
         self.dropMenu = None
 
+from PyQt5.QtWidgets import QComboBox
+from PyQt5.Qt import Qt, QCompleter, QSortFilterProxyModel, QStandardItemModel, QStandardItem
+
+class EditableComboBoxWithSearch(EditableComboBox):
+    """ Editable combo box """
+
+    currentIndexChanged = pyqtSignal(int)
+    currentTextChanged = pyqtSignal(str)
+    
+    # -----------------------------------------------------------------------------------------------------------------------------
+    
+    __model = QStandardItemModel()
+    
+    @property
+    def model(self):
+        return self.__model
+    
+    @model.setter
+    def model(self, items):
+        self.__model = QStandardItemModel()
+        StandardItems = []
+        for item in items:
+            standardItem = QStandardItem(item.text)
+            StandardItems.append(standardItem)
+        
+        self.__model.appendColumn(StandardItems)
+    
+    # -----------------------------------------------------------------------------------------------------------------------------
+    
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        
+        # -----------------------------------------------------------------------------------------------------------------------------
+        
+        # 添加筛选器模型来筛选匹配项
+        self.pFilterModel = QSortFilterProxyModel(self)
+        # 大小写不敏感
+        self.pFilterModel.setFilterCaseSensitivity(Qt.CaseInsensitive)
+        self.model = self.items
+        self.pFilterModel.setSourceModel(self.model)
+        
+        # 添加一个使用筛选器模型的QCompleter
+        self.completer = QCompleter(self.pFilterModel, self)
+        # 始终显示所有(过滤后的)补全结果
+        self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
+        # 不区分大小写
+        self.completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.setCompleter(self.completer)
+        
+        # Qcombobox编辑栏文本变化时对应的槽函数
+        # self.lineEdit().textEdited.connect(self.pFilterModel.setFilterFixedString)
+        self.textEdited.connect(self.pFilterModel.setFilterFixedString)
+        self.completer.activated.connect(self.on_completer_activated)
+    
+        # -----------------------------------------------------------------------------------------------------------------------------
+    # -----------------------------------------------------------------------------------------------------------------------------
+    
+    # 当在Qcompleter列表选中候，下拉框项目列表选择相应的子项目
+    def on_completer_activated(self, text):
+        if text:
+            index = self.findText(text)
+            self.setCurrentIndex(index)
+            # self.activated[str].emit(self.itemText(index))
+    
+    # 在模型更改时，更新过滤器和补全器的模型
+    def setModel(self, model):
+        #         super(NewComboBox, self).setModel(model)
+        self.pFilterModel.setSourceModel(model)
+        self.completer.setModel(self.pFilterModel)
+    
+    # 在模型列更改时，更新过滤器和补全器的模型列
+    def setModelColumn(self, column):
+        self.completer.setCompletionColumn(column)
+        self.pFilterModel.setFilterKeyColumn(column)
+        super(NewComboBox, self).setModelColumn(column)
+    
+    # 回应回车按钮事件
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key_Enter & e.key() == Qt.Key_Return:
+            text = self.currentText()
+            index = self.findText(text)
+            self.setCurrentIndex(index)
+            # self.hidePopup()
+            super(EditableComboBox, self).keyPressEvent(e)
+        else:
+            super(EditableComboBox, self).keyPressEvent(e)
+    
+    # 增加项时，修改模型筛选器
+    def addItem(self, text: str, icon=None, userData=None):
+        """ add item
+
+        Parameters
+        ----------
+        text: str
+            the text of item
+
+        icon: str | QIcon | FluentIconBase
+        """
+        super().addItem(text, icon, userData)
+        
+        self.model = self.items
+        self.setModel(self.model)
+    
+    # 清除项目时，修改模型筛选器
+    def clear(self) -> None:
+        super().clear()
+        self.model = self.items
+        self.setModel(self.model)
+
+    # -----------------------------------------------------------------------------------------------------------------------------
+
+   
+
 
 class ComboMenuItemDelegate(MenuItemDelegate):
     """ Combo box drop menu item delegate """

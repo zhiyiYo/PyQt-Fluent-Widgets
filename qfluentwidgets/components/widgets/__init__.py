@@ -2,7 +2,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
                      HyperlinkButton, ToolButton, TransparentToolButton, ToggleButton, SplitWidgetBase,
                      SplitPushButton, SplitToolButton)
 from .check_box import CheckBox
-from .combo_box import ComboBox, EditableComboBox
+from .combo_box import ComboBox, EditableComboBox, EditableComboBoxWithSearch
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import PixmapLabel
