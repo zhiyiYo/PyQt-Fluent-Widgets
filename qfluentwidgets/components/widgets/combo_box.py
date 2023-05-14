@@ -373,6 +373,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
     def currentText(self):
         return self.text()
 
+    def clear(self):
+        ComboBoxBase.clear(self)
+
     def _onReturnPressed(self):
         if not self.text():
             return
