@@ -111,12 +111,13 @@ class LineEdit(QLineEdit):
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
 
+        m = self.contentsMargins()
         path = QPainterPath()
-        w, h = self.width(), self.height()
-        path.addRoundedRect(QRectF(0, h-10, w, 10), 5, 5)
+        w, h = self.width()-m.left()-m.right(), self.height()
+        path.addRoundedRect(QRectF(m.left(), h-10, w, 10), 5, 5)
 
         rectPath = QPainterPath()
-        rectPath.addRect(0, h-10, w, 8)
+        rectPath.addRect(m.left(), h-10, w, 8)
         path = path.subtracted(rectPath)
 
         painter.fillPath(path, themeColor())
