@@ -18,7 +18,7 @@ class Ui_MessageBox:
     cancelSignal = Signal()
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        pass
 
     def _setUpUi(self, title, content, parent):
         self.content = content

@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import SpinBox, DoubleSpinBox, TextEdit, TimeEdit, DateTimeEdit, LineEdit, PlainTextEdit, DateEdit
+from qfluentwidgets import SpinBox, DoubleSpinBox, TextEdit, TimeEdit, DateTimeEdit, LineEdit, PlainTextEdit, DateEdit, SearchLineEdit
 
 from plugin_base import PluginBase
 
@@ -26,7 +26,20 @@ class LineEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
         return "LineEdit"
 
 
-class TextEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
+class SearchLineEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Search line edit plugin """
+
+    def createWidget(self, parent):
+        return SearchLineEdit(parent)
+
+    def icon(self):
+        return super().icon("IconElement")
+
+    def name(self):
+        return "SearchLineEdit"
+
+
+class TextEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Text edit plugin """
 
     def createWidget(self, parent):
