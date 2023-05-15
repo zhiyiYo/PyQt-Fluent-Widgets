@@ -53,4 +53,5 @@ This document will show you all the features of PyQt-Fluent-Widgets and the best
    icon
    gallery
    support
+   license
    see-also

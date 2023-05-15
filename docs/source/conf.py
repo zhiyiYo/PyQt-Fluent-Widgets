@@ -12,13 +12,11 @@ current_dir = os.path.dirname(__file__)
 target_dir = os.path.abspath(os.path.join(current_dir, "../.."))
 sys.path.insert(0, target_dir)
 
-import qfluentwidgets
-
 
 project = 'PyQt-Fluent-Widgets'
 copyright = '2021, zhiyiYo'
 author = 'zhiyiYo'
-release = qfluentwidgets.__version__
+release = "0.8.8"
 
 # multi-language docs
 language = 'en'
