@@ -108,7 +108,7 @@ class MainWindow(FramelessWindow):
         self.widgetLayout.setContentsMargins(0, 48, 0, 0)
 
         signalBus.switchToSampleCard.connect(self.switchToSample)
-        signalBus.supportSignal.connect(self.showMessageBox)
+        signalBus.supportSignal.connect(self.onSupport)
 
         self.navigationInterface.displayModeChanged.connect(
             self.titleBar.raise_)
@@ -147,7 +147,7 @@ class MainWindow(FramelessWindow):
         self.navigationInterface.addWidget(
             routeKey='avatar',
             widget=AvatarWidget(':/gallery/images/shoko.png'),
-            onClick=self.showMessageBox,
+            onClick=self.onSupport,
             position=NavigationItemPosition.BOTTOM
         )
         self.addSubInterface(
@@ -196,16 +196,8 @@ class MainWindow(FramelessWindow):
         self.titleBar.move(46, 0)
         self.titleBar.resize(self.width()-46, self.titleBar.height())
 
-    def showMessageBox(self):
-        w = MessageBox(
-            self.tr('Buy me a coffee'),
-            self.tr('If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me. Your support is highly appreciated 🥰'),
-            self
-        )
-        w.yesButton.setText(self.tr('Sure'))
-        w.cancelButton.setText(self.tr('Cancel'))
-        if w.exec():
-            QDesktopServices.openUrl(QUrl(SUPPORT_URL))
+    def onSupport(self):
+        QDesktopServices.openUrl(QUrl(SUPPORT_URL))
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """
