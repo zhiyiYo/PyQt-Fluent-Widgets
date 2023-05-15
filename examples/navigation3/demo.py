@@ -1,6 +1,6 @@
 # coding:utf-8
 import sys
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QEvent
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QStackedWidget, QHBoxLayout, QLabel, QWidget, QVBoxLayout
 
@@ -43,6 +43,8 @@ class NavigationBar(QWidget):
         self.navigationPanel.setMenuButtonVisible(True)
         self.navigationPanel.hide()
 
+        self.window().installEventFilter(self)
+
     def setTitle(self, title: str):
         self.titleLabel.setText(title)
         self.titleLabel.adjustSize()
@@ -67,9 +69,12 @@ class NavigationBar(QWidget):
         self.navigationPanel.setCurrentItem(routeKey)
         self.setTitle(self.navigationPanel.items[routeKey]._text)
 
-    def resizeEvent(self, e):
-        super().resizeEvent(e)
-        self.navigationPanel.resize(self.navigationPanel.width(), self.window().height() - 31)
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self.window():
+            if e.type() == QEvent.Resize:
+                self.navigationPanel.setFixedHeight(e.size().height() - 31)
+
+        return super().eventFilter(obj, e)
 
 
 class Window(FramelessWindow):
