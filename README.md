@@ -18,8 +18,13 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/License-LGPLv3-blue?color=#4ec820" alt="LGPLv3"/>
+    <img src="https://img.shields.io/badge/License-GPLv3-blue?color=#4ec820" alt="GPLv3"/>
   </a>
+</p>
+
+
+<p align="center">
+English | <a href="docs/README_zh.md">简体中文</a>
 </p>
 
 ![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
@@ -50,6 +55,13 @@ Want to know more about PySide6-Fluent-Widgets? Please read the [help document](
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
+## Support
+If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me via [爱发电](https://afdian.net/a/zhiyiYo) or [ko-fi](https://ko-fi.com/zhiyiYo). Your support is highly appreciated 🥰
+
+## Join with Us
+You can join our [🚩 Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
+
+
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
 * [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
@@ -60,6 +72,6 @@ Here are some projects that use PyQt-Fluent-Widgets:
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
 
 ## License
-PySide6-Fluent-Widgets is licensed under [LGPLv3](./LICENSE).
+PySide6-Fluent-Widgets adopts dual licenses. Non-commercial usage is licensed under [GPLv3](./LICENSE). For commercial purposes, please purchase on [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) or [ko-fi](https://ko-fi.com/s/b5000d2dd7) to support the development of this project.
 
 Copyright © 2021 by zhiyiYo.

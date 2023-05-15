@@ -9,10 +9,10 @@ online at https://pyqt-fluent-widgets.readthedocs.io.
 Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6/examples.
 
 :copyright: (c) 2023 by zhiyiYo.
-:license: LGPLv3, see LICENSE for more details.
+:license: GPLv3, see LICENSE for more details.
 """
 
-__version__ = "0.8.8"
+__version__ = "0.8.9"
 
 from .components import *
 from .common import *

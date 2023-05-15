@@ -6,14 +6,14 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PySide6-Fluent-Widgets",
-    version="0.8.8",
+    version="0.8.9",
     keywords="pyside6 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
     description="A fluent design widgets library based on PySide6",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    license="LGPLv3",
+    license="GPLv3",
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6",
     packages=setuptools.find_packages(),
     install_requires=[
@@ -26,7 +26,7 @@ setuptools.setup(
     },
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: OS Independent'
     ],
     project_urls={
