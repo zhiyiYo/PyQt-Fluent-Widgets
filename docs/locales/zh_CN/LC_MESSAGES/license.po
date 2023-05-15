@@ -34,7 +34,7 @@ msgid ""
 "Non-commercial usage is licensed under GPLv3. For commercial purposes, "
 "please purchase on 爱发电 or ko-fi to support the development of this "
 "project."
-msgstr "PySide6-Fluent-Widgets 使用双许可证。非商业用途使用 GPLv3 许可证进行授权，商用请在 [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) 或者 [ko-fi](https://ko-fi.com/s/b5000d2dd7) 上进行购买以支持作者的开发。"
+msgstr "PySide6-Fluent-Widgets 和 PySide2-Fluent-Widgets 使用双许可证。非商业用途使用 GPLv3 许可证进行授权，商用请在 [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) 或者 [ko-fi](https://ko-fi.com/s/b5000d2dd7) 上进行购买以支持作者的开发。"
 
 #: ../../source/license.md:6 2656d350db8b48dc8b45e674613eb847
 msgid "Copyright © 2021 by zhiyiYo."

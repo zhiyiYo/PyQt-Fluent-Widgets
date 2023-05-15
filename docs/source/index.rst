@@ -47,11 +47,12 @@ This document will show you all the features of PyQt-Fluent-Widgets and the best
    :caption: Contents
 
    quick-start
+   designer
    settings
    theme
    navigation
    icon
-   gallery
    support
    license
+   gallery
    see-also
