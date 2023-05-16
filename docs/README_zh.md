@@ -70,7 +70,7 @@ python demo.py
 如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶，还能获得相应的奖励哦😊。非常感谢您的支持与鼓励 🥰
 
 ## 加入我们🚩
-可以在 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
+可以在 [PFW 小圈子](https://afdian.net/group/e61a3db8f39911ed919852540025c377) 或者 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
 
 ## 另见👀
 下面是一些使用了 PyQt-Fluent-Widgets 的项目：

@@ -69,7 +69,7 @@ You can use PyQt-Fluent-Widgets in QtDesigner directly by running `python ./tool
 If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me via [爱发电](https://afdian.net/a/zhiyiYo) or [ko-fi](https://ko-fi.com/zhiyiYo). Your support is highly appreciated 🥰
 
 ## Join with Us
-You can join our [🚩 Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
+You can join [PFW 小圈子](https://afdian.net/group/e61a3db8f39911ed919852540025c377) or [Discord channel](https://discord.gg/mYZME3wraK) to communicate with us. You can share your findings, thoughts and ideas on improving PyQt-Fluent-Widgets 🚀
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
