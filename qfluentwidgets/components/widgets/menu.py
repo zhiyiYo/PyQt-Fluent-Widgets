@@ -1,8 +1,9 @@
 # coding:utf-8
+from enum import Enum
 from typing import List, Union
 
 from qframelesswindow import WindowEffect
-from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QRect,
+from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject,
                           Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QModelIndex)
 from PyQt5.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
@@ -180,6 +181,14 @@ class MenuActionListWidget(QListWidget):
         self.adjustSize()
 
 
+class MenuAnimationType(Enum):
+    """ Menu animation type """
+
+    NONE = 0
+    DROP_DOWN = 1
+    PULL_UP = 2
+
+
 class RoundMenu(QWidget):
     """ Round corner menu """
 
@@ -191,6 +200,7 @@ class RoundMenu(QWidget):
         self._icon = QIcon()
         self._actions = []  # type: List[QAction]
         self._subMenus = []
+
         self.isSubMenu = False
         self.parentMenu = None
         self.menuItem = None
@@ -198,10 +208,14 @@ class RoundMenu(QWidget):
         self.lastHoverSubMenuItem = None
         self.isHideBySystem = True
         self.itemHeight = 28
+
         self.hBoxLayout = QHBoxLayout(self)
         self.view = MenuActionListWidget(self)
+
+        self.aniManager = None
         self.ani = QPropertyAnimation(self, b'pos', self)
         self.timer = QTimer(self)
+
         self.__initWidgets()
 
     def __initWidgets(self):
@@ -570,7 +584,7 @@ class RoundMenu(QWidget):
         e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
         QApplication.sendEvent(self.view, e)
 
-    def exec(self, pos, ani=True):
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         """ show menu
 
         Parameters
@@ -580,31 +594,22 @@ class RoundMenu(QWidget):
 
         ani: bool
             Whether to show pop-up animation
+
+        aniType: MenuAnimationType
+            menu animation type
         """
         if self.isVisible():
             return
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        w, h = self.width() + 5, self.height() + 5
-        pos.setX(
-            min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w))
-        pos.setY(min(pos.y() - 4, rect.bottom() - h))
-
-        if ani:
-            self.ani.setStartValue(pos-QPoint(0, int(h/2)))
-            self.ani.setEndValue(pos)
-            self.ani.setDuration(250)
-            self.ani.setEasingCurve(QEasingCurve.OutQuad)
-            self.ani.start()
-        else:
-            self.move(pos)
+        self.aniManager = MenuAnimationManager.make(self, aniType)
+        self.aniManager.exec(pos)
 
         self.show()
 
         if self.isSubMenu:
             self.menuItem.setSelected(True)
 
-    def exec_(self, pos: QPoint, ani=True):
+    def exec_(self, pos: QPoint, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         """ show menu
 
         Parameters
@@ -614,8 +619,129 @@ class RoundMenu(QWidget):
 
         ani: bool
             Whether to show pop-up animation
+
+        aniType: MenuAnimationType
+            menu animation type
         """
-        self.exec(pos, ani)
+        self.exec(pos, ani, aniType)
+
+
+class MenuAnimationManager(QObject):
+    """ Menu animation manager """
+
+    managers = {}
+
+    def __init__(self, menu: RoundMenu):
+        super().__init__()
+        self.menu = menu
+        self.ani = QPropertyAnimation(menu, b'pos', menu)
+
+        self.ani.setDuration(250)
+        self.ani.setEasingCurve(QEasingCurve.OutQuad)
+        self.ani.valueChanged.connect(self._onValueChanged)
+        self.ani.valueChanged.connect(self._updateMenuViewport)
+
+    def _onValueChanged(self):
+        raise NotImplementedError
+
+    def _updateMenuViewport(self):
+        self.menu.view.viewport().update()
+        self.menu.view.setAttribute(Qt.WA_UnderMouse, True)
+        e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
+        QApplication.sendEvent(self.menu.view, e)
+
+    def _endPosition(self, pos):
+        m = self.menu
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = m.width() + 5, m.height() + 5
+        x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
+        y = min(pos.y() - 4, rect.bottom() - h)
+        return QPoint(x, y)
+
+    def _menuSize(self):
+        m = self.menu.layout().contentsMargins()
+        w = self.menu.view.width() + m.left() + m.right() + 120
+        h = self.menu.view.height() + m.top() + m.bottom() + 20
+        return w, h
+
+    def exec(self, pos: QPoint):
+        self._initAni(pos)
+
+    @classmethod
+    def register(cls, name):
+        """ register menu animation manager
+
+        Parameters
+        ----------
+        name: Any
+            the name of manager, it should be unique
+        """
+        def wrapper(Manager):
+            if name not in cls.managers:
+                cls.managers[name] = Manager
+
+            return Manager
+
+        return wrapper
+
+    @classmethod
+    def make(cls, menu: RoundMenu, aniType: MenuAnimationType):
+        if aniType not in cls.managers:
+            raise ValueError(f'`{aniType}` is an invalid menu animation type.')
+
+        return cls.managers[aniType](menu)
+
+
+@MenuAnimationManager.register(MenuAnimationType.NONE)
+class DummyMenuAnimationManager(MenuAnimationManager):
+    """ Dummy menu animation manager """
+
+    def exec(self, pos: QPoint):
+        self.menu.move(self._endPosition(pos))
+
+
+@MenuAnimationManager.register(MenuAnimationType.DROP_DOWN)
+class DropDownMenuAnimationManager(MenuAnimationManager):
+    """ Drop down menu animation manager """
+
+    def exec(self, pos):
+        pos = self._endPosition(pos)
+        h = self.menu.height() + 5
+
+        self.ani.setStartValue(pos-QPoint(0, int(h/2)))
+        self.ani.setEndValue(pos)
+        self.ani.start()
+
+    def _onValueChanged(self):
+        w, h = self._menuSize()
+        y = self.ani.endValue().y() - self.ani.currentValue().y()
+        self.menu.setMask(QRegion(0, y, w, h))
+
+
+@MenuAnimationManager.register(MenuAnimationType.PULL_UP)
+class PullUpMenuAnimationManager(MenuAnimationManager):
+    """ Pull up menu animation manager """
+
+    def _endPosition(self, pos):
+        m = self.menu
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = m.width() + 5, m.height()
+        x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
+        y = max(pos.y() - h + 15, 4)
+        return QPoint(x, y)
+
+    def exec(self, pos):
+        pos = self._endPosition(pos)
+        h = self.menu.height() + 5
+
+        self.ani.setStartValue(pos+QPoint(0, int(h/2)))
+        self.ani.setEndValue(pos)
+        self.ani.start()
+
+    def _onValueChanged(self):
+        w, h = self._menuSize()
+        y = self.ani.endValue().y() - self.ani.currentValue().y()
+        self.menu.setMask(QRegion(0, y, w, h))
 
 
 class EditMenu(RoundMenu):
