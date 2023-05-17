@@ -252,6 +252,21 @@ class TransparentToolButton(ToolButton):
     """ Transparent background tool button """
 
 
+class PrimaryToolButton(ToolButton):
+    """ Primary color tool button """
+
+    def _drawIcon(self, icon, painter: QPainter, rect: QRectF):
+        if isinstance(icon, FluentIconBase) and self.isEnabled():
+            # reverse icon color
+            theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+            icon = icon.icon(theme)
+        elif not self.isEnabled():
+            painter.setOpacity(0.786 if isDarkTheme() else 0.9)
+            icon = icon.icon(Theme.DARK)
+
+        return drawIcon(icon, painter, rect)
+
+
 class DropDownButtonBase:
     """ Drop down button base class """
 
@@ -332,6 +347,8 @@ class SplitDropButton(ToolButton):
 
     def _postInit(self):
         self.arrowAni = TranslateYAnimation(self)
+        self.setIconSize(QSize(10, 10))
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
 
     def _drawIcon(self, icon, painter, rect):
         rect.translate(0, self.arrowAni.y)
@@ -344,6 +361,27 @@ class SplitDropButton(ToolButton):
             painter.setOpacity(0.63)
 
         super()._drawIcon(FIF.ARROW_DOWN, painter, rect)
+
+
+class PrimarySplitDropButton(PrimaryToolButton):
+
+    def _postInit(self):
+        self.arrowAni = TranslateYAnimation(self)
+        self.setIconSize(QSize(10, 10))
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+    def _drawIcon(self, icon, painter, rect):
+        rect.translate(0, self.arrowAni.y)
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
+        elif self.isHover:
+            painter.setOpacity(0.9)
+        else:
+            painter.setOpacity(1)
+
+        theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+        super()._drawIcon(FIF.ARROW_DOWN.icon(theme), painter, rect)
 
 
 class SplitWidgetBase(QWidget):
@@ -361,8 +399,6 @@ class SplitWidgetBase(QWidget):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.dropButton)
 
-        self.dropButton.setIconSize(QSize(10, 10))
-        self.dropButton.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         self.dropButton.clicked.connect(self.dropDownClicked)
         self.dropButton.clicked.connect(self.showFlyout)
 
@@ -371,6 +407,16 @@ class SplitWidgetBase(QWidget):
     def setWidget(self, widget: QWidget):
         """ set the widget on left side """
         self.hBoxLayout.insertWidget(0, widget, 1, Qt.AlignLeft)
+
+    def setDropButton(self, button):
+        """ set drop dow button """
+        self.hBoxLayout.removeWidget(self.dropButton)
+        self.dropButton.deleteLater()
+
+        self.dropButton = button
+        self.dropButton.clicked.connect(self.dropDownClicked)
+        self.dropButton.clicked.connect(self.showFlyout)
+        self.hBoxLayout.addWidget(button)
 
     def setFlyout(self, flyout):
         """ set the widget pops up when drop down button is clicked
@@ -412,12 +458,16 @@ class SplitPushButton(SplitWidgetBase):
         self.button.setObjectName('splitPushButton')
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
+        self._postInit()
 
     @__init__.register
     def _(self, text: str, parent: QWidget = None, icon: Union[QIcon, str, FluentIconBase] = None):
         self.__init__(parent)
         self.setText(text)
         self.setIcon(icon)
+
+    def _postInit(self):
+        pass
 
     def text(self):
         return self.button.text()
@@ -436,6 +486,21 @@ class SplitPushButton(SplitWidgetBase):
     icon_ = pyqtProperty(QIcon, icon, setIcon)
 
 
+class PrimarySplitPushButton(SplitPushButton):
+    """ Primary split push button """
+
+    def _postInit(self):
+        self.setDropButton(PrimarySplitDropButton(self))
+
+        self.hBoxLayout.removeWidget(self.button)
+        self.button.deleteLater()
+
+        self.button = PrimaryPushButton(self)
+        self.button.setObjectName('primarySplitPushButton')
+        self.button.clicked.connect(self.clicked)
+        self.setWidget(self.button)
+
+
 class SplitToolButton(SplitWidgetBase):
     """ Split tool button """
 
@@ -448,6 +513,7 @@ class SplitToolButton(SplitWidgetBase):
         self.button.setObjectName('splitToolButton')
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
+        self._postInit()
 
     @__init__.register
     def _(self, icon: FluentIconBase, parent: QWidget = None):
@@ -464,6 +530,9 @@ class SplitToolButton(SplitWidgetBase):
         self.__init__(parent)
         self.setIcon(icon)
 
+    def _postInit(self):
+        pass
+
     def icon(self):
         return self.button.icon()
 
@@ -471,3 +540,18 @@ class SplitToolButton(SplitWidgetBase):
         self.button.setIcon(icon)
 
     icon_ = pyqtProperty(QIcon, icon, setIcon)
+
+
+class PrimarySplitToolButton(SplitToolButton):
+    """ Primary split push button """
+
+    def _postInit(self):
+        self.setDropButton(PrimarySplitDropButton(self))
+
+        self.hBoxLayout.removeWidget(self.button)
+        self.button.deleteLater()
+
+        self.button = PrimaryToolButton(self)
+        self.button.setObjectName('primarySplitToolButton')
+        self.button.clicked.connect(self.clicked)
+        self.setWidget(self.button)

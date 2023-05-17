@@ -50,23 +50,24 @@ PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-#splitPushButton, #splitToolButton {
+#splitPushButton,
+#splitToolButton,
+#primarySplitPushButton,
+#primarySplitToolButton {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-SplitDropButton {
-    border-left: none;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
 
-#splitPushButton:pressed, #splitToolButton:pressed, SplitDropButton:pressed {
+#splitPushButton:pressed,
+#splitToolButton:pressed,
+SplitDropButton:pressed {
     border-bottom: 1px solid rgba(0, 0, 0, 0.183);
 }
 
 
 PrimaryPushButton,
+PrimaryToolButton,
 ToggleButton:checked {
     color: white;
     background-color: --ThemeColorPrimary;
@@ -75,6 +76,7 @@ ToggleButton:checked {
 }
 
 PrimaryPushButton:hover,
+PrimaryToolButton:hover,
 ToggleButton:checked:hover {
     background-color: --ThemeColorLight1;
     border: 1px solid --ThemeColorLight2;
@@ -82,6 +84,7 @@ ToggleButton:checked:hover {
 }
 
 PrimaryPushButton:pressed,
+PrimaryToolButton:pressed,
 ToggleButton:checked:pressed {
     color: rgba(255, 255, 255, 0.63);
     background-color: --ThemeColorLight3;
@@ -89,10 +92,30 @@ ToggleButton:checked:pressed {
 }
 
 PrimaryPushButton:disabled,
+PrimaryToolButton:disabled,
 ToggleButton:checked:disabled {
     color: rgba(255, 255, 255, 0.9);
     background-color: rgb(205, 205, 205);
     border: 1px solid rgb(205, 205, 205);
+}
+
+SplitDropButton,
+PrimarySplitDropButton {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+PrimarySplitDropButton:pressed {
+    border-bottom: 1px solid --ThemeColorDark1;
+}
+
+#primarySplitPushButton, #primarySplitToolButton {
+    border-right: 1px solid --ThemeColorLight3;
+}
+
+#primarySplitPushButton:pressed, #primarySplitToolButton:pressed {
+    border-bottom: 1px solid --ThemeColorDark1;
 }
 
 HyperlinkButton {

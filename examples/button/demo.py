@@ -5,7 +5,8 @@ from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QAction
 from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, PrimaryPushButton,
                             HyperlinkButton, setTheme, Theme, ToolButton, ToggleButton, RoundMenu,
-                            SplitPushButton, SplitToolButton)
+                            SplitPushButton, SplitToolButton, PrimaryToolButton, PrimarySplitPushButton,
+                            PrimarySplitToolButton)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -17,6 +18,7 @@ class Demo(QWidget):
 
         # tool button
         self.toolButton = ToolButton(FIF.SETTING, self)
+        self.primaryToolButton = PrimaryToolButton(FIF.EMOJI_TAB_SYMBOLS, self)
 
         # change the size of tool button
         # self.toolButton.resize(50, 50)
@@ -36,21 +38,29 @@ class Demo(QWidget):
         # drop down button
         self.dropDownPushButton = DropDownPushButton('Email', self, FIF.MAIL)
         self.dropDownToolButton = DropDownToolButton(FIF.MAIL, self)
+        
         self.menu = RoundMenu(parent=self)
         self.menu.addAction(QAction(FIF.SEND_FILL.icon(), 'Send'))
         self.menu.addAction(QAction(FIF.SAVE.icon(), 'Save'))
+
         self.dropDownPushButton.setMenu(self.menu)
         self.dropDownToolButton.setMenu(self.menu)
 
         # split button
         self.splitPushButton = SplitPushButton('Split push button', self, FIF.GITHUB)
+        self.primarySplitPushButton = PrimarySplitPushButton('Split push button', self, FIF.GITHUB)
         self.splitToolButton = SplitToolButton(FIF.GITHUB, self)
+        self.primarySplitToolButton = PrimarySplitToolButton(FIF.GITHUB, self)
+
         self.splitMenu = RoundMenu(parent=self)
         self.splitMenu.addAction(Action(FIF.BASKETBALL, 'Basketball'))
         self.splitMenu.addAction(Action(FIF.ALBUM, 'Sing'))
         self.splitMenu.addAction(Action(FIF.MUSIC, 'Music'))
+
         self.splitPushButton.setFlyout(self.splitMenu)
         self.splitToolButton.setFlyout(self.splitMenu)
+        self.primarySplitPushButton.setFlyout(self.splitMenu)
+        self.primarySplitToolButton.setFlyout(self.splitMenu)
 
         # hyperlink button
         self.hyperlinkButton = HyperlinkButton(
@@ -61,6 +71,7 @@ class Demo(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
         self.vBoxLayout.addWidget(self.toolButton, 0, Qt.AlignCenter)
+        self.vBoxLayout.addWidget(self.primaryToolButton, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.pushButton1, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.pushButton2, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.primaryButton1, 0, Qt.AlignCenter)
@@ -69,11 +80,13 @@ class Demo(QWidget):
         self.vBoxLayout.addWidget(self.dropDownPushButton, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.dropDownToolButton, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.splitPushButton, 0, Qt.AlignCenter)
+        self.vBoxLayout.addWidget(self.primarySplitPushButton, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.splitToolButton, 0, Qt.AlignCenter)
+        self.vBoxLayout.addWidget(self.primarySplitToolButton, 0, Qt.AlignCenter)
         self.vBoxLayout.addWidget(self.hyperlinkButton, 0, Qt.AlignCenter)
         self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinAndMaxSize)
 
-        self.resize(500, 600)
+        self.resize(500, 700)
         self.setStyleSheet('Demo{background:white}')
 
 

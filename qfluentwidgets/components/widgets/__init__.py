@@ -1,6 +1,6 @@
 from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, PushButton, RadioButton,
                      HyperlinkButton, ToolButton, TransparentToolButton, ToggleButton, SplitWidgetBase,
-                     SplitPushButton, SplitToolButton)
+                     SplitPushButton, SplitToolButton, PrimaryToolButton, PrimarySplitPushButton, PrimarySplitToolButton)
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
