@@ -46,9 +46,10 @@ class Router(QObject):
 
         if not self.history and self.defaultItem != item:
             self.history.append(item)
-            self.emptyChanged.emit(False)
         elif self.history and self.history[-1] != item:
             self.history.append(item)
+
+        self.emptyChanged.emit(not bool(self.history))
 
     def pop(self):
         """ pop history """
