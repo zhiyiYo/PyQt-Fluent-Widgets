@@ -300,6 +300,12 @@ class DropDownButtonBase:
         if self.menu():
             self.menu().hide()
 
+    def _drawDropDownIcon(self, painter, rect):
+        if isDarkTheme():
+            FIF.ARROW_DOWN.render(painter, rect)
+        else:
+            FIF.ARROW_DOWN.render(painter, rect, fill="#646464")
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
@@ -309,10 +315,7 @@ class DropDownButtonBase:
             painter.setOpacity(0.7)
 
         rect = QRectF(self.width()-22, self.height()/2-5+self.arrowAni.y, 10, 10)
-        if isDarkTheme():
-            FIF.ARROW_DOWN.render(painter, rect)
-        else:
-            FIF.ARROW_DOWN.render(painter, rect, fill="#646464")
+        self._drawDropDownIcon(painter, rect)
 
 
 class DropDownPushButton(DropDownButtonBase, PushButton):
@@ -341,6 +344,42 @@ class DropDownToolButton(DropDownButtonBase, ToolButton):
     def paintEvent(self, e):
         ToolButton.paintEvent(self, e)
         DropDownButtonBase.paintEvent(self, e)
+
+
+class PrimaryDropDownButtonBase(DropDownButtonBase):
+    """ Primary color drop down button base class """
+
+    def _drawDropDownIcon(self, painter, rect):
+        theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+        FIF.ARROW_DOWN.render(painter, rect, theme)
+
+
+class PrimaryDropDownPushButton(PrimaryDropDownButtonBase, PrimaryPushButton):
+    """ Primary color drop down push button """
+
+    def mouseReleaseEvent(self, e):
+        PrimaryPushButton.mouseReleaseEvent(self, e)
+        self._showMenu()
+
+    def paintEvent(self, e):
+        PrimaryPushButton.paintEvent(self, e)
+        PrimaryDropDownButtonBase.paintEvent(self, e)
+
+
+class PrimaryDropDownToolButton(PrimaryDropDownButtonBase, PrimaryToolButton):
+    """ Primary drop down tool button """
+
+    def mouseReleaseEvent(self, e):
+        PrimaryToolButton.mouseReleaseEvent(self, e)
+        self._showMenu()
+
+    def _drawIcon(self, icon, painter, rect: QRectF):
+        rect.moveLeft(12)
+        return super()._drawIcon(icon, painter, rect)
+
+    def paintEvent(self, e):
+        PrimaryToolButton.paintEvent(self, e)
+        PrimaryDropDownButtonBase.paintEvent(self, e)
 
 
 class SplitDropButton(ToolButton):
@@ -403,6 +442,7 @@ class SplitWidgetBase(QWidget):
         self.dropButton.clicked.connect(self.showFlyout)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
     def setWidget(self, widget: QWidget):
         """ set the widget on left side """
@@ -482,6 +522,9 @@ class SplitPushButton(SplitWidgetBase):
     def setIcon(self, icon: Union[QIcon, FluentIconBase, str]):
         self.button.setIcon(icon)
 
+    def setIconSize(self, size: QSize):
+        self.button.setIconSize(size)
+
     text_ = pyqtProperty(str, text, setText)
     icon_ = pyqtProperty(QIcon, icon, setIcon)
 
@@ -538,6 +581,9 @@ class SplitToolButton(SplitWidgetBase):
 
     def setIcon(self, icon: Union[QIcon, FluentIconBase, str]):
         self.button.setIcon(icon)
+
+    def setIconSize(self, size: QSize):
+        self.button.setIconSize(size)
 
     icon_ = pyqtProperty(QIcon, icon, setIcon)
 

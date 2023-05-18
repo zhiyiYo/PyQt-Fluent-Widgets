@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QAction, QWidget, QVBoxLayout, QButtonGroup
 from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, ToolButton, PrimaryPushButton,
                             HyperlinkButton, ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox,
                             ToggleButton, RoundMenu, FluentIcon, SplitPushButton, SplitToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryToolButton, PrimaryDropDownToolButton)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -38,10 +38,17 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
-        # primary color button
+        # primary color push button
         self.addExampleCard(
-            self.tr('Accent style applied to button'),
+            self.tr('Accent style applied to push button'),
             PrimaryPushButton(self.tr('Accent style button')),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # primary color tool button
+        self.addExampleCard(
+            self.tr('Accent style applied to tool button'),
+            PrimaryToolButton(FluentIcon.BASKETBALL),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
@@ -115,6 +122,23 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
+        # primary color drop down button
+        button = PrimaryDropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A primary color push button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        button = PrimaryDropDownToolButton(FluentIcon.MAIL, self)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A primary color tool button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
         # radio button
         radioWidget = QWidget()
         radioLayout = QVBoxLayout(radioWidget)
@@ -150,31 +174,42 @@ class BasicInputInterface(GalleryInterface):
 
         # split button
         button = SplitPushButton(self.tr('Choose your stand'), self, FluentIcon.BASKETBALL)
-        menu = RoundMenu(parent=self)
-        menu.addActions([
-            Action(self.tr('Star Platinum'), triggered=lambda c, b=button: b.setText(self.tr('Star Platinum'))),
-            Action(self.tr('Crazy Diamond'), triggered=lambda c, b=button: b.setText(self.tr('Crazy Diamond'))),
-            Action(self.tr("Gold Experience"), triggered=lambda c, b=button: b.setText(self.tr("Gold Experience"))),
-            Action(self.tr('Sticky Fingers'), triggered=lambda c, b=button: b.setText(self.tr('Sticky Fingers'))),
-        ])
-        button.setFlyout(menu)
+        button.setFlyout(self.createStandMenu(button))
         self.addExampleCard(
             self.tr('A split push button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
-        button = SplitToolButton(":/gallery/images/kunkun.png", self)
-        menu = RoundMenu(parent=self)
-        menu.addActions([
+        ikunMenu = RoundMenu(parent=self)
+        ikunMenu.addActions([
             Action(self.tr('Sing')),
             Action(self.tr('Jump')),
             Action(self.tr("Rap")),
             Action(self.tr('Music')),
         ])
-        button.setFlyout(menu)
+        button = SplitToolButton(":/gallery/images/kunkun.png", self)
+        button.setIconSize(QSize(30, 30))
+        button.setFlyout(ikunMenu)
         self.addExampleCard(
             self.tr('A split tool button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # primary color split button
+        button = PrimarySplitPushButton(self.tr('Choose your stand'), self, FluentIcon.BASKETBALL)
+        button.setFlyout(self.createStandMenu(button))
+        self.addExampleCard(
+            self.tr('A primary color split push button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        button = PrimarySplitToolButton(FluentIcon.BASKETBALL, self)
+        button.setFlyout(ikunMenu)
+        self.addExampleCard(
+            self.tr('A primary color split tool button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
@@ -200,3 +235,13 @@ class BasicInputInterface(GalleryInterface):
             self.switchButton.setText(self.tr('On'))
         else:
             self.switchButton.setText(self.tr('Off'))
+
+    def createStandMenu(self, button):
+        menu = RoundMenu(parent=self)
+        menu.addActions([
+            Action(self.tr('Star Platinum'), triggered=lambda c, b=button: b.setText(self.tr('Star Platinum'))),
+            Action(self.tr('Crazy Diamond'), triggered=lambda c, b=button: b.setText(self.tr('Crazy Diamond'))),
+            Action(self.tr("Gold Experience"), triggered=lambda c, b=button: b.setText(self.tr("Gold Experience"))),
+            Action(self.tr('Sticky Fingers'), triggered=lambda c, b=button: b.setText(self.tr('Sticky Fingers'))),
+        ])
+        return menu

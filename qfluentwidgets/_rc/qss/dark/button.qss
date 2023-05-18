@@ -21,15 +21,18 @@ PushButton[hasIcon=true] {
     padding: 5px 12px 6px 36px;
 }
 
-DropDownToolButton {
+DropDownToolButton,
+PrimaryDropDownToolButton {
     padding: 5px 31px 6px 8px;
 }
 
-DropDownPushButton[hasIcon=false] {
+DropDownPushButton[hasIcon=false],
+PrimaryDropDownPushButton[hasIcon=false] {
     padding: 5px 31px 6px 12px;
 }
 
-DropDownPushButton[hasIcon=true] {
+DropDownPushButton[hasIcon=true],
+PrimaryDropDownPushButton[hasIcon=true] {
     padding: 5px 31px 6px 36px;
 }
 
@@ -108,7 +111,7 @@ PrimarySplitDropButton {
 
 #primarySplitPushButton,
 #primarySplitToolButton {
-    border-right-color: --ThemeColorLight1;
+    border-right-color: --ThemeColorDark3;
 }
 
 #primarySplitPushButton:pressed,

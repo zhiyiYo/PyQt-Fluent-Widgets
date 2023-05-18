@@ -21,15 +21,17 @@ PushButton[hasIcon=true] {
     padding: 5px 12px 6px 36px;
 }
 
-DropDownToolButton {
+DropDownToolButton, PrimaryDropDownToolButton {
     padding: 5px 31px 6px 8px;
 }
 
-DropDownPushButton[hasIcon=false] {
+DropDownPushButton[hasIcon=false],
+PrimaryDropDownPushButton[hasIcon=false] {
     padding: 5px 31px 6px 12px;
 }
 
-DropDownPushButton[hasIcon=true] {
+DropDownPushButton[hasIcon=true],
+PrimaryDropDownPushButton[hasIcon=true] {
     padding: 5px 31px 6px 36px;
 }
 
@@ -48,21 +50,6 @@ PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
     background: rgba(249, 249, 249, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-#splitPushButton,
-#splitToolButton,
-#primarySplitPushButton,
-#primarySplitToolButton {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-
-#splitPushButton:pressed,
-#splitToolButton:pressed,
-SplitDropButton:pressed {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.183);
 }
 
 
@@ -104,6 +91,20 @@ PrimarySplitDropButton {
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+#splitPushButton,
+#splitToolButton,
+#primarySplitPushButton,
+#primarySplitToolButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#splitPushButton:pressed,
+#splitToolButton:pressed,
+SplitDropButton:pressed {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.183);
 }
 
 PrimarySplitDropButton:pressed {
