@@ -5,7 +5,7 @@ from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, MessageBox,
-                            isDarkTheme, PopUpAniStackedWidget)
+                            isDarkTheme, PopUpAniStackedWidget, qrouter)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
 
@@ -52,7 +52,7 @@ class StackedWidget(QFrame):
         """ add widget to view """
         self.view.addWidget(widget)
 
-    def setCurrentWidget(self, widget, popOut=False):
+    def setCurrentWidget(self, widget, popOut=True):
         widget.verticalScrollBar().setValue(0)
         if not popOut:
             self.view.setCurrentWidget(widget, duration=300)
@@ -155,11 +155,9 @@ class MainWindow(FramelessWindow):
             self.settingInterface, 'settingInterface', FIF.SETTING, self.tr('Settings'), NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
-        self.navigationInterface.setDefaultRouteKey(
-            self.homeInterface.objectName())
+        qrouter.setDefaultRouteKey(self.stackWidget, self.homeInterface.objectName())
 
-        self.stackWidget.currentWidgetChanged.connect(
-            lambda w: self.navigationInterface.setCurrentItem(w.objectName()))
+        self.stackWidget.currentWidgetChanged.connect(self.onCurrentWidgetChanged)
         self.navigationInterface.setCurrentItem(
             self.homeInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
@@ -193,6 +191,10 @@ class MainWindow(FramelessWindow):
     def switchTo(self, widget, triggerByUser=True):
         self.stackWidget.setCurrentWidget(widget, not triggerByUser)
 
+    def onCurrentWidgetChanged(self, widget: QWidget):
+        self.navigationInterface.setCurrentItem(widget.objectName())
+        qrouter.push(self.stackWidget, widget.objectName())
+
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
         self.titleBar.resize(self.width()-46, self.titleBar.height())
@@ -205,5 +207,5 @@ class MainWindow(FramelessWindow):
         interfaces = self.findChildren(GalleryInterface)
         for w in interfaces:
             if w.objectName() == routeKey:
-                self.stackWidget.setCurrentWidget(w)
+                self.stackWidget.setCurrentWidget(w, False)
                 w.scrollToCard(index)

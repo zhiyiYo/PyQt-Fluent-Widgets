@@ -5,7 +5,7 @@ from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
-                            isDarkTheme, setTheme, Theme, setThemeColor)
+                            isDarkTheme, setTheme, Theme, setThemeColor, qrouter)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
@@ -126,7 +126,7 @@ class Window(FramelessWindow):
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
-        # self.navigationInterface.setDefaultRouteKey(self.musicInterface.objectName())
+        # qrouter.setDefaultRouteKey(self.stackWidget, self.musicInterface.objectName())
 
         # set the maximum width
         # self.navigationInterface.setExpandWidth(300)
@@ -169,6 +169,9 @@ class Window(FramelessWindow):
     def onCurrentInterfaceChanged(self, index):
         widget = self.stackWidget.widget(index)
         self.navigationInterface.setCurrentItem(widget.objectName())
+        
+        #!IMPORTANT: This line of code needs to be uncommented if the return button is enabled
+        # qrouter.push(self.stackWidget, widget.objectName())
 
     def showMessageBox(self):
         w = MessageBox(

@@ -9,6 +9,8 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 from .navigation_widget import NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
+from ...common.router import qrouter
+from ...common.deprecation import deprecated
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
@@ -61,7 +63,7 @@ class NavigationPanel(QFrame):
         self.scrollLayout = NavigationItemLayout(self.scrollWidget)
 
         self.items = {}   # type: Dict[str, NavigationWidget]
-        self.history = NavigationHistory(self.items)
+        self.history = qrouter
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
@@ -321,7 +323,6 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             return
 
-        self.history.push(routeKey)
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
 
@@ -398,9 +399,10 @@ class NavigationPanel(QFrame):
         spacing += self.bottomLayout.count() * self.bottomLayout.spacing()
         return 36 + th + bh + sh + spacing
 
+    @deprecated('0.9.0')
     def setDefaultRouteKey(self, key: str):
         """ set the routing key to use when the navigation history is empty """
-        self.history.defaultRouteKey = key
+        pass
 
 
 class NavigationItemLayout(QVBoxLayout):
