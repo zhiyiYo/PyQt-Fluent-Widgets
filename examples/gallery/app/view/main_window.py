@@ -19,6 +19,7 @@ from .layout_interface import LayoutInterface
 from .icon_interface import IconInterface
 from .material_interface import MaterialInterface
 from .menu_interface import MenuInterface
+from .navigation_view_interface import NavigationViewInterface
 from .scroll_interface import ScrollInterface
 from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
@@ -84,6 +85,7 @@ class MainWindow(FramelessWindow):
         self.layoutInterface = LayoutInterface(self)
         self.menuInterface = MenuInterface(self)
         self.materialInterface = MaterialInterface(self)
+        self.navigationViewInterface = NavigationViewInterface(self)
         self.scrollInterface = ScrollInterface(self)
         self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
@@ -135,6 +137,8 @@ class MainWindow(FramelessWindow):
             self.materialInterface, 'materialInterface', FIF.PALETTE, self.tr('Material'))
         self.addSubInterface(
             self.menuInterface, 'menuInterface', Icon.MENU, self.tr('Menus'))
+        self.addSubInterface(
+            self.navigationViewInterface, 'navigationViewInterface', FIF.MENU, self.tr('Navigation'))
         self.addSubInterface(
             self.scrollInterface, 'scrollInterface', FIF.SCROLL, self.tr('Scrolling'))
         self.addSubInterface(

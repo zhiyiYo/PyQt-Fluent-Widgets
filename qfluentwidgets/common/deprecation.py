@@ -44,7 +44,7 @@ def _generate_deprecation_warning(
                    if removal else
                    "")))
             + "."
-            + (" Use %(alternative)s instead." if alternative else "")
+            + (" Use `%(alternative)s` instead." if alternative else "")
             + (" %(addendum)s" if addendum else ""))
     warning_cls = (PendingDeprecationWarning if pending
                    else FluentDeprecationWarning)

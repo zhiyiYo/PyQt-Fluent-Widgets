@@ -236,7 +236,6 @@ class RoundMenu(QWidget):
 
         self.view.itemClicked.connect(self._onItemClicked)
         self.view.itemEntered.connect(self._onItemEntered)
-        self.ani.valueChanged.connect(self._onSlideValueChanged)
 
     def setItemHeight(self, height):
         """ set the height of menu item """
@@ -570,19 +569,6 @@ class RoundMenu(QWidget):
 
         self.view.adjustSize()
         self.adjustSize()
-
-    def _onSlideValueChanged(self, pos):
-        m = self.layout().contentsMargins()
-        w = self.view.width() + m.left() + m.right() + 120
-        h = self.view.height() + m.top() + m.bottom() + 20
-        y = self.ani.endValue().y() - pos.y()
-        self.setMask(QRegion(0, y, w, h))
-
-        # update view port
-        self.view.viewport().update()
-        self.view.setAttribute(Qt.WA_UnderMouse, True)
-        e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
-        QApplication.sendEvent(self.view, e)
 
     def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         """ show menu

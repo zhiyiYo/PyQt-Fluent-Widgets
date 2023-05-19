@@ -571,69 +571,74 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="120"/>
+        <location filename="../../view/main_window.py" line="122"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="126"/>
+        <location filename="../../view/main_window.py" line="128"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="130"/>
+        <location filename="../../view/main_window.py" line="132"/>
         <source>Dialogs</source>
         <translation>对话框</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="132"/>
+        <location filename="../../view/main_window.py" line="134"/>
         <source>Layout</source>
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="136"/>
+        <location filename="../../view/main_window.py" line="138"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="134"/>
+        <location filename="../../view/main_window.py" line="136"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="138"/>
+        <location filename="../../view/main_window.py" line="142"/>
         <source>Scrolling</source>
         <translation>滚动</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="140"/>
+        <location filename="../../view/main_window.py" line="144"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="142"/>
+        <location filename="../../view/main_window.py" line="146"/>
         <source>Text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="122"/>
+        <location filename="../../view/main_window.py" line="124"/>
         <source>Icons</source>
         <translation>图标</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="144"/>
+        <location filename="../../view/main_window.py" line="148"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="154"/>
+        <location filename="../../view/main_window.py" line="158"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="128"/>
+        <location filename="../../view/main_window.py" line="130"/>
         <source>Date &amp; time</source>
         <translation>日期和时间</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="140"/>
+        <source>Navigation</source>
+        <translation>导航</translation>
     </message>
 </context>
 <context>
@@ -710,6 +715,24 @@
         <location filename="../../view/menu_interface.py" line="40"/>
         <source>Add to</source>
         <translation>添加到</translation>
+    </message>
+</context>
+<context>
+    <name>PivotInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="44"/>
+        <source>Song</source>
+        <translation>歌曲</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="45"/>
+        <source>Album</source>
+        <translation>专辑</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="46"/>
+        <source>Artist</source>
+        <translation>歌手</translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1264,7 @@
 <context>
     <name>Translator</name>
     <message>
-        <location filename="../../common/translator.py" line="18"/>
+        <location filename="../../common/translator.py" line="19"/>
         <source>Basic input</source>
         <translation>基本输入</translation>
     </message>
@@ -1261,7 +1284,7 @@
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="19"/>
+        <location filename="../../common/translator.py" line="20"/>
         <source>Status &amp; info</source>
         <translation>状态和信息</translation>
     </message>
@@ -1294,6 +1317,11 @@
         <location filename="../../common/translator.py" line="17"/>
         <source>Date &amp; time</source>
         <translation>日期和时间</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="18"/>
+        <source>Navigation</source>
+        <translation>导航</translation>
     </message>
 </context>
 <context>

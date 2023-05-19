@@ -313,7 +313,7 @@ class NavigationPanel(QFrame):
 
         w = self.items.pop(routeKey)
         w.deleteLater()
-        self.history.remove(routeKey, True)
+        self.history.remove(routeKey)
 
     def setMenuButtonVisible(self, isVisible: bool):
         """ set whether the menu button is visible """
@@ -470,7 +470,7 @@ class NavigationPanel(QFrame):
         spacing += self.bottomLayout.count() * self.bottomLayout.spacing()
         return 36 + th + bh + sh + spacing
 
-    @deprecated('0.9.0')
+    @deprecated('0.9.0', alternative='qrouter.setDefaultRouteKey')
     def setDefaultRouteKey(self, key: str):
         """ set the routing key to use when the navigation history is empty """
         pass
