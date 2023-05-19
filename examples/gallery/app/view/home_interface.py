@@ -274,6 +274,18 @@ class HomeInterface(ScrollArea):
         )
         self.vBoxLayout.addWidget(menuView)
 
+        # navigation
+        navigationView = SampleCardView(self.tr('Navigation'), self.view)
+        navigationView.addSampleCard(
+            icon=":/gallery/images/controls/Pivot.png",
+            title="Pivot",
+            content=self.tr(
+                "Presents information from different sources in a tabbed view."),
+            routeKey="navigationViewInterface",
+            index=0
+        )
+        self.vBoxLayout.addWidget(navigationView)
+
         # scroll samples
         scrollView = SampleCardView(self.tr('Scrolling samples'), self.view)
         scrollView.addSampleCard(

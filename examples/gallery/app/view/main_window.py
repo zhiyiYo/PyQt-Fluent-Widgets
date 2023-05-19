@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon, QDesktopServices
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, MessageBox,
-                            isDarkTheme, PopUpAniStackedWidget)
+                            isDarkTheme, PopUpAniStackedWidget, qrouter)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow
 
@@ -19,6 +19,7 @@ from .layout_interface import LayoutInterface
 from .icon_interface import IconInterface
 from .material_interface import MaterialInterface
 from .menu_interface import MenuInterface
+from .navigation_view_interface import NavigationViewInterface
 from .scroll_interface import ScrollInterface
 from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface, cfg
@@ -52,7 +53,7 @@ class StackedWidget(QFrame):
         """ add widget to view """
         self.view.addWidget(widget)
 
-    def setCurrentWidget(self, widget, popOut=False):
+    def setCurrentWidget(self, widget, popOut=True):
         widget.verticalScrollBar().setValue(0)
         if not popOut:
             self.view.setCurrentWidget(widget, duration=300)
@@ -84,6 +85,7 @@ class MainWindow(FramelessWindow):
         self.layoutInterface = LayoutInterface(self)
         self.menuInterface = MenuInterface(self)
         self.materialInterface = MaterialInterface(self)
+        self.navigationViewInterface = NavigationViewInterface(self)
         self.scrollInterface = ScrollInterface(self)
         self.statusInfoInterface = StatusInfoInterface(self)
         self.settingInterface = SettingInterface(self)
@@ -136,6 +138,8 @@ class MainWindow(FramelessWindow):
         self.addSubInterface(
             self.menuInterface, 'menuInterface', Icon.MENU, self.tr('Menus'))
         self.addSubInterface(
+            self.navigationViewInterface, 'navigationViewInterface', FIF.MENU, self.tr('Navigation'))
+        self.addSubInterface(
             self.scrollInterface, 'scrollInterface', FIF.SCROLL, self.tr('Scrolling'))
         self.addSubInterface(
             self.statusInfoInterface, 'statusInfoInterface', FIF.CHAT, self.tr('Status & info'))
@@ -155,11 +159,9 @@ class MainWindow(FramelessWindow):
             self.settingInterface, 'settingInterface', FIF.SETTING, self.tr('Settings'), NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
-        self.navigationInterface.setDefaultRouteKey(
-            self.homeInterface.objectName())
+        qrouter.setDefaultRouteKey(self.stackWidget, self.homeInterface.objectName())
 
-        self.stackWidget.currentWidgetChanged.connect(
-            lambda w: self.navigationInterface.setCurrentItem(w.objectName()))
+        self.stackWidget.currentWidgetChanged.connect(self.onCurrentWidgetChanged)
         self.navigationInterface.setCurrentItem(
             self.homeInterface.objectName())
         self.stackWidget.setCurrentIndex(0)
@@ -193,6 +195,10 @@ class MainWindow(FramelessWindow):
     def switchTo(self, widget, triggerByUser=True):
         self.stackWidget.setCurrentWidget(widget, not triggerByUser)
 
+    def onCurrentWidgetChanged(self, widget: QWidget):
+        self.navigationInterface.setCurrentItem(widget.objectName())
+        qrouter.push(self.stackWidget, widget.objectName())
+
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
         self.titleBar.resize(self.width()-46, self.titleBar.height())
@@ -205,5 +211,5 @@ class MainWindow(FramelessWindow):
         interfaces = self.findChildren(GalleryInterface)
         for w in interfaces:
             if w.objectName() == routeKey:
-                self.stackWidget.setCurrentWidget(w)
+                self.stackWidget.setCurrentWidget(w, False)
                 w.scrollToCard(index)
