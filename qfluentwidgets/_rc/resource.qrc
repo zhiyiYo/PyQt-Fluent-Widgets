@@ -230,6 +230,7 @@
         <file>qss/dark/tree_view.qss</file>
         <file>qss/dark/table_view.qss</file>
         <file>qss/dark/time_picker.qss</file>
+        <file>qss/dark/pivot.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -254,6 +255,7 @@
         <file>qss/light/table_view.qss</file>
         <file>qss/light/tree_view.qss</file>
         <file>qss/light/time_picker.qss</file>
+        <file>qss/light/pivot.qss</file>
 
         <file>i18n/qfluentwidgets.zh_CN.qm</file>
         <file>i18n/qfluentwidgets.zh_HK.qm</file>

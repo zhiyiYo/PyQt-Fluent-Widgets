@@ -87,6 +87,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     """ Fluent style sheet """
 
     MENU = "menu"
+    PIVOT = "pivot"
     BUTTON = "button"
     DIALOG = "dialog"
     SLIDER = "slider"
