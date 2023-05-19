@@ -158,13 +158,7 @@ class NavigationPanel(QFrame):
         tooltip: str
             the tooltip of item
         """
-        if routeKey in self.items:
-            return
-
-        button = NavigationPushButton(icon, text, selectable, self)
-        self.addWidget(routeKey, button, onClick, position, tooltip)
-
-        return button
+        return self.insertItem(-1, routeKey, icon, text, onClick, selectable, position, tooltip)
 
     def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP,
                   tooltip: str = None):
@@ -172,6 +166,70 @@ class NavigationPanel(QFrame):
 
         Parameters
         ----------
+        routeKey: str
+            the unique name of item
+
+        widget: NavigationWidget
+            the custom widget to be added
+
+        onClick: callable
+            the slot connected to item clicked signal
+
+        position: NavigationItemPosition
+            where the button is added
+
+        tooltip: str
+            the tooltip of widget
+        """
+        self.insertWidget(-1, routeKey, widget, onClick, position, tooltip)
+
+    def insertItem(self, index: int, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick,
+                   selectable=True, position=NavigationItemPosition.TOP, tooltip: str = None):
+        """ insert navigation item
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
+        routeKey: str
+            the unique name of item
+
+        icon: str | QIcon | FluentIconBase
+            the icon of navigation item
+
+        text: str
+            the text of navigation item
+
+        onClick: callable
+            the slot connected to item clicked signal
+
+        position: NavigationItemPosition
+            where the button is added
+
+        selectable: bool
+            whether the item is selectable
+
+        tooltip: str
+            the tooltip of item
+        """
+        if routeKey in self.items:
+            return
+
+        button = NavigationPushButton(icon, text, selectable, self)
+        self.insertWidget(index, routeKey, button, onClick, position, tooltip)
+
+        return button
+
+    def insertWidget(self, index: int, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP,
+                     tooltip: str = None):
+        """ insert custom widget
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
         routeKey: str
             the unique name of item
 
@@ -202,7 +260,7 @@ class NavigationPanel(QFrame):
             widget.setToolTip(tooltip)
             widget.installEventFilter(NavigationToolTipFilter(widget, 1000))
 
-        self._addWidgetToLayout(widget, position)
+        self._insertWidgetToLayout(index, widget, position)
 
     def addSeparator(self, position=NavigationItemPosition.TOP):
         """ add separator
@@ -212,20 +270,33 @@ class NavigationPanel(QFrame):
         position: NavigationPostion
             where to add the separator
         """
-        separator = NavigationSeparator(self)
-        self._addWidgetToLayout(separator, position)
+        self.insertSeparator(-1, position)
 
-    def _addWidgetToLayout(self, widget: NavigationWidget, position: NavigationItemPosition):
-        """ add widget to layout """
+    def insertSeparator(self, index: int, position=NavigationItemPosition.TOP):
+        """ add separator
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
+        position: NavigationPostion
+            where to add the separator
+        """
+        separator = NavigationSeparator(self)
+        self._insertWidgetToLayout(index, separator, position)
+
+    def _insertWidgetToLayout(self, index: int, widget: NavigationWidget, position: NavigationItemPosition):
+        """ insert widget to layout """
         if position == NavigationItemPosition.TOP:
             widget.setParent(self)
-            self.topLayout.addWidget(widget, 0, Qt.AlignTop)
+            self.topLayout.insertWidget(index, widget, 0, Qt.AlignTop)
         elif position == NavigationItemPosition.SCROLL:
             widget.setParent(self.scrollWidget)
-            self.scrollLayout.addWidget(widget, 0, Qt.AlignTop)
+            self.scrollLayout.insertWidget(index, widget, 0, Qt.AlignTop)
         else:
             widget.setParent(self)
-            self.bottomLayout.addWidget(widget, 0, Qt.AlignBottom)
+            self.bottomLayout.insertWidget(index, widget, 0, Qt.AlignBottom)
 
         widget.show()
 
