@@ -87,7 +87,6 @@ class Ui_MessageBox:
         self.yesSignal.emit()
 
     def __setQss(self):
-        """ 设置层叠样式 """
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
         self.buttonGroup.setObjectName('buttonGroup')

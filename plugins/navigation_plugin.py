@@ -2,7 +2,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import NavigationInterface, NavigationPanel
+from qfluentwidgets import NavigationInterface, NavigationPanel, Pivot
 
 from plugin_base import PluginBase
 
@@ -37,3 +37,21 @@ class NavigationPanelPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "NavigationPanel"
+
+
+class PivotPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Navigation panel plugin """
+
+    def createWidget(self, parent):
+        p = Pivot(parent)
+        for i in range(1, 4):
+            p.addItem(f'Item{i}', f'Item{i}', print)
+
+        p.setCurrentItem('Item1')
+        return p
+
+    def icon(self):
+        return super().icon("Pivot")
+
+    def name(self):
+        return "Pivot"

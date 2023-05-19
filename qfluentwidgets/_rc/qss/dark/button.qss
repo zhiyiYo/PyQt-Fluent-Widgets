@@ -21,15 +21,18 @@ PushButton[hasIcon=true] {
     padding: 5px 12px 6px 36px;
 }
 
-DropDownToolButton {
+DropDownToolButton,
+PrimaryDropDownToolButton {
     padding: 5px 31px 6px 8px;
 }
 
-DropDownPushButton[hasIcon=false] {
+DropDownPushButton[hasIcon=false],
+PrimaryDropDownPushButton[hasIcon=false] {
     padding: 5px 31px 6px 12px;
 }
 
-DropDownPushButton[hasIcon=true] {
+DropDownPushButton[hasIcon=true],
+PrimaryDropDownPushButton[hasIcon=true] {
     padding: 5px 31px 6px 36px;
 }
 
@@ -50,19 +53,6 @@ PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
-#splitPushButton,
-#splitToolButton {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right-color: rgba(255, 255, 255, 0.08);
-}
-
-SplitDropButton {
-    border-left: none;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
 #splitPushButton:pressed,
 #splitToolButton:pressed,
 SplitDropButton:pressed {
@@ -70,29 +60,63 @@ SplitDropButton:pressed {
 }
 
 
-PrimaryPushButton, ToggleButton:checked {
+PrimaryPushButton,
+PrimaryToolButton,
+ToggleButton:checked {
     color: black;
     background-color: --ThemeColorPrimary;
     border: 1px solid --ThemeColorLight1;
     border-bottom: 1px solid --ThemeColorLight2;
 }
 
-PrimaryPushButton:hover, ToggleButton:checked:hover {
+PrimaryPushButton:hover,
+PrimaryToolButton:hover,
+ToggleButton:checked:hover {
     background-color: --ThemeColorDark1;
     border: 1px solid --ThemeColorLight1;
     border-bottom: 1px solid --ThemeColorLight2;
 }
 
-PrimaryPushButton:pressed, ToggleButton:checked:pressed {
+PrimaryPushButton:pressed,
+PrimaryToolButton:pressed,
+ToggleButton:checked:pressed {
     color: rgba(0, 0, 0, 0.63);
     background-color: --ThemeColorDark2;
     border: 1px solid --ThemeColorDark2;
 }
 
-PrimaryPushButton:disabled, ToggleButton:checked:disabled {
+PrimaryPushButton:disabled,
+PrimaryToolButton:disabled,
+ToggleButton:checked:disabled {
     color: rgba(255, 255, 255, 0.43);
     background-color: rgb(52, 52, 52);
     border: 1px solid rgb(52, 52, 52);
+}
+
+SplitDropButton,
+PrimarySplitDropButton {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#splitPushButton,
+#splitToolButton,
+#primarySplitPushButton,
+#primarySplitToolButton {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+#primarySplitPushButton,
+#primarySplitToolButton {
+    border-right-color: --ThemeColorDark3;
+}
+
+#primarySplitPushButton:pressed,
+#primarySplitToolButton:pressed {
+    border-right: 1px solid --ThemeColorLight2;
 }
 
 HyperlinkButton {

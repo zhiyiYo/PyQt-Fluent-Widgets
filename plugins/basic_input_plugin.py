@@ -4,10 +4,11 @@ from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
 from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButton,
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
                             SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
-                            EditableComboBox, PixmapLabel, PushButton)
+                            EditableComboBox, PixmapLabel, PushButton, PrimaryToolButton, PrimarySplitToolButton,
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton)
 
 from plugin_base import PluginBase
-from task_menu_fatcory import EditTextTaskMenuFactory
+from task_menu_factory import EditTextTaskMenuFactory
 
 
 
@@ -17,7 +18,19 @@ class BasicInputPlugin(PluginBase):
         return super().group() + ' (Basic Input)'
 
 
-class CheckBoxPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class TextPlugin(BasicInputPlugin):
+
+    def domXml(self):
+        return f"""
+        <widget class="{self.name()}" name="{self.name()}">
+            <property name="text">
+                <string>{self.toolTip()}</string>
+            </property>
+        </widget>
+        """
+
+
+class CheckBoxPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Check box plugin """
 
     def createWidget(self, parent):
@@ -56,7 +69,7 @@ class EditableComboBoxPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "EditableComboBox"
 
 
-class HyperlinkButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class HyperlinkButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Hyperlink button plugin """
 
     def createWidget(self, parent):
@@ -69,7 +82,7 @@ class HyperlinkButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "HyperlinkButton"
 
 
-class PushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class PushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Push button plugin """
 
     def createWidget(self, parent):
@@ -82,7 +95,7 @@ class PushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "PushButton"
 
 
-class PrimaryPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class PrimaryPushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Primary push button plugin """
 
     def createWidget(self, parent):
@@ -95,7 +108,7 @@ class PrimaryPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "PrimaryPushButton"
 
 
-class DropDownPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class DropDownPushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Drop down push button plugin """
 
     def createWidget(self, parent):
@@ -106,6 +119,20 @@ class DropDownPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "DropDownPushButton"
+
+
+class PrimaryDropDownPushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Primary drop down push button plugin """
+
+    def createWidget(self, parent):
+        return PrimaryDropDownPushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('DropDownButton')
+
+    def name(self):
+        return "PrimaryDropDownPushButton"
+
 
 @EditTextTaskMenuFactory.register
 class SplitPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
@@ -119,6 +146,38 @@ class SplitPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "SplitPushButton"
+
+    def domXml(self):
+        return f"""
+        <widget class="{self.name()}" name="{self.name()}">
+            <property name="text_">
+                <string>{self.toolTip()}</string>
+            </property>
+        </widget>
+        """
+
+
+@EditTextTaskMenuFactory.register
+class PrimarySplitPushButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Primary color split push button plugin """
+
+    def createWidget(self, parent):
+        return PrimarySplitPushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('SplitButton')
+
+    def name(self):
+        return "PrimarySplitPushButton"
+
+    def domXml(self):
+        return f"""
+        <widget class="{self.name()}" name="{self.name()}">
+            <property name="text_">
+                <string>{self.toolTip()}</string>
+            </property>
+        </widget>
+        """
 
 
 class ToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
@@ -134,6 +193,19 @@ class ToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "ToolButton"
 
 
+class PrimaryToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Primary color tool button plugin """
+
+    def createWidget(self, parent):
+        return PrimaryToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('Button')
+
+    def name(self):
+        return "PrimaryToolButton"
+
+
 class DropDownToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
     """ Drop down tool button plugin """
 
@@ -147,6 +219,19 @@ class DropDownToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "DropDownToolButton"
 
 
+class PrimaryDropDownToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Drop down tool button plugin """
+
+    def createWidget(self, parent):
+        return PrimaryDropDownToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('DropDownButton')
+
+    def name(self):
+        return "PrimaryDropDownToolButton"
+
+
 class SplitToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
     """ split tool button plugin """
 
@@ -158,6 +243,19 @@ class SplitToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "SplitToolButton"
+
+
+class PrimarySplitToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Primary color split tool button plugin """
+
+    def createWidget(self, parent):
+        return PrimarySplitToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('SplitButton')
+
+    def name(self):
+        return "PrimarySplitToolButton"
 
 
 @EditTextTaskMenuFactory.register
@@ -174,7 +272,7 @@ class SwitchButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "SwitchButton"
 
 
-class RadioButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class RadioButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Radio button plugin """
 
     def createWidget(self, parent):
@@ -187,7 +285,7 @@ class RadioButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
         return "RadioButton"
 
 
-class ToggleButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+class ToggleButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
     """ Toggle button plugin """
 
     def createWidget(self, parent):

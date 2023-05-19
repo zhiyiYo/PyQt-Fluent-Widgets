@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QLabel
-from qfluentwidgets import RoundMenu, setTheme, Theme, Action
+from qfluentwidgets import RoundMenu, setTheme, Theme, Action, MenuAnimationType
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -56,7 +56,7 @@ class Demo(QWidget):
         )
 
         # show menu
-        menu.exec(e.globalPos(), ani=True)
+        menu.exec(e.globalPos(), aniType=MenuAnimationType.DROP_DOWN)
 
 
 if __name__ == '__main__':

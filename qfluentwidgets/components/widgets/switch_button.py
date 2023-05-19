@@ -176,6 +176,7 @@ class SwitchButton(QWidget):
     def __initWidget(self):
         """ initialize widgets """
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
+        self.setFixedHeight(37)
         self.installEventFilter(self)
 
         # set layout

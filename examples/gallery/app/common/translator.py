@@ -15,5 +15,6 @@ class Translator(QObject):
         self.scroll = self.tr('Scrolling')
         self.material = self.tr('Material')
         self.dateTime = self.tr('Date & time')
+        self.navigation = self.tr('Navigation')
         self.basicInput = self.tr('Basic input')
         self.statusInfo = self.tr('Status & info')
