@@ -132,7 +132,7 @@ class HomeInterface(ScrollArea):
             title="CheckBox",
             content=self.tr("A control that a user can select or clear."),
             routeKey="basicInputInterface",
-            index=4
+            index=5
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ComboBox.png",
@@ -140,7 +140,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A drop-down list of items a user can select from."),
             routeKey="basicInputInterface",
-            index=6
+            index=7
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/DropDownButton.png",
@@ -148,7 +148,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that displays a flyout of choices when clicked."),
             routeKey="basicInputInterface",
-            index=8
+            index=9
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/RadioButton.png",
@@ -156,7 +156,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A control that allows a user to select a single option from a group of options."),
             routeKey="basicInputInterface",
-            index=10
+            index=13
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/Slider.png",
@@ -164,7 +164,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A control that lets the user select from a range of values by moving a Thumb control along a track."),
             routeKey="basicInputInterface",
-            index=11
+            index=14
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/SplitButton.png",
@@ -172,7 +172,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A two-part button that displays a flyout when its secondary part is clicked."),
             routeKey="basicInputInterface",
-            index=12
+            index=15
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleSwitch.png",
@@ -180,7 +180,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A switch that can be toggled between 2 states."),
             routeKey="basicInputInterface",
-            index=14
+            index=19
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleButton.png",
@@ -188,7 +188,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that can be switched between two states like a CheckBox."),
             routeKey="basicInputInterface",
-            index=15
+            index=20
         )
         self.vBoxLayout.addWidget(basicInputView)
 
