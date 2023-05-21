@@ -1,8 +1,10 @@
 # coding: utf-8
-from PyQt6.QtCore import Qt
-from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtDesigner import (QPyDesignerCustomWidgetPlugin, QDesignerFormWindowInterface, QExtensionFactory,
+                              QPyDesignerContainerExtension)
 
-from qfluentwidgets import ScrollArea, SmoothScrollArea, SingleDirectionScrollArea, OpacityAniStackedWidget, PopUpAniStackedWidget
+from qfluentwidgets import (ScrollArea, SmoothScrollArea, SingleDirectionScrollArea, OpacityAniStackedWidget,
+                            PopUpAniStackedWidget)
 from qframelesswindow import FramelessMainWindow, FramelessWindow
 
 from plugin_base import PluginBase
@@ -44,7 +46,21 @@ class FramelessWindowPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
         return "FramelessWindow"
 
 
-class ScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class ScrollAreaPluginBase(ContainerPlugin):
+    """ Scroll area plugin base """
+
+    def domXml(self):
+        return f"""
+            <widget class="{self.name()}" name="{self.name()}">
+                <property name="widgetResizable">
+                    <bool>true</bool>
+                </property>
+                <widget class="QWidget" name="scrollAreaWidgetContents" />
+            </widget>
+        """
+
+
+class ScrollAreaPlugin(ScrollAreaPluginBase, QPyDesignerCustomWidgetPlugin):
     """ Scroll area plugin """
 
     def createWidget(self, parent):
@@ -60,7 +76,7 @@ class ScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
         return "Smooth scroll area"
 
 
-class SmoothScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class SmoothScrollAreaPlugin(ScrollAreaPluginBase, QPyDesignerCustomWidgetPlugin):
     """ Smooth scroll area plugin """
 
     def createWidget(self, parent):
@@ -73,7 +89,7 @@ class SmoothScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
         return "SmoothScrollArea"
 
 
-class SingleDirectionScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class SingleDirectionScrollAreaPlugin(ScrollAreaPluginBase, QPyDesignerCustomWidgetPlugin):
     """ Single direction scroll area plugin """
 
     def createWidget(self, parent):
@@ -86,11 +102,83 @@ class SingleDirectionScrollAreaPlugin(ContainerPlugin, QPyDesignerCustomWidgetPl
         return "SingleDirectionScrollArea"
 
 
-class OpacityAniStackedWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class StackedWidgetPlugin(ContainerPlugin):
+
+    def domXml(self):
+        return f"""
+            <widget class="{self.name()}" name="{self.name()}">'
+                <widget class="QWidget" name="page" />'
+            </widget>
+        """
+
+    def onCurrentIndexChanged(self, index):
+        widget = self.sender()
+        form = QDesignerFormWindowInterface.findFormWindow(widget)
+        if form:
+            form.emitSelectionChanged()
+
+
+class StackedWidgetExtension(QPyDesignerContainerExtension):
+    """ Stacked widget extension """
+
+    def __init__(self, stacked, parent=None) -> None:
+        super().__init__(parent)
+        self.stacked = stacked
+
+    def addWidget(self, widget) -> None:
+        self.stacked.addWidget(widget)
+
+    def count(self):
+        return self.stacked.count()
+
+    def currentIndex(self):
+        return self.stacked.currentIndex()
+
+    def insertWidget(self, index, widget):
+        self.stacked.insertWidget(index, widget)
+
+    def remove(self, index):
+        self.stacked.removeWidget(self.stacked.widget(index))
+
+    def setCurrentIndex(self, index):
+        self.stacked.setCurrentIndex(index)
+
+    def widget(self, index):
+        return self.stacked.widget(index)
+
+
+class StackedWidgetExtensionFactory(QExtensionFactory):
+    """ Stacked widget extension factory """
+
+    widgets = []
+    IID = "org.qt-project.Qt.Designer.Container"
+
+    def createExtension(self, object, iid, parent):
+        if iid != StackedWidgetExtensionFactory.IID:
+            return None
+
+        if object.__class__.__name__ not in self.widgets:
+            return None
+
+        return StackedWidgetExtension(object, parent)
+
+    @classmethod
+    def register(cls, Plugin):
+        if Plugin.__name__ not in cls.widgets:
+            cls.widgets.append(Plugin().name())
+            Plugin.Factory = cls
+
+        return Plugin
+
+
+@StackedWidgetExtensionFactory.register
+class OpacityAniStackedWidgetPlugin(StackedWidgetPlugin, QPyDesignerCustomWidgetPlugin):
     """ opacity ani stacked widget plugin """
 
     def createWidget(self, parent):
-        return OpacityAniStackedWidget(parent)
+        w = OpacityAniStackedWidget(parent)
+        w.currentChanged.connect(self.onCurrentIndexChanged)
+        return w
 
     def icon(self):
         return super().icon("StackPanel")
@@ -99,11 +187,14 @@ class OpacityAniStackedWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlug
         return "OpacityAniStackedWidget"
 
 
-class PopUpAniStackedWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+@StackedWidgetExtensionFactory.register
+class PopUpAniStackedWidgetPlugin(StackedWidgetPlugin, QPyDesignerCustomWidgetPlugin):
     """ pop up ani stacked widget plugin """
 
     def createWidget(self, parent):
-        return PopUpAniStackedWidget(parent)
+        w = PopUpAniStackedWidget(parent)
+        w.currentChanged.connect(self.onCurrentIndexChanged)
+        return w
 
     def icon(self):
         return super().icon("StackPanel")
