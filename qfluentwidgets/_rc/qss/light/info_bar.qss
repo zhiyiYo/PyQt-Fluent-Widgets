@@ -8,11 +8,13 @@ InfoBar {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     font-weight: bold;
     color: black;
+    background-color: transparent;
 }
 
 #contentLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: black;
+    background-color: transparent;
 }
 
 InfoBar[type="Info"] {
