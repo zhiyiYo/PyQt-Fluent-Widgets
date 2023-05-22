@@ -69,6 +69,6 @@ if sys.platform == "darwin":
 designer = QProcess()
 designer.setProcessEnvironment(env)
 
-designer.start(get_designer_path())
+designer.start(get_designer_path(), [])
 designer.waitForFinished(-1)
 sys.exit(designer.exitCode())
