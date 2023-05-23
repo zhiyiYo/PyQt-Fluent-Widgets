@@ -21,6 +21,7 @@ project_dir = Path(__file__).absolute().parent.parent
 append_to_path_var('PYSIDE_DESIGNER_PLUGINS', str(project_dir / 'plugins'))
 append_to_path_var('PYTHONPATH', str(project_dir))
 
+
 # launch QtDesigner
 designer()
 

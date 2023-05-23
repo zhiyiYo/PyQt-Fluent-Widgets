@@ -81,6 +81,10 @@ class Window(FramelessWindow):
         self.videoInterface = Widget('Video Interface', self)
         self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
+        self.albumInterface = Widget('Album Interface', self)
+        self.albumInterface1 = Widget('Album Interface 1', self)
+        self.albumInterface2 = Widget('Album Interface 2', self)
+        self.albumInterface1_1 = Widget('Album Interface 1-1', self)
 
         # initialize layout
         self.initLayout()
@@ -104,6 +108,11 @@ class Window(FramelessWindow):
 
         self.navigationInterface.addSeparator()
 
+        self.addSubInterface(self.albumInterface, FIF.ALBUM, 'Albums', NavigationItemPosition.SCROLL)
+        self.addSubInterface(self.albumInterface1, FIF.ALBUM, 'Album 1', parent=self.albumInterface)
+        self.addSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', parent=self.albumInterface1)
+        self.addSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', parent=self.albumInterface)
+
         # add navigation items to scroll area
         self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
         # for i in range(1, 21):
@@ -120,7 +129,7 @@ class Window(FramelessWindow):
             routeKey='avatar',
             widget=AvatarWidget(),
             onClick=self.showMessageBox,
-            position=NavigationItemPosition.BOTTOM
+            position=NavigationItemPosition.BOTTOM,
         )
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
@@ -146,7 +155,7 @@ class Window(FramelessWindow):
 
         self.setQss()
 
-    def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP):
+    def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP, parent=None):
         """ add sub interface """
         self.stackWidget.addWidget(interface)
         self.navigationInterface.addItem(
@@ -155,7 +164,8 @@ class Window(FramelessWindow):
             text=text,
             onClick=lambda: self.switchTo(interface),
             position=position,
-            tooltip=text
+            tooltip=text,
+            parentRouteKey=parent.objectName() if parent else None
         )
 
     def setQss(self):
@@ -169,7 +179,7 @@ class Window(FramelessWindow):
     def onCurrentInterfaceChanged(self, index):
         widget = self.stackWidget.widget(index)
         self.navigationInterface.setCurrentItem(widget.objectName())
-        
+
         #!IMPORTANT: This line of code needs to be uncommented if the return button is enabled
         # qrouter.push(self.stackWidget, widget.objectName())
 

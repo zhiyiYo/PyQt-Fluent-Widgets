@@ -239,9 +239,9 @@ class BasicInputInterface(GalleryInterface):
     def createStandMenu(self, button):
         menu = RoundMenu(parent=self)
         menu.addActions([
-            Action(self.tr('Star Platinum'), triggered=lambda c, b=button: b.setText(self.tr('Star Platinum'))),
-            Action(self.tr('Crazy Diamond'), triggered=lambda c, b=button: b.setText(self.tr('Crazy Diamond'))),
-            Action(self.tr("Gold Experience"), triggered=lambda c, b=button: b.setText(self.tr("Gold Experience"))),
-            Action(self.tr('Sticky Fingers'), triggered=lambda c, b=button: b.setText(self.tr('Sticky Fingers'))),
+            Action(self.tr('Star Platinum'), triggered=lambda b=button: b.setText(self.tr('Star Platinum'))),
+            Action(self.tr('Crazy Diamond'), triggered=lambda b=button: b.setText(self.tr('Crazy Diamond'))),
+            Action(self.tr("Gold Experience"), triggered=lambda b=button: b.setText(self.tr("Gold Experience"))),
+            Action(self.tr('Sticky Fingers'), triggered=lambda b=button: b.setText(self.tr('Sticky Fingers'))),
         ])
         return menu

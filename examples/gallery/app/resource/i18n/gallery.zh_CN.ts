@@ -718,19 +718,27 @@
     </message>
 </context>
 <context>
+    <name>NavigationViewInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="22"/>
+        <source>A basic pivot</source>
+        <translation>顶部导航栏</translation>
+    </message>
+</context>
+<context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="44"/>
+        <location filename="../../view/navigation_view_interface.py" line="45"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="45"/>
+        <location filename="../../view/navigation_view_interface.py" line="46"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="46"/>
+        <location filename="../../view/navigation_view_interface.py" line="47"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>

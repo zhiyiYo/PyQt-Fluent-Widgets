@@ -1,5 +1,6 @@
 # coding:utf-8
 from typing import Dict, List
+from itertools import groupby
 
 from PySide6.QtCore import Qt, QObject, Signal
 from PySide6.QtWidgets import QWidget, QStackedWidget
@@ -52,6 +53,7 @@ class StackedHistory:
             return
 
         self.history[1:] = [i for i in self.history[1:] if i != routeKey]
+        self.history = [k for k, g in groupby(self.history)]
         self.goToTop()
 
     def top(self):
@@ -119,6 +121,7 @@ class Router(QObject):
     def remove(self, routeKey: str):
         """ remove history """
         self.history = [i for i in self.history if i.routeKey != routeKey]
+        self.history = [list(g)[0] for k, g in groupby(self.history, lambda i: i.routeKey)]
         self.emptyChanged.emit(not bool(self.history))
 
         for stacked, history in self.stackHistories.items():
