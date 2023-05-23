@@ -81,6 +81,10 @@ class Window(FramelessWindow):
         self.videoInterface = Widget('Video Interface', self)
         self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
+        self.albumInterface = Widget('Album Interface', self)
+        self.albumInterface1 = Widget('Album Interface 1', self)
+        self.albumInterface2 = Widget('Album Interface 2', self)
+        self.albumInterface1_1 = Widget('Album Interface 1-1', self)
 
         # initialize layout
         self.initLayout()
@@ -103,6 +107,11 @@ class Window(FramelessWindow):
         self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
         self.navigationInterface.addSeparator()
+
+        self.addTreeSubInterface(self.albumInterface, FIF.ALBUM, 'Albums')
+        self.addTreeSubInterface(self.albumInterface1, FIF.ALBUM, 'Album 1', self.albumInterface)
+        self.addTreeSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', self.albumInterface1)
+        self.addTreeSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', self.albumInterface)
 
         # add navigation items to scroll area
         self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
@@ -156,6 +165,19 @@ class Window(FramelessWindow):
             onClick=lambda: self.switchTo(interface),
             position=position,
             tooltip=text
+        )
+
+    def addTreeSubInterface(self, interface, icon, text: str, parent=None):
+        """ add tree sub interface """
+        self.stackWidget.addWidget(interface)
+        self.navigationInterface.addTreeItem(
+            routeKey=interface.objectName(),
+            icon=icon,
+            text=text,
+            onClick=lambda: self.switchTo(interface),
+            position=NavigationItemPosition.SCROLL,
+            tooltip=text,
+            parentRouteKey=(parent.objectName() if parent else None)
         )
 
     def setQss(self):

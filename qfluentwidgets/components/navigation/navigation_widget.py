@@ -1,9 +1,9 @@
 # coding:utf-8
-from typing import Union
+from typing import Union, List
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF
-from PyQt5.QtGui import QColor, QPainter, QPen, QIcon
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins, QEasingCurve, QPoint
+from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor
+from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
@@ -96,6 +96,12 @@ class NavigationPushButton(NavigationWidget):
     def text(self):
         return self._text
 
+    def _margins(self):
+        return QMargins(0, 0, 0, 0)
+
+    def _canDrawIndicator(self):
+        return self.isSelected
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing |
@@ -109,25 +115,31 @@ class NavigationPushButton(NavigationWidget):
 
         # draw background
         c = 255 if isDarkTheme() else 0
-        if self.isSelected:
+        m = self._margins()
+        pl, pr = m.left(), m.right()
+        globalRect = QRect(self.mapToGlobal(QPoint()), self.size())
+
+        if self._canDrawIndicator():
             painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
             painter.setBrush(themeColor())
-            painter.drawRoundedRect(0, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter and self.isEnabled():
+            painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
+        elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-        drawIcon(self.icon, painter, QRectF(11.5, 10, 16, 16))
+        drawIcon(self.icon, painter, QRectF(11.5+pl, 10, 16, 16))
 
         # draw text
-        if not self.isCompacted:
-            painter.setFont(self.font())
-            painter.setPen(QColor(c, c, c))
-            painter.drawText(QRect(44, 0, self.width()-57,
-                             self.height()), Qt.AlignVCenter, self.text())
+        if self.isCompacted:
+            return
+
+        painter.setFont(self.font())
+        painter.setPen(QColor(c, c, c))
+        painter.drawText(QRect(44+pl, 0, self.width()-57-pl-pr,
+                            self.height()), Qt.AlignVCenter, self.text())
 
 
 class NavigationToolButton(NavigationPushButton):
@@ -162,3 +174,180 @@ class NavigationSeparator(NavigationWidget):
         pen.setCosmetic(True)
         painter.setPen(pen)
         painter.drawLine(0, 1, self.width(), 1)
+
+
+class NavigationTreeItem(NavigationPushButton):
+    """ Navigation tree item widget """
+
+    itemClicked = pyqtSignal(bool, bool)    # triggerByUser, clickArrow
+
+    def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
+        super().__init__(icon, text, isSelectable, parent)
+        self._arrowAngle = 0
+        self.rotateAni = QPropertyAnimation(self, b'arrowAngle', self)
+
+    def setExpanded(self, isExpanded: bool):
+        self.rotateAni.stop()
+        self.rotateAni.setEndValue(180 if isExpanded else 0)
+        self.rotateAni.setDuration(150)
+        self.rotateAni.start()
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        clickArrow = QRectF(self.width()-30, 8, 20, 20).contains(e.pos())
+        self.itemClicked.emit(True, clickArrow)
+        self.update()
+
+    def _canDrawIndicator(self):
+        p = self.parent()   # type: NavigationTreeWidget
+        if p.isLeaf() or p.isSelected:
+            return p.isSelected
+
+        for child in p.treeChildren:
+            if child.itemWidget._canDrawIndicator() and not child.isVisible():
+                return True
+
+        return False
+
+    def _margins(self):
+        p = self.parent()   # type: NavigationTreeWidget
+        return QMargins(p.nodeDepth*28, 0, 20*bool(p.treeChildren), 0)
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        if self.isCompacted or not self.parent().treeChildren:
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
+        if not self.isEnabled():
+            painter.setOpacity(0.4)
+
+        painter.translate(self.width() - 20, 18)
+        painter.rotate(self.arrowAngle)
+        FIF.ARROW_DOWN.render(painter, QRectF(-5, -5, 9.6, 9.6))
+
+    def getArrowAngle(self):
+        return self._arrowAngle
+
+    def setArrowAngle(self, angle):
+        self._arrowAngle = angle
+        self.update()
+
+    arrowAngle = pyqtProperty(float, getArrowAngle, setArrowAngle)
+
+
+class NavigationTreeWidget(NavigationWidget):
+    """ Navigation tree widget """
+
+    def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
+        super().__init__(isSelectable, parent)
+
+        self.treeChildren = []  # type: List[NavigationTreeWidget]
+        self.treeParent = None  # type: NavigationTreeWidget
+        self.nodeDepth = 0
+        self.isExpanded = False
+
+        self.itemWidget = NavigationTreeItem(icon, text, isSelectable, self)
+        self.vBoxLayout = QVBoxLayout(self)
+        self.expandAni = QPropertyAnimation(self, b'geometry', self)
+
+        self.__initWidget()
+
+    def __initWidget(self):
+        self.vBoxLayout.setSpacing(4)
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.addWidget(self.itemWidget, 0, Qt.AlignTop)
+
+        self.itemWidget.itemClicked.connect(self._onClicked)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.expandAni.valueChanged.connect(lambda g: self.setFixedSize(g.size()))
+
+    def addChild(self, child: 'NavigationTreeWidget'):
+        """ add child
+
+        Parameters
+        ----------
+        child: NavigationTreeWidget
+            child item
+        """
+        self.insertChild(-1, child)
+
+    def text(self):
+        return self.itemWidget.text()
+
+    def insertChild(self, index: int, child: 'NavigationTreeWidget'):
+        """ insert child
+
+        Parameters
+        ----------
+        child: NavigationTreeWidget
+            child item
+        """
+        if child in self.treeChildren:
+            return
+
+        child.treeParent = self
+        child.nodeDepth = self.nodeDepth + 1
+        child.setVisible(self.isExpanded)
+        child.expandAni.valueChanged.connect(lambda: self.setFixedSize(self.sizeHint()))
+
+        if index < 0:
+            index = len(self.treeChildren)
+
+        index += 1  # item widget should always be the first
+        self.treeChildren.insert(index, child)
+        self.vBoxLayout.insertWidget(index, child, 0, Qt.AlignTop)
+
+    def setExpanded(self, isExpanded: bool, ani=True):
+        """ set the expanded status """
+        if isExpanded == self.isExpanded:
+            return
+
+        self.isExpanded = isExpanded
+        self.itemWidget.setExpanded(isExpanded)
+
+        for child in self.treeChildren:
+            child.setVisible(isExpanded)
+            child.setFixedSize(child.sizeHint())
+
+        if ani:
+            self.expandAni.stop()
+            self.expandAni.setStartValue(self.geometry())
+            self.expandAni.setEndValue(QRect(self.pos(), self.sizeHint()))
+            self.expandAni.setDuration(120)
+            self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
+            self.expandAni.start()
+        else:
+            self.setFixedSize(self.sizeHint())
+
+    def isRoot(self):
+        return self.treeParent is None
+
+    def isLeaf(self):
+        return len(self.treeChildren) == 0
+
+    def setSelected(self, isSelected: bool):
+        super().setSelected(isSelected)
+        self.itemWidget.setSelected(isSelected)
+
+    def mouseReleaseEvent(self, e):
+        pass
+
+    def setCompacted(self, isCompacted: bool):
+        super().setCompacted(isCompacted)
+        self.itemWidget.setCompacted(isCompacted)
+
+    def _onClicked(self, triggerByUser, clickArrow):
+        if not self.isCompacted:
+            if self.isSelectable and not self.isSelected and not clickArrow:
+                self.setExpanded(True)
+            else:
+                self.setExpanded(not self.isExpanded)
+
+        if not clickArrow or self.isCompacted:
+            self.clicked.emit(triggerByUser)
