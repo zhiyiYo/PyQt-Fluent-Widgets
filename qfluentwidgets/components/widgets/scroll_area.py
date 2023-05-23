@@ -33,11 +33,11 @@ class SingleDirectionScrollArea(QScrollArea):
         self.hScrollBar = SmoothScrollBar(Qt.Orientation.Horizontal, self)
 
     def setVerticalScrollBarPolicy(self, policy):
-        super().setVerticalScrollBarPolicy(policy)
+        super().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.vScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def setHorizontalScrollBarPolicy(self, policy):
-        super().setHorizontalScrollBarPolicy(policy)
+        super().setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.hScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def setSmoothMode(self, mode):

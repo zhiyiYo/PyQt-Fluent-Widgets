@@ -1,10 +1,10 @@
 # coding:utf-8
-import typing
 from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QPainter, QColor
-from PyQt6.QtWidgets import QWidget, QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
+from PyQt6.QtGui import QPainter, QColor, QPalette
+from PyQt6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.font import getFont
 from .scroll_area import SmoothScrollDelegate
 
 
@@ -39,13 +39,23 @@ class TreeItemDelegate(QStyledItemDelegate):
 
         painter.restore()
 
+    def initStyleOption(self, option, index):
+        super().initStyleOption(option, index)
+        option.font = getFont(13)
+        if isDarkTheme():
+            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.white)
+            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.white)
+        else:
+            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.black)
+            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.black)
+
 
 class TreeViewBase:
     """ Tree view base class """
 
     def __init__(self, *args, **kwargs):
         self.scrollDelagate = SmoothScrollDelegate(self)
-        
+
         self.setItemDelegate(TreeItemDelegate(self))
         self.setIconSize(QSize(16, 16))
 

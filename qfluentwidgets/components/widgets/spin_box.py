@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
 
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import FluentIconBase, Theme, getIconColor
+from ...common.font import setFont
 from ...components.widgets import LineEditMenu
 
 
@@ -62,6 +63,7 @@ class Ui_SpinBox:
         FluentStyleSheet.SPIN_BOX.apply(self)
         self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
         self.setFixedHeight(33)
+        setFont(self)
 
         self.hBoxLayout = QHBoxLayout(self)
         self.upButton = SpinButton(SpinIcon.UP, self)

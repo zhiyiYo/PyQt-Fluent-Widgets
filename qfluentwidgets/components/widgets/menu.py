@@ -762,7 +762,7 @@ class EditMenu(RoundMenu):
     def _parentSelectedText(self):
         raise NotImplementedError
 
-    def exec(self, pos, ani=True):
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         self.clear()
         self.createActions()
 
@@ -784,7 +784,7 @@ class EditMenu(RoundMenu):
             else:
                 return
 
-        super().exec(pos, ani)
+        super().exec(pos, ani, aniType)
 
 
 class LineEditMenu(EditMenu):

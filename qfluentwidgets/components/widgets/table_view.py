@@ -6,6 +6,7 @@ from PyQt6.QtGui import QPainter, QColor, QKeyEvent, QPalette
 from PyQt6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget, QTableWidgetItem)
 
+from ...common.font import getFont
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
 from .line_edit import LineEdit
 from .scroll_bar import SmoothScrollDelegate
@@ -78,6 +79,7 @@ class TableItemDelegate(QStyledItemDelegate):
 
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
         super().initStyleOption(option, index)
+        option.font = getFont(13)
         if isDarkTheme():
             option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.white)
             option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.white)
