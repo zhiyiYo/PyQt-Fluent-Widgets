@@ -341,6 +341,15 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
     def text(self):
         return self.itemWidget.text()
 
+    def icon(self):
+        return self.itemWidget.icon()
+
+    def setText(self, text):
+        self.itemWidget.setText(text)
+
+    def setIcon(self, icon: Union[str, QIcon, FIF]):
+        self.itemWidget.setIcon(icon)
+
     def insertChild(self, index, child):
         if child in self.treeChildren:
             return
