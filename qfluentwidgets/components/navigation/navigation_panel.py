@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCu
 from PyQt5.QtGui import QResizeEvent, QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
-from .navigation_widget import (NavigationPushButton, NavigationToolButton, NavigationWidget, NavigationSeparator,
+from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
                                 NavigationTreeWidget)
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
@@ -45,6 +45,14 @@ class RouteKeyError(Exception):
     """ Route key error """
 
 
+class NavigationItem:
+    """ Navigation item """
+
+    def __init__(self, routeKey: str, parentRouteKey: str, widget: NavigationWidget):
+        self.routeKey = routeKey
+        self.parentRouteKey = parentRouteKey
+        self.widget = widget
+
 
 class NavigationPanel(QFrame):
     """ Navigation panel """
@@ -68,7 +76,7 @@ class NavigationPanel(QFrame):
         self.bottomLayout = NavigationItemLayout()
         self.scrollLayout = NavigationItemLayout(self.scrollWidget)
 
-        self.items = {}   # type: Dict[str, NavigationWidget]
+        self.items = {}   # type: Dict[str, NavigationItem]
         self.history = qrouter
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
@@ -141,101 +149,11 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             raise RouteKeyError(f"`{routeKey}` is illegal.")
 
-        return self.items[routeKey]
+        return self.items[routeKey].widget
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None, selectable=True,
-                position=NavigationItemPosition.TOP, tooltip: str = None):
+                position=NavigationItemPosition.TOP, tooltip: str = None, parentRouteKey: str = None):
         """ add navigation item
-
-        Parameters
-        ----------
-        routeKey: str
-            the unique name of item
-
-        icon: str | QIcon | FluentIconBase
-            the icon of navigation item
-
-        text: str
-            the text of navigation item
-
-        onClick: callable
-            the slot connected to item clicked signal
-
-        position: NavigationItemPosition
-            where the button is added
-
-        selectable: bool
-            whether the item is selectable
-
-        tooltip: str
-            the tooltip of item
-        """
-        return self.insertItem(-1, routeKey, icon, text, onClick, selectable, position, tooltip)
-
-    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick=None, position=NavigationItemPosition.TOP,
-                  tooltip: str = None):
-        """ add custom widget
-
-        Parameters
-        ----------
-        routeKey: str
-            the unique name of item
-
-        widget: NavigationWidget
-            the custom widget to be added
-
-        onClick: callable
-            the slot connected to item clicked signal
-
-        position: NavigationItemPosition
-            where the button is added
-
-        tooltip: str
-            the tooltip of widget
-        """
-        self.insertWidget(-1, routeKey, widget, onClick, position, tooltip)
-
-    def insertItem(self, index: int, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None,
-                   selectable=True, position=NavigationItemPosition.TOP, tooltip: str = None):
-        """ insert navigation item
-
-        Parameters
-        ----------
-        index: int
-            insert position
-
-        routeKey: str
-            the unique name of item
-
-        icon: str | QIcon | FluentIconBase
-            the icon of navigation item
-
-        text: str
-            the text of navigation item
-
-        onClick: callable
-            the slot connected to item clicked signal
-
-        position: NavigationItemPosition
-            where the button is added
-
-        selectable: bool
-            whether the item is selectable
-
-        tooltip: str
-            the tooltip of item
-        """
-        if routeKey in self.items:
-            return
-
-        button = NavigationPushButton(icon, text, selectable, self)
-        self.insertWidget(index, routeKey, button, onClick, position, tooltip)
-
-        return button
-
-    def addTreeItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None,
-                    selectable=True, position=NavigationItemPosition.SCROLL, tooltip: str = None, parentRouteKey=None):
-        """ add navigation tree item
 
         Parameters
         ----------
@@ -261,12 +179,38 @@ class NavigationPanel(QFrame):
             the tooltip of item
 
         parentRouteKey: str
-            the route key of parent item
+            the route key of parent item, the parent widget should be `NavigationTreeWidget`
         """
-        return self.insertTreeItem(-1, routeKey, icon, text, onClick, selectable, position, tooltip, parentRouteKey)
+        return self.insertItem(-1, routeKey, icon, text, onClick, selectable, position, tooltip, parentRouteKey)
 
-    def insertTreeItem(self, index: int, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None,
-                       selectable=True, position=NavigationItemPosition.SCROLL, tooltip: str = None, parentRouteKey=None):
+    def addWidget(self, routeKey: str, widget: NavigationWidget, onClick=None, position=NavigationItemPosition.TOP,
+                  tooltip: str = None, parentRouteKey: str = None):
+        """ add custom widget
+
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of item
+
+        widget: NavigationWidget
+            the custom widget to be added
+
+        onClick: callable
+            the slot connected to item clicked signal
+
+        position: NavigationItemPosition
+            where the button is added
+
+        tooltip: str
+            the tooltip of widget
+
+        parentRouteKey: str
+            the route key of parent item, the parent item should be `NavigationTreeWidget`
+        """
+        self.insertWidget(-1, routeKey, widget, onClick, position, tooltip, parentRouteKey)
+
+    def insertItem(self, index: int, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None,
+                   selectable=True, position=NavigationItemPosition.TOP, tooltip: str = None, parentRouteKey=None):
         """ insert navigation tree item
 
         Parameters
@@ -296,22 +240,17 @@ class NavigationPanel(QFrame):
             the tooltip of item
 
         parentRouteKey: str
-            the route key of parent item
+            the route key of parent item, the parent item should be `NavigationTreeWidget`
         """
         if routeKey in self.items:
             return
 
         w = NavigationTreeWidget(icon, text, selectable, self)
-        if parentRouteKey:
-            self._registerWidget(routeKey, w, onClick, tooltip)
-            self.widget(parentRouteKey).insertChild(index, w)
-        else:
-            self.insertWidget(index, routeKey, w, onClick, position, tooltip)
-
+        self.insertWidget(index, routeKey, w, onClick, position, tooltip, parentRouteKey)
         return w
 
     def insertWidget(self, index: int, routeKey: str, widget: NavigationWidget, onClick=None,
-                     position=NavigationItemPosition.TOP, tooltip: str = None):
+                     position=NavigationItemPosition.TOP, tooltip: str = None, parentRouteKey: str = None):
         """ insert custom widget
 
         Parameters
@@ -333,12 +272,18 @@ class NavigationPanel(QFrame):
 
         tooltip: str
             the tooltip of widget
+
+        parentRouteKey: str
+            the route key of parent item, the parent item should be `NavigationTreeWidget`
         """
         if routeKey in self.items:
             return
 
-        self._registerWidget(routeKey, widget, onClick, tooltip)
-        self._insertWidgetToLayout(index, widget, position)
+        self._registerWidget(routeKey, parentRouteKey, widget, onClick, tooltip)
+        if parentRouteKey:
+            self.widget(parentRouteKey).insertChild(index, widget)
+        else:
+            self._insertWidgetToLayout(index, widget, position)
 
     def addSeparator(self, position=NavigationItemPosition.TOP):
         """ add separator
@@ -364,7 +309,7 @@ class NavigationPanel(QFrame):
         separator = NavigationSeparator(self)
         self._insertWidgetToLayout(index, separator, position)
 
-    def _registerWidget(self, routeKey: str, widget: NavigationWidget, onClick, tooltip: str):
+    def _registerWidget(self, routeKey: str, parentRouteKey: str, widget: NavigationWidget, onClick, tooltip: str):
         """ register widget """
         widget.clicked.connect(self._onWidgetClicked)
 
@@ -372,7 +317,8 @@ class NavigationPanel(QFrame):
             widget.clicked.connect(onClick)
 
         widget.setProperty('routeKey', routeKey)
-        self.items[routeKey] = widget
+        widget.setProperty('parentRouteKey', parentRouteKey)
+        self.items[routeKey] = NavigationItem(routeKey, parentRouteKey, widget)
 
         if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
             widget.setCompacted(False)
@@ -406,8 +352,12 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             return
 
-        w = self.items.pop(routeKey)
-        w.deleteLater()
+        item = self.items.pop(routeKey)
+
+        if item.parentRouteKey is not None:
+            self.widget(item.parentRouteKey).removeChild(item.widget)
+
+        item.widget.deleteLater()
         self.history.remove(routeKey)
 
     def setMenuButtonVisible(self, isVisible: bool):
@@ -462,9 +412,10 @@ class NavigationPanel(QFrame):
         if self.expandAni.state() == QPropertyAnimation.Running:
             return
 
-        for w in self.items.values():
-            if isinstance(w, NavigationTreeWidget) and w.isRoot():
-                w.setExpanded(False, ani=False)
+        for item in self.items.values():
+            w = item.widget
+            if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
+                w.setExpanded(False)
 
         self.expandAni.setStartValue(
             QRect(self.pos(), QSize(self.width(), self.height())))
@@ -494,7 +445,7 @@ class NavigationPanel(QFrame):
             return
 
         for k, item in self.items.items():
-            item.setSelected(k == routeKey)
+            item.widget.setSelected(k == routeKey)
 
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget
@@ -503,7 +454,7 @@ class NavigationPanel(QFrame):
 
         self.setCurrentItem(widget.property('routeKey'))
         if widget is not self.menuButton and self.displayMode == NavigationDisplayMode.MENU \
-                and not isinstance(widget, NavigationTreeWidget):
+                and not (isinstance(widget, NavigationTreeWidgetBase) and not widget.isLeaf()):
             self.collapse()
 
     def resizeEvent(self, e: QResizeEvent):
@@ -550,7 +501,7 @@ class NavigationPanel(QFrame):
             self.setStyle(QApplication.style())
 
             for item in self.items.values():
-                item.setCompacted(True)
+                item.widget.setCompacted(True)
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)

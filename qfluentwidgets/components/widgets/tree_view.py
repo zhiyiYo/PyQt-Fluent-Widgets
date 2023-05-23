@@ -1,10 +1,10 @@
 # coding:utf-8
-import typing
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QWidget, QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
+from PyQt5.QtGui import QPainter, QColor, QPalette
+from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.font import getFont
 from .scroll_area import SmoothScrollDelegate
 
 
@@ -38,6 +38,16 @@ class TreeItemDelegate(QStyledItemDelegate):
             painter.drawRoundedRect(4, 9+option.rect.y(), 3, h - 13, 1.5, 1.5)
 
         painter.restore()
+
+    def initStyleOption(self, option, index):
+        super().initStyleOption(option, index)
+        option.font = getFont(13)
+        if isDarkTheme():
+            option.palette.setColor(QPalette.Text, Qt.white)
+            option.palette.setColor(QPalette.HighlightedText, Qt.white)
+        else:
+            option.palette.setColor(QPalette.Text, Qt.black)
+            option.palette.setColor(QPalette.HighlightedText, Qt.black)
 
 
 class TreeViewBase:

@@ -108,10 +108,10 @@ class Window(FramelessWindow):
 
         self.navigationInterface.addSeparator()
 
-        self.addTreeSubInterface(self.albumInterface, FIF.ALBUM, 'Albums')
-        self.addTreeSubInterface(self.albumInterface1, FIF.ALBUM, 'Album 1', self.albumInterface)
-        self.addTreeSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', self.albumInterface1)
-        self.addTreeSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', self.albumInterface)
+        self.addSubInterface(self.albumInterface, FIF.ALBUM, 'Albums', NavigationItemPosition.SCROLL)
+        self.addSubInterface(self.albumInterface1, FIF.ALBUM, 'Album 1', parent=self.albumInterface)
+        self.addSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', parent=self.albumInterface1)
+        self.addSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', parent=self.albumInterface)
 
         # add navigation items to scroll area
         self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
@@ -129,7 +129,7 @@ class Window(FramelessWindow):
             routeKey='avatar',
             widget=AvatarWidget(),
             onClick=self.showMessageBox,
-            position=NavigationItemPosition.BOTTOM
+            position=NavigationItemPosition.BOTTOM,
         )
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
@@ -155,7 +155,7 @@ class Window(FramelessWindow):
 
         self.setQss()
 
-    def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP):
+    def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP, parent=None):
         """ add sub interface """
         self.stackWidget.addWidget(interface)
         self.navigationInterface.addItem(
@@ -164,20 +164,8 @@ class Window(FramelessWindow):
             text=text,
             onClick=lambda: self.switchTo(interface),
             position=position,
-            tooltip=text
-        )
-
-    def addTreeSubInterface(self, interface, icon, text: str, parent=None):
-        """ add tree sub interface """
-        self.stackWidget.addWidget(interface)
-        self.navigationInterface.addTreeItem(
-            routeKey=interface.objectName(),
-            icon=icon,
-            text=text,
-            onClick=lambda: self.switchTo(interface),
-            position=NavigationItemPosition.SCROLL,
             tooltip=text,
-            parentRouteKey=(parent.objectName() if parent else None)
+            parentRouteKey=parent.objectName() if parent else None
         )
 
     def setQss(self):
@@ -191,7 +179,7 @@ class Window(FramelessWindow):
     def onCurrentInterfaceChanged(self, index):
         widget = self.stackWidget.widget(index)
         self.navigationInterface.setCurrentItem(widget.objectName())
-        
+
         #!IMPORTANT: This line of code needs to be uncommented if the return button is enabled
         # qrouter.push(self.stackWidget, widget.objectName())
 

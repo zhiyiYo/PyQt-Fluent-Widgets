@@ -1,7 +1,8 @@
 # coding:utf-8
 from typing import Union, List
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins, QEasingCurve, QPoint
+from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
+                          QEasingCurve, QPoint, QEvent)
 from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
@@ -24,6 +25,8 @@ class NavigationWidget(QWidget):
         self.isPressed = False
         self.isEnter = False
         self.isSelectable = isSelectable
+        self.treeParent = None
+        self.nodeDepth = 0
         self.setFixedSize(40, 36)
 
     def enterEvent(self, e):
@@ -65,7 +68,7 @@ class NavigationWidget(QWidget):
         isSelected: bool
             whether the button is selected
         """
-        if not self.isSelectable or self.isSelected == isSelected:
+        if not self.isSelectable:
             return
 
         self.isSelected = isSelected
@@ -241,15 +244,65 @@ class NavigationTreeItem(NavigationPushButton):
     arrowAngle = pyqtProperty(float, getArrowAngle, setArrowAngle)
 
 
-class NavigationTreeWidget(NavigationWidget):
+class NavigationTreeWidgetBase(NavigationWidget):
+    """ Navigation tree widget base class """
+
+    def addChild(self, child):
+        """ add child
+
+        Parameters
+        ----------
+        child: NavigationTreeWidgetBase
+            child item
+        """
+        raise NotImplementedError
+
+    def insertChild(self, index: int, child: NavigationWidget):
+        """ insert child
+
+        Parameters
+        ----------
+        child: NavigationTreeWidgetBase
+            child item
+        """
+        raise NotImplementedError
+
+    def removeChild(self, child: NavigationWidget):
+        """ remove child
+
+        Parameters
+        ----------
+        child: NavigationTreeWidgetBase
+            child item
+        """
+        raise NotImplementedError
+
+    def isRoot(self):
+        """ is root node """
+        return True
+
+    def isLeaf(self):
+        """ is leaf node """
+        return True
+
+    def setExpanded(self, isExpanded: bool):
+        """ set the expanded status
+
+        Parameters
+        ----------
+        isExpanded: bool
+            whether to expand node
+        """
+        raise NotImplementedError
+
+
+class NavigationTreeWidget(NavigationTreeWidgetBase):
     """ Navigation tree widget """
 
     def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
         super().__init__(isSelectable, parent)
 
         self.treeChildren = []  # type: List[NavigationTreeWidget]
-        self.treeParent = None  # type: NavigationTreeWidget
-        self.nodeDepth = 0
         self.isExpanded = False
 
         self.itemWidget = NavigationTreeItem(icon, text, isSelectable, self)
@@ -267,27 +320,13 @@ class NavigationTreeWidget(NavigationWidget):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.expandAni.valueChanged.connect(lambda g: self.setFixedSize(g.size()))
 
-    def addChild(self, child: 'NavigationTreeWidget'):
-        """ add child
-
-        Parameters
-        ----------
-        child: NavigationTreeWidget
-            child item
-        """
+    def addChild(self, child):
         self.insertChild(-1, child)
 
     def text(self):
         return self.itemWidget.text()
 
-    def insertChild(self, index: int, child: 'NavigationTreeWidget'):
-        """ insert child
-
-        Parameters
-        ----------
-        child: NavigationTreeWidget
-            child item
-        """
+    def insertChild(self, index, child):
         if child in self.treeChildren:
             return
 
@@ -303,7 +342,11 @@ class NavigationTreeWidget(NavigationWidget):
         self.treeChildren.insert(index, child)
         self.vBoxLayout.insertWidget(index, child, 0, Qt.AlignTop)
 
-    def setExpanded(self, isExpanded: bool, ani=True):
+    def removeChild(self, child):
+        self.treeChildren.remove(child)
+        self.vBoxLayout.removeWidget(child)
+
+    def setExpanded(self, isExpanded: bool, ani=False):
         """ set the expanded status """
         if isExpanded == self.isExpanded:
             return
@@ -345,9 +388,9 @@ class NavigationTreeWidget(NavigationWidget):
     def _onClicked(self, triggerByUser, clickArrow):
         if not self.isCompacted:
             if self.isSelectable and not self.isSelected and not clickArrow:
-                self.setExpanded(True)
+                self.setExpanded(True, ani=True)
             else:
-                self.setExpanded(not self.isExpanded)
+                self.setExpanded(not self.isExpanded, ani=True)
 
         if not clickArrow or self.isCompacted:
             self.clicked.emit(triggerByUser)
