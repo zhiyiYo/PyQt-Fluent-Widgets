@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
-from ...common.icon import drawIcon
+from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 
 
@@ -90,7 +90,7 @@ class NavigationPushButton(NavigationWidget):
         """
         super().__init__(isSelectable=isSelectable, parent=parent)
 
-        self.icon = icon
+        self._icon = icon
         self._text = text
 
         self.setStyleSheet(
@@ -98,6 +98,17 @@ class NavigationPushButton(NavigationWidget):
 
     def text(self):
         return self._text
+
+    def setText(self, text: str):
+        self._text = text
+        self.update()
+
+    def icon(self):
+        return toQIcon(self._icon)
+
+    def setIcon(self, icon: Union[str, QIcon, FIF]):
+        self._icon = icon
+        self.update()
 
     def _margins(self):
         return QMargins(0, 0, 0, 0)
@@ -133,7 +144,7 @@ class NavigationPushButton(NavigationWidget):
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-        drawIcon(self.icon, painter, QRectF(11.5+pl, 10, 16, 16))
+        drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
 
         # draw text
         if self.isCompacted:
@@ -295,6 +306,10 @@ class NavigationTreeWidgetBase(NavigationWidget):
         """
         raise NotImplementedError
 
+    def childItems(self) -> list:
+        """ return child items """
+        raise NotImplementedError
+
 
 class NavigationTreeWidget(NavigationTreeWidgetBase):
     """ Navigation tree widget """
@@ -345,6 +360,9 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
     def removeChild(self, child):
         self.treeChildren.remove(child)
         self.vBoxLayout.removeWidget(child)
+
+    def childItems(self) -> list:
+        return self.treeChildren
 
     def setExpanded(self, isExpanded: bool, ani=False):
         """ set the expanded status """
