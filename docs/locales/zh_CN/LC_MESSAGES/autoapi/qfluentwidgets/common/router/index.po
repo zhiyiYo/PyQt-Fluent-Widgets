@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-24 10:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:2
+#: 258fcb6dddfb42ac8d5790979739710a
+msgid "router"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:8
+#: c3fb72f9f95a43919b1c39d3fb1966b7
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: f6804548d1e64f24b9e482a41de0b909
+msgid ":py:obj:`RouteItem <qfluentwidgets.common.router.RouteItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: 0af3126fbd564bdb9cd54afc1e2e371d a658d0b90eee4f5b855b85ab5bce8f12
+msgid "Route item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: f05d10cd2713484495b90b6098fb9f35
+msgid ":py:obj:`StackedHistory <qfluentwidgets.common.router.StackedHistory>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:40
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: 2169d1ffd70146399be14985a04d41f3 d5702c096c554644ba598bd51fa7dfde
+msgid "Stacked history"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: 1dba31b3390b48d1911a00d47e52a8d1
+msgid ":py:obj:`Router <qfluentwidgets.common.router.Router>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:71
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:22:<autosummary>:1
+#: 90e175e2e9b84075a911045620a19e34 94806fb114e3457099618c722d5ba5ce
+msgid "Router"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:27:<autosummary>:1
+#: ff98fdf1a62a4257aeec1ce87c119d23
+msgid ":py:obj:`qrouter <qfluentwidgets.common.router.qrouter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:34
+#: c0d702f5953e493f996b9c8c9a91486e
+msgid "Return self==value."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:69
+#: 61ed08a686d04256bec0b698e86d767c
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:79
+#: ec2a7c3735354c1a8a89ed6607963b49
+msgid "set the default route key of stacked widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:84
+#: eb9674a453e9466884fd44fab25cbd8e
+msgid "push history"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:87
+#: 7db59a503e3d4f9cbf5760ac84764cca
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:89
+#: 093ab4296d5440abbfc680c8f941510a
+msgid "stacked: QStackedWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:89
+#: aef8fe9ebebe4329941a77d2a5bc1b24
+msgid "stacked widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:91
+#: beab710468764e6f86ce48d75f7209a4
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:92
+#: e843b069843b4fa78390d469666c42fd
+msgid "route key of sub insterface, it should be the object name of sub interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:97
+#: 503eefd0408943f69213e80aa1eb3870
+msgid "pop history"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/router/index.rst:102
+#: 7fd5f192caa74627a7a002a3816a84bf
+msgid "remove history"
+msgstr ""
+
