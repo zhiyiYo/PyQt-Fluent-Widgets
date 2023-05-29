@@ -217,29 +217,39 @@
 <context>
     <name>DateTimeInterface</name>
     <message>
-        <location filename="../../view/date_time_interface.py" line="21"/>
+        <location filename="../../view/date_time_interface.py" line="36"/>
         <source>A simple DatePicker</source>
         <translation>日期选择器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="27"/>
+        <location filename="../../view/date_time_interface.py" line="42"/>
         <source>A DatePicker in another format</source>
         <translation>另一种格式的日期选择器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="34"/>
+        <location filename="../../view/date_time_interface.py" line="49"/>
         <source>A simple TimePicker</source>
         <translation>时间选择器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="41"/>
+        <location filename="../../view/date_time_interface.py" line="56"/>
         <source>A TimePicker using a 24-hour clock</source>
         <translation>24 小时制的时间选择器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="48"/>
+        <location filename="../../view/date_time_interface.py" line="63"/>
         <source>A TimePicker with seconds column</source>
         <translation>显示秒的时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="21"/>
+        <source>A simple CalendarPicker</source>
+        <translation>日历选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="29"/>
+        <source>A CalendarPicker in another format</source>
+        <translation>自定义格式的日历选择器</translation>
     </message>
 </context>
 <context>

@@ -3,13 +3,14 @@ from typing import Union, List
 
 from PySide6.QtCore import (Qt, Signal, QRect, QRectF, QPropertyAnimation, Property, QMargins,
                           QEasingCurve, QPoint, QEvent)
-from PySide6.QtGui import QColor, QPainter, QPen, QIcon, QCursor
+from PySide6.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont
 from PySide6.QtWidgets import QWidget, QVBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
+from ...common.font import setFont
 
 
 class NavigationWidget(QWidget):
@@ -93,8 +94,7 @@ class NavigationPushButton(NavigationWidget):
         self._icon = icon
         self._text = text
 
-        self.setStyleSheet(
-            "NavigationPushButton{font: 14px 'Segoe UI', 'Microsoft YaHei'}")
+        setFont(self)
 
     def text(self):
         return self._text
@@ -349,6 +349,10 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
     def setIcon(self, icon: Union[str, QIcon, FIF]):
         self.itemWidget.setIcon(icon)
+
+    def setFont(self, font: QFont):
+        super().setFont(font)
+        self.itemWidget.setFont(font)
 
     def insertChild(self, index, child):
         if child in self.treeChildren:

@@ -5,7 +5,7 @@ from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButt
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
                             SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
                             EditableComboBox, PixmapLabel, PushButton, PrimaryToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton, TransparentToolButton)
 
 from plugin_base import PluginBase
 from task_menu_factory import EditTextTaskMenuFactory

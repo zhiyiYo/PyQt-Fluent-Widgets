@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import DatePicker, TimePicker, ZhDatePicker, AMTimePicker
+from qfluentwidgets import DatePicker, TimePicker, ZhDatePicker, AMTimePicker, CalendarPicker
 
 from plugin_base import PluginBase
 

@@ -106,6 +106,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     SWITCH_BUTTON = "switch_button"
     MESSAGE_DIALOG = "message_dialog"
     STATE_TOOL_TIP = "state_tool_tip"
+    CALENDAR_PICKER = "calendar_picker"
     FOLDER_LIST_DIALOG = "folder_list_dialog"
     SETTING_CARD_GROUP = "setting_card_group"
     EXPAND_SETTING_CARD = "expand_setting_card"

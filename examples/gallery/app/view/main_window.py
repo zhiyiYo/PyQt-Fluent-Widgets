@@ -7,7 +7,6 @@ from PySide6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, MessageBox,
                             isDarkTheme, PopUpAniStackedWidget, qrouter)
 from qfluentwidgets import FluentIcon as FIF
-from qframelesswindow import FramelessWindow
 
 from .title_bar import CustomTitleBar
 from .gallery_interface import GalleryInterface
@@ -27,6 +26,7 @@ from .text_interface import TextInterface
 from .view_interface import ViewInterface
 from ..common.config import SUPPORT_URL
 from ..components.avatar_widget import AvatarWidget
+from ..components.frameless_window import FramelessWindow
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
