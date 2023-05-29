@@ -224,3 +224,8 @@ TransparentToolButton:pressed {
     background-color: rgba(255, 255, 255, 6);
     border: none;
 }
+
+TransparentToolButton:disabled {
+    background-color: transparent;
+    border: none;
+}

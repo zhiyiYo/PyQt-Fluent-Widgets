@@ -195,11 +195,18 @@ class HomeInterface(ScrollArea):
         # date time samples
         dateTimeView = SampleCardView(self.tr('Date & time samples'), self.view)
         dateTimeView.addSampleCard(
+            icon=":/gallery/images/controls/CalendarDatePicker.png",
+            title="CalendarPicker",
+            content=self.tr("A control that lets a user pick a date value using a calendar."),
+            routeKey="dateTimeInterface",
+            index=0
+        )
+        dateTimeView.addSampleCard(
             icon=":/gallery/images/controls/DatePicker.png",
             title="DatePicker",
             content=self.tr("A control that lets a user pick a date value."),
             routeKey="dateTimeInterface",
-            index=0
+            index=2
         )
         dateTimeView.addSampleCard(
             icon=":/gallery/images/controls/TimePicker.png",
@@ -207,7 +214,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A configurable control that lets a user pick a time value."),
             routeKey="dateTimeInterface",
-            index=2
+            index=4
         )
         self.vBoxLayout.addWidget(dateTimeView)
 

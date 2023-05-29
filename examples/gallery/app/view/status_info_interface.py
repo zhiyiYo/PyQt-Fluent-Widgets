@@ -28,7 +28,7 @@ class StatusInfoInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('State tool tip'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/status_tool_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/state_tool_tip/demo.py'
         )
 
         # tool tip

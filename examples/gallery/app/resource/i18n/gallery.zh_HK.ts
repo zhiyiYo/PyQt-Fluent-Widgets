@@ -16,7 +16,7 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="56"/>
         <source>A hyperlink button that navigates to a URI</source>
-        <translation>導航到一個超鏈接的按鈕</translation>
+        <translation>導航到一個超連結的按鈕</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="63"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="149"/>
         <source>Soft and Wet</source>
-        <translation>軟又溼</translation>
+        <translation>軟又濕</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="241"/>
@@ -121,7 +121,7 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="107"/>
         <source>Send</source>
-        <translation>髮送</translation>
+        <translation>發送</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="108"/>
@@ -217,29 +217,39 @@
 <context>
     <name>DateTimeInterface</name>
     <message>
-        <location filename="../../view/date_time_interface.py" line="21"/>
+        <location filename="../../view/date_time_interface.py" line="36"/>
         <source>A simple DatePicker</source>
         <translation>日期選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="27"/>
+        <location filename="../../view/date_time_interface.py" line="42"/>
         <source>A DatePicker in another format</source>
         <translation>另一種格式的日期選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="34"/>
+        <location filename="../../view/date_time_interface.py" line="49"/>
         <source>A simple TimePicker</source>
         <translation>時間選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="41"/>
+        <location filename="../../view/date_time_interface.py" line="56"/>
         <source>A TimePicker using a 24-hour clock</source>
-        <translation>24 小時製的時間選擇器</translation>
+        <translation>24 小時制的時間選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="48"/>
+        <location filename="../../view/date_time_interface.py" line="63"/>
         <source>A TimePicker with seconds column</source>
         <translation>顯示秒的時間選擇器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="21"/>
+        <source>A simple CalendarPicker</source>
+        <translation>日曆選擇器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="29"/>
+        <source>A CalendarPicker in another format</source>
+        <translation>自定義格式的日曆選擇器</translation>
     </message>
 </context>
 <context>
@@ -290,7 +300,7 @@
     <message>
         <location filename="../../view/gallery_interface.py" line="114"/>
         <source>Source code</source>
-        <translation>源代碼</translation>
+        <translation>原始碼</translation>
     </message>
 </context>
 <context>
@@ -354,7 +364,7 @@
     <message>
         <location filename="../../view/layout_interface.py" line="38"/>
         <source>Killer Queen</source>
-        <translation>殺手皇後💀</translation>
+        <translation>殺手皇后💀</translation>
     </message>
     <message>
         <location filename="../../view/layout_interface.py" line="39"/>
@@ -382,7 +392,7 @@
     <message>
         <location filename="../../view/icon_interface.py" line="21"/>
         <source>Search icons</source>
-        <translation>蒐索圖標</translation>
+        <translation>搜索圖標</translation>
     </message>
 </context>
 <context>
@@ -485,7 +495,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="85"/>
         <source>Scary Monster</source>
-        <translation>駭人噁獸</translation>
+        <translation>駭人惡獸</translation>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="85"/>
@@ -525,7 +535,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="89"/>
         <source>SOFT &amp; WET</source>
-        <translation>軟又溼</translation>
+        <translation>軟又濕</translation>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="89"/>
@@ -535,7 +545,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="90"/>
         <source>Wonder of U</source>
-        <translation>奇跡於你</translation>
+        <translation>奇蹟於你</translation>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="90"/>
@@ -565,7 +575,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="79"/>
         <source>Killer Queen</source>
-        <translation>殺手皇後💀</translation>
+        <translation>殺手皇后💀</translation>
     </message>
 </context>
 <context>
@@ -839,7 +849,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="85"/>
         <source>Use system setting</source>
-        <translation>跟隨繫統設置</translation>
+        <translation>跟隨系統設置</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="67"/>
@@ -854,7 +864,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="74"/>
         <source>Interface zoom</source>
-        <translation>界麵縮放</translation>
+        <translation>界面縮放</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="74"/>
@@ -869,7 +879,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="85"/>
         <source>Set your preferred language for UI</source>
-        <translation>選擇界麵所使用的語言</translation>
+        <translation>選擇界面所使用的語言</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="95"/>
@@ -894,7 +904,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="108"/>
         <source>Check for updates when the application starts</source>
-        <translation>在應用程序啟動時檢查更新</translation>
+        <translation>在應用程式啟動時檢查更新</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="108"/>
@@ -909,7 +919,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="118"/>
         <source>Open help page</source>
-        <translation>打開幫助頁麵</translation>
+        <translation>打開幫助頁面</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="118"/>
@@ -919,7 +929,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="118"/>
         <source>Discover new features and learn useful tips about PyQt-Fluent-Widgets</source>
-        <translation>髮現新功能並了解有關 PyQt-Fluent-Widgets 的使用技巧</translation>
+        <translation>發現新功能並了解有關 PyQt-Fluent-Widgets 的使用技巧</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="127"/>
@@ -1002,7 +1012,7 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="179"/>
         <source>Please wait patiently</source>
-        <translation>心急吃不了熱荳腐，請耐心等待哦~</translation>
+        <translation>心急吃不了熱豆腐，請耐心等待哦~</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="181"/>
@@ -1067,7 +1077,7 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="75"/>
         <source>My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don&apos;t smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I&apos;m normal.</source>
-        <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在“龜友百貨連鎖公司”上班，每天最晚也是八點前回家，不吸菸，酒也是淺嚐輒止，晚上十一點上床，保証八個小時的充足睡眠，睡前喝一盃熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
+        <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在「龜友百貨連鎖公司」上班，每天最晚也是八點前回家，不吸煙，酒也是淺嘗輒止，晚上十一點上床，保證八個小時的充足睡眠，睡前喝一杯熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="186"/>
@@ -1077,16 +1087,16 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="186"/>
         <source>Believe in the spin, just keep believing!</source>
-        <translation>相信回旋吧，隻管相信就是了！</translation>
+        <translation>相信迴旋吧，只管相信就是了！</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="198"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
-        <translation>表達敬意吧，表達出敬意，然後邁向回旋的另一個全新階段！</translation>
+        <translation>表達敬意吧，表達出敬意，然後邁向迴旋的另一個全新階段！</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="209"/>
-        <source>迂回路を行けば最短ルート。</source>
+        <source>迂迴路を行けば最短ルート。</source>
         <translation>最短的捷徑就是繞遠路，繞遠路才是我的最短捷徑。</translation>
     </message>
     <message>
@@ -1251,7 +1261,7 @@
     <message>
         <location filename="../../view/gallery_interface.py" line="43"/>
         <source>Source</source>
-        <translation>源代碼</translation>
+        <translation>原始碼</translation>
     </message>
     <message>
         <location filename="../../view/gallery_interface.py" line="80"/>
@@ -1347,7 +1357,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="108"/>
         <source>Dio Brando</source>
-        <translation>迪奧·佈蘭度</translation>
+        <translation>迪奧·布蘭度</translation>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="108"/>

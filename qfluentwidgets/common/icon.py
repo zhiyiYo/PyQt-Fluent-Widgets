@@ -259,6 +259,7 @@ class FluentIcon(FluentIconBase, Enum):
     PALETTE = "Palette"
     MESSAGE = "Message"
     ZOOM_OUT = "ZoomOut"
+    CALENDAR = "Calendar"
     FEEDBACK = "Feedback"
     MINIMIZE = "Minimize"
     CHECKBOX = "CheckBox"
