@@ -5,7 +5,7 @@ from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButt
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
                             SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
                             EditableComboBox, PixmapLabel, PushButton, PrimaryToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton, TransparentToolButton)
 
 from plugin_base import PluginBase
 from task_menu_factory import EditTextTaskMenuFactory
@@ -204,6 +204,19 @@ class PrimaryToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "PrimaryToolButton"
+
+
+class TransparentToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Primary color tool button plugin """
+
+    def createWidget(self, parent):
+        return TransparentToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('Button')
+
+    def name(self):
+        return "TransparentToolButton"
 
 
 class DropDownToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):

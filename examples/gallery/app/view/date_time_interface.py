@@ -1,6 +1,6 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt
-from qfluentwidgets import DatePicker, TimePicker, AMTimePicker, ZhDatePicker
+from qfluentwidgets import DatePicker, TimePicker, AMTimePicker, ZhDatePicker, CalendarPicker
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -15,6 +15,21 @@ class DateTimeInterface(GalleryInterface):
             title=t.dateTime,
             subtitle='qfluentwidgets.components.date_time',
             parent=parent
+        )
+
+        # calendar picker
+        self.addExampleCard(
+            title=self.tr('A simple CalendarPicker'),
+            widget=CalendarPicker(self),
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/calendar_picker/demo.py'
+        )
+
+        w = CalendarPicker(self)
+        w.setDateFormat(Qt.TextDate)
+        self.addExampleCard(
+            title=self.tr('A CalendarPicker in another format'),
+            widget=w,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/calendar_picker/demo.py'
         )
 
         # date picker
