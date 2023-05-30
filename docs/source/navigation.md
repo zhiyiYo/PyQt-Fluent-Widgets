@@ -53,7 +53,15 @@ class AvatarWidget(NavigationWidget):
 Now let's take a look at the parameters required for the `addWidget()` method:
 
 ```python
-def addWidget(self, routeKey: str, widget: NavigationWidget, onClick, position=NavigationItemPosition.TOP)
+def addWidget(
+    self,
+    routeKey: str,
+    widget: NavigationWidget,
+    onClick=None,
+    position=NavigationItemPosition.TOP,
+    tooltip: str = None,
+    parentRouteKey: str = None
+)
 ```
 
 As you can see, this method requires four parameters:
@@ -65,6 +73,8 @@ As you can see, this method requires four parameters:
   * `NavigationItemPosition.TOP`: add `widget` to the top layout of panel.
   * `NavigationItemPosition.SCROLL`: add `widget` to the scroll layout of panel. You can scroll the widgets in scroll layout when there are too many menu items.
   * `NavigationItemPosition.BOTTOM`: add `widget` to the bottom layout of panel.
+* `tooltip`: The tooltip of menu item.
+* `parentRouteKey`: The route key of parent menu item, the widget of parent item must be the instance of `NavigationTreeWidgetBase`
 
 ### Display mode
 

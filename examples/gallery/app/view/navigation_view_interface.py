@@ -15,12 +15,12 @@ class NavigationViewInterface(GalleryInterface):
         t = Translator()
         super().__init__(
             title=t.navigation,
-            subtitle="qfluentwidgets.components.widgets",
+            subtitle="qfluentwidgets.components.navigation",
             parent=parent
         )
 
         self.addExampleCard(
-            title='A basic pivot',
+            title=self.tr('A basic pivot'),
             widget=PivotInterface(self),
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py'
         )

@@ -2,12 +2,13 @@
 from typing import Union
 
 from PyQt5.QtCore import pyqtSignal, QUrl, Qt, QRectF, QSize, QPoint, pyqtProperty
-from PyQt5.QtGui import QDesktopServices, QIcon, QPainter
+from PyQt5.QtGui import QDesktopServices, QIcon, QPainter, QFont
 from PyQt5.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon
 from ...common.icon import FluentIcon as FIF
+from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet
 from ...common.overload import singledispatchmethod
 from .menu import RoundMenu
@@ -24,6 +25,7 @@ class PushButton(QPushButton):
         self.isHover = False
         self.setIconSize(QSize(16, 16))
         self.setIcon(None)
+        setFont(self)
         self._postInit()
 
     @__init__.register
@@ -132,6 +134,7 @@ class HyperlinkButton(QPushButton):
         self._url = QUrl()
         FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.PointingHandCursor)
+        setFont(self)
         self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
 
     @__init__.register
@@ -174,6 +177,7 @@ class ToolButton(QToolButton):
         self.isHover = False
         self.setIconSize(QSize(16, 16))
         self.setIcon(QIcon())
+        setFont(self)
         self._postInit()
 
     @__init__.register

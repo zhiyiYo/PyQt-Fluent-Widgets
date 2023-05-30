@@ -2,10 +2,6 @@
     font-size: 1.3rem;
 }
 
-#support img {
-    height: 450px;
-}
-
 #support>a {
     display: flex;
     justify-content: center;

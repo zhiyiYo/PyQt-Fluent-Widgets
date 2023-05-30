@@ -16,7 +16,7 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="56"/>
         <source>A hyperlink button that navigates to a URI</source>
-        <translation>導航到一個超鏈接的按鈕</translation>
+        <translation>導航到一個超連結的按鈕</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="63"/>
@@ -217,29 +217,39 @@
 <context>
     <name>DateTimeInterface</name>
     <message>
-        <location filename="../../view/date_time_interface.py" line="21"/>
+        <location filename="../../view/date_time_interface.py" line="36"/>
         <source>A simple DatePicker</source>
         <translation>日期選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="27"/>
+        <location filename="../../view/date_time_interface.py" line="42"/>
         <source>A DatePicker in another format</source>
         <translation>另一種格式的日期選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="34"/>
+        <location filename="../../view/date_time_interface.py" line="49"/>
         <source>A simple TimePicker</source>
         <translation>時間選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="41"/>
+        <location filename="../../view/date_time_interface.py" line="56"/>
         <source>A TimePicker using a 24-hour clock</source>
         <translation>24 小時制的時間選擇器</translation>
     </message>
     <message>
-        <location filename="../../view/date_time_interface.py" line="48"/>
+        <location filename="../../view/date_time_interface.py" line="63"/>
         <source>A TimePicker with seconds column</source>
         <translation>顯示秒的時間選擇器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="21"/>
+        <source>A simple CalendarPicker</source>
+        <translation>日曆選擇器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="29"/>
+        <source>A CalendarPicker in another format</source>
+        <translation>自定義格式的日曆選擇器</translation>
     </message>
 </context>
 <context>
@@ -290,7 +300,7 @@
     <message>
         <location filename="../../view/gallery_interface.py" line="114"/>
         <source>Source code</source>
-        <translation>源代碼</translation>
+        <translation>原始碼</translation>
     </message>
 </context>
 <context>
@@ -718,19 +728,27 @@
     </message>
 </context>
 <context>
+    <name>NavigationViewInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="22"/>
+        <source>A basic pivot</source>
+        <translation>頂部導航欄</translation>
+    </message>
+</context>
+<context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="44"/>
+        <location filename="../../view/navigation_view_interface.py" line="45"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="45"/>
+        <location filename="../../view/navigation_view_interface.py" line="46"/>
         <source>Album</source>
         <translation>專輯</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="46"/>
+        <location filename="../../view/navigation_view_interface.py" line="47"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
@@ -763,7 +781,7 @@
     <message>
         <location filename="../../view/scroll_interface.py" line="56"/>
         <source>Chitanda Eru is so hot 🥵🥵</source>
-        <translation>春寒賜浴華清池，温泉水滑洗凝脂 🥵🥵</translation>
+        <translation>春寒賜浴華清池，溫泉水滑洗凝脂 🥵🥵</translation>
     </message>
     <message>
         <location filename="../../view/scroll_interface.py" line="67"/>
@@ -886,12 +904,12 @@
     <message>
         <location filename="../../view/setting_interface.py" line="108"/>
         <source>Check for updates when the application starts</source>
-        <translation>在應用程序啓動時檢查更新</translation>
+        <translation>在應用程式啟動時檢查更新</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="108"/>
         <source>The new version will be more stable and have more features</source>
-        <translation>新版本將更加穩定並擁有更多功能（建議啓用此選項）</translation>
+        <translation>新版本將更加穩定並擁有更多功能（建議啟用此選項）</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="134"/>
@@ -911,7 +929,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="118"/>
         <source>Discover new features and learn useful tips about PyQt-Fluent-Widgets</source>
-        <translation>發現新功能並瞭解有關 PyQt-Fluent-Widgets 的使用技巧</translation>
+        <translation>發現新功能並了解有關 PyQt-Fluent-Widgets 的使用技巧</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="127"/>
@@ -941,7 +959,7 @@
     <message>
         <location filename="../../view/setting_interface.py" line="192"/>
         <source>Configuration takes effect after restart</source>
-        <translation>配置在重啓軟件後生效</translation>
+        <translation>配置在重啟軟件後生效</translation>
     </message>
     <message>
         <location filename="../../view/setting_interface.py" line="192"/>
@@ -1059,7 +1077,7 @@
     <message>
         <location filename="../../view/status_info_interface.py" line="75"/>
         <source>My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don&apos;t smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I&apos;m normal.</source>
-        <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在“龜友百貨連鎖公司”上班，每天最晚也是八點前回家，不吸煙，酒也是淺嘗輒止，晚上十一點上牀，保證八個小時的充足睡眠，睡前喝一杯熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
+        <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在「龜友百貨連鎖公司」上班，每天最晚也是八點前回家，不吸煙，酒也是淺嘗輒止，晚上十一點上床，保證八個小時的充足睡眠，睡前喝一杯熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
     </message>
     <message>
         <location filename="../../view/status_info_interface.py" line="186"/>
@@ -1243,7 +1261,7 @@
     <message>
         <location filename="../../view/gallery_interface.py" line="43"/>
         <source>Source</source>
-        <translation>源代碼</translation>
+        <translation>原始碼</translation>
     </message>
     <message>
         <location filename="../../view/gallery_interface.py" line="80"/>
@@ -1367,7 +1385,7 @@
     <message>
         <location filename="../../view/view_interface.py" line="46"/>
         <source>A TreeView with Multi-selection enabled</source>
-        <translation>啓用複選框的樹狀組件</translation>
+        <translation>啟用複選框的樹狀組件</translation>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="31"/>

@@ -5,14 +5,16 @@ InfoBar {
 }
 
 #titleLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     font-weight: bold;
     color: white;
+    background-color: transparent;
 }
 
 #contentLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei';
     color: white;
+    background-color: transparent;
 }
 
 InfoBar[type="Info"] {

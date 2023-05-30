@@ -57,6 +57,9 @@ python demo.py
 ## 在线文档📕
 想要了解 PyQt-Fluent-Widgets 的正确使用姿势？请仔细阅读 [帮助文档](https://pyqt-fluent-widgets.readthedocs.io/zh_CN/latest/) 👈
 
+## 支持💖
+如果这个组件库帮助了您，或者是想支持作者继续开发和维护这个组件库，可以在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 上请作者喝一杯奶茶。非常感谢您的支持与鼓励 🥰。
+
 ## 演示视频📽️
 请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PyQt-Fluent-Widgets 的全部组件和特性 🎉
 
@@ -65,9 +68,6 @@ python demo.py
 
 > **Note**
 > 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
-
-## 支持💖
-如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶，还能获得相应的奖励哦😊。非常感谢您的支持与鼓励 🥰
 
 ## 加入我们🚩
 可以在 [PFW 小圈子](https://afdian.net/group/e61a3db8f39911ed919852540025c377) 或者 [ Discord ](https://discord.gg/mYZME3wraK) 上和我们一起交流探讨，分享自己对这个组件库的新发现和新想法 🚀
@@ -82,6 +82,6 @@ python demo.py
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
 
 ## 许可证
-PyQt-Fluent-Widgets is licensed under [GPLv3](./LICENSE).
+PyQt-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证.
 
 Copyright © 2021 by zhiyiYo.

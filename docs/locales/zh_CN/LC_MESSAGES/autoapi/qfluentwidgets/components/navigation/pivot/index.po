@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-24 10:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:2
+#: 28067e50bbec4dfc8a6c2601320d061d
+msgid "pivot"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:8
+#: 2aed3e459a1a47cb8360423faf8e38a9
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:19:<autosummary>:1
+#: c0d026dd7b7445a997317451649f469b
+msgid ""
+":py:obj:`PivotItem "
+"<qfluentwidgets.components.navigation.pivot.PivotItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:19:<autosummary>:1
+#: 6e42bad6cc7e47f5a838af8f3fbd49e1 f8982272444b4890b86a7316b4b86fd9
+msgid "Pivot item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:19:<autosummary>:1
+#: d80f38fe98d74a3e9506395e8be82849
+msgid ":py:obj:`Pivot <qfluentwidgets.components.navigation.pivot.Pivot>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:19:<autosummary>:1
+#: 651f26e91ec24cea9e2ed02aaf38b01f d5be2292189c41cc85ad23d2ce95a806
+msgid "Pivot"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:22
+#: b3b3076709c5437b8d08bc6d0011c6ae
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:39
+#: 2da5077b510d47d88395527d48cf9d59
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:45
+#: 88ecf01fbfff4c38ab76bc7778d7243c
+msgid "add item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:64
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:83
+#: 06a334191d3d458ebe859551eeb7917f 9daf2b2bc5834bd7a98f43391fca10c7
+#: f3d6303ac6664fc79b5faff94bc69436
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:84
+#: 3cb1063e537142da82cd8a80a458ecd3 5caa1f8c9c9e4a2da3cf97d69724c5bf
+#: 6eca400d653846709c54d340c334b64b
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:85
+#: 0e5391e60a834c21807e8579eeff7234 5da9bee6fd3249d1b9c3f23cf0ea9246
+#: f91e1ed26a1c4d37a13f9619d75e6a43
+msgid "the unique name of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:72
+#: 43772f14001349cb9a1bf74207c8ead6 d72f6c67505d4896a9f070fdb2ae1458
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:72
+#: 285abcf5906444cb95a084ab2a00d166 7f32bddbcd7c4303b3bb2ae7a0c92967
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:74
+#: 6489aa6954be4f57bfe113af9a3d1447 8d07ee7004244f808f6ef959036e9977
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:75
+#: 452b992ab5a449408de1356f9d539add 9eee7beb806c45c5a72de3124acf2325
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:61
+#: 4bb01d61a7bd4115a3cc8bb82e220a81
+msgid "insert item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:66
+#: 2db217c1a20a46aaa475fbda0b964ea1
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:66
+#: 0beac2ddb56c44f7ba4f9a6f01247905
+msgid "insert position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:80
+#: 18ff36a0d44240048b65eb342cb1553e
+msgid "set current selected item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/pivot/index.rst:90
+#: 74b53aff2cdd43489368830b0294937d
+msgid "set the pixel font size of items"
+msgstr ""
+

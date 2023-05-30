@@ -515,10 +515,10 @@ class SmoothScrollDelegate(QObject):
         return super().eventFilter(obj, e)
 
     def setVerticalScrollBarPolicy(self, policy):
-        QAbstractScrollArea.setVerticalScrollBarPolicy(self.parent(), policy)
+        QAbstractScrollArea.setVerticalScrollBarPolicy(self.parent(), Qt.ScrollBarAlwaysOff)
         self.vScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
 
     def setHorizontalScrollBarPolicy(self, policy):
-        QAbstractScrollArea.setHorizontalScrollBarPolicy(self.parent(), policy)
+        QAbstractScrollArea.setHorizontalScrollBarPolicy(self.parent(), Qt.ScrollBarAlwaysOff)
         self.hScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
 

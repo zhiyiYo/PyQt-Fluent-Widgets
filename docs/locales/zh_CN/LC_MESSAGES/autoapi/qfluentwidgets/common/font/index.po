@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-24 10:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:2
+#: b309d62afdf0458e92514f9eed2c779c
+msgid "font"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:8
+#: 50b9a5c2e82d4e8c8cd94175a045efb4
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
+#: dee34d737d1245d29cf9ce494fb135c1
+msgid ""
+":py:obj:`setFont <qfluentwidgets.common.font.setFont>`\\ \\(widget\\[\\, "
+"fontSize\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:22
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
+#: 13cd4e3a636041c7b0c307e4113a4eac 9050b7c7c4054dffa5263a7405fc5361
+msgid "set the font of widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
+#: a3acc67d86ba469cbae2051a2ccb5259
+msgid ""
+":py:obj:`getFont <qfluentwidgets.common.font.getFont>`\\ "
+"\\(\\[fontSize\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
+#: 6a005fa26a8244b885215db322b47337 d67f34c0ac5c429cb6554c932eca116c
+msgid "create font"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:38
+#: 3a97c656abb245ad8f7873e0cf47c60e f5ef3316452844b2a91707833e967e6c
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:27
+#: 084742e18e0c4ca2b7afc0340f804d98
+msgid "widget: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:27
+#: a3a2feb7bb774b569c884379d24d328d
+msgid "the widget to set font"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:29
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:39
+#: 8d012510b74349f88d1b511f66c0dd31 aebb59aa8abc40229d3bc0fe518c6221
+msgid "fontSize: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:40
+#: bfcbce01b12d407b9bde50974edd68a0 d0556904140c4799bb621a98d7db1f80
+msgid "font pixel size"
+msgstr ""
+

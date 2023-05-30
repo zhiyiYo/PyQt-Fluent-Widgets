@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QHBoxLayout, QLineEdit, QToolButton, QTextEdit, QPla
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
+from ...common.font import setFont
 from .menu import LineEditMenu, TextEditMenu
 from .scroll_bar import SmoothScrollDelegate
 
@@ -62,6 +63,7 @@ class LineEdit(QLineEdit):
         FluentStyleSheet.LINE_EDIT.apply(self)
         self.setFixedHeight(33)
         self.setAttribute(Qt.WA_MacShowFocusRect, False)
+        setFont(self)
 
         self.hBoxLayout = QHBoxLayout(self)
         self.clearButton = LineEditButton(FIF.CLOSE, self)
@@ -148,6 +150,10 @@ class SearchLineEdit(LineEdit):
         else:
             self.clearSignal.emit()
 
+    def setClearButtonEnabled(self, enable: bool):
+        self._isClearButtonEnabled = enable
+        self.setTextMargins(0, 0, 28*enable+30, 0)
+
 
 class TextEdit(QTextEdit):
     """ Text edit """
@@ -156,6 +162,7 @@ class TextEdit(QTextEdit):
         super().__init__(parent=parent)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
+        setFont(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
@@ -169,6 +176,7 @@ class PlainTextEdit(QPlainTextEdit):
         super().__init__(parent=parent)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
+        setFont(self)
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)

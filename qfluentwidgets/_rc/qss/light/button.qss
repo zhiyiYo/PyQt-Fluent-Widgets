@@ -4,7 +4,7 @@ PushButton, ToolButton, ToggleButton {
     border: 1px solid rgba(0, 0, 0, 0.073);
     border-bottom: 1px solid rgba(0, 0, 0, 0.183);
     border-radius: 5px;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    /* font: 14px 'Segoe UI', 'Microsoft YaHei'; */
     padding: 5px 12px 6px 12px;
     outline: none;
 }
@@ -120,7 +120,7 @@ PrimarySplitDropButton:pressed {
 }
 
 HyperlinkButton {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    /* font: 14px 'Segoe UI', 'Microsoft YaHei'; */
     padding: 6px 12px 6px 12px;
     color: --ThemeColorPrimary;
     border: none;
@@ -222,5 +222,10 @@ TransparentToolButton:hover {
 
 TransparentToolButton:pressed {
     background-color: rgba(0, 0, 0, 6);
+    border: none;
+}
+
+TransparentToolButton:disabled {
+    background-color: transparent;
     border: none;
 }

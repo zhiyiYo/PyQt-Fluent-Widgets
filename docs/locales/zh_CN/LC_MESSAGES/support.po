@@ -29,7 +29,7 @@ msgid ""
 "If this project helps you a lot and you want to support the development "
 "and maintenance of this project, feel free to sponsor me via 爱发电 or ko-"
 "fi. Your support is highly appreciated 🥰"
-msgstr "如果您正在使用这个项目并感觉良好，或者是想支持我继续开发，可以通过 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 请我喝一杯奶茶，还能获得相应的奖励噢。非常感谢您的支持与鼓励 🥰"
+msgstr "如果这个组件库帮助了您，或者是想支持作者继续开发和维护这个组件库，可以在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 上请作者喝一杯奶茶。非常感谢您的支持与鼓励 🥰"
 
 #: ../../source/support.md:4 4a96b52a6da745bb8a874850790eb6d4
 msgid "Sponsors"

@@ -779,29 +779,43 @@ class EditMenu(RoundMenu):
     def _parentSelectedText(self):
         raise NotImplementedError
 
-    def exec(self, pos, ani=True):
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         self.clear()
         self.createActions()
 
         if QApplication.clipboard().mimeData().hasText():
             if self._parentText():
                 if self._parentSelectedText():
-                    self.addActions(self.action_list)
+                    if self.parent().isReadOnly():
+                        self.addActions([self.copyAct, self.selectAllAct])
+                    else:
+                        self.addActions(self.action_list)
                 else:
-                    self.addActions(self.action_list[2:])
-            else:
+                    if self.parent().isReadOnly():
+                        self.addAction(self.selectAllAct)
+                    else:
+                        self.addActions(self.action_list[2:])
+            elif not self.parent().isReadOnly():
                 self.addAction(self.pasteAct)
-        else:
-            if self._parentText():
-                if self._parentSelectedText():
-                    self.addActions(
-                        self.action_list[:2] + self.action_list[3:])
-                else:
-                    self.addActions(self.action_list[3:])
             else:
                 return
+        else:
+            if not self._parentText():
+                return
 
-        super().exec(pos, ani)
+            if self._parentSelectedText():
+                if self.parent().isReadOnly():
+                    self.addAction([self.copyAct, self.selectAllAct])
+                else:
+                    self.addActions(
+                        self.action_list[:2] + self.action_list[3:])
+            else:
+                if self.parent().isReadOnly():
+                    self.addAction(self.selectAllAct)
+                else:
+                    self.addActions(self.action_list[3:])
+
+        super().exec(pos, ani, aniType)
 
 
 class LineEditMenu(EditMenu):

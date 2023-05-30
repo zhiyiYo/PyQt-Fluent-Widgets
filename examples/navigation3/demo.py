@@ -67,7 +67,7 @@ class NavigationBar(QWidget):
 
     def setCurrentItem(self, routeKey: str):
         self.navigationPanel.setCurrentItem(routeKey)
-        self.setTitle(self.navigationPanel.items[routeKey]._text)
+        self.setTitle(self.navigationPanel.widget(routeKey).text())
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self.window():
@@ -122,47 +122,30 @@ class Window(FramelessWindow):
         self.vBoxLayout.setStretchFactor(self.stackWidget, 1)
 
     def initNavigation(self):
-        self.navigationInterface.addItem(
-            routeKey=self.searchInterface.objectName(),
-            icon=FIF.SEARCH,
-            text='Search',
-            onClick=lambda: self.switchTo(self.searchInterface)
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.musicInterface.objectName(),
-            icon=FIF.MUSIC,
-            text='Music library',
-            onClick=lambda: self.switchTo(self.musicInterface)
-        )
-        self.navigationInterface.addItem(
-            routeKey=self.videoInterface.objectName(),
-            icon=FIF.VIDEO,
-            text='Video library',
-            onClick=lambda: self.switchTo(self.videoInterface)
-        )
+        self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
+        self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
+        self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
         self.navigationInterface.addSeparator()
 
         # add navigation items to scroll area
-        self.navigationInterface.addItem(
-            routeKey=self.folderInterface.objectName(),
-            icon=FIF.FOLDER,
-            text='Folder library',
-            onClick=lambda: self.switchTo(self.folderInterface),
-            position=NavigationItemPosition.SCROLL
-        )
+        self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
 
-        # add custom widget to bottom
-        self.navigationInterface.addItem(
-            routeKey=self.settingInterface.objectName(),
-            icon=FIF.SETTING,
-            text='Settings',
-            onClick=lambda: self.switchTo(self.settingInterface),
-            position=NavigationItemPosition.BOTTOM
-        )
+        # add item to bottom
+        self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.stackWidget.setCurrentIndex(1)
+
+    def addSubInterface(self, w: QWidget, icon, text, position=NavigationItemPosition.TOP):
+        self.stackWidget.addWidget(w)
+        self.navigationInterface.addItem(
+            routeKey=w.objectName(),
+            icon=icon,
+            text=text,
+            onClick=lambda: self.switchTo(w),
+            position=position
+        )
 
     def initWindow(self):
         self.resize(500, 600)

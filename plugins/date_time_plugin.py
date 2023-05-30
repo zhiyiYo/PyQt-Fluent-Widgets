@@ -2,7 +2,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import DatePicker, TimePicker, ZhDatePicker, AMTimePicker
+from qfluentwidgets import DatePicker, TimePicker, ZhDatePicker, AMTimePicker, CalendarPicker
 
 from plugin_base import PluginBase
 
@@ -11,6 +11,19 @@ class DateTimePlugin(PluginBase):
 
     def group(self):
         return super().group() + ' (Date Time)'
+
+
+class CalendarPickerPlugin(DateTimePlugin, QPyDesignerCustomWidgetPlugin):
+    """ Calendar picker plugin """
+
+    def createWidget(self, parent):
+        return CalendarPicker(parent)
+
+    def icon(self):
+        return super().icon("CalendarDatePicker")
+
+    def name(self):
+        return "CalendarPicker"
 
 
 class DatePickerPlugin(DateTimePlugin, QPyDesignerCustomWidgetPlugin):
