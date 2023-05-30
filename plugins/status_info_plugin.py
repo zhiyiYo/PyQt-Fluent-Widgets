@@ -49,7 +49,9 @@ class IndeterminateProgressBarTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidge
     """ Indeterminate progress bar plugin """
 
     def createWidget(self, parent):
-        return IndeterminateProgressBar(parent)
+        bar = IndeterminateProgressBar(parent)
+        bar.start()
+        return bar
 
     def icon(self):
         return super().icon("ProgressBar")
