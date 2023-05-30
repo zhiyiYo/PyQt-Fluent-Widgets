@@ -142,6 +142,7 @@ class StatusInfoInterface(GalleryInterface):
         # indeterminate progress bar
         bar = IndeterminateProgressBar(self)
         bar.setFixedWidth(200)
+        bar.start()
         card = self.addExampleCard(
             self.tr('An indeterminate progress bar'),
             bar,

@@ -13,6 +13,7 @@ class Demo(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         self.progressBar = ProgressBar(self)
         self.inProgressBar = IndeterminateProgressBar(self)
+        self.inProgressBar.start()
 
         self.progressBar.setValue(50)
         self.vBoxLayout.addWidget(self.progressBar)

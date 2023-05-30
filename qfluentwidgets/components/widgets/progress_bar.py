@@ -184,15 +184,20 @@ class IndeterminateProgressBar(QProgressBar):
         self._longPos = p
         self.update()
 
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.start()
-
     def start(self):
         self.shortPos = 0
         self.longPos = 0
         self.aniGroup.start()
         self.update()
+
+    def stop(self):
+        self.aniGroup.stop()
+        self.shortPos = 0
+        self.longPos = 0
+        self.update()
+
+    def isStarted(self):
+        return self.aniGroup.state() == QParallelAnimationGroup.Running
 
     def pause(self):
         self.aniGroup.pause()
