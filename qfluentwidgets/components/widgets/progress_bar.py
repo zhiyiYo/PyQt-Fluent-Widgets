@@ -138,7 +138,7 @@ class ProgressBar(QProgressBar):
 class IndeterminateProgressBar(QProgressBar):
     """ Indeterminate progress bar """
 
-    def __init__(self, parent=None, startAni=True):
+    def __init__(self, parent=None, start=True):
         super().__init__(parent=parent)
         self._shortPos = 0
         self._longPos = 0
@@ -166,7 +166,7 @@ class IndeterminateProgressBar(QProgressBar):
 
         self.setFixedHeight(4)
 
-        if startAni:
+        if start:
             self.start()
 
     @pyqtProperty(float)
