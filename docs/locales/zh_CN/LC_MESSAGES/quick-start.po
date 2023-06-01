@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-08 09:10+0800\n"
+"POT-Creation-Date: 2023-06-01 17:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -20,38 +20,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../../source/quick-start.md:1 682ed71ddb194cb8938c2ce491e83485
+#: ../../source/quick-start.rst:2 67e14cb0587e432fb68e3f7d8612bbc6
 msgid "Quick start"
 msgstr "快速上手"
 
-#: ../../source/quick-start.md:3 a8f4e066f4464d7d811d89200d2b8d35
+#: ../../source/quick-start.rst:5 b1fce1fa80b0419c92bd07371d726e66
 msgid "Install"
 msgstr "安装"
 
-#: ../../source/quick-start.md:4 aa46b5b9d8bc46a284603a71862c6264
-msgid "To install lite version (AcrylicLabel is not available) use pip:"
-msgstr "安装轻量版（`AcrylicLabel` 不可用）："
+#: ../../source/quick-start.rst:7 e497cebbcbf14005b33388cc1bed714b
+msgid "To install lite version (``AcrylicLabel`` is not available) use pip:"
+msgstr "安装轻量版（``AcrylicLabel`` 不可用）："
 
-#: ../../source/quick-start.md:8 e867a91e9ac54f63a42a284708c0d3fa
+#: ../../source/quick-start.rst:13 66f5f4703cca47c7839e6030c742549f
 msgid "Or install full-featured version use pip:"
 msgstr "安装完整版："
 
-#: ../../source/quick-start.md:13 1b5931d0f8454277b394768ba73d133e
+#: ../../source/quick-start.rst:19 056a50e362a74bd788375d08bd3d35cb
 msgid ""
 "If you are using PySide2, PySide6 or PyQt6, you can download the code in "
-"PySide2, PySide6 or PyQt6 branch."
-msgstr "如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。"
+"`PySide2 <https://github.com/zhiyiYo/PyQt-Fluent-"
+"Widgets/tree/PySide2>`__, `PySide6 <https://github.com/zhiyiYo/PyQt-"
+"Fluent-Widgets/tree/PySide6>`__ or `PyQt6 <https://github.com/zhiyiYo"
+"/PyQt-Fluent-Widgets/tree/PyQt6>`__ branch."
+msgstr "如果使用的是 PySide2、PySide6 或者 PyQt6，可以在 `PySide2 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2>`__, `PySide6 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6>`__ or `PyQt6 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6>`__ 分支下载对应的代码。"
 
-#: ../../source/quick-start.md:15 b72f91005f2c4d0b9bc1cc86734cfdfd
+#: ../../source/quick-start.rst:21 f950f3de3d574459a7de904fce8f9fc6
+msgid ""
+"Don't install PyQt-Fluent-Widgets, PyQt6-Fluent-Widgets, PySide2-Fluent-"
+"Widgets and PySide6-Fluent-Widgets at the same time, because their "
+"package names are all ``qfluentwidgets``."
+msgstr "请勿同时安装 PyQt-Fluent-Widgets、PyQt6-Fluent-Widgets、PySide2-Fluent-Widgets 和 PySide6-Fluent-Widgets，因为他们的包名都是 `qfluentwidgets`"
+
+#: ../../source/quick-start.rst:24 7f0dd997ca7444229e411413c95b7c46
 msgid "Run example"
 msgstr "运行示例"
 
-#: ../../source/quick-start.md:16 cf2de2aba8ba459e8bc689880b8bbf4f
+#: ../../source/quick-start.rst:26 c7c60907c4df409093255742e1d9e74b
 msgid ""
 "After installing PyQt-Fluent-Widgets package using pip, you can run any "
 "demo in the examples directory, for example:"
 msgstr ""
 "使用 pip 安装好 PyQt-Fluent-Widgets 包之后，就可以运行 "
-"[examples](https://github.com/zhiyiYo/PyQt-Fluent-"
-"Widgets/tree/master/examples) 目录下的任意示例，比如："
+"`examples <https://github.com/zhiyiYo/PyQt-Fluent-"
+"Widgets/tree/master/examples>`_ 目录下的任意示例，比如："
+
+#: ../../source/quick-start.rst:34 a9b19524c82b4905a1111e5f9ffb69cb
+msgid ""
+"If you encounter ``ImportError: cannot import name 'XXX' from "
+"'qfluentwidgets'``, it indicates that the package version you installed "
+"is too low. You can replace the mirror source with "
+"https://pypi.org/simple and reinstall again."
+msgstr "如果遇到 `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`，这表明安装的包版本过低。可以按照上面的安装指令将 pypi 源替换为 https://pypi.org/simple 并重新安装."
+
+#~ msgid ""
+#~ "If you are using PySide2, PySide6 "
+#~ "or PyQt6, you can download the "
+#~ "code in PySide2, PySide6 or PyQt6 "
+#~ "branch."
+#~ msgstr ""
+#~ "如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 "
+#~ "[PySide2](https://github.com/zhiyiYo/PyQt-Fluent-"
+#~ "Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-"
+#~ "Fluent-Widgets/tree/PySide6) 和 "
+#~ "[PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-"
+#~ "Widgets/tree/PyQt6) 分支下载对应的代码。"
 

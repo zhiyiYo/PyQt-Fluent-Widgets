@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-06-01 17:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,420 +21,433 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:2
-#: 5c787a65a13a4b62b1e9e12debbbc69a
+#: e08ec471dfd74877843628cc62555155
 msgid "date_time"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:19
-#: c9f6fc8718da4e0e958020987f5d439b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:21
+#: 2c0a9b79116b4bafadcb49615196097f
 msgid "Package Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 8f116b5348514ddba3055695adfefa2b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 21c4434d24db4672a70f7db948b54317
+msgid ""
+":py:obj:`CalendarPicker "
+"<qfluentwidgets.components.date_time.CalendarPicker>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 727e7ed65dce40a18bad745cf47e1836
+msgid "Calendar picker"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: d0ee286c2cea4e1d949cf12e12d52d15
 msgid ""
 ":py:obj:`DatePickerBase "
 "<qfluentwidgets.components.date_time.DatePickerBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:41
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 4ec866a3757d46db91178b482b5eaa7d 59160c9f4d7647929bd4f5fa614aa89d
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:66
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 83d56adb3b464bceae52847026a70df8
 msgid "Date picker base class"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 591df9a6911647039e04aa697f665cf4
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 21c4434d24db4672a70f7db948b54317
 msgid ":py:obj:`DatePicker <qfluentwidgets.components.date_time.DatePicker>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:76
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: a2f0a017b5ee494083741ead0b9cee80 d468bb3969f141158f3c42a70d407686
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:101
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 35d860bd938849bc85c0deff1d1e8175
 msgid "Date picker"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 4a56738c0c9341b8987ff3fc167c9f98
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 104dab6b70c344ee9c8574aa7146e74a
 msgid ""
 ":py:obj:`ZhDatePicker "
 "<qfluentwidgets.components.date_time.ZhDatePicker>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:118
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: ca4d792c13784de4a5587108c03d2d06 f2c41d83f88d4b9a8062fb1132e39f71
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:143
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 727e7ed65dce40a18bad745cf47e1836
 msgid "Chinese date picker"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 45437b1b656b4e82876ca3263699ae83
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: b793e844e30447db975869ce74d738fd
 msgid ":py:obj:`PickerBase <qfluentwidgets.components.date_time.PickerBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:125
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 3c3d1bc19d9f407982763f01f4d07d61 e91e24b2dbc9479b92fe125e1e62edf9
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:150
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 00bc9432f3304e3bac886cfd8325f630
 msgid "Picker base class"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 48663d18ef4847d2800b5703fc63f76c
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: abccd2c06f094a95b8ac7abf0fe3af98
 msgid ":py:obj:`PickerPanel <qfluentwidgets.components.date_time.PickerPanel>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:246
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 0546eb6e591f4bb0b42e75467ee0056e e65bf015d8ad4024a44cda1363960dc5
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:271
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: cc7451a872fa43ad961f87235d7f2d0d
 msgid "picker panel"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 53c5459a3b964370ac54dcceedb8d421
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 649dc303fe864d21984452684c10c4ca
 msgid ""
 ":py:obj:`PickerColumnFormatter "
 "<qfluentwidgets.components.date_time.PickerColumnFormatter>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:323
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: e0acb007008d469ba70a923304410703 f13e20d32fb246558b89579f9d9a8f71
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:348
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: c51d37cc13c6467d8ac6ca29bf26252b
 msgid "Picker column formatter"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 101b4a6df5624ede96b3538786a74194
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 7f75efffd71a437b9696baba2d138ea5
 msgid ":py:obj:`TimePicker <qfluentwidgets.components.date_time.TimePicker>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:340
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 10b51d242ed3410a836059ec8ad47158 62d1ca2a391c4388921b31b2527e0351
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:365
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 06870662e6ac47e3849dc1c02460b8c5
 msgid "24 hours time picker"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 67d7c9078f424073ae234fa824dbf5f1
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: 22d176e94c77474b994782ff4f5053f5
 msgid ""
 ":py:obj:`AMTimePicker "
 "<qfluentwidgets.components.date_time.AMTimePicker>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:367
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:36:<autosummary>:1
-#: 27cec57a976d44d08655a7c34bd6584c c4a367ccd5b34110931631b06778bc7f
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:392
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39:<autosummary>:1
+#: a0ff2dc836604d3d86e987d5cb3fbc91
 msgid "AM/PM time picker"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:39
-#: fd1c6af08306450898840a644c6c77a0
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:42
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:148
+#: 9db228f439cd4296abdac06b19ddcb4a
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:52
+#: 3a1694f98053401c9d52b67629f75d86
+msgid "set the selected date"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:64
+#: eea2daa19cd84b20bfa45a5618d39c27
 msgid ""
 "Bases: "
 ":py:obj:`qfluentwidgets.components.date_time.picker_base.PickerBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:50
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:110
-#: 262cc89a5cdd45a49955184377b0d79f c0fa8fe5527143a1a1678e0f216b986b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:75
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:135
+#: 2519b71e33e7421191433dea0bc4fdfc
 msgid "set current date"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:74
-#: 7f6a57ccf0c842acb3049131472ebd79
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:99
+#: 59e815b54e61471c91106547df490116
 msgid "Bases: :py:obj:`DatePickerBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:90
-#: 8b4221ddeee5432ebcad631eae79c32b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:115
+#: 3a1694f98053401c9d52b67629f75d86
 msgid "set the format of date"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:93
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:132
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:202
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:266
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:310
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:347
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:379
-#: 20045b7d4dce4d068a7531b1cf8feb5b 387159f5cebe4c579b978e0882806659
-#: 74d693dca0ed45deb63fbaa684cacc46 8d299e4700b54c5ebf40e6d9a98f6e46
-#: a505d69ef9ee4255ac2862354b42243e a6aa104c42194c34a70167135b83683e
-#: fc20bf08ea6b4b188316fa6fb271ca53
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:118
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:157
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:227
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:291
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:335
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:372
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:404
+#: 06ae62a5e65e4c2a8d99385573c0467e
 msgid "Parameters"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:94
-#: 94c4699f316347ebba0be26148cd1526
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:119
+#: fbea75ffb0584cabaf6f319ff96003fa
 msgid "format: int"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:95
-#: 91666bf8971a4ec6935aacd238d2bd37
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:120
+#: fb3ef9762dff4f3ca1fd3a690df2186d
 msgid ""
 "the format of date, could be `DatePicker.MM_DD_YYYY` or "
 "`DatePicker.YYYY_MM_DD`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:100
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:238
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:359
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:386
-#: a340048d1d654ea692e4d1cc0637f621 b5d119be87ca46a3ac374e6791f0f35d
-#: e2a0d348eb4b42de9dde72732ada8e86 f6eef89568334c19b5c4970e2c4fb541
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:125
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:263
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:384
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:411
+#: 1ba814d9850a4e9a93410cc023317675
 msgid "initial value of panel"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:105
-#: 4ea13b8094c9460b8ec7d7e35c6250ed
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:130
+#: 7addbdb4615f468084178582d17d2acb
 msgid "set whether the month column is tight"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:116
-#: 5e35bb695bf349eb9639b504662127f8
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:141
+#: 8a642c6df7ac45a89b448d82a66f4fc9
 msgid "Bases: :py:obj:`DatePicker`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:123
-#: c9056675dde741e2a85bc90ac9ca37f4
-msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
-msgstr ""
-
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:129
-#: d7beb5aeb44849528ddde931fc0e4d51
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:154
+#: e1b00d23e4c345cf944628327286917a
 msgid "add column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:134
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:207
-#: 9327415f7b444f6091dbd5fe6fafd051 c90e59191c92414a9abca141ae6936a8
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:232
+#: 27bea6239a8646ecb6a6e0c9fffc76c4
 msgid "name: str"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:134
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:207
-#: 82ac709cf41c45cc8acf959c9d90ca74 83efa8ceec2a4b1188b555dee3f926ad
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:232
+#: 3fbb0a8d3a79410eb51d0dcb766c27f6
 msgid "the name of column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:137
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:210
-#: cd386a03b4c6471a8f0301630b9472c3 cd9b437ea5584da2b82dab1c9f97f4b5
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:235
+#: 82591e865f84452291c55814508636b1
 msgid "items: Iterable"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:137
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:210
-#: e22bc57aa50f483091a75f9fac474e37 f60569c98ca54418ba0b05ff8e37b8c5
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:235
+#: de047abccc6e429a90cd5df27e2c3d83
 msgid "the items of column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:140
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:213
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:271
-#: 039e823dc4ad49da96a8904b85d76fa1 73efc8e0b4284276ab12a083d3648e08
-#: a6e95dc3ce1c4abdb165f3124a8499ca
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:165
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:238
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:296
+#: f7c9ea00c2914042b09fa647cd501df9
 msgid "width: int"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:140
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:213
-#: 33fbc86c36f14baba7a95c360a6ec0ab feb3fd883c8f45ab9de8211d9ab22152
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:165
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:238
+#: 0ffd58dc353246faa2d9723c817ea2be
 msgid "the width of column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:143
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:215
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:273
-#: ad949ea654bc4b56a48f092590210005 af000c365905420eb90d8c93ebb8d14f
-#: f1c12debbf084fa69b49f6cc36d4bac7
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:168
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:298
+#: 74225c43060944b7b15b0925dc67b408
 msgid "align: Qt.AlignmentFlag"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:143
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:216
-#: 598b0015f9e4403eac37e73fd7e245fb aae902b7d7e74d62b6b3ff892176c951
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:168
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:241
+#: d631ae2ebd234c01a1d5857a68fdde7e
 msgid "the text alignment of button"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:145
-#: ec0ed855e2ec4ee296e6a6931118e58f
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:170
+#: cb9b2c54c667488d97f4cc527592670e
 msgid "formatter: PickerColumnFormatter"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:146
-#: caf5f117c5074dcc890f08b56e49322a
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:171
+#: 38663ae3a83646a598693e9e4edf5634
 msgid "the formatter of column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:151
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:166
-#: 652f4813c6c24d1aa803eef12739b1c7 efb12864459549bcb6eaf2af958cc7ce
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:191
+#: ebfea1809c0b44c49ed3494448a30736
 msgid "set the text alignment of specified column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:156
-#: 10332e399bcd4e3989f39fe49e89e509
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:181
+#: 3f1c46bb5f07416aa1ae47866929b178
 msgid "set the width of specified column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:161
-#: 55438f35627d4667a7b216cd55e092b6
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:186
+#: 479f260cea2e485592b0f40934712b00
 msgid "make the specified column to be tight"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:189
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:327
-#: 285967f3e6744c61940394eb50f43c4f 45db03afed704de39cebafc2c9ed86d6
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:214
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:352
+#: 2806a08e0bf9455eb203068faee3b8cd
 msgid "convert original value to formatted value"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:194
-#: cbead4453b53497aa233b8f0eef643bf
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:219
+#: 7fca634926e646348bf8c8c1ca8779a7
 msgid "convert formatted value to origin value"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:199
-#: e82e6aa90042462982388e2beb0e768c
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:224
+#: f56a6e42ac6e4450bdaa3372203c4a2f
 msgid "set column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:204
-#: 57b7a304d3f547308a8d0c1c1e16e7eb
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:229
+#: 446d70bff706452dbe66a9c689d1af6f
 msgid "index: int"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:204
-#: ff849d8cb1384eab92a51c3d867b964c
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:229
+#: a1ae9ea6b6944a7482aacf43c71e93cc
 msgid "the index of column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:221
-#: b0260745e4ee433b9d8f29ded3f68bcb
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:246
+#: 374b98116a35428895417f71040226ad
 msgid "clear columns"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:244
-#: af54928719ea473c8d785161627e078b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:269
+#: 6cc8890c87154330981530d23d46a261
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:258
-#: 6c6f42da9d194662a7161a05c886ee8c
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:283
+#: 173710d871e94369b0f6761722c18acb
 msgid "add shadow to dialog"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:263
-#: 950faa39f278493880b7aaaaac681c8a
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:288
+#: 1830376ebaf44d09ab70cacc4b036917
 msgid "add one column to view"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:268
-#: 23c2fdb939f64e5f9dc0bd2ae1f3d7a0
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:293
+#: 44facbdb4b7a4fd9938248987d3966c2
 msgid "items: Iterable[Any]"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:268
-#: b0b6fa35231048cc9af70e9f0938f38a
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:293
+#: f299ed82ca544d48a99f35b231d67385
 msgid "the items to be added"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:271
-#: 97e703a544df45ae829b3561af74f193
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:296
+#: 8ea5b7bdaadf4a3bbcebaabd7a91ffbb
 msgid "the width of item"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:274
-#: cd863a25ddd34a909761b03a58907932
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:299
+#: 5d812c44596446769b25847ff4729171
 msgid "the text alignment of item"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:282
-#: 57649d36717445f09b8cf4738e66d4c5
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:307
+#: a68e3702564141b49c2c3359d86aea0e
 msgid "return the value of columns"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:287
-#: 124d35183d9c43018a44903843de1779
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:312
+#: f3c649ef803541f4934856ded5251cda
 msgid "set the value of columns"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:292
-#: 5d42a4c7c9fd4f978a14a735768c4ec3
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:317
+#: 170ddc8d3c5846c5a3b0fb2593c47f09
 msgid "return the value of specified column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:297
-#: 27a34d152ebf49e18f4900fd3c964f2c
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:322
+#: 596d071510bb449ba874776c8057f064
 msgid "set the value of specified column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:302
-#: 455ddd91d0254c6089867492d74c6b3b
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:327
+#: 32a01b21571b4bdcbc751ff4d027b92b
 msgid "return the list widget of specified column"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:307
-#: 5ef990f7d5ea411d908bb72fe0ef3a9d
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:332
+#: 9e12415a9c664cd6ad9fe1d3f91263b8
 msgid "show panel"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:312
-#: 9a91ac7d125b4ffd8dc08f5c52f386d8
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:337
+#: 82a124958d514d1b95e1aa9ed2f81f6d
 msgid "pos: QPoint"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:312
-#: a317c3e10c414db287d905d011a6c708
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:337
+#: c0df96bcf96a44ce91e297780eff3277
 msgid "pop-up position"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:314
-#: ec7c086ba776430eb322e1b6b945d330
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:339
+#: 3c04a51d0b8742918829de39e98a3c1d
 msgid "ani: bool"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:315
-#: 66ce0e298e0c461089ef0490d63c79e1
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:340
+#: ff7f22a38f954fffae5ee1da90308ce1
 msgid "Whether to show pop-up animation"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:321
-#: 6b3ec8cecbc4447b8b27f4f18af683f2
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:346
+#: 7f443f7c027b46a5989b886349fa9442
 msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:332
-#: 41d83f6880e44c10a7fc38c5c8b1a83e
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:357
+#: 70da90c3818646628d07c589c60db7a3
 msgid "convert formatted value to original value"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:338
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:365
-#: 1f4d5fdd210942b98779b99d7d053c1e f5ae95ef4dbf4512b7c3b814df958ead
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:363
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:390
+#: ab34c99f94424a8d97f96de7ae76c3f1
 msgid "Bases: :py:obj:`TimePickerBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:344
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:376
-#: 656211af4ca44317b43c6347694ceee5 c45cf6ddfb03483a95bb32e6e40f9880
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:369
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:401
+#: e290ebc883ad4ff0b3b769c128ba2232
 msgid "set current time"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:348
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:380
-#: 823462ed54884da5bf89ca086b1c7b4e ea64f16e4ac249e39c2c64146d7c8f84
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:373
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:405
+#: 0d9fb9202864488f8b34b466ed8a2765
 msgid "time: QTime"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:349
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:381
-#: 23163588003c4e63a7a8ee9a692c5bdc 43afb05e0c6f482b8e3f0aa982258bea
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:374
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:406
+#: 37194521b2804b7ab3eb2003768e9de1
 msgid "current time"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:354
-#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:371
-#: 1ada0f48974c4065b6a9afdaef980691 d5b45d22b0ae4e53ae745dcc9af491f4
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:379
+#: ../../source/autoapi/qfluentwidgets/components/date_time/index.rst:396
+#: 13a8d6146ff2498eac1c80a006ec89c9
 msgid "set the visibility of seconds column"
 msgstr ""
 
