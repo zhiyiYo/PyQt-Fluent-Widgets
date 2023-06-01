@@ -184,20 +184,14 @@ class TableBase:
 
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
-        self._updateSelectedRows()
-
-    def mousePressEvent(self, e: QKeyEvent):
-        if e.button() == Qt.LeftButton:
-            QTableView.mousePressEvent(self, e)
-        else:
-            self._setPressedRow(self.indexAt(e.pos()).row())
+        self.updateSelectedRows()
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.RightButton:
-            self._updateSelectedRows()
+            self.updateSelectedRows()
         else:
             self._setPressedRow(-1)
 
@@ -207,25 +201,21 @@ class TableBase:
 
     def selectAll(self):
         QTableView.selectAll(self)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def selectRow(self, row: int):
         QTableView.selectRow(self, row)
-        self._updateSelectedRows()
-
-    def setSelection(self, rect, command):
-        QTableView.setSelection(self, rect, command)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def clearSelection(self):
         QTableView.clearSelection(self)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def setCurrentIndex(self, index: QModelIndex):
         QTableView.setCurrentIndex(self, index)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
-    def _updateSelectedRows(self):
+    def updateSelectedRows(self):
         self._setSelectedRows(self.selectedIndexes())
 
 
@@ -244,7 +234,7 @@ class TableWidget(TableBase, QTableWidget):
         else:
             super().setCurrentItem(item, command)
 
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
 
 class TableView(TableBase, QTableView):

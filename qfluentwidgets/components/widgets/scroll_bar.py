@@ -318,7 +318,7 @@ class ScrollBar(QWidget):
             dv = e.pos().x() - self._pressedPos.x()
 
         # don't use `self.setValue()`, because it could be reimplemented
-        dv = dv / self._slideLength() * (self.maximum() - self.minimum())
+        dv = int(dv / self._slideLength() * (self.maximum() - self.minimum()))
         ScrollBar.setValue(self, self.value() + dv)
 
         self._pressedPos = e.pos()
