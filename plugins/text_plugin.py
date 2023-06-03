@@ -26,7 +26,7 @@ class LineEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
         return "LineEdit"
 
 
-class SearchLineEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+class SearchLineEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
     """ Search line edit plugin """
 
     def createWidget(self, parent):
@@ -39,7 +39,7 @@ class SearchLineEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
         return "SearchLineEdit"
 
 
-class TextEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+class TextEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
     """ Text edit plugin """
 
     def createWidget(self, parent):
