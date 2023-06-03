@@ -31,7 +31,7 @@ class Demo(QWidget):
         ]
         for stand in stands:
             item = QListWidgetItem(stand)
-            # item.setIcon(QIcon('docs/source/_static/logo.png'))
+            # item.setIcon(QIcon(':/qfluentwidgets/images/logo.png'))
             # item.setCheckState(Qt.Unchecked)
             self.listWidget.addItem(item)
 

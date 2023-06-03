@@ -5,7 +5,7 @@ from PyQt6.QtCore import Qt, pyqtSignal, QRectF, QPoint, QObject, QEvent
 from PyQt6.QtGui import QPainter, QAction, QCursor, QIcon
 from PyQt6.QtWidgets import QPushButton, QStyledItemDelegate, QStyle
 
-from .menu import RoundMenu, MenuItemDelegate
+from .menu import RoundMenu, MenuItemDelegate, MenuAnimationType
 from .line_edit import LineEdit, LineEditButton
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, isDarkTheme
@@ -302,7 +302,17 @@ class ComboBoxBase(QObject):
         # show menu
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
         y = self.height()
-        menu.exec(self.mapToGlobal(QPoint(x, y)))
+        pos = self.mapToGlobal(QPoint(x, y))
+
+        aniType = MenuAnimationType.DROP_DOWN
+        menu.view.adjustSize(pos, aniType)
+
+        if menu.view.height() < 120 and menu.view.itemsHeight() > menu.view.height():
+            aniType = MenuAnimationType.PULL_UP
+            pos = self.mapToGlobal(QPoint(x, 0))
+            menu.view.adjustSize(pos, aniType)
+
+        menu.exec(pos, aniType=aniType)
 
     def _toggleComboMenu(self):
         if self.dropMenu:
@@ -431,7 +441,13 @@ class ComboBoxMenu(RoundMenu):
         super().__init__(title="", parent=parent)
 
         self.view.setViewportMargins(5, 2, 5, 6)
+        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.view.setItemDelegate(ComboMenuItemDelegate())
 
         FluentStyleSheet.COMBO_BOX.apply(self)
         self.setItemHeight(33)
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        self.view.adjustSize(pos, aniType)
+        self.adjustSize()
+        return super().exec(pos, ani, aniType)

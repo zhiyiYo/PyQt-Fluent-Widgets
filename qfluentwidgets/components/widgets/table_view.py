@@ -2,9 +2,9 @@
 from typing import List, Union
 
 from PyQt6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel
-from PyQt6.QtGui import QPainter, QColor, QKeyEvent, QPalette
+from PyQt6.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
 from PyQt6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget, QTableWidgetItem)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QHeaderView)
 
 from ...common.font import getFont
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
@@ -79,13 +79,18 @@ class TableItemDelegate(QStyledItemDelegate):
 
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
         super().initStyleOption(option, index)
-        option.font = getFont(13)
-        if isDarkTheme():
-            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.white)
-            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.white)
-        else:
-            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.black)
-            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.black)
+
+        # font
+        option.font = index.data(Qt.ItemDataRole.FontRole) or getFont(13)
+
+        # text color
+        textColor = Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black
+        textBrush = index.data(Qt.ItemDataRole.ForegroundRole)   # type: QBrush
+        if textBrush is not None:
+            textColor = textBrush.color()
+
+        option.palette.setColor(QPalette.ColorRole.Text, textColor)
+        option.palette.setColor(QPalette.ColorRole.HighlightedText, textColor)
 
     def paint(self, painter, option, index):
         painter.save()
@@ -184,20 +189,14 @@ class TableBase:
 
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
-        self._updateSelectedRows()
-
-    def mousePressEvent(self, e: QKeyEvent):
-        if e.button() == Qt.MouseButton.LeftButton:
-            QTableView.mousePressEvent(self, e)
-        else:
-            self._setPressedRow(self.indexAt(e.pos()).row())
+        self.updateSelectedRows()
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.MouseButton.RightButton:
-            self._updateSelectedRows()
+            self.updateSelectedRows()
         else:
             self._setPressedRow(-1)
 
@@ -207,25 +206,21 @@ class TableBase:
 
     def selectAll(self):
         QTableView.selectAll(self)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def selectRow(self, row: int):
         QTableView.selectRow(self, row)
-        self._updateSelectedRows()
-
-    def setSelection(self, rect, command):
-        QTableView.setSelection(self, rect, command)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def clearSelection(self):
         QTableView.clearSelection(self)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def setCurrentIndex(self, index: QModelIndex):
         QTableView.setCurrentIndex(self, index)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
-    def _updateSelectedRows(self):
+    def updateSelectedRows(self):
         self._setSelectedRows(self.selectedIndexes())
 
 
@@ -244,7 +239,7 @@ class TableWidget(TableBase, QTableWidget):
         else:
             super().setCurrentItem(item, command)
 
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
 
 class TableView(TableBase, QTableView):

@@ -64,20 +64,14 @@ class ListBase:
 
     def keyPressEvent(self, e):
         QListView.keyPressEvent(self, e)
-        self._updateSelectedRows()
-
-    def mousePressEvent(self, e):
-        if e.button() == Qt.MouseButton.LeftButton:
-            QListView.mousePressEvent(self, e)
-        else:
-            self._setPressedRow(self.indexAt(e.pos()).row())
+        self.updateSelectedRows()
 
     def mouseReleaseEvent(self, e):
         QListView.mouseReleaseEvent(self, e)
 
         row = self.indexAt(e.pos()).row()
         if row >= 0 and e.button() != Qt.MouseButton.RightButton:
-            self._updateSelectedRows()
+            self.updateSelectedRows()
         else:
             self._setPressedRow(-1)
 
@@ -85,19 +79,15 @@ class ListBase:
         self.delegate = delegate
         super().setItemDelegate(delegate)
 
-    def setSelection(self, rect, command):
-        QListView.setSelection(self, rect, command)
-        self._updateSelectedRows()
-
     def clearSelection(self):
         QListView.clearSelection(self)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
     def setCurrentIndex(self, index: QModelIndex):
         QListView.setCurrentIndex(self, index)
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
-    def _updateSelectedRows(self):
+    def updateSelectedRows(self):
         self._setSelectedRows(self.selectedIndexes())
 
 
@@ -116,7 +106,7 @@ class ListWidget(ListBase, QListWidget):
         else:
             super().setCurrentRow(row, command)
 
-        self._updateSelectedRows()
+        self.updateSelectedRows()
 
 
 class ListView(ListBase, QListView):

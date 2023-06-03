@@ -18,7 +18,7 @@
   </a>
 
   <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/PyQt-6.3.1-blue?color=#4ec820" alt="PyQt 6.3.1"/>
+    <img src="https://img.shields.io/badge/PyQt-6.3.1+-blue?color=#4ec820" alt="PyQt 6.3.1+"/>
   </a>
 </p>
 
@@ -36,7 +36,7 @@ pip install "PyQt6-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
 ## Run Example
-After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
+After installing PyQt6-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
 cd examples/gallery
 python demo.py
@@ -51,9 +51,11 @@ Want to know more about PyQt-Fluent-Widgets? Please read the [help document](htt
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
 ## Work with QtDesigner
-You can use PyQt6-Fluent-Widgets in QtDesigner directly by running `python ./tools/designer.py`. If the operation is successful, you should be able to see the PyQt-Fluent-Widgets in the sidebar of QtDesigner.
-> **NOTE**
-> It is recommended to install pyqt6-plugins and PyQt6-Fluent-Widgets in a virtual environment.
+You can use PyQt6-Fluent-Widgets in QtDesigner directly by running `python ./tools/designer.py`. If the operation is successful, you should be able to see the PyQt6-Fluent-Widgets in the sidebar of QtDesigner.
+
+
+## Support
+If this project helps you a lot and you want to support the development and maintenance of this project, feel free to sponsor me via [爱发电](https://afdian.net/a/zhiyiYo) or [ko-fi](https://ko-fi.com/zhiyiYo). Your support is highly appreciated 🥰
 
 ## See Also
 Here are some projects that use PyQt-Fluent-Widgets:
@@ -65,6 +67,6 @@ Here are some projects that use PyQt-Fluent-Widgets:
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
 
 ## License
-PyQt-Fluent-Widgets is licensed under [GPLv3](./LICENSE).
+PyQt6-Fluent-Widgets is licensed under [GPLv3](./LICENSE).
 
 Copyright © 2021 by zhiyiYo.

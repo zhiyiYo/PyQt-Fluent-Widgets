@@ -157,7 +157,7 @@ class ScrollViewBase(QListWidget):
 
     def __initWidget(self):
         self.setSpacing(0)
-        self.setDragEnabled(False)
+        self.setMovement(QListWidget.Movement.Static)
         self.setGridSize(self.gridSize())
         self.setViewportMargins(0, 0, 0, 0)
         self.setItemDelegate(self.delegate)

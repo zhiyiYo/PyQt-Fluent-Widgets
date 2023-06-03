@@ -41,13 +41,18 @@ class TreeItemDelegate(QStyledItemDelegate):
 
     def initStyleOption(self, option, index):
         super().initStyleOption(option, index)
-        option.font = getFont(13)
-        if isDarkTheme():
-            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.white)
-            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.white)
-        else:
-            option.palette.setColor(QPalette.ColorRole.Text, Qt.GlobalColor.black)
-            option.palette.setColor(QPalette.ColorRole.HighlightedText, Qt.GlobalColor.black)
+
+        # font
+        option.font = index.data(Qt.ItemDataRole.FontRole) or getFont(13)
+
+        # text color
+        textColor = Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black
+        textBrush = index.data(Qt.ItemDataRole.ForegroundRole)
+        if textBrush is not None:
+            textColor = textBrush.color()
+
+        option.palette.setColor(QPalette.ColorRole.Text, textColor)
+        option.palette.setColor(QPalette.ColorRole.HighlightedText, textColor)
 
 
 class TreeViewBase:

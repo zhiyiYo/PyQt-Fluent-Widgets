@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget, QCompleter
 from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox
 
 class Demo(QWidget):
@@ -10,10 +10,15 @@ class Demo(QWidget):
         super().__init__()
         self.comboBox = ComboBox(self)
 
-        self.comboBox.addItems(['shoko 🥰', '西宫硝子', 'aiko', '柳井爱子'])
+        items = ['shoko 🥰', '西宫硝子', 'aiko', '柳井爱子']
+        self.comboBox.addItems(items)
         self.comboBox.setCurrentIndex(0)
         self.comboBox.currentTextChanged.connect(print)
         self.comboBox.move(200, 200)
+
+        # NOTE: Completer is only applicable to EditableComboBox
+        # self.completer = QCompleter(items, self)
+        # self.comboBox.setCompleter(self.completer)
 
         self.resize(500, 500)
         self.setStyleSheet('Demo{background:white}')

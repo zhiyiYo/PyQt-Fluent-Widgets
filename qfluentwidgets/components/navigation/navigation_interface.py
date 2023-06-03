@@ -212,10 +212,6 @@ class NavigationInterface(QWidget):
         """
         self.panel.setCurrentItem(name)
 
-    def setDefaultRouteKey(self, key: str):
-        """ set the routing key to use when the navigation history is empty """
-        self.panel.setDefaultRouteKey(key)
-
     def setExpandWidth(self, width: int):
         """ set the maximum width """
         self.panel.setExpandWidth(width)

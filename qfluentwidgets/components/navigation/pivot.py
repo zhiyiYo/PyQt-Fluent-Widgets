@@ -5,8 +5,10 @@ from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtGui import QPainter, QFont
 from PyQt6.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout, QSizePolicy
 
+from ...common.router import qrouter
 from ...common.style_sheet import themeColor, FluentStyleSheet
 from ..widgets.scroll_area import SingleDirectionScrollArea
+from .navigation_panel import RouteKeyError
 
 
 class PivotItem(QPushButton):
@@ -71,7 +73,7 @@ class Pivot(QWidget):
 
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
-    def addItem(self, routeKey: str, text: str, onClick):
+    def addItem(self, routeKey: str, text: str, onClick=None):
         """ add item
 
         Parameters
@@ -87,7 +89,23 @@ class Pivot(QWidget):
         """
         return self.insertItem(-1, routeKey, text, onClick)
 
-    def insertItem(self, index: int, routeKey: str, text: str, onClick):
+    def addWidget(self, routeKey: str, widget: PivotItem, onClick=None):
+        """ add widget
+
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of item
+
+        widget: PivotItem
+            navigation widget
+
+        onClick: callable
+            the slot connected to item clicked signal
+        """
+        self.insertWidget(-1, routeKey, widget, onClick)
+
+    def insertItem(self, index: int, routeKey: str, text: str, onClick=None):
         """ insert item
 
         Parameters
@@ -108,13 +126,61 @@ class Pivot(QWidget):
             return
 
         item = PivotItem(text, self)
-        item.setProperty('routeKey', routeKey)
-        item.itemClicked.connect(self._onItemClicked)
-        item.itemClicked.connect(onClick)
-
-        self.items[routeKey] = item
-        self.hBoxLayout.insertWidget(index, item, 0, Qt.AlignmentFlag.AlignLeft)
+        self.insertWidget(index, routeKey, item, onClick)
         return item
+
+    def insertWidget(self, index: int, routeKey: str, widget: PivotItem, onClick=None):
+        """ insert item
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
+        routeKey: str
+            the unique name of item
+
+        widget: PivotItem
+            navigation widget
+
+        onClick: callable
+            the slot connected to item clicked signal
+        """
+        if routeKey in self.items:
+            return
+
+        widget.setProperty('routeKey', routeKey)
+        widget.itemClicked.connect(self._onItemClicked)
+        if onClick:
+            widget.itemClicked.connect(onClick)
+
+        self.items[routeKey] = widget
+        self.hBoxLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignLeft)
+
+    def removeWidget(self, routeKey: str):
+        """ remove widget
+
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of item
+        """
+        if routeKey not in self.items:
+            return
+
+        item = self.items.pop(routeKey)
+        self.hBoxLayout.removeWidget(item)
+        qrouter.remove(routeKey)
+        item.deleteLater()
+
+    def clear(self):
+        """ clear all navigation items """
+        for k, w in self.items.items():
+            self.hBoxLayout.removeWidget(w)
+            qrouter.remove(k)
+            w.deleteLater()
+
+        self.items.clear()
 
     def setCurrentItem(self, routeKey: str):
         """ set current selected item
@@ -141,3 +207,9 @@ class Pivot(QWidget):
     def _onItemClicked(self):
         item = self.sender()  # type: PivotItem
         self.setCurrentItem(item.property('routeKey'))
+
+    def widget(self, routeKey: str):
+        if routeKey not in self.items:
+            raise RouteKeyError(f"`{routeKey}` is illegal.")
+
+        return self.items[routeKey]
