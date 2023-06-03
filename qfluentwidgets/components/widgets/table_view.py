@@ -2,9 +2,9 @@
 from typing import List, Union
 
 from PyQt5.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel
-from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette
+from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
 from PyQt5.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget, QTableWidgetItem)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QHeaderView)
 
 from ...common.font import getFont
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
@@ -79,13 +79,18 @@ class TableItemDelegate(QStyledItemDelegate):
 
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
         super().initStyleOption(option, index)
-        option.font = getFont(13)
-        if isDarkTheme():
-            option.palette.setColor(QPalette.Text, Qt.white)
-            option.palette.setColor(QPalette.HighlightedText, Qt.white)
-        else:
-            option.palette.setColor(QPalette.Text, Qt.black)
-            option.palette.setColor(QPalette.HighlightedText, Qt.black)
+
+        # font
+        option.font = index.data(Qt.FontRole) or getFont(13)
+
+        # text color
+        textColor = Qt.white if isDarkTheme() else Qt.black
+        textBrush = index.data(Qt.TextColorRole)   # type: QBrush
+        if textBrush is not None:
+            textColor = textBrush.color()
+
+        option.palette.setColor(QPalette.Text, textColor)
+        option.palette.setColor(QPalette.HighlightedText, textColor)
 
     def paint(self, painter, option, index):
         painter.save()

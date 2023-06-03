@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/qfluentwidgets">
+        <file>images/logo.png</file>
+
         <file>images/color_dialog/Clear_black.svg</file>
         <file>images/color_dialog/Clear_white.svg</file>
         <file>images/color_dialog/HuePanel.png</file>
