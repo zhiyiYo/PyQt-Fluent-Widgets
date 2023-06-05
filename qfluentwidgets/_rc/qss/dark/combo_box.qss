@@ -1,0 +1,67 @@
+ComboBox {
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-radius: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 5px 31px 6px 11px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    background-color: rgba(255, 255, 255, 0.0605);
+    text-align: left;
+}
+
+ComboBox:hover {
+    background-color: rgba(255, 255, 255, 0.0837);
+}
+
+ComboBox:pressed {
+    background-color: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+    color: rgba(255, 255, 255, 0.63);
+}
+
+ComboBox:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+
+ComboBoxMenu>MenuActionListWidget {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+    background-color: rgb(43, 43, 43);
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+ComboBoxMenu>MenuActionListWidget::item {
+    margin-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+ComboBoxMenu>MenuActionListWidget::disbled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+ComboBoxMenu>MenuActionListWidget::item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+ComboBoxMenu>MenuActionListWidget::item:selected {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+ComboBoxMenu>MenuActionListWidget::item:selected:active {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
+<context>
+    <name>BasicInputInterface</name>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="25"/>
+        <source>A simple button with text content</source>
+        <translation>带有文本的简单按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="35"/>
+        <source>A button with graphical content</source>
+        <translation>带有图标的按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="56"/>
+        <source>A hyperlink button that navigates to a URI</source>
+        <translation>导航到一个超链接的按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="63"/>
+        <source>A 2-state CheckBox</source>
+        <translation>双态复选框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="72"/>
+        <source>A 3-state CheckBox</source>
+        <translation>三态复选框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="83"/>
+        <source>A ComboBox with items</source>
+        <translation>下拉框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="158"/>
+        <source>A group of RadioButton controls in a button group</source>
+        <translation>单选按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="169"/>
+        <source>A simple horizontal slider</source>
+        <translation>水平滑动条</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="220"/>
+        <source>A simple switch button</source>
+        <translation>开关按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="237"/>
+        <source>Off</source>
+        <translation>关</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="235"/>
+        <source>On</source>
+        <translation>开</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="25"/>
+        <source>Standard push button</source>
+        <translation>标准按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="42"/>
+        <source>Accent style button</source>
+        <translation>主题色按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="63"/>
+        <source>Two-state CheckBox</source>
+        <translation>双态复选框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="70"/>
+        <source>Three-state CheckBox</source>
+        <translation>三态复选框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="56"/>
+        <source>GitHub home page</source>
+        <translation>GItHub 主页</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="241"/>
+        <source>Star Platinum</source>
+        <translation>白金之星</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="241"/>
+        <source>Crazy Diamond</source>
+        <translation>疯狂钻石</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="149"/>
+        <source>Soft and Wet</source>
+        <translation>软又湿</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="241"/>
+        <source>Gold Experience</source>
+        <translation>黄金体验</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="241"/>
+        <source>Sticky Fingers</source>
+        <translation>钢链手指</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="201"/>
+        <source>Choose your stand</source>
+        <translation>选择你的替身</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="99"/>
+        <source>An editable ComboBox</source>
+        <translation>可编辑的下拉框</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="107"/>
+        <source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="108"/>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="126"/>
+        <source>Email</source>
+        <translation>邮件</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="111"/>
+        <source>A push button with drop down menu</source>
+        <translation>带下拉菜单的按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="119"/>
+        <source>A tool button with drop down menu</source>
+        <translation>带下拉菜单的工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="227"/>
+        <source>A simple ToggleButton with text content</source>
+        <translation>带文本的状态开关按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="227"/>
+        <source>Start practicing</source>
+        <translation>开始练习</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="178"/>
+        <source>A split push button with drop down menu</source>
+        <translation>带下拉菜单的拆分按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="185"/>
+        <source>Sing</source>
+        <translation>唱</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="185"/>
+        <source>Jump</source>
+        <translation>跳</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="185"/>
+        <source>Rap</source>
+        <translation>Rap</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="185"/>
+        <source>Music</source>
+        <translation>Music</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="194"/>
+        <source>A split tool button with drop down menu</source>
+        <translation>带下拉菜单的工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="42"/>
+        <source>Accent style applied to push button</source>
+        <translation>主题色按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="49"/>
+        <source>Accent style applied to tool button</source>
+        <translation>主题色工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="128"/>
+        <source>A primary color push button with drop down menu</source>
+        <translation>带下拉菜单的主题色按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="136"/>
+        <source>A primary color tool button with drop down menu</source>
+        <translation>带下拉菜单的主题色工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="203"/>
+        <source>A primary color split push button with drop down menu</source>
+        <translation>带下拉菜单的主题色拆分按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="211"/>
+        <source>A primary color split tool button with drop down menu</source>
+        <translation>带下拉菜单的主题色拆分工具按钮</translation>
+    </message>
+</context>
+<context>
+    <name>DateTimeInterface</name>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="36"/>
+        <source>A simple DatePicker</source>
+        <translation>日期选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="42"/>
+        <source>A DatePicker in another format</source>
+        <translation>另一种格式的日期选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="49"/>
+        <source>A simple TimePicker</source>
+        <translation>时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="56"/>
+        <source>A TimePicker using a 24-hour clock</source>
+        <translation>24 小时制的时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="63"/>
+        <source>A TimePicker with seconds column</source>
+        <translation>显示秒的时间选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="21"/>
+        <source>A simple CalendarPicker</source>
+        <translation>日历选择器</translation>
+    </message>
+    <message>
+        <location filename="../../view/date_time_interface.py" line="29"/>
+        <source>A CalendarPicker in another format</source>
+        <translation>自定义格式的日历选择器</translation>
+    </message>
+</context>
+<context>
+    <name>DialogInterface</name>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="36"/>
+        <source>Show dialog</source>
+        <translation>显示对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="22"/>
+        <source>A frameless message box</source>
+        <translation>无边框对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="30"/>
+        <source>A message box with mask</source>
+        <translation>带遮罩的对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="38"/>
+        <source>A color dialog</source>
+        <translation>颜色对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="45"/>
+        <source>This is a frameless message dialog</source>
+        <translation>这是一个无边框对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="56"/>
+        <source>If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.</source>
+        <translation>一生消えない傷でいいな，絆創膏の様にいつも包んでよ。貴方のそばでわがまま言いたいな，一分一秒刻み貴方を知り，あたしをあげる~</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="65"/>
+        <source>Choose color</source>
+        <translation>选择颜色</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="55"/>
+        <source>This is a message dialog with mask</source>
+        <translation>这是一个带遮罩的对话框</translation>
+    </message>
+</context>
+<context>
+    <name>ExampleCard</name>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="114"/>
+        <source>Source code</source>
+        <translation>源代码</translation>
+    </message>
+</context>
+<context>
+    <name>IconCardView</name>
+    <message>
+        <location filename="../../view/icon_interface.py" line="123"/>
+        <source>Fluent Icons Library</source>
+        <translation>流畅图标库</translation>
+    </message>
+</context>
+<context>
+    <name>IconInfoPanel</name>
+    <message>
+        <location filename="../../view/icon_interface.py" line="81"/>
+        <source>Icon name</source>
+        <translation>图标名字</translation>
+    </message>
+    <message>
+        <location filename="../../view/icon_interface.py" line="83"/>
+        <source>Enum member</source>
+        <translation>枚举成员</translation>
+    </message>
+</context>
+<context>
+    <name>LayoutInterface</name>
+    <message>
+        <location filename="../../view/layout_interface.py" line="20"/>
+        <source>Flow layout without animation</source>
+        <translation>不带动画效果的流式布局</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="27"/>
+        <source>Flow layout with animation</source>
+        <translation>带有动画效果的流式布局</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="36"/>
+        <source>Star Platinum</source>
+        <translation>白金之星</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="36"/>
+        <source>Hierophant Green</source>
+        <translation>法皇之绿</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="37"/>
+        <source>Silver Chariot</source>
+        <translation>银色战车</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="37"/>
+        <source>Crazy diamond</source>
+        <translation>疯狂钻石</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="38"/>
+        <source>Heaven&apos;s Door</source>
+        <translation>黑蚊子多</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="38"/>
+        <source>Killer Queen</source>
+        <translation>杀手皇后💀</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="39"/>
+        <source>Gold Experience</source>
+        <translation>黄金体验</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="39"/>
+        <source>Sticky Fingers</source>
+        <translation>钢链手指</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="40"/>
+        <source>Sex Pistols</source>
+        <translation>性感手枪</translation>
+    </message>
+    <message>
+        <location filename="../../view/layout_interface.py" line="40"/>
+        <source>Dirty Deeds Done Dirt Cheap</source>
+        <translation>D4C</translation>
+    </message>
+</context>
+<context>
+    <name>LineEdit</name>
+    <message>
+        <location filename="../../view/icon_interface.py" line="21"/>
+        <source>Search icons</source>
+        <translation>搜索图标</translation>
+    </message>
+</context>
+<context>
+    <name>ListFrame</name>
+    <message>
+        <location filename="../../view/view_interface.py" line="75"/>
+        <source>Star Platinum</source>
+        <translation>白金之星</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="75"/>
+        <source>Hierophant Green</source>
+        <translation>法皇之绿</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="76"/>
+        <source>Made in Haven</source>
+        <translation>天堂制造</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="76"/>
+        <source>King Crimson</source>
+        <translation>绯红之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="77"/>
+        <source>Silver Chariot</source>
+        <translation>银色战车</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="77"/>
+        <source>Crazy diamond</source>
+        <translation>疯狂钻石</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="78"/>
+        <source>Metallica</source>
+        <translation>金属制品</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="78"/>
+        <source>Another One Bites The Dust</source>
+        <translation>败者食尘</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="79"/>
+        <source>Heaven&apos;s Door</source>
+        <translation>黑蚊子多</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="80"/>
+        <source>The Grateful Dead</source>
+        <translation>壮烈成仁</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="80"/>
+        <source>Stone Free</source>
+        <translation>石之自由</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="81"/>
+        <source>The World</source>
+        <translation>砸瓦鲁多</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="81"/>
+        <source>Sticky Fingers</source>
+        <translation>钢链手指</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="82"/>
+        <source>Ozone Baby</source>
+        <translation>臭氧宝宝</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="82"/>
+        <source>Love Love Deluxe</source>
+        <translation>华丽挚爱</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="83"/>
+        <source>Hermit Purple</source>
+        <translation>隐者之紫</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="83"/>
+        <source>Gold Experience</source>
+        <translation>黄金体验</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="84"/>
+        <source>King Nothing</source>
+        <translation>虚无之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="84"/>
+        <source>Paper Moon King</source>
+        <translation>纸月之王</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="85"/>
+        <source>Scary Monster</source>
+        <translation>骇人恶兽</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="85"/>
+        <source>Mandom</source>
+        <translation>男子领域</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="86"/>
+        <source>20th Century Boy</source>
+        <translation>20世纪男孩</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="86"/>
+        <source>Tusk Act 4</source>
+        <translation>牙 Act 4</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="87"/>
+        <source>Ball Breaker</source>
+        <translation>铁球破坏者</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="87"/>
+        <source>Sex Pistols</source>
+        <translation>性感手枪</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="88"/>
+        <source>D4C • Love Train</source>
+        <translation>D4C • 爱之列车</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="88"/>
+        <source>Born This Way</source>
+        <translation>天生完美</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="89"/>
+        <source>SOFT &amp; WET</source>
+        <translation>软又湿</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="89"/>
+        <source>Paisley Park</source>
+        <translation>佩斯利公园</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="90"/>
+        <source>Wonder of U</source>
+        <translation>奇迹于你</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="90"/>
+        <source>Walking Heart</source>
+        <translation>行走的心</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="91"/>
+        <source>Cream Starter</source>
+        <translation>护霜旅行者</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="91"/>
+        <source>November Rain</source>
+        <translation>十一月雨</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="92"/>
+        <source>Smooth Operators</source>
+        <translation>调情圣手</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="92"/>
+        <source>The Matte Kudasai</source>
+        <translation>片刻静候</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="79"/>
+        <source>Killer Queen</source>
+        <translation>杀手皇后💀</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../view/main_window.py" line="122"/>
+        <source>Home</source>
+        <translation>主页</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="128"/>
+        <source>Basic input</source>
+        <translation>基本输入</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="132"/>
+        <source>Dialogs</source>
+        <translation>对话框</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="134"/>
+        <source>Layout</source>
+        <translation>布局</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="138"/>
+        <source>Menus</source>
+        <translation>菜单</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="136"/>
+        <source>Material</source>
+        <translation>材料</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="142"/>
+        <source>Scrolling</source>
+        <translation>滚动</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="144"/>
+        <source>Status &amp; info</source>
+        <translation>状态和信息</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="146"/>
+        <source>Text</source>
+        <translation>文本</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="124"/>
+        <source>Icons</source>
+        <translation>图标</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="148"/>
+        <source>View</source>
+        <translation>视图</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="158"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="130"/>
+        <source>Date &amp; time</source>
+        <translation>日期和时间</translation>
+    </message>
+    <message>
+        <location filename="../../view/main_window.py" line="140"/>
+        <source>Navigation</source>
+        <translation>导航</translation>
+    </message>
+</context>
+<context>
+    <name>MaterialInterface</name>
+    <message>
+        <location filename="../../view/material_interface.py" line="29"/>
+        <source>Acrylic label</source>
+        <translation>亚克力标签</translation>
+    </message>
+</context>
+<context>
+    <name>MenuInterface</name>
+    <message>
+        <location filename="../../view/menu_interface.py" line="26"/>
+        <source>Rounded corners menu</source>
+        <translation>圆角菜单</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="22"/>
+        <source>Show menu</source>
+        <translation>显示菜单</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="36"/>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="37"/>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="42"/>
+        <source>Video</source>
+        <translation>视频</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="42"/>
+        <source>Music</source>
+        <translation>音乐</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="49"/>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="49"/>
+        <source>Undo</source>
+        <translation>撤回</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="56"/>
+        <source>Select all</source>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="59"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="61"/>
+        <source>Help</source>
+        <translation>帮助</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="61"/>
+        <source>Feedback</source>
+        <translation>反馈</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="40"/>
+        <source>Add to</source>
+        <translation>添加到</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationViewInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="22"/>
+        <source>A basic pivot</source>
+        <translation>顶部导航栏</translation>
+    </message>
+</context>
+<context>
+    <name>PivotInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="45"/>
+        <source>Song</source>
+        <translation>歌曲</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="46"/>
+        <source>Album</source>
+        <translation>专辑</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="47"/>
+        <source>Artist</source>
+        <translation>歌手</translation>
+    </message>
+</context>
+<context>
+    <name>ProgressWidget</name>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="265"/>
+        <source>Progress</source>
+        <translation>进度</translation>
+    </message>
+</context>
+<context>
+    <name>ScrollInterface</name>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="33"/>
+        <source>Smooth scroll area</source>
+        <translation>平滑滚动区域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="39"/>
+        <source>Chitanda Eru is too hot 🥵</source>
+        <translation>回眸一笑百媚生，六宫粉黛无颜色 🥵</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="50"/>
+        <source>Smooth scroll area implemented by animation</source>
+        <translation>使用动画实现的平滑滚动区域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="56"/>
+        <source>Chitanda Eru is so hot 🥵🥵</source>
+        <translation>春寒赐浴华清池，温泉水滑洗凝脂 🥵🥵</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="67"/>
+        <source>Single direction scroll scroll area</source>
+        <translation>单方向平滑滚动区域</translation>
+    </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="73"/>
+        <source>Chitanda Eru is so hot 🥵🥵🥵</source>
+        <translation>春宵苦短日高起，从此君王不早朝🥵🥵🥵</translation>
+    </message>
+</context>
+<context>
+    <name>SettingInterface</name>
+    <message>
+        <location filename="../../view/setting_interface.py" line="33"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="36"/>
+        <source>Music on this PC</source>
+        <translation>此PC上的音乐</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="38"/>
+        <source>Local music library</source>
+        <translation>本地音乐库</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="201"/>
+        <source>Choose folder</source>
+        <translation>选择文件夹</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="45"/>
+        <source>Download directory</source>
+        <translation>下载目录</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="54"/>
+        <source>Personalization</source>
+        <translation>个性化</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="56"/>
+        <source>Application theme</source>
+        <translation>应用主题</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="56"/>
+        <source>Change the appearance of your application</source>
+        <translation>调整你的应用的外观</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="56"/>
+        <source>Light</source>
+        <translation>浅色</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="56"/>
+        <source>Dark</source>
+        <translation>深色</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="85"/>
+        <source>Use system setting</source>
+        <translation>跟随系统设置</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="67"/>
+        <source>Theme color</source>
+        <translation>主题色</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="67"/>
+        <source>Change the theme color of you application</source>
+        <translation>调整你的应用的主题色</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="74"/>
+        <source>Interface zoom</source>
+        <translation>界面缩放</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="74"/>
+        <source>Change the size of widgets and fonts</source>
+        <translation>调整小部件和字体的大小</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="85"/>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="85"/>
+        <source>Set your preferred language for UI</source>
+        <translation>选择界面所使用的语言</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="95"/>
+        <source>Material</source>
+        <translation>材料</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="97"/>
+        <source>Acrylic blur radius</source>
+        <translation>亚克力磨砂半径</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="97"/>
+        <source>The greater the radius, the more blurred the image</source>
+        <translation>磨砂半径越大，图像越模糊</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="106"/>
+        <source>Software update</source>
+        <translation>软件更新</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="108"/>
+        <source>Check for updates when the application starts</source>
+        <translation>在应用程序启动时检查更新</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="108"/>
+        <source>The new version will be more stable and have more features</source>
+        <translation>新版本将更加稳定并拥有更多功能（建议启用此选项）</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="134"/>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="118"/>
+        <source>Open help page</source>
+        <translation>打开帮助页面</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="118"/>
+        <source>Help</source>
+        <translation>帮助</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="118"/>
+        <source>Discover new features and learn useful tips about PyQt-Fluent-Widgets</source>
+        <translation>发现新功能并了解有关 PyQt-Fluent-Widgets 的使用技巧</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="127"/>
+        <source>Provide feedback</source>
+        <translation>提供反馈</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="127"/>
+        <source>Help us improve PyQt-Fluent-Widgets by providing feedback</source>
+        <translation>通过提供反馈帮助我们改进 PyQt-Fluent-Widgets</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="134"/>
+        <source>Check update</source>
+        <translation>检查更新</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="134"/>
+        <source>Copyright</source>
+        <translation>版权所有</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="134"/>
+        <source>Version</source>
+        <translation>当前版本</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="192"/>
+        <source>Configuration takes effect after restart</source>
+        <translation>配置在重启软件后生效</translation>
+    </message>
+    <message>
+        <location filename="../../view/setting_interface.py" line="192"/>
+        <source>Updated successfully</source>
+        <translation>更新成功</translation>
+    </message>
+</context>
+<context>
+    <name>StatusInfoInterface</name>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="38"/>
+        <source>State tool tip</source>
+        <translation>进度提示条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="48"/>
+        <source>Label with a ToolTip</source>
+        <translation>多看一眼就会爆炸</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="51"/>
+        <source>A label with a ToolTip</source>
+        <translation>带有工具提示的标签</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="175"/>
+        <source>Show StateToolTip</source>
+        <translation>显示进度提示条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="35"/>
+        <source>Button with a simple ToolTip</source>
+        <translation>带有工具提示的按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="37"/>
+        <source>Simple ToolTip</source>
+        <translation>简单工具提示</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="173"/>
+        <source>The model training is complete!</source>
+        <translation>模型训练完成啦！</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="179"/>
+        <source>Training model</source>
+        <translation>正在训练模型</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="179"/>
+        <source>Please wait patiently</source>
+        <translation>心急吃不了热豆腐，请耐心等待哦~</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="181"/>
+        <source>Hide StateToolTip</source>
+        <translation>隐藏进度提示条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="58"/>
+        <source>Success</source>
+        <translation>成功</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="68"/>
+        <source>A closable InfoBar</source>
+        <translation>可关闭的消息条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="76"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="86"/>
+        <source>A closable InfoBar with long message</source>
+        <translation>可关闭的长消息条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="93"/>
+        <source>GitHub</source>
+        <translation>GitHub</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="93"/>
+        <source>When you look long into an abyss, the abyss looks into you.</source>
+        <translation>当你长时间凝视深渊时，深渊也在凝视你。</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="105"/>
+        <source>An InfoBar with custom icon, background color and widget.</source>
+        <translation>自定义图标、背景和小部件的消息条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="136"/>
+        <source>InfoBar with different pop-up locations</source>
+        <translation>不同弹出位置的消息条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="220"/>
+        <source>No Internet</source>
+        <translation>无网络连接</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="198"/>
+        <source>Lesson 4</source>
+        <translation>Lesson 4</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="209"/>
+        <source>Lesson 5</source>
+        <translation>Lesson 5</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="75"/>
+        <source>My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don&apos;t smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I&apos;m normal.</source>
+        <translation>我的名字是吉良吉影，年龄33岁，家住杜王町东北部别墅区，未婚。我在“龟友百货连锁公司”上班，每天最晚也是八点前回家，不吸烟，酒也是浅尝辄止，晚上十一点上床，保证八个小时的充足睡眠，睡前喝一杯热牛奶，再做二十分钟伸展运动暖身，然后再睡觉，基本可以熟睡到天亮。像婴儿一样不留下疲劳与压力，迎来第二天的早晨，健康检查结果也显示我很健康。我的意思是我是一个随时都想追求平静生活的人，不拘泥于胜负与烦恼，不树立令我夜不能寐的敌人，这就是我对于这个社会的生活态度，我也清楚这就是我的幸福。</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="186"/>
+        <source>Lesson 3</source>
+        <translation>Lesson 3</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="186"/>
+        <source>Believe in the spin, just keep believing!</source>
+        <translation>相信回旋吧，只管相信就是了！</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="198"/>
+        <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
+        <translation>表达敬意吧，表达出敬意，然后迈向回旋的另一个全新阶段！</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="209"/>
+        <source>迂回路を行けば最短ルート。</source>
+        <translation>最短的捷径就是绕远路，绕远路才是我的最短捷径。</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="220"/>
+        <source>An error message which won&apos;t disappear automatically.</source>
+        <translation>一条不会自动消失的消息。</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="58"/>
+        <source>The Anthem of man is the Anthem of courage.</source>
+        <translation>人类的赞歌就是勇气的赞歌！</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="103"/>
+        <source>Action</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="114"/>
+        <source>Top right</source>
+        <translation>右上角</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="115"/>
+        <source>Top</source>
+        <translation>顶部居中</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="116"/>
+        <source>Top left</source>
+        <translation>左上角</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="117"/>
+        <source>Bottom right</source>
+        <translation>右下角</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="118"/>
+        <source>Bottom</source>
+        <translation>底部居中</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="119"/>
+        <source>Bottom left</source>
+        <translation>左下角</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="231"/>
+        <source>Lesson 1</source>
+        <translation>Lesson 1</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="231"/>
+        <source>Don&apos;t have any strange expectations of me.</source>
+        <translation>别对我抱有什么奇怪的期待</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="242"/>
+        <source>Lesson 2</source>
+        <translation>Lesson 2</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="242"/>
+        <source>Don&apos;t let your muscles notice.</source>
+        <translation>不要让肌肉察觉</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="145"/>
+        <source>An indeterminate progress bar</source>
+        <translation>不确定进度条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="155"/>
+        <source>An determinate progress bar</source>
+        <translation>确定的进度条</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="165"/>
+        <source>An determinate progress ring</source>
+        <translation>确定的圆形进度条</translation>
+    </message>
+</context>
+<context>
+    <name>TableFrame</name>
+    <message>
+        <location filename="../../view/view_interface.py" line="148"/>
+        <source>Title</source>
+        <translation>标题</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="148"/>
+        <source>Artist</source>
+        <translation>歌手</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="148"/>
+        <source>Album</source>
+        <translation>专辑</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="148"/>
+        <source>Year</source>
+        <translation>年份</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="148"/>
+        <source>Duration</source>
+        <translation>时长</translation>
+    </message>
+</context>
+<context>
+    <name>TextInterface</name>
+    <message>
+        <location filename="../../view/text_interface.py" line="21"/>
+        <source>ko no dio da！</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="23"/>
+        <source>A LineEdit with a clear button</source>
+        <translation>带清空按钮的 LineEdit</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="37"/>
+        <source>A DoubleSpinBox with a spin button</source>
+        <translation>带调节按钮的 DoubleSpinBox</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="44"/>
+        <source>A DateEdit with a spin button</source>
+        <translation>带调节按钮的 DateEdit</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="51"/>
+        <source>A TimeEdit with a spin button</source>
+        <translation>带调节按钮的 TimeEdit</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="58"/>
+        <source>A DateTimeEdit with a spin button</source>
+        <translation>带调节按钮的 DateTimeEdit</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="30"/>
+        <source>A SpinBox with a spin button</source>
+        <translation>带调节按钮的 SpinBox</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="69"/>
+        <source>A simple TextEdit</source>
+        <translation>富文本框</translation>
+    </message>
+</context>
+<context>
+    <name>ToolBar</name>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="41"/>
+        <source>Documentation</source>
+        <translation>在线文档</translation>
+    </message>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="43"/>
+        <source>Source</source>
+        <translation>源代码</translation>
+    </message>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="80"/>
+        <source>Toggle theme</source>
+        <translation>切换主题</translation>
+    </message>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="82"/>
+        <source>Send feedback</source>
+        <translation>提供反馈</translation>
+    </message>
+    <message>
+        <location filename="../../view/gallery_interface.py" line="81"/>
+        <source>Support me</source>
+        <translation>支持作者🥰</translation>
+    </message>
+</context>
+<context>
+    <name>Translator</name>
+    <message>
+        <location filename="../../common/translator.py" line="19"/>
+        <source>Basic input</source>
+        <translation>基本输入</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="11"/>
+        <source>Menus</source>
+        <translation>菜单</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="14"/>
+        <source>Dialogs</source>
+        <translation>对话框</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="16"/>
+        <source>Material</source>
+        <translation>材料</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="20"/>
+        <source>Status &amp; info</source>
+        <translation>状态和信息</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="15"/>
+        <source>Scrolling</source>
+        <translation>滚动</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="13"/>
+        <source>Layout</source>
+        <translation>布局</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="9"/>
+        <source>Text</source>
+        <translation>文本</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="12"/>
+        <source>Icons</source>
+        <translation>图标</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="10"/>
+        <source>View</source>
+        <translation>视图</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="17"/>
+        <source>Date &amp; time</source>
+        <translation>日期和时间</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="18"/>
+        <source>Navigation</source>
+        <translation>导航</translation>
+    </message>
+</context>
+<context>
+    <name>TreeFrame</name>
+    <message>
+        <location filename="../../view/view_interface.py" line="107"/>
+        <source>JoJo 1 - Phantom Blood</source>
+        <translation>JoJo 1 - 幻影之血</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="108"/>
+        <source>Jonathan Joestar</source>
+        <translation>乔纳森·乔斯达</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="108"/>
+        <source>Dio Brando</source>
+        <translation>迪奥·布兰度</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="108"/>
+        <source>Will A. Zeppeli</source>
+        <translation>威廉·A·齐贝林</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="115"/>
+        <source>JoJo 3 - Stardust Crusaders</source>
+        <translation>JoJo3 - 星尘斗士</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="116"/>
+        <source>Jotaro Kujo</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ViewInterface</name>
+    <message>
+        <location filename="../../view/view_interface.py" line="39"/>
+        <source>A simple TreeView</source>
+        <translation>简单的树状组件</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="46"/>
+        <source>A TreeView with Multi-selection enabled</source>
+        <translation>启用复选框的树状组件</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="31"/>
+        <source>A simple TableView</source>
+        <translation>简单的表格组件</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="24"/>
+        <source>A simple ListView</source>
+        <translation>简单的列表组件</translation>
+    </message>
+</context>
+</TS>

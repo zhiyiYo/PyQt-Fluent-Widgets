@@ -1,0 +1,54 @@
+SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+    border-radius: 5px;
+    /* font: 14px "Segoe UI", "Microsoft YaHei"; */
+    padding: 0px 80px 0 10px;
+    selection-background-color: --ThemeColorLight1;
+}
+
+SpinBox:hover,
+DoubleSpinBox:hover,
+DateEdit:hover,
+DateTimeEdit:hover,
+TimeEdit:hover {
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+}
+
+SpinBox:focus,
+DoubleSpinBox:focus,
+DateEdit:focus,
+DateTimeEdit:focus,
+TimeEdit:focus {
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
+    background-color: white;
+}
+
+SpinBox:disabled,
+DoubleSpinBox:disabled,
+DateEdit:disabled,
+DateTimeEdit:disabled,
+TimeEdit:disabled {
+    color: rgba(0, 0, 0, 150);
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
+}
+
+SpinButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+SpinButton:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+SpinButton:pressed {
+    background-color: rgba(0, 0, 0, 6);
+}

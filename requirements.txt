@@ -1,0 +1,6 @@
+PySide6<6.5.0
+PySideSix-Frameless-Window
+darkdetect
+colorthief
+scipy
+pillow

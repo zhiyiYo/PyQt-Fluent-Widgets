@@ -1,0 +1,3 @@
+QScrollArea {
+    border: none;
+}

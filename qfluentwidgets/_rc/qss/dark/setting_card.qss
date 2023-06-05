@@ -1,0 +1,70 @@
+SettingCard {
+    border: 1px solid rgb(35, 35, 35);
+    border-radius: 6px;
+    background-color: rgb(50, 50, 50);
+}
+
+QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+QLabel#contentLabel {
+    font: 11px 'Segoe UI', 'Microsoft YaHei';
+    color: rgb(208, 208, 208);
+    padding: 0;
+}
+
+RangeSettingCard > QLabel#valueLabel{
+    color: rgb(159, 159, 159);
+}
+
+
+QPushButton {
+    border: 1px solid rgba(255, 255, 255, 24);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 17);
+    padding: 5px 36px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    background-color: rgb(62, 63, 62);
+}
+
+QPushButton:hover {
+    background-color: rgb(67, 68, 67);
+}
+
+QPushButton:pressed {
+    background-color: rgb(56, 56, 56);
+    border-bottom: 1px solid rgba(255, 255, 255, 24);
+    color: rgba(255, 255, 255, 0.63);
+}
+
+#primaryButton {
+    color: black;
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+    padding: 5px 12px 5px 12px;
+}
+
+#primaryButton:hover {
+    background-color: --ThemeColorDark1;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+}
+
+#primaryButton:pressed {
+    color: rgba(0, 0, 0, 0.63);
+    background-color: --ThemeColorDark2;
+    border: 1px solid --ThemeColorDark2;
+}
+
+ColorPickerButton {
+    border: 1px solid rgba(255, 255, 255, 10);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 7);
+}

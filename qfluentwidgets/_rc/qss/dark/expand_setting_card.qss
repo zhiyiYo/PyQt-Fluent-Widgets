@@ -1,0 +1,95 @@
+ExpandSettingCard {
+    border: 1px solid rgb(35, 35, 35);
+    border-radius: 6px;
+    background-color: rgb(46, 46, 46);
+}
+
+#view {
+    background: transparent;
+    border: none;
+}
+
+ExpandSettingCard[isExpand=false]>SettingCard {
+    border: 1px solid rgb(35, 35, 35);
+    border-radius: 6px;
+    background-color: rgb(50, 50, 50);
+}
+
+ExpandSettingCard[isExpand=true]>SettingCard {
+    border: 1px solid rgb(35, 35, 35);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: rgb(50, 50, 50);
+}
+
+QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+QLabel#contentLabel {
+    font: 11px 'Segoe UI', 'Microsoft YaHei';
+    color: rgb(208, 208, 208);
+    padding: 0;
+}
+
+FolderItem>QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+/* QPushButton */
+QPushButton {
+    border: 1px solid rgba(255, 255, 255, 24);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 17);
+    padding: 5px 12px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    background-color: rgb(62, 63, 62);
+}
+
+QPushButton:hover {
+    background-color: rgb(67, 68, 67);
+}
+
+QPushButton:pressed {
+    background-color: rgb(56, 56, 56);
+    border-bottom: 1px solid rgba(255, 255, 255, 24);
+    color: rgba(255, 255, 255, 0.63);
+}
+
+QPushButton:disabled {
+    color: rgb(102, 102, 102);
+    background: rgb(59, 59, 59);
+    border: 1px solid rgb(80, 80, 80);
+}
+
+
+/* Tool button */
+ToolButton {
+    border: 1px solid rgba(255, 255, 255, 24);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 17);
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    color: white;
+    background-color: rgb(62, 63, 62);
+}
+
+ToolButton:hover {
+    background-color: rgb(67, 68, 67);
+}
+
+ToolButton:pressed {
+    background-color: rgb(56, 56, 56);
+    border-bottom: 1px solid rgba(255, 255, 255, 24);
+}
+
+
+#chooseColorButton {
+    padding: 5px 17px 5px 17px;
+}
