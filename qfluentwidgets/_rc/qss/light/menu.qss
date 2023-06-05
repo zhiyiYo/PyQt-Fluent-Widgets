@@ -1,0 +1,91 @@
+QMenu {
+    background-color: rgb(232, 232, 232);
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    padding: 4px 0px 4px 0px;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+QMenu::right-arrow {
+    width: 13px;
+    height: 13px;
+    right: 13px;
+    border-image: url(:/qfluentwidgets/images/menu/ChevronRight_black.svg);
+}
+
+QMenu::separator {
+    height: 1px;
+    background: rgba(0, 0, 0, 104);
+    margin-right: 13px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 10px;
+}
+
+QMenu::item {
+    padding: 6px 10px 6px 10px;
+}
+
+QMenu::item:selected {
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    background: rgba(0, 0, 0, 25);
+    color: black;
+}
+
+
+
+MenuActionListWidget {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    background-color: rgb(249, 249, 249);
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei';
+}
+
+MenuActionListWidget::item {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+MenuActionListWidget::item:disabled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+MenuActionListWidget::item:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+MenuActionListWidget::item:selected {
+    background-color: rgba(0, 0, 0, 7);
+    color: black;
+}
+
+MenuActionListWidget::item:selected:active {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#completerListWidget[dropDown=true] {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+#completerListWidget[dropDown=false] {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#completerListWidget::item {
+    margin-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+}

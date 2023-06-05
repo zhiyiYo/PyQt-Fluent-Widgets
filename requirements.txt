@@ -1,0 +1,6 @@
+PySide2>=5.15.0
+PySide2-Frameless-Window
+darkdetect
+colorthief
+scipy
+pillow

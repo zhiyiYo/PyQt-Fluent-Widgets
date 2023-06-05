@@ -1,0 +1,88 @@
+QTreeView {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    outline: 0;
+    padding-right: 5px;
+    /* font: 13px 'Segoe UI', 'Microsoft YaHei'; */
+    selection-background-color: transparent;
+}
+
+QTreeView::item {
+    padding: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    image: url(:/qfluentwidgets/images/tree_view/TreeViewClose_white.svg);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings {
+    image: url(:/qfluentwidgets/images/tree_view/TreeViewOpen_white.svg);
+}
+
+QTreeView:disabled {
+    color: rgba(255, 255, 255, 110);
+}
+
+QTreeView::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.5547);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+QTreeView::indicator:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5547);
+    background-color: rgba(255, 255, 255, 0.0419);
+}
+
+QTreeView::indicator:pressed {
+    border: 1px solid rgba(255, 255, 255, 0.1581);
+    background-color: rgba(255, 255, 255, 0.0698);
+}
+
+QTreeView::indicator:checked,
+QTreeView::indicator:indeterminate {
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorPrimary;
+}
+
+QTreeView::indicator:checked {
+    image: url(:/qfluentwidgets/images/check_box/Accept_black.svg);
+}
+
+QTreeView::indicator:indeterminate {
+    image: url(:/qfluentwidgets/images/check_box/PartialAccept_black.svg);
+}
+
+QTreeView::indicator:checked:hover,
+QTreeView::indicator:indeterminate:hover {
+    border: 1px solid --ThemeColorDark1;
+    background-color: --ThemeColorDark1;
+}
+
+QTreeView::indicator:checked:pressed,
+QTreeView::indicator:indeterminate:pressed {
+    border: 1px solid --ThemeColorDark2;
+    background-color: --ThemeColorDark2;
+}
+
+QTreeView::indicator:disabled {
+    border: 1px solid rgba(255, 255, 255, 0.1581);
+    background-color: transparent
+}
+
+QTreeView::indicator:checked:disabled,
+QTreeView::indicator:indeterminate:disabled {
+    border: 1px solid rgb(82, 82, 82);
+    background-color: rgb(82, 82, 82);
+}

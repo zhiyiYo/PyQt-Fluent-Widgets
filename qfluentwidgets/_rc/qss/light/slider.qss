@@ -1,0 +1,108 @@
+QSlider:horizontal {
+    min-height: 24px;
+}
+
+QSlider::groove:horizontal {
+    height: 4px;
+    background-color: rgba(0, 0, 0, 100);
+    border-radius: 2px;
+}
+
+QSlider::sub-page:horizontal {
+    background: --ThemeColorPrimary;
+    height: 4px;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    border: 1px solid rgb(222, 222, 222);
+    width: 20px;
+    min-height: 24px;
+    margin: -9px 0;
+    border-radius: 11px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.48 --ThemeColorPrimary,
+        stop:0.55 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::handle:horizontal:hover {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.55 --ThemeColorPrimary,
+        stop:0.65 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::handle:horizontal:pressed {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.4 --ThemeColorPrimary,
+        stop:0.5 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::groove:horizontal:disabled {
+    background-color: rgba(0, 0, 0, 75);
+}
+
+QSlider::handle:horizontal:disabled {
+    background-color: #808080;
+    border: 5px solid #cccccc;
+}
+
+
+QSlider:vertical {
+    min-width: 24px;
+}
+
+QSlider::groove:vertical {
+    width: 4px;
+    background-color: rgba(0, 0, 0, 100);
+    border-radius: 2px;
+}
+
+QSlider::add-page:vertical {
+    background: --ThemeColorPrimary;
+    width: 4px;
+    border-radius: 2px;
+}
+
+QSlider::handle:vertical {
+    border: 1px solid rgb(222, 222, 222);
+    height: 20px;
+    min-width: 24px;
+    margin: 0 -9px;
+    border-radius: 11px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.48 --ThemeColorPrimary,
+        stop:0.55 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::handle:vertical:hover {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.55 --ThemeColorPrimary,
+        stop:0.65 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::handle:vertical:pressed {
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0 --ThemeColorPrimary,
+        stop:0.4 --ThemeColorPrimary,
+        stop:0.5 rgb(255, 255, 255),
+        stop:1 rgb(255, 255, 255));
+}
+
+QSlider::groove:vertical:disabled {
+    background-color: rgba(0, 0, 0, 75);
+}
+
+QSlider::handle:vertical:disabled {
+    background-color: #808080;
+    border: 5px solid #cccccc;
+}

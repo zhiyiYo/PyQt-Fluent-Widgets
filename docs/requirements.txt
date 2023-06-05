@@ -1,0 +1,13 @@
+PyQt5>=5.15.0
+PyQt5-Frameless-Window
+darkdetect
+colorthief
+scipy
+pillow
+sphinx-markdown-tables==0.0.17
+sphinx-intl
+furo
+sphinx-autoapi
+sphinx-copybutton
+sphinx_design
+urllib3<2.0.0
