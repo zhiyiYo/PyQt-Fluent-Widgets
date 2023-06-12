@@ -49,6 +49,7 @@ MenuActionListWidget::item {
     border: none;
     margin-left: 6px;
     margin-right: 6px;
+    color: black;
 }
 
 MenuActionListWidget::item:disabled {
