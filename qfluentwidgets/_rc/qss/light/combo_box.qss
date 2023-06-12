@@ -41,6 +41,7 @@ ComboBoxMenu>MenuActionListWidget::item {
     padding-right: 10px;
     border-radius: 5px;
     border: none;
+    color: black;
 }
 
 ComboBoxMenu>MenuActionListWidget::item:disabled {
