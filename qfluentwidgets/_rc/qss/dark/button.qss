@@ -200,12 +200,21 @@ RadioButton::indicator:checked:pressed {
 }
 
 RadioButton:disabled {
-    color: rgb(150, 150, 150);
+    color: rgba(255, 255, 255, 0.3628);
 }
 
 RadioButton::indicator:disabled {
     border: 2px solid #646464;
     background-color: transparent;
+}
+
+RadioButton::indicator:disabled:checked {
+    border: none;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+            stop:0 rgb(0, 0, 0),
+            stop:0.5 rgb(0, 0, 0),
+            stop:0.6 rgba(255, 255, 255, 0.158),
+            stop:1 rgba(255, 255, 255, 0.158));
 }
 
 TransparentToolButton {

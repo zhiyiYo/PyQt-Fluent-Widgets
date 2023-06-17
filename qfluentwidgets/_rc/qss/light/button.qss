@@ -205,7 +205,16 @@ RadioButton:disabled {
 
 RadioButton::indicator:disabled {
     border: 2px solid #bbbbbb;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
+}
+
+RadioButton::indicator:disabled:checked {
+    border: none;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+            stop:0 rgb(255, 255, 255),
+            stop:0.5 rgb(255, 255, 255),
+            stop:0.6 rgba(0, 0, 0, 0.2169),
+            stop:1 rgba(0, 0, 0, 0.2169));
 }
 
 TransparentToolButton {
