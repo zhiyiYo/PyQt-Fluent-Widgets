@@ -1,4 +1,4 @@
-PushButton, ToolButton, ToggleButton {
+PushButton, ToolButton, ToggleButton, ToggleToolButton {
     color: black;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 0, 0, 0.073);
@@ -35,17 +35,17 @@ PrimaryDropDownPushButton[hasIcon=true] {
     padding: 5px 31px 6px 36px;
 }
 
-PushButton:hover, ToolButton:hover, ToggleButton:hover {
+PushButton:hover, ToolButton:hover, ToggleButton:hover, ToggleToolButton:hover {
     background: rgba(249, 249, 249, 0.5);
 }
 
-PushButton:pressed, ToolButton:pressed, ToggleButton:pressed {
+PushButton:pressed, ToolButton:pressed, ToggleButton:pressed, ToggleToolButton:pressed {
     color: rgba(0, 0, 0, 0.63);
     background: rgba(249, 249, 249, 0.3);
     border-bottom: 1px solid rgba(0, 0, 0, 0.073);
 }
 
-PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
+PushButton:disabled, ToolButton:disabled, ToggleButton:disabled, ToggleToolButton:disabled {
     color: rgba(0, 0, 0, 0.36);
     background: rgba(249, 249, 249, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -55,7 +55,8 @@ PushButton:disabled, ToolButton:disabled, ToggleButton:disabled {
 
 PrimaryPushButton,
 PrimaryToolButton,
-ToggleButton:checked {
+ToggleButton:checked,
+ToggleToolButton:checked {
     color: white;
     background-color: --ThemeColorPrimary;
     border: 1px solid --ThemeColorLight1;
@@ -64,7 +65,8 @@ ToggleButton:checked {
 
 PrimaryPushButton:hover,
 PrimaryToolButton:hover,
-ToggleButton:checked:hover {
+ToggleButton:checked:hover,
+ToggleToolButton:checked:hover {
     background-color: --ThemeColorLight1;
     border: 1px solid --ThemeColorLight2;
     border-bottom: 1px solid --ThemeColorDark1;
@@ -72,7 +74,8 @@ ToggleButton:checked:hover {
 
 PrimaryPushButton:pressed,
 PrimaryToolButton:pressed,
-ToggleButton:checked:pressed {
+ToggleButton:checked:pressed,
+ToggleToolButton:checked:pressed {
     color: rgba(255, 255, 255, 0.63);
     background-color: --ThemeColorLight3;
     border: 1px solid --ThemeColorLight3;
@@ -80,7 +83,8 @@ ToggleButton:checked:pressed {
 
 PrimaryPushButton:disabled,
 PrimaryToolButton:disabled,
-ToggleButton:checked:disabled {
+ToggleButton:checked:disabled,
+ToggleToolButton:checked:disabled {
     color: rgba(255, 255, 255, 0.9);
     background-color: rgb(205, 205, 205);
     border: 1px solid rgb(205, 205, 205);
@@ -217,24 +221,44 @@ RadioButton::indicator:disabled:checked {
             stop:1 rgba(0, 0, 0, 0.2169));
 }
 
-TransparentToolButton {
+TransparentToolButton,
+TransparentToggleToolButton,
+TransparentDropDownToolButton,
+TransparentPushButton,
+TransparentDropDownPushButton,
+TransparentTogglePushButton {
     background-color: transparent;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     margin: 0;
 }
 
-TransparentToolButton:hover {
+TransparentToolButton:hover,
+TransparentToggleToolButton:hover,
+TransparentDropDownToolButton:hover,
+TransparentPushButton:hover,
+TransparentDropDownPushButton:hover,
+TransparentTogglePushButton:hover {
     background-color: rgba(0, 0, 0, 9);
     border: none;
 }
 
-TransparentToolButton:pressed {
+TransparentToolButton:pressed,
+TransparentToggleToolButton:pressed,
+TransparentDropDownToolButton:pressed,
+TransparentPushButton:pressed,
+TransparentDropDownPushButton:pressed,
+TransparentTogglePushButton:pressed {
     background-color: rgba(0, 0, 0, 6);
     border: none;
 }
 
-TransparentToolButton:disabled {
+TransparentToolButton:disabled,
+TransparentToggleToolButton:disabled,
+TransparentDropDownToolButton:disabled,
+TransprentPushButton:disabled,
+TransparentDropDownPushButton:disabled,
+TransprentTogglePushButton:disabled {
     background-color: transparent;
     border: none;
 }

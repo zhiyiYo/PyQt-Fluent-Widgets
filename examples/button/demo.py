@@ -6,7 +6,10 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QAction, QGridLa
 from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, PrimaryPushButton,
                             HyperlinkButton, setTheme, Theme, ToolButton, ToggleButton, RoundMenu,
                             SplitPushButton, SplitToolButton, PrimaryToolButton, PrimarySplitPushButton,
-                            PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton)
+                            PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
+                            TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentToolButton,
+                            TransparentToggleToolButton, TransparentTogglePushButton, TransparentDropDownToolButton,
+                            TransparentDropDownPushButton)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -47,6 +50,21 @@ class ToolButtonDemo(QWidget):
         self.primarySplitToolButton = PrimarySplitToolButton(FIF.GITHUB, self)
         self.primarySplitToolButton.setFlyout(self.menu)
 
+        # toggle tool button
+        self.toggleToolButton = ToggleToolButton(FIF.SETTING, self)
+        self.toggleToolButton.toggled.connect(lambda: print('Toggled'))
+        self.toggleToolButton.toggle()
+
+        # transparent toggle tool button
+        self.transparentToggleToolButton = TransparentToggleToolButton(FIF.GITHUB, self)
+
+        # transparent tool button
+        self.tranparentToolButton = TransparentToolButton(FIF.MAIL, self)
+
+        # transparent drop down tool button
+        self.transparentDropDownToolButton = TransparentDropDownToolButton(FIF.MAIL, self)
+        self.transparentDropDownToolButton.setMenu(self.menu)
+
         # add buttons to layout
         self.gridLayout = QGridLayout(self)
         self.gridLayout.addWidget(self.toolButton, 0, 0)
@@ -55,6 +73,10 @@ class ToolButtonDemo(QWidget):
         self.gridLayout.addWidget(self.primaryToolButton, 1, 0)
         self.gridLayout.addWidget(self.primaryDropDownToolButton, 1, 1)
         self.gridLayout.addWidget(self.primarySplitToolButton, 1, 2)
+        self.gridLayout.addWidget(self.toggleToolButton, 2, 0)
+        self.gridLayout.addWidget(self.transparentToggleToolButton, 2, 1)
+        self.gridLayout.addWidget(self.tranparentToolButton, 3, 0)
+        self.gridLayout.addWidget(self.transparentDropDownToolButton, 3, 1)
 
         self.resize(300, 300)
 
@@ -79,9 +101,17 @@ class PushButtonDemo(QWidget):
         self.primaryButton1 = PrimaryPushButton('Accent style button', self)
         self.primaryButton2 = PrimaryPushButton('Accent style button with icon', self, FIF.UPDATE)
 
+        # transparent push button
+        self.transparentPushButton1 = TransparentPushButton('Transparent push button', self)
+        self.transparentPushButton2 = TransparentPushButton('Transparent push button', self, FIF.BOOK_SHELF)
+
         # toggle button
-        self.toggleButton1 = ToggleButton('Toggle Button', self)
-        self.toggleButton2 = ToggleButton('Toggle Button', self, FIF.SEND)
+        self.toggleButton1 = TogglePushButton('Toggle push button', self)
+        self.toggleButton2 = TogglePushButton('Toggle push button', self, FIF.SEND)
+
+        # transparent toggle push button
+        self.transparentTogglePushButton1 = TransparentTogglePushButton('Transparent toggle button', self)
+        self.transparentTogglePushButton2 = TransparentTogglePushButton('Transparent toggle button', self, FIF.BOOK_SHELF)
 
         # drop down push button
         self.dropDownPushButton1 = DropDownPushButton('Email', self)
@@ -94,6 +124,12 @@ class PushButtonDemo(QWidget):
         self.primaryDropDownPushButton2 = PrimaryDropDownPushButton('Email', self, FIF.MAIL)
         self.primaryDropDownPushButton1.setMenu(self.menu)
         self.primaryDropDownPushButton2.setMenu(self.menu)
+
+        # primary color drop down push button
+        self.transparentDropDownPushButton1 = TransparentDropDownPushButton('Email', self)
+        self.transparentDropDownPushButton2 = TransparentDropDownPushButton('Email', self, FIF.MAIL)
+        self.transparentDropDownPushButton1.setMenu(self.menu)
+        self.transparentDropDownPushButton2.setMenu(self.menu)
 
         # split push button
         self.splitPushButton1 = SplitPushButton('Split push button', self)
@@ -119,19 +155,29 @@ class PushButtonDemo(QWidget):
         self.gridLayout.addWidget(self.pushButton2, 0, 1)
         self.gridLayout.addWidget(self.primaryButton1, 1, 0)
         self.gridLayout.addWidget(self.primaryButton2, 1, 1)
-        self.gridLayout.addWidget(self.toggleButton1, 2, 0)
-        self.gridLayout.addWidget(self.toggleButton2, 2, 1)
-        self.gridLayout.addWidget(self.splitPushButton1, 3, 0)
-        self.gridLayout.addWidget(self.splitPushButton2, 3, 1)
-        self.gridLayout.addWidget(self.primarySplitPushButton1, 4, 0)
-        self.gridLayout.addWidget(self.primarySplitPushButton2, 4, 1)
-        self.gridLayout.addWidget(self.dropDownPushButton1, 5, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.dropDownPushButton2, 5, 1, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.primaryDropDownPushButton1, 6, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.primaryDropDownPushButton2, 6, 1, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.hyperlinkButton, 7, 0)
+        self.gridLayout.addWidget(self.transparentPushButton1, 2, 0)
+        self.gridLayout.addWidget(self.transparentPushButton2, 2, 1)
 
-        self.resize(600, 600)
+        self.gridLayout.addWidget(self.toggleButton1, 3, 0)
+        self.gridLayout.addWidget(self.toggleButton2, 3, 1)
+        self.gridLayout.addWidget(self.transparentTogglePushButton1, 4, 0)
+        self.gridLayout.addWidget(self.transparentTogglePushButton2, 4, 1)
+
+        self.gridLayout.addWidget(self.splitPushButton1, 5, 0)
+        self.gridLayout.addWidget(self.splitPushButton2, 5, 1)
+        self.gridLayout.addWidget(self.primarySplitPushButton1, 6, 0)
+        self.gridLayout.addWidget(self.primarySplitPushButton2, 6, 1)
+
+        self.gridLayout.addWidget(self.dropDownPushButton1, 7, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.dropDownPushButton2, 7, 1, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.primaryDropDownPushButton1, 8, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.primaryDropDownPushButton2, 8, 1, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.transparentDropDownPushButton1, 9, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.transparentDropDownPushButton2, 9, 1, Qt.AlignLeft)
+
+        self.gridLayout.addWidget(self.hyperlinkButton, 10, 0)
+
+        self.resize(600, 700)
 
 
 
