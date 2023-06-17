@@ -112,7 +112,12 @@ class PrimaryPushButton(PushButton):
         PushButton._drawIcon(self, icon, painter, rect)
 
 
+class TransparentPushButton(PushButton):
+    """ Transparent push button """
+
+
 class ToggleButton(PushButton):
+    """ Toggle push button """
 
     def _postInit(self):
         self.setCheckable(True)
@@ -123,6 +128,13 @@ class ToggleButton(PushButton):
             return PushButton._drawIcon(self, icon, painter, rect)
 
         PrimaryPushButton._drawIcon(self, icon, painter, rect)
+
+
+TogglePushButton = ToggleButton
+
+
+class TransparentTogglePushButton(TogglePushButton):
+    """ Transparent toggle push button """
 
 
 class HyperlinkButton(QPushButton):
@@ -271,6 +283,24 @@ class PrimaryToolButton(ToolButton):
         return drawIcon(icon, painter, rect)
 
 
+class ToggleToolButton(ToolButton):
+    """ Toggle tool button """
+
+    def _postInit(self):
+        self.setCheckable(True)
+        self.setChecked(False)
+
+    def _drawIcon(self, icon, painter, rect):
+        if not self.isChecked():
+            return ToolButton._drawIcon(self, icon, painter, rect)
+
+        PrimaryToolButton._drawIcon(self, icon, painter, rect)
+
+
+class TransparentToggleToolButton(ToggleToolButton):
+    """ Transparent toggle tool button """
+
+
 class DropDownButtonBase:
     """ Drop down button base class """
 
@@ -334,6 +364,10 @@ class DropDownPushButton(DropDownButtonBase, PushButton):
         DropDownButtonBase.paintEvent(self, e)
 
 
+class TransparentDropDownPushButton(DropDownPushButton):
+    """ Transparent drop down push button """
+
+
 class DropDownToolButton(DropDownButtonBase, ToolButton):
     """ Drop down tool button """
 
@@ -348,6 +382,10 @@ class DropDownToolButton(DropDownButtonBase, ToolButton):
     def paintEvent(self, e):
         ToolButton.paintEvent(self, e)
         DropDownButtonBase.paintEvent(self, e)
+
+
+class TransparentDropDownToolButton(DropDownToolButton):
+    """ Transparent drop down tool button """
 
 
 class PrimaryDropDownButtonBase(DropDownButtonBase):
