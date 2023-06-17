@@ -584,6 +584,7 @@ class CalendarView(QWidget):
     def _onDayItemClicked(self, date: QDate):
         self.close()
         if date != self.date:
+            self.date = date
             self.dateChanged.emit(date)
 
     def setDate(self, date: QDate):

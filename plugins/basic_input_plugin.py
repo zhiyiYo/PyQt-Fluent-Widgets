@@ -5,7 +5,9 @@ from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButt
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
                             SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
                             EditableComboBox, PixmapLabel, PushButton, PrimaryToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton, TransparentToolButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
+                            TransparentToolButton, TransparentPushButton, ToggleToolButton, TransparentToggleToolButton,
+                            TransparentTogglePushButton, TransparentDropDownPushButton, TransparentDropDownToolButton)
 
 from plugin_base import PluginBase
 from task_menu_factory import EditTextTaskMenuFactory
@@ -299,7 +301,7 @@ class RadioButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
 
 
 class ToggleButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
-    """ Toggle button plugin """
+    """ Toggle push button plugin """
 
     def createWidget(self, parent):
         return ToggleButton(self.toolTip(), parent)
@@ -309,6 +311,84 @@ class ToggleButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "ToggleButton"
+
+
+class ToggleToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Toggle tool button plugin """
+
+    def createWidget(self, parent):
+        return ToggleToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('ToggleButton')
+
+    def name(self):
+        return "ToggleToolButton"
+
+
+class TransparentPushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Transparent push button plugin """
+
+    def createWidget(self, parent):
+        return TransparentPushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('Button')
+
+    def name(self):
+        return "TransparentPushButton"
+
+
+class TransparentTogglePushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Transparent toggle push button plugin """
+
+    def createWidget(self, parent):
+        return TransparentTogglePushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('ToggleButton')
+
+    def name(self):
+        return "TransparentTogglePushButton"
+
+
+class TransparentDropDownPushButtonPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Transparent drop down push button plugin """
+
+    def createWidget(self, parent):
+        return TransparentDropDownPushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('DropDownButton')
+
+    def name(self):
+        return "TransparentDropDownPushButton"
+
+
+class TransparentToggleToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Transparent toggle tool button plugin """
+
+    def createWidget(self, parent):
+        return TransparentToggleToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('ToggleButton')
+
+    def name(self):
+        return "TransparentToggleToolButton"
+
+
+class TransparentDropDownToolButtonPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Transparent drop down tool button plugin """
+
+    def createWidget(self, parent):
+        return TransparentDropDownToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('DropDownButton')
+
+    def name(self):
+        return "TransparentDropDownToolButton"
 
 
 class SliderPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
