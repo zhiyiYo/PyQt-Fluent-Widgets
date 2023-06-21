@@ -36,7 +36,7 @@ pip install PySide6-Fluent-Widgets -i https://pypi.org/simple/
 ```
 安装完整版：
 ```shell
-pip install "PySide-Fluent-Widgets[full]" -i https://pypi.org/simple/
+pip install "PySide6-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
 > **Warning**
