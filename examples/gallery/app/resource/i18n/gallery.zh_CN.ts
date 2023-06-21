@@ -298,7 +298,7 @@
 <context>
     <name>ExampleCard</name>
     <message>
-        <location filename="../../view/gallery_interface.py" line="114"/>
+        <location filename="../../view/gallery_interface.py" line="112"/>
         <source>Source code</source>
         <translation>源代码</translation>
     </message>
@@ -306,7 +306,7 @@
 <context>
     <name>IconCardView</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="123"/>
+        <location filename="../../view/icon_interface.py" line="124"/>
         <source>Fluent Icons Library</source>
         <translation>流畅图标库</translation>
     </message>
@@ -314,12 +314,12 @@
 <context>
     <name>IconInfoPanel</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="81"/>
+        <location filename="../../view/icon_interface.py" line="82"/>
         <source>Icon name</source>
         <translation>图标名字</translation>
     </message>
     <message>
-        <location filename="../../view/icon_interface.py" line="83"/>
+        <location filename="../../view/icon_interface.py" line="84"/>
         <source>Enum member</source>
         <translation>枚举成员</translation>
     </message>
@@ -390,7 +390,7 @@
 <context>
     <name>LineEdit</name>
     <message>
-        <location filename="../../view/icon_interface.py" line="21"/>
+        <location filename="../../view/icon_interface.py" line="22"/>
         <source>Search icons</source>
         <translation>搜索图标</translation>
     </message>
@@ -734,21 +734,26 @@
         <source>A basic pivot</source>
         <translation>顶部导航栏</translation>
     </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <source>A segmented control</source>
+        <translation>分段导航栏</translation>
+    </message>
 </context>
 <context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="45"/>
+        <location filename="../../view/navigation_view_interface.py" line="53"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="46"/>
+        <location filename="../../view/navigation_view_interface.py" line="54"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="47"/>
+        <location filename="../../view/navigation_view_interface.py" line="55"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
@@ -1254,27 +1259,27 @@
 <context>
     <name>ToolBar</name>
     <message>
-        <location filename="../../view/gallery_interface.py" line="41"/>
+        <location filename="../../view/gallery_interface.py" line="42"/>
         <source>Documentation</source>
         <translation>在线文档</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="43"/>
+        <location filename="../../view/gallery_interface.py" line="44"/>
         <source>Source</source>
         <translation>源代码</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="80"/>
+        <location filename="../../view/gallery_interface.py" line="81"/>
         <source>Toggle theme</source>
         <translation>切换主题</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="82"/>
+        <location filename="../../view/gallery_interface.py" line="83"/>
         <source>Send feedback</source>
         <translation>提供反馈</translation>
     </message>
     <message>
-        <location filename="../../view/gallery_interface.py" line="81"/>
+        <location filename="../../view/gallery_interface.py" line="82"/>
         <source>Support me</source>
         <translation>支持作者🥰</translation>
     </message>

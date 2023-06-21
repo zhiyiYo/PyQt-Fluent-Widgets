@@ -74,7 +74,6 @@ class FluentLabelBase(QLabel):
         color = self.darkColor if isDarkTheme() else self.lightColor
         palette.setColor(QPalette.WindowText, color)
         self.setPalette(palette)
-        # self.setStyleSheet(f"QLabel{{color: {color.name()}}}")
 
 
 class CaptionLabel(FluentLabelBase):
