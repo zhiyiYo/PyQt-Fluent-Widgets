@@ -52,7 +52,8 @@ class FluentLabelBase(QLabel):
     def _init(self):
         self.setFont(self.getFont())
         self.setTextColor()
-        qconfig.themeChanged.connect(lambda: self.setTextColor())
+        qconfig.themeChanged.connect(
+            lambda: self.setTextColor(self.lightColor, self.darkColor))
         return self
 
     def getFont(self):
@@ -73,6 +74,7 @@ class FluentLabelBase(QLabel):
         color = self.darkColor if isDarkTheme() else self.lightColor
         palette.setColor(QPalette.WindowText, color)
         self.setPalette(palette)
+        # self.setStyleSheet(f"QLabel{{color: {color.name()}}}")
 
 
 class CaptionLabel(FluentLabelBase):
