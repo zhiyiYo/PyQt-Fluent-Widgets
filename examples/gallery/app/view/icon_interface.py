@@ -4,7 +4,8 @@ from typing import List
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QFrame, QVBoxLayout, QLabel, QWidget, QHBoxLayout
 from qfluentwidgets import (FluentIcon, IconWidget, FlowLayout, isDarkTheme,
-                            Theme, applyThemeColor, SmoothScrollArea, SearchLineEdit)
+                            Theme, applyThemeColor, SmoothScrollArea, SearchLineEdit, StrongBodyLabel,
+                            BodyLabel)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -120,7 +121,7 @@ class IconCardView(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.trie = Trie()
-        self.iconLibraryLabel = QLabel(self.tr('Fluent Icons Library'), self)
+        self.iconLibraryLabel = StrongBodyLabel(self.tr('Fluent Icons Library'), self)
         self.searchLineEdit = LineEdit(self)
 
         self.view = QFrame(self)
@@ -193,7 +194,6 @@ class IconCardView(QWidget):
     def __setQss(self):
         self.view.setObjectName('iconView')
         self.scrollWidget.setObjectName('scrollWidget')
-        self.iconLibraryLabel.setObjectName('iconLibraryLabel')
 
         StyleSheet.ICON_INTERFACE.apply(self)
 

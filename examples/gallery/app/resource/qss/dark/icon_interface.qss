@@ -25,13 +25,6 @@ IconCardView {
     background-color: transparent;
 }
 
-#iconLibraryLabel {
-    font: 14px 'Segoe UI Light', 'Microsoft YaHei';
-    background-color: transparent;
-    font-weight: 700;
-    color: white;
-}
-
 #iconView {
     border: 1px solid rgb(36, 36, 36);
     border-radius: 10px;

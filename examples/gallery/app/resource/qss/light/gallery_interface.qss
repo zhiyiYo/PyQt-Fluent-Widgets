@@ -6,15 +6,7 @@ QScrollArea {
     border: none;
 }
 
-ToolBar > #titleLabel {
-    font: 28px 'Segoe UI SemiBold', 'Microsoft YaHei';
-    background-color: transparent;
-    color: black;
-}
-
-ToolBar > #subtitleLabel {
-    font: 12px 'Segoe UI', 'Microsoft YaHei';
-    background-color: transparent;
+ToolBar > CaptionLabel {
     color: rgb(95, 95, 95);
 }
 

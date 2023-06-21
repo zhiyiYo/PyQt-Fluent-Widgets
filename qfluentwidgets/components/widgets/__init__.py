@@ -8,7 +8,8 @@ from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
-from .label import PixmapLabel
+from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,
+                    LargeTitleLabel, DisplayLabel, FluentLabelBase)
 from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition
