@@ -55,9 +55,3 @@ IconInfoPanel > QLabel {
     color: rgb(96, 96, 96);
 }
 
-#iconLibraryLabel {
-    font: 14px 'Segoe UI Light', 'Microsoft YaHei';
-    font-weight: 700;
-    background-color: transparent;
-    color: black;
-}

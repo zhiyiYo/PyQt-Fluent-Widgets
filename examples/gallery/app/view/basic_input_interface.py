@@ -4,7 +4,9 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QButtonGroup
 from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, PushButton, ToolButton, PrimaryPushButton,
                             HyperlinkButton, ComboBox, RadioButton, CheckBox, Slider, SwitchButton, EditableComboBox,
                             ToggleButton, RoundMenu, FluentIcon, SplitPushButton, SplitToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryToolButton, PrimaryDropDownToolButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryToolButton, PrimaryDropDownToolButton,
+                            ToggleToolButton, TransparentDropDownPushButton, TransparentPushButton, TransparentToggleToolButton,
+                            TransparentTogglePushButton, TransparentDropDownToolButton, TransparentToolButton)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -52,10 +54,17 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
-        # hyperlink button
+        # transparent push button
         self.addExampleCard(
-            self.tr('A hyperlink button that navigates to a URI'),
-            HyperlinkButton('http://github.com', self.tr('GitHub home page')),
+            self.tr('A transparent push button'),
+            TransparentPushButton(self.tr('Standard push button'), self, FluentIcon.BOOK_SHELF),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # transparent tool button
+        self.addExampleCard(
+            self.tr('A transparent tool button'),
+            TransparentToolButton(FluentIcon.BOOK_SHELF, self),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
 
@@ -137,6 +146,31 @@ class BasicInputInterface(GalleryInterface):
             self.tr('A primary color tool button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+        )
+
+        # transparent drop down button
+        button = TransparentDropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A transparent push button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # transparent drop down tool button
+        button = TransparentDropDownToolButton(FluentIcon.MAIL, self)
+        button.setMenu(menu)
+        self.addExampleCard(
+            self.tr('A transparent tool button with drop down menu'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # hyperlink button
+        self.addExampleCard(
+            self.tr('A hyperlink button that navigates to a URI'),
+            HyperlinkButton('http://github.com', self.tr('GitHub home page')),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 
         # radio button
@@ -225,10 +259,32 @@ class BasicInputInterface(GalleryInterface):
 
         # toggle button
         self.addExampleCard(
-            self.tr('A simple ToggleButton with text content'),
+            self.tr('A simple toggle push button'),
             ToggleButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
         )
+
+        # toggle tool button
+        self.addExampleCard(
+            self.tr('A simple toggle tool button'),
+            ToggleToolButton(FluentIcon.BASKETBALL, self),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # transparent toggle button
+        self.addExampleCard(
+            self.tr('A transparent toggle push button'),
+            TransparentTogglePushButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # transparent toggle tool button
+        self.addExampleCard(
+            self.tr('A transparent toggle tool button'),
+            TransparentToggleToolButton(FluentIcon.BASKETBALL, self),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
 
     def onSwitchCheckedChanged(self, isChecked):
         if isChecked:

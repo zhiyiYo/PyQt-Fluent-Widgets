@@ -5,12 +5,12 @@ from PySide6.QtCore import Qt, Signal, QRectF, QPoint, QObject, QEvent
 from PySide6.QtGui import QPainter, QAction, QCursor, QIcon
 from PySide6.QtWidgets import QPushButton, QStyledItemDelegate, QStyle
 
-from .menu import RoundMenu, MenuItemDelegate, MenuAnimationType
+from .menu import RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .line_edit import LineEdit, LineEditButton
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, isDarkTheme
 from ...common.icon import FluentIcon as FIF
-from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet
 
 
 class ComboItem:
@@ -429,24 +429,6 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.dropMenu = None
 
 
-class ComboMenuItemDelegate(MenuItemDelegate):
-    """ Combo box drop menu item delegate """
-
-    def paint(self, painter: QPainter, option, index):
-        super().paint(painter, option, index)
-        if not option.state & QStyle.State_Selected:
-            return
-
-        painter.save()
-        painter.setRenderHints(
-            QPainter.Antialiasing | QPainter.SmoothPixmapTransform | QPainter.TextAntialiasing)
-
-        painter.setPen(Qt.NoPen)
-        painter.setBrush(themeColor())
-        painter.drawRoundedRect(0, 11+option.rect.y(), 3, 15, 1.5, 1.5)
-
-        painter.restore()
-
 
 class ComboBoxMenu(RoundMenu):
     """ Combo box menu """
@@ -456,9 +438,9 @@ class ComboBoxMenu(RoundMenu):
 
         self.view.setViewportMargins(5, 2, 5, 6)
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.view.setItemDelegate(ComboMenuItemDelegate())
+        self.view.setItemDelegate(IndicatorMenuItemDelegate())
+        self.view.setObjectName('comboListWidget')
 
-        FluentStyleSheet.COMBO_BOX.apply(self)
         self.setItemHeight(33)
 
     def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):

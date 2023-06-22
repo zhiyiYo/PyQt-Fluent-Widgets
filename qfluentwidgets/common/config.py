@@ -346,6 +346,7 @@ class QConfig(QObject):
         """
         if isinstance(config, QConfig):
             self._cfg = config
+            self._cfg.themeChanged.connect(self.themeChanged)
 
         if isinstance(file, (str, Path)):
             self._cfg.file = Path(file)

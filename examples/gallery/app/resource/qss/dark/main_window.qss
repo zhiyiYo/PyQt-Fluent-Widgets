@@ -15,16 +15,12 @@ CustomTitleBar {
     background-color: transparent;
 }
 
-CustomTitleBar > QLabel,
-Widget > QLabel {
-    color: white;
-}
-
 
 CustomTitleBar>QLabel#titleLabel {
     background: transparent;
     font: 13px 'Segoe UI';
-    padding: 0 4px
+    padding: 0 4px;
+    color: white;
 }
 
 MinimizeButton {

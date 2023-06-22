@@ -39,7 +39,7 @@ class NavigationPanelPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
         return "NavigationPanel"
 
 
-class PivotPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
+class PivotPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
     """ Navigation panel plugin """
 
     def createWidget(self, parent):

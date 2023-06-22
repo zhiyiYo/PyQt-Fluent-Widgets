@@ -4,7 +4,8 @@ from PySide6.QtGui import QDesktopServices, QPainter, QPen, QColor
 from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 
 from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
-                            isDarkTheme, IconWidget, Theme, ToolTipFilter)
+                            isDarkTheme, IconWidget, Theme, ToolTipFilter, TitleLabel, CaptionLabel,
+                            StrongBodyLabel, BodyLabel)
 from ..common.config import cfg, FEEDBACK_URL, HELP_URL, EXAMPLE_URL
 from ..common.icon import Icon
 from ..common.style_sheet import StyleSheet
@@ -35,8 +36,8 @@ class ToolBar(QWidget):
 
     def __init__(self, title, subtitle, parent=None):
         super().__init__(parent=parent)
-        self.titleLabel = QLabel(title, self)
-        self.subtitleLabel = QLabel(subtitle, self)
+        self.titleLabel = TitleLabel(title, self)
+        self.subtitleLabel = CaptionLabel(subtitle, self)
 
         self.documentButton = PushButton(
             self.tr('Documentation'), self, FluentIcon.DOCUMENT)
@@ -81,9 +82,6 @@ class ToolBar(QWidget):
         self.supportButton.setToolTip(self.tr('Support me'))
         self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
-        self.titleLabel.setObjectName('titleLabel')
-        self.subtitleLabel.setObjectName('subtitleLabel')
-
         self.themeButton.clicked.connect(self.toggleTheme)
         self.supportButton.clicked.connect(signalBus.supportSignal)
         self.documentButton.clicked.connect(
@@ -106,12 +104,12 @@ class ExampleCard(QWidget):
         self.widget = widget
         self.stretch = stretch
 
-        self.titleLabel = QLabel(title, self)
+        self.titleLabel = StrongBodyLabel(title, self)
         self.card = QFrame(self)
 
         self.sourceWidget = QFrame(self.card)
         self.sourcePath = sourcePath
-        self.sourcePathLabel = QLabel(
+        self.sourcePathLabel = BodyLabel(
             self.tr('Source code'), self.sourceWidget)
         self.linkIcon = IconWidget(FluentIcon.LINK, self.sourceWidget)
 
@@ -129,9 +127,7 @@ class ExampleCard(QWidget):
         self.sourceWidget.setCursor(Qt.PointingHandCursor)
         self.sourceWidget.installEventFilter(self)
 
-        self.titleLabel.setObjectName('titleLabel')
         self.card.setObjectName('card')
-        self.sourcePathLabel.setObjectName('sourcePathLabel')
         self.sourceWidget.setObjectName('sourceWidget')
 
     def __initLayout(self):

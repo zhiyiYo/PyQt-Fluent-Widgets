@@ -19,33 +19,6 @@ class ContainerPlugin(PluginBase):
         return True
 
 
-
-class FramelessMainWindowPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
-    """ Frameless main window plugin """
-
-    def createWidget(self, parent):
-        return FramelessMainWindow(parent)
-
-    def icon(self):
-        return super().icon("TitleBar")
-
-    def name(self):
-        return "FramelessMainWindow"
-
-
-class FramelessWindowPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
-    """ Frameless window plugin """
-
-    def createWidget(self, parent):
-        return FramelessWindow(parent)
-
-    def icon(self):
-        return super().icon("TitleBar")
-
-    def name(self):
-        return "FramelessWindow"
-
-
 class ScrollAreaPluginBase(ContainerPlugin):
     """ Scroll area plugin base """
 

@@ -1,5 +1,7 @@
 # coding:utf-8
-from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QCompleter
+from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit, SearchLineEdit
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -16,7 +18,7 @@ class TextInterface(GalleryInterface):
             parent=parent
         )
 
-        # spin box
+        # line edit
         lineEdit = LineEdit(self)
         lineEdit.setText(self.tr('ko no dio da！'))
         lineEdit.setClearButtonEnabled(True)
@@ -24,6 +26,41 @@ class TextInterface(GalleryInterface):
             title=self.tr("A LineEdit with a clear button"),
             widget=lineEdit,
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/line_edit/demo.py'
+        )
+
+        # line edit with completer
+        lineEdit = SearchLineEdit(self)
+        lineEdit.setPlaceholderText(self.tr('Type a stand name'))
+        lineEdit.setClearButtonEnabled(True)
+        lineEdit.setFixedWidth(230)
+        stands = [
+            "Star Platinum", "Hierophant Green",
+            "Made in Haven", "King Crimson",
+            "Silver Chariot", "Crazy diamond",
+            "Metallica", "Another One Bites The Dust",
+            "Heaven's Door", "Killer Queen",
+            "The Grateful Dead", "Stone Free",
+            "The World", "Sticky Fingers",
+            "Ozone Baby", "Love Love Deluxe",
+            "Hermit Purple", "Gold Experience",
+            "King Nothing", "Paper Moon King",
+            "Scary Monster", "Mandom",
+            "20th Century Boy", "Tusk Act 4",
+            "Ball Breaker", "Sex Pistols",
+            "D4C • Love Train", "Born This Way",
+            "SOFT & WET", "Paisley Park",
+            "Wonder of U", "Walking Heart",
+            "Cream Starter", "November Rain",
+            "Smooth Operators", "The Matte Kudasai"
+        ]
+        completer = QCompleter(stands, lineEdit)
+        completer.setCaseSensitivity(Qt.CaseInsensitive)
+        lineEdit.setCompleter(completer)
+
+        self.addExampleCard(
+            title=self.tr("A autosuggest line edit"),
+            widget=lineEdit,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/line_edit/demo.py'
         )
 
         # spin box
