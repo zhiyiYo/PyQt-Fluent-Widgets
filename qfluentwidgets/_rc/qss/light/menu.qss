@@ -47,8 +47,6 @@ MenuActionListWidget::item {
     padding-right: 10px;
     border-radius: 5px;
     border: none;
-    margin-left: 6px;
-    margin-right: 6px;
     color: black;
 }
 
@@ -83,10 +81,7 @@ MenuActionListWidget::item:selected:active {
     border-bottom-right-radius: 0px;
 }
 
-#completerListWidget::item {
+#completerListWidget::item,
+#comboListWidget::item {
     margin-top: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-    border: none;
 }

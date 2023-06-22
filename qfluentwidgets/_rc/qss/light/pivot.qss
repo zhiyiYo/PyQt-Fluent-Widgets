@@ -19,6 +19,16 @@ PivotItem[isSelected=false]:pressed {
     color: rgba(0, 0, 0, 0.75);
 }
 
+PivotItem[hasIcon=false] {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+PivotItem[hasIcon=true] {
+    padding-left: 36px;
+    padding-right: 12px;
+}
+
 Pivot {
     border: none;
     background-color: transparent;
@@ -26,4 +36,44 @@ Pivot {
 
 #view {
     background-color: transparent;
+}
+
+SegmentedWidget {
+    background-color: rgba(0, 0, 0, 0.0241);
+    border: 1px solid rgba(0, 0, 0, 0.0578);
+    border-radius: 6px;
+}
+
+SegmentedItem[isSelected=false] {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    margin: 3px 2px;
+}
+
+SegmentedItem[isSelected=false]:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+SegmentedItem[isSelected=false]:pressed {
+    background-color: rgba(0, 0, 0, 6);
+    margin: 3px 4px 3px 4px;
+}
+
+SegmentedItem[isSelected=true] {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.073);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.183);
+    border-radius: 6px;
+    margin: 0px;
+    color: black;
+}
+
+SegmentedItem[isSelected=true]:hover,
+SegmentedItem[isSelected=true]:pressed {
+    color: black;
 }

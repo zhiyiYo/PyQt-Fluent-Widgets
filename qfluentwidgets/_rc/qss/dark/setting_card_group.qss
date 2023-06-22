@@ -4,7 +4,6 @@ SettingCardGroup {
 
 SettingCardGroup>QLabel {
     background-color: transparent;
-    font: 20px 'Segoe UI', 'Microsoft YaHei';
     color: white;
     border: none;
 }

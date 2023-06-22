@@ -3,14 +3,13 @@ from enum import Enum
 from typing import Union
 
 from PySide2.QtXml import QDomDocument
-from PySide2.QtCore import QRectF, Qt, QFile, QObject
-from PySide2.QtGui import QIcon, QIconEngine
+from PySide2.QtCore import QRectF, Qt, QFile, QObject, QRect
+from PySide2.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter
 from PySide2.QtWidgets import QAction
 from PySide2.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
 from .overload import singledispatchmethod
-
 
 
 class MenuIconEngine(QIconEngine):
@@ -37,6 +36,30 @@ class MenuIconEngine(QIconEngine):
 
         icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
         painter.restore()
+
+
+class SvgIconEngine(QIconEngine):
+    """ Svg icon engine """
+
+    def __init__(self, svg: str):
+        super().__init__()
+        self.svg = svg
+
+    def paint(self, painter, rect, mode, state):
+        drawSvgIcon(self.svg.encode(), painter, rect)
+
+    def clone(self) -> QIconEngine:
+        return SvgIconEngine(self.svg)
+
+    def pixmap(self, size, mode, state):
+        image = QImage(size, QImage.Format_ARGB32)
+        image.fill(Qt.transparent)
+        pixmap = QPixmap.fromImage(image, Qt.NoFormatConversion)
+
+        painter = QPainter(pixmap)
+        rect = QRect(0, 0, size.width(), size.height())
+        self.paint(painter, rect, mode, state)
+        return pixmap
 
 
 def getIconColor(theme=Theme.AUTO, reverse=False):
@@ -143,7 +166,7 @@ def drawIcon(icon, painter, rect, **attributes):
 class FluentIconBase:
     """ Fluent icon base class """
 
-    def path(self, theme=Theme.AUTO):
+    def path(self, theme=Theme.AUTO) -> str:
         """ get the path of icon
 
         Parameters
@@ -156,7 +179,7 @@ class FluentIconBase:
         """
         raise NotImplementedError
 
-    def icon(self, theme=Theme.AUTO):
+    def icon(self, theme=Theme.AUTO, color: QColor = None):
         """ create an fluent icon
 
         Parameters
@@ -166,8 +189,17 @@ class FluentIconBase:
             * `Theme.Light`: black icon
             * `Theme.DARK`: white icon
             * `Theme.AUTO`: icon color depends on `config.theme`
+
+        color: QColor | Qt.GlobalColor | str
+            icon color, only applicable to svg icon
         """
-        return QIcon(self.path(theme))
+        path = self.path(theme)
+
+        if not (path.endswith('.svg') and color):
+            return QIcon(self.path(theme))
+
+        color = QColor(color).name()
+        return QIcon(SvgIconEngine(writeSvg(path, fill=color)))
 
     def render(self, painter, rect, theme=Theme.AUTO, indexes=None, **attributes):
         """ draw svg icon
@@ -192,12 +224,17 @@ class FluentIconBase:
         **attributes:
             the attributes of modified path
         """
-        if attributes:
-            svg = writeSvg(self.path(theme), indexes, **attributes).encode()
-        else:
-            svg = self.path(theme)
+        icon = self.path(theme)
 
-        drawSvgIcon(svg, painter, rect)
+        if icon.endswith('.svg'):
+            if attributes:
+                icon = writeSvg(icon, indexes, **attributes).encode()
+
+            drawSvgIcon(icon, painter, rect)
+        else:
+            icon = QIcon(icon)
+            rect = QRectF(rect).toRect()
+            painter.drawPixmap(rect, icon.pixmap(QRectF(rect).toRect().size()))
 
 
 class FluentIcon(FluentIconBase, Enum):

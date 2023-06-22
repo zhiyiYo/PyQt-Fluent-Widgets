@@ -3,14 +3,14 @@ from typing import List, Union
 from PySide2.QtCore import QSize, Qt, QRectF, Signal, QPoint, QTimer, QEvent, QAbstractItemModel
 from PySide2.QtGui import QPainter, QPainterPath, QIcon, QCursor
 from PySide2.QtWidgets import (QApplication, QAction, QHBoxLayout, QLineEdit, QToolButton, QTextEdit,
-                             QPlainTextEdit, QCompleter)
+                             QPlainTextEdit, QCompleter, QStyle)
 
 
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
-from .menu import LineEditMenu, TextEditMenu, RoundMenu, MenuAnimationType, MenuActionListWidget
+from .menu import LineEditMenu, TextEditMenu, RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .scroll_bar import SmoothScrollDelegate
 
 
@@ -164,16 +164,18 @@ class LineEdit(QLineEdit):
 class CompleterMenu(RoundMenu):
     """ Completer menu """
 
-    def __init__(self, lineEdit: LineEditMenu):
+    def __init__(self, lineEdit: LineEdit):
         super().__init__()
         self.items = []
         self.lineEdit = lineEdit
-        self.installEventFilter(self)
 
-        self.view.setViewportMargins(0, 2, 0, 6)
-        self.setItemHeight(33)
+        self.view.setViewportMargins(6, 2, 6, 6)
         self.view.setObjectName('completerListWidget')
+        self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+
+        self.installEventFilter(self)
+        self.setItemHeight(33)
 
     def setCompletion(self, model: QAbstractItemModel):
         """ set the completion model """
@@ -195,10 +197,18 @@ class CompleterMenu(RoundMenu):
         return True
 
     def eventFilter(self, obj, e: QEvent):
-        if e.type() == QEvent.KeyPress:
-            self.lineEdit.event(e)
-            if e.key() == Qt.Key_Escape:
-                self.close()
+        if e.type() != QEvent.KeyPress:
+            return super().eventFilter(obj, e)
+
+        # redirect input to line edit
+        self.lineEdit.event(e)
+        self.view.event(e)
+
+        if e.key() == Qt.Key_Escape:
+            self.close()
+        if e.key() in [Qt.Key_Enter, Qt.Key_Return] and self.view.currentRow() >= 0:
+            self.lineEdit.setText(self.view.currentItem().text())
+            self.close()
 
         return super().eventFilter(obj, e)
 
