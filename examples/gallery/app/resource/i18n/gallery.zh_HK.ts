@@ -1251,44 +1251,54 @@
 <context>
     <name>TextInterface</name>
     <message>
-        <location filename="../../view/text_interface.py" line="21"/>
+        <location filename="../../view/text_interface.py" line="23"/>
         <source>ko no dio da！</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="23"/>
+        <location filename="../../view/text_interface.py" line="25"/>
         <source>A LineEdit with a clear button</source>
-        <translation>帶清空按鈕的 LineEdit</translation>
+        <translation>帶清空按鈕的輸入框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="37"/>
+        <location filename="../../view/text_interface.py" line="74"/>
         <source>A DoubleSpinBox with a spin button</source>
         <translation>帶調節按鈕的 DoubleSpinBox</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="44"/>
+        <location filename="../../view/text_interface.py" line="81"/>
         <source>A DateEdit with a spin button</source>
         <translation>帶調節按鈕的 DateEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="51"/>
+        <location filename="../../view/text_interface.py" line="88"/>
         <source>A TimeEdit with a spin button</source>
         <translation>帶調節按鈕的 TimeEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="58"/>
+        <location filename="../../view/text_interface.py" line="95"/>
         <source>A DateTimeEdit with a spin button</source>
         <translation>帶調節按鈕的 DateTimeEdit</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="30"/>
+        <location filename="../../view/text_interface.py" line="67"/>
         <source>A SpinBox with a spin button</source>
         <translation>帶調節按鈕的 SpinBox</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="69"/>
+        <location filename="../../view/text_interface.py" line="106"/>
         <source>A simple TextEdit</source>
         <translation>富文本框</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="60"/>
+        <source>A autosuggest line edit</source>
+        <translation>帶補全功能的輸入框</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="33"/>
+        <source>Type a stand name</source>
+        <translation>輸入替身名稱</translation>
     </message>
 </context>
 <context>

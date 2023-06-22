@@ -30,7 +30,7 @@ class TextInterface(GalleryInterface):
 
         # line edit with completer
         lineEdit = SearchLineEdit(self)
-        lineEdit.setPlaceholderText('Type a stand name')
+        lineEdit.setPlaceholderText(self.tr('Type a stand name'))
         lineEdit.setClearButtonEnabled(True)
         lineEdit.setFixedWidth(230)
         stands = [
