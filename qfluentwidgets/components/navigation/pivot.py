@@ -164,7 +164,7 @@ class Pivot(QWidget):
             widget.itemClicked.connect(onClick)
 
         self.items[routeKey] = widget
-        self.hBoxLayout.insertWidget(index, widget, 0, Qt.AlignLeft)
+        self.hBoxLayout.insertWidget(index, widget, 1)
 
     def removeWidget(self, routeKey: str):
         """ remove widget

@@ -50,15 +50,3 @@ class SegmentedWidget(Pivot):
         self.insertWidget(index, routeKey, item, onClick)
         return item
 
-    def insertWidget(self, index: int, routeKey: str, widget: PivotItem, onClick=None):
-        if routeKey in self.items:
-            return
-
-        widget.setProperty('routeKey', routeKey)
-        widget.itemClicked.connect(self._onItemClicked)
-        if onClick:
-            widget.itemClicked.connect(onClick)
-
-        self.items[routeKey] = widget
-        self.hBoxLayout.insertWidget(index, widget, 1)
-

@@ -39,7 +39,7 @@ class PivotInterface(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.setFixedSize(300, 200)
+        self.setFixedSize(300, 140)
 
         self.pivot = self.Nav(self)
         self.stackedWidget = QStackedWidget(self)
@@ -54,7 +54,7 @@ class PivotInterface(QWidget):
         self.addSubInterface(self.albumInterface, 'albumInterface', self.tr('Album'))
         self.addSubInterface(self.artistInterface, 'artistInterface', self.tr('Artist'))
 
-        self.vBoxLayout.addWidget(self.pivot, 0)
+        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignLeft)
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         StyleSheet.NAVIGATION_VIEW_INTERFACE.apply(self)
