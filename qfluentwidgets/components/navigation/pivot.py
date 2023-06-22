@@ -1,31 +1,29 @@
 # coding:utf-8
 from typing import Dict
 
-from PyQt6.QtCore import Qt, pyqtSignal
+from PyQt6.QtCore import Qt, pyqtSignal, QRectF
 from PyQt6.QtGui import QPainter, QFont
 from PyQt6.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout, QSizePolicy
 
+from ...common.font import setFont
 from ...common.router import qrouter
 from ...common.style_sheet import themeColor, FluentStyleSheet
-from ..widgets.scroll_area import SingleDirectionScrollArea
+from ..widgets.button import PushButton
 from .navigation_panel import RouteKeyError
 
 
-class PivotItem(QPushButton):
+class PivotItem(PushButton):
     """ Pivot item """
 
     itemClicked = pyqtSignal(bool)
 
-    def __init__(self, text: str, parent=None):
-        super().__init__(text, parent)
+    def _postInit(self):
         self.isSelected = False
         self.setProperty('isSelected', False)
         self.clicked.connect(lambda: self.itemClicked.emit(True))
 
-        font = QFont()
-        font.setFamilies(['Segoe UI', 'Microsoft YaHei'])
-        font.setPixelSize(18)
-        self.setFont(font)
+        FluentStyleSheet.PIVOT.apply(self)
+        setFont(self, 18)
 
     def setSelected(self, isSelected: bool):
         if self.isSelected == isSelected:
@@ -38,6 +36,8 @@ class PivotItem(QPushButton):
 
     def paintEvent(self, e):
         super().paintEvent(e)
+
+        # draw indicator
         if not self.isSelected:
             return
 
@@ -73,7 +73,7 @@ class Pivot(QWidget):
 
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
-    def addItem(self, routeKey: str, text: str, onClick=None):
+    def addItem(self, routeKey: str, text: str, onClick=None, icon=None):
         """ add item
 
         Parameters
@@ -86,8 +86,11 @@ class Pivot(QWidget):
 
         onClick: callable
             the slot connected to item clicked signal
+
+        icon: str
+            the icon of navigation item
         """
-        return self.insertItem(-1, routeKey, text, onClick)
+        return self.insertItem(-1, routeKey, text, onClick, icon)
 
     def addWidget(self, routeKey: str, widget: PivotItem, onClick=None):
         """ add widget
@@ -105,7 +108,7 @@ class Pivot(QWidget):
         """
         self.insertWidget(-1, routeKey, widget, onClick)
 
-    def insertItem(self, index: int, routeKey: str, text: str, onClick=None):
+    def insertItem(self, index: int, routeKey: str, text: str, onClick=None, icon=None):
         """ insert item
 
         Parameters
@@ -121,11 +124,17 @@ class Pivot(QWidget):
 
         onClick: callable
             the slot connected to item clicked signal
+
+        icon: str
+            the icon of navigation item
         """
         if routeKey in self.items:
             return
 
         item = PivotItem(text, self)
+        if icon:
+            item.setIcon(icon)
+
         self.insertWidget(index, routeKey, item, onClick)
         return item
 
@@ -155,7 +164,7 @@ class Pivot(QWidget):
             widget.itemClicked.connect(onClick)
 
         self.items[routeKey] = widget
-        self.hBoxLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignLeft)
+        self.hBoxLayout.insertWidget(index, widget, 1)
 
     def removeWidget(self, routeKey: str):
         """ remove widget

@@ -12,7 +12,7 @@ from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
 
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import MenuIconEngine, Action, FluentIconBase, Icon
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
 
@@ -126,7 +126,7 @@ class MenuActionListWidget(QListWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setViewportMargins(0, 6, 0, 6)
+        self.setViewportMargins(6, 6, 6, 6)
         self.setTextElideMode(Qt.TextElideMode.ElideNone)
         self.setDragEnabled(False)
         self.setMouseTracking(True)
@@ -928,3 +928,25 @@ class TextEditMenu(EditMenu):
                 QTextCursor.MoveOperation.Right, QTextCursor.MoveMode.KeepAnchor, self.selectionLength)
 
         super()._onItemClicked(item)
+
+
+class IndicatorMenuItemDelegate(MenuItemDelegate):
+    """ Menu item delegate with indicator """
+
+    def paint(self, painter: QPainter, option, index):
+        super().paint(painter, option, index)
+        if not option.state & QStyle.StateFlag.State_Selected:
+            return
+
+        painter.save()
+        painter.setRenderHints(
+            QPainter.RenderHint.Antialiasing |
+            QPainter.RenderHint.SmoothPixmapTransform |
+            QPainter.RenderHint.TextAntialiasing
+        )
+
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(themeColor())
+        painter.drawRoundedRect(0, 11+option.rect.y(), 3, 15, 1.5, 1.5)
+
+        painter.restore()

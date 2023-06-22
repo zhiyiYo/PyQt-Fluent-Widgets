@@ -223,16 +223,21 @@ RadioButton::indicator:disabled:checked {
 
 TransparentToolButton,
 TransparentToggleToolButton,
+TransparentDropDownToolButton,
 TransparentPushButton,
+TransparentDropDownPushButton,
 TransparentTogglePushButton {
     background-color: transparent;
     border: none;
     border-radius: 4px;
     margin: 0;
 }
+
 TransparentToolButton:hover,
 TransparentToggleToolButton:hover,
+TransparentDropDownToolButton:hover,
 TransparentPushButton:hover,
+TransparentDropDownPushButton:hover,
 TransparentTogglePushButton:hover {
     background-color: rgba(255, 255, 255, 9);
     border: none;
@@ -240,7 +245,9 @@ TransparentTogglePushButton:hover {
 
 TransparentToolButton:pressed,
 TransparentToggleToolButton:pressed,
+TransparentDropDownToolButton:pressed,
 TransparentPushButton:pressed,
+TransparentDropDownPushButton:pressed,
 TransparentTogglePushButton:pressed {
     background-color: rgba(255, 255, 255, 6);
     border: none;
@@ -248,7 +255,9 @@ TransparentTogglePushButton:pressed {
 
 TransparentToolButton:disabled,
 TransparentToggleToolButton:disabled,
+TransparentDropDownToolButton:disabled,
 TransprentPushButton:disabled,
+TransparentDropDownPushButton:disabled,
 TransprentTogglePushButton:disabled {
     background-color: transparent;
     border: none;

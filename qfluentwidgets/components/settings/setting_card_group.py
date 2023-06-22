@@ -3,6 +3,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
 
 from ...common.style_sheet import FluentStyleSheet
+from ...common.font import setFont
 from ..layout.expand_layout import ExpandLayout
 
 
@@ -26,6 +27,7 @@ class SettingCardGroup(QWidget):
         self.vBoxLayout.addLayout(self.cardLayout, 1)
 
         FluentStyleSheet.SETTING_CARD_GROUP.apply(self)
+        setFont(self.titleLabel, 20)
         self.titleLabel.adjustSize()
 
     def addSettingCard(self, card):

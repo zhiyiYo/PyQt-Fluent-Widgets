@@ -1,8 +1,11 @@
 # coding:utf-8
-
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPainter, QPixmap
-from PyQt6.QtWidgets import QLabel
+from PyQt6.QtGui import QPainter, QPixmap, QPalette, QColor, QFont
+from PyQt6.QtWidgets import QLabel, QWidget
+
+from ...common.overload import singledispatchmethod
+from ...common.font import setFont, getFont
+from ...common.config import qconfig, isDarkTheme
 
 
 class PixmapLabel(QLabel):
@@ -29,4 +32,93 @@ class PixmapLabel(QLabel):
                                QPainter.RenderHint.SmoothPixmapTransform)
         painter.setPen(Qt.PenStyle.NoPen)
         painter.drawPixmap(self.rect(), self.__pixmap)
+
+
+class FluentLabelBase(QLabel):
+    """ Fluent label base class """
+
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        self._init()
+
+    @__init__.register
+    def _(self, text: str, parent: QWidget = None):
+        self.__init__(parent)
+        self.setText(text)
+
+    def _init(self):
+        self.setFont(self.getFont())
+        self.setTextColor()
+        qconfig.themeChanged.connect(
+            lambda: self.setTextColor(self.lightColor, self.darkColor))
+        return self
+
+    def getFont(self):
+        raise NotImplementedError
+
+    def setTextColor(self, light=QColor(0, 0, 0), dark=QColor(255, 255, 255)):
+        """ set the text color of label
+
+        Parameters
+        ----------
+        light, dark: QColor | Qt.GlobalColor | str
+            text color in light/dark mode
+        """
+        self.lightColor = QColor(light)
+        self.darkColor = QColor(dark)
+
+        palette = self.palette()
+        color = self.darkColor if isDarkTheme() else self.lightColor
+        palette.setColor(QPalette.ColorRole.WindowText, color)
+        self.setPalette(palette)
+
+
+class CaptionLabel(FluentLabelBase):
+    """ Caption text label """
+
+    def getFont(self):
+        return getFont(12)
+
+
+class BodyLabel(FluentLabelBase):
+    """ Body text label """
+
+    def getFont(self):
+        return getFont(14)
+
+
+class StrongBodyLabel(FluentLabelBase):
+    """ Strong body text label """
+
+    def getFont(self):
+        return getFont(14, QFont.Weight.DemiBold)
+
+
+class SubtitleLabel(FluentLabelBase):
+    """ Sub title text label """
+
+    def getFont(self):
+        return getFont(20, QFont.Weight.DemiBold)
+
+
+class TitleLabel(FluentLabelBase):
+    """ Sub title text label """
+
+    def getFont(self):
+        return getFont(28, QFont.Weight.DemiBold)
+
+
+class LargeTitleLabel(FluentLabelBase):
+    """ Large title text label """
+
+    def getFont(self):
+        return getFont(40, QFont.Weight.DemiBold)
+
+
+class DisplayLabel(FluentLabelBase):
+    """ Display text label """
+
+    def getFont(self):
+        return getFont(68, QFont.Weight.DemiBold)
 

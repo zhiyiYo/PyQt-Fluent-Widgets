@@ -1,7 +1,7 @@
 # coding:utf-8
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QStackedWidget, QVBoxLayout, QLabel
-from qfluentwidgets import Pivot, qrouter
+from qfluentwidgets import Pivot, qrouter, SegmentedWidget
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -25,15 +25,23 @@ class NavigationViewInterface(GalleryInterface):
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py'
         )
 
+        self.addExampleCard(
+            title=self.tr('A segmented control'),
+            widget=SegmentedInterface(self),
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py'
+        )
+
 
 class PivotInterface(QWidget):
     """ Pivot interface """
 
+    Nav = Pivot
+
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.setFixedSize(300, 200)
+        self.setFixedSize(300, 140)
 
-        self.pivot = Pivot(self)
+        self.pivot = self.Nav(self)
         self.stackedWidget = QStackedWidget(self)
         self.vBoxLayout = QVBoxLayout(self)
 
@@ -46,7 +54,7 @@ class PivotInterface(QWidget):
         self.addSubInterface(self.albumInterface, 'albumInterface', self.tr('Album'))
         self.addSubInterface(self.artistInterface, 'artistInterface', self.tr('Artist'))
 
-        self.vBoxLayout.addWidget(self.pivot, 0)
+        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignmentFlag.AlignLeft)
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         StyleSheet.NAVIGATION_VIEW_INTERFACE.apply(self)
@@ -71,3 +79,13 @@ class PivotInterface(QWidget):
         widget = self.stackedWidget.widget(index)
         self.pivot.setCurrentItem(widget.objectName())
         qrouter.push(self.stackedWidget, widget.objectName())
+
+
+class SegmentedInterface(PivotInterface):
+
+    Nav = SegmentedWidget
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.vBoxLayout.removeWidget(self.pivot)
+        self.vBoxLayout.insertWidget(0, self.pivot)
