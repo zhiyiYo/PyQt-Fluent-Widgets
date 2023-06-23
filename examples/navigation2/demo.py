@@ -204,7 +204,7 @@ class Window(FramelessWindow):
     def showMessageBox(self):
         w = MessageBox(
             '支持作者🥰',
-            '个人维护不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护的动力🚀',
+            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
             self
         )
         w.yesButton.setText('来啦老弟')

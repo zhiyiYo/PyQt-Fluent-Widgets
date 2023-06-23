@@ -16,7 +16,7 @@ class NavigationInterface(QWidget):
 
     displayModeChanged = pyqtSignal(NavigationDisplayMode)
 
-    def __init__(self, parent=None, showMenuButton=True, showReturnButton=False):
+    def __init__(self, parent=None, showMenuButton=True, showReturnButton=False, collapsible=True):
         """
         Parameters
         ----------
@@ -28,11 +28,15 @@ class NavigationInterface(QWidget):
 
         showReturnButton: bool
             whether to show return button
+
+        collapsible: bool
+            Is the navigation interface collapsible
         """
         super().__init__(parent=parent)
         self.panel = NavigationPanel(self)
-        self.panel.setMenuButtonVisible(showMenuButton)
+        self.panel.setMenuButtonVisible(showMenuButton and collapsible)
         self.panel.setReturnButtonVisible(showReturnButton)
+        self.panel.setCollapsible(collapsible)
         self.panel.installEventFilter(self)
         self.panel.displayModeChanged.connect(self.displayModeChanged)
 
@@ -215,6 +219,17 @@ class NavigationInterface(QWidget):
     def setExpandWidth(self, width: int):
         """ set the maximum width """
         self.panel.setExpandWidth(width)
+
+    def setMenuButtonVisible(self, isVisible: bool):
+        """ set whether the menu button is visible """
+        self.panel.setMenuButtonVisible(isVisible)
+
+    def setReturnButtonVisible(self, isVisible: bool):
+        """ set whether the return button is visible """
+        self.panel.setReturnButtonVisible(isVisible)
+
+    def setCollapsible(self, collapsible: bool):
+        self.panel.setCollapsible(collapsible)
 
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
