@@ -4,6 +4,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
                      PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
                      TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentTogglePushButton,
                      TransparentToggleToolButton, TransparentDropDownPushButton, TransparentDropDownToolButton)
+from .card_widget import CardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit

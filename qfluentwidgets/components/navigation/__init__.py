@@ -2,5 +2,6 @@ from .navigation_widget import (NavigationWidget, NavigationPushButton, Navigati
                                 NavigationTreeWidget, NavigationTreeWidgetBase)
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationDisplayMode
 from .navigation_interface import NavigationInterface
+from .navigation_bar import NavigationBarPushButton, NavigationBar
 from .pivot import Pivot, PivotItem
 from .segmented_widget import SegmentedItem, SegmentedWidget

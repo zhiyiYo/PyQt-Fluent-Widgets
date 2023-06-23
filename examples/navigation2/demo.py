@@ -1,7 +1,7 @@
 # coding:utf-8
 import sys
-from PySide2.QtCore import Qt, QRect
-from PySide2.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont
+from PySide2.QtCore import Qt, QRect, QUrl
+from PySide2.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 from PySide2.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
 from qfluentwidgets import (NavigationInterface,NavigationItemPosition, NavigationWidget, MessageBox,
@@ -203,11 +203,15 @@ class Window(FramelessWindow):
 
     def showMessageBox(self):
         w = MessageBox(
-            'This is a help message',
-            'You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉',
+            '支持作者🥰',
+            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
             self
         )
-        w.exec()
+        w.yesButton.setText('来啦老弟')
+        w.cancelButton.setText('下次一定')
+
+        if w.exec():
+            QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
 
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)

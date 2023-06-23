@@ -32,7 +32,7 @@ def getFont(fontSize=14, weight=QFont.Normal):
         font weight
     """
     font = QFont()
-    font.setFamilies(['Segoe UI', 'Microsoft YaHei'])
+    font.setFamilies(['Segoe UI', 'Microsoft YaHei', 'PingFang SC'])
     font.setPixelSize(fontSize)
     font.setWeight(weight)
     return font
