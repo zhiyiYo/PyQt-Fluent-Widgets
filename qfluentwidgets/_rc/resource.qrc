@@ -180,6 +180,12 @@
         <file>images/icons/EmojiTabSymbols_white.svg</file>
         <file>images/icons/Calendar_black.svg</file>
         <file>images/icons/Calendar_white.svg</file>
+        <file>images/icons/Application_black.svg</file>
+        <file>images/icons/Application_white.svg</file>
+        <file>images/icons/HomeFill_black.svg</file>
+        <file>images/icons/HomeFill_white.svg</file>
+        <file>images/icons/LibraryFill_black.svg</file>
+        <file>images/icons/LibraryFill_white.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>

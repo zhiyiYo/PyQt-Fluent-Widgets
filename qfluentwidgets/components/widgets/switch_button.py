@@ -200,7 +200,7 @@ class SwitchButton(QWidget):
         self.indicator.toggled.connect(self.checkedChanged)
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is self:
+        if obj is self and self.isEnabled():
             if e.type() == QEvent.Type.MouseButtonPress:
                 self.indicator.setDown(True)
             elif e.type() == QEvent.Type.MouseButtonRelease:

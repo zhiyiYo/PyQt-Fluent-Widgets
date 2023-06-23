@@ -107,7 +107,8 @@ class PrimaryPushButton(PushButton):
             icon = icon.icon(theme)
         elif not self.isEnabled():
             painter.setOpacity(0.786 if isDarkTheme() else 0.9)
-            icon = icon.icon(Theme.DARK)
+            if isinstance(icon, FluentIconBase):
+                icon = icon.icon(Theme.DARK)
 
         PushButton._drawIcon(self, icon, painter, rect)
 
@@ -278,7 +279,8 @@ class PrimaryToolButton(ToolButton):
             icon = icon.icon(theme)
         elif not self.isEnabled():
             painter.setOpacity(0.786 if isDarkTheme() else 0.9)
-            icon = icon.icon(Theme.DARK)
+            if isinstance(icon, FluentIconBase):
+                icon = icon.icon(Theme.DARK)
 
         return drawIcon(icon, painter, rect)
 

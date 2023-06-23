@@ -1,0 +1,46 @@
+Widget > QLabel {
+    font: 24px 'Segoe UI', 'Microsoft YaHei';
+}
+
+StackedWidget {
+    border: 1px solid rgb(229, 229, 229);
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    background-color: rgb(249, 249, 249);
+}
+
+Window {
+    background-color: rgb(243, 243, 243);
+}
+
+CustomTitleBar>QLabel#titleLabel {
+    color: black;
+    background: transparent;
+    font: 13px 'Segoe UI';
+    padding: 0 10px
+}
+
+MinimizeButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: black;
+    qproperty-hoverBackgroundColor: rgba(0, 0, 0, 26);
+    qproperty-pressedColor: black;
+    qproperty-pressedBackgroundColor: rgba(0, 0, 0, 51)
+}
+
+
+MaximizeButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: black;
+    qproperty-hoverBackgroundColor: rgba(0, 0, 0, 26);
+    qproperty-pressedColor: black;
+    qproperty-pressedBackgroundColor: rgba(0, 0, 0, 51)
+}
+
+CloseButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+}
