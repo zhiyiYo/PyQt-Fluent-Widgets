@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import NavigationInterface, NavigationPanel, Pivot
+from qfluentwidgets import NavigationInterface, NavigationPanel, Pivot, SegmentedWidget, NavigationBar, FluentIcon
 
 from plugin_base import PluginBase
 
@@ -39,6 +39,21 @@ class NavigationPanelPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
         return "NavigationPanel"
 
 
+class NavigationBarPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
+    """ Navigation bar plugin """
+
+    def createWidget(self, parent):
+        bar = NavigationBar(parent)
+        bar.addItem('item', FluentIcon.HOME, 'Home')
+        return bar
+
+    def icon(self):
+        return super().icon("NavigationView")
+
+    def name(self):
+        return "NavigationBar"
+
+
 class PivotPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
     """ Navigation panel plugin """
 
@@ -55,3 +70,21 @@ class PivotPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "Pivot"
+
+
+class SegmentedWidgetPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
+    """ Segmented widget plugin """
+
+    def createWidget(self, parent):
+        p = SegmentedWidget(parent)
+        for i in range(1, 4):
+            p.addItem(f'Item{i}', f'Item{i}', print)
+
+        p.setCurrentItem('Item1')
+        return p
+
+    def icon(self):
+        return super().icon("Pivot")
+
+    def name(self):
+        return "SegmentedWidget"

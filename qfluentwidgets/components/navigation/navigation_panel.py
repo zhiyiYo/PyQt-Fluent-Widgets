@@ -64,6 +64,7 @@ class NavigationPanel(QFrame):
         self._parent = parent   # type: QWidget
         self._isMenuButtonVisible = True
         self._isReturnButtonVisible = False
+        self._isCollapsible = True
 
         self.scrollArea = SingleDirectionScrollArea(self)
         self.scrollWidget = QWidget()
@@ -380,6 +381,11 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = isVisible
         self.returnButton.setVisible(isVisible)
 
+    def setCollapsible(self, on: bool):
+        self._isCollapsible = on
+        if not on and self.displayMode != NavigationDisplayMode.EXPAND:
+            self.expand(False)
+
     def setExpandWidth(self, width: int):
         """ set the maximum width """
         if width <= 42:
@@ -388,7 +394,7 @@ class NavigationPanel(QFrame):
         self.expandWidth = width
         NavigationWidget.EXPAND_WIDTH = width - 10
 
-    def expand(self):
+    def expand(self, useAni=True):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
         self.expandAni.setProperty('expand', True)
@@ -397,7 +403,7 @@ class NavigationPanel(QFrame):
         # determine the display mode according to the width of window
         # https://learn.microsoft.com/en-us/windows/apps/design/controls/navigationview#default
         expandWidth = 1007 + self.expandWidth - 322
-        if self.window().width() > expandWidth and not self.isMinimalEnabled:
+        if (self.window().width() > expandWidth and not self.isMinimalEnabled) or not self._isCollapsible:
             self.displayMode = NavigationDisplayMode.EXPAND
         else:
             self.setProperty('menu', True)
@@ -410,12 +416,16 @@ class NavigationPanel(QFrame):
 
             self.show()
 
-        self.displayModeChanged.emit(self.displayMode)
-        self.expandAni.setStartValue(
-            QRect(self.pos(), QSize(48, self.height())))
-        self.expandAni.setEndValue(
-            QRect(self.pos(), QSize(self.expandWidth, self.height())))
-        self.expandAni.start()
+        if useAni:
+            self.displayModeChanged.emit(self.displayMode)
+            self.expandAni.setStartValue(
+                QRect(self.pos(), QSize(48, self.height())))
+            self.expandAni.setEndValue(
+                QRect(self.pos(), QSize(self.expandWidth, self.height())))
+            self.expandAni.start()
+        else:
+            self.setFixedWidth(self.expandWidth)
+            self._onExpandAniFinished()
 
     def collapse(self):
         """ collapse navigation panel """
@@ -477,7 +487,7 @@ class NavigationPanel(QFrame):
         self.scrollArea.setFixedHeight(max(h, 36))
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is not self.window():
+        if obj is not self.window() or not self._isCollapsible:
             return super().eventFilter(obj, e)
 
         if e.type() == QEvent.MouseButtonRelease:

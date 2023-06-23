@@ -4,8 +4,7 @@ from PySide6.QtDesigner import (QDesignerCustomWidgetInterface, QDesignerFormWin
                               QPyDesignerContainerExtension)
 
 from qfluentwidgets import (ScrollArea, SmoothScrollArea, SingleDirectionScrollArea, OpacityAniStackedWidget,
-                            PopUpAniStackedWidget)
-from qframelesswindow import FramelessMainWindow, FramelessWindow
+                            PopUpAniStackedWidget, CardWidget)
 
 from plugin_base import PluginBase
 
@@ -17,6 +16,19 @@ class ContainerPlugin(PluginBase):
 
     def isContainer(self):
         return True
+
+
+class CardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Single direction scroll area plugin """
+
+    def createWidget(self, parent):
+        return CardWidget(parent)
+
+    def icon(self):
+        return super().icon("CommandBar")
+
+    def name(self):
+        return "CardWidget"
 
 
 class ScrollAreaPluginBase(ContainerPlugin):

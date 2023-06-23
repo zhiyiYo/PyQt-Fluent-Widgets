@@ -204,7 +204,15 @@ class MainWindow(FramelessWindow):
         self.titleBar.resize(self.width()-46, self.titleBar.height())
 
     def onSupport(self):
-        QDesktopServices.openUrl(QUrl(SUPPORT_URL))
+        w = MessageBox(
+            '支持作者🥰',
+            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
+            self
+        )
+        w.yesButton.setText('来啦老弟')
+        w.cancelButton.setText('下次一定')
+        if w.exec():
+            QDesktopServices.openUrl(QUrl(SUPPORT_URL))
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """
