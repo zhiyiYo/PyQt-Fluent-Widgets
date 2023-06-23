@@ -15,7 +15,6 @@ assignees: ''
 
 **Describe the bug**
 A clear and concise description of what the bug is.
-
 问题的简要描述。
 
 **Environment**
@@ -28,7 +27,6 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 复现问题的步骤，推荐使用 gif 进行演示。
-
 Steps to reproduce the behavior(you can use gif to demonstrate the problem:)
 1. Go to '...'
 2. Click on '....'
