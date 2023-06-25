@@ -28,3 +28,4 @@ from .cycle_list_widget import CycleListWidget
 from .progress_bar import IndeterminateProgressBar, ProgressBar
 from .progress_ring import ProgressRing
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
+from .teaching_tip import TeachingTip, TeachingTipTailPosition

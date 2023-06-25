@@ -209,7 +209,7 @@ class StatusInfoInterface(GalleryInterface):
     def createTopLeftInfoBar(self):
         InfoBar.warning(
             title=self.tr('Lesson 5'),
-            content=self.tr("迂回路を行けば最短ルート。"),
+            content=self.tr("The shortest shortcut is to take a detour."),
             orient=Qt.Horizontal,
             isClosable=False,   # disable close button
             position=InfoBarPosition.TOP_LEFT,

@@ -11,7 +11,7 @@ class Translator(QObject):
         self.menus = self.tr('Menus')
         self.icons = self.tr('Icons')
         self.layout = self.tr('Layout')
-        self.dialogs = self.tr('Dialogs')
+        self.dialogs = self.tr('Dialogs & flyouts')
         self.scroll = self.tr('Scrolling')
         self.material = self.tr('Material')
         self.dateTime = self.tr('Date & time')

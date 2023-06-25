@@ -251,6 +251,13 @@ class HomeInterface(ScrollArea):
             routeKey="dialogInterface",
             index=2
         )
+        dialogView.addSampleCard(
+            icon=":/gallery/images/controls/ColorPicker.png",
+            title="TeachingTip",
+            content=self.tr("A content-rich flyout for guiding users and enabling teaching moments."),
+            routeKey="dialogInterface",
+            index=3
+        )
         self.vBoxLayout.addWidget(dialogView)
 
         # layout samples

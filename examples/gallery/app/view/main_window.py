@@ -24,6 +24,7 @@ from .view_interface import ViewInterface
 from ..common.config import SUPPORT_URL
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
+from ..common.translator import Translator
 from ..common import resource
 
 
@@ -62,22 +63,23 @@ class MainWindow(FluentWindow):
 
     def initNavigation(self):
         # add navigation items
+        t = Translator()
         self.addSubInterface(self.homeInterface, FIF.HOME, self.tr('Home'))
-        self.addSubInterface(self.iconInterface, Icon.EMOJI_TAB_SYMBOLS, self.tr('Icons'))
+        self.addSubInterface(self.iconInterface, Icon.EMOJI_TAB_SYMBOLS, t.icons)
         self.navigationInterface.addSeparator()
 
         pos = NavigationItemPosition.SCROLL
-        self.addSubInterface(self.basicInputInterface, FIF.CHECKBOX, self.tr('Basic input'), pos)
-        self.addSubInterface(self.dateTimeInterface, FIF.DATE_TIME, self.tr('Date & time'), pos)
-        self.addSubInterface(self.dialogInterface, FIF.MESSAGE, self.tr('Dialogs'), pos)
-        self.addSubInterface(self.layoutInterface, FIF.LAYOUT, self.tr('Layout'), pos)
-        self.addSubInterface(self.materialInterface, FIF.PALETTE, self.tr('Material'), pos)
-        self.addSubInterface(self.menuInterface, Icon.MENU, self.tr('Menus'), pos)
-        self.addSubInterface(self.navigationViewInterface, FIF.MENU, self.tr('Navigation'), pos)
-        self.addSubInterface(self.scrollInterface, FIF.SCROLL, self.tr('Scrolling'), pos)
-        self.addSubInterface(self.statusInfoInterface, FIF.CHAT, self.tr('Status & info'), pos)
-        self.addSubInterface(self.textInterface, Icon.TEXT, self.tr('Text'), pos)
-        self.addSubInterface(self.viewInterface, Icon.GRID, self.tr('View'), pos)
+        self.addSubInterface(self.basicInputInterface, FIF.CHECKBOX,t.basicInput, pos)
+        self.addSubInterface(self.dateTimeInterface, FIF.DATE_TIME, t.dateTime, pos)
+        self.addSubInterface(self.dialogInterface, FIF.MESSAGE, t.dialogs, pos)
+        self.addSubInterface(self.layoutInterface, FIF.LAYOUT, t.layout, pos)
+        self.addSubInterface(self.materialInterface, FIF.PALETTE, t.material, pos)
+        self.addSubInterface(self.menuInterface, Icon.MENU, t.menus, pos)
+        self.addSubInterface(self.navigationViewInterface, FIF.MENU, t.navigation, pos)
+        self.addSubInterface(self.scrollInterface, FIF.SCROLL, t.scroll, pos)
+        self.addSubInterface(self.statusInfoInterface, FIF.CHAT, t.statusInfo, pos)
+        self.addSubInterface(self.textInterface, Icon.TEXT, t.text, pos)
+        self.addSubInterface(self.viewInterface, Icon.GRID, t.view, pos)
 
         # add custom widget to bottom
         self.navigationInterface.addWidget(

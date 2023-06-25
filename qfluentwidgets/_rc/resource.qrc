@@ -243,6 +243,7 @@
         <file>qss/dark/pivot.qss</file>
         <file>qss/dark/calendar_picker.qss</file>
         <file>qss/dark/fluent_window.qss</file>
+        <file>qss/dark/teaching_tip.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -270,6 +271,7 @@
         <file>qss/light/pivot.qss</file>
         <file>qss/light/calendar_picker.qss</file>
         <file>qss/light/fluent_window.qss</file>
+        <file>qss/light/teaching_tip.qss</file>
 
         <file>i18n/qfluentwidgets.zh_CN.qm</file>
         <file>i18n/qfluentwidgets.zh_HK.qm</file>
