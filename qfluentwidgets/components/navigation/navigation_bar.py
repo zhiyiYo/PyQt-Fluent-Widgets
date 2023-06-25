@@ -312,12 +312,3 @@ class NavigationBar(QWidget):
         widget = self.sender()  # type: NavigationWidget
         if widget.isSelectable:
             self.setCurrentItem(widget.property('routeKey'))
-
-    #def resizeEvent(self, e):
-    #    if e.oldSize().height() == self.height():
-    #        return
-#
-    #    th = self.topLayout.minimumSize().height()
-    #    bh = self.bottomLayout.minimumSize().height()
-    #    h = self.height() - th - bh - 20
-    #    self.scrollArea.setFixedHeight(max(h, 58))

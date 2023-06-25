@@ -17,6 +17,6 @@ QScrollArea, #scrollWidget {
     background-color: transparent;
 }
 
-NavigationInterface {
+/* NavigationInterface {
     background-color: rgb(243, 243, 243);
-}
+} */

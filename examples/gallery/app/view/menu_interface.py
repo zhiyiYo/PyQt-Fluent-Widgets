@@ -18,6 +18,7 @@ class MenuInterface(GalleryInterface):
             subtitle='qfluentwidgets.components.widgets',
             parent=parent
         )
+        self.setObjectName('menuInterface')
 
         button = PushButton(self.tr('Show menu'))
         button.clicked.connect(lambda: self.createMenu(

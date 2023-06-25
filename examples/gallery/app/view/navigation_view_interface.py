@@ -18,6 +18,7 @@ class NavigationViewInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.navigation",
             parent=parent
         )
+        self.setObjectName('navigationViewInterface')
 
         self.addExampleCard(
             title=self.tr('A basic pivot'),
