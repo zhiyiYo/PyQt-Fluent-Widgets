@@ -20,6 +20,7 @@ class StatusInfoInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.widgets",
             parent=parent
         )
+        self.setObjectName('statusInfoInterface')
 
         # state tool tip
         self.stateTooltip = None

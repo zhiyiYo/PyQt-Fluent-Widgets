@@ -19,6 +19,7 @@ class ViewInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.widgets",
             parent=parent
         )
+        self.setObjectName('viewInterface')
 
         # list view
         self.addExampleCard(

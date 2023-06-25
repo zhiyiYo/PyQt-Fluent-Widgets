@@ -3,7 +3,7 @@ from typing import Union, List
 
 from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
                           QEasingCurve, QPoint, QEvent)
-from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont
+from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
 from ...common.config import isDarkTheme
@@ -425,3 +425,52 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
         if not clickArrow or self.isCompacted:
             self.clicked.emit(triggerByUser)
+
+
+class NavigationAvatarWidget(NavigationWidget):
+    """ Avatar widget """
+
+    def __init__(self, name: str, avatar: Union[str, QPixmap, QImage], parent=None):
+        super().__init__(isSelectable=False, parent=parent)
+        self.name = name
+        self.setAvatar(avatar)
+        setFont(self)
+
+    def setName(self, name: str):
+        self.name = name
+        self.update()
+
+    def setAvatar(self, avatar: Union[str, QPixmap, QImage]):
+        if isinstance(avatar, str):
+            avatar = QImage(avatar)
+        elif isinstance(avatar, QPixmap):
+            avatar = avatar.toImage()
+
+        self.avatar = avatar.scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(
+            QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
+
+        painter.setPen(Qt.NoPen)
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
+
+        # draw background
+        if self.isEnter:
+            c = 255 if isDarkTheme() else 0
+            painter.setBrush(QColor(c, c, c, 10))
+            painter.drawRoundedRect(self.rect(), 5, 5)
+
+        # draw avatar
+        painter.setBrush(QBrush(self.avatar))
+        painter.translate(8, 6)
+        painter.drawEllipse(0, 0, 24, 24)
+        painter.translate(-8, -6)
+
+        if not self.isCompacted:
+            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
+            painter.setFont(self.font())
+            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)

@@ -103,6 +103,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     TIME_PICKER = "time_picker"
     SETTING_CARD = "setting_card"
     COLOR_DIALOG = "color_dialog"
+    FLUENT_WINDOW = "fluent_window"
     SWITCH_BUTTON = "switch_button"
     MESSAGE_DIALOG = "message_dialog"
     STATE_TOOL_TIP = "state_tool_tip"

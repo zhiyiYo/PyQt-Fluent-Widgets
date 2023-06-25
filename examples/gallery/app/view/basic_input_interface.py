@@ -22,6 +22,7 @@ class BasicInputInterface(GalleryInterface):
             subtitle='qfluentwidgets.components.widgets',
             parent=parent
         )
+        self.setObjectName('basicInputInterface')
 
         # simple push button
         self.addExampleCard(

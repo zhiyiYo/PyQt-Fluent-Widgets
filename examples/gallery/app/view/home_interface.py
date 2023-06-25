@@ -17,6 +17,7 @@ class BannerWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.setFixedHeight(336)
+
         self.vBoxLayout = QVBoxLayout(self)
         self.galleryLabel = QLabel('Fluent Gallery', self)
         self.banner = QPixmap(':/gallery/images/header1.png')
@@ -103,6 +104,7 @@ class HomeInterface(ScrollArea):
 
     def __initWidget(self):
         self.view.setObjectName('view')
+        self.setObjectName('homeInterface')
         StyleSheet.HOME_INTERFACE.apply(self)
 
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)

@@ -16,6 +16,7 @@ class DialogInterface(GalleryInterface):
             subtitle='qfluentwidgets.components.dialog_box',
             parent=parent
         )
+        self.setObjectName('dialogInterface')
 
         button = PushButton(self.tr('Show dialog'))
         button.clicked.connect(self.showDialog)
