@@ -229,6 +229,7 @@ class IconInterface(GalleryInterface):
             subtitle="qfluentwidgets.common.icon",
             parent=parent
         )
+        self.setObjectName('iconInterface')
 
         self.iconView = IconCardView(self)
         self.vBoxLayout.addWidget(self.iconView)

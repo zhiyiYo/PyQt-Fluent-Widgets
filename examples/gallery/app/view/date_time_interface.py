@@ -16,6 +16,7 @@ class DateTimeInterface(GalleryInterface):
             subtitle='qfluentwidgets.components.date_time',
             parent=parent
         )
+        self.setObjectName('dateTimeInterface')
 
         # calendar picker
         self.addExampleCard(

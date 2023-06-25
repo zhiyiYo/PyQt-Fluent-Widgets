@@ -5,7 +5,7 @@ from PySide2.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDeskt
 from PySide2.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
 
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
-                            isDarkTheme, setTheme, Theme, setThemeColor, qrouter)
+                            isDarkTheme, setTheme, Theme, setThemeColor, qrouter, FluentWindow, NavigationAvatarWidget)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
@@ -20,43 +20,6 @@ class Widget(QFrame):
         self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
         self.setObjectName(text.replace(' ', '-'))
 
-
-class AvatarWidget(NavigationWidget):
-    """ Avatar widget """
-
-    def __init__(self, parent=None):
-        super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('resource/shoko.png').scaled(
-            24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-
-    def paintEvent(self, e):
-        painter = QPainter(self)
-        painter.setRenderHints(
-            QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
-
-        painter.setPen(Qt.NoPen)
-
-        if self.isPressed:
-            painter.setOpacity(0.7)
-
-        # draw background
-        if self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
-
-        # draw avatar
-        painter.setBrush(QBrush(self.avatar))
-        painter.translate(8, 6)
-        painter.drawEllipse(0, 0, 24, 24)
-        painter.translate(-8, -6)
-
-        if not self.isCompacted:
-            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-            font = QFont('Segoe UI')
-            font.setPixelSize(14)
-            painter.setFont(font)
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
 
 
 class Window(FramelessWindow):
@@ -127,7 +90,7 @@ class Window(FramelessWindow):
         # add custom widget to bottom
         self.navigationInterface.addWidget(
             routeKey='avatar',
-            widget=AvatarWidget(),
+            widget=NavigationAvatarWidget('zhiyiYo', 'resource/shoko.png'),
             onClick=self.showMessageBox,
             position=NavigationItemPosition.BOTTOM,
         )

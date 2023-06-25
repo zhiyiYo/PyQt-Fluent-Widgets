@@ -42,8 +42,7 @@ class NavigationInterface(QWidget):
 
         self.resize(48, self.height())
         self.setMinimumWidth(48)
-        self.setAttribute(Qt.WA_StyledBackground)
-        FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
+        self.setAttribute(Qt.WA_TranslucentBackground)
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], text: str, onClick=None,
                 selectable=True, position=NavigationItemPosition.TOP, tooltip: str = None,

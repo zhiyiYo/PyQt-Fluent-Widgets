@@ -18,6 +18,7 @@ class MaterialInterface(GalleryInterface):
             subtitle='qfluentwidgets.components.widgets',
             parent=parent
         )
+        self.setObjectName('materialInterface')
 
         self.label = AcrylicLabel(
             cfg.get(cfg.blurRadius), QColor(105, 114, 168, 102))

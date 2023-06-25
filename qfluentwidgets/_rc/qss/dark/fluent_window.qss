@@ -1,0 +1,65 @@
+FluentWindowBase {
+    background-color: rgb(32, 32, 32);
+}
+
+FluentTitleBar, SplitTitleBar {
+    background-color: transparent;
+}
+
+
+FluentTitleBar>QLabel#titleLabel,
+SplitTitleBar>QLabel#titleLabel {
+    background: transparent;
+    font: 13px 'Segoe UI';
+    padding: 0 4px;
+    color: white;
+}
+
+MSFluentTitleBar>QLabel#titleLabel {
+    padding: 0 10px
+}
+
+SplitTitleBar>QLabel#titleLabel {
+    padding: 0 5px
+}
+
+MinimizeButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgba(255, 255, 255, 26);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgba(255, 255, 255, 51)
+}
+
+
+MaximizeButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgba(255, 255, 255, 26);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgba(255, 255, 255, 51)
+}
+
+CloseButton {
+    qproperty-normalColor: white;
+    qproperty-normalBackgroundColor: transparent;
+}
+
+StackedWidget {
+    border: 1px solid rgb(29, 29, 29);
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    background-color: rgb(39, 39, 39);
+}
+
+StackedWidget QLabel {
+    color: white;
+}
+
+SplitFluentWindow > StackedWidget {
+    border-top-left-radius: 0px;
+    border-top: none;
+}

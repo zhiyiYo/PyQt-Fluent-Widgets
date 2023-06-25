@@ -9,7 +9,7 @@ Widget {
 
 
 Window {
-    background-color: rgb(39, 39, 39);
+    background-color: rgb(32, 32, 32);
 }
 
 CustomTitleBar {
