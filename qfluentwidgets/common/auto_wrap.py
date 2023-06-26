@@ -29,7 +29,7 @@ class TextWrap:
         return 1
 
     @classmethod
-    def wrap(cls, text, width, once=True):
+    def wrap(cls, text: str, width: int, once=True):
         """ Wrap according to string length
 
         Parameters
@@ -51,6 +51,22 @@ class TextWrap:
         is_wrapped: bool
             whether a line break occurs in the text
         """
+        texts = text.strip().split('\n')
+        result = []
+        is_wrapped = False
+
+        for text in texts:
+            text_wrapped, wrapped = cls._wrap_line(text, width, once)
+            is_wrapped |= wrapped
+            result.append(text_wrapped)
+            if once:
+                result.extend(texts[1:])
+                break
+
+        return '\n'.join(result), is_wrapped
+
+    @classmethod
+    def _wrap_line(cls, text: str, width: int, once=True):
         count = 0
         last_count = 0
         chars = []
@@ -60,7 +76,6 @@ class TextWrap:
         n_inside_break = 0
 
         i = 0
-        text = text.strip()
         while i < len(text):
             c = text[i]
             length = cls.get_width(c)
