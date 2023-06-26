@@ -69,6 +69,8 @@ class TeachingTipView(QFrame):
         elif not self.image:
             self.image = QImage()
 
+        self.originImage = QImage(self.image)
+
         self.hBoxLayout = QHBoxLayout(self)
         self.viewLayout = QHBoxLayout()
         self.widgetLayout = QVBoxLayout()
@@ -129,18 +131,20 @@ class TeachingTipView(QFrame):
         margins.setRight(20 if not self.isClosable else 6)
         self.viewLayout.setContentsMargins(margins)
 
-        self._adjustImage()
-        vm = self.manager.viewMargins(self)
-        margins.setTop(vm.top())
-        margins.setBottom(vm.bottom())
-        self.viewLayout.setContentsMargins(margins)
+        self.adjustImage()
 
-    def _adjustImage(self):
+    def adjustImage(self):
         if self.image.isNull():
             return
 
-        w = max(200, self.viewLayout.sizeHint().width() - 2)
-        self.image = self.image.scaledToWidth(w, Qt.TransformationMode.SmoothTransformation)
+        w = self.viewLayout.sizeHint().width() - 2
+        self.image = self.originImage.scaledToWidth(w, Qt.TransformationMode.SmoothTransformation)
+
+        vm = self.manager.viewMargins(self)
+        margins = self.viewLayout.contentsMargins()
+        margins.setTop(vm.top())
+        margins.setBottom(vm.bottom())
+        self.viewLayout.setContentsMargins(margins)
 
     def _adjustText(self):
         w = min(900, QApplication.screenAt(
@@ -156,9 +160,14 @@ class TeachingTipView(QFrame):
 
         self.adjustSize()
 
+    def showEvent(self, e):
+        super().showEvent(e)
+        self.adjustImage()
+        self.adjustSize()
+
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         painter.setBrush(
             QColor(40, 40, 40) if isDarkTheme() else QColor(249, 249, 249))
@@ -340,7 +349,7 @@ class TeachingTipManager(QObject):
 
     def _drawImage(self, tip: TeachingTipView, painter: QPainter):
         """ draw the header image of tip """
-        if not tip.image:
+        if tip.image.isNull():
             return
 
         path = QPainterPath()
@@ -407,7 +416,7 @@ class TopTailTeachingTipManager(TeachingTipManager):
 
     def _drawImage(self, tip: TeachingTipView, painter: QPainter):
         """ draw the header image of tip """
-        if not tip.image:
+        if tip.image.isNull():
             return
 
         path = QPainterPath()
