@@ -1,7 +1,8 @@
 # coding:utf-8
 from PySide2.QtCore import Qt
 
-from qfluentwidgets import PushButton, Dialog, MessageBox, ColorDialog, TeachingTip, TeachingTipTailPosition, InfoBarIcon
+from qfluentwidgets import (PushButton, Dialog, MessageBox, ColorDialog, TeachingTip, TeachingTipTailPosition,
+                            InfoBarIcon, Flyout, FlyoutView)
 from ..common.translator import Translator
 from .gallery_interface import GalleryInterface
 
@@ -58,6 +59,23 @@ class DialogInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/teaching_tip/demo.py'
         )
 
+        self.simpleFlyoutButton = PushButton(self.tr('Show flyout'))
+        self.simpleFlyoutButton.clicked.connect(self.showSimpleFlyout)
+        self.addExampleCard(
+            self.tr('A simple flyout'),
+            self.simpleFlyoutButton,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/flyout/demo.py'
+        )
+
+        self.complexFlyoutButton = PushButton(self.tr('Show flyout'))
+        self.complexFlyoutButton.clicked.connect(self.showComplexFlyout)
+        self.addExampleCard(
+            self.tr('A flyout with image and button'),
+            self.complexFlyoutButton,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/flyout/demo.py'
+        )
+
+
     def showDialog(self):
         title = self.tr('This is a frameless message dialog')
         content = self.tr(
@@ -111,3 +129,32 @@ class DialogInterface(GalleryInterface):
         button.setFixedWidth(120)
         t.addWidget(button, align=Qt.AlignRight)
         t.show()
+
+    def showSimpleFlyout(self):
+        Flyout.create(
+            icon=InfoBarIcon.SUCCESS,
+            title='Lesson 3',
+            content=self.tr('Believe in the spin, just keep believing!'),
+            target=self.simpleFlyoutButton,
+            parent=self.window()
+        )
+
+    def showComplexFlyout(self):
+        view = FlyoutView(
+            title=self.tr('Julius·Zeppeli'),
+            content=self.tr("Where the tennis ball will land when it touches the net, no one can predict. \nIf that moment comes, I hope the 'goddess' exists. \nIn that case, I would accept it no matter which side the ball falls on."),
+            image=':/gallery/images/SBR.jpg',
+        )
+
+        # add button to view
+        button = PushButton('Action')
+        button.setFixedWidth(120)
+        view.addWidget(button, align=Qt.AlignRight)
+
+        # adjust layout (optional)
+        view.widgetLayout.insertSpacing(1, 5)
+        view.widgetLayout.insertSpacing(0, 5)
+        view.widgetLayout.addSpacing(5)
+
+        # show view
+        Flyout.make(view, self.complexFlyoutButton, self.window())
