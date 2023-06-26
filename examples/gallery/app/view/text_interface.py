@@ -17,6 +17,7 @@ class TextInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.widgets",
             parent=parent
         )
+        self.setObjectName('textInterface')
 
         # line edit
         lineEdit = LineEdit(self)

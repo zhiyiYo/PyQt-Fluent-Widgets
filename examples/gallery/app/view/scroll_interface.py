@@ -18,6 +18,7 @@ class ScrollInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.widgets",
             parent=parent
         )
+        self.setObjectName('scrollInterface')
 
         # scroll area
         w = ScrollArea()

@@ -312,4 +312,3 @@ class NavigationBar(QWidget):
         widget = self.sender()  # type: NavigationWidget
         if widget.isSelectable:
             self.setCurrentItem(widget.property('routeKey'))
-
