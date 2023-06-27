@@ -1,9 +1,10 @@
 # coding:utf-8
 
-from typing import List
+from typing import List, Union
 
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPainter, QPixmap, QPalette, QColor, QFont
+from PySide6.QtCore import Qt, QRectF, QPoint
+from PySide6.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
+                         QImageReader, QBrush, QMovie)
 from PySide6.QtWidgets import QLabel, QWidget
 
 from ...common.overload import singledispatchmethod
@@ -28,7 +29,7 @@ class PixmapLabel(QLabel):
 
     def paintEvent(self, e):
         if self.__pixmap.isNull():
-            return
+            return super().paintEvent(e)
 
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing |
@@ -125,3 +126,106 @@ class DisplayLabel(FluentLabelBase):
     def getFont(self):
         return getFont(68, QFont.DemiBold)
 
+
+class ImageLabel(QLabel):
+    """ Image label """
+
+    def __init__(self, image: Union[str, QPixmap, QImage] = None, parent=None):
+        super().__init__(parent=parent)
+        self.setImage(image)
+        self.setBorderRadius(0, 0, 0, 0)
+
+    def _onFrameChanged(self, index: int):
+        self.image = self.movie().currentImage()
+        self.update()
+
+    def setBorderRadius(self, topLeft: int, topRight: int, bottomLeft: int, bottomRight: int):
+        """ set the border radius of image """
+        self.topLeftRadius = topLeft
+        self.topRightRadius = topRight
+        self.bottomLeftRadius = bottomLeft
+        self.bottomRightRadius = bottomRight
+        self.update()
+
+    def setImage(self, image: Union[str, QPixmap, QImage] = None):
+        """ set the image of label """
+        self.image = QImage()
+
+        if isinstance(image, str):
+            reader = QImageReader(image)
+            if reader.supportsAnimation():
+                self.setMovie(QMovie(image))
+                self.movie().start()
+                self.image = self.movie().currentImage()
+                self.movie().frameChanged.connect(self._onFrameChanged)
+            else:
+                self.image = reader.read()
+        elif isinstance(image, QPixmap):
+            self.image = image.toImage()
+
+    def scaledToWidth(self, width: int):
+        if self.isNull():
+            return
+
+        self.image = self.image.scaledToWidth(width, Qt.SmoothTransformation)
+        self.setFixedSize(self.image.size())
+
+        if self.movie():
+            self.movie().setScaledSize(self.image.size())
+
+    def scaledToHeight(self, height: int):
+        if self.isNull():
+            return
+
+        self.image = self.image.scaledToHeight(height, Qt.SmoothTransformation)
+        self.setFixedSize(self.image.size())
+
+        if self.movie():
+            self.movie().setScaledSize(self.image.size())
+
+    def isNull(self):
+        return self.image.isNull()
+
+    def paintEvent(self, e):
+        if self.isNull():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing |
+                               QPainter.SmoothPixmapTransform)
+
+        path = QPainterPath()
+        w, h = self.image.width(), self.image.height()
+
+        # top line
+        path.moveTo(self.topLeftRadius, 0)
+        path.lineTo(w - self.topRightRadius, 0)
+
+        # top right arc
+        d = self.topRightRadius * 2
+        path.arcTo(w - d, 0, d, d, 90, -90)
+
+        # right line
+        path.lineTo(w, h - self.bottomRightRadius)
+
+        # bottom right arc
+        d = self.bottomRightRadius * 2
+        path.arcTo(w - d, h - d, d, d, 0, -90)
+
+        # bottom line
+        path.lineTo(self.bottomLeftRadius, h)
+
+        # bottom left arc
+        d = self.bottomLeftRadius * 2
+        path.arcTo(0, h - d, d, d, -90, -90)
+
+        # left line
+        path.lineTo(0, self.topLeftRadius)
+
+        # top left arc
+        d = self.topLeftRadius * 2
+        path.arcTo(0, 0, d, d, -180, -90)
+
+        # draw image
+        painter.setPen(Qt.NoPen)
+        painter.fillPath(path, QBrush(self.image))

@@ -2,14 +2,13 @@
 from enum import Enum
 from typing import Union
 
-from PySide6.QtCore import Qt, QPoint, QObject, QPointF, QRectF, QSize, QTimer, QPropertyAnimation, QEvent, QMargins
-from PySide6.QtGui import QPainter, QColor, QPainterPath, QIcon, QCursor, QPolygonF, QPixmap, QImage, QBrush
-from PySide6.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QApplication, QLabel, QGraphicsDropShadowEffect
+from PySide6.QtCore import Qt, QPoint, QObject, QPointF, QTimer, QPropertyAnimation, QEvent
+from PySide6.QtGui import QPainter, QColor, QPainterPath, QIcon, QCursor, QPolygonF, QPixmap, QImage
+from PySide6.QtWidgets import QWidget, QHBoxLayout, QApplication, QGraphicsDropShadowEffect
 
-from ...common.auto_wrap import TextWrap
-from ...common.icon import FluentIconBase, drawIcon, FluentIcon
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
-from .button import TransparentToolButton
+from ...common.icon import FluentIconBase
+from ...common.style_sheet import isDarkTheme
+from .flyout import FlyoutView, FlyoutViewBase
 
 
 class TeachingTipTailPosition(Enum):
@@ -29,148 +28,84 @@ class TeachingTipTailPosition(Enum):
     NONE = 12
 
 
-class IconWidget(QWidget):
-
-    def __init__(self, icon, parent=None):
-        super().__init__(parent=parent)
-        self.setFixedSize(36, 54)
-        self.icon = icon
-
-    def paintEvent(self, e):
-        if not self.icon:
-            return
-
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-
-        rect = QRectF(8, (self.height()-20)/2, 20, 20)
-        drawIcon(self.icon, painter, rect)
+class ImagePosition(Enum):
+    TOP = 0
+    BOTTOM = 1
+    LEFT = 2
+    RIGHT = 3
 
 
-class TeachingTipView(QFrame):
+class TeachingTipView(FlyoutView):
     """ Teaching tip view """
 
     def __init__(self, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
                  image: Union[str, QPixmap, QImage] = None, isClosable=True, tailPosition=TeachingTipTailPosition.BOTTOM,
                  parent=None):
-        super().__init__(parent=parent)
-        self.title = title
-        self.content = content
-        self.icon = icon
-        self.isClosable = isClosable
-        self.tailPosition = tailPosition
-
-        self.image = image
-        if isinstance(image, str):
-            self.image = QImage(image)
-        elif isinstance(image, QPixmap):
-            self.image = image.toImage()
-        elif not self.image:
-            self.image = QImage()
-
-        self.originImage = QImage(self.image)
-
-        self.hBoxLayout = QHBoxLayout(self)
-        self.viewLayout = QHBoxLayout()
-        self.widgetLayout = QVBoxLayout()
         self.manager = TeachingTipManager.make(tailPosition)
+        self.hBoxLayout = QHBoxLayout()
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
+        super().__init__(title, content, icon, image, isClosable, parent)
 
-        self.titleLabel = QLabel(title, self)
-        self.contentLabel = QLabel(content, self)
-        self.iconWidget = IconWidget(icon, self)
-        self.closeButton = TransparentToolButton(FluentIcon.CLOSE, self)
+    def _adjustImage(self):
+        if self.manager.imagePosition() in [ImagePosition.TOP, ImagePosition.BOTTOM]:
+            return super()._adjustImage()
 
-        self.__initWidgets()
+        h = self.vBoxLayout.sizeHint().height() - 2
+        self.imageLabel.scaledToHeight(h)
 
-    def __initWidgets(self):
-        self.closeButton.setFixedSize(32, 32)
-        self.closeButton.setIconSize(QSize(12, 12))
-        self.closeButton.setVisible(self.isClosable)
-        self.titleLabel.setVisible(bool(self.title))
-        self.contentLabel.setVisible(bool(self.content))
-        self.iconWidget.setHidden(self.icon is None)
+    def _addImageToLayout(self):
+        self.imageLabel.setHidden(self.imageLabel.isNull())
+        pos = self.manager.imagePosition()
 
-        self.titleLabel.setObjectName('titleLabel')
-        self.contentLabel.setObjectName('contentLabel')
-        FluentStyleSheet.TEACHING_TIP.apply(self)
+        if pos == ImagePosition.TOP:
+            self.imageLabel.setBorderRadius(8, 8, 0, 0)
+            self.vBoxLayout.insertWidget(0, self.imageLabel)
+        elif pos == ImagePosition.BOTTOM:
+            self.imageLabel.setBorderRadius(0, 0, 8, 8)
+            self.vBoxLayout.addWidget(self.imageLabel)
+        elif pos == ImagePosition.LEFT:
+            self.vBoxLayout.removeItem(self.vBoxLayout.itemAt(0))
+            self.hBoxLayout.addLayout(self.viewLayout)
+            self.vBoxLayout.addLayout(self.hBoxLayout)
 
-        self.__initLayout()
+            self.imageLabel.setBorderRadius(8, 0, 8, 0)
+            self.hBoxLayout.insertWidget(0, self.imageLabel)
+        elif pos == ImagePosition.RIGHT:
+            self.vBoxLayout.removeItem(self.vBoxLayout.itemAt(0))
+            self.hBoxLayout.addLayout(self.viewLayout)
+            self.vBoxLayout.addLayout(self.hBoxLayout)
 
-    def __initLayout(self):
+            self.imageLabel.setBorderRadius(0, 8, 0, 8)
+            self.hBoxLayout.addWidget(self.imageLabel)
+
+    def paintEvent(self, e):
+        pass
+
+
+class TeachTipBubble(QWidget):
+    """ Teaching tip bubble """
+
+    def __init__(self, view: FlyoutViewBase, tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
+        super().__init__(parent=parent)
+        self.manager = TeachingTipManager.make(tailPosition)
+        self.hBoxLayout = QHBoxLayout(self)
+        self.view = view
+
         self.manager.doLayout(self)
-        self.widgetLayout.setContentsMargins(0, 8, 0, 8)
-        self.viewLayout.setSpacing(4)
-        self.hBoxLayout.setSpacing(0)
-        self.widgetLayout.setSpacing(0)
+        self.hBoxLayout.addWidget(self.view)
 
-        self.hBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
-        self.viewLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
-
-        self.hBoxLayout.addLayout(self.viewLayout)
-
-        # add icon widget
-        if not self.title or not self.content:
-            self.iconWidget.setFixedHeight(36)
-
-        self.viewLayout.addWidget(self.iconWidget, 0, Qt.AlignTop)
-
-        # add text
-        self._adjustText()
-        self.widgetLayout.addWidget(self.titleLabel)
-        self.widgetLayout.addWidget(self.contentLabel)
-        self.viewLayout.addLayout(self.widgetLayout)
-
-        # add close button
-        self.viewLayout.addWidget(
-            self.closeButton, 0, Qt.AlignRight | Qt.AlignTop)
-
-        # adjust content margins
-        margins = QMargins(6, 5, 6, 5)
-        margins.setLeft(20 if not self.icon else 5)
-        margins.setRight(20 if not self.isClosable else 6)
-        self.viewLayout.setContentsMargins(margins)
-
-        self.adjustImage()
-
-    def adjustImage(self):
-        if self.image.isNull():
-            return
-
-        w = self.viewLayout.sizeHint().width() - 2
-        self.image = self.originImage.scaledToWidth(w, Qt.SmoothTransformation)
-
-        vm = self.manager.viewMargins(self)
-        margins = self.viewLayout.contentsMargins()
-        margins.setTop(vm.top())
-        margins.setBottom(vm.bottom())
-        self.viewLayout.setContentsMargins(margins)
-
-    def _adjustText(self):
-        w = min(900, QApplication.screenAt(
-            QCursor.pos()).geometry().width() - 200)
-
-        # adjust title
-        chars = max(min(w / 10, 120), 30)
-        self.titleLabel.setText(TextWrap.wrap(self.title, chars, False)[0])
-
-        # adjust content
-        chars = max(min(w / 9, 120), 30)
-        self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
-
-        self.adjustSize()
-
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.adjustImage()
-        self.adjustSize()
+    def setView(self, view: QWidget):
+        self.hBoxLayout.removeWidget(self.view)
+        self.view.deleteLater()
+        self.view = view
+        self.hBoxLayout.addWidget(view)
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing | QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.Antialiasing)
 
         painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(249, 249, 249))
+            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
         painter.setPen(
             QColor(23, 23, 23) if isDarkTheme() else QColor(195, 195, 195))
 
@@ -180,8 +115,7 @@ class TeachingTipView(QFrame):
 class TeachingTip(QWidget):
     """ Teaching tip """
 
-    def __init__(self, target: QWidget, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
-                 image: Union[str, QPixmap, QImage] = None, isClosable=True, duration=1000,
+    def __init__(self, view: FlyoutViewBase, target: QWidget, duration=1000,
                  tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
         """
         Parameters
@@ -189,24 +123,15 @@ class TeachingTip(QWidget):
         target: QWidget
             the target widget to show tip
 
-        title: str
-            the title of teaching tip
+        view: FlyoutViewBase
+            teaching tip view
 
-        content: str
-            the content of teaching tip
-
-        icon: InfoBarIcon | FluentIconBase | QIcon | str
-            the icon of teaching tip
-
-        image: str | QPixmap | QImage
-            the image of teaching tip
-
-        isClosable: bool
-            whether to show the close button
-
-        duraction: int
+        duration: int
             the time for teaching tip to display in milliseconds. If duration is less than zero,
             teaching tip will never disappear.
+
+        tailPosition: TeachingTipTailPosition
+            the position of bubble tail
 
         parent: QWidget
             parent widget
@@ -217,19 +142,17 @@ class TeachingTip(QWidget):
         self.manager = TeachingTipManager.make(tailPosition)
 
         self.hBoxLayout = QHBoxLayout(self)
-        self.view = TeachingTipView(
-            title, content, icon, image, isClosable, tailPosition, self)
         self.opacityAni = QPropertyAnimation(self, b'windowOpacity', self)
 
+        self.bubble = TeachTipBubble(view, tailPosition, self)
+
         self.hBoxLayout.setContentsMargins(15, 8, 15, 20)
-        self.hBoxLayout.addWidget(self.view)
+        self.hBoxLayout.addWidget(self.bubble)
         self.setShadowEffect()
 
         # set style
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint)
-
-        self.view.closeButton.clicked.connect(self._fadeOut)
 
         if self.parent():
             self.parent().installEventFilter(self)
@@ -237,12 +160,12 @@ class TeachingTip(QWidget):
     def setShadowEffect(self, blurRadius=35, offset=(0, 8)):
         """ add shadow to dialog """
         color = QColor(0, 0, 0, 80 if isDarkTheme() else 30)
-        self.shadowEffect = QGraphicsDropShadowEffect(self.view)
+        self.shadowEffect = QGraphicsDropShadowEffect(self.bubble)
         self.shadowEffect.setBlurRadius(blurRadius)
         self.shadowEffect.setOffset(*offset)
         self.shadowEffect.setColor(color)
-        self.view.setGraphicsEffect(None)
-        self.view.setGraphicsEffect(self.shadowEffect)
+        self.bubble.setGraphicsEffect(None)
+        self.bubble.setGraphicsEffect(self.shadowEffect)
 
     def _fadeOut(self):
         """ fade out """
@@ -272,11 +195,44 @@ class TeachingTip(QWidget):
 
     def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
         """ add widget to teaching tip """
-        self.view.widgetLayout.addSpacing(8)
-        self.view.widgetLayout.addWidget(widget, stretch, align)
+        self.view.addSpacing(8)
+        self.view.addWidget(widget, stretch, align)
 
-    @staticmethod
-    def create(target: QWidget, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
+    @property
+    def view(self):
+        return self.bubble.view
+
+    def setView(self, view):
+        self.bubble.setView(view)
+
+    @classmethod
+    def make(self, view: FlyoutViewBase, target: QWidget, duration=1000, tailPosition=TeachingTipTailPosition.BOTTOM,
+             parent=None):
+        """
+        Parameters
+        ----------
+        view: FlyoutViewBase
+            teaching tip view
+
+        target: QWidget
+            the target widget to show tip
+
+        duration: int
+            the time for teaching tip to display in milliseconds. If duration is less than zero,
+            teaching tip will never disappear.
+
+        tailPosition: TeachingTipTailPosition
+            the position of bubble tail
+
+        parent: QWidget
+            parent widget
+        """
+        w = TeachingTip(view, target, duration, tailPosition, parent)
+        w.show()
+        return w
+
+    @classmethod
+    def create(cls, target: QWidget, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
                image: Union[str, QPixmap, QImage] = None, isClosable=True, duration=1000,
                tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
         """
@@ -307,9 +263,9 @@ class TeachingTip(QWidget):
         parent: QWidget
             parent widget
         """
-        w = TeachingTip(target, title, content, icon, image,
-                        isClosable, duration, tailPosition, parent)
-        w.show()
+        view = TeachingTipView(title, content, icon, image, isClosable, tailPosition)
+        w = cls.make(view, target, duration, tailPosition, parent)
+        view.closed.connect(w.close)
         return w
 
 
@@ -319,12 +275,12 @@ class TeachingTipManager(QObject):
     def __init__(self):
         super().__init__()
 
-    def doLayout(self, tip: TeachingTipView):
+    def doLayout(self, tip: TeachTipBubble):
         """ manage the layout of tip """
         tip.hBoxLayout.setContentsMargins(0, 0, 0, 0)
 
-    def viewMargins(self, tip: TeachingTipView):
-        return QMargins(0, 5 + tip.image.height(), 0, 5)
+    def imagePosition(self):
+        return ImagePosition.TOP
 
     def position(self, tip: TeachingTip) -> QPoint:
         pos = self._pos(tip)
@@ -337,31 +293,10 @@ class TeachingTipManager(QObject):
 
         return QPoint(x, y)
 
-    def draw(self, tip: TeachingTipView, painter: QPainter):
-        self._drawShape(tip, painter)
-        self._drawImage(tip, painter)
-
-    def _drawShape(self, tip: TeachingTipView, painter: QPainter):
-        """ draw the shape of tip """
-        # draw border and background
+    def draw(self, tip: TeachTipBubble, painter: QPainter):
+        """ draw the shape of bubble """
         rect = tip.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)
-
-    def _drawImage(self, tip: TeachingTipView, painter: QPainter):
-        """ draw the header image of tip """
-        if tip.image.isNull():
-            return
-
-        path = QPainterPath()
-        path.setFillRule(Qt.WindingFill)
-
-        w, h = tip.image.width(), tip.image.height()
-        rect = QRectF(1, 1, w, h)
-        path.addRoundedRect(rect, 8, 8)
-        path.addRect(QRectF(1, h - 9, w, 10))
-
-        painter.setPen(Qt.NoPen)
-        painter.fillPath(path.simplified(), QBrush(tip.image))
 
     def _pos(self, tip: TeachingTip):
         """ return the poisition of tip """
@@ -396,14 +331,13 @@ class TeachingTipManager(QObject):
 class TopTailTeachingTipManager(TeachingTipManager):
     """ Top tail teaching tip manager """
 
-    def doLayout(self, tip: TeachingTip):
+    def doLayout(self, tip):
         tip.hBoxLayout.setContentsMargins(0, 8, 0, 0)
 
-    def viewMargins(self, tip: TeachingTipView):
-        return QMargins(0, 5, 0, 5 + tip.image.height())
+    def imagePosition(self):
+        return ImagePosition.BOTTOM
 
-    def _drawShape(self, tip, painter):
-        # draw border and background
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pt = tip.hBoxLayout.contentsMargins().top()
 
@@ -413,23 +347,6 @@ class TopTailTeachingTipManager(TeachingTipManager):
             QPolygonF([QPointF(w/2 - 7, pt), QPointF(w/2, 1), QPointF(w/2 + 7, pt)]))
 
         painter.drawPath(path.simplified())
-
-    def _drawImage(self, tip: TeachingTipView, painter: QPainter):
-        """ draw the header image of tip """
-        if tip.image.isNull():
-            return
-
-        path = QPainterPath()
-        path.setFillRule(Qt.WindingFill)
-
-        w, h = tip.image.width(), tip.image.height()
-        rect = QRectF(1, 0, w, h)
-        path.addRoundedRect(rect, 8, 8)
-        path.addRect(QRectF(1, 0, w, 10))
-
-        painter.setPen(Qt.NoPen)
-        painter.translate(0, tip.sizeHint().height() - h)
-        painter.fillPath(path.simplified(), QBrush(tip.image))
 
     def _pos(self, tip: TeachingTip):
         target = tip.target
@@ -442,10 +359,10 @@ class TopTailTeachingTipManager(TeachingTipManager):
 class BottomTailTeachingTipManager(TeachingTipManager):
     """ Bottom tail teaching tip manager """
 
-    def doLayout(self, tip: TeachingTip):
+    def doLayout(self, tip):
         tip.hBoxLayout.setContentsMargins(0, 0, 0, 8)
 
-    def _drawShape(self, tip, painter):
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pb = tip.hBoxLayout.contentsMargins().bottom()
 
@@ -467,10 +384,13 @@ class BottomTailTeachingTipManager(TeachingTipManager):
 class LeftTailTeachingTipManager(TeachingTipManager):
     """ Left tail teaching tip manager """
 
-    def doLayout(self, tip: TeachingTip):
+    def doLayout(self, tip):
         tip.hBoxLayout.setContentsMargins(8, 0, 0, 0)
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.RIGHT
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pl = 8
 
@@ -480,11 +400,6 @@ class LeftTailTeachingTipManager(TeachingTipManager):
             QPolygonF([QPointF(pl, h/2 - 7), QPointF(1, h/2), QPointF(pl, h/2 + 7)]))
 
         painter.drawPath(path.simplified())
-
-    def _drawImage(self, tip: TeachingTipView, painter: QPainter):
-        """ draw the header image of tip """
-        painter.translate(7, 0)
-        super()._drawImage(tip, painter)
 
     def _pos(self, tip: TeachingTip):
         target = tip.target
@@ -498,10 +413,13 @@ class LeftTailTeachingTipManager(TeachingTipManager):
 class RightTailTeachingTipManager(TeachingTipManager):
     """ Left tail teaching tip manager """
 
-    def doLayout(self, tip: TeachingTip):
+    def doLayout(self, tip):
         tip.hBoxLayout.setContentsMargins(0, 0, 8, 0)
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.LEFT
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pr = 8
 
@@ -524,7 +442,7 @@ class RightTailTeachingTipManager(TeachingTipManager):
 class TopLeftTailTeachingTipManager(TopTailTeachingTipManager):
     """ Top left tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pt = tip.hBoxLayout.contentsMargins().top()
 
@@ -546,7 +464,7 @@ class TopLeftTailTeachingTipManager(TopTailTeachingTipManager):
 class TopRightTailTeachingTipManager(TopTailTeachingTipManager):
     """ Top right tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pt = tip.hBoxLayout.contentsMargins().top()
 
@@ -568,7 +486,7 @@ class TopRightTailTeachingTipManager(TopTailTeachingTipManager):
 class BottomLeftTailTeachingTipManager(BottomTailTeachingTipManager):
     """ Bottom left tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pb = tip.hBoxLayout.contentsMargins().bottom()
 
@@ -590,7 +508,7 @@ class BottomLeftTailTeachingTipManager(BottomTailTeachingTipManager):
 class BottomRightTailTeachingTipManager(BottomTailTeachingTipManager):
     """ Bottom right tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pb = tip.hBoxLayout.contentsMargins().bottom()
 
@@ -612,7 +530,10 @@ class BottomRightTailTeachingTipManager(BottomTailTeachingTipManager):
 class LeftTopTailTeachingTipManager(LeftTailTeachingTipManager):
     """ Left top tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.BOTTOM
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pl = 8
 
@@ -635,7 +556,10 @@ class LeftTopTailTeachingTipManager(LeftTailTeachingTipManager):
 class LeftBottomTailTeachingTipManager(LeftTailTeachingTipManager):
     """ Left bottom tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.TOP
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pl = 8
 
@@ -658,7 +582,10 @@ class LeftBottomTailTeachingTipManager(LeftTailTeachingTipManager):
 class RightTopTailTeachingTipManager(RightTailTeachingTipManager):
     """ Right top tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.BOTTOM
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pr = 8
 
@@ -681,7 +608,10 @@ class RightTopTailTeachingTipManager(RightTailTeachingTipManager):
 class RightBottomTailTeachingTipManager(RightTailTeachingTipManager):
     """ Right bottom tail teaching tip manager """
 
-    def _drawShape(self, tip, painter):
+    def imagePosition(self):
+        return ImagePosition.TOP
+
+    def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
         pr = 8
 
