@@ -640,7 +640,7 @@ class MenuAnimationManager(QObject):
         return w, h
 
     def exec(self, pos: QPoint):
-        self._initAni(pos)
+        pass
 
     @classmethod
     def register(cls, name):

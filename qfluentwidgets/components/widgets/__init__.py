@@ -10,7 +10,7 @@ from .combo_box import ComboBox, EditableComboBox
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,
-                    LargeTitleLabel, DisplayLabel, FluentLabelBase)
+                    LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel)
 from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
                    MenuItemDelegate)
@@ -28,5 +28,5 @@ from .cycle_list_widget import CycleListWidget
 from .progress_bar import IndeterminateProgressBar, ProgressBar
 from .progress_ring import ProgressRing
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
-from .teaching_tip import TeachingTip, TeachingTipTailPosition
-from .flyout import FlyoutView, FlyoutViewBase, Flyout
+from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView
+from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
