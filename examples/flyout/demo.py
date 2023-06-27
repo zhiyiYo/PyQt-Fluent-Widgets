@@ -6,7 +6,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (PushButton, Flyout, InfoBarIcon, setTheme, Theme, FlyoutView, FlyoutViewBase,
-                            BodyLabel, setFont, PrimaryPushButton)
+                            BodyLabel, setFont, PrimaryPushButton, FlyoutAnimationType)
 
 
 class CustomFlyoutView(FlyoutViewBase):
@@ -56,7 +56,8 @@ class Demo(QWidget):
             title='Lesson 4',
             content="表达敬意吧，表达出敬意，然后迈向回旋的另一个全新阶段！",
             target=self.button1,
-            parent=self
+            parent=self,
+            isClosable=True
         )
 
     def showFlyout2(self):
@@ -64,6 +65,8 @@ class Demo(QWidget):
             title='杰洛·齐贝林',
             content="触网而起的网球会落到哪一侧，谁也无法知晓。\n如果那种时刻到来，我希望「女神」是存在的。\n这样的话，不管网球落到哪一边，我都会坦然接受的吧。",
             image='resource/SBR.jpg',
+            isClosable=True
+            # image='resource/yiku.gif',
         )
 
         # add button to view
@@ -73,14 +76,14 @@ class Demo(QWidget):
 
         # adjust layout (optional)
         view.widgetLayout.insertSpacing(1, 5)
-        view.widgetLayout.insertSpacing(0, 5)
         view.widgetLayout.addSpacing(5)
 
         # show view
-        Flyout.make(view, self.button2, self)
+        w = Flyout.make(view, self.button2, self)
+        view.closed.connect(w.close)
 
     def showFlyout3(self):
-        Flyout.make(CustomFlyoutView(), self.button3, self)
+        Flyout.make(CustomFlyoutView(), self.button3, self, aniType=FlyoutAnimationType.DROP_DOWN)
 
 
 if __name__ == '__main__':

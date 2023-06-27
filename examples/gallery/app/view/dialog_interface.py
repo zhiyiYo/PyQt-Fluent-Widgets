@@ -2,7 +2,7 @@
 from PyQt5.QtCore import Qt
 
 from qfluentwidgets import (PushButton, Dialog, MessageBox, ColorDialog, TeachingTip, TeachingTipTailPosition,
-                            InfoBarIcon, Flyout, FlyoutView)
+                            InfoBarIcon, Flyout, FlyoutView, TeachingTipView, FlyoutAnimationType)
 from ..common.translator import Translator
 from .gallery_interface import GalleryInterface
 
@@ -114,21 +114,22 @@ class DialogInterface(GalleryInterface):
         )
 
     def showLeftBottomTeachingTip(self):
-        t = TeachingTip(
-            target=self.teachingRightButton,
+        pos = TeachingTipTailPosition.LEFT_BOTTOM
+        view = TeachingTipView(
             icon=None,
             title='Lesson 5',
             content=self.tr("The shortest shortcut is to take a detour."),
             image=":/gallery/images/Gyro.jpg",
             isClosable=True,
-            tailPosition=TeachingTipTailPosition.LEFT_BOTTOM,
-            duration=3000,
-            parent=self.window()
+            tailPosition=pos,
         )
+
         button = PushButton('Action')
         button.setFixedWidth(120)
-        t.addWidget(button, align=Qt.AlignRight)
-        t.show()
+        view.addWidget(button, align=Qt.AlignRight)
+
+        t = TeachingTip.make(view, self.teachingRightButton, 3000, pos, self)
+        view.closed.connect(t.close)
 
     def showSimpleFlyout(self):
         Flyout.create(
@@ -157,4 +158,4 @@ class DialogInterface(GalleryInterface):
         view.widgetLayout.addSpacing(5)
 
         # show view
-        Flyout.make(view, self.complexFlyoutButton, self.window())
+        Flyout.make(view, self.complexFlyoutButton, self.window(), FlyoutAnimationType.SLIDE_RIGHT)
