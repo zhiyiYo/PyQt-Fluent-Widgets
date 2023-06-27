@@ -143,24 +143,24 @@ class InfoBar(QFrame):
         self.hBoxLayout.setContentsMargins(6, 6, 6, 6)
         self.hBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
         self.textLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
-        self.textLayout.setAlignment(Qt.AlignTop)
+        self.textLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.textLayout.setContentsMargins(1, 8, 0, 8)
 
         self.hBoxLayout.setSpacing(0)
         self.textLayout.setSpacing(5)
 
         # add icon to layout
-        self.hBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignTop | Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
 
         # add title to layout
-        self.textLayout.addWidget(self.titleLabel, 1, Qt.AlignTop)
+        self.textLayout.addWidget(self.titleLabel, 1, Qt.AlignmentFlag.AlignTop)
         self.titleLabel.setVisible(bool(self.title))
 
         # add content label to layout
         if self.orient == Qt.Horizontal:
             self.textLayout.addSpacing(7)
 
-        self.textLayout.addWidget(self.contentLabel, 1, Qt.AlignTop)
+        self.textLayout.addWidget(self.contentLabel, 1, Qt.AlignmentFlag.AlignTop)
         self.contentLabel.setVisible(bool(self.content))
         self.hBoxLayout.addLayout(self.textLayout)
 
@@ -173,7 +173,7 @@ class InfoBar(QFrame):
 
         # add close button to layout
         self.hBoxLayout.addSpacing(12)
-        self.hBoxLayout.addWidget(self.closeButton, 0, Qt.AlignTop | Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.closeButton, 0, Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
 
         self._adjustText()
 
@@ -208,8 +208,8 @@ class InfoBar(QFrame):
     def addWidget(self, widget: QWidget, stretch=0):
         """ add widget to info bar """
         self.widgetLayout.addSpacing(6)
-        align = Qt.AlignTop if self.orient == Qt.Vertical else Qt.AlignVCenter
-        self.widgetLayout.addWidget(widget, stretch, Qt.AlignLeft | align)
+        align = Qt.AlignmentFlag.AlignTop if self.orient == Qt.Vertical else Qt.AlignmentFlag.AlignVCenter
+        self.widgetLayout.addWidget(widget, stretch, Qt.AlignmentFlag.AlignLeft | align)
 
     def setCustomBackgroundColor(self, light, dark):
         """ set the custom background color

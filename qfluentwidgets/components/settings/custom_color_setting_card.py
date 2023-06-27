@@ -86,7 +86,7 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.addWidget(self.choiceLabel)
 
         self.radioLayout.setSpacing(19)
-        self.radioLayout.setAlignment(Qt.AlignTop)
+        self.radioLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.radioLayout.setContentsMargins(48, 18, 0, 18)
         self.buttonGroup.addButton(self.customRadioButton)
         self.buttonGroup.addButton(self.defaultRadioButton)
@@ -95,8 +95,8 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.radioLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
 
         self.customColorLayout.setContentsMargins(48, 18, 44, 18)
-        self.customColorLayout.addWidget(self.customLabel, 0, Qt.AlignLeft)
-        self.customColorLayout.addWidget(self.chooseColorButton, 0, Qt.AlignRight)
+        self.customColorLayout.addWidget(self.customLabel, 0, Qt.AlignmentFlag.AlignLeft)
+        self.customColorLayout.addWidget(self.chooseColorButton, 0, Qt.AlignmentFlag.AlignRight)
         self.customColorLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
 
         self.viewLayout.setSpacing(0)

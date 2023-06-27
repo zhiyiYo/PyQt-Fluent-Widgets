@@ -490,7 +490,7 @@ class SplitWidgetBase(QWidget):
 
     def setWidget(self, widget: QWidget):
         """ set the widget on left side """
-        self.hBoxLayout.insertWidget(0, widget, 1, Qt.AlignLeft)
+        self.hBoxLayout.insertWidget(0, widget, 1, Qt.AlignmentFlag.AlignLeft)
 
     def setDropButton(self, button):
         """ set drop dow button """

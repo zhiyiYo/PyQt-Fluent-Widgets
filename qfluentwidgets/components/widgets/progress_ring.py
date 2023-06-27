@@ -26,7 +26,7 @@ class ProgressRing(ProgressBar):
         """ draw text """
         painter.setFont(self.font())
         painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-        painter.drawText(self.rect(), Qt.AlignCenter, text)
+        painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, text)
 
     def paintEvent(self, e):
         painter = QPainter(self)

@@ -40,9 +40,9 @@ class Demo(QWidget):
         self.lineEdit.setCompleter(self.completer)
 
         self.resize(400, 400)
-        self.hBoxLayout.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.lineEdit, 0, Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignCenter)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.hBoxLayout.addWidget(self.lineEdit, 0, Qt.AlignmentFlag.AlignCenter)
+        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignmentFlag.AlignCenter)
 
         self.lineEdit.setFixedSize(200, 33)
         self.lineEdit.setClearButtonEnabled(True)

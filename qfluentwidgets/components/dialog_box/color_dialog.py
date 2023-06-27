@@ -312,10 +312,10 @@ class ColorDialog(MaskDialogBase):
             self.opacityLabel.hide()
 
         self.vBoxLayout.setSpacing(0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.addWidget(self.scrollArea, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignmentFlag.AlignBottom)
 
         self.yesButton.move(24, 25)
         self.cancelButton.move(250, 25)

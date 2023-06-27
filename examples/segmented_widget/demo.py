@@ -45,7 +45,7 @@ class Demo(QWidget):
 
     def addSubInterface(self, widget: QLabel, objectName, text):
         widget.setObjectName(objectName)
-        widget.setAlignment(Qt.AlignCenter)
+        widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.stackedWidget.addWidget(widget)
         self.pivot.addItem(
             routeKey=objectName,

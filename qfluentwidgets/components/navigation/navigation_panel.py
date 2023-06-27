@@ -135,16 +135,16 @@ class NavigationPanel(QFrame):
         self.scrollLayout.setSpacing(4)
 
         self.vBoxLayout.addLayout(self.topLayout, 0)
-        self.vBoxLayout.addWidget(self.scrollArea, 1, Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.scrollArea, 1, Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.addLayout(self.bottomLayout, 0)
 
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
-        self.topLayout.setAlignment(Qt.AlignTop)
-        self.scrollLayout.setAlignment(Qt.AlignTop)
-        self.bottomLayout.setAlignment(Qt.AlignBottom)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.topLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.scrollLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.bottomLayout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
-        self.topLayout.addWidget(self.returnButton, 0, Qt.AlignTop)
-        self.topLayout.addWidget(self.menuButton, 0, Qt.AlignTop)
+        self.topLayout.addWidget(self.returnButton, 0, Qt.AlignmentFlag.AlignTop)
+        self.topLayout.addWidget(self.menuButton, 0, Qt.AlignmentFlag.AlignTop)
 
     def widget(self, routeKey: str):
         if routeKey not in self.items:
@@ -332,13 +332,13 @@ class NavigationPanel(QFrame):
         """ insert widget to layout """
         if position == NavigationItemPosition.TOP:
             widget.setParent(self)
-            self.topLayout.insertWidget(index, widget, 0, Qt.AlignTop)
+            self.topLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignTop)
         elif position == NavigationItemPosition.SCROLL:
             widget.setParent(self.scrollWidget)
-            self.scrollLayout.insertWidget(index, widget, 0, Qt.AlignTop)
+            self.scrollLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignTop)
         else:
             widget.setParent(self)
-            self.bottomLayout.insertWidget(index, widget, 0, Qt.AlignBottom)
+            self.bottomLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignBottom)
 
         widget.show()
 

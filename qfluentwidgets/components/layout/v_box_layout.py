@@ -11,12 +11,12 @@ class VBoxLayout(QVBoxLayout):
         super().__init__(parent)
         self.widgets = []
 
-    def addWidgets(self, widgets: List[QWidget], stretch=0, alignment=Qt.AlignTop):
+    def addWidgets(self, widgets: List[QWidget], stretch=0, alignment=Qt.AlignmentFlag.AlignTop):
         """ add widgets to layout """
         for widget in widgets:
             self.addWidget(widget, stretch, alignment)
 
-    def addWidget(self, widget: QWidget, stretch=0, alignment=Qt.AlignTop):
+    def addWidget(self, widget: QWidget, stretch=0, alignment=Qt.AlignmentFlag.AlignTop):
         """ add widget to layout """
         super().addWidget(widget, stretch, alignment)
         self.widgets.append(widget)

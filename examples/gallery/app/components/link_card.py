@@ -34,7 +34,7 @@ class LinkCard(QFrame):
         self.vBoxLayout.addWidget(self.titleLabel)
         self.vBoxLayout.addSpacing(8)
         self.vBoxLayout.addWidget(self.contentLabel)
-        self.vBoxLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
         self.urlWidget.move(170, 192)
 
         self.titleLabel.setObjectName('titleLabel')
@@ -55,7 +55,7 @@ class LinkCardView(SingleDirectionScrollArea):
 
         self.hBoxLayout.setContentsMargins(36, 0, 0, 0)
         self.hBoxLayout.setSpacing(12)
-        self.hBoxLayout.setAlignment(Qt.AlignLeft)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         self.setWidget(self.view)
         self.setWidgetResizable(True)
@@ -68,4 +68,4 @@ class LinkCardView(SingleDirectionScrollArea):
     def addCard(self, icon, title, content, url):
         """ add link card """
         card = LinkCard(icon, title, content, url, self.view)
-        self.hBoxLayout.addWidget(card, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(card, 0, Qt.AlignmentFlag.AlignLeft)

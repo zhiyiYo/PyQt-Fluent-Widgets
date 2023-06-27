@@ -17,8 +17,8 @@ class Widget(QFrame):
         self.hBoxLayout = QHBoxLayout(self)
 
         setFont(self.label, 24)
-        self.label.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignmentFlag.AlignCenter)
         self.setObjectName(text.replace(' ', '-'))
 
 

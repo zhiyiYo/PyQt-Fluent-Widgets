@@ -68,18 +68,18 @@ class Ui_MessageBox:
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.addLayout(self.textLayout, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignmentFlag.AlignBottom)
         self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
 
         self.textLayout.setSpacing(12)
         self.textLayout.setContentsMargins(24, 24, 24, 24)
-        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
-        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignTop)
+        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignTop)
+        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignTop)
 
         self.buttonLayout.setSpacing(12)
         self.buttonLayout.setContentsMargins(24, 24, 24, 24)
-        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
-        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
+        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignmentFlag.AlignVCenter)
+        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignmentFlag.AlignVCenter)
 
     def __onCancelButtonClicked(self):
         self.reject()
@@ -117,7 +117,7 @@ class Dialog(FramelessDialog, Ui_MessageBox):
         self.resize(240, 192)
         self.titleBar.hide()
 
-        self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignTop)
+        self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignmentFlag.AlignTop)
         self.windowTitleLabel.setObjectName('windowTitleLabel')
         FluentStyleSheet.DIALOG.apply(self)
         self.setFixedSize(self.size())
@@ -139,7 +139,7 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
         self._hBoxLayout.removeWidget(self.widget)
-        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
+        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignmentFlag.AlignCenter)
 
         self.buttonGroup.setMinimumWidth(280)
         self.widget.setFixedSize(

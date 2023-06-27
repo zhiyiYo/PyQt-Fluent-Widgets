@@ -41,11 +41,11 @@ class IconCard(QFrame):
         self.setFixedSize(96, 96)
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(8, 28, 8, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.iconWidget.setFixedSize(28, 28)
-        self.vBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignmentFlag.AlignHCenter)
         self.vBoxLayout.addSpacing(14)
-        self.vBoxLayout.addWidget(self.nameLabel, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.nameLabel, 0, Qt.AlignmentFlag.AlignHCenter)
 
         text = self.nameLabel.fontMetrics().elidedText(icon.value, Qt.ElideRight, 78)
         self.nameLabel.setText(text)
@@ -87,7 +87,7 @@ class IconInfoPanel(QFrame):
         self.vBoxLayout = QVBoxLayout(self)
         self.vBoxLayout.setContentsMargins(16, 20, 16, 20)
         self.vBoxLayout.setSpacing(0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self.vBoxLayout.addWidget(self.nameLabel)
         self.vBoxLayout.addSpacing(16)
@@ -154,7 +154,7 @@ class IconCardView(QWidget):
         self.hBoxLayout.setSpacing(0)
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.scrollArea)
-        self.hBoxLayout.addWidget(self.infoPanel, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.infoPanel, 0, Qt.AlignmentFlag.AlignRight)
 
         self.flowLayout.setVerticalSpacing(8)
         self.flowLayout.setHorizontalSpacing(8)

@@ -57,7 +57,7 @@ class Ui_Form(object):
         self.label_2.setPixmap(QtGui.QPixmap(":/images/logo.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
-        self.verticalLayout_2.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_2.addWidget(self.label_2, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         spacerItem1 = QtWidgets.QSpacerItem(20, 15, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_2.addItem(spacerItem1)
         self.gridLayout = QtWidgets.QGridLayout()

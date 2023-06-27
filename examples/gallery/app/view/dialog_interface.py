@@ -126,7 +126,7 @@ class DialogInterface(GalleryInterface):
 
         button = PushButton('Action')
         button.setFixedWidth(120)
-        view.addWidget(button, align=Qt.AlignRight)
+        view.addWidget(button, align=Qt.AlignmentFlag.AlignRight)
 
         t = TeachingTip.make(view, self.teachingRightButton, 3000, pos, self)
         view.closed.connect(t.close)
@@ -150,7 +150,7 @@ class DialogInterface(GalleryInterface):
         # add button to view
         button = PushButton('Action')
         button.setFixedWidth(120)
-        view.addWidget(button, align=Qt.AlignRight)
+        view.addWidget(button, align=Qt.AlignmentFlag.AlignRight)
 
         # adjust layout (optional)
         view.widgetLayout.insertSpacing(1, 5)

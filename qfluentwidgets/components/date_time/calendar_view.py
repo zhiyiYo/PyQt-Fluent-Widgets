@@ -113,7 +113,7 @@ class ScrollItemDelegate(QStyledItemDelegate):
                 painter.setOpacity(0.6)
 
         text = index.data(Qt.DisplayRole)
-        painter.drawText(option.rect, Qt.AlignCenter, text)
+        painter.drawText(option.rect, Qt.AlignmentFlag.AlignCenter, text)
         painter.restore()
 
     def _itemMargin(self):
@@ -247,14 +247,14 @@ class CalendarViewBase(QFrame):
 
         self.hBoxLayout.setContentsMargins(9, 8, 9, 8)
         self.hBoxLayout.setSpacing(7)
-        self.hBoxLayout.addWidget(self.titleButton, 1, Qt.AlignVCenter)
-        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignVCenter)
-        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.titleButton, 1, Qt.AlignmentFlag.AlignVCenter)
+        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignmentFlag.AlignVCenter)
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.addLayout(self.hBoxLayout)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self.titleButton.setObjectName('titleButton')
         FluentStyleSheet.CALENDAR_PICKER.apply(self)
@@ -410,10 +410,10 @@ class DayScrollView(ScrollViewBase):
         for day in self.weekDays:
             label = QLabel(day)
             label.setObjectName('weekDayLabel')
-            self.weekDayLayout.addWidget(label, 1, Qt.AlignHCenter)
+            self.weekDayLayout.addWidget(label, 1, Qt.AlignmentFlag.AlignHCenter)
 
         self.setViewportMargins(0, 38, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.weekDayLayout.setSpacing(0)
         self.weekDayLayout.setContentsMargins(3, 12, 3, 12)

@@ -376,7 +376,7 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
         self.setTextMargins(0, 0, 29, 0)
         self.dropButton.setFixedSize(30, 25)
-        self.hBoxLayout.addWidget(self.dropButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.dropButton, 0, Qt.AlignmentFlag.AlignRight)
 
         self.dropButton.clicked.connect(self._toggleComboMenu)
         self.textEdited.connect(self._onTextEdited)

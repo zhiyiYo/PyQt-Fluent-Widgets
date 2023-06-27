@@ -16,9 +16,9 @@ class Widget(QWidget):
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)
         self.label = QLabel(text, self)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.hBoxLayout = QHBoxLayout(self)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignmentFlag.AlignCenter)
         self.setObjectName(text.replace(' ', '-'))
 
 
@@ -70,13 +70,13 @@ class CustomTitleBar(TitleBar):
         self.iconLabel.setFixedSize(18, 18)
         self.hBoxLayout.insertSpacing(0, 20)
         self.hBoxLayout.insertWidget(
-            1, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+            1, self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
         self.titleLabel = QLabel(self)
         self.hBoxLayout.insertWidget(
-            2, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+            2, self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
 
@@ -90,7 +90,7 @@ class CustomTitleBar(TitleBar):
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.setSpacing(0)
         self.buttonLayout.setContentsMargins(0, 0, 0, 0)
-        self.buttonLayout.setAlignment(Qt.AlignTop)
+        self.buttonLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.buttonLayout.addWidget(self.minBtn)
         self.buttonLayout.addWidget(self.maxBtn)
         self.buttonLayout.addWidget(self.closeBtn)

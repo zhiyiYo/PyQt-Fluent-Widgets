@@ -13,7 +13,7 @@ class Demo(QWidget):
         super().__init__()
         self.setLayout(QHBoxLayout())
         self.label = QLabel('Right-click your mouse', self)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout().addWidget(self.label)
         self.resize(400, 400)
 

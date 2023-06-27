@@ -69,12 +69,12 @@ class FluentTitleBar(TitleBar):
         # add window icon
         self.iconLabel = QLabel(self)
         self.iconLabel.setFixedSize(18, 18)
-        self.hBoxLayout.insertWidget(0, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+        self.hBoxLayout.insertWidget(0, self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
         self.titleLabel = QLabel(self)
-        self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+        self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
 
@@ -82,7 +82,7 @@ class FluentTitleBar(TitleBar):
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.setSpacing(0)
         self.buttonLayout.setContentsMargins(0, 0, 0, 0)
-        self.buttonLayout.setAlignment(Qt.AlignTop)
+        self.buttonLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.buttonLayout.addWidget(self.minBtn)
         self.buttonLayout.addWidget(self.maxBtn)
         self.buttonLayout.addWidget(self.closeBtn)
@@ -254,12 +254,12 @@ class SplitTitleBar(TitleBar):
         self.iconLabel = QLabel(self)
         self.iconLabel.setFixedSize(18, 18)
         self.hBoxLayout.insertSpacing(0, 12)
-        self.hBoxLayout.insertWidget(1, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignBottom)
+        self.hBoxLayout.insertWidget(1, self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom)
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
         self.titleLabel = QLabel(self)
-        self.hBoxLayout.insertWidget(2, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignBottom)
+        self.hBoxLayout.insertWidget(2, self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
 

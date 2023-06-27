@@ -30,8 +30,8 @@ class BannerWidget(QWidget):
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 20, 0, 0)
         self.vBoxLayout.addWidget(self.galleryLabel)
-        self.vBoxLayout.addWidget(self.linkCardView, 1, Qt.AlignBottom)
-        self.vBoxLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.linkCardView, 1, Qt.AlignmentFlag.AlignBottom)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
 
         self.linkCardView.addCard(
             ':/gallery/images/logo.png',
@@ -116,7 +116,7 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout.setContentsMargins(0, 0, 0, 36)
         self.vBoxLayout.setSpacing(40)
         self.vBoxLayout.addWidget(self.banner)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
     def loadSamples(self):
         """ load samples """

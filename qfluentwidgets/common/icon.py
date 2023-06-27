@@ -33,7 +33,7 @@ class MenuIconEngine(QIconEngine):
         # prevent the left side of the icon from being cropped
         rect.adjust(-1, 0, 0, 0)
 
-        icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
+        icon.paint(painter, rect, Qt.AlignmentFlag.AlignHCenter, QIcon.Normal, state)
         painter.restore()
 
 

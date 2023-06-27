@@ -169,12 +169,12 @@ class PushButtonDemo(QWidget):
         self.gridLayout.addWidget(self.primarySplitPushButton1, 6, 0)
         self.gridLayout.addWidget(self.primarySplitPushButton2, 6, 1)
 
-        self.gridLayout.addWidget(self.dropDownPushButton1, 7, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.dropDownPushButton2, 7, 1, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.primaryDropDownPushButton1, 8, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.primaryDropDownPushButton2, 8, 1, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.transparentDropDownPushButton1, 9, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.transparentDropDownPushButton2, 9, 1, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.dropDownPushButton1, 7, 0, Qt.AlignmentFlag.AlignLeft)
+        self.gridLayout.addWidget(self.dropDownPushButton2, 7, 1, Qt.AlignmentFlag.AlignLeft)
+        self.gridLayout.addWidget(self.primaryDropDownPushButton1, 8, 0, Qt.AlignmentFlag.AlignLeft)
+        self.gridLayout.addWidget(self.primaryDropDownPushButton2, 8, 1, Qt.AlignmentFlag.AlignLeft)
+        self.gridLayout.addWidget(self.transparentDropDownPushButton1, 9, 0, Qt.AlignmentFlag.AlignLeft)
+        self.gridLayout.addWidget(self.transparentDropDownPushButton2, 9, 1, Qt.AlignmentFlag.AlignLeft)
 
         self.gridLayout.addWidget(self.hyperlinkButton, 10, 0)
 

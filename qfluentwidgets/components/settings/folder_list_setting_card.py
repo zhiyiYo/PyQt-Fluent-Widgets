@@ -82,11 +82,11 @@ class FolderItem(QWidget):
 
         self.setFixedHeight(53)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
-        self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignmentFlag.AlignLeft)
         self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
-        self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignRight)
-        self.hBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
         self.removeButton.clicked.connect(
             lambda: self.removed.emit(self))
@@ -129,7 +129,7 @@ class FolderListSettingCard(ExpandSettingCard):
 
         # initialize layout
         self.viewLayout.setSpacing(0)
-        self.viewLayout.setAlignment(Qt.AlignTop)
+        self.viewLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.viewLayout.setContentsMargins(0, 0, 0, 0)
         for folder in self.folders:
             self.__addFolderItem(folder)

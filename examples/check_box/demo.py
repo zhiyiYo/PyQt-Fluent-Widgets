@@ -14,7 +14,7 @@ class Demo(QWidget):
         self.checkBox = CheckBox('This is a check box', self)
         self.checkBox.setTristate(True)
 
-        self.hBoxLayout.addWidget(self.checkBox, 1, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.checkBox, 1, Qt.AlignmentFlag.AlignCenter)
         self.setStyleSheet('Demo{background:white}')
         self.resize(400, 400)
 

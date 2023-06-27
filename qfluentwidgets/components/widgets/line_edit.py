@@ -77,8 +77,8 @@ class LineEdit(QLineEdit):
 
         self.hBoxLayout.setSpacing(3)
         self.hBoxLayout.setContentsMargins(4, 4, 4, 4)
-        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.hBoxLayout.addWidget(self.clearButton, 0, Qt.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.hBoxLayout.addWidget(self.clearButton, 0, Qt.AlignmentFlag.AlignRight)
 
         self.clearButton.clicked.connect(self.clear)
         self.textChanged.connect(self.__onTextChanged)
@@ -259,7 +259,7 @@ class SearchLineEdit(LineEdit):
         super().__init__(parent)
         self.searchButton = LineEditButton(FIF.SEARCH, self)
 
-        self.hBoxLayout.addWidget(self.searchButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.searchButton, 0, Qt.AlignmentFlag.AlignRight)
         self.setClearButtonEnabled(True)
         self.setTextMargins(0, 0, 59, 0)
 

@@ -26,7 +26,7 @@ class Demo(QWidget):
         # self.picker.setDateFormat('yyyy-M-d')
 
         self.hBoxLayout = QHBoxLayout(self)
-        self.hBoxLayout.addWidget(self.picker, 0, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.picker, 0, Qt.AlignmentFlag.AlignCenter)
         self.resize(500, 500)
 
 

@@ -70,9 +70,9 @@ class SpinBoxBase:
 
         self.hBoxLayout.setContentsMargins(0, 4, 4, 4)
         self.hBoxLayout.setSpacing(5)
-        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignRight)
-        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignRight)
-        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
 
         self.upButton.clicked.connect(self.stepUp)
         self.downButton.clicked.connect(self.stepDown)

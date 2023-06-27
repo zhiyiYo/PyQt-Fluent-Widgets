@@ -35,8 +35,8 @@ class Demo(QWidget):
         self.spinBox.setValue(50)
         self.spinBox.valueChanged.connect(self.progressRing.setValue)
 
-        self.vBoxLayout.addWidget(self.progressRing, 0, Qt.AlignCenter)
-        self.vBoxLayout.addWidget(self.spinBox, 0, Qt.AlignCenter)
+        self.vBoxLayout.addWidget(self.progressRing, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.spinBox, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
         self.resize(400, 400)
 

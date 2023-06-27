@@ -227,7 +227,7 @@ class RoundMenu(QWidget):
         self.timer.timeout.connect(self._onShowMenuTimeOut)
 
         self.setShadowEffect()
-        self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.view, 1, Qt.AlignmentFlag.AlignCenter)
 
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
         FluentStyleSheet.MENU.apply(self)

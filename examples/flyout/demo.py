@@ -41,9 +41,9 @@ class Demo(QWidget):
         self.button1.setFixedWidth(150)
         self.button2.setFixedWidth(150)
         self.button3.setFixedWidth(150)
-        self.vBoxLayout.addWidget(self.button1, 0, Qt.AlignBottom)
-        self.vBoxLayout.addWidget(self.button2, 0, Qt.AlignBottom)
-        self.vBoxLayout.addWidget(self.button3, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.button1, 0, Qt.AlignmentFlag.AlignBottom)
+        self.vBoxLayout.addWidget(self.button2, 0, Qt.AlignmentFlag.AlignBottom)
+        self.vBoxLayout.addWidget(self.button3, 0, Qt.AlignmentFlag.AlignBottom)
         self.vBoxLayout.setContentsMargins(30, 50, 30, 50)
 
         self.button1.clicked.connect(self.showFlyout1)
@@ -72,7 +72,7 @@ class Demo(QWidget):
         # add button to view
         button = PushButton('Action')
         button.setFixedWidth(120)
-        view.addWidget(button, align=Qt.AlignRight)
+        view.addWidget(button, align=Qt.AlignmentFlag.AlignRight)
 
         # adjust layout (optional)
         view.widgetLayout.insertSpacing(1, 5)

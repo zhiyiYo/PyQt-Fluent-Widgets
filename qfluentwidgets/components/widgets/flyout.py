@@ -48,7 +48,7 @@ class FlyoutViewBase(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
+    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignmentFlag.AlignLeft):
         raise NotImplementedError
 
     def paintEvent(self, e):
@@ -138,7 +138,7 @@ class FlyoutView(FlyoutViewBase):
             self.iconWidget.setFixedHeight(36)
 
         self.vBoxLayout.addLayout(self.viewLayout)
-        self.viewLayout.addWidget(self.iconWidget, 0, Qt.AlignTop)
+        self.viewLayout.addWidget(self.iconWidget, 0, Qt.AlignmentFlag.AlignTop)
 
         # add text
         self._adjustText()
@@ -149,7 +149,7 @@ class FlyoutView(FlyoutViewBase):
         # add close button
         self.closeButton.setVisible(self.isClosable)
         self.viewLayout.addWidget(
-            self.closeButton, 0, Qt.AlignRight | Qt.AlignTop)
+            self.closeButton, 0, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignTop)
 
         # adjust content margins
         margins = QMargins(6, 5, 6, 5)
@@ -161,7 +161,7 @@ class FlyoutView(FlyoutViewBase):
         self._adjustImage()
         self._addImageToLayout()
 
-    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
+    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignmentFlag.AlignLeft):
         """ add widget to view """
         self.widgetLayout.addSpacing(8)
         self.widgetLayout.addWidget(widget, stretch, align)

@@ -74,11 +74,11 @@ class ItemMaskWidget(QWidget):
     def _drawText(self, item: QListWidgetItem, painter: QPainter, y: int):
         align = item.textAlignment()
         w, h = item.sizeHint().width(), item.sizeHint().height()
-        if align & Qt.AlignLeft:
+        if align & Qt.AlignmentFlag.AlignLeft:
             rect = QRectF(15, y, w, h)      # padding-left: 11px
-        elif align & Qt.AlignRight:
+        elif align & Qt.AlignmentFlag.AlignRight:
             rect = QRectF(4, y, w-15, h)    # padding-right: 11px
-        elif align & Qt.AlignCenter:
+        elif align & Qt.AlignmentFlag.AlignCenter:
             rect = QRectF(4, y, w, h)
 
         painter.drawText(rect, align, item.text())
@@ -109,7 +109,7 @@ class DigitFormatter(PickerColumnFormatter):
 class PickerColumnButton(QPushButton):
     """ Picker column button """
 
-    def __init__(self, name: str, items: Iterable, width: int, align=Qt.AlignLeft, formatter=None, parent=None):
+    def __init__(self, name: str, items: Iterable, width: int, align=Qt.AlignmentFlag.AlignLeft, formatter=None, parent=None):
         super().__init__(text=name, parent=parent)
         self._name = name
         self._value = None   # type: str
@@ -125,11 +125,11 @@ class PickerColumnButton(QPushButton):
     def align(self):
         return self._align
 
-    def setAlignment(self, align=Qt.AlignCenter):
+    def setAlignment(self, align=Qt.AlignmentFlag.AlignCenter):
         """ set the text alignment """
-        if align == Qt.AlignLeft:
+        if align == Qt.AlignmentFlag.AlignLeft:
             self.setProperty('align', 'left')
-        elif align == Qt.AlignRight:
+        elif align == Qt.AlignmentFlag.AlignRight:
             self.setProperty('align', 'right')
         else:
             self.setProperty('align', 'center')
@@ -204,7 +204,7 @@ class PickerBase(QPushButton):
         FluentStyleSheet.TIME_PICKER.apply(self)
         self.clicked.connect(self._showPanel)
 
-    def addColumn(self, name: str, items: Iterable, width: int, align=Qt.AlignCenter,
+    def addColumn(self, name: str, items: Iterable, width: int, align=Qt.AlignmentFlag.AlignCenter,
                   formatter: PickerColumnFormatter = None):
         """ add column
 
@@ -229,7 +229,7 @@ class PickerBase(QPushButton):
         button = PickerColumnButton(name, items, width, align, formatter, self)
         self.columns.append(button)
 
-        self.hBoxLayout.addWidget(button, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(button, 0, Qt.AlignmentFlag.AlignLeft)
 
         # update the style of buttons
         for btn in self.columns[:-1]:
@@ -237,7 +237,7 @@ class PickerBase(QPushButton):
             btn.setStyle(QApplication.style())
 
     @checkColumnIndex
-    def setColumnAlignment(self, index: int, align=Qt.AlignCenter):
+    def setColumnAlignment(self, index: int, align=Qt.AlignmentFlag.AlignCenter):
         """ set the text alignment of specified column """
         self.columns[index].setAlignment(align)
 
@@ -291,7 +291,7 @@ class PickerBase(QPushButton):
         return self.columns[index].formatter().decode(value)
 
     @checkColumnIndex
-    def setColumn(self, index: int, name: str, items: Iterable, width: int, align=Qt.AlignCenter):
+    def setColumn(self, index: int, name: str, items: Iterable, width: int, align=Qt.AlignmentFlag.AlignCenter):
         """ set column
 
         Parameters
@@ -418,7 +418,7 @@ class PickerPanel(QWidget):
         self.cancelButton.setFixedHeight(33)
 
         self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
-        self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.view, 1, Qt.AlignmentFlag.AlignCenter)
         self.hBoxLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
 
         self.vBoxLayout.setSpacing(0)
@@ -454,7 +454,7 @@ class PickerPanel(QWidget):
         self.view.setGraphicsEffect(None)
         self.view.setGraphicsEffect(self.shadowEffect)
 
-    def addColumn(self, items: Iterable, width: int, align=Qt.AlignCenter):
+    def addColumn(self, items: Iterable, width: int, align=Qt.AlignmentFlag.AlignCenter):
         """ add one column to view
 
         Parameters

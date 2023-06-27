@@ -52,17 +52,17 @@ class SettingCard(QFrame):
         # initialize layout
         self.hBoxLayout.setSpacing(0)
         self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
-        self.hBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.hBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
 
-        self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignLeft)
+        self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignmentFlag.AlignLeft)
         self.hBoxLayout.addSpacing(16)
 
         self.hBoxLayout.addLayout(self.vBoxLayout)
-        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignLeft)
-        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignLeft)
+        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignLeft)
+        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignLeft)
 
         self.hBoxLayout.addSpacing(16)
         self.hBoxLayout.addStretch(1)
@@ -119,7 +119,7 @@ class SwitchSettingCard(SettingCard):
             configItem.valueChanged.connect(self.setValue)
 
         # add switch button to layout
-        self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.switchButton, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.switchButton.checkedChanged.connect(self.__onCheckedChanged)
@@ -177,9 +177,9 @@ class RangeSettingCard(SettingCard):
         self.valueLabel.setNum(configItem.value)
 
         self.hBoxLayout.addStretch(1)
-        self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(6)
-        self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.slider, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.valueLabel.setObjectName('valueLabel')
@@ -223,7 +223,7 @@ class PushSettingCard(SettingCard):
         """
         super().__init__(icon, title, content, parent)
         self.button = QPushButton(text, self)
-        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.button, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
         self.button.clicked.connect(self.clicked)
 
@@ -266,7 +266,7 @@ class HyperlinkCard(SettingCard):
         """
         super().__init__(icon, title, content, parent)
         self.linkButton = HyperlinkButton(url, text, self)
-        self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.linkButton, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
 
@@ -349,7 +349,7 @@ class ColorSettingCard(SettingCard):
         self.configItem = configItem
         self.colorPicker = ColorPickerButton(
             qconfig.get(configItem), title, self, enableAlpha)
-        self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.colorPicker, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
         self.colorPicker.colorChanged.connect(self.__onColorChanged)
         configItem.valueChanged.connect(self.setValue)
@@ -391,7 +391,7 @@ class ComboBoxSettingCard(SettingCard):
         super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.comboBox = ComboBox(self)
-        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.optionToText = {o: t for o, t in zip(configItem.options, texts)}

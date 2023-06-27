@@ -128,9 +128,9 @@ class ExpandSettingCard(QFrame):
 
     def addWidget(self, widget: QWidget):
         """ add widget to tail """
-        self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignRight)
+        self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignRight)
         self.card.hBoxLayout.addSpacing(19)
-        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
+        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
         self.card.hBoxLayout.addSpacing(8)
 
     def setExpand(self, isExpand: bool):

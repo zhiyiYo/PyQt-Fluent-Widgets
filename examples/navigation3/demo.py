@@ -17,8 +17,8 @@ class Widget(QWidget):
         self.label = QLabel(text, self)
         self.hBoxLayout = QHBoxLayout(self)
 
-        self.label.setAlignment(Qt.AlignCenter)
-        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.hBoxLayout.addWidget(self.label, 1, Qt.AlignmentFlag.AlignCenter)
 
         self.setObjectName(text.replace(' ', '-'))
 

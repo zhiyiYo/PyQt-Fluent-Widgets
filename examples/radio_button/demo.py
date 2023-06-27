@@ -15,9 +15,9 @@ class Demo(QWidget):
         self.button2 = RadioButton('Option 2', self)
         self.button3 = RadioButton('Option 3', self)
 
-        self.vBoxLayout.addWidget(self.button1, 0, Qt.AlignCenter)
-        self.vBoxLayout.addWidget(self.button2, 0, Qt.AlignCenter)
-        self.vBoxLayout.addWidget(self.button3, 0, Qt.AlignCenter)
+        self.vBoxLayout.addWidget(self.button1, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.button2, 0, Qt.AlignmentFlag.AlignCenter)
+        self.vBoxLayout.addWidget(self.button3, 0, Qt.AlignmentFlag.AlignCenter)
         self.resize(300, 150)
         self.setStyleSheet('Demo{background:white}')
 

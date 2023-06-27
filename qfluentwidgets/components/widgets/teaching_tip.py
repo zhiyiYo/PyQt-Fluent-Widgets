@@ -193,7 +193,7 @@ class TeachingTip(QWidget):
 
         return super().eventFilter(obj, e)
 
-    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
+    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignmentFlag.AlignLeft):
         """ add widget to teaching tip """
         self.view.addSpacing(8)
         self.view.addWidget(widget, stretch, align)

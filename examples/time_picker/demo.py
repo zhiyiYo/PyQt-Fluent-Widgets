@@ -50,11 +50,11 @@ class Demo(QWidget):
         # self.timePicker2.setTime(QTime(13, 15))
 
         self.resize(500, 500)
-        self.vBoxLayout.addWidget(self.datePicker1, 0, Qt.AlignHCenter)
-        self.vBoxLayout.addWidget(self.datePicker2, 0, Qt.AlignHCenter)
-        self.vBoxLayout.addWidget(self.timePicker1, 0, Qt.AlignHCenter)
-        self.vBoxLayout.addWidget(self.timePicker2, 0, Qt.AlignHCenter)
-        self.vBoxLayout.addWidget(self.timePicker3, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.datePicker1, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.datePicker2, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker1, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker2, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.vBoxLayout.addWidget(self.timePicker3, 0, Qt.AlignmentFlag.AlignHCenter)
 
 
 if __name__ == '__main__':

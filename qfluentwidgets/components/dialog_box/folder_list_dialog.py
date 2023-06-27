@@ -66,33 +66,33 @@ class FolderListDialog(MaskDialogBase):
         """ initialize layout """
         self.vBoxLayout.setContentsMargins(24, 24, 24, 24)
         self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetFixedSize)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setSpacing(0)
 
         # labels
         layout_1 = QVBoxLayout()
         layout_1.setContentsMargins(0, 0, 0, 0)
         layout_1.setSpacing(6)
-        layout_1.addWidget(self.titleLabel, 0, Qt.AlignTop)
-        layout_1.addWidget(self.contentLabel, 0, Qt.AlignTop)
+        layout_1.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignTop)
+        layout_1.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.addLayout(layout_1, 0)
         self.vBoxLayout.addSpacing(12)
 
         # cards
         layout_2 = QHBoxLayout()
-        layout_2.setAlignment(Qt.AlignCenter)
+        layout_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout_2.setContentsMargins(4, 0, 4, 0)
-        layout_2.addWidget(self.scrollArea, 0, Qt.AlignCenter)
+        layout_2.addWidget(self.scrollArea, 0, Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.addLayout(layout_2, 1)
         self.vBoxLayout.addSpacing(24)
 
         self.scrollLayout = QVBoxLayout(self.scrollWidget)
-        self.scrollLayout.setAlignment(Qt.AlignTop)
+        self.scrollLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.scrollLayout.setContentsMargins(0, 0, 0, 0)
         self.scrollLayout.setSpacing(8)
-        self.scrollLayout.addWidget(self.addFolderCard, 0, Qt.AlignTop)
+        self.scrollLayout.addWidget(self.addFolderCard, 0, Qt.AlignmentFlag.AlignTop)
         for card in self.folderCards:
-            self.scrollLayout.addWidget(card, 0, Qt.AlignTop)
+            self.scrollLayout.addWidget(card, 0, Qt.AlignmentFlag.AlignTop)
 
         # buttons
         layout_3 = QHBoxLayout()
@@ -113,7 +113,7 @@ class FolderListDialog(MaskDialogBase):
 
         # create folder card
         card = FolderCard(path, self.scrollWidget)
-        self.scrollLayout.addWidget(card, 0, Qt.AlignTop)
+        self.scrollLayout.addWidget(card, 0, Qt.AlignmentFlag.AlignTop)
         card.clicked.connect(self.__showDeleteFolderCardDialog)
         card.show()
 
@@ -279,7 +279,7 @@ class FolderCard(ClickableWindow):
         painter.setFont(font)
         path = QFontMetrics(font).elidedText(
             self.folderPath, Qt.ElideRight, self.width()-24)
-        painter.drawText(x2, 37, self.width() - 16, 18, Qt.AlignLeft, path)
+        painter.drawText(x2, 37, self.width() - 16, 18, Qt.AlignmentFlag.AlignLeft, path)
 
 
 class AddFolderCard(ClickableWindow):

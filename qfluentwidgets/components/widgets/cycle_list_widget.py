@@ -53,7 +53,7 @@ class CycleListWidget(QListWidget):
 
     currentItemChanged = Signal(QListWidgetItem)
 
-    def __init__(self, items: Iterable, itemSize: QSize, align=Qt.AlignCenter, parent=None):
+    def __init__(self, items: Iterable, itemSize: QSize, align=Qt.AlignmentFlag.AlignCenter, parent=None):
         """
         Parameters
         ----------
@@ -145,7 +145,7 @@ class CycleListWidget(QListWidget):
         for i in items:
             item = QListWidgetItem(str(i), self)
             item.setSizeHint(self.itemSize)
-            item.setTextAlignment(self.align | Qt.AlignVCenter)
+            item.setTextAlignment(self.align | Qt.AlignmentFlag.AlignVCenter)
             if disabled:
                 item.setFlags(Qt.NoItemFlags)
 

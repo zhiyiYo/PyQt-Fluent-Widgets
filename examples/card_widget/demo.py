@@ -33,14 +33,14 @@ class AppCard(CardWidget):
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.setSpacing(0)
-        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignVCenter)
-        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignVCenter)
-        self.vBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
         self.hBoxLayout.addLayout(self.vBoxLayout)
 
         self.hBoxLayout.addStretch(1)
-        self.hBoxLayout.addWidget(self.openButton, 0, Qt.AlignRight)
-        self.hBoxLayout.addWidget(self.moreButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.openButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addWidget(self.moreButton, 0, Qt.AlignmentFlag.AlignRight)
 
         self.moreButton.setFixedSize(32, 32)
         self.moreButton.clicked.connect(self.onMoreButtonClicked)
@@ -68,7 +68,7 @@ class Demo(QWidget):
 
         self.vBoxLayout.setSpacing(6)
         self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         suffix = ":/qfluentwidgets/images/controls"
         self.addCard(f":/qfluentwidgets/images/logo.png", "PyQt-Fluent-Widgets", 'Shokokawaii Inc.')
@@ -81,7 +81,7 @@ class Demo(QWidget):
 
     def addCard(self, icon, title, content):
         card = AppCard(icon, title, content, self)
-        self.vBoxLayout.addWidget(card, alignment=Qt.AlignTop)
+        self.vBoxLayout.addWidget(card, alignment=Qt.AlignmentFlag.AlignTop)
 
 
 if __name__ == '__main__':

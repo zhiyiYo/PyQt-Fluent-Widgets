@@ -83,7 +83,7 @@ class NavigationBarPushButton(NavigationPushButton):
 
         painter.setFont(self.font())
         rect = QRect(0, 32, self.width(), 26)
-        painter.drawText(rect, Qt.AlignCenter, self.text())
+        painter.drawText(rect, Qt.AlignmentFlag.AlignCenter, self.text())
 
 
 class NavigationBar(QWidget):
@@ -132,10 +132,10 @@ class NavigationBar(QWidget):
         self.vBoxLayout.addWidget(self.scrollArea)
         self.vBoxLayout.addLayout(self.bottomLayout, 0)
 
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
-        self.topLayout.setAlignment(Qt.AlignTop)
-        self.scrollLayout.setAlignment(Qt.AlignTop)
-        self.bottomLayout.setAlignment(Qt.AlignBottom)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.topLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.scrollLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.bottomLayout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
     def widget(self, routeKey: str):
         if routeKey not in self.items:
@@ -269,13 +269,13 @@ class NavigationBar(QWidget):
         """ insert widget to layout """
         if position == NavigationItemPosition.TOP:
             widget.setParent(self)
-            self.topLayout.insertWidget(index, widget, 0, Qt.AlignTop)
+            self.topLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignTop)
         elif position == NavigationItemPosition.SCROLL:
             widget.setParent(self.scrollWidget)
-            self.scrollLayout.insertWidget(index, widget, 0, Qt.AlignTop)
+            self.scrollLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignTop)
         else:
             widget.setParent(self)
-            self.bottomLayout.insertWidget(index, widget, 0, Qt.AlignBottom)
+            self.bottomLayout.insertWidget(index, widget, 0, Qt.AlignmentFlag.AlignBottom)
 
         widget.show()
 

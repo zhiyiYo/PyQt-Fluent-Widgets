@@ -104,7 +104,7 @@ class DatePicker(DatePickerBase):
             self.yearIndex = 2
 
             self.addColumn(self.MONTH, range(1, 13),
-                           80, Qt.AlignLeft, self.monthFormatter())
+                           80, Qt.AlignmentFlag.AlignLeft, self.monthFormatter())
             self.addColumn(self.DAY, range(1, 32),
                            80, formatter=self.dayFormatter())
             self.addColumn(self.YEAR, range(y-100, y+101),

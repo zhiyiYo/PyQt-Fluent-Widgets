@@ -55,7 +55,7 @@ class PivotInterface(QWidget):
         self.addSubInterface(self.albumInterface, 'albumInterface', self.tr('Album'))
         self.addSubInterface(self.artistInterface, 'artistInterface', self.tr('Artist'))
 
-        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignLeft)
+        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignmentFlag.AlignLeft)
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         StyleSheet.NAVIGATION_VIEW_INTERFACE.apply(self)
@@ -68,7 +68,7 @@ class PivotInterface(QWidget):
 
     def addSubInterface(self, widget: QLabel, objectName, text):
         widget.setObjectName(objectName)
-        widget.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+        widget.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
         self.stackedWidget.addWidget(widget)
         self.pivot.addItem(
             routeKey=objectName,

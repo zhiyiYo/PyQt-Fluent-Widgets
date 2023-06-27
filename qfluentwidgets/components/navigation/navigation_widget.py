@@ -153,7 +153,7 @@ class NavigationPushButton(NavigationWidget):
         painter.setFont(self.font())
         painter.setPen(QColor(c, c, c))
         painter.drawText(QRect(44+pl, 0, self.width()-57-pl-pr,
-                            self.height()), Qt.AlignVCenter, self.text())
+                            self.height()), Qt.AlignmentFlag.AlignVCenter, self.text())
 
 
 class NavigationToolButton(NavigationPushButton):
@@ -329,7 +329,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
     def __initWidget(self):
         self.vBoxLayout.setSpacing(4)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.addWidget(self.itemWidget, 0, Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.itemWidget, 0, Qt.AlignmentFlag.AlignTop)
 
         self.itemWidget.itemClicked.connect(self._onClicked)
         self.setAttribute(Qt.WA_TranslucentBackground)
@@ -368,7 +368,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
         index += 1  # item widget should always be the first
         self.treeChildren.insert(index, child)
-        self.vBoxLayout.insertWidget(index, child, 0, Qt.AlignTop)
+        self.vBoxLayout.insertWidget(index, child, 0, Qt.AlignmentFlag.AlignTop)
 
     def removeChild(self, child):
         self.treeChildren.remove(child)
@@ -473,4 +473,4 @@ class NavigationAvatarWidget(NavigationWidget):
         if not self.isCompacted:
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
             painter.setFont(self.font())
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignmentFlag.AlignVCenter, self.name)

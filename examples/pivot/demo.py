@@ -35,7 +35,7 @@ class Demo(QWidget):
         self.addSubInterface(self.albumInterface, 'albumInterface', 'Album')
         self.addSubInterface(self.artistInterface, 'artistInterface', 'Artist')
 
-        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.pivot, 0, Qt.AlignmentFlag.AlignHCenter)
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(30, 0, 30, 30)
 
@@ -45,7 +45,7 @@ class Demo(QWidget):
 
     def addSubInterface(self, widget: QLabel, objectName, text):
         widget.setObjectName(objectName)
-        widget.setAlignment(Qt.AlignCenter)
+        widget.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.stackedWidget.addWidget(widget)
         self.pivot.addItem(
             routeKey=objectName,

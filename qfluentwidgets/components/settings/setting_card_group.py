@@ -19,7 +19,7 @@ class SettingCardGroup(QWidget):
         self.cardLayout = ExpandLayout()
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setSpacing(0)
         self.cardLayout.setContentsMargins(0, 0, 0, 0)
         self.cardLayout.setSpacing(2)
