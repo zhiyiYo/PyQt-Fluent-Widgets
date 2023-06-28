@@ -4,7 +4,7 @@ from PySide6.QtGui import QPixmap, QColor
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from qfluentwidgets import (StateToolTip, ToolTipFilter, PushButton, PixmapLabel,
                             InfoBar, InfoBarIcon, FluentIcon, InfoBarPosition, ProgressBar,
-                            IndeterminateProgressBar, SpinBox, ProgressRing)
+                            IndeterminateProgressBar, SpinBox, ProgressRing, IndeterminateProgressRing)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -157,6 +157,15 @@ class StatusInfoInterface(GalleryInterface):
             self.tr('An determinate progress bar'),
             ProgressWidget(bar, self),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/progress_bar/demo.py',
+        )
+
+        # Indeterminate progress ring
+        ring = IndeterminateProgressRing(self)
+        ring.setFixedSize(70, 70)
+        self.addExampleCard(
+            self.tr('An indeterminate progress ring'),
+            ring,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/progress_ring/demo.py',
         )
 
         # progress ring

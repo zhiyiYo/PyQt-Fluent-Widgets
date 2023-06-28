@@ -2,9 +2,8 @@
 import sys
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
-from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
-from qfluentwidgets import ProgressRing, SpinBox, setTheme, Theme
+from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
+from qfluentwidgets import ProgressRing, SpinBox, setTheme, Theme, IndeterminateProgressRing, setFont
 
 
 class Demo(QWidget):
@@ -14,7 +13,10 @@ class Demo(QWidget):
         # setTheme(Theme.DARK)
         # self.setStyleSheet('Demo{background: rgb(32, 32, 32)}')
 
-        self.vBoxLayout = QHBoxLayout(self)
+        self.vBoxLayout = QVBoxLayout(self)
+        self.hBoxLayout = QHBoxLayout()
+
+        self.spinner = IndeterminateProgressRing(self)
         self.progressRing = ProgressRing(self)
         self.spinBox = SpinBox(self)
 
@@ -22,23 +24,33 @@ class Demo(QWidget):
         self.progressRing.setTextVisible(True)
         self.progressRing.setFixedSize(80, 80)
 
+        # self.spinner.setFixedSize(50, 50)
+
         # change background color
         # self.progressRing.setCustomBackgroundColor(Qt.transparent, Qt.transparent)
 
         # change font
-        # font = QFont()
-        # font.setFamilies(['Segoe UI', 'Microsoft YaHei'])
-        # font.setPixelSize(15)
-        # self.progressRing.setFont(font)
+        # setFont(self.progressRing, fontSize=15)
+
+        # change size
+        # self.spinner.setFixedSize(50, 50)
+
+        # change thickness
+        # self.progressRing.setStrokeWidth(4)
+        # self.spinner.setStrokeWidth(4)
 
         self.spinBox.setRange(0, 100)
         self.spinBox.setValue(50)
         self.spinBox.valueChanged.connect(self.progressRing.setValue)
 
-        self.vBoxLayout.addWidget(self.progressRing, 0, Qt.AlignCenter)
-        self.vBoxLayout.addWidget(self.spinBox, 0, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.progressRing, 0, Qt.AlignHCenter)
+        self.hBoxLayout.addWidget(self.spinBox, 0, Qt.AlignHCenter)
+
         self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
+        self.vBoxLayout.addLayout(self.hBoxLayout)
+        self.vBoxLayout.addWidget(self.spinner, 0, Qt.AlignHCenter)
         self.resize(400, 400)
+
 
 
 if __name__ == '__main__':

@@ -2,7 +2,8 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition
+from qfluentwidgets import (InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition,
+                            IndeterminateProgressRing)
 
 from plugin_base import PluginBase
 
@@ -69,6 +70,19 @@ class ProgressRingPlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "ProgressRing"
+
+
+class IndeterminateProgressRingPlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
+    """ Progress ring plugin """
+
+    def createWidget(self, parent):
+        return IndeterminateProgressRing(parent)
+
+    def icon(self):
+        return super().icon("ProgressRing")
+
+    def name(self):
+        return "IndeterminateProgressRing"
 
 
 class StateToolTipPlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
