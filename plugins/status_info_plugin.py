@@ -2,7 +2,8 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition
+from qfluentwidgets import (InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition,
+                            IndeterminateProgressRing)
 
 from plugin_base import PluginBase
 
@@ -32,7 +33,7 @@ class InfoBarPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
         return "InfoBar"
 
 
-class ProgressBarTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
+class ProgressBarPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
     """ Progress bar plugin """
 
     def createWidget(self, parent):
@@ -45,7 +46,7 @@ class ProgressBarTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
         return "ProgressBar"
 
 
-class IndeterminateProgressBarTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
+class IndeterminateProgressBarPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
     """ Indeterminate progress bar plugin """
 
     def createWidget(self, parent):
@@ -58,7 +59,7 @@ class IndeterminateProgressBarTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidge
         return "IndeterminateProgressBar"
 
 
-class ProgressRingTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
+class ProgressRingPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
     """ Progress ring plugin """
 
     def createWidget(self, parent):
@@ -69,6 +70,19 @@ class ProgressRingTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "ProgressRing"
+
+
+class IndeterminateProgressRingPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Progress ring plugin """
+
+    def createWidget(self, parent):
+        return IndeterminateProgressRing(parent)
+
+    def icon(self):
+        return super().icon("ProgressRing")
+
+    def name(self):
+        return "IndeterminateProgressRing"
 
 
 class StateToolTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):

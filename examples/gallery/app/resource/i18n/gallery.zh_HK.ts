@@ -310,37 +310,37 @@
         <translation>顏色對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="80"/>
+        <location filename="../../view/dialog_interface.py" line="79"/>
         <source>This is a frameless message dialog</source>
         <translation>這是一個無邊框對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="91"/>
+        <location filename="../../view/dialog_interface.py" line="90"/>
         <source>If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.</source>
         <translation>一生消えない傷でいいな，絆創膏の様にいつも包んでよ。貴方のそばでわがまま言いたいな，一分一秒刻み貴方を知り，あたしをあげる~</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="100"/>
+        <location filename="../../view/dialog_interface.py" line="99"/>
         <source>Choose color</source>
         <translation>選擇顏色</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="90"/>
+        <location filename="../../view/dialog_interface.py" line="89"/>
         <source>This is a message dialog with mask</source>
         <translation>這是一個帶遮罩的對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="54"/>
+        <location filename="../../view/dialog_interface.py" line="70"/>
         <source>Show teaching tip</source>
         <translation>顯示氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="48"/>
+        <location filename="../../view/dialog_interface.py" line="64"/>
         <source>A teaching tip</source>
         <translation>氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="105"/>
+        <location filename="../../view/dialog_interface.py" line="104"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表達敬意吧，表達出敬意，然後邁向回旋的另一個全新階段！</translation>
     </message>
@@ -350,22 +350,22 @@
         <translation>最短的捷徑就是繞遠路，繞遠路才是我的最短捷徑。</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="56"/>
+        <location filename="../../view/dialog_interface.py" line="72"/>
         <source>A teaching tip with image and button</source>
         <translation>帶圖片和按鈕的氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="70"/>
+        <location filename="../../view/dialog_interface.py" line="54"/>
         <source>Show flyout</source>
         <translation>顯示浮出控件</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="64"/>
+        <location filename="../../view/dialog_interface.py" line="48"/>
         <source>A simple flyout</source>
         <translation>簡單的浮出控件</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="72"/>
+        <location filename="../../view/dialog_interface.py" line="56"/>
         <source>A flyout with image and button</source>
         <translation>帶圖片和按鈕的浮出控件</translation>
     </message>
@@ -795,7 +795,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>ProgressWidget</name>
     <message>
-        <location filename="../../view/status_info_interface.py" line="266"/>
+        <location filename="../../view/status_info_interface.py" line="275"/>
         <source>Progress</source>
         <translation>進度</translation>
     </message>
@@ -1024,7 +1024,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>帶有工具提示的標籤</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="176"/>
+        <location filename="../../view/status_info_interface.py" line="185"/>
         <source>Show StateToolTip</source>
         <translation>顯示進度提示條</translation>
     </message>
@@ -1039,22 +1039,22 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>簡單工具提示</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="174"/>
+        <location filename="../../view/status_info_interface.py" line="183"/>
         <source>The model training is complete!</source>
         <translation>模型訓練完成啦！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="180"/>
+        <location filename="../../view/status_info_interface.py" line="189"/>
         <source>Training model</source>
         <translation>正在訓練模型</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="180"/>
+        <location filename="../../view/status_info_interface.py" line="189"/>
         <source>Please wait patiently</source>
         <translation>心急吃不了熱荳腐，請耐心等待哦~</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="182"/>
+        <location filename="../../view/status_info_interface.py" line="191"/>
         <source>Hide StateToolTip</source>
         <translation>隱藏進度提示條</translation>
     </message>
@@ -1099,17 +1099,17 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>不同彈出位置的消息條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="221"/>
+        <location filename="../../view/status_info_interface.py" line="230"/>
         <source>No Internet</source>
         <translation>無網絡連接</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="199"/>
+        <location filename="../../view/status_info_interface.py" line="208"/>
         <source>Lesson 4</source>
         <translation>Lesson 4</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="210"/>
+        <location filename="../../view/status_info_interface.py" line="219"/>
         <source>Lesson 5</source>
         <translation>Lesson 5</translation>
     </message>
@@ -1119,22 +1119,22 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>我的名字是吉良吉影，年齡33歲，家住杜王町東北部別墅區，未婚。我在“龜友百貨連鎖公司”上班，每天最晚也是八點前回家，不吸菸，酒也是淺嚐輒止，晚上十一點上床，保証八個小時的充足睡眠，睡前喝一盃熱牛奶，再做二十分鐘伸展運動暖身，然後再睡覺，基本可以熟睡到天亮。像嬰兒一樣不留下疲勞與壓力，迎來第二天的早晨，健康檢查結果也顯示我很健康。我的意思是我是一個隨時都想追求平靜生活的人，不拘泥於勝負與煩惱，不樹立令我夜不能寐的敵人，這就是我對於這個社會的生活態度，我也清楚這就是我的幸福。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="187"/>
+        <location filename="../../view/status_info_interface.py" line="196"/>
         <source>Lesson 3</source>
         <translation>Lesson 3</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="187"/>
+        <location filename="../../view/status_info_interface.py" line="196"/>
         <source>Believe in the spin, just keep believing!</source>
         <translation>相信回旋吧，隻管相信就是了！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="199"/>
+        <location filename="../../view/status_info_interface.py" line="208"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表達敬意吧，表達出敬意，然後邁向回旋的另一個全新階段！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="221"/>
+        <location filename="../../view/status_info_interface.py" line="230"/>
         <source>An error message which won&apos;t disappear automatically.</source>
         <translation>一條不會自動消失的消息。</translation>
     </message>
@@ -1179,22 +1179,22 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>左下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="232"/>
+        <location filename="../../view/status_info_interface.py" line="241"/>
         <source>Lesson 1</source>
         <translation>Lesson 1</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="232"/>
+        <location filename="../../view/status_info_interface.py" line="241"/>
         <source>Don&apos;t have any strange expectations of me.</source>
         <translation>別對我抱有什麼奇怪的期待</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="243"/>
+        <location filename="../../view/status_info_interface.py" line="252"/>
         <source>Lesson 2</source>
         <translation>Lesson 2</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="243"/>
+        <location filename="../../view/status_info_interface.py" line="252"/>
         <source>Don&apos;t let your muscles notice.</source>
         <translation>不要讓肌肉察覺</translation>
     </message>
@@ -1209,14 +1209,19 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>確定的進度條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="166"/>
+        <location filename="../../view/status_info_interface.py" line="175"/>
         <source>An determinate progress ring</source>
         <translation>確定的圓形進度條</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="210"/>
+        <location filename="../../view/status_info_interface.py" line="219"/>
         <source>The shortest shortcut is to take a detour.</source>
         <translation>最短的捷徑就是繞遠路，繞遠路才是我的最短捷徑。</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="165"/>
+        <source>An indeterminate progress ring</source>
+        <translation>不確定進度環</translation>
     </message>
 </context>
 <context>

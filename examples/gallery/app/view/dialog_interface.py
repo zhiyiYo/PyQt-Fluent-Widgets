@@ -43,22 +43,6 @@ class DialogInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/color_dialog/demo.py'
         )
 
-        self.teachingButton = PushButton(self.tr('Show teaching tip'))
-        self.teachingButton.clicked.connect(self.showBottomTeachingTip)
-        self.addExampleCard(
-            self.tr('A teaching tip'),
-            self.teachingButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/teaching_tip/demo.py'
-        )
-
-        self.teachingRightButton = PushButton(self.tr('Show teaching tip'))
-        self.teachingRightButton.clicked.connect(self.showLeftBottomTeachingTip)
-        self.addExampleCard(
-            self.tr('A teaching tip with image and button'),
-            self.teachingRightButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/teaching_tip/demo.py'
-        )
-
         self.simpleFlyoutButton = PushButton(self.tr('Show flyout'))
         self.simpleFlyoutButton.clicked.connect(self.showSimpleFlyout)
         self.addExampleCard(
@@ -75,6 +59,21 @@ class DialogInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/flyout/demo.py'
         )
 
+        self.teachingButton = PushButton(self.tr('Show teaching tip'))
+        self.teachingButton.clicked.connect(self.showBottomTeachingTip)
+        self.addExampleCard(
+            self.tr('A teaching tip'),
+            self.teachingButton,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/teaching_tip/demo.py'
+        )
+
+        self.teachingRightButton = PushButton(self.tr('Show teaching tip'))
+        self.teachingRightButton.clicked.connect(self.showLeftBottomTeachingTip)
+        self.addExampleCard(
+            self.tr('A teaching tip with image and button'),
+            self.teachingRightButton,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/teaching_tip/demo.py'
+        )
 
     def showDialog(self):
         title = self.tr('This is a frameless message dialog')
