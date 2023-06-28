@@ -254,11 +254,18 @@ class HomeInterface(ScrollArea):
             index=2
         )
         dialogView.addSampleCard(
-            icon=":/gallery/images/controls/ColorPicker.png",
+            icon=":/gallery/images/controls/Flyout.png",
+            title="Flyout",
+            content=self.tr("Shows contextual information and enables user interaction."),
+            routeKey="dialogInterface",
+            index=3
+        )
+        dialogView.addSampleCard(
+            icon=":/gallery/images/controls/TeachingTip.png",
             title="TeachingTip",
             content=self.tr("A content-rich flyout for guiding users and enabling teaching moments."),
             routeKey="dialogInterface",
-            index=3
+            index=5
         )
         self.vBoxLayout.addWidget(dialogView)
 
