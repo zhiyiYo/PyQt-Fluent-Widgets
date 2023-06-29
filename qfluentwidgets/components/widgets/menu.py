@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
 
 from ...common.icon import FluentIcon as FIF
-from ...common.icon import MenuIconEngine, Action, FluentIconBase, Icon
+from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
@@ -322,7 +322,7 @@ class RoundMenu(QWidget):
     def _createItemIcon(self, w):
         """ create the icon of menu item """
         hasIcon = self._hasItemIcon()
-        icon = QIcon(MenuIconEngine(w.icon()))
+        icon = QIcon(FluentIconEngine(w.icon()))
 
         if hasIcon and w.icon().isNull():
             pixmap = QPixmap(self.view.iconSize())

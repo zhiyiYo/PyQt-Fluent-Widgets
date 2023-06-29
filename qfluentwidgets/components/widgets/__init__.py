@@ -7,6 +7,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
 from .card_widget import CardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
+from .command_bar import CommandBar, CommandButton
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,

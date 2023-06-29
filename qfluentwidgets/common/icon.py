@@ -12,7 +12,7 @@ from .config import isDarkTheme, Theme
 from .overload import singledispatchmethod
 
 
-class MenuIconEngine(QIconEngine):
+class FluentIconEngine(QIconEngine):
 
     def __init__(self, icon):
         super().__init__()
@@ -156,6 +156,8 @@ def drawIcon(icon, painter, rect, **attributes):
     """
     if isinstance(icon, FluentIconBase):
         icon.render(painter, rect, **attributes)
+    elif isinstance(icon, Icon):
+        icon.fluentIcon.render(painter, rect, **attributes)
     else:
         icon = QIcon(icon)
         rect = QRectF(rect).toRect()
