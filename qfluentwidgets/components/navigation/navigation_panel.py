@@ -11,7 +11,6 @@ from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, 
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
 from ...common.router import qrouter
-from ...common.deprecation import deprecated
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF

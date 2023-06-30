@@ -489,7 +489,7 @@ class CommandViewBar(CommandBar):
 
         # adjust the shape of menu
         menu.closedSignal.connect(lambda: view.setMenuVisible(False))
-        menu.setDropDown(self.isMenuDropDown(), menu.view.width() > view.width())
+        menu.setDropDown(self.isMenuDropDown(), menu.view.width() > view.width()+5)
 
         # adjust menu size
         if menu.view.width() < view.width():
@@ -619,5 +619,5 @@ class CommandBarView(FlyoutViewBase):
         painter.setBrush(
             QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
         painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(233, 233, 233))
+            QColor(56, 56, 56) if isDarkTheme() else QColor(233, 233, 233))
         painter.drawPath(path.simplified())

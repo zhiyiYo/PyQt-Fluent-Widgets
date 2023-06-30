@@ -16,7 +16,7 @@ class LayoutInterface(GalleryInterface):
             subtitle="qfluentwidgets.components.layout",
             parent=parent
         )
-        self.setObjectName('iconInterface')
+        self.setObjectName('layoutInterface')
 
         self.addExampleCard(
             self.tr('Flow layout without animation'),

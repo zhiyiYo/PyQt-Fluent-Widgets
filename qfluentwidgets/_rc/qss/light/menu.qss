@@ -73,6 +73,10 @@ MenuActionListWidget::item:selected:active {
     color: rgba(0, 0, 0, 0.7);
 }
 
+#commandListWidget{
+    border-color: rgb(233, 233, 233);
+}
+
 #completerListWidget[dropDown=true],
 #commandListWidget[dropDown=true][long=false] {
     border-top-left-radius: 0px;

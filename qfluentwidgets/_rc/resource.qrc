@@ -186,6 +186,14 @@
         <file>images/icons/HomeFill_white.svg</file>
         <file>images/icons/LibraryFill_black.svg</file>
         <file>images/icons/LibraryFill_white.svg</file>
+        <file>images/icons/Down_black.svg</file>
+        <file>images/icons/Down_white.svg</file>
+        <file>images/icons/Up_black.svg</file>
+        <file>images/icons/Up_white.svg</file>
+        <file>images/icons/Rotate_white.svg</file>
+        <file>images/icons/Rotate_black.svg</file>
+        <file>images/icons/Filter_white.svg</file>
+        <file>images/icons/Filter_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>

@@ -292,7 +292,7 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout.addWidget(materialView)
 
         # menu samples
-        menuView = SampleCardView(self.tr('Menu samples'), self.view)
+        menuView = SampleCardView(self.tr('Menu & toolbars samples'), self.view)
         menuView.addSampleCard(
             icon=":/gallery/images/controls/MenuFlyout.png",
             title="RoundMenu",
@@ -300,6 +300,22 @@ class HomeInterface(ScrollArea):
                 "Shows a contextual list of simple commands or options."),
             routeKey="menuInterface",
             index=0
+        )
+        menuView.addSampleCard(
+            icon=":/gallery/images/controls/CommandBar.png",
+            title="CommandBar",
+            content=self.tr(
+                "Shows a contextual list of simple commands or options."),
+            routeKey="menuInterface",
+            index=1
+        )
+        menuView.addSampleCard(
+            icon=":/gallery/images/controls/CommandBar.png",
+            title="CommandBar",
+            content=self.tr(
+                "Shows a contextual list of simple commands or options."),
+            routeKey="menuInterface",
+            index=2
         )
         self.vBoxLayout.addWidget(menuView)
 

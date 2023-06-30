@@ -191,6 +191,9 @@ class ImageLabel(QLabel):
         super().mouseReleaseEvent(e)
         self.clicked.emit()
 
+    def pixmap(self) -> QPixmap:
+        return QPixmap.fromImage(self.image)
+
     def paintEvent(self, e):
         if self.isNull():
             return

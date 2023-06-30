@@ -42,7 +42,7 @@ class Demo1(QWidget):
 
         # add hidden actions
         self.commandBar.addHiddenAction(Action(FluentIcon.SCROLL, 'Sort', triggered=lambda: print('排序')))
-        self.commandBar.addHiddenAction(Action(FluentIcon.SETTING, 'Settings'))
+        self.commandBar.addHiddenAction(Action(FluentIcon.SETTING, 'Settings', shortcut='Ctrl+S'))
 
         self.resize(240, 40)
         self.setWindowTitle('Drag window')
@@ -86,7 +86,7 @@ class Demo2(FramelessWindow):
 
         self.vBoxLayout.setContentsMargins(0, 80, 0, 0)
         self.setStyleSheet('Demo2{background: white}')
-        self.setWindowTitle('Click image 🥵')
+        self.setWindowTitle('Click Image 👇️🥵')
         self.setWindowIcon(QIcon(":/qfluentwidgets/images/logo.png"))
 
     def showCommandBar(self):
@@ -96,7 +96,8 @@ class Demo2(FramelessWindow):
         view.addAction(Action(FluentIcon.SAVE, 'Save'))
         view.addAction(Action(FluentIcon.DELETE, 'Delete'))
 
-        view.addHiddenAction(Action(FluentIcon.SETTING, 'Settings'))
+        view.addHiddenAction(Action(FluentIcon.APPLICATION, 'App', shortcut='Ctrl+A'))
+        view.addHiddenAction(Action(FluentIcon.SETTING, 'Settings', shortcut='Ctrl+S'))
         view.resizeToSuitableWidth()
 
         Flyout.make(view, self.imageLabel, self, FlyoutAnimationType.FADE_IN)
