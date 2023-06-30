@@ -10,6 +10,7 @@ from .line_edit import LineEdit, LineEditButton
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, isDarkTheme
 from ...common.icon import FluentIcon as FIF
+from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet
 
 
@@ -338,6 +339,7 @@ class ComboBox(QPushButton, ComboBoxBase):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.arrowAni = TranslateYAnimation(self)
+        setFont(self)
 
     def setPlaceholderText(self, text: str):
         self.setText(text)

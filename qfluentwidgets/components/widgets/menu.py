@@ -135,7 +135,7 @@ class MenuActionListWidget(QListWidget):
 
         self.scrollDelegate = SmoothScrollDelegate(self)
         self.setStyleSheet(
-            'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei"}')
+            'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei", "PingFang SC"}')
 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)

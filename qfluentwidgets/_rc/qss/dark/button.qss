@@ -4,7 +4,7 @@ PushButton, ToolButton, ToggleButton, ToggleToolButton {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 5px;
     color: white;
-    /* font: 14px 'Segoe UI', 'Microsoft YaHei'; */
+    /* font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC'; */
     padding: 5px 12px 6px 12px;
     outline: none;
 }
@@ -124,7 +124,7 @@ PrimarySplitDropButton {
 }
 
 HyperlinkButton {
-    /* font: 14px 'Segoe UI', 'Microsoft YaHei'; */
+    /* font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC'; */
     padding: 5px 12px 6px 12px;
     color: --ThemeColorPrimary;
     border: none;
@@ -149,7 +149,7 @@ RadioButton {
     min-height: 24px;
     max-height: 24px;
     background-color: transparent;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
 }
 

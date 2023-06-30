@@ -1,6 +1,6 @@
 QMenu {
     background-color: rgb(232, 232, 232);
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     padding: 4px 0px 4px 0px;
     border: 1px solid rgb(200, 200, 200);
 }
@@ -39,7 +39,7 @@ MenuActionListWidget {
     border-radius: 9px;
     background-color: rgb(249, 249, 249);
     outline: none;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
 MenuActionListWidget::item {

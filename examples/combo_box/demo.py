@@ -2,7 +2,7 @@
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QCompleter
-from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox
+from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox, setFont
 
 class Demo(QWidget):
 
@@ -25,6 +25,7 @@ class Demo(QWidget):
 
         # setTheme(Theme.DARK)
         # setThemeColor('#0078d4')
+        # setFont(self.comboBox, 16)
 
 
 if __name__ == '__main__':

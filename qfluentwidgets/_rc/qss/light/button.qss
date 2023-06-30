@@ -149,7 +149,7 @@ RadioButton {
     min-height: 24px;
     max-height: 24px;
     background-color: transparent;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: black;
 }
 
