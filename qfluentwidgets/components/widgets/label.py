@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List, Union
 
-from PyQt5.QtCore import Qt, QRectF, QPoint
+from PyQt5.QtCore import Qt, QRectF, QPoint, pyqtSignal
 from PyQt5.QtGui import (QPixmap, QPainter, QPalette, QColor, QFont, QImage, QPainterPath,
                          QImageReader, QBrush, QMovie)
 from PyQt5.QtWidgets import QLabel, QWidget
@@ -129,6 +129,8 @@ class DisplayLabel(FluentLabelBase):
 class ImageLabel(QLabel):
     """ Image label """
 
+    clicked = pyqtSignal()
+
     def __init__(self, image: Union[str, QPixmap, QImage] = None, parent=None):
         super().__init__(parent=parent)
         self.setImage(image)
@@ -184,6 +186,10 @@ class ImageLabel(QLabel):
 
     def isNull(self):
         return self.image.isNull()
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self.clicked.emit()
 
     def paintEvent(self, e):
         if self.isNull():

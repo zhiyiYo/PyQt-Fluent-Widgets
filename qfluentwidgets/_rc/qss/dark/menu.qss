@@ -76,12 +76,24 @@ MenuActionListWidget::item:selected:active {
     color: rgba(255, 255, 255, 0.7);
 }
 
-#completerListWidget[dropDown=true] {
+#completerListWidget[dropDown=true],
+#commandListWidget[dropDown=true][long=false] {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
 
-#completerListWidget[dropDown=false] {
+#commandListWidget[dropDown=true][long=true] {
+    border-top-left-radius: 9px;
+    border-top-right-radius: 0px;
+}
+
+#commandListWidget[dropDown=false][long=true] {
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 0px;
+}
+
+#completerListWidget[dropDown=false],
+#commandListWidget[dropDown=false][long=false] {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
