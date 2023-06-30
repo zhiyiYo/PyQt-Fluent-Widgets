@@ -46,6 +46,8 @@ MenuActionListWidget::item {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
     border: none;
     color: black;
 }

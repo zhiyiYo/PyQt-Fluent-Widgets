@@ -126,7 +126,7 @@ class MenuActionListWidget(QListWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setViewportMargins(6, 6, 6, 6)
+        self.setViewportMargins(0, 6, 0, 6)
         self.setTextElideMode(Qt.ElideNone)
         self.setDragEnabled(False)
         self.setMouseTracking(True)
@@ -960,6 +960,6 @@ class IndicatorMenuItemDelegate(MenuItemDelegate):
 
         painter.setPen(Qt.NoPen)
         painter.setBrush(themeColor())
-        painter.drawRoundedRect(0, 11+option.rect.y(), 3, 15, 1.5, 1.5)
+        painter.drawRoundedRect(6, 11+option.rect.y(), 3, 15, 1.5, 1.5)
 
         painter.restore()
