@@ -16,7 +16,7 @@ from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
                    MenuItemDelegate)
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition
-from .info_badge import InfoBadge, InfoLevel
+from .info_badge import InfoBadge, InfoLevel, DotInfoBadge, IconInfoBadge, InfoBadgePosition, InfoBadgeManager
 from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea, ScrollArea
 from .slider import Slider, HollowHandleStyle
 from .spin_box import SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit

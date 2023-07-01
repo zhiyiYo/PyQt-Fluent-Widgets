@@ -266,6 +266,10 @@
         <file>images/icons/RemoveFrom_black.svg</file>
         <file>images/icons/AddTo_white.svg</file>
         <file>images/icons/AddTo_black.svg</file>
+        <file>images/icons/AcceptMedium_white.svg</file>
+        <file>images/icons/AcceptMedium_black.svg</file>
+        <file>images/icons/CancelMedium_white.svg</file>
+        <file>images/icons/CancelMedium_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>

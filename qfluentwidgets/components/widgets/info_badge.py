@@ -2,13 +2,14 @@
 from enum import Enum
 from typing import Union
 
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QPixmap, QPainter, QColor
+from PyQt5.QtCore import Qt, QSize, QRectF, QObject, QEvent, QPoint
+from PyQt5.QtGui import QPixmap, QPainter, QColor, QIcon
 from PyQt5.QtWidgets import QLabel, QWidget, QSizePolicy
 
 from ...common.font import setFont
+from ...common.icon import drawIcon, FluentIconBase, toQIcon
 from ...common.overload import singledispatchmethod
-from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme
+from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme, Theme
 
 
 class InfoLevel(Enum):
@@ -20,6 +21,16 @@ class InfoLevel(Enum):
     ERROR = "Error"
 
 
+class InfoBadgePosition(Enum):
+    """ Info badge position """
+    TOP_RIGHT = 0
+    BOTTOM_RIGHT = 1
+    RIGHT = 2
+    TOP_LEFT = 3
+    BOTTOM_LEFT = 4
+    LEFT = 5
+
+
 class InfoBadge(QLabel):
     """ Information badge """
 
@@ -29,6 +40,7 @@ class InfoBadge(QLabel):
         self.level = InfoLevel.INFOAMTION
         self.lightBackgroundColor = None
         self.darkBackgroundColor = None
+        self.manager = None  # type: InfoBadgeManager
         self.setLevel(level)
 
         setFont(self, 11)
@@ -82,6 +94,17 @@ class InfoBadge(QLabel):
         self.update()
 
     def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(self._backgroundColor())
+
+        r = self.height() / 2
+        painter.drawRoundedRect(self.rect(), r, r)
+
+        super().paintEvent(e)
+
+    def _backgroundColor(self):
         isDark = isDarkTheme()
 
         if self.lightBackgroundColor:
@@ -97,38 +120,43 @@ class InfoBadge(QLabel):
         else:
             color = QColor(255, 153, 164) if isDark else QColor(196, 43, 28)
 
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
-        painter.setBrush(color)
+        return color
 
-        r = self.height() / 2
-        painter.drawRoundedRect(self.rect(), r, r)
+    @classmethod
+    def make(cls, text: Union[str, float], parent=None, level=InfoLevel.INFOAMTION, target: QWidget = None,
+             position=InfoBadgePosition.TOP_RIGHT):
+        w = InfoBadge(text, parent, level)
+        w.adjustSize()
 
-        super().paintEvent(e)
+        if target:
+            w.manager = InfoBadgeManager.make(position, target, w)
+            w.move(w.manager.position())
 
-    @staticmethod
-    def info(text: Union[str, float], parent=None):
-        return InfoBadge(text, parent, InfoLevel.INFOAMTION)
+        return w
 
-    @staticmethod
-    def success(text: Union[str, float], parent=None):
-        return InfoBadge(text, parent, InfoLevel.SUCCESS)
+    @classmethod
+    def info(cls, text: Union[str, float], parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(text, parent, InfoLevel.INFOAMTION, target, position)
 
-    @staticmethod
-    def attension(text: Union[str, float], parent=None):
-        return InfoBadge(text, parent, InfoLevel.ATTENTION)
+    @classmethod
+    def success(cls, text: Union[str, float], parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(text, parent, InfoLevel.SUCCESS, target, position)
 
-    @staticmethod
-    def warning(text: Union[str, float], parent=None):
-        return InfoBadge(text, parent, InfoLevel.WARNING)
+    @classmethod
+    def attension(cls, text: Union[str, float], parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(text, parent, InfoLevel.ATTENTION, target, position)
 
-    @staticmethod
-    def error(text: Union[str, float], parent=None):
-        return InfoBadge(text, parent, InfoLevel.ERROR)
+    @classmethod
+    def warning(cls, text: Union[str, float], parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(text, parent, InfoLevel.WARNING, target, position)
 
-    @staticmethod
-    def custom(text: Union[str, float], light: QColor, dark: QColor, parent=None):
+    @classmethod
+    def error(cls, text: Union[str, float], parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(text, parent, InfoLevel.ERROR, target, position)
+
+    @classmethod
+    def custom(cls, text: Union[str, float], light: QColor, dark: QColor, parent=None, target: QWidget = None,
+               position=InfoBadgePosition.TOP_RIGHT):
         """ create a badge with custom background color
 
         Parameters
@@ -141,7 +169,299 @@ class InfoBadge(QLabel):
 
         parent: QWidget
             parent widget
+
+        target: QWidget
+            target widget to show the badge
+
+        pos: InfoBadgePosition
+            the position relative to target
         """
-        w = InfoBadge(text, parent)
+        w = cls.make(text, parent, target=target, position=position)
         w.setCustomBackgroundColor(light, dark)
         return w
+
+
+class DotInfoBadge(InfoBadge):
+    """ Dot info badge """
+
+    def __init__(self, parent=None, level=InfoLevel.ATTENTION):
+        super().__init__(parent, level)
+        self.setFixedSize(4, 4)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(self._backgroundColor())
+        painter.drawEllipse(self.rect())
+
+    @classmethod
+    def make(cls, parent=None, level=InfoLevel.INFOAMTION, target: QWidget = None,
+             position=InfoBadgePosition.TOP_RIGHT):
+        w = DotInfoBadge(parent, level)
+
+        if target:
+            w.manager = InfoBadgeManager.make(position, target, w)
+            w.move(w.manager.position())
+
+        return w
+
+    @classmethod
+    def info(cls, parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(parent, InfoLevel.INFOAMTION, target, position)
+
+    @classmethod
+    def success(cls, parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(parent, InfoLevel.SUCCESS, target, position)
+
+    @classmethod
+    def attension(cls, parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(parent, InfoLevel.ATTENTION, target, position)
+
+    @classmethod
+    def warning(cls, parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(parent, InfoLevel.WARNING, target, position)
+
+    @classmethod
+    def error(cls, parent=None, target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(parent, InfoLevel.ERROR, target, position)
+
+    @classmethod
+    def custom(cls, light: QColor, dark: QColor, parent=None, target: QWidget = None,
+               position=InfoBadgePosition.TOP_RIGHT):
+        """ create a badge with custom background color
+
+        Parameters
+        ----------
+        light, dark: str | Qt.GlobalColor | QColor
+            background color in light/dark theme mode
+
+        parent: QWidget
+            parent widget
+        """
+        w = cls.make(parent, target=target, position=position)
+        w.setCustomBackgroundColor(light, dark)
+        return w
+
+
+class IconInfoBadge(InfoBadge):
+    """ Icon icon badge """
+
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None, level=InfoLevel.ATTENTION):
+        super().__init__(parent=parent, level=level)
+        self._icon = QIcon()
+        self._iconSize = QSize(8, 8)
+        self.setFixedSize(16, 16)
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, parent: QWidget = None, level=InfoLevel.ATTENTION):
+        self.__init__(parent, level)
+        self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: QIcon, parent: QWidget = None, level=InfoLevel.ATTENTION):
+        self.__init__(parent, level)
+        self.setIcon(icon)
+
+    def setIcon(self, icon: Union[QIcon, FluentIconBase, str]):
+        """ set the icon of info badge """
+        self._icon = icon
+        self.update()
+
+    def icon(self):
+        return toQIcon(self._icon)
+
+    def iconSize(self):
+        return self._iconSize
+
+    def setIconSize(self, size: QSize):
+        self._iconSize = size
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(self._backgroundColor())
+        painter.drawEllipse(self.rect())
+
+        iw, ih = self.iconSize().width(), self.iconSize().height()
+        x, y = (self.width() - iw) / 2, (self.width() - ih) / 2
+        rect = QRectF(x, y, iw, ih)
+
+        if isinstance(self._icon, FluentIconBase):
+            theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+            self._icon.render(painter, rect, theme)
+        else:
+            drawIcon(self._icon, painter, rect)
+
+    @classmethod
+    def make(cls, icon: Union[QIcon, FluentIconBase], parent=None, level=InfoLevel.INFOAMTION, target: QWidget = None,
+             position=InfoBadgePosition.TOP_RIGHT):
+        w = IconInfoBadge(icon, parent, level)
+
+        if target:
+            w.manager = InfoBadgeManager.make(position, target, w)
+            w.move(w.manager.position())
+
+        return w
+
+    @classmethod
+    def info(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
+             position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(icon, parent, InfoLevel.INFOAMTION)
+
+    @classmethod
+    def success(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
+                position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(icon, parent, InfoLevel.SUCCESS, target, position)
+
+    @classmethod
+    def attension(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
+                  position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(icon, parent, InfoLevel.ATTENTION, target, position)
+
+    @classmethod
+    def warning(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
+                position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(icon, parent, InfoLevel.WARNING, target, position)
+
+    @classmethod
+    def error(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
+              position=InfoBadgePosition.TOP_RIGHT):
+        return cls.make(icon, parent, InfoLevel.ERROR, target, position)
+
+    @classmethod
+    def custom(cls, icon: Union[QIcon, FluentIconBase], light: QColor, dark: QColor, parent=None,
+               target: QWidget = None, position=InfoBadgePosition.TOP_RIGHT):
+        """ create a badge with custom background color
+
+        Parameters
+        ----------
+        icon: QIcon | FluentIconBase
+            the icon of badge
+
+        light, dark: str | Qt.GlobalColor | QColor
+            background color in light/dark theme mode
+
+        parent: QWidget
+            parent widget
+        """
+        w = cls.make(icon, parent, target=target, position=position)
+        w.setCustomBackgroundColor(light, dark)
+        return w
+
+
+class InfoBadgeManager(QObject):
+    """ Info badge manager """
+
+    managers = {}
+
+    def __init__(self, target: QWidget, badge: InfoBadge):
+        super().__init__()
+        self.target = target
+        self.badge = badge
+
+        self.target.installEventFilter(self)
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self.target:
+            if e.type() == QEvent.Hide:
+                self.badge.hide()
+            if e.type() in [QEvent.Resize, QEvent.Move]:
+                self.badge.move(self.position())
+
+        return super().eventFilter(obj, e)
+
+    @classmethod
+    def register(cls, name):
+        """ register menu animation manager
+
+        Parameters
+        ----------
+        name: Any
+            the name of manager, it should be unique
+        """
+        def wrapper(Manager):
+            if name not in cls.managers:
+                cls.managers[name] = Manager
+
+            return Manager
+
+        return wrapper
+
+    @classmethod
+    def make(cls, position: InfoBadgePosition, target: QWidget, badge: InfoBadge):
+        """ mask info badge manager """
+        if position not in cls.managers:
+            raise ValueError(f'`{position}` is an invalid animation type.')
+
+        return cls.managers[position](target, badge)
+
+    def position(self):
+        """ return the position of info badge """
+        return QPoint()
+
+
+@InfoBadgeManager.register(InfoBadgePosition.TOP_RIGHT)
+class TopRightInfoBadgeManager(InfoBadgeManager):
+    """ Top right info badge manager """
+
+    def position(self):
+        pos = self.target.geometry().topRight()
+        x = pos.x() - self.badge.width() // 2
+        y = pos.y() - self.badge.height() // 2
+        return QPoint(x, y)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.RIGHT)
+class RightInfoBadgeManager(InfoBadgeManager):
+    """ Right info badge manager """
+
+    def position(self):
+        x = self.target.geometry().right() - self.badge.width() // 2
+        y = self.target.geometry().center().y() - self.badge.height() // 2
+        return QPoint(x, y)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.BOTTOM_RIGHT)
+class BottomRightInfoBadgeManager(InfoBadgeManager):
+    """ Bottom right info badge manager """
+
+    def position(self):
+        pos = self.target.geometry().bottomRight()
+        x = pos.x() - self.badge.width() // 2
+        y = pos.y() - self.badge.height() // 2
+        return QPoint(x, y)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.TOP_LEFT)
+class TopLeftInfoBadgeManager(InfoBadgeManager):
+    """ Top left info badge manager """
+
+    def position(self):
+        x = self.target.x() - self.badge.width() // 2
+        y = self.target.y() - self.badge.height() // 2
+        return QPoint(x, y)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.LEFT)
+class LeftInfoBadgeManager(InfoBadgeManager):
+    """ Top left info badge manager """
+
+    def position(self):
+        x = self.target.x() - self.badge.width() // 2
+        y = self.target.geometry().center().y() - self.badge.height() // 2
+        return QPoint(x, y)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.BOTTOM_LEFT)
+class BottomLeftInfoBadgeManager(InfoBadgeManager):
+    """ Bottom left info badge manager """
+
+    def position(self):
+        pos = self.target.geometry().bottomLeft()
+        x = pos.x() - self.badge.width() // 2
+        y = pos.y() - self.badge.height() // 2
+        return QPoint(x, y)

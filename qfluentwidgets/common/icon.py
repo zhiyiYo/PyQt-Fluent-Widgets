@@ -363,6 +363,8 @@ class FluentIcon(FluentIconBase, Enum):
     MUSIC_FOLDER = "MusicFolder"
     POWER_BUTTON = "PowerButton"
     CARE_UP_SOLID = "CareUpSolid"
+    ACCEPT_MEDIUM = "AcceptMedium"
+    CANCEL_MEDIUM = "CancelMedium"
     CHEVRON_RIGHT = "ChevronRight"
     CLIPPING_TOOL = "ClippingTool"
     BACK_TO_WINDOW = "BackToWindow"
