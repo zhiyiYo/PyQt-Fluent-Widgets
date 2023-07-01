@@ -206,7 +206,7 @@ class TeachingTip(QWidget):
         self.bubble.setView(view)
 
     @classmethod
-    def make(self, view: FlyoutViewBase, target: QWidget, duration=1000, tailPosition=TeachingTipTailPosition.BOTTOM,
+    def make(cls, view: FlyoutViewBase, target: QWidget, duration=1000, tailPosition=TeachingTipTailPosition.BOTTOM,
              parent=None):
         """
         Parameters
@@ -227,7 +227,7 @@ class TeachingTip(QWidget):
         parent: QWidget
             parent widget
         """
-        w = TeachingTip(view, target, duration, tailPosition, parent)
+        w = cls(view, target, duration, tailPosition, parent)
         w.show()
         return w
 
@@ -267,6 +267,15 @@ class TeachingTip(QWidget):
         w = cls.make(view, target, duration, tailPosition, parent)
         view.closed.connect(w.close)
         return w
+
+
+class PopupTeachingTip(TeachingTip):
+    """ Pop up teaching tip """
+
+    def __init__(self, view: FlyoutViewBase, target: QWidget, duration=1000,
+                 tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
+        super().__init__(view, target, duration, tailPosition, parent)
+        self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint | Qt.NoDropShadowWindowHint)
 
 
 class TeachingTipManager(QObject):

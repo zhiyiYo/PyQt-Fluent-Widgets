@@ -11,7 +11,7 @@ QWidget#windowMask {
 QLabel {
     background-color: transparent;
     color: white;
-    font-family: 'Segoe UI', 'Microsoft YaHei';
+    font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     border: none;
 }
 
@@ -25,7 +25,7 @@ QLabel#contentLabel {
 
 QPushButton {
     background-color: rgb(51, 51, 51);
-    font: 15px 'Segoe UI', 'Microsoft YaHei';
+    font: 15px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     border: transparent;
     color: white;
 }

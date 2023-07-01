@@ -45,14 +45,15 @@ class Demo(QWidget):
 
         # add separator
         menu.addSeparator()
-        menu.addAction(QAction(f'Select all'))
+        menu.addAction(QAction(f'Select all', shortcut='Ctrl+A'))
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], Action(FIF.SETTING, 'Settings'))
+            menu.menuActions()[-1], Action(FIF.SETTING, 'Settings', shortcut='Ctrl+S'))
         menu.insertActions(
             menu.menuActions()[-1],
-            [Action(FIF.HELP, 'Help'), Action(FIF.FEEDBACK, 'Feedback')]
+            [Action(FIF.HELP, 'Help', shortcut='Ctrl+H'),
+             Action(FIF.FEEDBACK, 'Feedback', shortcut='Ctrl+F')]
         )
 
         # show menu

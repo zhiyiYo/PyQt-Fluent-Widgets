@@ -8,7 +8,7 @@ class Translator(QObject):
         super().__init__(parent=parent)
         self.text = self.tr('Text')
         self.view = self.tr('View')
-        self.menus = self.tr('Menus')
+        self.menus = self.tr('Menus & toolbars')
         self.icons = self.tr('Icons')
         self.layout = self.tr('Layout')
         self.dialogs = self.tr('Dialogs & flyouts')

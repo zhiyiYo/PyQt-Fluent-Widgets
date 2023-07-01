@@ -59,7 +59,7 @@
         <translation>开</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="59"/>
+        <location filename="../../view/basic_input_interface.py" line="28"/>
         <source>Standard push button</source>
         <translation>标准按钮</translation>
     </message>
@@ -247,6 +247,11 @@
         <location filename="../../view/basic_input_interface.py" line="283"/>
         <source>A transparent toggle tool button</source>
         <translation>透明的状态开关工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="59"/>
+        <source>Transparent push button</source>
+        <translation>透明按钮</translation>
     </message>
 </context>
 <context>
@@ -696,69 +701,174 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>MenuInterface</name>
     <message>
-        <location filename="../../view/menu_interface.py" line="27"/>
+        <location filename="../../view/menu_interface.py" line="29"/>
         <source>Rounded corners menu</source>
         <translation>圆角菜单</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="23"/>
+        <location filename="../../view/menu_interface.py" line="25"/>
         <source>Show menu</source>
         <translation>显示菜单</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="37"/>
+        <location filename="../../view/menu_interface.py" line="69"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="38"/>
+        <location filename="../../view/menu_interface.py" line="70"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="43"/>
+        <location filename="../../view/menu_interface.py" line="75"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="43"/>
+        <location filename="../../view/menu_interface.py" line="75"/>
         <source>Music</source>
         <translation>音乐</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="50"/>
+        <location filename="../../view/menu_interface.py" line="82"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="50"/>
+        <location filename="../../view/menu_interface.py" line="82"/>
         <source>Undo</source>
         <translation>撤回</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="57"/>
+        <location filename="../../view/menu_interface.py" line="89"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="60"/>
+        <location filename="../../view/menu_interface.py" line="154"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="62"/>
+        <location filename="../../view/menu_interface.py" line="94"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="62"/>
+        <location filename="../../view/menu_interface.py" line="94"/>
         <source>Feedback</source>
         <translation>反馈</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="41"/>
+        <location filename="../../view/menu_interface.py" line="73"/>
         <source>Add to</source>
         <translation>添加到</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="36"/>
+        <source>Command bar</source>
+        <translation>命令栏</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="49"/>
+        <source>Click the image to open a command bar flyout 👇️🥵</source>
+        <translation>点击图片来弹出命令栏 👇️🥵</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="58"/>
+        <source>Command bar flyout</source>
+        <translation>浮出命令栏</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="107"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="107"/>
+        <source>Rotate</source>
+        <translation>旋转</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="107"/>
+        <source>Zoom in</source>
+        <translation>放大</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="107"/>
+        <source>Zoom out</source>
+        <translation>缩小</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="114"/>
+        <source>Edit</source>
+        <translation>编辑</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="114"/>
+        <source>Info</source>
+        <translation>信息</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="151"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="148"/>
+        <source>Share</source>
+        <translation>分享</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="126"/>
+        <source>Create Date</source>
+        <translation>创建日期</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="126"/>
+        <source>Shooting Date</source>
+        <translation>拍摄日期</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="126"/>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="132"/>
+        <source>Ascending</source>
+        <translation>升序</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="132"/>
+        <source>Descending</source>
+        <translation>降序</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="149"/>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="150"/>
+        <source>Add to favorate</source>
+        <translation>添加到收藏夹</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="153"/>
+        <source>Print</source>
+        <translation>打印</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="162"/>
+        <source>Save image</source>
+        <translation>保存图像</translation>
+    </message>
+    <message>
+        <location filename="../../view/menu_interface.py" line="121"/>
+        <source>Sort</source>
+        <translation>排序</translation>
     </message>
 </context>
 <context>
@@ -795,7 +905,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>ProgressWidget</name>
     <message>
-        <location filename="../../view/status_info_interface.py" line="275"/>
+        <location filename="../../view/status_info_interface.py" line="292"/>
         <source>Progress</source>
         <translation>进度</translation>
     </message>
@@ -1009,7 +1119,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>StatusInfoInterface</name>
     <message>
-        <location filename="../../view/status_info_interface.py" line="39"/>
+        <location filename="../../view/status_info_interface.py" line="29"/>
         <source>State tool tip</source>
         <translation>进度提示条</translation>
     </message>
@@ -1024,7 +1134,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>带有工具提示的标签</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="185"/>
+        <location filename="../../view/status_info_interface.py" line="202"/>
         <source>Show StateToolTip</source>
         <translation>显示进度提示条</translation>
     </message>
@@ -1036,192 +1146,202 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     <message>
         <location filename="../../view/status_info_interface.py" line="38"/>
         <source>Simple ToolTip</source>
-        <translation>简单工具提示</translation>
+        <translation>只因在人群之中多看了你一眼~</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="183"/>
+        <location filename="../../view/status_info_interface.py" line="200"/>
         <source>The model training is complete!</source>
         <translation>模型训练完成啦！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="189"/>
+        <location filename="../../view/status_info_interface.py" line="206"/>
         <source>Training model</source>
         <translation>正在训练模型</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="189"/>
+        <location filename="../../view/status_info_interface.py" line="206"/>
         <source>Please wait patiently</source>
         <translation>心急吃不了热豆腐，请耐心等待哦~</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="191"/>
+        <location filename="../../view/status_info_interface.py" line="208"/>
         <source>Hide StateToolTip</source>
         <translation>隐藏进度提示条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="59"/>
+        <location filename="../../view/status_info_interface.py" line="76"/>
         <source>Success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="69"/>
+        <location filename="../../view/status_info_interface.py" line="86"/>
         <source>A closable InfoBar</source>
         <translation>可关闭的消息条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="77"/>
+        <location filename="../../view/status_info_interface.py" line="94"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="87"/>
+        <location filename="../../view/status_info_interface.py" line="104"/>
         <source>A closable InfoBar with long message</source>
         <translation>可关闭的长消息条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="94"/>
+        <location filename="../../view/status_info_interface.py" line="111"/>
         <source>GitHub</source>
         <translation>GitHub</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="94"/>
+        <location filename="../../view/status_info_interface.py" line="111"/>
         <source>When you look long into an abyss, the abyss looks into you.</source>
         <translation>当你长时间凝视深渊时，深渊也在凝视你。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="106"/>
+        <location filename="../../view/status_info_interface.py" line="123"/>
         <source>An InfoBar with custom icon, background color and widget.</source>
         <translation>自定义图标、背景和小部件的消息条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="137"/>
+        <location filename="../../view/status_info_interface.py" line="154"/>
         <source>InfoBar with different pop-up locations</source>
         <translation>不同弹出位置的消息条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="230"/>
+        <location filename="../../view/status_info_interface.py" line="247"/>
         <source>No Internet</source>
         <translation>无网络连接</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="208"/>
+        <location filename="../../view/status_info_interface.py" line="225"/>
         <source>Lesson 4</source>
         <translation>Lesson 4</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="219"/>
+        <location filename="../../view/status_info_interface.py" line="236"/>
         <source>Lesson 5</source>
         <translation>Lesson 5</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="76"/>
+        <location filename="../../view/status_info_interface.py" line="93"/>
         <source>My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don&apos;t smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I&apos;m normal.</source>
         <translation>我的名字是吉良吉影，年龄33岁，家住杜王町东北部别墅区，未婚。我在“龟友百货连锁公司”上班，每天最晚也是八点前回家，不吸烟，酒也是浅尝辄止，晚上十一点上床，保证八个小时的充足睡眠，睡前喝一杯热牛奶，再做二十分钟伸展运动暖身，然后再睡觉，基本可以熟睡到天亮。像婴儿一样不留下疲劳与压力，迎来第二天的早晨，健康检查结果也显示我很健康。我的意思是我是一个随时都想追求平静生活的人，不拘泥于胜负与烦恼，不树立令我夜不能寐的敌人，这就是我对于这个社会的生活态度，我也清楚这就是我的幸福。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="196"/>
+        <location filename="../../view/status_info_interface.py" line="213"/>
         <source>Lesson 3</source>
         <translation>Lesson 3</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="196"/>
+        <location filename="../../view/status_info_interface.py" line="213"/>
         <source>Believe in the spin, just keep believing!</source>
         <translation>相信回旋吧，只管相信就是了！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="208"/>
+        <location filename="../../view/status_info_interface.py" line="225"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表达敬意吧，表达出敬意，然后迈向回旋的另一个全新阶段！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="230"/>
+        <location filename="../../view/status_info_interface.py" line="247"/>
         <source>An error message which won&apos;t disappear automatically.</source>
         <translation>一条不会自动消失的消息。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="59"/>
+        <location filename="../../view/status_info_interface.py" line="76"/>
         <source>The Anthem of man is the Anthem of courage.</source>
         <translation>人类的赞歌就是勇气的赞歌！</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="104"/>
+        <location filename="../../view/status_info_interface.py" line="121"/>
         <source>Action</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="115"/>
+        <location filename="../../view/status_info_interface.py" line="132"/>
         <source>Top right</source>
         <translation>右上角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="116"/>
+        <location filename="../../view/status_info_interface.py" line="133"/>
         <source>Top</source>
         <translation>顶部居中</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="117"/>
+        <location filename="../../view/status_info_interface.py" line="134"/>
         <source>Top left</source>
         <translation>左上角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="118"/>
+        <location filename="../../view/status_info_interface.py" line="135"/>
         <source>Bottom right</source>
         <translation>右下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="119"/>
+        <location filename="../../view/status_info_interface.py" line="136"/>
         <source>Bottom</source>
         <translation>底部居中</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="120"/>
+        <location filename="../../view/status_info_interface.py" line="137"/>
         <source>Bottom left</source>
         <translation>左下角</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="241"/>
+        <location filename="../../view/status_info_interface.py" line="258"/>
         <source>Lesson 1</source>
         <translation>Lesson 1</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="241"/>
+        <location filename="../../view/status_info_interface.py" line="258"/>
         <source>Don&apos;t have any strange expectations of me.</source>
         <translation>别对我抱有什么奇怪的期待</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="252"/>
+        <location filename="../../view/status_info_interface.py" line="269"/>
         <source>Lesson 2</source>
         <translation>Lesson 2</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="252"/>
+        <location filename="../../view/status_info_interface.py" line="269"/>
         <source>Don&apos;t let your muscles notice.</source>
         <translation>不要让肌肉察觉</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="146"/>
+        <location filename="../../view/status_info_interface.py" line="163"/>
         <source>An indeterminate progress bar</source>
         <translation>不确定进度条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="156"/>
+        <location filename="../../view/status_info_interface.py" line="173"/>
         <source>An determinate progress bar</source>
         <translation>确定的进度条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="175"/>
+        <location filename="../../view/status_info_interface.py" line="192"/>
         <source>An determinate progress ring</source>
         <translation>确定的圆形进度条</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="219"/>
+        <location filename="../../view/status_info_interface.py" line="236"/>
         <source>The shortest shortcut is to take a detour.</source>
         <translation>最短的捷径就是绕远路，绕远路才是我的最短捷径。</translation>
     </message>
     <message>
-        <location filename="../../view/status_info_interface.py" line="165"/>
+        <location filename="../../view/status_info_interface.py" line="182"/>
         <source>An indeterminate progress ring</source>
         <translation>不确定进度环</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="69"/>
+        <source>InfoBadge in different styles</source>
+        <translation>不同样式的徽章</translation>
+    </message>
+    <message>
+        <location filename="../../view/status_info_interface.py" line="39"/>
+        <source>A button with a simple ToolTip</source>
+        <translation>带工具提示的按钮</translation>
     </message>
 </context>
 <context>
@@ -1341,11 +1461,6 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>基本输入</translation>
     </message>
     <message>
-        <location filename="../../common/translator.py" line="11"/>
-        <source>Menus</source>
-        <translation>菜单</translation>
-    </message>
-    <message>
         <location filename="../../common/translator.py" line="16"/>
         <source>Material</source>
         <translation>材料</translation>
@@ -1394,6 +1509,11 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <location filename="../../common/translator.py" line="14"/>
         <source>Dialogs &amp; flyouts</source>
         <translation>对话框和弹出窗口</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="11"/>
+        <source>Menus &amp; toolbars</source>
+        <translation>菜单和工具栏</translation>
     </message>
 </context>
 <context>

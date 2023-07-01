@@ -25,7 +25,7 @@ ExpandSettingCard[isExpand=true]>SettingCard {
 }
 
 QLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
     padding: 0;
     background: transparent;
@@ -33,13 +33,13 @@ QLabel {
 }
 
 QLabel#contentLabel {
-    font: 11px 'Segoe UI', 'Microsoft YaHei';
+    font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: rgb(208, 208, 208);
     padding: 0;
 }
 
 FolderItem>QLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
 /* QPushButton */
@@ -48,7 +48,7 @@ QPushButton {
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
     padding: 5px 12px 5px 36px;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
     background-color: rgb(62, 63, 62);
 }
@@ -75,7 +75,7 @@ ToolButton {
     border: 1px solid rgba(255, 255, 255, 24);
     border-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 17);
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
     background-color: rgb(62, 63, 62);
 }

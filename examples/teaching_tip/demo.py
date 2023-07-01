@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (PushButton, TeachingTip, TeachingTipTailPosition, InfoBarIcon, setTheme, Theme,
-                            TeachingTipView, FlyoutViewBase, BodyLabel, PrimaryPushButton)
+                            TeachingTipView, FlyoutViewBase, BodyLabel, PrimaryPushButton, PopupTeachingTip)
 
 
 class CustomFlyoutView(FlyoutViewBase):
@@ -89,7 +89,8 @@ class Demo(QWidget):
         )
 
     def showCustomTip(self):
-        TeachingTip.make(
+        # TeachingTip.make(
+        PopupTeachingTip.make(
             target=self.button3,
             view=CustomFlyoutView(),
             tailPosition=TeachingTipTailPosition.RIGHT,

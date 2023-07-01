@@ -6,7 +6,7 @@ from PySide6.QtGui import QDesktopServices, QIcon, QPainter, QFont
 from PySide6.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
 from ...common.animation import TranslateYAnimation
-from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon
+from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon, Icon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet
@@ -277,6 +277,9 @@ class PrimaryToolButton(ToolButton):
             # reverse icon color
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
             icon = icon.icon(theme)
+        elif isinstance(icon, Icon) and self.isEnabled():
+            theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+            icon = icon.fluentIcon.icon(theme)
         elif not self.isEnabled():
             painter.setOpacity(0.786 if isDarkTheme() else 0.9)
             if isinstance(icon, FluentIconBase):

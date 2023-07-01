@@ -10,6 +10,7 @@ from .line_edit import LineEdit, LineEditButton
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, isDarkTheme
 from ...common.icon import FluentIcon as FIF
+from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet
 
 
@@ -325,6 +326,7 @@ class ComboBox(QPushButton, ComboBoxBase):
         super().__init__(parent=parent)
         self.arrowAni = TranslateYAnimation(self)
         self._setUpUi()
+        setFont(self)
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self:
@@ -436,7 +438,7 @@ class ComboBoxMenu(RoundMenu):
     def __init__(self, parent=None):
         super().__init__(title="", parent=parent)
 
-        self.view.setViewportMargins(5, 2, 5, 6)
+        self.view.setViewportMargins(0, 2, 0, 6)
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setObjectName('comboListWidget')
