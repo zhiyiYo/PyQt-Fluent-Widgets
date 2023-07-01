@@ -1,5 +1,5 @@
 #titleButton {
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang Sc';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     font-weight: 500;
     color: black;
     background-color: transparent;
@@ -23,7 +23,7 @@
 }
 
 #weekDayLabel {
-    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang Sc';
+    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     font-weight: 500;
     color: black;
     background-color: transparent;
@@ -56,7 +56,7 @@ CalendarPicker {
     border: 1px solid rgba(0, 0, 0, 0.073);
     border-bottom: 1px solid rgba(0, 0, 0, 0.183);
     border-radius: 5px;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     padding: 5px 32px 6px 12px;
     outline: none;
     text-align: left;

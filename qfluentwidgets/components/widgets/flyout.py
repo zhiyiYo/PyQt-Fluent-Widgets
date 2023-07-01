@@ -20,7 +20,8 @@ class FlyoutAnimationType(Enum):
     DROP_DOWN = 1
     SLIDE_LEFT = 2
     SLIDE_RIGHT = 3
-    NONE = 4
+    FADE_IN = 4
+    NONE = 5
 
 
 class IconWidget(QWidget):
@@ -435,6 +436,24 @@ class SlideRightFlyoutAnimationManager(FlyoutAnimationManager):
         self.slideAni.setStartValue(pos-QPoint(8, 0))
         self.slideAni.setEndValue(pos)
         self.aniGroup.start()
+
+
+@FlyoutAnimationManager.register(FlyoutAnimationType.FADE_IN)
+class DropDownFlyoutAnimationManager(FlyoutAnimationManager):
+    """ Drop down flyout animation manager """
+
+    def position(self, target: QWidget):
+        w = self.flyout
+        pos = target.mapToGlobal(QPoint())
+        x = pos.x() + target.width()//2 - w.sizeHint().width()//2
+        y = pos.y() - w.sizeHint().height() + w.layout().contentsMargins().bottom()
+        return QPoint(x, y)
+
+    def exec(self, pos: QPoint):
+        self.flyout.move(self._adjustPosition(pos))
+        self.aniGroup.removeAnimation(self.slideAni)
+        self.aniGroup.start()
+
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.NONE)

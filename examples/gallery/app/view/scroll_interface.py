@@ -2,7 +2,8 @@
 from PyQt6.QtCore import Qt, QEasingCurve
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QWidget
-from qfluentwidgets import SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel, ScrollArea
+from qfluentwidgets import (SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel,
+                            ScrollArea, ImageLabel)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -22,10 +23,9 @@ class ScrollInterface(GalleryInterface):
 
         # scroll area
         w = ScrollArea()
-        label = PixmapLabel(self)
-        label.setPixmap(QPixmap(":/gallery/images/chidanta2.jpg").scaled(
-            775, 1229, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation
-        ))
+        label = ImageLabel(":/gallery/images/chidanta2.jpg", self)
+        label.scaledToWidth(775)
+        label.setBorderRadius(8, 8, 8, 8)
 
         w.horizontalScrollBar().setValue(0)
         w.setWidget(label)
@@ -42,8 +42,8 @@ class ScrollInterface(GalleryInterface):
 
         # smooth scroll area
         w = SmoothScrollArea()
-        label = PixmapLabel(self)
-        label.setPixmap(QPixmap(":/gallery/images/chidanta3.jpg"))
+        label = ImageLabel(':/gallery/images/chidanta3.jpg', self)
+        label.setBorderRadius(8, 8, 8, 8)
 
         w.setWidget(label)
         w.setFixedSize(660, 540)
@@ -59,8 +59,8 @@ class ScrollInterface(GalleryInterface):
 
         # single direction scroll area
         w = SingleDirectionScrollArea(self, Qt.Orientation.Horizontal)
-        label = PixmapLabel(self)
-        label.setPixmap(QPixmap(":/gallery/images/chidanta4.jpg"))
+        label = ImageLabel(":/gallery/images/chidanta4.jpg", self)
+        label.setBorderRadius(8, 8, 8, 8)
 
         w.setWidget(label)
         w.setFixedSize(660, 498)

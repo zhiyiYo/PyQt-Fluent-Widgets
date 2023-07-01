@@ -2,7 +2,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QColor
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
-from qfluentwidgets import (StateToolTip, ToolTipFilter, PushButton, PixmapLabel,
+from qfluentwidgets import (StateToolTip, InfoBadge, ToolTipFilter, PushButton, PixmapLabel,
                             InfoBar, InfoBarIcon, FluentIcon, InfoBarPosition, ProgressBar,
                             IndeterminateProgressBar, SpinBox, ProgressRing, IndeterminateProgressRing)
 
@@ -37,7 +37,7 @@ class StatusInfoInterface(GalleryInterface):
         button.installEventFilter(ToolTipFilter(button))
         button.setToolTip(self.tr('Simple ToolTip'))
         self.addExampleCard(
-            self.tr('State tool tip'),
+            self.tr('A button with a simple ToolTip'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/tool_tip/demo.py'
         )
@@ -53,6 +53,23 @@ class StatusInfoInterface(GalleryInterface):
             self.tr('A label with a ToolTip'),
             label,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/tool_tip/demo.py'
+        )
+
+        # info badge
+        w = QWidget()
+        w.setLayout(QHBoxLayout())
+        w.layout().addWidget(InfoBadge.info(1))
+        w.layout().addWidget(InfoBadge.success(10))
+        w.layout().addWidget(InfoBadge.attension(100))
+        w.layout().addWidget(InfoBadge.warning(1000))
+        w.layout().addWidget(InfoBadge.error(10000))
+        w.layout().addWidget(InfoBadge.custom('1w+', '#005fb8', '#60cdff'))
+        w.layout().setSpacing(20)
+        w.layout().setContentsMargins(0, 10, 0, 10)
+        self.addExampleCard(
+            self.tr('InfoBadge in different styles'),
+            w,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/info_bar/demo.py'
         )
 
         # short info bar

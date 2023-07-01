@@ -1,7 +1,7 @@
 /*设置菜单样式*/
 QMenu {
     background-color: rgb(43, 43, 43);
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     padding: 4px 0px 4px 0px;
     border: 1px solid rgb(34, 34, 34);
     color: white;
@@ -41,13 +41,15 @@ MenuActionListWidget {
     border-radius: 9px;
     background-color: rgb(43, 43, 43);
     outline: none;
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
 MenuActionListWidget::item {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
     border: none;
     color: white;
 }
@@ -74,12 +76,24 @@ MenuActionListWidget::item:selected:active {
     color: rgba(255, 255, 255, 0.7);
 }
 
-#completerListWidget[dropDown=true] {
+#completerListWidget[dropDown=true],
+#commandListWidget[dropDown=true][long=false] {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
 
-#completerListWidget[dropDown=false] {
+#commandListWidget[dropDown=true][long=true] {
+    border-top-left-radius: 9px;
+    border-top-right-radius: 0px;
+}
+
+#commandListWidget[dropDown=false][long=true] {
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 0px;
+}
+
+#completerListWidget[dropDown=false],
+#commandListWidget[dropDown=false][long=false] {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }

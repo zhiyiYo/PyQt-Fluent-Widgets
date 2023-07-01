@@ -30,8 +30,12 @@ ExampleCard>#card {
 }
 
 ExampleCard>#card QLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei';
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
+}
+
+ExampleCard>#card InfoBadge {
+    font-size: 11px;
 }
 
 
