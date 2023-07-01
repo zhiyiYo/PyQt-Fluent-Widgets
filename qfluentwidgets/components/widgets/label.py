@@ -4,7 +4,7 @@ import warnings
 
 from typing import List, Union
 
-from PySide2.QtCore import Qt, QRectF, QPoint
+from PySide2.QtCore import Qt, QRectF, QPoint, Signal
 from PySide2.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
                          QImageReader, QBrush, QMovie)
 from PySide2.QtWidgets import QLabel, QWidget
@@ -133,6 +133,8 @@ class DisplayLabel(FluentLabelBase):
 class ImageLabel(QLabel):
     """ Image label """
 
+    clicked = Signal()
+
     def __init__(self, image: Union[str, QPixmap, QImage] = None, parent=None):
         super().__init__(parent=parent)
         self.setImage(image)
@@ -166,6 +168,8 @@ class ImageLabel(QLabel):
         elif isinstance(image, QPixmap):
             self.image = image.toImage()
 
+        self.setFixedSize(self.image.size())
+
     def scaledToWidth(self, width: int):
         if self.isNull():
             return
@@ -188,6 +192,13 @@ class ImageLabel(QLabel):
 
     def isNull(self):
         return self.image.isNull()
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self.clicked.emit()
+
+    def pixmap(self) -> QPixmap:
+        return QPixmap.fromImage(self.image)
 
     def paintEvent(self, e):
         if self.isNull():

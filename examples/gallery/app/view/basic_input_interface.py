@@ -51,7 +51,7 @@ class BasicInputInterface(GalleryInterface):
         # transparent push button
         self.addExampleCard(
             self.tr('A transparent push button'),
-            TransparentPushButton(self.tr('Standard push button'), self, FluentIcon.BOOK_SHELF),
+            TransparentPushButton(self.tr('Transparent push button'), self, FluentIcon.BOOK_SHELF),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 

@@ -2,13 +2,16 @@
 import sys
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QCompleter
-from qfluentwidgets import LineEdit, PushButton, SearchLineEdit
+from qfluentwidgets import LineEdit, PushButton, SearchLineEdit, setTheme, Theme
 
 
 class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
+        # self.setStyleSheet("Demo {background: rgb(32, 32, 32)}")
+        # setTheme(Theme.DARK)
+
         self.hBoxLayout = QHBoxLayout(self)
         self.lineEdit = SearchLineEdit(self)
         self.button = PushButton('Search', self)

@@ -3,16 +3,18 @@ from enum import Enum
 from typing import List, Union
 
 from qframelesswindow import WindowEffect
-from PySide2.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject,
+from PySide2.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject, QModelIndex,
                           Qt, QSize, QRectF, Signal, QPoint, QTimer, QParallelAnimationGroup)
-from PySide2.QtGui import QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QGuiApplication, QTextCursor, QHoverEvent
+from PySide2.QtGui import (QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QGuiApplication, QTextCursor, QHoverEvent,
+                         QFontMetrics)
 from PySide2.QtWidgets import (QApplication, QAction, QMenu, QProxyStyle, QStyle,
                                QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                                QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
 
 from ...common.icon import FluentIcon as FIF
-from ...common.icon import MenuIconEngine, Action, FluentIconBase, Icon
+from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.font import getFont
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
 
@@ -104,8 +106,11 @@ class SubMenuItemWidget(QWidget):
 class MenuItemDelegate(QStyledItemDelegate):
     """ Menu item delegate """
 
+    def _isSeparator(self, index: QModelIndex):
+        return index.model().data(index, Qt.DecorationRole) == "seperator"
+
     def paint(self, painter, option, index):
-        if index.model().data(index, Qt.DecorationRole) != "seperator":
+        if not self._isSeparator(index):
             return super().paint(painter, option, index)
 
         # draw seperator
@@ -121,21 +126,52 @@ class MenuItemDelegate(QStyledItemDelegate):
         painter.restore()
 
 
+class ShortcutMenuItemDelegate(MenuItemDelegate):
+    """ Shortcut key menu item delegate """
+
+    def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        super().paint(painter, option, index)
+        if self._isSeparator(index):
+            return
+
+        # draw shortcut key
+        action = index.data(Qt.UserRole)  # type: QAction
+        if not isinstance(action, QAction) or action.shortcut().isEmpty():
+            return
+
+        painter.save()
+
+        font = getFont(12)
+        painter.setFont(font)
+        painter.setPen(QColor(255, 255, 255, 200) if isDarkTheme() else QColor(0, 0, 0, 153))
+
+        fm = QFontMetrics(font)
+        shortcut = action.shortcut().toString()
+
+        sw = fm.width(shortcut)
+        painter.translate(option.rect.width()-sw-20, 0)
+
+        rect = QRectF(0, option.rect.y(), sw, option.rect.height())
+        painter.drawText(rect, Qt.AlignLeft | Qt.AlignVCenter, shortcut)
+
+        painter.restore()
+
+
 class MenuActionListWidget(QListWidget):
     """ Menu action list widget """
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setViewportMargins(6, 6, 6, 6)
+        self.setViewportMargins(0, 6, 0, 6)
         self.setTextElideMode(Qt.ElideNone)
         self.setDragEnabled(False)
         self.setMouseTracking(True)
         self.setIconSize(QSize(14, 14))
-        self.setItemDelegate(MenuItemDelegate(self))
+        self.setItemDelegate(ShortcutMenuItemDelegate(self))
 
         self.scrollDelegate = SmoothScrollDelegate(self)
         self.setStyleSheet(
-            'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei"}')
+            'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei", "PingFang SC"}')
 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -303,12 +339,18 @@ class RoundMenu(QWidget):
             raise ValueError('`before` is not in the action list')
 
         item = QListWidgetItem(self._createItemIcon(action), action.text())
+
+        sw = self._longestShortcutWidth()
+        if sw:
+            sw += 22
+
+        # adjust the width of item
         if not self._hasItemIcon():
-            w = 40 + self.view.fontMetrics().width(action.text())
+            w = 40 + self.view.fontMetrics().width(action.text()) + sw
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + item.text())
-            w = 60 + self.view.fontMetrics().width(item.text())
+            w = 60 + self.view.fontMetrics().width(item.text()) + sw
 
         item.setSizeHint(QSize(w, self.itemHeight))
         item.setData(Qt.UserRole, action)
@@ -319,10 +361,15 @@ class RoundMenu(QWidget):
     def _hasItemIcon(self):
         return any(not i.icon().isNull() for i in self._actions+self._subMenus)
 
+    def _longestShortcutWidth(self):
+        """ longest shortcut key """
+        fm = QFontMetrics(getFont(12))
+        return max(fm.width(a.shortcut().toString()) for a in self.menuActions())
+
     def _createItemIcon(self, w):
         """ create the icon of menu item """
         hasIcon = self._hasItemIcon()
-        icon = QIcon(MenuIconEngine(w.icon()))
+        icon = QIcon(FluentIconEngine(w.icon()))
 
         if hasIcon and w.icon().isNull():
             pixmap = QPixmap(self.view.iconSize())
@@ -960,6 +1007,6 @@ class IndicatorMenuItemDelegate(MenuItemDelegate):
 
         painter.setPen(Qt.NoPen)
         painter.setBrush(themeColor())
-        painter.drawRoundedRect(0, 11+option.rect.y(), 3, 15, 1.5, 1.5)
+        painter.drawRoundedRect(6, 11+option.rect.y(), 3, 15, 1.5, 1.5)
 
         painter.restore()

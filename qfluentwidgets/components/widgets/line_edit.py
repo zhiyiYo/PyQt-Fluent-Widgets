@@ -169,7 +169,7 @@ class CompleterMenu(RoundMenu):
         self.items = []
         self.lineEdit = lineEdit
 
-        self.view.setViewportMargins(6, 2, 6, 6)
+        self.view.setViewportMargins(0, 2, 0, 6)
         self.view.setObjectName('completerListWidget')
         self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)

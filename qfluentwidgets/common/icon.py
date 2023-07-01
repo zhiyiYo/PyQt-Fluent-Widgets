@@ -12,7 +12,7 @@ from .config import isDarkTheme, Theme
 from .overload import singledispatchmethod
 
 
-class MenuIconEngine(QIconEngine):
+class FluentIconEngine(QIconEngine):
 
     def __init__(self, icon):
         super().__init__()
@@ -156,6 +156,8 @@ def drawIcon(icon, painter, rect, **attributes):
     """
     if isinstance(icon, FluentIconBase):
         icon.render(painter, rect, **attributes)
+    elif isinstance(icon, Icon):
+        icon.fluentIcon.render(painter, rect, **attributes)
     else:
         icon = QIcon(icon)
         rect = QRectF(rect).toRect()
@@ -240,6 +242,7 @@ class FluentIconBase:
 class FluentIcon(FluentIconBase, Enum):
     """ Fluent icon """
 
+    UP = "Up"
     ADD = "Add"
     CUT = "Cut"
     PIN = "Pin"
@@ -247,6 +250,7 @@ class FluentIcon(FluentIconBase, Enum):
     CHAT = "Chat"
     COPY = "Copy"
     CODE = "Code"
+    DOWN = "Down"
     EDIT = "Edit"
     FONT = "Font"
     HELP = "Help"
@@ -283,12 +287,14 @@ class FluentIcon(FluentIconBase, Enum):
     CANCEL = "Cancel"
     DELETE = "Delete"
     FOLDER = "Folder"
+    FILTER = "Filter"
     SCROLL = "Scroll"
     LAYOUT = "Layout"
     GITHUB = "GitHub"
     UPDATE = "Update"
     RETURN = "Return"
     RINGER = "Ringer"
+    ROTATE = "Rotate"
     SEARCH = "Search"
     SAVE_AS = "SaveAs"
     ZOOM_IN = "ZoomIn"

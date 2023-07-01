@@ -10,12 +10,12 @@ LinkCard:hover {
 }
 
 #titleLabel {
-    font: 18px 'Segoe UI', 'Microsoft YaHei';
+    font: 18px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: black;
 }
 
 #contentLabel {
-    font: 12px 'Segoe UI', 'Microsoft YaHei';
+    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: rgb(93, 93, 93);
 }
 
