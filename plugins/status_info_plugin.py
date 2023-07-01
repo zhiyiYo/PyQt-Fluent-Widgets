@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition,
-                            IndeterminateProgressRing)
+                            IndeterminateProgressRing, InfoBadge)
 
 from plugin_base import PluginBase
 
@@ -96,3 +96,16 @@ class StateToolTipPlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "StateToolTip"
+
+
+class InfoBadgePlugin(StatusInfoPlugin, QPyDesignerCustomWidgetPlugin):
+    """ State tool tip plugin """
+
+    def createWidget(self, parent):
+        return InfoBadge('10', parent)
+
+    def icon(self):
+        return super().icon("InfoBadge")
+
+    def name(self):
+        return "InfoBadge"

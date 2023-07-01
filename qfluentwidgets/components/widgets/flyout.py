@@ -438,8 +438,8 @@ class SlideRightFlyoutAnimationManager(FlyoutAnimationManager):
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.FADE_IN)
-class DropDownFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Drop down flyout animation manager """
+class FadeInFlyoutAnimationManager(FlyoutAnimationManager):
+    """ Fade in flyout animation manager """
 
     def position(self, target: QWidget):
         w = self.flyout
