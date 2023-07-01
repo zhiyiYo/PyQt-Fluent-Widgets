@@ -34,6 +34,10 @@ ExampleCard>#card QLabel {
     color: white;
 }
 
+ExampleCard>#card InfoBadge {
+    font-size: 11px;
+}
+
 
 #sourceWidget {
     background-color: rgb(51, 51, 51);

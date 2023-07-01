@@ -16,6 +16,7 @@ from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
                    MenuItemDelegate)
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition
+from .info_badge import InfoBadge, InfoLevel
 from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea, ScrollArea
 from .slider import Slider, HollowHandleStyle
 from .spin_box import SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit
@@ -29,5 +30,5 @@ from .cycle_list_widget import CycleListWidget
 from .progress_bar import IndeterminateProgressBar, ProgressBar
 from .progress_ring import ProgressRing, IndeterminateProgressRing
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
-from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView
+from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView, PopupTeachingTip
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager

@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (PushButton, TeachingTip, TeachingTipTailPosition, InfoBarIcon, setTheme, Theme,
-                            TeachingTipView, FlyoutViewBase, BodyLabel, PrimaryPushButton)
+                            TeachingTipView, FlyoutViewBase, BodyLabel, PrimaryPushButton, PopupTeachingTip)
 
 
 class CustomFlyoutView(FlyoutViewBase):
@@ -56,8 +56,8 @@ class Demo(QWidget):
             icon=None,
             title='Lesson 5',
             content="最短的捷径就是绕远路，绕远路才是我的最短捷径。",
-            image='resource/Gyro.jpg',
-            # image='resource/boqi.gif',
+            # image='resource/Gyro.jpg',
+            image='resource/boqi.gif',
             isClosable=True,
             tailPosition=position,
         )
@@ -89,7 +89,8 @@ class Demo(QWidget):
         )
 
     def showCustomTip(self):
-        TeachingTip.make(
+        # TeachingTip.make(
+        PopupTeachingTip.make(
             target=self.button3,
             view=CustomFlyoutView(),
             tailPosition=TeachingTipTailPosition.RIGHT,

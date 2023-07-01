@@ -310,10 +310,10 @@ class HomeInterface(ScrollArea):
             index=1
         )
         menuView.addSampleCard(
-            icon=":/gallery/images/controls/CommandBar.png",
-            title="CommandBar",
+            icon=":/gallery/images/controls/CommandBarFlyout.png",
+            title="CommandBarFlyout",
             content=self.tr(
-                "Shows a contextual list of simple commands or options."),
+                "A mini-toolbar displaying proactive commands, and an optional menu of commands."),
             routeKey="menuInterface",
             index=2
         )
@@ -354,12 +354,20 @@ class HomeInterface(ScrollArea):
             index=0
         )
         stateInfoView.addSampleCard(
+            icon=":/gallery/images/controls/InfoBadge.png",
+            title="InfoBadge",
+            content=self.tr(
+                "An non-intrusive Ul to display notifications or bring focus to an area."),
+            routeKey="statusInfoInterface",
+            index=3
+        )
+        stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/InfoBar.png",
             title="InfoBar",
             content=self.tr(
                 "An inline message to display app-wide status change information."),
             routeKey="statusInfoInterface",
-            index=3
+            index=4
         )
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/ProgressBar.png",
@@ -367,7 +375,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction."),
             routeKey="statusInfoInterface",
-            index=7
+            index=8
         )
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/ProgressRing.png",
@@ -375,7 +383,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction."),
             routeKey="statusInfoInterface",
-            index=9
+            index=10
         )
         stateInfoView.addSampleCard(
             icon=":/gallery/images/controls/ToolTip.png",

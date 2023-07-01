@@ -164,6 +164,8 @@ class ImageLabel(QLabel):
         elif isinstance(image, QPixmap):
             self.image = image.toImage()
 
+        self.setFixedSize(self.image.size())
+
     def scaledToWidth(self, width: int):
         if self.isNull():
             return

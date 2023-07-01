@@ -99,6 +99,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     LINE_EDIT = "line_edit"
     LIST_VIEW = "list_view"
     TREE_VIEW = "tree_view"
+    INFO_BADGE = "info_badge"
     TABLE_VIEW = "table_view"
     TIME_PICKER = "time_picker"
     COLOR_DIALOG = "color_dialog"
