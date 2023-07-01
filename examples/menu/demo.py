@@ -24,9 +24,7 @@ class Demo(QWidget):
         menu = RoundMenu(parent=self)
 
         # add actions
-        action = Action(FIF.COPY, 'Copy')
-        action.setEnabled(False)
-        menu.addAction(action)
+        menu.addAction(Action(FIF.COPY, 'Copy'))
         menu.addAction(Action(FIF.CUT, 'Cut'))
 
         # add sub menu

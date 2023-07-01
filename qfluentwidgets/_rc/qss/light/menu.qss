@@ -57,6 +57,7 @@ MenuActionListWidget::item:disabled {
     padding-right: 10px;
     border-radius: 5px;
     border: none;
+    color: rgba(0, 0, 0, 112);
 }
 
 MenuActionListWidget::item:hover {

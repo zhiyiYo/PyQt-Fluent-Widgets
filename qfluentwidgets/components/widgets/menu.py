@@ -141,6 +141,9 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
 
         painter.save()
 
+        if not option.state & QStyle.State_Enabled:
+            painter.setOpacity(0.5 if isDarkTheme() else 0.6)
+
         font = getFont(12)
         painter.setFont(font)
         painter.setPen(QColor(255, 255, 255, 200) if isDarkTheme() else QColor(0, 0, 0, 153))
@@ -328,7 +331,7 @@ class RoundMenu(QWidget):
         self.view.addItem(item)
         self.adjustSize()
 
-    def _createActionItem(self, action, before=None):
+    def _createActionItem(self, action: QAction, before=None):
         """ create menu action item  """
         if not before:
             self._actions.append(action)
@@ -351,6 +354,10 @@ class RoundMenu(QWidget):
             # add a blank character to increase space between icon and text
             item.setText(" " + item.text())
             w = 60 + self.view.fontMetrics().width(item.text()) + sw
+
+        # disable item if the action is not enabled
+        if not action.isEnabled():
+            item.setFlags(Qt.NoItemFlags)
 
         item.setSizeHint(QSize(w, self.itemHeight))
         item.setData(Qt.UserRole, action)
@@ -597,13 +604,17 @@ class RoundMenu(QWidget):
         item = action.property('item')  # type: QListWidgetItem
         item.setIcon(self._createItemIcon(action))
 
+        sw = self._longestShortcutWidth()
+        if sw:
+            sw += 22
+
         if not self._hasItemIcon():
             item.setText(action.text())
-            w = 28 + self.view.fontMetrics().width(action.text())
+            w = 28 + self.view.fontMetrics().width(action.text()) + sw
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + action.text())
-            w = 60 + self.view.fontMetrics().width(item.text())
+            w = 60 + self.view.fontMetrics().width(item.text()) + sw
 
         item.setSizeHint(QSize(w, self.itemHeight))
 
