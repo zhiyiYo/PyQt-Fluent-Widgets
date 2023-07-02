@@ -9,6 +9,7 @@ from navigation_plugin import *
 from status_info_plugin import *
 from text_plugin import *
 from view_plugin import *
+from toolbar_plugin import *
 
 
 # basic input plugins
@@ -31,8 +32,6 @@ QPyDesignerCustomWidgetCollection.addCustomWidget(IconWidgetPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(PixmapLabelPlugin())
 
 # container plugins
-QPyDesignerCustomWidgetCollection.addCustomWidget(FramelessMainWindowPlugin())
-QPyDesignerCustomWidgetCollection.addCustomWidget(FramelessWindowPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(ScrollAreaPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(SmoothScrollAreaPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(SingleDirectionScrollAreaPlugin())
@@ -73,3 +72,6 @@ QPyDesignerCustomWidgetCollection.addCustomWidget(TableWidgetPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(TableViewPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(TreeWidgetPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(TreeViewPlugin())
+
+# tool bar plugin
+QPyDesignerCustomWidgetCollection.addCustomWidget(ToolBarPlugin())

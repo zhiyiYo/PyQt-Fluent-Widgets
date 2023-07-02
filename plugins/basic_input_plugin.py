@@ -5,7 +5,8 @@ from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButt
                             ToolButton, SplitToolButton, DropDownToolButton, FluentIcon, ToggleButton,
                             SwitchButton, RadioButton, CheckBox, HyperlinkButton, Slider, ComboBox, IconWidget,
                             EditableComboBox, PixmapLabel, PushButton, PrimaryToolButton, PrimarySplitToolButton,
-                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton, TransparentToolButton)
+                            PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton, TransparentToolButton,
+                            PillPushButton, PillToolButton)
 
 from plugin_base import PluginBase
 from task_menu_factory import EditTextTaskMenuFactory
@@ -108,6 +109,19 @@ class PrimaryPushButtonPlugin(BasicInputPlugin, QDesignerCustomWidgetInterface):
         return "PrimaryPushButton"
 
 
+class PillPushButtonPlugin(TextPlugin, QDesignerCustomWidgetInterface):
+    """ Pill push button plugin """
+
+    def createWidget(self, parent):
+        return PillPushButton(self.toolTip(), parent)
+
+    def icon(self):
+        return super().icon('Button')
+
+    def name(self):
+        return "PillPushButton"
+
+
 class DropDownPushButtonPlugin(BasicInputPlugin, QDesignerCustomWidgetInterface):
     """ Drop down push button plugin """
 
@@ -204,6 +218,19 @@ class PrimaryToolButtonPlugin(BasicInputPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "PrimaryToolButton"
+
+
+class PillToolButtonPlugin(BasicInputPlugin, QDesignerCustomWidgetInterface):
+    """ Pill tool button plugin """
+
+    def createWidget(self, parent):
+        return PillToolButton(FluentIcon.BASKETBALL, parent)
+
+    def icon(self):
+        return super().icon('Button')
+
+    def name(self):
+        return "PillToolButton"
 
 
 class DropDownToolButtonPlugin(BasicInputPlugin, QDesignerCustomWidgetInterface):

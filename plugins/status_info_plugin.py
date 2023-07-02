@@ -1,9 +1,9 @@
 # coding: utf-8
-from PySide6.QtCore import Qt
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
 from qfluentwidgets import (InfoBar, ProgressBar, IndeterminateProgressBar, ProgressRing, StateToolTip, InfoBarPosition,
-                            IndeterminateProgressRing)
+                            IndeterminateProgressRing, InfoBadge, DotInfoBadge, IconInfoBadge, FluentIcon)
 
 from plugin_base import PluginBase
 
@@ -96,3 +96,42 @@ class StateToolTipPlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "StateToolTip"
+
+
+class InfoBadgePlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
+    """ Info badge plugin """
+
+    def createWidget(self, parent):
+        return InfoBadge('10', parent)
+
+    def icon(self):
+        return super().icon("InfoBadge")
+
+    def name(self):
+        return "InfoBadge"
+
+
+class DotInfoBadgePlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
+    """ Dot info badge plugin """
+
+    def createWidget(self, parent):
+        return DotInfoBadge(parent)
+
+    def icon(self):
+        return super().icon("InfoBadge")
+
+    def name(self):
+        return "DotInfoBadge"
+
+
+class IconInfoBadgePlugin(StatusInfoPlugin, QDesignerCustomWidgetInterface):
+    """ Icon info badge plugin """
+
+    def createWidget(self, parent):
+        return IconInfoBadge.success(FluentIcon.ACCEPT_MEDIUM, parent)
+
+    def icon(self):
+        return super().icon("InfoBadge")
+
+    def name(self):
+        return "IconInfoBadge"

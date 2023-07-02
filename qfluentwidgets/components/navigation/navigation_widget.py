@@ -40,10 +40,12 @@ class NavigationWidget(QWidget):
         self.update()
 
     def mousePressEvent(self, e):
+        super().mousePressEvent(e)
         self.isPressed = True
         self.update()
 
     def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
         self.isPressed = False
         self.update()
         self.clicked.emit(True)

@@ -1,6 +1,6 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt
-from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
+from PySide6.QtCore import Qt
+from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
 from qfluentwidgets import CommandBar, Action, FluentIcon
 
@@ -13,7 +13,7 @@ class ToolBarPlugin(PluginBase):
         return super().group() + ' (ToolBar)'
 
 
-class CommandBarPlugin(ToolBarPlugin, QPyDesignerCustomWidgetPlugin):
+class CommandBarPlugin(ToolBarPlugin, QDesignerCustomWidgetInterface):
     """ Command bar plugin """
 
     def createWidget(self, parent):

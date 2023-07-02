@@ -2,14 +2,14 @@
 from typing import Union
 
 from PySide6.QtCore import Signal, QUrl, Qt, QRectF, QSize, QPoint, Property
-from PySide6.QtGui import QDesktopServices, QIcon, QPainter, QFont
+from PySide6.QtGui import QDesktopServices, QIcon, QPainter, QColor
 from PySide6.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon, Icon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
 from ...common.overload import singledispatchmethod
 from .menu import RoundMenu
 
@@ -353,7 +353,8 @@ class DropDownButtonBase:
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        rect = QRectF(self.width()-22, self.height()/2-5+self.arrowAni.y, 10, 10)
+        rect = QRectF(self.width()-22, self.height() /
+                      2-5+self.arrowAni.y, 10, 10)
         self._drawDropDownIcon(painter, rect)
 
 
@@ -648,3 +649,61 @@ class PrimarySplitToolButton(SplitToolButton):
         self.button.setObjectName('primarySplitToolButton')
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
+
+
+class PillButtonBase:
+    """ Pill button base class """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        isDark = isDarkTheme()
+
+        if not self.isChecked():
+            rect = self.rect().adjusted(1, 1, -1, -1)
+            borderColor = QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 15)
+
+            if not self.isEnabled():
+                bgColor = QColor(255, 255, 255, 11) if isDark else QColor(249, 249, 249, 75)
+            elif self.isPressed or self.isHover:
+                bgColor = QColor(255, 255, 255, 21) if isDark else QColor(249, 249, 249, 128)
+            else:
+                bgColor = QColor(255, 255, 255, 15) if isDark else QColor(243, 243, 243, 194)
+
+        else:
+            if not self.isEnabled():
+                bgColor = QColor(255, 255, 255, 40) if isDark else QColor(0, 0, 0, 55)
+            elif self.isPressed:
+                bgColor = ThemeColor.DARK_2.color() if isDark else ThemeColor.LIGHT_3.color()
+            elif self.isHover:
+                bgColor = ThemeColor.DARK_1.color() if isDark else ThemeColor.LIGHT_1.color()
+            else:
+                bgColor = themeColor()
+
+            borderColor = Qt.transparent
+            rect = self.rect()
+
+        painter.setPen(borderColor)
+        painter.setBrush(bgColor)
+
+        r = rect.height() / 2
+        painter.drawRoundedRect(rect, r, r)
+
+
+class PillPushButton(TogglePushButton, PillButtonBase):
+    """ Pill push button """
+
+    def paintEvent(self, e):
+        PillButtonBase.paintEvent(self, e)
+        TogglePushButton.paintEvent(self, e)
+
+
+class PillToolButton(ToggleToolButton, PillButtonBase):
+    """ Pill push button """
+
+    def paintEvent(self, e):
+        PillButtonBase.paintEvent(self, e)
+        ToggleToolButton.paintEvent(self, e)

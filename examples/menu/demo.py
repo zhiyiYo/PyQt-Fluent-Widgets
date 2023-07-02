@@ -3,7 +3,7 @@ import sys
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QLabel
-from qfluentwidgets import RoundMenu, setTheme, Theme, Action, MenuAnimationType
+from qfluentwidgets import RoundMenu, setTheme, Theme, Action, MenuAnimationType, MenuItemDelegate, CheckableMenu, MenuIndicatorType
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -23,10 +23,16 @@ class Demo(QWidget):
 
     def contextMenuEvent(self, e):
         menu = RoundMenu(parent=self)
+        # menu = CheckableMenu(parent=self, indicatorType=MenuIndicatorType.RADIO)
+
+        # NOTE: hide the shortcut key
+        # menu.view.setItemDelegate(MenuItemDelegate())
 
         # add actions
         menu.addAction(Action(FIF.COPY, 'Copy'))
         menu.addAction(Action(FIF.CUT, 'Cut'))
+        menu.menuActions()[0].setCheckable(True)
+        menu.menuActions()[0].setChecked(True)
 
         # add sub menu
         submenu = RoundMenu("Add to", self)
@@ -55,6 +61,8 @@ class Demo(QWidget):
             [Action(FIF.HELP, 'Help', shortcut='Ctrl+H'),
              Action(FIF.FEEDBACK, 'Feedback', shortcut='Ctrl+F')]
         )
+        menu.menuActions()[-2].setCheckable(True)
+        menu.menuActions()[-2].setChecked(True)
 
         # show menu
         menu.exec(e.globalPos(), aniType=MenuAnimationType.DROP_DOWN)

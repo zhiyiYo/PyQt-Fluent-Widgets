@@ -1,9 +1,10 @@
 # coding:utf-8
 from PySide6.QtCore import QPoint, Qt, QStandardPaths
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QActionGroup
 from  PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QFileDialog
 from qfluentwidgets import (RoundMenu, PushButton, Action, CommandBar, Action, TransparentDropDownPushButton,
-                            setFont, CommandBarView, Flyout, ImageLabel, FlyoutAnimationType)
+                            setFont, CommandBarView, Flyout, ImageLabel, FlyoutAnimationType, CheckableMenu,
+                            MenuIndicatorType)
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -22,14 +23,45 @@ class MenuInterface(GalleryInterface):
         )
         self.setObjectName('menuInterface')
 
+        # create actions
+        self.createTimeAction = Action(FIF.CALENDAR, self.tr('Create Date'), checkable=True)
+        self.shootTimeAction = Action(FIF.CAMERA, self.tr('Shooting Date'), checkable=True)
+        self.modifiedTimeAction = Action(FIF.EDIT, self.tr('Modified time'), checkable=True)
+        self.nameAction = Action(FIF.FONT, self.tr('Name'), checkable=True)
+        self.actionGroup1 = QActionGroup(self)
+        self.actionGroup1.addAction(self.createTimeAction)
+        self.actionGroup1.addAction(self.shootTimeAction)
+        self.actionGroup1.addAction(self.modifiedTimeAction)
+        self.actionGroup1.addAction(self.nameAction)
+
+        self.ascendAction =  Action(FIF.UP, self.tr('Ascending'), checkable=True)
+        self.descendAction =  Action(FIF.DOWN, self.tr('Descending'), checkable=True)
+        self.actionGroup2 = QActionGroup(self)
+        self.actionGroup2.addAction(self.ascendAction)
+        self.actionGroup2.addAction(self.descendAction)
+
+        self.shootTimeAction.setChecked(True)
+        self.ascendAction.setChecked(True)
+
         # context menu
-        button = PushButton(self.tr('Show menu'))
-        button.clicked.connect(lambda: self.createMenu(
-            button.mapToGlobal(QPoint()) + QPoint(button.width()+5, -100)))
+        self.button1 = PushButton(self.tr('Show menu'))
+        self.button1.clicked.connect(lambda: self.createMenu(
+            self.button1.mapToGlobal(QPoint(self.button1.width()+5, -100))))
 
         self.addExampleCard(
             self.tr('Rounded corners menu'),
-            button,
+            self.button1,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/menu/demo.py'
+        )
+
+        # checkable menu
+        self.button2 = PushButton(self.tr('Show menu'))
+        self.button2.clicked.connect(lambda: self.createCheckableMenu(
+            self.button2.mapToGlobal(QPoint(self.button2.width()+5, -100))))
+
+        self.addExampleCard(
+            self.tr('Checkable menu'),
+            self.button2,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/demo.py'
         )
 
@@ -102,6 +134,21 @@ class MenuInterface(GalleryInterface):
 
         menu.exec(pos, ani=True)
 
+    def createCheckableMenu(self, pos=None):
+        menu = CheckableMenu(parent=self, indicatorType=MenuIndicatorType.RADIO)
+
+        menu.addActions([
+            self.createTimeAction, self.shootTimeAction,
+            self.modifiedTimeAction, self.nameAction
+        ])
+        menu.addSeparator()
+        menu.addActions([self.ascendAction, self.descendAction])
+
+        if pos is not None:
+            menu.exec(pos, ani=True)
+
+        return menu
+
     def createCommandBar(self):
         bar = CommandBar(self)
         bar.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
@@ -119,23 +166,11 @@ class MenuInterface(GalleryInterface):
             Action(FIF.SHARE, self.tr('Share'))
         ])
 
+        # add custom widget
         button = TransparentDropDownPushButton(self.tr('Sort'), self, FIF.SCROLL)
+        button.setMenu(self.createCheckableMenu())
         button.setFixedHeight(34)
         setFont(button, 12)
-
-        menu = RoundMenu(parent=self)
-        menu.addActions([
-            Action(FIF.CALENDAR, self.tr('Create Date')),
-            Action(FIF.CAMERA, self.tr('Shooting Date')),
-            Action(FIF.FONT, self.tr('Name')),
-        ])
-        menu.addSeparator()
-        menu.addActions([
-            Action(FIF.UP, self.tr('Ascending')),
-            Action(FIF.DOWN, self.tr('Descending')),
-        ])
-
-        button.setMenu(menu)
         bar.addWidget(button)
 
         bar.addHiddenActions([
