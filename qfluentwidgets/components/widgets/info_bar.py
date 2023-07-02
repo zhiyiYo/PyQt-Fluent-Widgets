@@ -298,6 +298,7 @@ class InfoBarManager(QObject):
     """ Info bar manager """
 
     _instance = None
+    managers = {}
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
@@ -400,9 +401,11 @@ class InfoBarManager(QObject):
             ani.setEndValue(self._pos(bar))
 
     def _pos(self, infoBar: InfoBar, parentSize=None) -> QPoint:
+        """ return the position of info bar """
         raise NotImplementedError
 
     def _slideStartPos(self, infoBar: InfoBar) -> QPoint:
+        """ return the start position of slide animation  """
         raise NotImplementedError
 
     def eventFilter(self, obj, e: QEvent):
@@ -416,24 +419,33 @@ class InfoBarManager(QObject):
 
         return super().eventFilter(obj, e)
 
-    @staticmethod
-    def make(position: InfoBarPosition):
+    @classmethod
+    def register(cls, name):
+        """ register menu animation manager
+
+        Parameters
+        ----------
+        name: Any
+            the name of manager, it should be unique
+        """
+        def wrapper(Manager):
+            if name not in cls.managers:
+                cls.managers[name] = Manager
+
+            return Manager
+
+        return wrapper
+
+    @classmethod
+    def make(cls, position: InfoBarPosition):
         """ mask info bar manager according to the display position """
-        managers = {
-            InfoBarPosition.TOP: TopInfoBarManager,
-            InfoBarPosition.BOTTOM: BottomInfoBarManager,
-            InfoBarPosition.TOP_RIGHT: TopRightInfoBarManager,
-            InfoBarPosition.BOTTOM_RIGHT: BottomRightInfoBarManager,
-            InfoBarPosition.TOP_LEFT: TopLeftInfoBarManager,
-            InfoBarPosition.BOTTOM_LEFT: BottomLeftInfoBarManager,
-        }
+        if position not in cls.managers:
+            raise ValueError(f'`{position}` is an invalid animation type.')
 
-        if position not in managers:
-            raise ValueError(f'`{position}` is an invalid info bar position.')
-
-        return managers[position]()
+        return cls.managers[position]()
 
 
+@InfoBarManager.register(InfoBarPosition.TOP)
 class TopInfoBarManager(InfoBarManager):
     """ Top position info bar manager """
 
@@ -454,6 +466,7 @@ class TopInfoBarManager(InfoBarManager):
         return QPoint(pos.x(), pos.y() - 16)
 
 
+@InfoBarManager.register(InfoBarPosition.TOP_RIGHT)
 class TopRightInfoBarManager(InfoBarManager):
     """ Top right position info bar manager """
 
@@ -473,6 +486,7 @@ class TopRightInfoBarManager(InfoBarManager):
         return QPoint(infoBar.parent().width(), self._pos(infoBar).y())
 
 
+@InfoBarManager.register(InfoBarPosition.BOTTOM_RIGHT)
 class BottomRightInfoBarManager(InfoBarManager):
     """ Bottom right position info bar manager """
 
@@ -493,6 +507,7 @@ class BottomRightInfoBarManager(InfoBarManager):
         return QPoint(infoBar.parent().width(), self._pos(infoBar).y())
 
 
+@InfoBarManager.register(InfoBarPosition.TOP_LEFT)
 class TopLeftInfoBarManager(InfoBarManager):
     """ Top left position info bar manager """
 
@@ -512,6 +527,7 @@ class TopLeftInfoBarManager(InfoBarManager):
         return QPoint(-infoBar.width(), self._pos(infoBar).y())
 
 
+@InfoBarManager.register(InfoBarPosition.BOTTOM_LEFT)
 class BottomLeftInfoBarManager(InfoBarManager):
     """ Bottom left position info bar manager """
 
@@ -531,6 +547,7 @@ class BottomLeftInfoBarManager(InfoBarManager):
         return QPoint(-infoBar.width(), self._pos(infoBar).y())
 
 
+@InfoBarManager.register(InfoBarPosition.BOTTOM)
 class BottomInfoBarManager(InfoBarManager):
     """ Bottom position info bar manager """
 

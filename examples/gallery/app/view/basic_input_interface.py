@@ -6,7 +6,8 @@ from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, Push
                             ToggleButton, RoundMenu, FluentIcon, SplitPushButton, SplitToolButton, PrimarySplitToolButton,
                             PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryToolButton, PrimaryDropDownToolButton,
                             ToggleToolButton, TransparentDropDownPushButton, TransparentPushButton, TransparentToggleToolButton,
-                            TransparentTogglePushButton, TransparentDropDownToolButton, TransparentToolButton)
+                            TransparentTogglePushButton, TransparentDropDownToolButton, TransparentToolButton,
+                            PillPushButton, PillToolButton)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -52,6 +53,20 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Accent style applied to tool button'),
             PrimaryToolButton(FluentIcon.BASKETBALL),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # pill push button
+        self.addExampleCard(
+            self.tr('Pill push button'),
+            PillPushButton(self.tr('Tag'), self, FluentIcon.TAG),
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+        )
+
+        # pill tool button
+        self.addExampleCard(
+            self.tr('Pill tool button'),
+            PillToolButton(FluentIcon.BASKETBALL),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 

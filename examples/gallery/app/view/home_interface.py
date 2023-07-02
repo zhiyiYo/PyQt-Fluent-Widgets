@@ -134,7 +134,7 @@ class HomeInterface(ScrollArea):
             title="CheckBox",
             content=self.tr("A control that a user can select or clear."),
             routeKey="basicInputInterface",
-            index=7
+            index=8
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ComboBox.png",
@@ -142,7 +142,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A drop-down list of items a user can select from."),
             routeKey="basicInputInterface",
-            index=9
+            index=10
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/DropDownButton.png",
@@ -150,7 +150,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that displays a flyout of choices when clicked."),
             routeKey="basicInputInterface",
-            index=11
+            index=12
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/HyperlinkButton.png",
@@ -158,7 +158,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that appears as hyperlink text, and can navigate to a URI or handle a Click event."),
             routeKey="basicInputInterface",
-            index=16
+            index=18
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/RadioButton.png",
@@ -166,7 +166,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A control that allows a user to select a single option from a group of options."),
             routeKey="basicInputInterface",
-            index=17
+            index=19
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/Slider.png",
@@ -174,7 +174,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A control that lets the user select from a range of values by moving a Thumb control along a track."),
             routeKey="basicInputInterface",
-            index=18
+            index=20
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/SplitButton.png",
@@ -182,7 +182,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A two-part button that displays a flyout when its secondary part is clicked."),
             routeKey="basicInputInterface",
-            index=19
+            index=21
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleSwitch.png",
@@ -190,7 +190,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A switch that can be toggled between 2 states."),
             routeKey="basicInputInterface",
-            index=23
+            index=25
         )
         basicInputView.addSampleCard(
             icon=":/gallery/images/controls/ToggleButton.png",
@@ -198,7 +198,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A button that can be switched between two states like a CheckBox."),
             routeKey="basicInputInterface",
-            index=24
+            index=26
         )
         self.vBoxLayout.addWidget(basicInputView)
 
@@ -307,7 +307,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "Shows a contextual list of simple commands or options."),
             routeKey="menuInterface",
-            index=1
+            index=2
         )
         menuView.addSampleCard(
             icon=":/gallery/images/controls/CommandBarFlyout.png",
@@ -315,7 +315,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A mini-toolbar displaying proactive commands, and an optional menu of commands."),
             routeKey="menuInterface",
-            index=2
+            index=3
         )
         self.vBoxLayout.addWidget(menuView)
 

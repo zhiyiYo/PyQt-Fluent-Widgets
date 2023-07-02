@@ -154,8 +154,8 @@ class TeachingTip(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowFlags(Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint)
 
-        if self.parent():
-            self.parent().installEventFilter(self)
+        if parent and parent.window():
+            parent.window().installEventFilter(self)
 
     def setShadowEffect(self, blurRadius=35, offset=(0, 8)):
         """ add shadow to dialog """
@@ -187,7 +187,7 @@ class TeachingTip(QWidget):
         super().showEvent(e)
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is self.parent():
+        if self.parent() and obj is self.parent().window():
             if e.type() in [QEvent.Type.Resize, QEvent.Type.WindowStateChange, QEvent.Type.Move]:
                 self.move(self.manager.position(self))
 
@@ -572,10 +572,10 @@ class LeftBottomTailTeachingTipManager(LeftTailTeachingTipManager):
 
     def draw(self, tip, painter):
         w, h = tip.width(), tip.height()
-        pl = 8
+        pl = 9
 
         path = QPainterPath()
-        path.addRoundedRect(pl, 1, w - pl - 2, h - 2, 8, 8)
+        path.addRoundedRect(pl, 1, w - pl - 1, h - 2, 8, 8)
         path.addPolygon(
             QPolygonF([QPointF(pl, h - 10), QPointF(1, h - 17), QPointF(pl, h - 24)]))
 

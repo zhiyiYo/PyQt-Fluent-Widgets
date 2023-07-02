@@ -52,6 +52,7 @@ QLabel#windowTitleLabel {
     border-radius: 5px;
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     padding: 5px 9px 6px 9px;
+    outline: none;
 }
 
 #cancelButton:hover {
