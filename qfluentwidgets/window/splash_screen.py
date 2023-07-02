@@ -53,6 +53,14 @@ class SplashScreen(QWidget):
     def iconSize(self):
         return self._iconSize
 
+    def setTitleBar(self, titleBar: QWidget):
+        """ set title bar """
+        self.titleBar.deleteLater()
+        self.titleBar = titleBar
+        titleBar.setParent(self)
+        titleBar.raise_()
+        self.titleBar.resize(self.width(), self.titleBar.height())
+
     def eventFilter(self, obj, e: QEvent):
         if obj is self.parent():
             if e.type() == QEvent.Resize:
@@ -68,6 +76,7 @@ class SplashScreen(QWidget):
         self.titleBar.resize(self.width(), self.titleBar.height())
 
     def finish(self):
+        """ close splash screen """
         self.close()
 
     def paintEvent(self, e):
