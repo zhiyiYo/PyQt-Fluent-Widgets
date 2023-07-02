@@ -102,3 +102,7 @@ MenuActionListWidget::item:selected:active {
 #comboListWidget::item {
     margin-top: 4px;
 }
+
+#checkableListWidget::item {
+    padding-left: 36px;
+}

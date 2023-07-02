@@ -342,24 +342,12 @@ class RoundMenu(QWidget):
             raise ValueError('`before` is not in the action list')
 
         item = QListWidgetItem(self._createItemIcon(action), action.text())
-
-        sw = self._longestShortcutWidth()
-        if sw:
-            sw += 22
-
-        # adjust the width of item
-        if not self._hasItemIcon():
-            w = 40 + self.view.fontMetrics().width(action.text()) + sw
-        else:
-            # add a blank character to increase space between icon and text
-            item.setText(" " + item.text())
-            w = 60 + self.view.fontMetrics().width(item.text()) + sw
+        self._adjustItemText(item, action)
 
         # disable item if the action is not enabled
         if not action.isEnabled():
             item.setFlags(Qt.NoItemFlags)
 
-        item.setSizeHint(QSize(w, self.itemHeight))
         item.setData(Qt.UserRole, action)
         action.setProperty('item', item)
         action.changed.connect(self._onActionChanged)
@@ -367,6 +355,28 @@ class RoundMenu(QWidget):
 
     def _hasItemIcon(self):
         return any(not i.icon().isNull() for i in self._actions+self._subMenus)
+
+    def _adjustItemText(self, item: QListWidgetItem, action: QAction):
+        """ adjust the text of item """
+        # leave some space for shortcut key
+        if isinstance(self.view.itemDelegate(), ShortcutMenuItemDelegate):
+            sw = self._longestShortcutWidth()
+            if sw:
+                sw += 22
+        else:
+            sw = 0
+
+        # adjust the width of item
+        if not self._hasItemIcon():
+            item.setText(action.text())
+            w = 40 + self.view.fontMetrics().width(action.text()) + sw
+        else:
+            # add a blank character to increase space between icon and text
+            item.setText(" " + action.text())
+            w = 60 + self.view.fontMetrics().width(item.text()) + sw
+
+        item.setSizeHint(QSize(w, self.itemHeight))
+        return w
 
     def _longestShortcutWidth(self):
         """ longest shortcut key """
@@ -604,19 +614,7 @@ class RoundMenu(QWidget):
         item = action.property('item')  # type: QListWidgetItem
         item.setIcon(self._createItemIcon(action))
 
-        sw = self._longestShortcutWidth()
-        if sw:
-            sw += 22
-
-        if not self._hasItemIcon():
-            item.setText(action.text())
-            w = 28 + self.view.fontMetrics().width(action.text()) + sw
-        else:
-            # add a blank character to increase space between icon and text
-            item.setText(" " + action.text())
-            w = 60 + self.view.fontMetrics().width(item.text()) + sw
-
-        item.setSizeHint(QSize(w, self.itemHeight))
+        self._adjustItemText(item, action)
 
         if action.isEnabled():
             item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
@@ -1021,3 +1019,85 @@ class IndicatorMenuItemDelegate(MenuItemDelegate):
         painter.drawRoundedRect(6, 11+option.rect.y(), 3, 15, 1.5, 1.5)
 
         painter.restore()
+
+
+class CheckableMenuItemDelegate(ShortcutMenuItemDelegate):
+    """ Checkable menu item delegate """
+
+    def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        raise NotImplementedError
+
+    def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        super().paint(painter, option, index)
+
+        # draw indicator
+        action = index.data(Qt.UserRole)  # type: QAction
+        if not (isinstance(action, QAction) and action.isChecked()):
+            return
+
+        painter.save()
+        self._drawIndicator(painter, option, index)
+        painter.restore()
+
+
+class RadioIndicatorMenuItemDelegate(CheckableMenuItemDelegate):
+    """ Checkable menu item delegate with radio indicator """
+
+    def _drawIndicator(self, painter, option, index):
+        rect = option.rect
+        r = 5
+        x = rect.x() + 22
+        y = rect.center().y() - r / 2
+
+        painter.setRenderHints(QPainter.Antialiasing)
+        if not option.state & QStyle.State_MouseOver:
+            painter.setOpacity(0.75 if isDarkTheme() else 0.65)
+
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(Qt.white if isDarkTheme() else Qt.black)
+        painter.drawEllipse(QRectF(x, y, r, r))
+
+
+class CheckIndicatorMenuItemDelegate(CheckableMenuItemDelegate):
+    """ Checkable menu item delegate with check indicator """
+
+    def _drawIndicator(self, painter, option, index):
+        rect = option.rect
+        s = 11
+        x = rect.x() + 19
+        y = rect.center().y() - s / 2
+
+        painter.setRenderHints(QPainter.Antialiasing)
+        if not option.state & QStyle.State_MouseOver:
+            painter.setOpacity(0.75)
+
+        FIF.ACCEPT.render(painter, QRectF(x, y, s, s))
+
+
+class MenuIndicatorType(Enum):
+    """ Menu indicator type """
+    CHECK = 0
+    RADIO = 1
+
+
+def createCheckableMenuItemDelegate(style: MenuIndicatorType):
+    """ create checkable menu item delegate """
+    if style == MenuIndicatorType.RADIO:
+        return RadioIndicatorMenuItemDelegate()
+    if style == MenuIndicatorType.CHECK:
+        return CheckIndicatorMenuItemDelegate()
+
+    raise ValueError(f'`{style}` is not a valid menu indicator type.')
+
+
+class CheckableMenu(RoundMenu):
+    """ Checkable menu """
+
+    def __init__(self, title="", parent=None, indicatorType=MenuIndicatorType.CHECK):
+        super().__init__(title, parent)
+        self.view.setItemDelegate(createCheckableMenuItemDelegate(indicatorType))
+        self.view.setObjectName('checkableListWidget')
+
+    def _adjustItemText(self, item: QListWidgetItem, action: QAction):
+        w = super()._adjustItemText(item, action)
+        item.setSizeHint(QSize(w + 26, self.itemHeight))

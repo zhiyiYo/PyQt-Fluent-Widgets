@@ -15,7 +15,7 @@ from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, Subti
                     LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel)
 from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
-                   MenuItemDelegate)
+                   MenuItemDelegate, ShortcutMenuItemDelegate, CheckableMenu, MenuIndicatorType)
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition
 from .info_badge import InfoBadge, InfoLevel, DotInfoBadge, IconInfoBadge, InfoBadgePosition, InfoBadgeManager
 from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea, ScrollArea

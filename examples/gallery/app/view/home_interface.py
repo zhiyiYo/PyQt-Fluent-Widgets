@@ -307,7 +307,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "Shows a contextual list of simple commands or options."),
             routeKey="menuInterface",
-            index=1
+            index=2
         )
         menuView.addSampleCard(
             icon=":/gallery/images/controls/CommandBarFlyout.png",
@@ -315,7 +315,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A mini-toolbar displaying proactive commands, and an optional menu of commands."),
             routeKey="menuInterface",
-            index=2
+            index=3
         )
         self.vBoxLayout.addWidget(menuView)
 

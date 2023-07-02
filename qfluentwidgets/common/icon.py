@@ -31,9 +31,6 @@ class FluentIconEngine(QIconEngine):
         if isinstance(self.icon, Icon):
             icon = self.icon.fluentIcon.icon()
 
-        # prevent the left side of the icon from being cropped
-        rect.adjust(-1, 0, 0, 0)
-
         icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
         painter.restore()
 
