@@ -256,17 +256,17 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="60"/>
         <source>Pill push button</source>
-        <translation type="unfinished"></translation>
+        <translation>椭圆按钮</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="60"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <location filename="../../view/basic_input_interface.py" line="67"/>
         <source>Pill tool button</source>
-        <translation type="unfinished"></translation>
+        <translation>椭圆工具按钮</translation>
     </message>
 </context>
 <context>
@@ -716,182 +716,182 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>MenuInterface</name>
     <message>
-        <location filename="../../view/menu_interface.py" line="39"/>
+        <location filename="../../view/menu_interface.py" line="50"/>
         <source>Rounded corners menu</source>
         <translation>圆角菜单</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="46"/>
+        <location filename="../../view/menu_interface.py" line="57"/>
         <source>Show menu</source>
         <translation>显示菜单</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="90"/>
+        <location filename="../../view/menu_interface.py" line="101"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="91"/>
+        <location filename="../../view/menu_interface.py" line="102"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="96"/>
+        <location filename="../../view/menu_interface.py" line="107"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="96"/>
+        <location filename="../../view/menu_interface.py" line="107"/>
         <source>Music</source>
         <translation>音乐</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="103"/>
+        <location filename="../../view/menu_interface.py" line="114"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="103"/>
+        <location filename="../../view/menu_interface.py" line="114"/>
         <source>Undo</source>
         <translation>撤回</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="110"/>
+        <location filename="../../view/menu_interface.py" line="121"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="176"/>
+        <location filename="../../view/menu_interface.py" line="189"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="115"/>
+        <location filename="../../view/menu_interface.py" line="126"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="115"/>
+        <location filename="../../view/menu_interface.py" line="126"/>
         <source>Feedback</source>
         <translation>反馈</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="94"/>
+        <location filename="../../view/menu_interface.py" line="105"/>
         <source>Add to</source>
         <translation>添加到</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="57"/>
+        <location filename="../../view/menu_interface.py" line="68"/>
         <source>Command bar</source>
         <translation>命令栏</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="70"/>
+        <location filename="../../view/menu_interface.py" line="81"/>
         <source>Click the image to open a command bar flyout 👇️🥵</source>
         <translation>点击图片来弹出命令栏 👇️🥵</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="79"/>
+        <location filename="../../view/menu_interface.py" line="90"/>
         <source>Command bar flyout</source>
         <translation>浮出命令栏</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="141"/>
+        <location filename="../../view/menu_interface.py" line="154"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="141"/>
+        <location filename="../../view/menu_interface.py" line="154"/>
         <source>Rotate</source>
         <translation>旋转</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="141"/>
+        <location filename="../../view/menu_interface.py" line="154"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="141"/>
+        <location filename="../../view/menu_interface.py" line="154"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="148"/>
+        <location filename="../../view/menu_interface.py" line="161"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="148"/>
+        <location filename="../../view/menu_interface.py" line="161"/>
         <source>Info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="173"/>
+        <location filename="../../view/menu_interface.py" line="186"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="170"/>
+        <location filename="../../view/menu_interface.py" line="183"/>
         <source>Share</source>
         <translation>分享</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="25"/>
+        <location filename="../../view/menu_interface.py" line="26"/>
         <source>Create Date</source>
         <translation>创建日期</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="26"/>
+        <location filename="../../view/menu_interface.py" line="27"/>
         <source>Shooting Date</source>
         <translation>拍摄日期</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="28"/>
+        <location filename="../../view/menu_interface.py" line="29"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="29"/>
+        <location filename="../../view/menu_interface.py" line="36"/>
         <source>Ascending</source>
         <translation>升序</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="30"/>
+        <location filename="../../view/menu_interface.py" line="37"/>
         <source>Descending</source>
         <translation>降序</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="171"/>
+        <location filename="../../view/menu_interface.py" line="184"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="172"/>
+        <location filename="../../view/menu_interface.py" line="185"/>
         <source>Add to favorate</source>
         <translation>添加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="175"/>
+        <location filename="../../view/menu_interface.py" line="188"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="184"/>
+        <location filename="../../view/menu_interface.py" line="197"/>
         <source>Save image</source>
         <translation>保存图像</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="156"/>
+        <location filename="../../view/menu_interface.py" line="169"/>
         <source>Sort</source>
         <translation>排序</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="27"/>
+        <location filename="../../view/menu_interface.py" line="28"/>
         <source>Modified time</source>
         <translation>修改日期</translation>
     </message>
     <message>
-        <location filename="../../view/menu_interface.py" line="50"/>
+        <location filename="../../view/menu_interface.py" line="61"/>
         <source>Checkable menu</source>
         <translation>可选中菜单</translation>
     </message>
