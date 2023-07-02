@@ -51,6 +51,7 @@ QPushButton {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
     background-color: rgb(62, 63, 62);
+    outline: none;
 }
 
 QPushButton:hover {
@@ -78,6 +79,7 @@ ToolButton {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
     background-color: rgb(62, 63, 62);
+    outline: none;
 }
 
 ToolButton:hover {

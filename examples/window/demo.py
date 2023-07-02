@@ -5,7 +5,8 @@ from PySide2.QtCore import Qt, QUrl
 from PySide2.QtGui import QIcon, QDesktopServices
 from PySide2.QtWidgets import QApplication, QFrame, QHBoxLayout
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
-                            NavigationAvatarWidget, qrouter, SubtitleLabel, setFont)
+                            NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
+                            InfoBadgePosition)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -64,6 +65,15 @@ class Window(FluentWindow):
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
+        # add badge to navigation item
+        item = self.navigationInterface.widget(self.videoInterface.objectName())
+        InfoBadge.attension(
+            text=9,
+            parent=item.parent(),
+            target=item,
+            position=InfoBadgePosition.NAVIGATION_ITEM
+        )
+
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
@@ -91,7 +101,7 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
-    setTheme(Theme.DARK)
+    # setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
     w = Window()

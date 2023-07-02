@@ -9,7 +9,7 @@ from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, Push
                             PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
                             TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentToolButton,
                             TransparentToggleToolButton, TransparentTogglePushButton, TransparentDropDownToolButton,
-                            TransparentDropDownPushButton)
+                            TransparentDropDownPushButton, PillPushButton, PillToolButton)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -65,6 +65,14 @@ class ToolButtonDemo(QWidget):
         self.transparentDropDownToolButton = TransparentDropDownToolButton(FIF.MAIL, self)
         self.transparentDropDownToolButton.setMenu(self.menu)
 
+        # pill tool button
+        self.pillToolButton1 = PillToolButton(FIF.CALENDAR, self)
+        self.pillToolButton2 = PillToolButton(FIF.CALENDAR, self)
+        self.pillToolButton3 = PillToolButton(FIF.CALENDAR, self)
+        self.pillToolButton2.setDisabled(True)
+        self.pillToolButton3.setChecked(True)
+        self.pillToolButton3.setDisabled(True)
+
         # add buttons to layout
         self.gridLayout = QGridLayout(self)
         self.gridLayout.addWidget(self.toolButton, 0, 0)
@@ -77,6 +85,9 @@ class ToolButtonDemo(QWidget):
         self.gridLayout.addWidget(self.transparentToggleToolButton, 2, 1)
         self.gridLayout.addWidget(self.tranparentToolButton, 3, 0)
         self.gridLayout.addWidget(self.transparentDropDownToolButton, 3, 1)
+        self.gridLayout.addWidget(self.pillToolButton1, 4, 0)
+        self.gridLayout.addWidget(self.pillToolButton2, 4, 1)
+        self.gridLayout.addWidget(self.pillToolButton3, 4, 2)
 
         self.resize(300, 300)
 
@@ -150,6 +161,10 @@ class PushButtonDemo(QWidget):
             parent=self
         )
 
+        # pill push button
+        self.pillPushButton1 = PillPushButton('Pill Push Button', self)
+        self.pillPushButton2 = PillPushButton('Pill Push Button', self, FIF.CALENDAR)
+
         self.gridLayout = QGridLayout(self)
         self.gridLayout.addWidget(self.pushButton1, 0, 0)
         self.gridLayout.addWidget(self.pushButton2, 0, 1)
@@ -175,7 +190,10 @@ class PushButtonDemo(QWidget):
         self.gridLayout.addWidget(self.transparentDropDownPushButton1, 9, 0, Qt.AlignLeft)
         self.gridLayout.addWidget(self.transparentDropDownPushButton2, 9, 1, Qt.AlignLeft)
 
-        self.gridLayout.addWidget(self.hyperlinkButton, 10, 0)
+        self.gridLayout.addWidget(self.pillPushButton1, 10, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.pillPushButton2, 10, 1, Qt.AlignLeft)
+
+        self.gridLayout.addWidget(self.hyperlinkButton, 11, 0)
 
         self.resize(600, 700)
 

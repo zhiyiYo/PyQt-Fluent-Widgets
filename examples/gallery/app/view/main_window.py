@@ -1,10 +1,10 @@
 # coding: utf-8
 from typing import List
-from PySide2.QtCore import Qt, Signal, QEasingCurve, QUrl
+from PySide2.QtCore import Qt, Signal, QEasingCurve, QUrl, QSize
 from PySide2.QtGui import QIcon, QDesktopServices
 from PySide2.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
-from qfluentwidgets import NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow
+from qfluentwidgets import NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow, SplashScreen
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -33,6 +33,7 @@ class MainWindow(FluentWindow):
 
     def __init__(self):
         super().__init__()
+        self.initWindow()
 
         # create sub interface
         self.homeInterface = HomeInterface(self)
@@ -55,8 +56,7 @@ class MainWindow(FluentWindow):
 
         # add items to navigation interface
         self.initNavigation()
-
-        self.initWindow()
+        self.splashScreen.finish()
 
     def initLayout(self):
         signalBus.switchToSampleCard.connect(self.switchToSample)
@@ -98,9 +98,16 @@ class MainWindow(FluentWindow):
         self.setWindowIcon(QIcon(':/gallery/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
 
+        # create splash screen
+        self.splashScreen = SplashScreen(self.windowIcon(), self)
+        self.splashScreen.setIconSize(QSize(106, 106))
+        self.splashScreen.raise_()
+
         desktop = QApplication.screens()[0].availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+        self.show()
+        QApplication.processEvents()
 
     def onSupport(self):
         w = MessageBox(
