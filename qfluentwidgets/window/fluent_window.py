@@ -45,6 +45,7 @@ class FluentWindowBase(FramelessWindow):
         qrouter.push(self.stackedWidget, widget.objectName())
 
     def paintEvent(self, e):
+        super().paintEvent(e)
         painter = QPainter(self)
         painter.setPen(Qt.NoPen)
 
