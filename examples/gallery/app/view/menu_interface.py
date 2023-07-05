@@ -196,10 +196,10 @@ class MenuInterface(GalleryInterface):
 
     def saveImage(self):
         path, ok = QFileDialog.getSaveFileName(
-            parent=self,
-            caption=self.tr('Save image'),
-            directory=QStandardPaths.writableLocation(QStandardPaths.DesktopLocation),
-            filter='PNG (*.png)'
+            self,
+            self.tr('Save image'),
+            QStandardPaths.writableLocation(QStandardPaths.DesktopLocation),
+            'PNG (*.png)'
         )
         if not ok:
             return
