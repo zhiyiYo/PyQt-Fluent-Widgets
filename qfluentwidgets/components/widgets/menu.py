@@ -5,7 +5,8 @@ from typing import List, Union
 from qframelesswindow import WindowEffect
 from PySide6.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject, QModelIndex,
                           Qt, QSize, QRectF, Signal, QPoint, QTimer, QObject, QParallelAnimationGroup)
-from PySide6.QtGui import QAction, QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent, QFontMetrics
+from PySide6.QtGui import (QAction, QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
+                           QFontMetrics, QKeySequence)
 from PySide6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
                                QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                                QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
@@ -148,7 +149,7 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
         painter.setPen(QColor(255, 255, 255, 200) if isDarkTheme() else QColor(0, 0, 0, 153))
 
         fm = QFontMetrics(font)
-        shortcut = action.shortcut().toString()
+        shortcut = action.shortcut().toString(QKeySequence.NativeText)
 
         sw = fm.boundingRect(shortcut).width()
         painter.translate(option.rect.width()-sw-20, 0)
