@@ -6,7 +6,7 @@ from qframelesswindow import WindowEffect
 from PyQt6.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QPointF, QModelIndex,
                           Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QObject, QParallelAnimationGroup)
 from PyQt6.QtGui import (QIcon, QAction, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
-                         QFontMetrics)
+                         QFontMetrics, QKeySequence)
 from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
@@ -149,7 +149,7 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
         painter.setPen(QColor(255, 255, 255, 200) if isDarkTheme() else QColor(0, 0, 0, 153))
 
         fm = QFontMetrics(font)
-        shortcut = action.shortcut().toString()
+        shortcut = action.shortcut().toString(QKeySequence.SequenceFormat.NativeText)
 
         sw = fm.boundingRect(shortcut).width()
         painter.translate(option.rect.width()-sw-20, 0)

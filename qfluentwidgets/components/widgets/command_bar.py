@@ -357,9 +357,8 @@ class CommandBar(QFrame):
 
         for widget in visibles:
             widget.show()
-            w, h = widget.width(), widget.height()
             widget.move(x, (h - widget.height()) // 2)
-            x += (w + self.spacing())
+            x += (widget.width() + self.spacing())
 
         # show more actions button
         if self._hiddenActions or len(visibles) < len(self._widgets):
@@ -370,7 +369,7 @@ class CommandBar(QFrame):
             widget.hide()
             self._hiddenWidgets.append(widget)
 
-    def _visibleWidgets(self) -> List[QLayoutItem]:
+    def _visibleWidgets(self) -> List[QWidget]:
         """ return the visible widgets in layout """
         # have enough spacing to show all widgets
         if self.suitableWidth() <= self.width():

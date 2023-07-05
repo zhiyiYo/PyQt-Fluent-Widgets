@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=#4ec820" alt="Platform Win32 | Linux | macOS"/>
+  <a href="https://pypi.org/project/PyQt-Fluent-Widgets" target="_blank">
+    <img src="https://img.shields.io/pypi/v/pyqt-fluent-widgets?color=%2334D058&label=Version" alt="Version">
   </a>
 
   <a style="text-decoration:none">
@@ -19,6 +19,10 @@
 
   <a style="text-decoration:none">
     <img src="https://img.shields.io/badge/PyQt-6.3.1+-blue?color=#4ec820" alt="PyQt 6.3.1+"/>
+  </a>
+
+  <a style="text-decoration:none">
+    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=#4ec820" alt="Platform Win32 | Linux | macOS"/>
   </a>
 </p>
 
