@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 11:52+0800\n"
+"POT-Creation-Date: 2023-07-06 08:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -20,23 +20,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../../source/license.md:1 b53eaa6f93cd461ba0f380e0236ff87a
+#: ../../source/license.md:1 4544417544664e4d85146677f917970a
 msgid "License"
 msgstr "许可证"
 
-#: ../../source/license.md:2 93a228ae0120420188ec12d75a453de7
+#: ../../source/license.md:2 1188e4dab7c44c4e876b3d875e8b028d
 msgid "PyQt-Fluent-Widgets and PyQt6-Fluent-Widgets is licensed under GPLv3."
 msgstr "PyQt-Fluent-Widgets 和 PyQt6-Fluent-Widgets 的许可证为 GPLv3."
 
-#: ../../source/license.md:4 92fda8e75a324e009527063a2a1fff6e
+#: ../../source/license.md:4 eb2a92e5c2c5444a847404739a8cde49
 msgid ""
 "PySide6-Fluent-Widgets and PySide2-Fluent-Widgets adopts dual licenses. "
 "Non-commercial usage is licensed under GPLv3. For commercial purposes, "
-"please purchase on 爱发电 or ko-fi to support the development of this "
-"project."
-msgstr "PySide6-Fluent-Widgets 和 PySide2-Fluent-Widgets 使用双许可证。非商业用途使用 GPLv3 许可证进行授权，商用请在 [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) 或者 [ko-fi](https://ko-fi.com/s/b5000d2dd7) 上进行购买以支持作者的开发。"
+"please purchase on 爱发电 to support the development of this project."
+msgstr "PySide6-Fluent-Widgets 和 PySide2-Fluent-Widgets 使用双许可证。非商业用途使用 GPLv3 许可证进行授权，商用请在 [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) 上进行购买以支持作者的开发。"
 
-#: ../../source/license.md:6 2656d350db8b48dc8b45e674613eb847
+#: ../../source/license.md:6 6076f929472046a7ab653cb52b6dbc4d
 msgid "Copyright © 2021 by zhiyiYo."
 msgstr "版权所有 © 2021 zhiyiYo."
 
