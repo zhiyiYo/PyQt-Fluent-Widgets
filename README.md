@@ -72,6 +72,6 @@ Here are some projects that use PyQt-Fluent-Widgets:
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
 
 ## License
-PySide6-Fluent-Widgets adopts dual licenses. Non-commercial usage is licensed under [GPLv3](./LICENSE). For commercial purposes, please purchase on [爱发电](https://afdian.net/item/3cea239cf2cd11eda46352540025c377) or [ko-fi](https://ko-fi.com/s/b5000d2dd7) to support the development of this project.
+PySide6-Fluent-Widgets adopts dual licenses. Non-commercial usage is licensed under [GPLv3](./LICENSE). For commercial purposes, please purchase on [爱发电](https://afdian.net/a/zhiyiYo?tab=shop) to support the development of this project.
 
 Copyright © 2021 by zhiyiYo.

@@ -81,6 +81,6 @@ python demo.py
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
 
 ## 许可证
-PySide6-Fluent-Widgets 使用双许可证。非商业用途使用 [GPLv3](../LICENSE) 许可证进行授权，商用请在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/s/b5000d2dd7) 上进行购买以支持作者的开发。
+PySide6-Fluent-Widgets 使用双许可证。非商业用途使用 [GPLv3](../LICENSE) 许可证进行授权，商用请在 [爱发电](https://afdian.net/a/zhiyiYo?tab=shop) 上进行购买以支持作者的开发。
 
 Copyright © 2021 by zhiyiYo.
