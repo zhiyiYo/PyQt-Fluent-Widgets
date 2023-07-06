@@ -27,6 +27,13 @@ The header file is the name of the Python module used to import the class, which
 
 Well, the widget is now promoted to fluent push button. But you won't be able to see any changes within Qt Designer. Save the window as ``mainwindow.ui`` and compile it to python code, you will see that the ``PushButton`` is imported from ``qfluentwidgets`` package.
 
+.. raw:: html
+
+   <div style="position: relative; padding: 30% 45%;">
+      <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://player.bilibili.com/player.html?cid=1107159421&aid=655415814&page=1&as_wide=1&high_quality=1&danmaku=0" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>
+   </div>
+
+
 Using plugin
 ^^^^^^^^^^^^
 
@@ -48,9 +55,11 @@ Using plugin
 If everything goes smoothly, you will see all PyQt-Fluent-Widgets components in the sidebar of Qt Designer.
 If the startup fails or the components of PyQt-Fluent-Widgets cannot be seen, the solution can be found in `#196 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/196>`_.
 
-.. image:: ./_static/Designer_plugin.jpg
-   :target: ./_static/Designer_plugin.jpg
-   :alt:
+.. raw:: html
+
+   <div style="position: relative; padding: 30% 45%;">
+      <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://player.bilibili.com/player.html?cid=1124976209&aid=953381256&page=1&as_wide=1&high_quality=1&danmaku=0" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>
+   </div>
 
 
 The plugin for PySide6 is unstable and may not start QtDesigner successfully. It is recommended to use QtDesigner of PyQt5/6 to generate ui files.
