@@ -30,7 +30,10 @@ class FluentIconEngine(QIconEngine):
         if isinstance(self.icon, Icon):
             icon = self.icon.fluentIcon.icon()
 
-        icon.paint(painter, rect, Qt.AlignmentFlag.AlignHCenter, QIcon.Mode.Normal, state)
+        if rect.x() == 19:
+            rect = rect.adjusted(-1, 0, 0, 0)
+
+        icon.paint(painter, rect, Qt.AlignmentFlag.AlignCenter, QIcon.Mode.Normal, state)
         painter.restore()
 
 
@@ -133,7 +136,7 @@ def writeSvg(iconPath: str, indexes=None, **attributes):
     return dom.toString()
 
 
-def drawIcon(icon, painter, rect, **attributes):
+def drawIcon(icon, painter, rect, state=QIcon.State.Off, **attributes):
     """ draw icon
 
     Parameters
@@ -156,9 +159,7 @@ def drawIcon(icon, painter, rect, **attributes):
         icon.fluentIcon.render(painter, rect, **attributes)
     else:
         icon = QIcon(icon)
-        rect = QRectF(rect).toRect()
-        image = icon.pixmap(rect.width(), rect.height())
-        painter.drawPixmap(rect, image)
+        icon.paint(painter, QRectF(rect).toRect(), Qt.AlignmentFlag.AlignCenter, state=state)
 
 
 class FluentIconBase:

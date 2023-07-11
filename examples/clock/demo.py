@@ -3,12 +3,12 @@ import sys
 
 from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QIcon, QDesktopServices
-from PyQt6.QtWidgets import QApplication, QFrame, QHBoxLayout
-from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
-                            NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
-                            SplitFluentWindow, FluentTranslator)
+from PyQt6.QtWidgets import QApplication
+from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme,
+                            NavigationAvatarWidget,  SplitFluentWindow, FluentTranslator)
 from qfluentwidgets import FluentIcon as FIF
 
+import resource_rc
 from view.focus_interface import FocusInterface
 from view.stop_watch_interface import StopWatchInterface
 
@@ -32,7 +32,7 @@ class Window(SplitFluentWindow):
 
         self.navigationInterface.addWidget(
             routeKey='avatar',
-            widget=NavigationAvatarWidget('zhiyiYo', 'resource/shoko.png'),
+            widget=NavigationAvatarWidget('zhiyiYo', 'resource/images/shoko.png'),
             onClick=self.showMessageBox,
             position=NavigationItemPosition.BOTTOM,
         )
@@ -68,7 +68,7 @@ class Window(SplitFluentWindow):
 
 
 if __name__ == '__main__':
-    setTheme(Theme.DARK)
+    # setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
 

@@ -55,9 +55,9 @@ StackedWidget {
     background-color: rgb(39, 39, 39);
 }
 
-StackedWidget QLabel {
+/* StackedWidget QLabel {
     color: white;
-}
+} */
 
 SplitFluentWindow > StackedWidget {
     border-top-left-radius: 0px;

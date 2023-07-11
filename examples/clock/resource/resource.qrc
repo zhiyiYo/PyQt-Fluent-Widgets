@@ -1,0 +1,7 @@
+<RCC>
+  <qresource>
+    <file>images/todo.png</file>
+    <file>images/alarms.png</file>
+    <file>images/tips.png</file>
+  </qresource>
+</RCC>
