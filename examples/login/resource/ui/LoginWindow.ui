@@ -171,7 +171,7 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label_3">
+         <widget class="BodyLabel" name="label_3">
           <property name="text">
            <string>主机</string>
           </property>
@@ -191,7 +191,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLabel" name="label_4">
+         <widget class="BodyLabel" name="label_4">
           <property name="text">
            <string>端口</string>
           </property>
@@ -200,7 +200,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="label_5">
+       <widget class="BodyLabel" name="label_5">
         <property name="text">
          <string>用户名</string>
         </property>
@@ -217,7 +217,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_6">
+       <widget class="BodyLabel" name="label_6">
         <property name="text">
          <string>密码</string>
         </property>
@@ -345,6 +345,11 @@
   <customwidget>
    <class>HyperlinkButton</class>
    <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
    <header>qfluentwidgets</header>
   </customwidget>
  </customwidgets>

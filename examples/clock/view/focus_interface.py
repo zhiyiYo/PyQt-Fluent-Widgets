@@ -1,10 +1,9 @@
 # coding:utf-8
-from PySide2.QtCore import Qt, QSize
-from PySide2.QtGui import QPixmap, QPainter, QColor
+from PySide2.QtGui import QColor
 from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect
+from qfluentwidgets import FluentIcon, setFont, InfoBarIcon
 
 from view.Ui_FocusInterface import Ui_FocusInterface
-from qfluentwidgets import FluentIcon, setFont
 
 
 class FocusInterface(Ui_FocusInterface, QWidget):
@@ -13,28 +12,27 @@ class FocusInterface(Ui_FocusInterface, QWidget):
         super().__init__(parent=parent)
         self.setupUi(self)
 
-        self.timePicker.setSecondVisible(True)
-
-        # set button icon
+        # set the icon of button
         self.pinButton.setIcon(FluentIcon.PIN)
         self.moreButton.setIcon(FluentIcon.MORE)
         self.startFocusButton.setIcon(FluentIcon.POWER_BUTTON)
         self.editButton.setIcon(FluentIcon.EDIT)
+        self.addTaskButton.setIcon(FluentIcon.ADD)
+        self.moreTaskButton.setIcon(FluentIcon.MORE)
+        self.taskIcon1.setIcon(InfoBarIcon.SUCCESS)
+        self.taskIcon2.setIcon(InfoBarIcon.WARNING)
+        self.taskIcon3.setIcon(InfoBarIcon.WARNING)
 
-        setFont(self.progressRing, 14)
-        self.hintLabel.setTextColor(QColor(96, 96, 96), QColor(206, 206, 206))
+        setFont(self.progressRing, 16)
 
         # add shadow effect to card
-        self.focusShadowEffect = QGraphicsDropShadowEffect(self)
-        self.progressShadowEffect = QGraphicsDropShadowEffect(self)
+        self.setShadowEffect(self.focusCard)
+        self.setShadowEffect(self.progressCard)
+        self.setShadowEffect(self.taskCard)
 
-        self.focusCard.setGraphicsEffect(self.focusShadowEffect)
-        self.progressCard.setGraphicsEffect(self.progressShadowEffect)
-
-        self.focusShadowEffect.setColor(QColor(0, 0, 0, 15))
-        self.focusShadowEffect.setBlurRadius(10)
-        self.focusShadowEffect.setOffset(0, 0)
-
-        self.progressShadowEffect.setColor(QColor(0, 0, 0, 15))
-        self.progressShadowEffect.setBlurRadius(10)
-        self.progressShadowEffect.setOffset(0, 0)
+    def setShadowEffect(self, card: QWidget):
+        shadowEffect = QGraphicsDropShadowEffect(self)
+        shadowEffect.setColor(QColor(0, 0, 0, 15))
+        shadowEffect.setBlurRadius(10)
+        shadowEffect.setOffset(0, 0)
+        card.setGraphicsEffect(shadowEffect)

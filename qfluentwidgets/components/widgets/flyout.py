@@ -96,6 +96,7 @@ class FlyoutView(FlyoutViewBase):
         """
         self.icon = icon
         self.title = title
+        self.image = image
         self.content = content
         self.isClosable = isClosable
 
@@ -106,12 +107,14 @@ class FlyoutView(FlyoutViewBase):
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(content, self)
         self.iconWidget = IconWidget(icon, self)
-        self.imageLabel = ImageLabel(image, self)
+        self.imageLabel = ImageLabel(self)
         self.closeButton = TransparentToolButton(FluentIcon.CLOSE, self)
 
         self.__initWidgets()
 
     def __initWidgets(self):
+        self.imageLabel.setImage(self.image)
+
         self.closeButton.setFixedSize(32, 32)
         self.closeButton.setIconSize(QSize(12, 12))
         self.closeButton.setVisible(self.isClosable)

@@ -4,7 +4,7 @@ import warnings
 
 from typing import List, Union
 
-from PySide2.QtCore import Qt, QRectF, QPoint, Signal
+from PySide2.QtCore import Qt, Property, QPoint, Signal, QSize
 from PySide2.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
                          QImageReader, QBrush, QMovie)
 from PySide2.QtWidgets import QLabel, QWidget
@@ -72,13 +72,60 @@ class FluentLabelBase(QLabel):
         light, dark: QColor | Qt.GlobalColor | str
             text color in light/dark mode
         """
-        self.lightColor = QColor(light)
-        self.darkColor = QColor(dark)
+        self._lightColor = QColor(light)
+        self._darkColor = QColor(dark)
 
         palette = self.palette()
         color = self.darkColor if isDarkTheme() else self.lightColor
         palette.setColor(QPalette.WindowText, color)
         self.setPalette(palette)
+
+    @Property(QColor)
+    def lightColor(self):
+        return self._lightColor
+
+    @lightColor.setter
+    def lightColor(self, color: QColor):
+        self.setTextColor(color, self.darkColor)
+
+    @Property(QColor)
+    def darkColor(self):
+        return self._darkColor
+
+    @darkColor.setter
+    def darkColor(self, color: QColor):
+        self.setTextColor(self.lightColor, color)
+
+    @Property(int)
+    def pixelFontSize(self):
+        return self.font().pixelSize()
+
+    @pixelFontSize.setter
+    def pixelFontSize(self, size: int):
+        font = self.font()
+        font.setPixelSize(size)
+        self.setFont(font)
+
+    @Property(bool)
+    def strikeOut(self):
+        return self.font().strikeOut()
+
+    @strikeOut.setter
+    def strikeOut(self, isStrikeOut: bool):
+        font = self.font()
+        font.setStrikeOut(isStrikeOut)
+        self.setFont(font)
+
+    @Property(bool)
+    def underline(self):
+        return self.font().underline()
+
+    @underline.setter
+    def underline(self, isUnderline: bool):
+        font = self.font()
+        font.setStyle()
+        font.setUnderline(isUnderline)
+        self.setFont(font)
 
 
 class CaptionLabel(FluentLabelBase):
@@ -135,10 +182,26 @@ class ImageLabel(QLabel):
 
     clicked = Signal()
 
-    def __init__(self, image: Union[str, QPixmap, QImage] = None, parent=None):
-        super().__init__(parent=parent)
-        self.setImage(image)
+    @singledispatchmethod
+    def __init__(self, parent: QWidget = None):
+        super().__init__(parent)
+        self.image = QImage()
         self.setBorderRadius(0, 0, 0, 0)
+
+    @__init__.register
+    def _(self, image: str, parent=None):
+        self.__init__(parent)
+        self.setImage(image)
+
+    @__init__.register
+    def _(self, image: QImage, parent=None):
+        self.__init__(parent)
+        self.setImage(image)
+
+    @__init__.register
+    def _(self, image: QPixmap, parent=None):
+        self.__init__(parent)
+        self.setImage(image)
 
     def _onFrameChanged(self, index: int):
         self.image = self.movie().currentImage()
@@ -146,49 +209,47 @@ class ImageLabel(QLabel):
 
     def setBorderRadius(self, topLeft: int, topRight: int, bottomLeft: int, bottomRight: int):
         """ set the border radius of image """
-        self.topLeftRadius = topLeft
-        self.topRightRadius = topRight
-        self.bottomLeftRadius = bottomLeft
-        self.bottomRightRadius = bottomRight
+        self._topLeftRadius = topLeft
+        self._topRightRadius = topRight
+        self._bottomLeftRadius = bottomLeft
+        self._bottomRightRadius = bottomRight
         self.update()
 
     def setImage(self, image: Union[str, QPixmap, QImage] = None):
         """ set the image of label """
-        self.image = QImage()
+        self.image = image or QImage()
 
         if isinstance(image, str):
             reader = QImageReader(image)
             if reader.supportsAnimation():
                 self.setMovie(QMovie(image))
-                self.movie().start()
-                self.image = self.movie().currentImage()
-                self.movie().frameChanged.connect(self._onFrameChanged)
             else:
                 self.image = reader.read()
         elif isinstance(image, QPixmap):
             self.image = image.toImage()
 
         self.setFixedSize(self.image.size())
+        self.update()
 
     def scaledToWidth(self, width: int):
         if self.isNull():
             return
 
-        self.image = self.image.scaledToWidth(width, Qt.SmoothTransformation)
-        self.setFixedSize(self.image.size())
+        h = int(width / self.image.width() * self.image.height())
+        self.setFixedSize(width, h)
 
         if self.movie():
-            self.movie().setScaledSize(self.image.size())
+            self.movie().setScaledSize(QSize(width, h))
 
     def scaledToHeight(self, height: int):
         if self.isNull():
             return
 
-        self.image = self.image.scaledToHeight(height, Qt.SmoothTransformation)
-        self.setFixedSize(self.image.size())
+        w = int(height / self.image.height() * self.image.width())
+        self.setFixedSize(w, height)
 
         if self.movie():
-            self.movie().setScaledSize(self.image.size())
+            self.movie().setScaledSize(QSize(w, height))
 
     def isNull(self):
         return self.image.isNull()
@@ -197,19 +258,27 @@ class ImageLabel(QLabel):
         super().mouseReleaseEvent(e)
         self.clicked.emit()
 
+    def setPixmap(self, pixmap: QPixmap):
+        self.setImage(pixmap)
+
     def pixmap(self) -> QPixmap:
         return QPixmap.fromImage(self.image)
+
+    def setMovie(self, movie: QMovie):
+        super().setMovie(movie)
+        self.movie().start()
+        self.image = self.movie().currentImage()
+        self.movie().frameChanged.connect(self._onFrameChanged)
 
     def paintEvent(self, e):
         if self.isNull():
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.Antialiasing)
 
         path = QPainterPath()
-        w, h = self.image.width(), self.image.height()
+        w, h = self.width(), self.height()
 
         # top line
         path.moveTo(self.topLeftRadius, 0)
@@ -241,5 +310,41 @@ class ImageLabel(QLabel):
         path.arcTo(0, 0, d, d, -180, -90)
 
         # draw image
+        image = self.image.scaled(
+            self.size()*self.devicePixelRatioF(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+
         painter.setPen(Qt.NoPen)
-        painter.fillPath(path, QBrush(self.image))
+        painter.setClipPath(path)
+        painter.drawImage(self.rect(), image)
+
+    @Property(int)
+    def topLeftRadius(self):
+        return self._topLeftRadius
+
+    @topLeftRadius.setter
+    def topLeftRadius(self, radius: int):
+        self.setBorderRadius(radius, self.topRightRadius, self.bottomLeftRadius, self.bottomRightRadius)
+
+    @Property(int)
+    def topRightRadius(self):
+        return self._topRightRadius
+
+    @topRightRadius.setter
+    def topRightRadius(self, radius: int):
+        self.setBorderRadius(self.topLeftRadius, radius, self.bottomLeftRadius, self.bottomRightRadius)
+
+    @Property(int)
+    def bottomLeftRadius(self):
+        return self._bottomLeftRadius
+
+    @bottomLeftRadius.setter
+    def bottomLeftRadius(self, radius: int):
+        self.setBorderRadius(self.topLeftRadius, self.topRightRadius, radius, self.bottomRightRadius)
+
+    @Property(int)
+    def bottomRightRadius(self):
+        return self._bottomRightRadius
+
+    @bottomRightRadius.setter
+    def bottomRightRadius(self, radius: int):
+        self.setBorderRadius(self.topLeftRadius, self.topRightRadius, self.bottomLeftRadius, radius)

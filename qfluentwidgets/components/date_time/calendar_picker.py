@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Union
 
-from PySide2.QtCore import Qt, Signal, QRectF, QDate, QPoint
+from PySide2.QtCore import Qt, Signal, QRectF, QDate, QPoint, Property
 from PySide2.QtGui import QPainter
 from PySide2.QtWidgets import QWidget, QPushButton, QApplication
 
@@ -17,8 +17,8 @@ class CalendarPicker(QPushButton):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.date = QDate()
-        self.dateFormat = Qt.SystemLocaleDate
+        self._date = QDate()
+        self._dateFormat = Qt.SystemLocaleDate
 
         self.view = CalendarView(self.window())
         self.view.hide()
@@ -29,13 +29,19 @@ class CalendarPicker(QPushButton):
         self.clicked.connect(self._showCalendarView)
         self.view.dateChanged.connect(self._onDateChanged)
 
+    def getDate(self):
+        return self._date
+
     def setDate(self, date: QDate):
         """ set the selected date """
         self._onDateChanged(date)
         self.view.setDate(date)
 
+    def getDateFormat(self):
+        return self._dateFormat
+
     def setDateFormat(self, format: Union[Qt.DateFormat, str]):
-        self.dateFormat = format
+        self._dateFormat = format
         if self.date.isValid():
             self.setText(self.date.toString(self.dateFormat))
 
@@ -45,7 +51,7 @@ class CalendarPicker(QPushButton):
         self.view.exec(self.mapToGlobal(QPoint(x, y)))
 
     def _onDateChanged(self, date: QDate):
-        self.date = QDate(date)
+        self._date = QDate(date)
         self.setText(date.toString(self.dateFormat))
         self.setProperty('hasDate', True)
         self.setStyle(QApplication.style())
@@ -64,3 +70,6 @@ class CalendarPicker(QPushButton):
         w = 12
         rect = QRectF(self.width() - 23, self.height()/2 - w/2, w, w)
         FIF.CALENDAR.render(painter, rect)
+
+    date = Property(QDate, getDate, setDate)
+    dateFormat = Property(Qt.DateFormat, getDateFormat, setDateFormat)

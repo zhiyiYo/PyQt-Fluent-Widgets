@@ -69,9 +69,9 @@ class PushButton(QPushButton):
         self.isHover = False
         self.update()
 
-    def _drawIcon(self, icon, painter, rect):
+    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
         """ draw icon """
-        drawIcon(icon, painter, rect)
+        drawIcon(icon, painter, rect, state)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -100,7 +100,7 @@ class PushButton(QPushButton):
 class PrimaryPushButton(PushButton):
     """ Primary color push button """
 
-    def _drawIcon(self, icon, painter, rect):
+    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             # reverse icon color
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
@@ -110,7 +110,7 @@ class PrimaryPushButton(PushButton):
             if isinstance(icon, FluentIconBase):
                 icon = icon.icon(Theme.DARK)
 
-        PushButton._drawIcon(self, icon, painter, rect)
+        PushButton._drawIcon(self, icon, painter, rect, state)
 
 
 class TransparentPushButton(PushButton):
@@ -128,7 +128,7 @@ class ToggleButton(PushButton):
         if not self.isChecked():
             return PushButton._drawIcon(self, icon, painter, rect)
 
-        PrimaryPushButton._drawIcon(self, icon, painter, rect)
+        PrimaryPushButton._drawIcon(self, icon, painter, rect, QIcon.On)
 
 
 TogglePushButton = ToggleButton
@@ -241,9 +241,9 @@ class ToolButton(QToolButton):
         self.isHover = False
         self.update()
 
-    def _drawIcon(self, icon, painter: QPainter, rect: QRectF):
+    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.Off):
         """ draw icon """
-        drawIcon(icon, painter, rect)
+        drawIcon(icon, painter, rect, state)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -272,7 +272,7 @@ class TransparentToolButton(ToolButton):
 class PrimaryToolButton(ToolButton):
     """ Primary color tool button """
 
-    def _drawIcon(self, icon, painter: QPainter, rect: QRectF):
+    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             # reverse icon color
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
@@ -285,7 +285,7 @@ class PrimaryToolButton(ToolButton):
             if isinstance(icon, FluentIconBase):
                 icon = icon.icon(Theme.DARK)
 
-        return drawIcon(icon, painter, rect)
+        return drawIcon(icon, painter, rect, state)
 
 
 class ToggleToolButton(ToolButton):
@@ -299,7 +299,7 @@ class ToggleToolButton(ToolButton):
         if not self.isChecked():
             return ToolButton._drawIcon(self, icon, painter, rect)
 
-        PrimaryToolButton._drawIcon(self, icon, painter, rect)
+        PrimaryToolButton._drawIcon(self, icon, painter, rect, QIcon.On)
 
 
 class TransparentToggleToolButton(ToggleToolButton):

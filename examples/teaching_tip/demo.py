@@ -56,8 +56,8 @@ class Demo(QWidget):
             icon=None,
             title='Lesson 5',
             content="最短的捷径就是绕远路，绕远路才是我的最短捷径。",
-            # image='resource/Gyro.jpg',
-            image='resource/boqi.gif',
+            image='resource/Gyro.jpg',
+            # image='resource/boqi.gif',
             isClosable=True,
             tailPosition=position,
         )

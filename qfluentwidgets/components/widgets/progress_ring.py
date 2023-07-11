@@ -119,21 +119,21 @@ class IndeterminateProgressRing(QProgressBar):
         if start:
             self.start()
 
-    @Property(float)
+    @Property(int)
     def startAngle(self):
         return self._startAngle
 
     @startAngle.setter
-    def startAngle(self, angle: float):
+    def startAngle(self, angle: int):
         self._startAngle = angle
         self.update()
 
-    @Property(float)
+    @Property(int)
     def spanAngle(self):
         return self._spanAngle
 
     @spanAngle.setter
-    def spanAngle(self, angle: float):
+    def spanAngle(self, angle: int):
         self._spanAngle = angle
         self.update()
 

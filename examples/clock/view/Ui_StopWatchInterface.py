@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Python_Study\Github_Repositories\PyQt-Fluent-Widgets\StopWatchInterface.ui'
+# Form implementation generated from reading ui file 'd:\Python_Study\Github_Repositories\PyQt-Fluent-Widgets\resource\ui\StopWatchInterface.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -22,7 +22,10 @@ class Ui_StopWatchInterface(object):
         self.verticalLayout.setObjectName("verticalLayout")
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
-        self.timeLabel = DisplayLabel(StopWatchInterface)
+        self.timeLabel = BodyLabel(StopWatchInterface)
+        self.timeLabel.setProperty("lightColor", QtGui.QColor(96, 96, 96))
+        self.timeLabel.setProperty("darkColor", QtGui.QColor(206, 206, 206))
+        self.timeLabel.setProperty("pixelFontSize", 100)
         self.timeLabel.setObjectName("timeLabel")
         self.verticalLayout.addWidget(self.timeLabel, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
@@ -30,16 +33,22 @@ class Ui_StopWatchInterface(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
         self.hourLabel = TitleLabel(StopWatchInterface)
+        self.hourLabel.setProperty("lightColor", QtGui.QColor(96, 96, 96))
+        self.hourLabel.setProperty("darkColor", QtGui.QColor(206, 206, 206))
         self.hourLabel.setObjectName("hourLabel")
         self.horizontalLayout_3.addWidget(self.hourLabel)
         spacerItem2 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem2)
         self.minuteLabel = TitleLabel(StopWatchInterface)
+        self.minuteLabel.setProperty("lightColor", QtGui.QColor(96, 96, 96))
+        self.minuteLabel.setProperty("darkColor", QtGui.QColor(206, 206, 206))
         self.minuteLabel.setObjectName("minuteLabel")
         self.horizontalLayout_3.addWidget(self.minuteLabel)
         spacerItem3 = QtWidgets.QSpacerItem(90, 17, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem3)
         self.secondLabel = TitleLabel(StopWatchInterface)
+        self.secondLabel.setProperty("lightColor", QtGui.QColor(96, 96, 96))
+        self.secondLabel.setProperty("darkColor", QtGui.QColor(206, 206, 206))
         self.secondLabel.setObjectName("secondLabel")
         self.horizontalLayout_3.addWidget(self.secondLabel)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -87,4 +96,4 @@ class Ui_StopWatchInterface(object):
         self.hourLabel.setText(_translate("StopWatchInterface", "小时"))
         self.minuteLabel.setText(_translate("StopWatchInterface", "分钟"))
         self.secondLabel.setText(_translate("StopWatchInterface", "秒"))
-from qfluentwidgets import DisplayLabel, PillToolButton, TitleLabel
+from qfluentwidgets import BodyLabel, PillToolButton, TitleLabel
