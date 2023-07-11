@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt, QTranslator, QLocale
 from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QApplication
 from qframelesswindow import FramelessWindow, StandardTitleBar, AcrylicWindow
-from qfluentwidgets import setThemeColor, FluentTranslator
+from qfluentwidgets import setThemeColor, FluentTranslator, setTheme, Theme, SplitTitleBar
 from Ui_LoginWindow import Ui_Form
 
 
@@ -13,9 +13,10 @@ class LoginWindow(AcrylicWindow, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        # setTheme(Theme.DARK)
         setThemeColor('#28afe9')
 
-        self.setTitleBar(StandardTitleBar(self))
+        self.setTitleBar(SplitTitleBar(self))
         self.titleBar.raise_()
 
         self.label.setScaledContents(False)
@@ -23,7 +24,7 @@ class LoginWindow(AcrylicWindow, Ui_Form):
         self.setWindowIcon(QIcon(":/images/logo.png"))
         self.resize(1000, 650)
 
-        self.windowEffect.setMicaEffect(self.winId())
+        self.windowEffect.setMicaEffect(self.winId(), isDarkMode=False)
         self.titleBar.titleLabel.setStyleSheet("""
             QLabel{
                 background: transparent;

@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QSizePolicy, QSpacerItem,
     QVBoxLayout, QWidget)
 
-from qfluentwidgets import (DisplayLabel, PillToolButton, TitleLabel, ToggleToolButton,
+from qfluentwidgets import (BodyLabel, PillToolButton, TitleLabel, ToggleToolButton,
     ToolButton)
 
 class Ui_StopWatchInterface(object):
@@ -35,8 +35,11 @@ class Ui_StopWatchInterface(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
-        self.timeLabel = DisplayLabel(StopWatchInterface)
+        self.timeLabel = BodyLabel(StopWatchInterface)
         self.timeLabel.setObjectName(u"timeLabel")
+        self.timeLabel.setProperty("lightColor", QColor(96, 96, 96))
+        self.timeLabel.setProperty("darkColor", QColor(206, 206, 206))
+        self.timeLabel.setProperty("pixelFontSize", 100)
 
         self.verticalLayout.addWidget(self.timeLabel, 0, Qt.AlignHCenter)
 
@@ -48,6 +51,8 @@ class Ui_StopWatchInterface(object):
 
         self.hourLabel = TitleLabel(StopWatchInterface)
         self.hourLabel.setObjectName(u"hourLabel")
+        self.hourLabel.setProperty("lightColor", QColor(96, 96, 96))
+        self.hourLabel.setProperty("darkColor", QColor(206, 206, 206))
 
         self.horizontalLayout_3.addWidget(self.hourLabel)
 
@@ -57,6 +62,8 @@ class Ui_StopWatchInterface(object):
 
         self.minuteLabel = TitleLabel(StopWatchInterface)
         self.minuteLabel.setObjectName(u"minuteLabel")
+        self.minuteLabel.setProperty("lightColor", QColor(96, 96, 96))
+        self.minuteLabel.setProperty("darkColor", QColor(206, 206, 206))
 
         self.horizontalLayout_3.addWidget(self.minuteLabel)
 
@@ -66,6 +73,8 @@ class Ui_StopWatchInterface(object):
 
         self.secondLabel = TitleLabel(StopWatchInterface)
         self.secondLabel.setObjectName(u"secondLabel")
+        self.secondLabel.setProperty("lightColor", QColor(96, 96, 96))
+        self.secondLabel.setProperty("darkColor", QColor(206, 206, 206))
 
         self.horizontalLayout_3.addWidget(self.secondLabel)
 

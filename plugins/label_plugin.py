@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
 from qfluentwidgets import (BodyLabel, CaptionLabel, StrongBodyLabel, SubtitleLabel, TitleLabel, LargeTitleLabel,
-                            DisplayLabel)
+                            DisplayLabel, ImageLabel)
 
 from plugin_base import PluginBase
 
@@ -112,3 +112,19 @@ class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "DisplayLabel"
+
+
+class ImageLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
+    """ Image label plugin """
+
+    def createWidget(self, parent):
+        return ImageLabel(self.icon().pixmap(72, 72), parent)
+
+    def icon(self):
+        return super().icon("Image")
+
+    def name(self):
+        return "ImageLabel"
+
+    def domXml(self):
+        return f"""<widget class="{self.name()}" name="{self.name()}"></widget>"""

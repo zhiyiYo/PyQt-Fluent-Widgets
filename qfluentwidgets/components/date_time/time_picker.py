@@ -1,5 +1,5 @@
 # coding:utf-8
-from PySide6.QtCore import Qt, Signal, QTime
+from PySide6.QtCore import Qt, Signal, QTime, Property
 
 from .picker_base import PickerBase, PickerColumnFormatter, DigitFormatter
 
@@ -11,8 +11,11 @@ class TimePickerBase(PickerBase):
 
     def __init__(self, parent=None, showSeconds=False):
         super().__init__(parent=parent)
-        self.showSeconds = showSeconds
-        self.time = QTime()
+        self._isSecondVisible = showSeconds
+        self._time = QTime()
+
+    def getTime(self):
+        return self._time
 
     def setTime(self, time: QTime):
         """ set current time
@@ -23,6 +26,9 @@ class TimePickerBase(PickerBase):
             current time
         """
         raise NotImplementedError
+
+    def isSecondVisible(self):
+        return self._isSecondVisible
 
     def setSecondVisible(self, isVisible: bool):
         """ set the visibility of seconds column """
@@ -86,13 +92,15 @@ class TimePicker(TimePickerBase):
         if not time.isValid() or time.isNull():
             return
 
-        self.time = time
+        self._time = time
         self.setColumnValue(0, time.hour())
         self.setColumnValue(1, time.minute())
         self.setColumnValue(2, time.second())
 
     def setSecondVisible(self, isVisible: bool):
+        self._isSecondVisible = isVisible
         self.setColumnVisible(2, isVisible)
+
         w = 80 if isVisible else 120
         for button in self.columns:
             button.setFixedWidth(w)
@@ -118,7 +126,16 @@ class TimePicker(TimePickerBase):
         h = self.encodeValue(0, time.hour())
         m = self.encodeValue(1, time.minute())
         s = self.encodeValue(2, time.second())
-        return [h, m, s] if self.showSeconds else [h, m]
+        return [h, m, s] if self.isSecondVisible() else [h, m]
+
+    def getTime(self):
+        return self._time
+
+    def isSecondVisible(self):
+        return self._isSecondVisible
+
+    time = Property(QTime, getTime, setTime)
+    secondVisible = Property(bool, isSecondVisible, setSecondVisible)
 
 
 class AMTimePicker(TimePickerBase):
@@ -147,13 +164,14 @@ class AMTimePicker(TimePickerBase):
                        80, formatter=AMPMFormatter())
 
     def setSecondVisible(self, isVisible: bool):
+        self._isSecondVisible = isVisible
         self.setColumnVisible(2, isVisible)
 
     def setTime(self, time):
         if not time.isValid() or time.isNull():
             return
 
-        self.time = time
+        self._time = time
         self.setColumnValue(0, time.hour())
         self.setColumnValue(1, time.minute())
         self.setColumnValue(2, time.second())
@@ -193,4 +211,13 @@ class AMTimePicker(TimePickerBase):
         m = self.encodeValue(1, time.minute())
         s = self.encodeValue(2, time.second())
         p = self.encodeValue(3, time.hour())
-        return [h, m, s, p] if self.showSeconds else [h, m, p]
+        return [h, m, s, p] if self.isSecondVisible() else [h, m, p]
+
+    def getTime(self):
+        return self._time
+
+    def isSecondVisible(self):
+        return self._isSecondVisible
+
+    time = Property(QTime, getTime, setTime)
+    secondVisible = Property(bool, isSecondVisible, setSecondVisible)
