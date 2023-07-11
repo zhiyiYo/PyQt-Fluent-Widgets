@@ -5,7 +5,7 @@ from typing import Union
 from PyQt5.QtXml import QDomDocument
 from PyQt5.QtCore import QRectF, Qt, QFile, QObject, QRect
 from PyQt5.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter
-from PyQt5.QtWidgets import QAction
+from PyQt5.QtWidgets import QAction, qApp
 from PyQt5.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
@@ -31,7 +31,10 @@ class FluentIconEngine(QIconEngine):
         if isinstance(self.icon, Icon):
             icon = self.icon.fluentIcon.icon()
 
-        icon.paint(painter, rect, Qt.AlignHCenter, QIcon.Normal, state)
+        if rect.x() == 19:
+            rect = rect.adjusted(-1, 0, 0, 0)
+
+        icon.paint(painter, rect, Qt.AlignCenter, QIcon.Normal, state)
         painter.restore()
 
 
