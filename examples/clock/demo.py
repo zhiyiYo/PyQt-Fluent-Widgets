@@ -3,10 +3,9 @@ import sys
 
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
-from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
-                            NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
-                            SplitFluentWindow, FluentTranslator)
+from PyQt5.QtWidgets import QApplication
+from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme,
+                            NavigationAvatarWidget,  SplitFluentWindow, FluentTranslator)
 from qfluentwidgets import FluentIcon as FIF
 
 from view.focus_interface import FocusInterface
@@ -32,7 +31,7 @@ class Window(SplitFluentWindow):
 
         self.navigationInterface.addWidget(
             routeKey='avatar',
-            widget=NavigationAvatarWidget('zhiyiYo', 'resource/shoko.png'),
+            widget=NavigationAvatarWidget('zhiyiYo', 'resource/images/shoko.png'),
             onClick=self.showMessageBox,
             position=NavigationItemPosition.BOTTOM,
         )
@@ -73,7 +72,7 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
-    setTheme(Theme.DARK)
+    # setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
 

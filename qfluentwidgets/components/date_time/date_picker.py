@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QDate, QCalendar
+from PyQt5.QtCore import Qt, pyqtSignal, QDate, QCalendar, pyqtProperty
 
 from .picker_base import PickerBase, PickerPanel, PickerColumnFormatter, DigitFormatter
 
@@ -11,11 +11,14 @@ class DatePickerBase(PickerBase):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.date = QDate()
+        self._date = QDate()
         self.calendar = QCalendar()
         self._yearFormatter = None
         self._monthFormatter = None
         self._dayFormatter = None
+
+    def getDate(self):
+        return self._date
 
     def setDate(self, date: QDate):
         """ set current date """
@@ -182,15 +185,20 @@ class DatePicker(DatePickerBase):
         if od != date:
             self.dateChanged.emit(date)
 
+    def getDate(self):
+        return self._date
+
     def setDate(self, date: QDate):
         if not date.isValid() or date.isNull():
             return
 
-        self.date = date
+        self._date = date
         self.setColumnValue(self.monthIndex, date.month())
         self.setColumnValue(self.dayIndex, date.day())
         self.setColumnValue(self.yearIndex, date.year())
         self.setColumnItems(self.dayIndex, range(1, date.daysInMonth() + 1))
+
+    date = pyqtProperty(QDate, getDate, setDate)
 
 
 class ZhFormatter(PickerColumnFormatter):
