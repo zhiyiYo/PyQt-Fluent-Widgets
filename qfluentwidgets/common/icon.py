@@ -137,7 +137,7 @@ def writeSvg(iconPath: str, indexes=None, **attributes):
     return dom.toString()
 
 
-def drawIcon(icon, painter, rect, **attributes):
+def drawIcon(icon, painter, rect, state=QIcon.Off, **attributes):
     """ draw icon
 
     Parameters
@@ -160,9 +160,7 @@ def drawIcon(icon, painter, rect, **attributes):
         icon.fluentIcon.render(painter, rect, **attributes)
     else:
         icon = QIcon(icon)
-        rect = QRectF(rect).toRect()
-        image = icon.pixmap(rect.width(), rect.height())
-        painter.drawPixmap(rect, image)
+        icon.paint(painter, QRectF(rect).toRect(), Qt.AlignCenter, state=state)
 
 
 class FluentIconBase:
