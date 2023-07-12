@@ -65,3 +65,14 @@ If the startup fails or the components of PyQt-Fluent-Widgets cannot be seen, th
 The plugin for PySide6 is unstable and may not start QtDesigner successfully. It is recommended to use QtDesigner of PyQt5/6 to generate ui files.
 
 .. note:: PyQt5 must upgrade PyQt5-Frameless-Window to 0.2.7 in order to use the plugin, while PySide6 and PyQt6 do not need to upgrading to frameless packages. PySide2 does not support plugins, but you can use PyQt5's QtDesigner to generate ui files and then compile them into py files using uic.
+
+
+Complex example
+^^^^^^^^^^^^^^^
+Here is an example that uses a side navigation bar to implement multiple sub-interfaces window.
+
+.. raw:: html
+
+   <div style="position: relative; padding: 30% 45%;">
+      <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://player.bilibili.com/player.html?cid=1193201502&aid=530806716&page=1&as_wide=1&high_quality=1&danmaku=0" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>
+   </div>
