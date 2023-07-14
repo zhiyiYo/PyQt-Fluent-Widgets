@@ -36,6 +36,9 @@ class Demo(QWidget):
         # NOTE: use custom item delegate
         # self.tableView.setItemDelegate(CustomTableItemDelegate(self.tableView))
 
+        # select row on right-click
+        # self.tableView.setSelectRightClickedRow(True)
+
         self.tableView.setWordWrap(False)
         self.tableView.setRowCount(60)
         self.tableView.setColumnCount(5)
