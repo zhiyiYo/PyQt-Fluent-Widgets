@@ -382,6 +382,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.textEdited.connect(self._onTextEdited)
         self.returnPressed.connect(self._onReturnPressed)
 
+        self.clearButton.disconnect()
+        self.clearButton.clicked.connect(self._onClearButtonClicked)
+
     def currentText(self):
         return self.text()
 
@@ -413,6 +416,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
     def _onDropMenuClosed(self):
         self.dropMenu = None
 
+    def _onClearButtonClicked(self):
+        LineEdit.clear(self)
+        self._currentIndex = -1
 
 
 class ComboBoxMenu(RoundMenu):
