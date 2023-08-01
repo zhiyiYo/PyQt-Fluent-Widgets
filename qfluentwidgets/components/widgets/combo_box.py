@@ -92,6 +92,8 @@ class ComboBoxBase(QObject):
         """
         item = ComboItem(text, icon, userData)
         self.items.append(item)
+        if len(self.items) == 1:
+            self.setCurrentIndex(0)
 
     def addItems(self, texts: Iterable[str]):
         """ add items
