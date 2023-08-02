@@ -85,6 +85,11 @@ class FlowLayout(QLayout):
 
         return None
 
+    def removeWidget(self, widget):
+        for i, item in enumerate(self._items):
+            if item.widget() is widget:
+                return self.takeAt(i)
+
     def removeAllWidgets(self):
         """ remove all widgets from layout """
         while self._items:
