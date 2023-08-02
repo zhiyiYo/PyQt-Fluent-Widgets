@@ -131,6 +131,7 @@ class LineEdit(QLineEdit):
         # create menu
         if not self._completerMenu:
             self._completerMenu = CompleterMenu(self)
+            self._completerMenu.activated.connect(self._completer.activated)
 
         # add menu items
         self.completer().setCompletionPrefix(self.text())
@@ -164,6 +165,8 @@ class LineEdit(QLineEdit):
 class CompleterMenu(RoundMenu):
     """ Completer menu """
 
+    activated = Signal(str)
+
     def __init__(self, lineEdit: LineEdit):
         super().__init__()
         self.items = []
@@ -192,7 +195,7 @@ class CompleterMenu(RoundMenu):
 
         # add items
         for i in items:
-            self.addAction(QAction(i, triggered=lambda x=i: self.lineEdit.setText(x)))
+            self.addAction(QAction(i, triggered=lambda x=i: self.__onItemSelected(x)))
 
         return True
 
@@ -207,10 +210,14 @@ class CompleterMenu(RoundMenu):
         if e.key() == Qt.Key_Escape:
             self.close()
         if e.key() in [Qt.Key_Enter, Qt.Key_Return] and self.view.currentRow() >= 0:
-            self.lineEdit.setText(self.view.currentItem().text())
+            self.__onItemSelected(self.view.currentItem().text())
             self.close()
 
         return super().eventFilter(obj, e)
+
+    def __onItemSelected(self, text):
+        self.lineEdit.setText(text)
+        self.activated.emit(text)
 
     def popup(self):
         """ show menu """

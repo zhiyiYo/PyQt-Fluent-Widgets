@@ -13,12 +13,19 @@ from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, Push
 from qfluentwidgets import FluentIcon as FIF
 
 
-class ToolButtonDemo(QWidget):
+class ButtonView(QWidget):
 
     def __init__(self):
         super().__init__()
         # setTheme(Theme.DARK)
-        self.setStyleSheet("ToolButtonDemo{background: white}")
+        self.setStyleSheet("ButtonView{background: rgb(255,255,255)}")
+
+
+
+class ToolButtonDemo(ButtonView):
+
+    def __init__(self):
+        super().__init__()
 
         self.menu = RoundMenu(parent=self)
         self.menu.addAction(QAction(FIF.SEND_FILL.icon(), 'Send'))
@@ -92,12 +99,10 @@ class ToolButtonDemo(QWidget):
         self.resize(300, 300)
 
 
-class PushButtonDemo(QWidget):
+class PushButtonDemo(ButtonView):
 
     def __init__(self):
         super().__init__()
-        # setTheme(Theme.DARK)
-        self.setStyleSheet('PushButtonDemo{background:white}')
 
         self.menu = RoundMenu(parent=self)
         self.menu.addAction(Action(FIF.BASKETBALL, 'Basketball'))
@@ -155,10 +160,16 @@ class PushButtonDemo(QWidget):
         self.primarySplitPushButton2.setFlyout(self.menu)
 
         # hyperlink button
-        self.hyperlinkButton = HyperlinkButton(
-            url='https://github.com/zhiyiYo/PyQt-Fluent-Widgets',
+        self.hyperlinkButton1 = HyperlinkButton(
+            url='https://github.com/zhiyiYo/QMaterialWidgets',
             text='Hyper link button',
             parent=self
+        )
+        self.hyperlinkButton2 = HyperlinkButton(
+            url='https://github.com/zhiyiYo/QMaterialWidgets',
+            text='Hyper link button',
+            parent=self,
+            icon=FIF.LINK
         )
 
         # pill push button
@@ -193,7 +204,8 @@ class PushButtonDemo(QWidget):
         self.gridLayout.addWidget(self.pillPushButton1, 10, 0, Qt.AlignLeft)
         self.gridLayout.addWidget(self.pillPushButton2, 10, 1, Qt.AlignLeft)
 
-        self.gridLayout.addWidget(self.hyperlinkButton, 11, 0)
+        self.gridLayout.addWidget(self.hyperlinkButton1, 11, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.hyperlinkButton2, 11, 1, Qt.AlignLeft)
 
         self.resize(600, 700)
 

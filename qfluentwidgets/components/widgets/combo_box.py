@@ -61,6 +61,7 @@ class ComboBoxBase:
         self.isPressed = False
         self.items = []     # type: List[ComboItem]
         self._currentIndex = -1
+        self._maxVisibleItems = -1
         self.dropMenu = None
 
         FluentStyleSheet.COMBO_BOX.apply(self)
@@ -78,6 +79,8 @@ class ComboBoxBase:
         """
         item = ComboItem(text, icon, userData)
         self.items.append(item)
+        if len(self.items) == 1:
+            self.setCurrentIndex(0)
 
     def addItems(self, texts: Iterable[str]):
         """ add items
@@ -254,6 +257,12 @@ class ComboBoxBase:
         if index <= self.currentIndex():
             self._onItemClicked(self.currentIndex() + pos - index)
 
+    def setMaxVisibleItems(self, num: int):
+        self._maxVisibleItems = num
+
+    def maxVisibleItems(self):
+        return self._maxVisibleItems
+
     def _closeComboMenu(self):
         if not self.dropMenu:
             return
@@ -279,6 +288,7 @@ class ComboBoxBase:
             menu.view.setMinimumWidth(self.width())
             menu.adjustSize()
 
+        menu.setMaxVisibleItems(self.maxVisibleItems())
         menu.closedSignal.connect(self._onDropMenuClosed)
         self.dropMenu = menu
 
@@ -386,6 +396,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
         FluentStyleSheet.LINE_EDIT.apply(self)
 
+        self.clearButton.clicked.disconnect()
+        self.clearButton.clicked.connect(self._onClearButtonClicked)
+
     def currentText(self):
         return self.text()
 
@@ -430,6 +443,9 @@ class EditableComboBox(LineEdit, ComboBoxBase):
     def _onDropMenuClosed(self):
         self.dropMenu = None
 
+    def _onClearButtonClicked(self):
+        LineEdit.clear(self)
+        self._currentIndex = -1
 
 
 class ComboBoxMenu(RoundMenu):

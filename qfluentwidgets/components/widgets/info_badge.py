@@ -369,8 +369,6 @@ class InfoBadgeManager(QObject):
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self.target:
-            if e.type() == QEvent.Hide:
-                self.badge.hide()
             if e.type() in [QEvent.Resize, QEvent.Move]:
                 self.badge.move(self.position())
 

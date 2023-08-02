@@ -50,6 +50,9 @@ class NavigationWidget(QWidget):
         self.update()
         self.clicked.emit(True)
 
+    def click(self):
+        self.clicked.emit(True)
+
     def setCompacted(self, isCompacted: bool):
         """ set whether the widget is compacted """
         if isCompacted == self.isCompacted:
