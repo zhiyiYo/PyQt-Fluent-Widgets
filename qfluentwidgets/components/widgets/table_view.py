@@ -1,7 +1,7 @@
 # coding: utf-8
 from typing import List, Union
 
-from PySide6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel
+from PySide6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, Property
 from PySide6.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
 from PySide6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget, QTableWidgetItem, QHeaderView)
@@ -147,6 +147,7 @@ class TableBase:
         super().__init__(*args, **kwargs)
         self.delegate = TableItemDelegate(self)
         self.scrollDelagate = SmoothScrollDelegate(self)
+        self._isSelectRightClickedRow = False
 
         # set style sheet
         FluentStyleSheet.TABLE_VIEW.apply(self)
@@ -191,13 +192,21 @@ class TableBase:
         QTableView.keyPressEvent(self, e)
         self.updateSelectedRows()
 
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton or self._isSelectRightClickedRow:
+            return QTableView.mousePressEvent(self, e)
+
+        index = self.indexAt(e.pos())
+        if index.isValid():
+            self._setPressedRow(index.row())
+
+        QWidget.mousePressEvent(self, e)
+
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
+        self.updateSelectedRows()
 
-        row = self.indexAt(e.pos()).row()
-        if row >= 0 and e.button() != Qt.RightButton:
-            self.updateSelectedRows()
-        else:
+        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.RightButton:
             self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: TableItemDelegate):
@@ -252,9 +261,25 @@ class TableWidget(TableBase, QTableWidget):
 
         self.updateSelectedRows()
 
+    def isSelectRightClickedRow(self):
+        return self._isSelectRightClickedRow
+
+    def setSelectRightClickedRow(self, isSelect: bool):
+        self._isSelectRightClickedRow = isSelect
+
+    selectRightClickedRow = Property(bool, isSelectRightClickedRow, setSelectRightClickedRow)
+
 
 class TableView(TableBase, QTableView):
     """ Table view """
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+    def isSelectRightClickedRow(self):
+        return self._isSelectRightClickedRow
+
+    def setSelectRightClickedRow(self, isSelect: bool):
+        self._isSelectRightClickedRow = isSelect
+
+    selectRightClickedRow = Property(bool, isSelectRightClickedRow, setSelectRightClickedRow)

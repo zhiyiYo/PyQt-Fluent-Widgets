@@ -1,9 +1,9 @@
 # coding:utf-8
 from typing import List, Union
 
-from PySide6.QtCore import Qt, QModelIndex
+from PySide6.QtCore import Qt, QModelIndex, Property
 from PySide6.QtGui import QPainter
-from PySide6.QtWidgets import QStyleOptionViewItem, QListView, QListView, QListWidget
+from PySide6.QtWidgets import QStyleOptionViewItem, QListView, QListView, QListWidget, QWidget
 
 from .scroll_bar import SmoothScrollDelegate
 from .table_view import TableItemDelegate
@@ -32,6 +32,7 @@ class ListBase:
         super().__init__(*args, **kwargs)
         self.delegate = ListItemDelegate(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
+        self._isSelectRightClickedRow = False
 
         FluentStyleSheet.LIST_VIEW.apply(self)
         self.setItemDelegate(self.delegate)
@@ -66,13 +67,21 @@ class ListBase:
         QListView.keyPressEvent(self, e)
         self.updateSelectedRows()
 
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton or self._isSelectRightClickedRow:
+            return QListView.mousePressEvent(self, e)
+
+        index = self.indexAt(e.pos())
+        if index.isValid():
+            self._setPressedRow(index.row())
+
+        QWidget.mousePressEvent(self, e)
+
     def mouseReleaseEvent(self, e):
         QListView.mouseReleaseEvent(self, e)
+        self.updateSelectedRows()
 
-        row = self.indexAt(e.pos()).row()
-        if row >= 0 and e.button() != Qt.RightButton:
-            self.updateSelectedRows()
-        else:
+        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.RightButton:
             self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: ListItemDelegate):
@@ -108,9 +117,25 @@ class ListWidget(ListBase, QListWidget):
 
         self.updateSelectedRows()
 
+    def isSelectRightClickedRow(self):
+        return self._isSelectRightClickedRow
+
+    def setSelectRightClickedRow(self, isSelect: bool):
+        self._isSelectRightClickedRow = isSelect
+
+    selectRightClickedRow = Property(bool, isSelectRightClickedRow, setSelectRightClickedRow)
+
 
 class ListView(ListBase, QListView):
     """ List view """
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+    def isSelectRightClickedRow(self):
+        return self._isSelectRightClickedRow
+
+    def setSelectRightClickedRow(self, isSelect: bool):
+        self._isSelectRightClickedRow = isSelect
+
+    selectRightClickedRow = Property(bool, isSelectRightClickedRow, setSelectRightClickedRow)

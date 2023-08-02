@@ -132,16 +132,30 @@ HyperlinkButton {
     background-color: transparent;
 }
 
+HyperlinkButton[hasIcon=false] {
+    padding: 6px 12px 6px 12px;
+}
+
+HyperlinkButton[hasIcon=true] {
+    padding: 6px 12px 6px 36px;
+}
+
 HyperlinkButton:hover {
-    background-color: rgba(0, 0, 0, 15);
+    color: --ThemeColorPrimary;
+    background-color: rgba(0, 0, 0, 10);
+    border: none;
 }
 
 HyperlinkButton:pressed {
-    background-color: rgba(0, 0, 0, 7);
+    color: --ThemeColorPrimary;
+    background-color: rgba(0, 0, 0, 6);
+    border: none;
 }
 
 HyperlinkButton:disabled {
-    color: rgba(0, 0, 0, 0.43)
+    color: rgba(0, 0, 0, 0.43);
+    background-color: transparent;
+    border: none;
 }
 
 

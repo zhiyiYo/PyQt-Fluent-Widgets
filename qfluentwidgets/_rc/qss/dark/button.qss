@@ -132,17 +132,30 @@ HyperlinkButton {
     background-color: transparent;
 }
 
+HyperlinkButton[hasIcon=false] {
+    padding: 5px 12px 6px 12px;
+}
+
+HyperlinkButton[hasIcon=true] {
+    padding: 5px 12px 6px 36px;
+}
+
 HyperlinkButton:hover {
+    color: --ThemeColorPrimary;
     background-color: rgba(255, 255, 255, 10);
+    border: none;
 }
 
 HyperlinkButton:pressed {
+    color: --ThemeColorDark1;
     background-color: rgba(255, 255, 255, 7);
+    border: none;
 }
 
 HyperlinkButton:disabled {
     color: rgba(255, 255, 255, 0.43);
     background-color: transparent;
+    border: none;
 }
 
 RadioButton {

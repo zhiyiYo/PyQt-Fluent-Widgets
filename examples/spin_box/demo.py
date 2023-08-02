@@ -2,13 +2,16 @@
 import sys
 from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-from qfluentwidgets import SpinBox, DoubleSpinBox, DateTimeEdit, DateEdit, TimeEdit
+from qfluentwidgets import SpinBox, DoubleSpinBox, DateTimeEdit, DateEdit, TimeEdit, setTheme, Theme
 
 
 class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
+        # setTheme(Theme.DARK)
+        self.setStyleSheet('Demo{background: rgb(255, 255, 255)}')
+
         self.vBoxLayout = QVBoxLayout(self)
 
         self.spinBox = SpinBox(self)
@@ -18,7 +21,6 @@ class Demo(QWidget):
         self.doubleSpinBox = DoubleSpinBox(self)
 
         self.resize(500, 500)
-        self.setStyleSheet('Demo{background: white}')
 
         self.vBoxLayout.setContentsMargins(100, 50, 100, 50)
         self.vBoxLayout.addWidget(self.spinBox)
