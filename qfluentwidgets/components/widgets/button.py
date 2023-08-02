@@ -138,7 +138,7 @@ class TransparentTogglePushButton(TogglePushButton):
     """ Transparent toggle push button """
 
 
-class HyperlinkButton(QPushButton):
+class HyperlinkButton(PushButton):
     """ Hyperlink button """
 
     @singledispatchmethod
@@ -151,16 +151,27 @@ class HyperlinkButton(QPushButton):
         self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
 
     @__init__.register
-    def _(self, url: str, text: str, parent: QWidget = None):
+    def _(self, url: str, text: str, parent: QWidget = None, icon: Union[QIcon, FluentIconBase, str] = None):
         self.__init__(parent)
         self.setText(text)
         self.url.setUrl(url)
+        self.setIcon(icon)
 
     def getUrl(self):
         return self._url
 
     def setUrl(self, url: Union[str, QUrl]):
         self._url = QUrl(url)
+
+    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
+        if isinstance(icon, FluentIconBase) and self.isEnabled():
+            icon = icon.icon(color=themeColor())
+        elif not self.isEnabled():
+            painter.setOpacity(0.786 if isDarkTheme() else 0.9)
+            if isinstance(icon, FluentIconBase):
+                icon = icon.icon(Theme.DARK)
+
+        drawIcon(icon, painter, rect, state)
 
     url = pyqtProperty(QUrl, getUrl, setUrl)
 
