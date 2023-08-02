@@ -62,6 +62,7 @@ class ComboBoxBase(QObject):
         self.isPressed = False
         self.items = []     # type: List[ComboItem]
         self._currentIndex = -1
+        self._maxVisibleItems = -1
         self.dropMenu = None
 
         FluentStyleSheet.COMBO_BOX.apply(self)
@@ -270,6 +271,12 @@ class ComboBoxBase(QObject):
         if index <= self.currentIndex():
             self._onItemClicked(self.currentIndex() + pos - index)
 
+    def setMaxVisibleItems(self, num: int):
+        self._maxVisibleItems = num
+
+    def maxVisibleItems(self):
+        return self._maxVisibleItems
+
     def _closeComboMenu(self):
         if not self.dropMenu:
             return
@@ -295,6 +302,7 @@ class ComboBoxBase(QObject):
             menu.view.setMinimumWidth(self.width())
             menu.adjustSize()
 
+        menu.setMaxVisibleItems(self.maxVisibleItems())
         menu.closedSignal.connect(self._onDropMenuClosed)
         self.dropMenu = menu
 
