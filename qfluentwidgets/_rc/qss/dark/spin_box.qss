@@ -22,11 +22,11 @@ TimeEdit:hover {
     background-color: rgba(255, 255, 255, 0.0837);
 }
 
-SpinBox:focus,
-DoubleSpinBox:focus,
-DateEdit:focus,
-DateTimeEdit:focus,
-TimeEdit:focus{
+SpinBox[transparent=true]:focus,
+DoubleSpinBox[transparent=true]:focus,
+DateEdit[transparent=true]:focus,
+DateTimeEdit[transparent=true]:focus,
+TimeEdit[transparent=true]:focus{
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     background-color: rgba(30, 30, 30, 0.7);
 }
@@ -39,6 +39,14 @@ TimeEdit:disabled{
     color: rgba(255, 255, 255, 150);
     background-color: rgba(255, 255, 255, 0.0837);
     border: 1px solid gba(255, 255, 255, 0.0698);
+}
+
+SpinBox[transparent=false]:focus,
+DoubleSpinBox[transparent=false]:focus,
+DateEdit[transparent=false]:focus,
+DateTimeEdit[transparent=false]:focus,
+TimeEdit[transparent=false]:focus {
+    background: rgb(31, 31, 31);
 }
 
 SpinButton {

@@ -18,6 +18,8 @@ class Demo(QWidget):
 
         # self.listWidget.setAlternatingRowColors(True)
 
+        # self.listWidget.setSelectRightClickedRow(True)
+
         stands = [
             '白金之星', '绿色法皇', "天堂制造", "绯红之王",
             '银色战车', '疯狂钻石', "壮烈成仁", "败者食尘",

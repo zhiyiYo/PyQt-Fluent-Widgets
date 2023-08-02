@@ -59,6 +59,7 @@ class SpinBoxBase:
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
+        self.setProperty('transparent', True)
         FluentStyleSheet.SPIN_BOX.apply(self)
         self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
         self.setFixedHeight(33)

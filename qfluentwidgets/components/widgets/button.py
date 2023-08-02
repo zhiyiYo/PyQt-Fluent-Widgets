@@ -138,7 +138,7 @@ class TransparentTogglePushButton(TogglePushButton):
     """ Transparent toggle push button """
 
 
-class HyperlinkButton(QPushButton):
+class HyperlinkButton(PushButton):
     """ Hyperlink button """
 
     @singledispatchmethod
@@ -151,16 +151,27 @@ class HyperlinkButton(QPushButton):
         self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
 
     @__init__.register
-    def _(self, url: str, text: str, parent: QWidget = None):
+    def _(self, url: str, text: str, parent: QWidget = None, icon: Union[QIcon, FluentIconBase, str] = None):
         self.__init__(parent)
         self.setText(text)
         self.url.setUrl(url)
+        self.setIcon(icon)
 
     def getUrl(self):
         return self._url
 
     def setUrl(self, url: Union[str, QUrl]):
         self._url = QUrl(url)
+
+    def _drawIcon(self, icon, painter, rect, state=QIcon.State.Off):
+        if isinstance(icon, FluentIconBase) and self.isEnabled():
+            icon = icon.icon(color=themeColor())
+        elif not self.isEnabled():
+            painter.setOpacity(0.786 if isDarkTheme() else 0.9)
+            if isinstance(icon, FluentIconBase):
+                icon = icon.icon(Theme.DARK)
+
+        drawIcon(icon, painter, rect, state)
 
     url = pyqtProperty(QUrl, getUrl, setUrl)
 
@@ -325,10 +336,9 @@ class DropDownButtonBase:
             return
 
         menu = self.menu()
-
-        if menu.view.width() < self.width():
-            menu.view.setMinimumWidth(self.width())
-            menu.adjustSize()
+        menu.view.setMinimumWidth(self.width())
+        menu.view.adjustSize()
+        menu.adjustSize()
 
         # show menu
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
@@ -513,7 +523,7 @@ class SplitWidgetBase(QWidget):
         ----------
         flyout: QWidget
             the widget pops up when drop down button is clicked.
-            It should contain the `exec` method, whose first parameter type is `QPoint`
+            It should contain `exec(pos: QPoint)` method
         """
         self.flyout = flyout
 
@@ -524,8 +534,9 @@ class SplitWidgetBase(QWidget):
 
         w = self.flyout
 
-        if isinstance(w, RoundMenu) and w.view.width() < self.width():
+        if isinstance(w, RoundMenu):
             w.view.setMinimumWidth(self.width())
+            w.view.adjustSize()
             w.adjustSize()
 
         dx = w.layout().contentsMargins().left() if isinstance(w, RoundMenu) else 0

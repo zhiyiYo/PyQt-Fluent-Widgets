@@ -74,7 +74,8 @@ python demo.py
 > 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
 
 ## 另见👀
-下面是一些使用了 PyQt-Fluent-Widgets 的项目：
+下面是一些基于 PyQt-Fluent-Widgets 的项目：
+* [**zhiyiYo/QMaterialWidgets**: 基于 PySide 的 Material Design 风格组件库](https://github.com/zhiyiYo/QMaterialWidgets)
 * [**zhiyiYo/Groove**: 基于 PyQt5 的跨平台音乐播放器](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: 基于强化学习的五子棋机器人](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
 * [**语核科技/CopyAsk**: 你的指尖 AI 助手](https://copyask.com/)

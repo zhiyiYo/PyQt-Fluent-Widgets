@@ -14,7 +14,7 @@ QTreeView::item {
     margin-bottom: 2px;
     padding-left: 20px;
     border-radius: 5px;
-    color: black;
+    /* color: black; */
 }
 
 QTreeView::branch:has-children:!has-siblings:closed,
