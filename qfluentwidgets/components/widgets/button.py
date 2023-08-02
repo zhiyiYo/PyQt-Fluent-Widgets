@@ -336,10 +336,9 @@ class DropDownButtonBase:
             return
 
         menu = self.menu()
-
-        if menu.view.width() < self.width():
-            menu.view.setMinimumWidth(self.width())
-            menu.adjustSize()
+        menu.view.setMinimumWidth(self.width())
+        menu.view.adjustSize()
+        menu.adjustSize()
 
         # show menu
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
@@ -524,7 +523,7 @@ class SplitWidgetBase(QWidget):
         ----------
         flyout: QWidget
             the widget pops up when drop down button is clicked.
-            It should contain the `exec` method, whose first parameter type is `QPoint`
+            It should contain `exec(pos: QPoint)` method
         """
         self.flyout = flyout
 
@@ -535,8 +534,9 @@ class SplitWidgetBase(QWidget):
 
         w = self.flyout
 
-        if isinstance(w, RoundMenu) and w.view.width() < self.width():
+        if isinstance(w, RoundMenu):
             w.view.setMinimumWidth(self.width())
+            w.view.adjustSize()
             w.adjustSize()
 
         dx = w.layout().contentsMargins().left() if isinstance(w, RoundMenu) else 0
