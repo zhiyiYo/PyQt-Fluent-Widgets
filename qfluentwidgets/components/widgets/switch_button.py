@@ -1,15 +1,16 @@
 # coding: utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal, QEvent, QPoint
+from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal, QEvent, QPoint, QPropertyAnimation, QEasingCurve
 from PyQt5.QtGui import QColor, QPainter, QHoverEvent
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
 
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme
 from ...common.overload import singledispatchmethod
+from .button import ToolButton
 
 
-class Indicator(QToolButton):
+class Indicator(ToolButton):
     """ Indicator of switch button """
 
     checkedChanged = pyqtSignal(bool)
@@ -17,109 +18,107 @@ class Indicator(QToolButton):
     def __init__(self, parent):
         super().__init__(parent=parent)
         self.setCheckable(True)
-        super().setChecked(False)
-        self.resize(37, 16)
-        self.__sliderOnColor = QColor(Qt.white)
-        self.__sliderOffColor = QColor(Qt.black)
-        self.__sliderDisabledColor = QColor(QColor(155, 154, 153))
-        self.timer = QTimer(self)
-        self.padding = self.height()//4
-        self.sliderX = self.padding
-        self.sliderRadius = (self.height()-2*self.padding)//2
-        self.sliderEndX = self.width()-2*self.sliderRadius
-        self.sliderStep = self.width()/50
-        self.timer.timeout.connect(self.__updateSliderPos)
+        self.setFixedSize(42, 22)
 
-    def __updateSliderPos(self):
-        """ update slider position """
-        if self.isChecked():
-            if self.sliderX+self.sliderStep < self.sliderEndX:
-                self.sliderX += self.sliderStep
-            else:
-                self.sliderX = self.sliderEndX
-                self.timer.stop()
-        else:
-            if self.sliderX-self.sliderStep > self.sliderEndX:
-                self.sliderX -= self.sliderStep
-            else:
-                self.sliderX = self.padding
-                self.timer.stop()
+        self._sliderX = 5
+        self.slideAni = QPropertyAnimation(self, b'sliderX', self)
+        self.slideAni.setDuration(120)
 
-        self.style().polish(self)
-
-    def setChecked(self, isChecked: bool):
-        """ set checked state """
-        if isChecked == self.isChecked():
-            return
-
-        super().setChecked(isChecked)
-        self.sliderRadius = (self.height()-2*self.padding)//2
-        self.sliderEndX = self.width()-2*self.sliderRadius - \
-            self.padding if isChecked else self.padding
-        self.timer.start(5)
-
-    def toggle(self):
-        self.setChecked(not self.isChecked())
+        self.toggled.connect(self._toggleSlider)
 
     def mouseReleaseEvent(self, e):
         """ toggle checked state when mouse release"""
         super().mouseReleaseEvent(e)
-        self.sliderEndX = self.width()-2*self.sliderRadius - \
-            self.padding if self.isChecked() else self.padding
-        self.timer.start(5)
         self.checkedChanged.emit(self.isChecked())
 
-    def resizeEvent(self, e):
-        self.padding = self.height()//4
-        self.sliderRadius = (self.height()-2*self.padding)//2
-        self.sliderStep = self.width()/50
-        self.sliderEndX = self.width()-2*self.sliderRadius - \
-            self.padding if self.isChecked() else self.padding
+    def _toggleSlider(self):
+        self.slideAni.setEndValue(26 if self.isChecked() else 5)
+        self.slideAni.start()
+
+    def toggle(self):
+        self.setChecked(not self.isChecked())
+
+    def setDown(self, isDown: bool):
+        self.isPressed = isDown
+        super().setDown(isDown)
+
+    def setHover(self, isHover: bool):
+        self.isHover = isHover
         self.update()
 
     def paintEvent(self, e):
         """ paint indicator """
-        # the background and border are specified by qss
-        super().paintEvent(e)
-
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
+        self._drawBackground(painter)
+        self._drawCircle(painter)
+
+    def _drawBackground(self, painter: QPainter):
+        r = self.height() / 2
+        painter.setPen(self._borderColor())
+        painter.setBrush(self._backgroundColor())
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
+
+    def _drawCircle(self, painter: QPainter):
         painter.setPen(Qt.NoPen)
+        painter.setBrush(self._sliderColor())
+        painter.drawEllipse(int(self.sliderX), 5, 12, 12)
 
-        if self.isEnabled():
-            color = self.sliderOnColor if self.isChecked() else self.sliderOffColor
+    def _backgroundColor(self):
+        isDark = isDarkTheme()
+
+        if self.isChecked():
+            if not self.isEnabled():
+                return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+            if self.isPressed:
+                return ThemeColor.LIGHT_2.color()
+            elif self.isHover:
+                return ThemeColor.LIGHT_1.color()
+
+            return themeColor()
         else:
-            color = self.sliderDisabledColor
+            if not self.isEnabled():
+                return QColor(0, 0, 0, 0)
+            if self.isPressed:
+                return QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 23)
+            elif self.isHover:
+                return QColor(255, 255, 255, 10) if isDark else QColor(0, 0, 0, 15)
 
-        painter.setBrush(color)
-        painter.drawEllipse(int(self.sliderX), int(self.padding),
-                            self.sliderRadius*2, self.sliderRadius*2)
+            return QColor(0, 0, 0, 0)
 
-    def getSliderOnColor(self):
-        return self.__sliderOnColor
+    def _borderColor(self):
+        isDark = isDarkTheme()
 
-    def setSliderOnColor(self, color: QColor):
-        self.__sliderOnColor = color
+        if self.isChecked():
+            return self._backgroundColor() if self.isEnabled() else QColor(0, 0, 0, 0)
+        else:
+            if self.isEnabled():
+                return QColor(255, 255, 255, 153) if isDark else QColor(0, 0, 0, 133)
+
+            return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+
+    def _sliderColor(self):
+        isDark = isDarkTheme()
+
+        if self.isChecked():
+            if self.isEnabled():
+                return QColor(Qt.black if isDark else Qt.white)
+
+            return QColor(255, 255, 255, 77) if isDark else QColor(255, 255, 255)
+        else:
+            if self.isEnabled():
+                return QColor(255, 255, 255, 201) if isDark else QColor(0, 0, 0, 156)
+
+            return QColor(255, 255, 255, 96) if isDark else QColor(0, 0, 0, 91)
+
+    @pyqtProperty(float)
+    def sliderX(self):
+        return self._sliderX
+
+    @sliderX.setter
+    def sliderX(self, x):
+        self._sliderX = x
         self.update()
-
-    def getSliderOffColor(self):
-        return self.__sliderOffColor
-
-    def setSliderOffColor(self, color: QColor):
-        self.__sliderOffColor = color
-        self.update()
-
-    def getSliderDisabledColor(self):
-        return self.__sliderDisabledColor
-
-    def setSliderDisabledColor(self, color: QColor):
-        self.__sliderDisabledColor = color
-        self.update()
-
-    sliderOnColor = pyqtProperty(QColor, getSliderOnColor, setSliderOnColor)
-    sliderOffColor = pyqtProperty(QColor, getSliderOffColor, setSliderOffColor)
-    sliderDisabledColor = pyqtProperty(
-        QColor, getSliderDisabledColor, setSliderDisabledColor)
 
 
 class IndicatorPosition(Enum):
@@ -149,10 +148,12 @@ class SwitchButton(QWidget):
         self._offText =  self.tr('Off')
         self._onText =  self.tr('On')
         self.__spacing = 12
+
         self.indicatorPos = indicatorPos
         self.hBox = QHBoxLayout(self)
         self.indicator = Indicator(self)
         self.label = QLabel(self._text, self)
+
         self.__initWidget()
 
     @__init__.register
@@ -176,7 +177,6 @@ class SwitchButton(QWidget):
     def __initWidget(self):
         """ initialize widgets """
         self.setAttribute(Qt.WA_StyledBackground)
-        self.setFixedHeight(37)
         self.installEventFilter(self)
 
         # set layout
@@ -207,13 +207,9 @@ class SwitchButton(QWidget):
                 self.indicator.setDown(False)
                 self.indicator.toggle()
             elif e.type() == QEvent.Enter:
-                self.indicator.setAttribute(Qt.WA_UnderMouse, True)
-                e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
-                QApplication.sendEvent(self.indicator, e)
+                self.indicator.setHover(True)
             elif e.type() == QEvent.Leave:
-                self.indicator.setAttribute(Qt.WA_UnderMouse, False)
-                e = QHoverEvent(QEvent.HoverLeave, QPoint(1, 1), QPoint())
-                QApplication.sendEvent(self.indicator, e)
+                self.indicator.setHover(False)
 
         return super().eventFilter(obj, e)
 
