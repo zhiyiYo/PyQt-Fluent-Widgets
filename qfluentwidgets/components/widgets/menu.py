@@ -246,7 +246,7 @@ class MenuActionListWidget(QListWidget):
         return sum(self.item(i).sizeHint().height() for i in range(self.count()))
 
 
-class RoundMenu(QWidget):
+class RoundMenu(QMenu):
     """ Round corner menu """
 
     closedSignal = pyqtSignal()
@@ -690,6 +690,18 @@ class RoundMenu(QWidget):
         """
         self.exec(pos, ani, aniType)
 
+    def adjustPosition(self):
+        m = self.layout().contentsMargins()
+        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        w, h = self.layout().sizeHint().width() + 5, self.layout().sizeHint().height()
+
+        x = min(self.x() - m.left(), rect.right() - w)
+        y = self.y()
+        if y > rect.bottom() - h:
+            y = self.y() - h + m.bottom()
+
+        self.move(x, y)
+
 
 class MenuAnimationManager(QObject):
     """ Menu animation manager """
@@ -1126,3 +1138,19 @@ class CheckableMenu(RoundMenu):
     def _adjustItemText(self, item: QListWidgetItem, action: QAction):
         w = super()._adjustItemText(item, action)
         item.setSizeHint(QSize(w + 26, self.itemHeight))
+
+
+class SystemTrayMenu(RoundMenu):
+    """ System tray menu """
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        self.adjustPosition()
+
+
+class CheckableSystemTrayMenu(CheckableMenu):
+    """ Checkable system tray menu """
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        self.adjustPosition()
