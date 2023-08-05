@@ -178,7 +178,8 @@ class BasicInputInterface(GalleryInterface):
         # hyperlink button
         self.addExampleCard(
             self.tr('A hyperlink button that navigates to a URI'),
-            HyperlinkButton('http://github.com', self.tr('GitHub home page')),
+            HyperlinkButton(
+                'https://github.com/zhiyiYo/QMaterialWidgets', self.tr('GitHub home page'), self, FluentIcon.LINK),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
         )
 

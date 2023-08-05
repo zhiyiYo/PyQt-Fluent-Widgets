@@ -1,39 +1,7 @@
-/*设置菜单样式*/
-QMenu {
-    background-color: rgb(43, 43, 43);
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
-    padding: 4px 0px 4px 0px;
-    border: 1px solid rgb(34, 34, 34);
-    color: white;
+RoundMenu {
+    background-color: transparent;
+    border: none;
 }
-
-QMenu::right-arrow {
-    width: 13px;
-    height: 13px;
-    right: 13px;
-    border-image: url(:/qfluentwidgets/images/menu/ChevronRight_white.svg);
-}
-
-QMenu::separator {
-    height: 1px;
-    background: rgba(255, 255, 255, 104);
-    margin-right: 13px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    margin-left: 10px;
-}
-
-QMenu::item {
-    padding: 6px 10px 6px 10px;
-}
-
-QMenu::item:selected {
-    border-width: 1px;
-    border-color: rgb(33, 33, 33);
-    background: rgb(64, 64, 64);
-    color: white;
-}
-
 
 
 MenuActionListWidget {
