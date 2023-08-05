@@ -11,7 +11,7 @@ LineEdit, TextEdit, PlainTextEdit {
 
 TextEdit,
 PlainTextEdit {
-    padding: 0px 0px 0px 10px;
+    padding: 2px 3px 2px 8px;
 }
 
 LineEdit:hover, TextEdit:hover, PlainTextEdit:hover {
