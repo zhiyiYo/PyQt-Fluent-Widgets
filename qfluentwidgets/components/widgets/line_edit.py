@@ -3,7 +3,7 @@ from typing import List, Union
 from PySide6.QtCore import QSize, Qt, QRectF, Signal, QPoint, QTimer, QEvent, QAbstractItemModel
 from PySide6.QtGui import QPainter, QPainterPath, QIcon, QCursor, QAction
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QToolButton, QTextEdit,
-                             QPlainTextEdit, QCompleter, QStyle)
+                             QPlainTextEdit, QCompleter, QStyle, QWidget)
 
 
 from ...common.style_sheet import FluentStyleSheet, themeColor
@@ -286,11 +286,46 @@ class SearchLineEdit(LineEdit):
         self.setTextMargins(0, 0, 28*enable+30, 0)
 
 
+class EditLayer(QWidget):
+    """ Edit layer """
+
+    def __init__(self, parent):
+        super().__init__(parent=parent)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        parent.installEventFilter(self)
+
+    def eventFilter(self, obj, e):
+        if obj is self.parent() and e.type() == QEvent.Resize:
+            self.resize(e.size())
+
+        return super().eventFilter(obj, e)
+
+    def paintEvent(self, e):
+        if not self.parent().hasFocus():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+
+        m = self.contentsMargins()
+        path = QPainterPath()
+        w, h = self.width()-m.left()-m.right(), self.height()
+        path.addRoundedRect(QRectF(m.left(), h-10, w, 10), 5, 5)
+
+        rectPath = QPainterPath()
+        rectPath.addRect(m.left(), h-10, w, 7.5)
+        path = path.subtracted(rectPath)
+
+        painter.fillPath(path, themeColor())
+
+
 class TextEdit(QTextEdit):
     """ Text edit """
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
         setFont(self)
@@ -305,6 +340,7 @@ class PlainTextEdit(QPlainTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
         setFont(self)

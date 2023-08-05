@@ -14,49 +14,7 @@ SwitchButton>QLabel {
     border: none;
 }
 
-
-Indicator {
-    height: 16px;
-    width: 37px;
-    qproperty-sliderOnColor: white;
-    qproperty-sliderOffColor: rgb(96, 96, 96);
-    qproperty-sliderDisabledColor: rgb(155, 154, 153);
-    border-radius: 10px;
+SwitchButton>QLabel:disabled {
+    color: rgba(0, 0, 0, 0.36);
 }
 
-Indicator:!checked {
-    background-color: rgb(247, 247, 247);
-    border: 1px solid rgb(139, 139, 139);
-}
-
-Indicator:!checked:hover {
-    border: 1px solid rgb(136, 136, 136);
-    background-color: rgb(238, 238, 238);
-    qproperty-sliderOffColor: rgb(91, 91, 91);
-}
-
-Indicator:!checked:pressed {
-    border: 1px solid rgb(133, 133, 133);
-    background-color: rgb(229, 229, 229);
-    qproperty-sliderOffColor: rgb(87, 87, 87);
-}
-
-Indicator:checked {
-    border: 1px solid --ThemeColorPrimary;
-    background-color: --ThemeColorPrimary;
-}
-
-Indicator:checked:hover {
-    border: 1px solid --ThemeColorLight1;
-    background-color: --ThemeColorLight1;
-}
-
-Indicator:checked:pressed {
-    border: 1px solid --ThemeColorLight2;
-    background-color: --ThemeColorLight2;
-}
-
-Indicator:disabled {
-    border: 1px solid rgb(194, 194, 191);
-    background-color: rgb(194, 194, 191);
-}
