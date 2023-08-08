@@ -118,6 +118,10 @@
         <file>images/shoko.png</file>
         <file>images/Gyro.jpg</file>
         <file>images/SBR.jpg</file>
+        <file>images/Dvd.png</file>
+        <file>images/Singer.png</file>
+        <file>images/MusicNote.png</file>
+        <file>images/Smiling_with_heart.png</file>
 
         <file>qss/dark/gallery_interface.qss</file>
         <file>qss/dark/home_interface.qss</file>

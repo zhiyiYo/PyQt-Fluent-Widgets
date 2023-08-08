@@ -34,27 +34,27 @@
         <translation>下拉框</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="208"/>
+        <location filename="../../view/basic_input_interface.py" line="209"/>
         <source>A group of RadioButton controls in a button group</source>
         <translation>单选按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="219"/>
+        <location filename="../../view/basic_input_interface.py" line="220"/>
         <source>A simple horizontal slider</source>
         <translation>水平滑动条</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="270"/>
+        <location filename="../../view/basic_input_interface.py" line="271"/>
         <source>A simple switch button</source>
         <translation>开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="309"/>
+        <location filename="../../view/basic_input_interface.py" line="310"/>
         <source>Off</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="307"/>
+        <location filename="../../view/basic_input_interface.py" line="308"/>
         <source>On</source>
         <translation>开</translation>
     </message>
@@ -84,32 +84,32 @@
         <translation>GItHub 主页</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="313"/>
+        <location filename="../../view/basic_input_interface.py" line="314"/>
         <source>Star Platinum</source>
         <translation>白金之星</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="313"/>
+        <location filename="../../view/basic_input_interface.py" line="314"/>
         <source>Crazy Diamond</source>
         <translation>疯狂钻石</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="199"/>
+        <location filename="../../view/basic_input_interface.py" line="200"/>
         <source>Soft and Wet</source>
         <translation>软又湿</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="313"/>
+        <location filename="../../view/basic_input_interface.py" line="314"/>
         <source>Gold Experience</source>
         <translation>黄金体验</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="313"/>
+        <location filename="../../view/basic_input_interface.py" line="314"/>
         <source>Sticky Fingers</source>
         <translation>钢链手指</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="251"/>
+        <location filename="../../view/basic_input_interface.py" line="252"/>
         <source>Choose your stand</source>
         <translation>选择你的替身</translation>
     </message>
@@ -144,37 +144,37 @@
         <translation>带下拉菜单的工具按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="291"/>
+        <location filename="../../view/basic_input_interface.py" line="292"/>
         <source>Start practicing</source>
         <translation>开始练习</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="228"/>
+        <location filename="../../view/basic_input_interface.py" line="229"/>
         <source>A split push button with drop down menu</source>
         <translation>带下拉菜单的拆分按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="235"/>
+        <location filename="../../view/basic_input_interface.py" line="236"/>
         <source>Sing</source>
         <translation>唱</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="235"/>
+        <location filename="../../view/basic_input_interface.py" line="236"/>
         <source>Jump</source>
         <translation>跳</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="235"/>
+        <location filename="../../view/basic_input_interface.py" line="236"/>
         <source>Rap</source>
         <translation>Rap</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="235"/>
+        <location filename="../../view/basic_input_interface.py" line="236"/>
         <source>Music</source>
         <translation>Music</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="244"/>
+        <location filename="../../view/basic_input_interface.py" line="245"/>
         <source>A split tool button with drop down menu</source>
         <translation>带下拉菜单的工具按钮</translation>
     </message>
@@ -199,12 +199,12 @@
         <translation>带下拉菜单的主题色工具按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="253"/>
+        <location filename="../../view/basic_input_interface.py" line="254"/>
         <source>A primary color split push button with drop down menu</source>
         <translation>带下拉菜单的主题色拆分按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="261"/>
+        <location filename="../../view/basic_input_interface.py" line="262"/>
         <source>A primary color split tool button with drop down menu</source>
         <translation>带下拉菜单的主题色拆分工具按钮</translation>
     </message>
@@ -229,22 +229,22 @@
         <translation>带下拉菜单的透明工具按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="277"/>
+        <location filename="../../view/basic_input_interface.py" line="278"/>
         <source>A simple toggle push button</source>
         <translation>状态开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="284"/>
+        <location filename="../../view/basic_input_interface.py" line="285"/>
         <source>A simple toggle tool button</source>
         <translation>状态开关工具按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="291"/>
+        <location filename="../../view/basic_input_interface.py" line="292"/>
         <source>A transparent toggle push button</source>
         <translation>透明的状态开关按钮</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="298"/>
+        <location filename="../../view/basic_input_interface.py" line="299"/>
         <source>A transparent toggle tool button</source>
         <translation>透明的状态开关工具按钮</translation>
     </message>
@@ -899,30 +899,35 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>NavigationViewInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="23"/>
+        <location filename="../../view/navigation_view_interface.py" line="24"/>
         <source>A basic pivot</source>
         <translation>顶部导航栏</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="29"/>
+        <location filename="../../view/navigation_view_interface.py" line="30"/>
         <source>A segmented control</source>
         <translation>分段导航栏</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="36"/>
+        <source>A tab bar</source>
+        <translation>标签栏</translation>
     </message>
 </context>
 <context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="54"/>
+        <location filename="../../view/navigation_view_interface.py" line="63"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="55"/>
+        <location filename="../../view/navigation_view_interface.py" line="64"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="56"/>
+        <location filename="../../view/navigation_view_interface.py" line="65"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
@@ -1370,6 +1375,64 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
 </context>
 <context>
+    <name>TabInterface</name>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="116"/>
+        <source>IsTabMovable</source>
+        <translation>启用标签拖拽</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="117"/>
+        <source>IsTabScrollable</source>
+        <translation>启用标签滚动</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="121"/>
+        <source>TabCloseButtonDisplayMode</source>
+        <translation>关闭按钮显示模式</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="143"/>
+        <source>Always</source>
+        <translation>始终显示</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="144"/>
+        <source>OnHover</source>
+        <translation>进入时显示</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="145"/>
+        <source>Never</source>
+        <translation>从不显示</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="148"/>
+        <source>Song</source>
+        <translation>歌曲</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="150"/>
+        <source>Album</source>
+        <translation>专辑</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="152"/>
+        <source>Artist</source>
+        <translation>歌手</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="118"/>
+        <source>IsTabShadowEnabled</source>
+        <translation>启用标签阴影</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="119"/>
+        <source>TabMaximumWidth</source>
+        <translation>标签最大宽度</translation>
+    </message>
+</context>
+<context>
     <name>TableFrame</name>
     <message>
         <location filename="../../view/view_interface.py" line="149"/>
@@ -1412,27 +1475,27 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     <message>
         <location filename="../../view/text_interface.py" line="75"/>
         <source>A DoubleSpinBox with a spin button</source>
-        <translation>带调节按钮的 DoubleSpinBox</translation>
+        <translation>浮点数旋转框</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="82"/>
         <source>A DateEdit with a spin button</source>
-        <translation>带调节按钮的 DateEdit</translation>
+        <translation>日期编辑框</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="89"/>
         <source>A TimeEdit with a spin button</source>
-        <translation>带调节按钮的 TimeEdit</translation>
+        <translation>时间编辑框</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="96"/>
         <source>A DateTimeEdit with a spin button</source>
-        <translation>带调节按钮的 DateTimeEdit</translation>
+        <translation>日期时间编辑框</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="68"/>
         <source>A SpinBox with a spin button</source>
-        <translation>带调节按钮的 SpinBox</translation>
+        <translation>旋转框</translation>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="107"/>

@@ -1,14 +1,15 @@
 # coding:utf-8
 from copy import deepcopy
 from enum import Enum
-from typing import List, Union
-from PyQt5.QtCore import Qt, pyqtSignal, pyqtProperty, QRectF, QSize, QPoint, QPropertyAnimation, QEasingCurve
+from typing import Dict, List, Union
+from PyQt5.QtCore import Qt, pyqtSignal, pyqtProperty, QRectF, QSize, QPoint, QPropertyAnimation, QEasingCurve, QRect
 from PyQt5.QtGui import QPainter, QColor, QIcon, QPainterPath, QLinearGradient, QPen, QBrush, QMouseEvent
 from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect, QHBoxLayout, QSizePolicy, QApplication
 
 from ...common.icon import FluentIcon, FluentIconBase, drawIcon
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet
 from ...common.font import setFont
+from ...common.router import qrouter
 from .button import TransparentToolButton, PushButton
 from .scroll_area import SingleDirectionScrollArea
 from .tool_tip import ToolTipFilter
@@ -71,8 +72,10 @@ class TabItem(PushButton):
         super()._postInit()
         self.borderRadius = 5
         self.isSelected = False
+        self.isShadowEnabled = True
         self.closeButtonDisplayMode = TabCloseButtonDisplayMode.ALWAYS
 
+        self._routeKey = None
         self.textColor = None
         self.lightSelectedBackgroundColor = QColor(249, 249, 249)
         self.darkSelectedBackgroundColor = QColor(40, 40, 40)
@@ -94,8 +97,8 @@ class TabItem(PushButton):
 
         self.closeButton.setIconSize(QSize(10, 10))
 
-        self.shadowEffect.setBlurRadius(8)
-        self.shadowEffect.setOffset(0, 0)
+        self.shadowEffect.setBlurRadius(5)
+        self.shadowEffect.setOffset(0, 1)
         self.setGraphicsEffect(self.shadowEffect)
         self.setSelected(False)
 
@@ -108,13 +111,31 @@ class TabItem(PushButton):
         self.slideAni.setEasingCurve(QEasingCurve.InOutQuad)
         self.slideAni.start()
 
+    def setShadowEnabled(self, isEnabled: bool):
+        """ set whether the shadow is enabled """
+        if isEnabled == self.isShadowEnabled:
+            return
+
+        self.isShadowEnabled = isEnabled
+        self.shadowEffect.setColor(QColor(0, 0, 0, 50*self._canShowShadow()))
+
+    def _canShowShadow(self):
+        return self.isSelected and self.isShadowEnabled
+
+    def setRouteKey(self, key: str):
+        self._routeKey = key
+
+    def routeKey(self):
+        return self._routeKey
+
     def setBorderRadius(self, radius: int):
         self.borderRadius = radius
         self.update()
 
     def setSelected(self, isSelected: bool):
         self.isSelected = isSelected
-        self.shadowEffect.setColor(QColor(0, 0, 0, 50*isSelected))
+
+        self.shadowEffect.setColor(QColor(0, 0, 0, 50*self._canShowShadow()))
         self.update()
 
         if isSelected:
@@ -307,10 +328,13 @@ class TabBar(SingleDirectionScrollArea):
     def __init__(self, parent=None):
         super().__init__(parent=parent, orient=Qt.Horizontal)
         self.items = []  # type: List[TabItem]
+        self.itemMap = {} # type: Dict[str, TabItem]
+
         self._currentIndex = -1
 
         self._isMovable = False
         self._isScrollable = False
+        self._isTabShadowEnabled = True
 
         self._tabMaxWidth = 240
         self._tabMinWidth = 64
@@ -372,20 +396,27 @@ class TabBar(SingleDirectionScrollArea):
     def setAddButtonVisible(self, isVisible: bool):
         self.addButton.setVisible(isVisible)
 
-    def addTab(self, text: str, icon: Union[QIcon, str, FluentIconBase] = None):
+    def addTab(self, routeKey: str, text: str, icon: Union[QIcon, str, FluentIconBase] = None, onClick=None):
         """ add tab
 
         Parameters
         ----------
+        routeKey: str
+            the unique name of tab item
+
         text: str
             the text of tab item
 
         text: str
             the icon of tab item
-        """
-        return self.insertTab(-1, text, icon)
 
-    def insertTab(self, index: int, text: str, icon: Union[QIcon, str, FluentIconBase] = None):
+        onClick: callable
+            the slot connected to item clicked signal
+        """
+        return self.insertTab(-1, routeKey, text, icon, onClick)
+
+    def insertTab(self, index: int, routeKey: str, text: str, icon: Union[QIcon, str, FluentIconBase] = None,
+                  onClick=None):
         """ insert tab
 
         Parameters
@@ -393,12 +424,21 @@ class TabBar(SingleDirectionScrollArea):
         index: int
             the insert position of tab item
 
+        routeKey: str
+            the unique name of tab item
+
         text: str
             the text of tab item
 
         text: str
             the icon of tab item
+
+        onClick: callable
+            the slot connected to item clicked signal
         """
+        if routeKey in self.itemMap:
+            raise ValueError(f"The route key `{routeKey}` is duplicated.")
+
         if index == -1:
             index = len(self.items)
 
@@ -407,22 +447,26 @@ class TabBar(SingleDirectionScrollArea):
             self._currentIndex += 1
 
         item = TabItem(text, self.view, icon)
+        item.setRouteKey(routeKey)
 
         # set the size of tab
         w = self.tabMaximumWidth() if self.isScrollable() else self.tabMinimumWidth()
         item.setMinimumWidth(w)
         item.setMaximumWidth(self.tabMaximumWidth())
 
+        item.setShadowEnabled(self.isTabShadowEnabled())
         item.setCloseButtonDisplayMode(self.closeButtonDisplayMode)
         item.setSelectedBackgroundColor(
             self.lightSelectedBackgroundColor, self.darkSelectedBackgroundColor)
 
         item.pressed.connect(self._onItemPressed)
-        item.closed.connect(lambda: self.tabCloseRequested.emit(
-            self.items.index(item)))
+        item.closed.connect(lambda: self.tabCloseRequested.emit(self.items.index(item)))
+        if onClick:
+            item.pressed.connect(onClick)
 
         self.itemLayout.insertWidget(index, item, 1)
         self.items.insert(index, item)
+        self.itemMap[routeKey] = item
 
         if len(self.items) == 1:
             self.setCurrentIndex(0)
@@ -449,11 +493,19 @@ class TabBar(SingleDirectionScrollArea):
 
         # remove tab
         item = self.items.pop(index)
+        self.itemMap.pop(item.routeKey())
         self.hBoxLayout.removeWidget(item)
+        qrouter.remove(item.routeKey())
         item.deleteLater()
 
         # remove shadow
         self.update()
+
+    def removeTabByKey(self, routeKey: str):
+        if routeKey not in self.itemMap:
+            return
+
+        self.removeTab(self.items.index(self.tab(routeKey)))
 
     def setCurrentIndex(self, index: int):
         """ set current index """
@@ -465,6 +517,12 @@ class TabBar(SingleDirectionScrollArea):
 
         self._currentIndex = index
         self.items[index].setSelected(True)
+
+    def setCurrentTab(self, routeKey: str):
+        if routeKey not in self.itemMap:
+            return
+
+        self.setCurrentIndex(self.items.index(self.tab(routeKey)))
 
     def currentIndex(self):
         return self._currentIndex
@@ -495,6 +553,13 @@ class TabBar(SingleDirectionScrollArea):
     @checkIndex()
     def tabItem(self, index: int):
         return self.items[index]
+
+    def tab(self, routeKey: str):
+        return self.itemMap.get(routeKey, None)
+
+    def tabRegion(self) -> QRect:
+        """ return the bounding rect of all tabs """
+        return self.itemLayout.geometry()
 
     @checkIndex()
     def tabRect(self, index: int):
@@ -574,6 +639,18 @@ class TabBar(SingleDirectionScrollArea):
 
         for item in self.items:
             item.setSelectedBackgroundColor(light, dark)
+
+    def setTabShadowEnabled(self, isEnabled: bool):
+        """ set whether the shadow of tab is enabled """
+        if isEnabled == self.isTabShadowEnabled():
+            return
+
+        self._isTabShadowEnabled = isEnabled
+        for item in self.items:
+            item.setShadowEnabled(isEnabled)
+
+    def isTabShadowEnabled(self):
+        return self._isTabShadowEnabled
 
     def paintEvent(self, e):
         painter = QPainter(self.viewport())
@@ -720,3 +797,8 @@ class TabBar(SingleDirectionScrollArea):
         self._currentIndex = index
         swappedItem.slideTo(x)
 
+    movable = pyqtProperty(bool, isMovable, setMovable)
+    scrollable = pyqtProperty(bool, isScrollable, setScrollable)
+    tabMaxWidth = pyqtProperty(int, tabMaximumWidth, setTabMaximumWidth)
+    tabMinWidth = pyqtProperty(int, tabMinimumWidth, setTabMinimumWidth)
+    tabShadowEnabled = pyqtProperty(bool, isTabShadowEnabled, setTabSelectedBackgroundColor)

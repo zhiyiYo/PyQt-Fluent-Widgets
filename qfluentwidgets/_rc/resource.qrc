@@ -326,6 +326,12 @@
         <file>images/icons/IOT_black.svg</file>
         <file>images/icons/Airplane_white.svg</file>
         <file>images/icons/Airplane_black.svg</file>
+        <file>images/icons/LeftArrow_white.svg</file>
+        <file>images/icons/LeftArrow_black.svg</file>
+        <file>images/icons/RightArrow_white.svg</file>
+        <file>images/icons/RightArrow_black.svg</file>
+        <file>images/icons/SearchMirror_white.svg</file>
+        <file>images/icons/SearchMirror_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>

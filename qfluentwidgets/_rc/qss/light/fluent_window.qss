@@ -12,7 +12,7 @@ SplitFluentWindow>StackedWidget {
 }
 
 FluentWindowBase {
-    background-color: rgb(243, 243, 243);
+    background-color: transparent;
 }
 
 FluentTitleBar, SplitTitleBar {

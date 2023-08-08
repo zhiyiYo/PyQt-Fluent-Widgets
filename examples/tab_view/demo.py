@@ -2,14 +2,15 @@
 import sys
 from PyQt5 import QtGui
 
-from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve, QUrl, QPoint
-from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QLabel, QHBoxLayout, QVBoxLayout, QApplication, QFrame, QStackedWidget
+from PyQt5.QtCore import Qt, QSize, QUrl, QPoint
+from PyQt5.QtGui import QIcon, QDesktopServices, QColor
+from PyQt5.QtWidgets import QHBoxLayout, QVBoxLayout, QApplication, QFrame, QStackedWidget
 
 from qfluentwidgets import (NavigationItemPosition, MessageBox, MSFluentTitleBar, MSFluentWindow,
-                            TabBar, SubtitleLabel, setFont, TabCloseButtonDisplayMode, IconWidget)
+                            TabBar, SubtitleLabel, setFont, TabCloseButtonDisplayMode, IconWidget,
+                            TransparentDropDownToolButton, TransparentToolButton, setTheme, Theme, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
-from qframelesswindow import FramelessWindow, TitleBarBase
+from qframelesswindow import AcrylicWindow
 
 
 class Widget(QFrame):
@@ -28,11 +29,11 @@ class Widget(QFrame):
 class TabInterface(QFrame):
     """ Tab interface """
 
-    def __init__(self, text: str, icon, parent=None):
+    def __init__(self, text: str, icon, objectName, parent=None):
         super().__init__(parent=parent)
         self.iconWidget = IconWidget(icon, self)
         self.label = SubtitleLabel(text, self)
-        self.iconWidget.setFixedSize(100, 100)
+        self.iconWidget.setFixedSize(120, 120)
 
         self.vBoxLayout = QVBoxLayout(self)
         self.vBoxLayout.setAlignment(Qt.AlignCenter)
@@ -41,6 +42,8 @@ class TabInterface(QFrame):
         self.vBoxLayout.addWidget(self.label, 0, Qt.AlignCenter)
         setFont(self.label, 24)
 
+        self.setObjectName(objectName)
+
 
 class CustomTitleBar(MSFluentTitleBar):
     """ Title bar with icon and title """
@@ -48,37 +51,60 @@ class CustomTitleBar(MSFluentTitleBar):
     def __init__(self, parent):
         super().__init__(parent)
 
+        # add buttons
+        self.toolButtonLayout = QHBoxLayout()
+        color = QColor(206, 206, 206) if isDarkTheme() else QColor(96, 96, 96)
+        self.searchButton = TransparentToolButton(FIF.SEARCH_MIRROR.icon(color=color), self)
+        self.forwardButton = TransparentToolButton(FIF.RIGHT_ARROW.icon(color=color), self)
+        self.backButton = TransparentToolButton(FIF.LEFT_ARROW.icon(color=color), self)
+
+        self.forwardButton.setDisabled(True)
+        self.toolButtonLayout.setContentsMargins(20, 0, 20, 0)
+        self.toolButtonLayout.setSpacing(15)
+        self.toolButtonLayout.addWidget(self.searchButton)
+        self.toolButtonLayout.addWidget(self.backButton)
+        self.toolButtonLayout.addWidget(self.forwardButton)
+        self.hBoxLayout.insertLayout(4, self.toolButtonLayout)
+
         # add tab bar
         self.tabBar = TabBar(self)
 
         self.tabBar.setMovable(True)
-        self.tabBar.setTabMaximumWidth(200)
+        self.tabBar.setTabMaximumWidth(220)
+        self.tabBar.setTabShadowEnabled(False)
+        self.tabBar.setTabSelectedBackgroundColor(QColor(255, 255, 255, 125), QColor(255, 255, 255, 50))
         # self.tabBar.setScrollable(True)
-        self.tabBar.setCloseButtonDisplayMode(TabCloseButtonDisplayMode.ON_HOVER)
+        # self.tabBar.setCloseButtonDisplayMode(TabCloseButtonDisplayMode.ON_HOVER)
 
         self.tabBar.tabCloseRequested.connect(self.tabBar.removeTab)
         self.tabBar.currentChanged.connect(lambda i: print(self.tabBar.tabText(i)))
 
-        self.hBoxLayout.insertSpacing(4, 20)
         self.hBoxLayout.insertWidget(5, self.tabBar, 1)
         self.hBoxLayout.setStretch(6, 0)
+
+        # add avatar
+        self.avatar = TransparentDropDownToolButton('resource/shoko.png', self)
+        self.avatar.setIconSize(QSize(26, 26))
+        self.avatar.setFixedHeight(30)
+        self.hBoxLayout.insertWidget(7, self.avatar, 0, Qt.AlignRight)
+        self.hBoxLayout.insertSpacing(8, 20)
 
     def canDrag(self, pos: QPoint):
         if not super().canDrag(pos):
             return False
 
-        return not self.tabBar.geometry().contains(pos)
+        pos.setX(pos.x() - self.tabBar.x())
+        return not self.tabBar.tabRegion().contains(pos)
 
 
 class Window(MSFluentWindow):
 
     def __init__(self):
+        self.isMicaEnabled = False
+
         super().__init__()
         self.setTitleBar(CustomTitleBar(self))
         self.tabBar = self.titleBar.tabBar  # type: TabBar
-
-        # the index of tab can be changed by dragging, so we need to maintain a map
-        self.tabMap = {}
 
         # create sub interface
         self.homeInterface = QStackedWidget(self, objectName='homeInterface')
@@ -88,6 +114,12 @@ class Window(MSFluentWindow):
 
         self.initNavigation()
         self.initWindow()
+
+    def _normalBackgroundColor(self):
+        if not self.isMicaEnabled:
+            return super()._normalBackgroundColor()
+
+        return QColor(0, 0, 0, 0) if isDarkTheme() else QColor(255, 255, 255, 50)
 
     def initNavigation(self):
         self.addSubInterface(self.homeInterface, FIF.HOME, '主页', FIF.HOME_FILL)
@@ -109,16 +141,18 @@ class Window(MSFluentWindow):
             self.homeInterface.objectName())
 
         # add tab
-        self.addTab('As long as you love me', icon='resource/Heart.png')
+        self.addTab('Heart', 'As long as you love me', icon='resource/Heart.png')
 
         self.tabBar.currentChanged.connect(self.onTabChanged)
-        self.tabBar.tabAddRequested.connect(lambda: self.addTab(
-            f'硝子酱一级棒卡哇伊×{self.tabBar.count()}', 'resource/Smiling_with_heart.png'))
+        self.tabBar.tabAddRequested.connect(self.onTabAddRequested)
 
     def initWindow(self):
-        self.resize(900, 700)
+        self.resize(1100, 750)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
+
+        # NOTE: enable mica effect
+        self.useMicaEffect()
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
@@ -137,15 +171,30 @@ class Window(MSFluentWindow):
             QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
 
     def onTabChanged(self, index: int):
-        self.homeInterface.setCurrentWidget(self.tabMap[self.tabBar.currentTab()])
+        objectName = self.tabBar.currentTab().routeKey()
+        self.homeInterface.setCurrentWidget(self.findChild(TabInterface, objectName))
         self.stackedWidget.setCurrentWidget(self.homeInterface)
 
-    def addTab(self, text, icon):
-        tab = self.tabBar.addTab(text, icon)
-        interface = TabInterface(text, icon, self)
-        
-        self.tabMap[tab] = interface
-        self.homeInterface.addWidget(interface)
+    def onTabAddRequested(self):
+        text = f'硝子酱一级棒卡哇伊×{self.tabBar.count()}'
+        self.addTab(text, text, 'resource/Smiling_with_heart.png')
+
+    def addTab(self, routeKey, text, icon):
+        self.tabBar.addTab(routeKey, text, icon)
+        self.homeInterface.addWidget(TabInterface(text, icon, routeKey, self))
+
+    def useMicaEffect(self):
+        self.isMicaEnabled = True
+
+        self.windowEffect.enableBlurBehindWindow(self.winId())
+        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowMinMaxButtonsHint)
+        self.windowEffect.addWindowAnimation(self.winId())
+        self.windowEffect.setAcrylicEffect(self.winId())
+        self.windowEffect.addShadowEffect(self.winId())
+        self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+        self.setStyleSheet('MSFluentWindow{background:transparent}')
+
+        self.update()
 
 
 if __name__ == '__main__':
@@ -153,6 +202,8 @@ if __name__ == '__main__':
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+
+    setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
     w = Window()
