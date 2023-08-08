@@ -1,6 +1,6 @@
 PyQt5>=5.15.0
-PyQt5-Frameless-Window>=0.2.7
+PyQt5-Frameless-Window>=0.3.0
 darkdetect
 colorthief
 scipy
-pillow
+pillow<=9.4.0

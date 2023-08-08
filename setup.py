@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PyQt-Fluent-Widgets",
-    version="1.0.4",
+    version="1.0.5",
     keywords="pyqt fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -18,11 +18,11 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         "PyQt5>=5.15.0",
-        "PyQt5-Frameless-Window>=0.2.7",
+        "PyQt5-Frameless-Window>=0.3.0",
         "darkdetect",
     ],
     extras_require = {
-        'full': ['scipy', 'pillow', 'colorthief']
+        'full': ['scipy', 'pillow<=9.4.0', 'colorthief']
     },
     classifiers=[
         'Programming Language :: Python :: 3',
