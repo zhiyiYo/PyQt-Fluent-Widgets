@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
 from ..common.icon import FluentIconBase
 from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme
+from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
                                      NavigationBarPushButton, NavigationTreeWidget)
@@ -16,7 +17,7 @@ from .stacked_widget import StackedWidget
 from qframelesswindow import TitleBar
 
 
-class FluentWindowBase(FramelessWindow):
+class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
     """ Fluent window base class """
 
     def __init__(self, parent=None):
@@ -44,16 +45,14 @@ class FluentWindowBase(FramelessWindow):
         self.navigationInterface.setCurrentItem(widget.objectName())
         qrouter.push(self.stackedWidget, widget.objectName())
 
+    def _normalBackgroundColor(self):
+        return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
+
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
         painter.setPen(Qt.NoPen)
-
-        if isDarkTheme():
-            painter.setBrush(QColor(32, 32, 32))
-        else:
-            painter.setBrush(QColor(243, 243, 243))
-
+        painter.setBrush(self.backgroundColor)
         painter.drawRect(self.rect())
 
 

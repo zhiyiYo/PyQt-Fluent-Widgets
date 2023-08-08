@@ -90,6 +90,7 @@ class TabItem(PushButton):
         self.setMaximumWidth(240)
         self.setMinimumWidth(64)
         self.installEventFilter(ToolTipFilter(self, showDelay=1000))
+        self.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         self.closeButton.setIconSize(QSize(10, 10))
 

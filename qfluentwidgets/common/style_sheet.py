@@ -118,7 +118,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
 
     def path(self, theme=Theme.AUTO):
         theme = qconfig.theme if theme == Theme.AUTO else theme
-        return f":/qfluentwidgets/qss/{theme.value.lower()}/{self.value}.qss"
+        return f"qfluentwidgets/_rc/qss/{theme.value.lower()}/{self.value}.qss"
 
 
 def getStyleSheet(file: Union[str, StyleSheetBase], theme=Theme.AUTO):
