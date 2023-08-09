@@ -1,6 +1,6 @@
 import sys
 
-if sys.platform != "win32" or sys.getwindowsversion().build <= 22000:
+if sys.platform != "win32" or sys.getwindowsversion().build < 22000:
     from qframelesswindow import FramelessWindow
 else:
     from ctypes.wintypes import MSG
