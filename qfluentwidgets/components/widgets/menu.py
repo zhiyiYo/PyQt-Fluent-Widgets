@@ -813,9 +813,9 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
     def _endPosition(self, pos):
         m = self.menu
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        w, h = m.width() + 5, m.sizeHint().height()
+        w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 10, 4)
+        y = max(pos.y() - h + 13, 4)
         return QPoint(x, y)
 
     def exec(self, pos):

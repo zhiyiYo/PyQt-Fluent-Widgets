@@ -66,8 +66,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def setMicaEffectEnabled(self, isEnabled: bool):
         """ set whether the mica effect is enabled, only available on Win11 """
-        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000 or \
-                self.isMicaEffectEnabled() == isEnabled:
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
             return
 
         self._isMicaEnabled = isEnabled

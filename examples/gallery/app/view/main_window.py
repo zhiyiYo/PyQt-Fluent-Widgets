@@ -58,6 +58,7 @@ class MainWindow(FluentWindow):
         self.splashScreen.finish()
 
     def connectSignalToSlot(self):
+        cfg.themeChanged.connect(lambda: self.setMicaEffectEnabled(self.isMicaEffectEnabled()))
         signalBus.micaEnableChanged.connect(self.setMicaEffectEnabled)
         signalBus.switchToSampleCard.connect(self.switchToSample)
         signalBus.toggleThemeSignal.connect(self.toggleTheme)
