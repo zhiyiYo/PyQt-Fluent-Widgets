@@ -78,7 +78,6 @@ python demo.py
 * [**zhiyiYo/QMaterialWidgets**: 基于 PySide 的 Material Design 风格组件库](https://github.com/zhiyiYo/QMaterialWidgets)
 * [**zhiyiYo/Groove**: 基于 PyQt5 的跨平台音乐播放器](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: 基于强化学习的五子棋机器人](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
-* [**语核科技/CopyAsk**: 你的指尖 AI 助手](https://copyask.com/)
 
 ## 参考
 * [**Windows design**: Design guidelines and toolkits for creating native app experiences](https://learn.microsoft.com/zh-cn/windows/apps/design/)

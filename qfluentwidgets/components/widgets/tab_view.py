@@ -801,4 +801,4 @@ class TabBar(SingleDirectionScrollArea):
     scrollable = pyqtProperty(bool, isScrollable, setScrollable)
     tabMaxWidth = pyqtProperty(int, tabMaximumWidth, setTabMaximumWidth)
     tabMinWidth = pyqtProperty(int, tabMinimumWidth, setTabMinimumWidth)
-    tabShadowEnabled = pyqtProperty(bool, isTabShadowEnabled, setTabSelectedBackgroundColor)
+    tabShadowEnabled = pyqtProperty(bool, isTabShadowEnabled, setTabShadowEnabled)
