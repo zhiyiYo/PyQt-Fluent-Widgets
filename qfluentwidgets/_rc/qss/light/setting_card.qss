@@ -1,7 +1,7 @@
 SettingCard {
-    border: 1px solid rgb(230, 230, 230);
+    border: 1px solid rgba(0, 0, 0, 0.095);
     border-radius: 6px;
-    background-color: rgb(253, 253, 253);
+    background-color: rgba(255, 255, 255, 0.667);
 }
 
 QLabel {
@@ -24,24 +24,31 @@ RangeSettingCard > QLabel#valueLabel{
 
 
 QPushButton {
-    border: 1px solid rgb(238, 239, 238);
+    border: 1px solid rgba(0, 0, 0, 0.073);
     border-radius: 5px;
-    border-bottom: 1px solid rgb(212, 213, 212);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.183);
     padding: 5px 36px 5px 36px;
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: black;
-    background-color: rgb(254, 254, 254);
+    background: rgba(255, 255, 255, 0.7);
     outline: none;
 }
 
 QPushButton:hover {
-    background-color: rgb(251, 251, 251);
+    background: rgba(249, 249, 249, 0.5);
 }
 
 QPushButton:pressed {
-    background-color: rgb(252, 252, 252);
-    border-bottom: 1px solid rgb(238, 239, 238);
     color: rgba(0, 0, 0, 0.63);
+    background: rgba(249, 249, 249, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.073);
+}
+
+QPushButton:disabled {
+    color: rgba(0, 0, 0, 0.36);
+    background: rgba(249, 249, 249, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 

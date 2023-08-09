@@ -157,6 +157,24 @@ class Slider(QSlider):
         self._adjustHandlePos()
 
 
+class ClickableSlider(QSlider):
+    """ A slider can be clicked """
+
+    clicked = pyqtSignal(int)
+
+    def mousePressEvent(self, e: QMouseEvent):
+        super().mousePressEvent(e)
+
+        if self.orientation() == Qt.Horizontal:
+            value = int(e.pos().x() / self.width() * self.maximum())
+        else:
+            value = int((self.height()-e.pos().y()) /
+                        self.height() * self.maximum())
+
+        self.setValue(value)
+        self.clicked.emit(self.value())
+
+
 
 class HollowHandleStyle(QProxyStyle):
     """ Hollow handle style """

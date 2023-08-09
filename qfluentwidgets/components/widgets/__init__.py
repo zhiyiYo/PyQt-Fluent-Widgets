@@ -20,7 +20,7 @@ from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuA
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition, InfoBarManager
 from .info_badge import InfoBadge, InfoLevel, DotInfoBadge, IconInfoBadge, InfoBadgePosition, InfoBadgeManager
 from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea, ScrollArea
-from .slider import Slider, HollowHandleStyle
+from .slider import Slider, HollowHandleStyle, ClickableSlider
 from .spin_box import SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit
 from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
 from .state_tool_tip import StateToolTip

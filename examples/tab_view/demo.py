@@ -115,12 +115,6 @@ class Window(MSFluentWindow):
         self.initNavigation()
         self.initWindow()
 
-    def _normalBackgroundColor(self):
-        if not self.isMicaEnabled:
-            return super()._normalBackgroundColor()
-
-        return QColor(0, 0, 0, 0) if isDarkTheme() else QColor(255, 255, 255, 50)
-
     def initNavigation(self):
         self.addSubInterface(self.homeInterface, FIF.HOME, '主页', FIF.HOME_FILL)
         self.addSubInterface(self.appInterface, FIF.APPLICATION, '应用')
@@ -152,7 +146,7 @@ class Window(MSFluentWindow):
         self.setWindowTitle('PyQt-Fluent-Widgets')
 
         # NOTE: enable mica effect
-        self.useMicaEffect()
+        self.setMicaEffectEnabled(True)
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
@@ -183,19 +177,6 @@ class Window(MSFluentWindow):
         self.tabBar.addTab(routeKey, text, icon)
         self.homeInterface.addWidget(TabInterface(text, icon, routeKey, self))
 
-    def useMicaEffect(self):
-        self.isMicaEnabled = True
-
-        self.windowEffect.enableBlurBehindWindow(self.winId())
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowMinMaxButtonsHint)
-        self.windowEffect.addWindowAnimation(self.winId())
-        self.windowEffect.setAcrylicEffect(self.winId())
-        self.windowEffect.addShadowEffect(self.winId())
-        self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
-        self.setStyleSheet('MSFluentWindow{background:transparent}')
-
-        self.update()
-
 
 if __name__ == '__main__':
     QApplication.setHighDpiScaleFactorRoundingPolicy(
@@ -203,7 +184,7 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
-    setTheme(Theme.DARK)
+    # setTheme(Theme.DARK)
 
     app = QApplication(sys.argv)
     w = Window()

@@ -196,6 +196,7 @@ class IconCardView(QWidget):
         self.scrollWidget.setObjectName('scrollWidget')
 
         StyleSheet.ICON_INTERFACE.apply(self)
+        StyleSheet.ICON_INTERFACE.apply(self.scrollWidget)
 
         if self.currentIndex >= 0:
             self.cards[self.currentIndex].setSelected(True, True)

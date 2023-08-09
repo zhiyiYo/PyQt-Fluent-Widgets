@@ -1,5 +1,6 @@
 # coding:utf-8
 from typing import Union
+import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QPainter, QColor
@@ -21,7 +22,9 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
     """ Fluent window base class """
 
     def __init__(self, parent=None):
+        self._isMicaEnabled = False
         super().__init__(parent=parent)
+
         self.hBoxLayout = QHBoxLayout(self)
         self.stackedWidget = StackedWidget(self)
         self.navigationInterface = None
@@ -31,6 +34,9 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self.stackedWidget)
+
+        # enable mica effect on win11
+        self.setMicaEffectEnabled(True)
 
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
                         position=NavigationItemPosition.TOP):
@@ -46,7 +52,10 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         qrouter.push(self.stackedWidget, widget.objectName())
 
     def _normalBackgroundColor(self):
-        return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
+        if not self.isMicaEffectEnabled():
+            return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
+
+        return QColor(0, 0, 0, 0) if isDarkTheme() else QColor(255, 255, 255, 50)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -54,6 +63,24 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         painter.setPen(Qt.NoPen)
         painter.setBrush(self.backgroundColor)
         painter.drawRect(self.rect())
+
+    def setMicaEffectEnabled(self, isEnabled: bool):
+        """ set whether the mica effect is enabled, only available on Win11 """
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000 or \
+                self.isMicaEffectEnabled() == isEnabled:
+            return
+
+        self._isMicaEnabled = isEnabled
+
+        if isEnabled:
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+        else:
+            self.windowEffect.removeBackgroundEffect(self.winId())
+
+        self.setBackgroundColor(self._normalBackgroundColor())
+
+    def isMicaEffectEnabled(self):
+        return self._isMicaEnabled
 
 
 class FluentTitleBar(TitleBar):

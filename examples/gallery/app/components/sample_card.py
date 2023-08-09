@@ -2,12 +2,12 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
 
-from qfluentwidgets import IconWidget, TextWrap, FlowLayout
+from qfluentwidgets import IconWidget, TextWrap, FlowLayout, CardWidget
 from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
 
 
-class SampleCard(QFrame):
+class SampleCard(CardWidget):
     """ Sample card """
 
     def __init__(self, icon, title, content, routeKey, index, parent=None):

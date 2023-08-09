@@ -36,6 +36,7 @@ class Config(QConfig):
         "Folders", "Download", "app/download", FolderValidator())
 
     # main window
+    micaEnabled = ConfigItem("MainWindow", "MicaEnabled", True, BoolValidator())
     dpiScale = OptionsConfigItem(
         "MainWindow", "DpiScale", "Auto", OptionsValidator([1, 1.25, 1.5, 1.75, 2, "Auto"]), restart=True)
     language = OptionsConfigItem(
