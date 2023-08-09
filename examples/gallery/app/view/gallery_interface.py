@@ -82,7 +82,7 @@ class ToolBar(QWidget):
         self.supportButton.setToolTip(self.tr('Support me'))
         self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
-        self.themeButton.clicked.connect(self.toggleTheme)
+        self.themeButton.clicked.connect(signalBus.toggleThemeSignal)
         self.supportButton.clicked.connect(signalBus.supportSignal)
         self.documentButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(HELP_URL)))
@@ -91,9 +91,7 @@ class ToolBar(QWidget):
         self.feedbackButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(FEEDBACK_URL)))
 
-    def toggleTheme(self):
-        theme = Theme.LIGHT if isDarkTheme() else Theme.DARK
-        cfg.set(cfg.themeMode, theme)
+
 
 
 class ExampleCard(QWidget):

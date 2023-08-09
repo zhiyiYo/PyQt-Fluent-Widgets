@@ -23,7 +23,7 @@ class Window(FramelessWindow):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.settingInterface)
 
-        self.setWindowIcon(QIcon("resource/logo.png"))
+        self.setWindowIcon(QIcon(":/qfluentwidgets/images/logo.png"))
         self.setWindowTitle("PySide6-Fluent-Widgets")
 
         self.resize(1080, 784)

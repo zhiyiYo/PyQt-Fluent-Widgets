@@ -2,7 +2,8 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import NavigationInterface, NavigationPanel, Pivot, SegmentedWidget, NavigationBar, FluentIcon
+from qfluentwidgets import (NavigationInterface, NavigationPanel, Pivot, SegmentedWidget, NavigationBar,
+                            FluentIcon, TabBar)
 
 from plugin_base import PluginBase
 
@@ -88,3 +89,20 @@ class SegmentedWidgetPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
 
     def name(self):
         return "SegmentedWidget"
+
+
+class TabBarPlugin(NavigationPlugin, QDesignerCustomWidgetInterface):
+    """ Tab bar plugin """
+
+    def createWidget(self, parent):
+        p = TabBar(parent)
+        for i in range(1, 4):
+            p.addTab(f'Tab {i}', f'Tab {i}', FluentIcon.BASKETBALL)
+
+        return p
+
+    def icon(self):
+        return super().icon("TabView")
+
+    def name(self):
+        return "TabBar"

@@ -1,18 +1,25 @@
 ExpandSettingCard {
     border: 1px solid rgb(35, 35, 35);
     border-radius: 6px;
-    background-color: rgb(46, 46, 46);
+    background-color: transparent;
 }
 
 #view {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.051);
     border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#scrollWidget {
+    border: none;
+    background-color: transparent;
 }
 
 ExpandSettingCard[isExpand=false]>SettingCard {
     border: 1px solid rgb(35, 35, 35);
     border-radius: 6px;
-    background-color: rgb(50, 50, 50);
+    background-color: rgba(255, 255, 255, 0.051);
 }
 
 ExpandSettingCard[isExpand=true]>SettingCard {
@@ -21,7 +28,7 @@ ExpandSettingCard[isExpand=true]>SettingCard {
     border-top-right-radius: 6px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    background-color: rgb(50, 50, 50);
+    background-color: rgba(255, 255, 255, 0.051);
 }
 
 QLabel {
@@ -42,55 +49,34 @@ FolderItem>QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
-/* QPushButton */
+
 QPushButton {
-    border: 1px solid rgba(255, 255, 255, 24);
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 17);
-    padding: 5px 12px 5px 36px;
+    padding: 5px 36px 5px 36px;
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;
-    background-color: rgb(62, 63, 62);
     outline: none;
 }
 
 QPushButton:hover {
-    background-color: rgb(67, 68, 67);
+    background: rgba(255, 255, 255, 0.0837);
 }
 
 QPushButton:pressed {
-    background-color: rgb(56, 56, 56);
-    border-bottom: 1px solid rgba(255, 255, 255, 24);
-    color: rgba(255, 255, 255, 0.63);
+    color: rgba(255, 255, 255, 0.786);
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
 QPushButton:disabled {
-    color: rgb(102, 102, 102);
-    background: rgb(59, 59, 59);
-    border: 1px solid rgb(80, 80, 80);
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
-
-
-/* Tool button */
-ToolButton {
-    border: 1px solid rgba(255, 255, 255, 24);
-    border-radius: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 17);
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
-    color: white;
-    background-color: rgb(62, 63, 62);
-    outline: none;
-}
-
-ToolButton:hover {
-    background-color: rgb(67, 68, 67);
-}
-
-ToolButton:pressed {
-    background-color: rgb(56, 56, 56);
-    border-bottom: 1px solid rgba(255, 255, 255, 24);
-}
-
 
 #chooseColorButton {
     padding: 5px 17px 5px 17px;

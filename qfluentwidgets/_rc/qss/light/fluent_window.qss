@@ -1,9 +1,9 @@
 StackedWidget {
-    border: 1px solid rgb(229, 229, 229);
+    border: 1px solid rgba(0, 0, 0, 0.068);
     border-right: none;
     border-bottom: none;
     border-top-left-radius: 10px;
-    background-color: rgb(249, 249, 249);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 SplitFluentWindow>StackedWidget {
@@ -12,7 +12,7 @@ SplitFluentWindow>StackedWidget {
 }
 
 FluentWindowBase {
-    background-color: rgb(243, 243, 243);
+    background-color: transparent;
 }
 
 FluentTitleBar, SplitTitleBar {

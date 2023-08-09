@@ -121,6 +121,7 @@ class NavigationPanel(QFrame):
         self.scrollWidget.setObjectName('scrollWidget')
         self.setProperty('menu', False)
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
+        FluentStyleSheet.NAVIGATION_INTERFACE.apply(self.scrollWidget)
         self.__initLayout()
 
     def __initLayout(self):

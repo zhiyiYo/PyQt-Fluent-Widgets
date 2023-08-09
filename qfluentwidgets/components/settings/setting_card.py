@@ -137,6 +137,9 @@ class SwitchSettingCard(SettingCard):
         self.switchButton.setText(
             self.tr('On') if isChecked else self.tr('Off'))
 
+    def setChecked(self, isChecked: bool):
+        self.setValue(isChecked)
+
     def isChecked(self):
         return self.switchButton.isChecked()
 

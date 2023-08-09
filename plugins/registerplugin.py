@@ -47,6 +47,9 @@ QPyDesignerCustomWidgetCollection.addCustomWidget(AMTimePickerPlugin())
 # navigation plugins
 QPyDesignerCustomWidgetCollection.addCustomWidget(NavigationInterfacePlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(NavigationPanelPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(PivotPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(SegmentedWidgetPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(TabBarPlugin())
 
 # status info plugins
 QPyDesignerCustomWidgetCollection.addCustomWidget(InfoBarPlugin())

@@ -813,7 +813,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
     def _endPosition(self, pos):
         m = self.menu
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        w, h = m.width() + 5, m.sizeHint().height()
+        w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
         y = max(pos.y() - h + 10, 4)
         return QPoint(x, y)
@@ -1013,6 +1013,9 @@ class LineEditMenu(EditMenu):
     def _parentSelectedText(self):
         return self.parent().selectedText()
 
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
+
 
 class TextEditMenu(EditMenu):
     """ Text edit menu """
@@ -1037,6 +1040,9 @@ class TextEditMenu(EditMenu):
                 QTextCursor.Right, QTextCursor.KeepAnchor, self.selectionLength)
 
         super()._onItemClicked(item)
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
 
 
 class IndicatorMenuItemDelegate(MenuItemDelegate):
@@ -1138,6 +1144,9 @@ class CheckableMenu(RoundMenu):
     def _adjustItemText(self, item: QListWidgetItem, action: QAction):
         w = super()._adjustItemText(item, action)
         item.setSizeHint(QSize(w + 26, self.itemHeight))
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
 
 
 class SystemTrayMenu(RoundMenu):

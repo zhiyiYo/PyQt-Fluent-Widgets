@@ -26,7 +26,7 @@ StrongBodyLabel {
 ExampleCard>#card {
     border: 1px solid rgb(36, 36, 36);
     border-radius: 10px;
-    background-color: rgb(32, 32, 32);
+    background-color: rgba(0, 0, 0, 0.1795);
 }
 
 ExampleCard>#card QLabel {
@@ -40,7 +40,7 @@ ExampleCard>#card InfoBadge {
 
 
 #sourceWidget {
-    background-color: rgb(51, 51, 51);
+    background-color: rgba(255, 255, 255, 0.09);
     border-top: 1px solid rgb(36, 36, 36);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

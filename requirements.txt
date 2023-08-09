@@ -1,6 +1,6 @@
 PySide6<=6.4.2
-PySideSix-Frameless-Window
+PySideSix-Frameless-Window>=0.3.1
 darkdetect
 colorthief
 scipy
-pillow
+pillow<=9.4.0

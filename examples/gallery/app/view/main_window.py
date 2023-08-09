@@ -4,7 +4,8 @@ from PySide6.QtCore import Qt, Signal, QEasingCurve, QUrl, QSize
 from PySide6.QtGui import QIcon, QDesktopServices
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
-from qfluentwidgets import NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow, SplashScreen
+from qfluentwidgets import (NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow,
+                            SplashScreen, Theme, setTheme, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -22,7 +23,7 @@ from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface
 from .text_interface import TextInterface
 from .view_interface import ViewInterface
-from ..common.config import SUPPORT_URL
+from ..common.config import SUPPORT_URL, cfg
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
 from ..common.translator import Translator
@@ -51,16 +52,18 @@ class MainWindow(FluentWindow):
         self.textInterface = TextInterface(self)
         self.viewInterface = ViewInterface(self)
 
-        # initialize layout
-        self.initLayout()
+        self.connectSignalToSlot()
 
         # add items to navigation interface
         self.initNavigation()
         self.splashScreen.finish()
 
-    def initLayout(self):
+    def connectSignalToSlot(self):
+        signalBus.micaEnableChanged.connect(self.setMicaEffectEnabled)
         signalBus.switchToSampleCard.connect(self.switchToSample)
+        signalBus.toggleThemeSignal.connect(self.toggleTheme)
         signalBus.supportSignal.connect(self.onSupport)
+        cfg.themeChanged.connect(lambda: self.setMicaEffectEnabled(self.isMicaEffectEnabled()))
 
     def initNavigation(self):
         # add navigation items
@@ -98,6 +101,8 @@ class MainWindow(FluentWindow):
         self.setWindowIcon(QIcon(':/gallery/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
 
+        self.setMicaEffectEnabled(cfg.get(cfg.micaEnabled))
+
         # create splash screen
         self.splashScreen = SplashScreen(self.windowIcon(), self)
         self.splashScreen.setIconSize(QSize(106, 106))
@@ -108,6 +113,13 @@ class MainWindow(FluentWindow):
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
         self.show()
         QApplication.processEvents()
+
+    def toggleTheme(self):
+        theme = Theme.LIGHT if isDarkTheme() else Theme.DARK
+        cfg.set(cfg.themeMode, theme)
+
+        if self.isMicaEffectEnabled():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
     def onSupport(self):
         w = MessageBox(

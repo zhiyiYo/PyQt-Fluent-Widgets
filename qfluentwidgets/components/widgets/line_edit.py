@@ -132,6 +132,7 @@ class LineEdit(QLineEdit):
         # add menu items
         self.completer().setCompletionPrefix(self.text())
         changed = self._completerMenu.setCompletion(self.completer().completionModel())
+        self._completerMenu.setMaxVisibleItems(self.completer().maxVisibleItems())
 
         # show menu
         if changed:
@@ -139,7 +140,7 @@ class LineEdit(QLineEdit):
 
     def contextMenuEvent(self, e):
         menu = LineEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos(), ani=True)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -218,6 +219,9 @@ class CompleterMenu(RoundMenu):
     def __onItemSelected(self, text):
         self.lineEdit.setText(text)
         self.activated.emit(text)
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
 
     def popup(self):
         """ show menu """
@@ -332,7 +336,7 @@ class TextEdit(QTextEdit):
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos(), ani=True)
 
 
 class PlainTextEdit(QPlainTextEdit):
@@ -347,5 +351,5 @@ class PlainTextEdit(QPlainTextEdit):
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos(), ani=True)
 

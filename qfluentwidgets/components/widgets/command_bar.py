@@ -169,6 +169,9 @@ class CommandMenu(RoundMenu):
         self.setItemHeight(32)
         self.view.setIconSize(QSize(16, 16))
 
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
+
 
 class CommandBar(QFrame):
     """ Command bar """
@@ -450,6 +453,9 @@ class CommandViewMenu(CommandMenu):
         self.view.setProperty('dropDown', down)
         self.view.setProperty('long', long)
         self.view.setStyle(QApplication.style())
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        return super().exec(pos, ani, aniType)
 
 
 class CommandViewBar(CommandBar):

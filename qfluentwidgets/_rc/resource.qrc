@@ -326,6 +326,12 @@
         <file>images/icons/IOT_black.svg</file>
         <file>images/icons/Airplane_white.svg</file>
         <file>images/icons/Airplane_black.svg</file>
+        <file>images/icons/LeftArrow_white.svg</file>
+        <file>images/icons/LeftArrow_black.svg</file>
+        <file>images/icons/RightArrow_white.svg</file>
+        <file>images/icons/RightArrow_black.svg</file>
+        <file>images/icons/SearchMirror_white.svg</file>
+        <file>images/icons/SearchMirror_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
@@ -385,6 +391,7 @@
         <file>qss/dark/fluent_window.qss</file>
         <file>qss/dark/teaching_tip.qss</file>
         <file>qss/dark/info_badge.qss</file>
+        <file>qss/dark/tab_view.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -414,6 +421,7 @@
         <file>qss/light/fluent_window.qss</file>
         <file>qss/light/teaching_tip.qss</file>
         <file>qss/light/info_badge.qss</file>
+        <file>qss/light/tab_view.qss</file>
 
         <file>i18n/qfluentwidgets.zh_CN.qm</file>
         <file>i18n/qfluentwidgets.zh_HK.qm</file>
