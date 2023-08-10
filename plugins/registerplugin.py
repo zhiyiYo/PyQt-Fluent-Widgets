@@ -77,4 +77,4 @@ QPyDesignerCustomWidgetCollection.addCustomWidget(TreeWidgetPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(TreeViewPlugin())
 
 # tool bar plugin
-QPyDesignerCustomWidgetCollection.addCustomWidget(ToolBarPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(CommandBarPlugin())
