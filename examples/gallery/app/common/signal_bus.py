@@ -6,6 +6,8 @@ class SignalBus(QObject):
     """ pyqtSignal bus """
 
     switchToSampleCard = pyqtSignal(str, int)
+    micaEnableChanged = pyqtSignal(bool)
+    toggleThemeSignal = pyqtSignal()
     supportSignal = pyqtSignal()
 
 

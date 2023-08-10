@@ -329,6 +329,14 @@ class HomeInterface(ScrollArea):
             routeKey="navigationViewInterface",
             index=0
         )
+        navigationView.addSampleCard(
+            icon=":/gallery/images/controls/TabView.png",
+            title="TabView",
+            content=self.tr(
+                "Presents information from different sources in a tabbed view."),
+            routeKey="navigationViewInterface",
+            index=2
+        )
         self.vBoxLayout.addWidget(navigationView)
 
         # scroll samples

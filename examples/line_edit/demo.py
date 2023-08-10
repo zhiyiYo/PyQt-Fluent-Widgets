@@ -40,6 +40,7 @@ class Demo(QWidget):
         ]
         self.completer = QCompleter(stands, self.lineEdit)
         self.completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        self.completer.setMaxVisibleItems(5)
         self.lineEdit.setCompleter(self.completer)
 
         self.resize(400, 400)

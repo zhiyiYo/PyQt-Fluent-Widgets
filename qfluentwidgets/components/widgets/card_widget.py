@@ -1,12 +1,13 @@
 # coding:utf-8
-from PyQt6.QtCore import Qt, pyqtSignal, QRectF
+from PyQt6.QtCore import Qt, pyqtSignal, QRectF, pyqtProperty
 from PyQt6.QtGui import QPixmap, QPainter, QColor, QPainterPath
 from PyQt6.QtWidgets import QWidget, QFrame
 
 from ...common.style_sheet import isDarkTheme
+from ...common.animation import BackgroundAnimationWidget
 
 
-class CardWidget(QFrame):
+class CardWidget(BackgroundAnimationWidget, QFrame):
     """ Card widget """
 
     clicked = pyqtSignal()
@@ -14,25 +15,11 @@ class CardWidget(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._isClickEnabled = False
-        self.isPressed = False
-        self.isHover = False
-
-    def mousePressEvent(self, e):
-        self.isPressed = True
-        self.update()
+        self._borderRadius = 5
 
     def mouseReleaseEvent(self, e):
-        self.isPressed = False
-        self.update()
+        super().mouseReleaseEvent(e)
         self.clicked.emit()
-
-    def enterEvent(self, e):
-        self.isHover = True
-        self.update()
-
-    def leaveEvent(self, e):
-        self.isHover = False
-        self.update()
 
     def setClickEnabled(self, isEnabled: bool):
         self._isClickEnabled = isEnabled
@@ -40,6 +27,22 @@ class CardWidget(QFrame):
 
     def isClickEnabled(self):
         return self._isClickEnabled
+
+    def _normalBackgroundColor(self):
+        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
+
+    def _hoverBackgroundColor(self):
+        return QColor(255, 255, 255, 21 if isDarkTheme() else 64)
+
+    def _pressedBackgroundColor(self):
+        return QColor(255, 255, 255, 8 if isDarkTheme() else 64)
+
+    def getBorderRadius(self):
+        return self._borderRadius
+
+    def setBorderRadius(self, radius: int):
+        self._borderRadius = radius
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -89,17 +92,8 @@ class CardWidget(QFrame):
 
         # draw background
         painter.setPen(Qt.PenStyle.NoPen)
-        alpha = 170
-        if isDark:
-            if self.isPressed:
-                alpha = 8
-            elif self.isHover:
-                alpha = 21
-            else:
-                alpha = 13
-        elif self.isPressed or self.isHover:
-            alpha = 64
-
         rect = self.rect().adjusted(1, 1, -1, -1)
-        painter.setBrush(QColor(255, 255, 255, alpha))
+        painter.setBrush(self.backgroundColor)
         painter.drawRoundedRect(rect, r, r)
+
+    borderRadius = pyqtProperty(int, getBorderRadius, setBorderRadius)

@@ -56,6 +56,7 @@ class TextInterface(GalleryInterface):
         ]
         completer = QCompleter(stands, lineEdit)
         completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        completer.setMaxVisibleItems(10)
         lineEdit.setCompleter(completer)
 
         self.addExampleCard(

@@ -10,16 +10,13 @@ from PyQt6.QtCore import Qt, pyqtSignal, QUrl, QStandardPaths
 from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtWidgets import QWidget, QLabel, QFileDialog
 
-from ..common.icon import Icon
-from ..common.config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR
+from ..common.config import cfg, HELP_URL, FEEDBACK_URL, AUTHOR, VERSION, YEAR, isWin11
+from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
 
 
 class SettingInterface(ScrollArea):
     """ Setting interface """
-
-    checkUpdateSig = pyqtSignal()
-    musicFoldersChanged = pyqtSignal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -49,6 +46,13 @@ class SettingInterface(ScrollArea):
         # personalization
         self.personalGroup = SettingCardGroup(
             self.tr('Personalization'), self.scrollWidget)
+        self.micaCard = SwitchSettingCard(
+            FIF.TRANSPARENT,
+            self.tr('Mica effect'),
+            self.tr('Apply semi transparent to windows and surfaces'),
+            cfg.micaEnabled,
+            self.personalGroup
+        )
         self.themeCard = OptionsSettingCard(
             cfg.themeMode,
             FIF.BRUSH,
@@ -151,6 +155,8 @@ class SettingInterface(ScrollArea):
         self.settingLabel.setObjectName('settingLabel')
         StyleSheet.SETTING_INTERFACE.apply(self)
 
+        self.micaCard.setEnabled(isWin11())
+
         # initialize layout
         self.__initLayout()
         self.__connectSignalToSlot()
@@ -162,6 +168,7 @@ class SettingInterface(ScrollArea):
         self.musicInThisPCGroup.addSettingCard(self.musicFolderCard)
         self.musicInThisPCGroup.addSettingCard(self.downloadFolderCard)
 
+        self.personalGroup.addSettingCard(self.micaCard)
         self.personalGroup.addSettingCard(self.themeCard)
         self.personalGroup.addSettingCard(self.themeColorCard)
         self.personalGroup.addSettingCard(self.zoomCard)
@@ -209,15 +216,13 @@ class SettingInterface(ScrollArea):
         cfg.themeChanged.connect(setTheme)
 
         # music in the pc
-        self.musicFolderCard.folderChanged.connect(
-            self.musicFoldersChanged)
         self.downloadFolderCard.clicked.connect(
             self.__onDownloadFolderCardClicked)
 
         # personalization
         self.themeColorCard.colorChanged.connect(setThemeColor)
+        self.micaCard.checkedChanged.connect(signalBus.micaEnableChanged)
 
         # about
-        self.aboutCard.clicked.connect(self.checkUpdateSig)
         self.feedbackCard.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(FEEDBACK_URL)))

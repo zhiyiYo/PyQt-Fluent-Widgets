@@ -5,7 +5,7 @@ from PyQt6.QtGui import (QBrush, QColor, QPixmap, QPainter, QPen, QIntValidator,
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QPushButton, QFrame, QVBoxLayout
 
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
-from ..widgets import Slider, SingleDirectionScrollArea, PushButton, PrimaryPushButton
+from ..widgets import ClickableSlider, SingleDirectionScrollArea, PushButton, PrimaryPushButton
 from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
 
@@ -78,7 +78,7 @@ class HuePanel(QWidget):
                             self.pickerPos.y() - 8, 16, 16)
 
 
-class BrightnessSlider(Slider):
+class BrightnessSlider(ClickableSlider):
     """ Brightness slider """
 
     colorChanged = pyqtSignal(QColor)

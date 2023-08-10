@@ -1,10 +1,9 @@
 # coding:utf-8
 from typing import Union
 from PyQt6.QtGui import QIcon
-from PyQt6.QtCore import (QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve,
-                          QParallelAnimationGroup, QRect, QSize, QPoint, QRectF)
+from PyQt6.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
 from PyQt6.QtGui import QColor, QPainter
-from PyQt6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication
+from PyQt6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
@@ -85,45 +84,63 @@ class ExpandButton(QAbstractButton):
     angle = pyqtProperty(float, getAngle, setAngle)
 
 
-class ExpandSettingCard(QFrame):
+class SpaceWidget(QWidget):
+    """ Spacing widget """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setFixedHeight(1)
+
+
+class ExpandSettingCard(QScrollArea):
     """ Expandable setting card """
 
     def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
         super().__init__(parent=parent)
         self.isExpand = False
         self.expandButton = ExpandButton(self)
-        self.view = QFrame(self)
+        self.scrollWidget = QFrame(self)
+        self.view = QFrame(self.scrollWidget)
         self.card = SettingCard(icon, title, content, self)
-        self.viewLayout = VBoxLayout(self.view)
+
+        self.scrollLayout = QVBoxLayout(self.scrollWidget)
+        self.viewLayout = QVBoxLayout(self.view)
+        self.spaceWidget = SpaceWidget(self.scrollWidget)
 
         # expand animation
-        self.aniGroup = QParallelAnimationGroup(self)
-        self.slideAni = QPropertyAnimation(self.view, b'pos', self)
-        self.expandAni = QPropertyAnimation(self, b'geometry', self)
+        self.expandAni = QPropertyAnimation(self.verticalScrollBar(), b'value', self)
 
         self.__initWidget()
 
     def __initWidget(self):
         """ initialize widgets """
-        self.setMinimumHeight(self.card.height())
-        self.view.hide()
+        self.setWidget(self.scrollWidget)
+        self.setWidgetResizable(True)
+        self.setFixedHeight(self.card.height())
+        self.setViewportMargins(0, self.card.height(), 0, 0)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+        # initialize layout
+        self.scrollLayout.setContentsMargins(0, 0, 0, 0)
+        self.scrollLayout.setSpacing(0)
+        self.scrollLayout.addWidget(self.view)
+        self.scrollLayout.addWidget(self.spaceWidget)
 
         # initialize expand animation
-        self.aniGroup.addAnimation(self.expandAni)
-        self.aniGroup.addAnimation(self.slideAni)
-        self.slideAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.expandAni.setEasingCurve(QEasingCurve.Type.OutQuad)
-        self.slideAni.setDuration(200)
         self.expandAni.setDuration(200)
 
         # initialize style sheet
         self.view.setObjectName('view')
+        self.scrollWidget.setObjectName('scrollWidget')
         self.setProperty('isExpand', False)
         FluentStyleSheet.EXPAND_SETTING_CARD.apply(self.card)
         FluentStyleSheet.EXPAND_SETTING_CARD.apply(self)
 
         self.card.installEventFilter(self)
-        self.aniGroup.finished.connect(self.__onAniFinished)
+        self.expandAni.valueChanged.connect(self._onExpandValueChanged)
         self.expandButton.clicked.connect(self.toggleExpand)
 
     def addWidget(self, widget: QWidget):
@@ -132,6 +149,9 @@ class ExpandSettingCard(QFrame):
         self.card.hBoxLayout.addSpacing(19)
         self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
         self.card.hBoxLayout.addSpacing(8)
+
+    def wheelEvent(self, e):
+        pass
 
     def setExpand(self, isExpand: bool):
         """ set the expand status of card """
@@ -144,21 +164,16 @@ class ExpandSettingCard(QFrame):
         self.setStyle(QApplication.style())
 
         # start expand animation
-        ch, vh = self.card.height(), self.view.height()
         if isExpand:
-            self.expandAni.setStartValue(self.geometry())
-            self.expandAni.setEndValue(
-                QRect(self.pos(), QSize(self.width(), ch+vh)))
-            self.slideAni.setStartValue(QPoint(0, ch - vh))
-            self.slideAni.setEndValue(QPoint(0, ch))
-            self.view.show()
+            h = self.viewLayout.sizeHint().height()
+            self.verticalScrollBar().setValue(h)
+            self.expandAni.setStartValue(h)
+            self.expandAni.setEndValue(0)
         else:
-            self.expandAni.setStartValue(self.geometry())
-            self.expandAni.setEndValue(QRect(self.pos(), self.card.size()))
-            self.slideAni.setStartValue(QPoint(0, ch))
-            self.slideAni.setEndValue(QPoint(0, ch - vh))
+            self.expandAni.setStartValue(0)
+            self.expandAni.setEndValue(self.verticalScrollBar().maximum())
 
-        self.aniGroup.start()
+        self.expandAni.start()
 
     def toggleExpand(self):
         """ toggle expand status """
@@ -166,13 +181,12 @@ class ExpandSettingCard(QFrame):
 
     def resizeEvent(self, e):
         self.card.resize(self.width(), self.card.height())
-        self.view.resize(self.width(), self.view.height())
 
     def eventFilter(self, obj, e):
         if obj is self.card:
             if e.type() == QEvent.Type.Enter:
                 self.expandButton.setHover(True)
-            elif e.type()==QEvent.Type.Leave:
+            elif e.type() == QEvent.Type.Leave:
                 self.expandButton.setHover(False)
             elif e.type() == QEvent.Type.MouseButtonPress and e.button() == Qt.MouseButton.LeftButton:
                 self.expandButton.setPressed(True)
@@ -182,22 +196,18 @@ class ExpandSettingCard(QFrame):
 
         return super().eventFilter(obj, e)
 
-    def __onAniFinished(self):
-        """ expand animation finished slot """
-        if not self.isExpand:
-            self.view.hide()
+    def _onExpandValueChanged(self):
+        vh = self.viewLayout.sizeHint().height()
+        h = self.viewportMargins().top()
+        self.setFixedHeight(max(h + vh - self.verticalScrollBar().value(), h))
 
     def _adjustViewSize(self):
         """ adjust view size """
-        h = sum(i.height() for i in self.viewLayout.widgets)
-        spacing = (len(self.viewLayout.widgets) - 1) * \
-            self.viewLayout.spacing()
-        margin = self.viewLayout.contentsMargins()
-        h = h + margin.top() + margin.bottom() + spacing
-        self.view.resize(self.view.width(), h)
+        h = self.viewLayout.sizeHint().height()
+        self.spaceWidget.setFixedHeight(h)
 
-        if self.view.isVisible():
-            self.resize(self.width(), h + self.card.height())
+        if self.isExpand:
+            self.setFixedHeight(self.card.height()+h)
 
     def setValue(self, value):
         """ set the value of config item """
@@ -224,9 +234,6 @@ class ExpandGroupSettingCard(ExpandSettingCard):
 
     def addGroupWidget(self, widget: QWidget):
         """ add widget to group """
-        if widget in self.viewLayout.widgets:
-            return
-
         # add separator
         if self.viewLayout.count() >= 1:
             self.viewLayout.addWidget(GroupSeparator(self.view))
