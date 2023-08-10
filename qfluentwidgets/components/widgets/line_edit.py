@@ -136,6 +136,7 @@ class LineEdit(QLineEdit):
         # add menu items
         self.completer().setCompletionPrefix(self.text())
         changed = self._completerMenu.setCompletion(self.completer().completionModel())
+        self._completerMenu.setMaxVisibleItems(self.completer().maxVisibleItems())
 
         # show menu
         if changed:

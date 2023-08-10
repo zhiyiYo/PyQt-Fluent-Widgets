@@ -1,6 +1,6 @@
 import sys
 
-if sys.platform != "win32":
+if sys.platform != "win32" or sys.getwindowsversion().build < 22000:
     from qframelesswindow import FramelessWindow
 else:
     from ctypes.wintypes import MSG
@@ -10,12 +10,16 @@ else:
     from PySide2.QtGui import QCursor, QMouseEvent
     from PySide2.QtWidgets import QApplication
 
-    from qframelesswindow import FramelessWindow as Window
+    from qframelesswindow import AcrylicWindow as Window
     from qframelesswindow.titlebar.title_bar_buttons import TitleBarButtonState
 
 
     class FramelessWindow(Window):
         """ Frameless window """
+
+        def __init__(self, parent=None):
+            super().__init__(parent)
+            self.windowEffect.setMicaEffect(self.winId())
 
         def nativeEvent(self, eventType, message):
             """ Handle the Windows message """

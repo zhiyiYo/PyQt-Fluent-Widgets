@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PySide2-Fluent-Widgets",
-    version="1.0.4",
+    version="1.1.1",
     keywords="pyside2 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -18,11 +18,11 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         "PySide2>=5.15.0",
-        "PySide2-Frameless-Window",
+        "PySide2-Frameless-Window>=0.3.1",
         "darkdetect",
     ],
     extras_require = {
-        'full': ['scipy', 'pillow', 'colorthief']
+        'full': ['scipy', 'pillow<=9.4.0', 'colorthief']
     },
     classifiers=[
         'Programming Language :: Python :: 3',

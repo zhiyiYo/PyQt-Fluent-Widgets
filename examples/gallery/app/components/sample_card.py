@@ -3,12 +3,12 @@ from PySide2.QtCore import Qt, Signal
 from PySide2.QtGui import QPixmap
 from PySide2.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout
 
-from qfluentwidgets import IconWidget, TextWrap, FlowLayout
+from qfluentwidgets import IconWidget, TextWrap, FlowLayout, CardWidget
 from ..common.signal_bus import signalBus
 from ..common.style_sheet import StyleSheet
 
 
-class SampleCard(QFrame):
+class SampleCard(CardWidget):
     """ Sample card """
 
     def __init__(self, icon, title, content, routeKey, index, parent=None):

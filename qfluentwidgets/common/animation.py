@@ -1,8 +1,9 @@
 # coding: utf-8
 from PySide2.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, Property, Signal
-from PySide2.QtGui import QMouseEvent, QEnterEvent
-from PySide2.QtWidgets import QWidget
+from PySide2.QtGui import QMouseEvent, QEnterEvent, QColor
+from PySide2.QtWidgets import QWidget, QLineEdit
 
+from .config import qconfig
 
 
 class AnimationBase(QObject):
@@ -71,3 +72,109 @@ class TranslateYAnimation(AnimationBase):
         self.ani.start()
 
     y = Property(float, getY, setY)
+
+
+class BackgroundAnimationWidget:
+    """ Background animation widget """
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.isHover = False
+        self.isPressed = False
+        self.bgColorObject = BackgroundColorObject(self)
+        self.backgroundColorAni = QPropertyAnimation(
+            self.bgColorObject, b'backgroundColor', self)
+        self.backgroundColorAni.setDuration(120)
+        self.installEventFilter(self)
+
+        qconfig.themeChanged.connect(self._updateBackgroundColor)
+
+    def eventFilter(self, obj, e):
+        if obj is self:
+            if e.type() == QEvent.Type.EnabledChange:
+                if self.isEnabled():
+                    self.setBackgroundColor(self._normalBackgroundColor())
+                else:
+                    self.setBackgroundColor(self._disabledBackgroundColor())
+
+        return super().eventFilter(obj, e)
+
+    def mousePressEvent(self, e):
+        self.isPressed = True
+        self._updateBackgroundColor()
+        super().mousePressEvent(e)
+
+    def mouseReleaseEvent(self, e):
+        self.isPressed = False
+        self._updateBackgroundColor()
+        super().mouseReleaseEvent(e)
+
+    def enterEvent(self, e):
+        self.isHover = True
+        self._updateBackgroundColor()
+
+    def leaveEvent(self, e):
+        self.isHover = False
+        self._updateBackgroundColor()
+
+    def focusInEvent(self, e):
+        super().focusInEvent(e)
+        self._updateBackgroundColor()
+
+    def _normalBackgroundColor(self):
+        return QColor(0, 0, 0, 0)
+
+    def _hoverBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def _pressedBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def _focusInBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def _disabledBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def _updateBackgroundColor(self):
+        if not self.isEnabled():
+            color = self._disabledBackgroundColor()
+        elif isinstance(self, QLineEdit) and self.hasFocus():
+            color = self._focusInBackgroundColor()
+        elif self.isPressed:
+            color = self._pressedBackgroundColor()
+        elif self.isHover:
+            color = self._hoverBackgroundColor()
+        else:
+            color = self._normalBackgroundColor()
+
+        self.backgroundColorAni.stop()
+        self.backgroundColorAni.setEndValue(color)
+        self.backgroundColorAni.start()
+
+    def getBackgroundColor(self):
+        return self.bgColorObject.backgroundColor
+
+    def setBackgroundColor(self, color: QColor):
+        self.bgColorObject.backgroundColor = color
+
+    @property
+    def backgroundColor(self):
+        return self.getBackgroundColor()
+
+
+class BackgroundColorObject(QObject):
+    """ Background color object """
+
+    def __init__(self, parent: BackgroundAnimationWidget):
+        super().__init__(parent)
+        self._backgroundColor = parent._normalBackgroundColor()
+
+    @Property(QColor)
+    def backgroundColor(self):
+        return self._backgroundColor
+
+    @backgroundColor.setter
+    def backgroundColor(self, color: QColor):
+        self._backgroundColor = color
+        self.parent().update()

@@ -31,6 +31,8 @@ class Demo2(QWidget):
     def __init__(self):
         super().__init__()
         # setTheme(Theme.DARK)
+        # self.setStyleSheet('Demo2{background: rgb(32,32,32)}')
+        self.setStyleSheet('Demo2{background: white}')
 
         self.resize(300, 300)
 
@@ -42,7 +44,6 @@ class Demo2(QWidget):
         self.slider2.setFixedHeight(150)
         self.slider2.move(140, 80)
 
-        self.setStyleSheet('Demo2{background: white}')
 
 
 if __name__ == '__main__':

@@ -32,7 +32,7 @@ class Indicator(ToolButton):
         self.checkedChanged.emit(self.isChecked())
 
     def _toggleSlider(self):
-        self.slideAni.setEndValue(26 if self.isChecked() else 5)
+        self.slideAni.setEndValue(25 if self.isChecked() else 5)
         self.slideAni.start()
 
     def toggle(self):
@@ -177,6 +177,7 @@ class SwitchButton(QWidget):
         """ initialize widgets """
         self.setAttribute(Qt.WA_StyledBackground)
         self.installEventFilter(self)
+        self.setFixedHeight(22)
 
         # set layout
         self.hBox.setSpacing(self.__spacing)

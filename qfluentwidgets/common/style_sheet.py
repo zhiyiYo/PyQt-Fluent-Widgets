@@ -93,6 +93,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     SLIDER = "slider"
     INFO_BAR = "info_bar"
     SPIN_BOX = "spin_box"
+    TAB_VIEW = "tab_view"
     TOOL_TIP = "tool_tip"
     CHECK_BOX = "check_box"
     COMBO_BOX = "combo_box"

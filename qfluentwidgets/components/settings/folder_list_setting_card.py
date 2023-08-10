@@ -2,70 +2,17 @@
 from typing import List
 from pathlib import Path
 
-from PySide2.QtCore import Qt, Signal, QRectF
+from PySide2.QtCore import Qt, Signal, QSize
 from PySide2.QtGui import QPainter, QIcon
-from PySide2.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
-                             QHBoxLayout, QToolButton)
+from PySide2.QtWidgets import QPushButton, QFileDialog, QWidget, QLabel, QHBoxLayout, QToolButton
 
+from ...components.widgets.button import ToolButton, PushButton
 from ...common.config import ConfigItem, qconfig
 from ...common.icon import drawIcon
 from ...common.icon import FluentIcon as FIF
 from ..dialog_box.dialog import Dialog
 from .expand_setting_card import ExpandSettingCard
 
-
-class ToolButton(QToolButton):
-    """ Tool button """
-
-    def __init__(self, icon, size: tuple, iconSize: tuple, parent=None):
-        super().__init__(parent=parent)
-        self.isPressed = False
-        self._icon = icon
-        self._iconSize = iconSize
-        self.setFixedSize(*size)
-
-    def mousePressEvent(self, e):
-        self.isPressed = True
-        super().mousePressEvent(e)
-
-    def mouseReleaseEvent(self, e):
-        self.isPressed = False
-        super().mouseReleaseEvent(e)
-
-    def paintEvent(self, e):
-        super().paintEvent(e)
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        painter.setOpacity(0.63 if self.isPressed else 1)
-        w, h = self._iconSize
-        drawIcon(self._icon, painter, QRectF(
-            (self.width()-w)/2, (self.height()-h)/2, w, h))
-
-
-class PushButton(QPushButton):
-    """ Push button """
-
-    def __init__(self, icon, text: str, parent=None):
-        super().__init__(parent=parent)
-        self.isPressed = False
-        self._icon = icon
-        self.setText(text)
-
-    def mousePressEvent(self, e):
-        self.isPressed = True
-        super().mousePressEvent(e)
-
-    def mouseReleaseEvent(self, e):
-        self.isPressed = False
-        super().mouseReleaseEvent(e)
-
-    def paintEvent(self, e):
-        super().paintEvent(e)
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setOpacity(0.63 if self.isPressed else 1)
-        drawIcon(self._icon, painter, QRectF(12, 8, 16, 16))
 
 
 class FolderItem(QWidget):
@@ -78,7 +25,10 @@ class FolderItem(QWidget):
         self.folder = folder
         self.hBoxLayout = QHBoxLayout(self)
         self.folderLabel = QLabel(folder, self)
-        self.removeButton = ToolButton(FIF.CLOSE, (39, 29), (12, 12), self)
+        self.removeButton = ToolButton(FIF.CLOSE, self)
+
+        self.removeButton.setFixedSize(39, 29)
+        self.removeButton.setIconSize(QSize(12, 12))
 
         self.setFixedHeight(53)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
@@ -119,7 +69,7 @@ class FolderListSettingCard(ExpandSettingCard):
         super().__init__(FIF.FOLDER, title, content, parent)
         self.configItem = configItem
         self._dialogDirectory = directory
-        self.addFolderButton = PushButton(FIF.FOLDER_ADD, self.tr('Add folder'), self)
+        self.addFolderButton = PushButton(self.tr('Add folder'), self, FIF.FOLDER_ADD)
 
         self.folders = qconfig.get(configItem).copy()   # type:List[str]
         self.__initWidget()
@@ -154,6 +104,7 @@ class FolderListSettingCard(ExpandSettingCard):
         item = FolderItem(folder, self.view)
         item.removed.connect(self.__showConfirmDialog)
         self.viewLayout.addWidget(item)
+        item.show()
         self._adjustViewSize()
 
     def __showConfirmDialog(self, item: FolderItem):
@@ -173,7 +124,8 @@ class FolderListSettingCard(ExpandSettingCard):
             return
 
         self.folders.remove(item.folder)
-        self.viewLayout.deleteWidget(item)
+        self.viewLayout.removeWidget(item)
+        item.deleteLater()
         self._adjustViewSize()
 
         self.folderChanged.emit(self.folders)
