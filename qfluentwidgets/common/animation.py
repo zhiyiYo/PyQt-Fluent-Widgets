@@ -1,7 +1,7 @@
 # coding: utf-8
 from PySide6.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, Property, Signal
 from PySide6.QtGui import QMouseEvent, QEnterEvent, QColor
-from PySide6.QtWidgets import QWidget, QLineEdit
+from PySide6.QtWidgets import QWidget, QLineEdit, QGraphicsDropShadowEffect
 
 from .config import qconfig
 
@@ -179,3 +179,53 @@ class BackgroundColorObject(QObject):
     def backgroundColor(self, color: QColor):
         self._backgroundColor = color
         self.parent().update()
+
+class DropShadowAnimation(QPropertyAnimation):
+    """ Drop shadow animation """
+
+    def __init__(self, parent: QWidget, normalColor=QColor(0, 0, 0, 0), hoverColor=QColor(0, 0, 0, 75)):
+        super().__init__(parent=parent)
+        self.normalColor = normalColor
+        self.hoverColor = hoverColor
+        self.isHover = False
+
+        self.shadowEffect = QGraphicsDropShadowEffect(self)
+        self.shadowEffect.setColor(self.normalColor)
+
+        parent.setGraphicsEffect(self.shadowEffect)
+        parent.installEventFilter(self)
+        self.setTargetObject(self.shadowEffect)
+        self.setPropertyName(b'color')
+        self.setDuration(150)
+
+    def setBlurRadius(self, radius: int):
+        self.shadowEffect.setBlurRadius(radius)
+
+    def setOffset(self, dx: int, dy: int):
+        self.shadowEffect.setOffset(dx, dy)
+
+    def setNormalColor(self, color: QColor):
+        self.normalColor = color
+        if not self.isHover:
+            self.shadowEffect.setColor(color)
+
+    def setHoverColor(self, color: QColor):
+        self.hoverColor = color
+        if self.isHover:
+            self.shadowEffect.setColor(color)
+
+    def setColor(self, color):
+        self.shadowEffect.setColor(color)
+
+    def eventFilter(self, obj, e):
+        if obj is self.parent() and self.parent().isEnabled():
+            if e.type() in [QEvent.Type.Enter]:
+                self.isHover = True
+                self.setEndValue(self.hoverColor)
+                self.start()
+            elif e.type() in [QEvent.Type.Leave, QEvent.Type.MouseButtonPress]:
+                self.isHover = False
+                self.setEndValue(self.normalColor)
+                self.start()
+
+        return super().eventFilter(obj, e)

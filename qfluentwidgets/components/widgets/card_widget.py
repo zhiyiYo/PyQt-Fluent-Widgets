@@ -1,10 +1,10 @@
 # coding:utf-8
-from PySide6.QtCore import Qt, Signal, QRectF, Property
+from PySide6.QtCore import Qt, Signal, QRectF, Property, QPropertyAnimation, QPoint
 from PySide6.QtGui import QPixmap, QPainter, QColor, QPainterPath
-from PySide6.QtWidgets import QWidget, QFrame
+from PySide6.QtWidgets import QWidget, QFrame, QGraphicsDropShadowEffect
 
 from ...common.style_sheet import isDarkTheme
-from ...common.animation import BackgroundAnimationWidget
+from ...common.animation import BackgroundAnimationWidget, DropShadowAnimation
 
 
 class CardWidget(BackgroundAnimationWidget, QFrame):
@@ -97,3 +97,62 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
         painter.drawRoundedRect(rect, r, r)
 
     borderRadius = Property(int, getBorderRadius, setBorderRadius)
+
+
+class ElevatedCardWidget(CardWidget):
+    """ Card widget with shadow effect """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.shadowAni = DropShadowAnimation(self, hoverColor=QColor(0, 0, 0, 20))
+        self.shadowAni.setOffset(0, 5)
+        self.shadowAni.setBlurRadius(38)
+
+        self.elevatedAni = QPropertyAnimation(self, b'pos', self)
+        self.elevatedAni.setDuration(100)
+
+        self._originalPos = self.pos()
+        self.setBorderRadius(8)
+
+    def enterEvent(self, e):
+        super().enterEvent(e)
+
+        if self.elevatedAni.state() != QPropertyAnimation.Running:
+            self._originalPos = self.pos()
+
+        self._startElevateAni(self.pos(), self.pos() - QPoint(0, 3))
+
+    def leaveEvent(self, e):
+        super().leaveEvent(e)
+        self._startElevateAni(self.pos(), self._originalPos)
+
+    def mousePressEvent(self, e):
+        super().mousePressEvent(e)
+        self._startElevateAni(self.pos(), self._originalPos)
+
+    def _startElevateAni(self, start, end):
+        self.elevatedAni.setStartValue(start)
+        self.elevatedAni.setEndValue(end)
+        self.elevatedAni.start()
+
+    def _normalBackgroundColor(self):
+        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
+
+    def _hoverBackgroundColor(self):
+        return QColor(255, 255, 255, 16) if isDarkTheme() else QColor(255, 255, 255)
+
+    def _pressedBackgroundColor(self):
+        return QColor(255, 255, 255, 6 if isDarkTheme() else 118)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setBrush(self.backgroundColor)
+
+        if isDarkTheme():
+            painter.setPen(QColor(0, 0, 0, 36))
+        else:
+            painter.setPen(QColor(0, 0, 0, 12))
+
+        r = self.borderRadius
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)

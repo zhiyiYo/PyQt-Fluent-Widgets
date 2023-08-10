@@ -1,11 +1,23 @@
 # coding:utf-8
 import sys
+from pathlib import Path
 
 from PySide6.QtCore import Qt, QPoint
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, CaptionLabel, PushButton,
-                            TransparentToolButton, FluentIcon, RoundMenu, Action)
+                            TransparentToolButton, FluentIcon, RoundMenu, Action, ElevatedCardWidget,
+                            ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar)
+
+def isWin11():
+    return sys.platform == 'win32' and sys.getwindowsversion().build >= 22000
+
+if isWin11() :
+    from qframelesswindow import AcrylicWindow as Window
+else:
+    from qframelesswindow import FramelessWindow as Window
+
 
 
 class AppCard(CardWidget):
@@ -51,23 +63,72 @@ class AppCard(CardWidget):
         menu.addAction(Action(FluentIcon.CHAT, '写评论', self))
         menu.addAction(Action(FluentIcon.PIN, '固定到任务栏', self))
 
-        x = (self.moreButton.width() - menu.sizeHint().width()) // 2 + 10
+        x = (self.moreButton.width() - menu.width()) // 2 + 10
         pos = self.moreButton.mapToGlobal(QPoint(x, self.moreButton.height()))
         menu.exec(pos)
 
 
-class Demo(QWidget):
+class EmojiCard(ElevatedCardWidget):
+    """ Emoji card """
+
+    def __init__(self, iconPath: str, parent=None):
+        super().__init__(parent)
+        self.iconWidget = ImageLabel(iconPath, self)
+        self.label = CaptionLabel(Path(iconPath).stem, self)
+
+        self.iconWidget.scaledToHeight(68)
+
+        self.vBoxLayout = QVBoxLayout(self)
+        self.vBoxLayout.setAlignment(Qt.AlignCenter)
+        self.vBoxLayout.addStretch(1)
+        self.vBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignCenter)
+        self.vBoxLayout.addStretch(1)
+        self.vBoxLayout.addWidget(self.label, 0, Qt.AlignHCenter | Qt.AlignBottom)
+
+        self.setFixedSize(168, 176)
+
+
+
+class Demo1(Window):
 
     def __init__(self):
         super().__init__()
-        # self.setStyleSheet("Demo {background: rgb(39, 39, 39)}")
-        # setTheme(Theme.DARK)
+        self.setTitleBar(MSFluentTitleBar(self))
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+        self.setWindowTitle('Fluent Emoji gallery')
+
+        if isWin11():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+
+        self.flowLayout = FlowLayout(self)
+
+        self.resize(580, 680)
+        self.flowLayout.setSpacing(6)
+        self.flowLayout.setContentsMargins(30, 60, 30, 30)
+        self.flowLayout.setAlignment(Qt.AlignVCenter)
+
+        for path in Path('./resource').glob('*.png'):
+            self.addCard(str(path))
+
+    def addCard(self, iconPath: str):
+        card = EmojiCard(iconPath, self)
+        self.flowLayout.addWidget(card)
+
+
+class Demo2(Window):
+
+    def __init__(self):
+        super().__init__()
+        self.setTitleBar(MSFluentTitleBar(self))
         self.resize(600, 600)
+
+        if isWin11():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
         self.vBoxLayout = QVBoxLayout(self)
 
         self.vBoxLayout.setSpacing(6)
-        self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
+        self.vBoxLayout.setContentsMargins(30, 60, 30, 30)
         self.vBoxLayout.setAlignment(Qt.AlignTop)
 
         suffix = ":/qfluentwidgets/images/controls"
@@ -85,7 +146,11 @@ class Demo(QWidget):
 
 
 if __name__ == '__main__':
+    setTheme(Theme.DARK)
+
     app = QApplication(sys.argv)
-    w = Demo()
-    w.show()
+    w1 = Demo1()
+    w1.show()
+    w2 = Demo2()
+    w2.show()
     app.exec()

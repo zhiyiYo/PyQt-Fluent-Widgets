@@ -37,6 +37,8 @@ QPyDesignerCustomWidgetCollection.addCustomWidget(SmoothScrollAreaPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(SingleDirectionScrollAreaPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(OpacityAniStackedWidgetPlugin())
 QPyDesignerCustomWidgetCollection.addCustomWidget(PopUpAniStackedWidgetPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(CardWidgetPlugin())
+QPyDesignerCustomWidgetCollection.addCustomWidget(ElevatedCardWidgetPlugin())
 
 # date time plugins
 QPyDesignerCustomWidgetCollection.addCustomWidget(DatePickerPlugin())
