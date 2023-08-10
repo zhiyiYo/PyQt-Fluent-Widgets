@@ -674,7 +674,7 @@ class TabBar(SingleDirectionScrollArea):
 
             if canDraw:
                 x = item.geometry().right()
-                y = self.height() / 2 - 8
+                y = self.height() // 2 - 8
                 painter.drawLine(x, y, x, y + 16)
 
     def setMovable(self, movable: bool):

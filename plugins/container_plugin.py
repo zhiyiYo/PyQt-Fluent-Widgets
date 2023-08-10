@@ -4,7 +4,7 @@ from PyQt6.QtDesigner import (QPyDesignerCustomWidgetPlugin, QDesignerFormWindow
                               QPyDesignerContainerExtension)
 
 from qfluentwidgets import (ScrollArea, SmoothScrollArea, SingleDirectionScrollArea, OpacityAniStackedWidget,
-                            PopUpAniStackedWidget, CardWidget)
+                            PopUpAniStackedWidget, CardWidget, ElevatedCardWidget)
 
 from plugin_base import PluginBase
 
@@ -19,7 +19,7 @@ class ContainerPlugin(PluginBase):
 
 
 class CardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
-    """ Single direction scroll area plugin """
+    """ Card widget plugin """
 
     def createWidget(self, parent):
         return CardWidget(parent)
@@ -29,6 +29,19 @@ class CardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "CardWidget"
+
+
+class ElevatedCardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Elevated card widget plugin """
+
+    def createWidget(self, parent):
+        return ElevatedCardWidget(parent)
+
+    def icon(self):
+        return super().icon("CommandBar")
+
+    def name(self):
+        return "ElevatedCardWidget"
 
 
 class ScrollAreaPluginBase(ContainerPlugin):
