@@ -5,7 +5,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
                      TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentTogglePushButton,
                      TransparentToggleToolButton, TransparentDropDownPushButton, TransparentDropDownToolButton,
                      PillPushButton, PillToolButton)
-from .card_widget import CardWidget
+from .card_widget import CardWidget, ElevatedCardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
