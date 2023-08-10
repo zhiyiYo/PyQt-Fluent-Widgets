@@ -18,7 +18,7 @@ class ContainerPlugin(PluginBase):
         return True
 
 
-class CardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class CardWidgetPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
     """ Single direction scroll area plugin """
 
     def createWidget(self, parent):
