@@ -12,6 +12,9 @@ from ...common.overload import singledispatchmethod
 class SliderHandle(QWidget):
     """ Slider handle """
 
+    pressed = pyqtSignal()
+    released = pyqtSignal()
+
     def __init__(self, parent: QSlider):
         super().__init__(parent=parent)
         self.setFixedSize(22, 22)
@@ -36,9 +39,11 @@ class SliderHandle(QWidget):
 
     def mousePressEvent(self, e):
         self._startAni(4)
+        self.pressed.emit()
 
     def mouseReleaseEvent(self, e):
         self._startAni(6.5)
+        self.released.emit()
 
     def _startAni(self, radius):
         self.radiusAni.stop()
@@ -82,6 +87,9 @@ class Slider(QSlider):
         self.handle = SliderHandle(self)
         self._pressedPos = QPoint()
         self.setOrientation(self.orientation())
+
+        self.handle.pressed.connect(self.sliderPressed)
+        self.handle.released.connect(self.sliderReleased)
         self.valueChanged.connect(self._adjustHandlePos)
 
     def setOrientation(self, orientation: Qt.Orientation) -> None:
@@ -99,6 +107,7 @@ class Slider(QSlider):
     def mouseMoveEvent(self, e: QMouseEvent):
         self.setValue(self._posToValue(e.pos()))
         self._pressedPos = e.pos()
+        self.sliderMoved.emit(self.value())
 
     @property
     def grooveLength(self):
