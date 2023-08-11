@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (BodyLabel, CaptionLabel, StrongBodyLabel, SubtitleLabel, TitleLabel, LargeTitleLabel,
-                            DisplayLabel, ImageLabel)
+                            DisplayLabel, ImageLabel, AvatarWidget)
 
 from plugin_base import PluginBase
 
@@ -125,6 +125,22 @@ class ImageLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "ImageLabel"
+
+    def domXml(self):
+        return f"""<widget class="{self.name()}" name="{self.name()}"></widget>"""
+
+
+class AvatarPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Avatar plugin """
+
+    def createWidget(self, parent):
+        return AvatarWidget(self.icon().pixmap(72, 72), parent)
+
+    def icon(self):
+        return super().icon("PersonPicture")
+
+    def name(self):
+        return "AvatarWidget"
 
     def domXml(self):
         return f"""<widget class="{self.name()}" name="{self.name()}"></widget>"""
