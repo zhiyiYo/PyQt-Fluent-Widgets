@@ -1,9 +1,10 @@
 # coding:utf-8
 from PyQt5.QtCore import QPoint, Qt, QStandardPaths
+from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QAction, QWidget, QLabel, QVBoxLayout, QFileDialog, QActionGroup
 from qfluentwidgets import (RoundMenu, PushButton, Action, CommandBar, Action, TransparentDropDownPushButton,
                             setFont, CommandBarView, Flyout, ImageLabel, FlyoutAnimationType, CheckableMenu,
-                            MenuIndicatorType)
+                            MenuIndicatorType, AvatarWidget, isDarkTheme, BodyLabel, CaptionLabel, HyperlinkButton)
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -52,6 +53,18 @@ class MenuInterface(GalleryInterface):
             self.button1,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/menu/demo.py'
         )
+
+        # custom widget menu
+        self.button3 = PushButton(self.tr('Show menu'))
+        self.button3.clicked.connect(lambda: self.createCustomWidgetMenu(
+            self.button3.mapToGlobal(QPoint(self.button3.width()+5, -100))))
+
+        self.addExampleCard(
+            self.tr('Rounded corners menu with custom widget'),
+            self.button3,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/widget_menu/demo.py'
+        )
+
 
         # checkable menu
         self.button2 = PushButton(self.tr('Show menu'))
@@ -133,6 +146,23 @@ class MenuInterface(GalleryInterface):
 
         menu.exec(pos, ani=True)
 
+    def createCustomWidgetMenu(self, pos):
+        menu = RoundMenu(parent=self)
+
+        # add custom widget
+        card = ProfileCard(':/gallery/images/shoko.png', self.tr('Shoko'), 'shokokawaii@outlook.com', menu)
+        menu.addWidget(card, selectable=False)
+
+        menu.addSeparator()
+        menu.addActions([
+            Action(FIF.PEOPLE, self.tr('Manage account profile')),
+            Action(FIF.SHOPPING_CART, self.tr('Payment method')),
+            Action(FIF.CODE, self.tr('Redemption code and gift card')),
+        ])
+        menu.addSeparator()
+        menu.addAction(Action(FIF.SETTING, self.tr('Settings')))
+        menu.exec(pos)
+
     def createCheckableMenu(self, pos=None):
         menu = CheckableMenu(parent=self, indicatorType=MenuIndicatorType.RADIO)
 
@@ -204,3 +234,29 @@ class MenuInterface(GalleryInterface):
             return
 
         self.imageLabel.image.save(path)
+
+
+class ProfileCard(QWidget):
+    """ Profile card """
+
+    def __init__(self, avatarPath: str, name: str, email: str, parent=None):
+        super().__init__(parent=parent)
+        self.avatar = AvatarWidget(avatarPath, self)
+        self.nameLabel = BodyLabel(name, self)
+        self.emailLabel = CaptionLabel(email, self)
+        self.logoutButton = HyperlinkButton(
+            'https://github.com/zhiyiYo/QMaterialWidgets', '注销', self)
+
+        color = QColor(206, 206, 206) if isDarkTheme() else QColor(96, 96, 96)
+        self.emailLabel.setStyleSheet('QLabel{color: '+color.name()+'}')
+
+        color = QColor(255, 255, 255) if isDarkTheme() else QColor(0, 0, 0)
+        self.nameLabel.setStyleSheet('QLabel{color: '+color.name()+'}')
+        setFont(self.logoutButton, 13)
+
+        self.setFixedSize(307, 82)
+        self.avatar.setRadius(24)
+        self.avatar.move(2, 6)
+        self.nameLabel.move(64, 13)
+        self.emailLabel.move(64, 32)
+        self.logoutButton.move(52, 48)
