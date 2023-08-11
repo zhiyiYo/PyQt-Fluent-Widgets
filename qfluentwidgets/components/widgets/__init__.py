@@ -35,3 +35,4 @@ from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
 from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView, PopupTeachingTip
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
 from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode
+from .pips_pager import PipsPager, VerticalPipsPager, HorizontalPipsPager, PipsScrollButtonDisplayMode

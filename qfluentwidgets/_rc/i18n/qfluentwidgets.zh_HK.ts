@@ -284,6 +284,39 @@
     </message>
 </context>
 <context>
+    <name>PipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
+    <name>HorizontalPipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
+    <name>VerticalPipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
     <name>TextEditMenu</name>
     <message>
         <source>Cut</source>

@@ -997,6 +997,11 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <source>Chitanda Eru is so hot 🥵🥵🥵</source>
         <translation>春宵苦短日高起，从此君王不早朝🥵🥵🥵</translation>
     </message>
+    <message>
+        <location filename="../../view/scroll_interface.py" line="82"/>
+        <source>Pips pager</source>
+        <translation>圆点分页组件</translation>
+    </message>
 </context>
 <context>
     <name>SettingInterface</name>
