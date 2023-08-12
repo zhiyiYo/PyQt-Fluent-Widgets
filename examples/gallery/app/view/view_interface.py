@@ -1,7 +1,7 @@
 # coding:utf-8
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QFrame, QTreeWidgetItem, QHBoxLayout, QTreeWidgetItemIterator, QTableWidgetItem, QListWidgetItem
-from qfluentwidgets import TreeWidget, TableWidget, ListWidget
+from qfluentwidgets import TreeWidget, TableWidget, ListWidget, HorizontalFlipView
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -47,6 +47,20 @@ class ViewInterface(GalleryInterface):
             title=self.tr('A TreeView with Multi-selection enabled'),
             widget=frame,
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tree_view/demo.py'
+        )
+
+        # flip view
+        w = HorizontalFlipView(self)
+        w.addImages([
+            ":/gallery/images/Shoko1.jpg",
+            ":/gallery/images/Shoko2.jpg",
+            ":/gallery/images/Shoko3.jpg",
+            ":/gallery/images/Shoko4.jpg",
+        ])
+        self.addExampleCard(
+            title=self.tr('Flip view'),
+            widget=w,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/flip_view/demo.py'
         )
 
 

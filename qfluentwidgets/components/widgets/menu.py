@@ -228,7 +228,8 @@ class MenuActionListWidget(QListWidget):
 
         for i in range(self.count()):
             item = self.item(i)
-            item.setSizeHint(item.sizeHint().width(), height)
+            if not self.itemWidget(item):
+                item.setSizeHint(item.sizeHint().width(), height)
 
         self._itemHeight = height
         self.adjustSize()
@@ -354,6 +355,37 @@ class RoundMenu(QMenu):
         """
         item = self._createActionItem(action)
         self.view.addItem(item)
+        self.adjustSize()
+
+    def addWidget(self, widget: QWidget, selectable=True, onClick=None):
+        """ add custom widget
+
+        Parameters
+        ----------
+        widget: QWidget
+            custom widget
+
+        selectable: bool
+            whether the menu item is selectable
+
+        onClick: callable
+            the slot connected to item clicked signal
+        """
+        action = QAction()
+        action.setProperty('selectable', selectable)
+
+        item = self._createActionItem(action)
+        item.setSizeHint(widget.size())
+
+        self.view.addItem(item)
+        self.view.setItemWidget(item, widget)
+
+        if not selectable:
+            item.setFlags(Qt.NoItemFlags)
+
+        if onClick:
+            action.triggered.connect(onClick)
+
         self.adjustSize()
 
     def _createActionItem(self, action: QAction, before=None):
@@ -560,8 +592,11 @@ class RoundMenu(QMenu):
         self.adjustSize()
 
     def _onItemClicked(self, item):
-        action = item.data(Qt.UserRole)
+        action = item.data(Qt.UserRole)  # type: QAction
         if action not in self._actions or not action.isEnabled():
+            return
+
+        if self.view.itemWidget(item) and not action.property('selectable'):
             return
 
         self._hideMenu(False)

@@ -4,7 +4,7 @@ import warnings
 
 from typing import List, Union
 
-from PySide2.QtCore import Qt, Property, QPoint, Signal, QSize
+from PySide2.QtCore import Qt, Property, QPoint, Signal, QSize, QRectF
 from PySide2.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
                          QImageReader, QBrush, QMovie)
 from PySide2.QtWidgets import QLabel, QWidget
@@ -187,21 +187,28 @@ class ImageLabel(QLabel):
         super().__init__(parent)
         self.image = QImage()
         self.setBorderRadius(0, 0, 0, 0)
+        self._postInit()
 
     @__init__.register
     def _(self, image: str, parent=None):
         self.__init__(parent)
         self.setImage(image)
+        self._postInit()
 
     @__init__.register
     def _(self, image: QImage, parent=None):
         self.__init__(parent)
         self.setImage(image)
+        self._postInit()
 
     @__init__.register
     def _(self, image: QPixmap, parent=None):
         self.__init__(parent)
         self.setImage(image)
+        self._postInit()
+
+    def _postInit(self):
+        pass
 
     def _onFrameChanged(self, index: int):
         self.image = self.movie().currentImage()
@@ -347,4 +354,46 @@ class ImageLabel(QLabel):
 
     @bottomRightRadius.setter
     def bottomRightRadius(self, radius: int):
-        self.setBorderRadius(self.topLeftRadius, self.topRightRadius, self.bottomLeftRadius, radius)
+        self.setBorderRadius(
+            self.topLeftRadius, self.topRightRadius, self.bottomLeftRadius, radius)
+
+
+class AvatarWidget(ImageLabel):
+    """ Avatar widget """
+
+    def _postInit(self):
+        self.setRadius(48)
+
+    def getRadius(self):
+        return self._radius
+
+    def setRadius(self, radius: int):
+        self._radius = radius
+        self.setFixedSize(2*radius, 2*radius)
+        self.update()
+
+    def paintEvent(self, e):
+        if self.isNull():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+
+        # center crop image
+        image = self.image.scaled(
+            self.size()*self.devicePixelRatioF(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation) # type: QImage
+
+        iw, ih = image.width(), image.height()
+        d = self.getRadius() * 2 * self.devicePixelRatioF()
+        x, y = (iw - d) / 2, (ih - d) / 2
+        image = image.copy(int(x), int(y), d, d)
+
+        # draw image
+        path = QPainterPath()
+        path.addEllipse(QRectF(self.rect()))
+
+        painter.setPen(Qt.NoPen)
+        painter.setClipPath(path)
+        painter.drawImage(self.rect(), image)
+
+    radius = Property(int, getRadius, setRadius)
