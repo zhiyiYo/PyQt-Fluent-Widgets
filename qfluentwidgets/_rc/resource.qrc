@@ -393,6 +393,7 @@
         <file>qss/dark/info_badge.qss</file>
         <file>qss/dark/tab_view.qss</file>
         <file>qss/dark/pips_pager.qss</file>
+        <file>qss/dark/flip_view.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -424,6 +425,7 @@
         <file>qss/light/info_badge.qss</file>
         <file>qss/light/tab_view.qss</file>
         <file>qss/light/pips_pager.qss</file>
+        <file>qss/light/flip_view.qss</file>
 
         <file>i18n/qfluentwidgets.zh_CN.qm</file>
         <file>i18n/qfluentwidgets.zh_HK.qm</file>

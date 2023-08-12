@@ -512,182 +512,182 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>ListFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="76"/>
+        <location filename="../../view/view_interface.py" line="90"/>
         <source>Star Platinum</source>
         <translation>白金之星</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="76"/>
+        <location filename="../../view/view_interface.py" line="90"/>
         <source>Hierophant Green</source>
         <translation>法皇之绿</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="77"/>
+        <location filename="../../view/view_interface.py" line="91"/>
         <source>Made in Haven</source>
         <translation>天堂制造</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="77"/>
+        <location filename="../../view/view_interface.py" line="91"/>
         <source>King Crimson</source>
         <translation>绯红之王</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="78"/>
+        <location filename="../../view/view_interface.py" line="92"/>
         <source>Silver Chariot</source>
         <translation>银色战车</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="78"/>
+        <location filename="../../view/view_interface.py" line="92"/>
         <source>Crazy diamond</source>
         <translation>疯狂钻石</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="79"/>
+        <location filename="../../view/view_interface.py" line="93"/>
         <source>Metallica</source>
         <translation>金属制品</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="79"/>
+        <location filename="../../view/view_interface.py" line="93"/>
         <source>Another One Bites The Dust</source>
         <translation>败者食尘</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="80"/>
+        <location filename="../../view/view_interface.py" line="94"/>
         <source>Heaven&apos;s Door</source>
         <translation>黑蚊子多</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="81"/>
+        <location filename="../../view/view_interface.py" line="95"/>
         <source>The Grateful Dead</source>
         <translation>壮烈成仁</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="81"/>
+        <location filename="../../view/view_interface.py" line="95"/>
         <source>Stone Free</source>
         <translation>石之自由</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="82"/>
+        <location filename="../../view/view_interface.py" line="96"/>
         <source>The World</source>
         <translation>砸瓦鲁多</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="82"/>
+        <location filename="../../view/view_interface.py" line="96"/>
         <source>Sticky Fingers</source>
         <translation>钢链手指</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="83"/>
+        <location filename="../../view/view_interface.py" line="97"/>
         <source>Ozone Baby</source>
         <translation>臭氧宝宝</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="83"/>
+        <location filename="../../view/view_interface.py" line="97"/>
         <source>Love Love Deluxe</source>
         <translation>华丽挚爱</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="84"/>
+        <location filename="../../view/view_interface.py" line="98"/>
         <source>Hermit Purple</source>
         <translation>隐者之紫</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="84"/>
+        <location filename="../../view/view_interface.py" line="98"/>
         <source>Gold Experience</source>
         <translation>黄金体验</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="85"/>
+        <location filename="../../view/view_interface.py" line="99"/>
         <source>King Nothing</source>
         <translation>虚无之王</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="85"/>
+        <location filename="../../view/view_interface.py" line="99"/>
         <source>Paper Moon King</source>
         <translation>纸月之王</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="86"/>
+        <location filename="../../view/view_interface.py" line="100"/>
         <source>Scary Monster</source>
         <translation>骇人恶兽</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="86"/>
+        <location filename="../../view/view_interface.py" line="100"/>
         <source>Mandom</source>
         <translation>男子领域</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="87"/>
+        <location filename="../../view/view_interface.py" line="101"/>
         <source>20th Century Boy</source>
         <translation>20世纪男孩</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="87"/>
+        <location filename="../../view/view_interface.py" line="101"/>
         <source>Tusk Act 4</source>
         <translation>牙 Act 4</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="88"/>
+        <location filename="../../view/view_interface.py" line="102"/>
         <source>Ball Breaker</source>
         <translation>铁球破坏者</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="88"/>
+        <location filename="../../view/view_interface.py" line="102"/>
         <source>Sex Pistols</source>
         <translation>性感手枪</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="89"/>
+        <location filename="../../view/view_interface.py" line="103"/>
         <source>D4C • Love Train</source>
         <translation>D4C • 爱之列车</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="89"/>
+        <location filename="../../view/view_interface.py" line="103"/>
         <source>Born This Way</source>
         <translation>天生完美</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="90"/>
+        <location filename="../../view/view_interface.py" line="104"/>
         <source>SOFT &amp; WET</source>
         <translation>软又湿</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="90"/>
+        <location filename="../../view/view_interface.py" line="104"/>
         <source>Paisley Park</source>
         <translation>佩斯利公园</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="91"/>
+        <location filename="../../view/view_interface.py" line="105"/>
         <source>Wonder of U</source>
         <translation>奇迹于你</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="91"/>
+        <location filename="../../view/view_interface.py" line="105"/>
         <source>Walking Heart</source>
         <translation>行走的心</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="92"/>
+        <location filename="../../view/view_interface.py" line="106"/>
         <source>Cream Starter</source>
         <translation>护霜旅行者</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="92"/>
+        <location filename="../../view/view_interface.py" line="106"/>
         <source>November Rain</source>
         <translation>十一月雨</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="93"/>
+        <location filename="../../view/view_interface.py" line="107"/>
         <source>Smooth Operators</source>
         <translation>调情圣手</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="93"/>
+        <location filename="../../view/view_interface.py" line="107"/>
         <source>The Matte Kudasai</source>
         <translation>片刻静候</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="80"/>
+        <location filename="../../view/view_interface.py" line="94"/>
         <source>Killer Queen</source>
         <translation>杀手皇后💀</translation>
     </message>
@@ -1475,27 +1475,27 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TableFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="149"/>
+        <location filename="../../view/view_interface.py" line="163"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="149"/>
+        <location filename="../../view/view_interface.py" line="163"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="149"/>
+        <location filename="../../view/view_interface.py" line="163"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="149"/>
+        <location filename="../../view/view_interface.py" line="163"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="149"/>
+        <location filename="../../view/view_interface.py" line="163"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>
@@ -1647,32 +1647,32 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TreeFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="108"/>
+        <location filename="../../view/view_interface.py" line="122"/>
         <source>JoJo 1 - Phantom Blood</source>
         <translation>JoJo 1 - 幻影之血</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="109"/>
+        <location filename="../../view/view_interface.py" line="123"/>
         <source>Jonathan Joestar</source>
         <translation>乔纳森·乔斯达</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="109"/>
+        <location filename="../../view/view_interface.py" line="123"/>
         <source>Dio Brando</source>
         <translation>迪奥·布兰度</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="109"/>
+        <location filename="../../view/view_interface.py" line="123"/>
         <source>Will A. Zeppeli</source>
         <translation>威廉·A·齐贝林</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="116"/>
+        <location filename="../../view/view_interface.py" line="130"/>
         <source>JoJo 3 - Stardust Crusaders</source>
         <translation>JoJo3 - 星尘斗士</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="117"/>
+        <location filename="../../view/view_interface.py" line="131"/>
         <source>Jotaro Kujo</source>
         <translation></translation>
     </message>
@@ -1698,6 +1698,11 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <location filename="../../view/view_interface.py" line="25"/>
         <source>A simple ListView</source>
         <translation>简单的列表组件</translation>
+    </message>
+    <message>
+        <location filename="../../view/view_interface.py" line="61"/>
+        <source>Flip view</source>
+        <translation>翻转视图</translation>
     </message>
 </context>
 </TS>

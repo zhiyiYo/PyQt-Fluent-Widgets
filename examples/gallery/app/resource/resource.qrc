@@ -122,6 +122,10 @@
         <file>images/Singer.png</file>
         <file>images/MusicNote.png</file>
         <file>images/Smiling_with_heart.png</file>
+        <file>images/Shoko1.jpg</file>
+        <file>images/Shoko2.jpg</file>
+        <file>images/Shoko3.jpg</file>
+        <file>images/Shoko4.jpg</file>
 
         <file>qss/dark/gallery_interface.qss</file>
         <file>qss/dark/home_interface.qss</file>

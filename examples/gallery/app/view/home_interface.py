@@ -349,6 +349,14 @@ class HomeInterface(ScrollArea):
             routeKey="scrollInterface",
             index=0
         )
+        scrollView.addSampleCard(
+            icon=":/gallery/images/controls/PipsPager.png",
+            title="PipsPager",
+            content=self.tr(
+                "A control to let the user navigate through a paginated collection when the page numbers do not need to be visually known."),
+            routeKey="scrollInterface",
+            index=3
+        )
         self.vBoxLayout.addWidget(scrollView)
 
         # state info samples
@@ -455,5 +463,13 @@ class HomeInterface(ScrollArea):
                 "The TreeView control is a hierarchical list pattern with expanding and collapsing nodes that contain nested items."),
             routeKey="viewInterface",
             index=2
+        )
+        collectionView.addSampleCard(
+            icon=":/gallery/images/controls/FlipView.png",
+            title="FlipView",
+            content=self.tr(
+                "Presents a collection of items that the user can flip through,one item at a time."),
+            routeKey="viewInterface",
+            index=4
         )
         self.vBoxLayout.addWidget(collectionView)

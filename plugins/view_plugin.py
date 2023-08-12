@@ -1,8 +1,9 @@
 # coding: utf-8
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import ListWidget, ListView, TreeView, TreeWidget, TableView, TableWidget
+from qfluentwidgets import (ListWidget, ListView, TreeView, TreeWidget, TableView, TableWidget,
+                            HorizontalFlipView, VerticalFlipView, HorizontalPipsPager, VerticalPipsPager)
 
 from plugin_base import PluginBase
 
@@ -89,3 +90,71 @@ class TreeViewPlugin(ViewPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "TreeView"
+
+
+class HorizontalFlipViewPlugin(ViewPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Horizontal flip view plugin """
+
+    def createWidget(self, parent):
+        w = HorizontalFlipView(parent)
+        w.addImages([
+            ":/qfluentwidgets/images/controls/FlipView.png",
+            ":/qfluentwidgets/images/controls/CommandBar.png",
+            ":/qfluentwidgets/images/controls/Button.png",
+        ])
+        return w
+
+    def icon(self):
+        return super().icon("FlipView")
+
+    def name(self):
+        return "HorizontalFlipView"
+
+
+class VerticalFlipViewPlugin(ViewPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Vertical flip view plugin """
+
+    def createWidget(self, parent):
+        w = VerticalFlipView(parent)
+        w.addImages([
+            ":/qfluentwidgets/images/controls/FlipView.png",
+            ":/qfluentwidgets/images/controls/CommandBar.png",
+            ":/qfluentwidgets/images/controls/Button.png",
+        ])
+        return w
+
+    def icon(self):
+        return super().icon("FlipView")
+
+    def name(self):
+        return "VerticalFlipView"
+
+
+class HorizontalPipsPagerPlugin(ViewPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Horizontal flip view plugin """
+
+    def createWidget(self, parent):
+        w = HorizontalPipsPager(parent)
+        w.setPageNumber(5)
+        return w
+
+    def icon(self):
+        return super().icon("PipsPager")
+
+    def name(self):
+        return "HorizontalPipsPager"
+
+
+class VerticalPipsPagerPlugin(ViewPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Vertical flip view plugin """
+
+    def createWidget(self, parent):
+        w = VerticalPipsPager(parent)
+        w.setPageNumber(5)
+        return w
+
+    def icon(self):
+        return super().icon("PipsPager")
+
+    def name(self):
+        return "VerticalPipsPager"
