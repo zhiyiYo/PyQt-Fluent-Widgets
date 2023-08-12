@@ -284,6 +284,7 @@ class FlipView(QListWidget):
         self.scrollBar.duration = 500
 
     def wheelEvent(self, e: QWheelEvent):
+        e.setAccepted(True)
         if self.scrollBar.ani.state() == QPropertyAnimation.Running:
             return
 
