@@ -9,10 +9,11 @@ from .card_widget import CardWidget, ElevatedCardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
+from .flip_view import FlipView, HorizontalFlipView, VerticalFlipView, FlipImageDelegate
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit
 from .icon_widget import IconWidget
 from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,
-                    LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel)
+                    LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel, AvatarWidget)
 from .list_view import ListWidget, ListView, ListItemDelegate
 from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
                    MenuItemDelegate, ShortcutMenuItemDelegate, CheckableMenu, MenuIndicatorType, SystemTrayMenu,
@@ -35,3 +36,4 @@ from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
 from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView, PopupTeachingTip
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
 from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode
+from .pips_pager import PipsPager, VerticalPipsPager, HorizontalPipsPager, PipsScrollButtonDisplayMode

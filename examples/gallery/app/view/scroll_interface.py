@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt, QEasingCurve
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget
 from qfluentwidgets import (SingleDirectionScrollArea, SmoothScrollArea, ToolTipFilter, PixmapLabel,
-                            ScrollArea, ImageLabel)
+                            ScrollArea, ImageLabel, HorizontalPipsPager, PipsScrollButtonDisplayMode, VerticalPipsPager)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -73,3 +73,15 @@ class ScrollInterface(GalleryInterface):
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵🥵'))
         card.card.setToolTipDuration(2000)
+
+        # pips pager
+        pager = HorizontalPipsPager(self)
+        pager.setPageNumber(15)
+        pager.setPreviousButtonDisplayMode(PipsScrollButtonDisplayMode.ALWAYS)
+        pager.setNextButtonDisplayMode(PipsScrollButtonDisplayMode.ALWAYS)
+        card = self.addExampleCard(
+            self.tr('Pips pager'),
+            pager,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pips_pager/demo.py',
+        )
+        card.topLayout.setContentsMargins(12, 20, 12, 20)
