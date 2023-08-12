@@ -1,0 +1,4 @@
+PipsPager {
+    border: none;
+    background-color: transparent;
+}

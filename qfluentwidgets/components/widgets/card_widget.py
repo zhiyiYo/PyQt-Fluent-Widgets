@@ -150,7 +150,7 @@ class ElevatedCardWidget(CardWidget):
         painter.setBrush(self.backgroundColor)
 
         if isDarkTheme():
-            painter.setPen(QColor(0, 0, 0, 12))
+            painter.setPen(QColor(0, 0, 0, 36))
         else:
             painter.setPen(QColor(0, 0, 0, 12))
 

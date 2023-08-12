@@ -150,9 +150,6 @@ class Window(MSFluentWindow):
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
         self.setWindowTitle('PyQt-Fluent-Widgets')
 
-        # NOTE: enable mica effect
-        self.setMicaEffectEnabled(True)
-
         desktop = QApplication.screens()[0].availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
