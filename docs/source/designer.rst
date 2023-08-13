@@ -55,6 +55,8 @@ Using plugin
 If everything goes smoothly, you will see all PyQt-Fluent-Widgets components in the sidebar of Qt Designer.
 If the startup fails or the components of PyQt-Fluent-Widgets cannot be seen, the solution can be found in `#196 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/196>`_.
 
+You can also download the compiled QtDesigner from `release page <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases>`_. Download and unzip ``FluentDesigner_v*.*.*.zip``, then run ``designer/designer.exe``, you will launch the QtDesigner that has already installed plugins.
+
 .. raw:: html
 
    <div style="position: relative; padding: 30% 45%;">
