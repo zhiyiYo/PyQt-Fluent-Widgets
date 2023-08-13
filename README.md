@@ -66,6 +66,9 @@ Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) 
 
 ## Work with QtDesigner
 You can use PyQt-Fluent-Widgets in QtDesigner directly by running `python ./tools/designer.py`. If the operation is successful, you should be able to see the PyQt-Fluent-Widgets in the sidebar of QtDesigner.
+
+You can also download the compiled QtDesigner from [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases). Download and unzip `FluentDesigner_v*.*.*.zip`, then run `designer/designer.exe`, you will launch the QtDesigner that has already installed plugins.
+
 > **Note**
 > It is recommended to install pyqt5-tools and PyQt-Fluent-Widgets in a virtual environment. Please make sure **PyQt-Frameless-Window >= 0.2.7**.
 
