@@ -22,7 +22,7 @@ class Demo(QWidget):
         sizes = [96, 48, 32, 24]
         for s in sizes:
             w = AvatarWidget(avatar, self)
-            w.setRadius(s / 2)
+            w.setRadius(s // 2)
             self.hBoxLayout.addWidget(w)
 
 
