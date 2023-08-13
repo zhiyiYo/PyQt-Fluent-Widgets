@@ -382,7 +382,7 @@ class AvatarWidget(ImageLabel):
         iw, ih = image.width(), image.height()
         d = self.getRadius() * 2 * self.devicePixelRatioF()
         x, y = (iw - d) / 2, (ih - d) / 2
-        image = image.copy(int(x), int(y), d, d)
+        image = image.copy(int(x), int(y), int(d), int(d))
 
         # draw image
         path = QPainterPath()
