@@ -242,9 +242,18 @@ class MenuActionListWidget(QListWidget):
     def maxVisibleItems(self):
         return self._maxVisibleItems
 
+    def heightForAnimation(self, pos: QPoint, aniType: MenuAnimationType):
+        """ height for animation """
+        ih = self.itemsHeight()
+        _, sh = MenuAnimationManager.make(self, aniType).availableViewSize(pos)
+        return min(ih, sh)
+
     def itemsHeight(self):
         """ Return the height of all items """
-        return sum(self.item(i).sizeHint().height() for i in range(self.count()))
+        N = self.count() if self.maxVisibleItems() < 0 else min(self.maxVisibleItems(), self.count())
+        h = sum(self.item(i).sizeHint().height() for i in range(N))
+        m = self.viewportMargins()
+        return h + m.top() + m.bottom()
 
 
 class RoundMenu(QMenu):
@@ -833,7 +842,7 @@ class DropDownMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        return ss.width() - 100, max(ss.bottom() - pos.y() - 28, 1)
+        return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
 
     def _onValueChanged(self):
         w, h = self._menuSize()
@@ -899,7 +908,7 @@ class FadeInDropDownMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        return ss.width() - 100, max(ss.bottom() - pos.y() - 28, 1)
+        return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
 
 
 @MenuAnimationManager.register(MenuAnimationType.FADE_IN_PULL_UP)
