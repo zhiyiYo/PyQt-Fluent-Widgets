@@ -62,7 +62,6 @@ class MainWindow(FluentWindow):
         signalBus.micaEnableChanged.connect(self.setMicaEffectEnabled)
         signalBus.switchToSampleCard.connect(self.switchToSample)
         signalBus.supportSignal.connect(self.onSupport)
-        cfg.themeChanged.connect(lambda: self.setMicaEffectEnabled(self.isMicaEffectEnabled()))
 
     def initNavigation(self):
         # add navigation items
