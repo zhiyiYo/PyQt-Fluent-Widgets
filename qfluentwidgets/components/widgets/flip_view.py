@@ -243,7 +243,7 @@ class FlipView(QListWidget):
         self.addItems([''] * len(images))
 
         for i in range(N, self.count()):
-            self.setImage(i, images[i - N])
+            self.setItemImage(i, images[i - N])
 
         if self.currentIndex() < 0:
             self._currentIndex = 0
