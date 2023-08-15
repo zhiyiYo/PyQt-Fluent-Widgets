@@ -186,7 +186,7 @@ class RangeSettingCard(SettingCard):
         self.hBoxLayout.addSpacing(16)
 
         self.valueLabel.setObjectName('valueLabel')
-        configItem.valueChanged.connect(self.setValue)
+        configItem.valueChanged.connect(lambda x: self.slider.setValue(x))
         self.slider.valueChanged.connect(self.__onValueChanged)
 
     def __onValueChanged(self, value: int):
