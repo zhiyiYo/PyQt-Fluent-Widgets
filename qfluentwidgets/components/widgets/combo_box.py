@@ -310,20 +310,20 @@ class ComboBoxBase(QObject):
         if self.currentIndex() >= 0 and self.items:
             menu.setDefaultAction(menu.menuActions()[self.currentIndex()])
 
-        # show menu
+        # determine the animation type by choosing the maximum height of view
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
-        y = self.height()
-        pos = self.mapToGlobal(QPoint(x, y))
+        pd = self.mapToGlobal(QPoint(x, self.height()))
+        hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
-        aniType = MenuAnimationType.DROP_DOWN
-        menu.view.adjustSize(pos, aniType)
+        pu = self.mapToGlobal(QPoint(x, 0))
+        hu = menu.view.heightForAnimation(pd, MenuAnimationType.PULL_UP)
 
-        if menu.view.height() < 120 and menu.view.itemsHeight() > menu.view.height():
-            aniType = MenuAnimationType.PULL_UP
-            pos = self.mapToGlobal(QPoint(x, 0))
-            menu.view.adjustSize(pos, aniType)
-
-        menu.exec(pos, aniType=aniType)
+        if hd >= hu:
+            menu.view.adjustSize(pd, MenuAnimationType.DROP_DOWN)
+            menu.exec(pd, aniType=MenuAnimationType.DROP_DOWN)
+        else:
+            menu.view.adjustSize(pu, MenuAnimationType.PULL_UP)
+            menu.exec(pu, aniType=MenuAnimationType.PULL_UP)
 
     def _toggleComboMenu(self):
         if self.dropMenu:

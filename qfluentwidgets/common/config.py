@@ -257,6 +257,7 @@ class QConfig(QObject):
 
     appRestartSig = pyqtSignal()
     themeChanged = pyqtSignal(Theme)
+    themeChangedFinished = pyqtSignal()
     themeColorChanged = pyqtSignal(QColor)
 
     themeMode = OptionsConfigItem(

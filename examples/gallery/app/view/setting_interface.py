@@ -213,13 +213,13 @@ class SettingInterface(ScrollArea):
     def __connectSignalToSlot(self):
         """ connect signal to slot """
         cfg.appRestartSig.connect(self.__showRestartTooltip)
-        cfg.themeChanged.connect(setTheme)
 
         # music in the pc
         self.downloadFolderCard.clicked.connect(
             self.__onDownloadFolderCardClicked)
 
         # personalization
+        self.themeCard.optionChanged.connect(lambda ci: setTheme(cfg.get(ci)))
         self.themeColorCard.colorChanged.connect(setThemeColor)
         self.micaCard.checkedChanged.connect(signalBus.micaEnableChanged)
 

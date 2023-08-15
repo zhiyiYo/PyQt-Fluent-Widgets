@@ -11,7 +11,7 @@ from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
 from ...common.overload import singledispatchmethod
-from .menu import RoundMenu
+from .menu import RoundMenu, MenuAnimationType
 
 
 class PushButton(QPushButton):
@@ -340,10 +340,20 @@ class DropDownButtonBase:
         menu.view.adjustSize()
         menu.adjustSize()
 
-        # show menu
+        # determine the animation type by choosing the maximum height of view
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
-        y = self.height()
-        menu.exec(self.mapToGlobal(QPoint(x, y)))
+        pd = self.mapToGlobal(QPoint(x, self.height()))
+        hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
+
+        pu = self.mapToGlobal(QPoint(x, 0))
+        hu = menu.view.heightForAnimation(pu, MenuAnimationType.PULL_UP)
+
+        if hd >= hu:
+            menu.view.adjustSize(pd, MenuAnimationType.DROP_DOWN)
+            menu.exec(pd, aniType=MenuAnimationType.DROP_DOWN)
+        else:
+            menu.view.adjustSize(pu, MenuAnimationType.PULL_UP)
+            menu.exec(pu, aniType=MenuAnimationType.PULL_UP)
 
     def _hideMenu(self):
         if self.menu():

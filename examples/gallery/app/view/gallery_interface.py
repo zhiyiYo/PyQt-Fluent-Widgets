@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 
 from qfluentwidgets import (ScrollArea, PushButton, ToolButton, FluentIcon,
                             isDarkTheme, IconWidget, Theme, ToolTipFilter, TitleLabel, CaptionLabel,
-                            StrongBodyLabel, BodyLabel)
+                            StrongBodyLabel, BodyLabel, toggleTheme)
 from ..common.config import cfg, FEEDBACK_URL, HELP_URL, EXAMPLE_URL
 from ..common.icon import Icon
 from ..common.style_sheet import StyleSheet
@@ -82,7 +82,7 @@ class ToolBar(QWidget):
         self.supportButton.setToolTip(self.tr('Support me'))
         self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
-        self.themeButton.clicked.connect(signalBus.toggleThemeSignal)
+        self.themeButton.clicked.connect(lambda: toggleTheme(True))
         self.supportButton.clicked.connect(signalBus.supportSignal)
         self.documentButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(HELP_URL)))
