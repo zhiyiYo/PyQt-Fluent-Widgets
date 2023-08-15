@@ -258,6 +258,7 @@ class QConfig(QObject):
 
     appRestartSig = Signal()
     themeChanged = Signal(Theme)
+    themeChangedFinished = Signal()
     themeColorChanged = Signal(QColor)
 
     themeMode = OptionsConfigItem(

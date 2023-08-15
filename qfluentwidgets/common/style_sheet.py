@@ -195,6 +195,19 @@ def setTheme(theme: Theme, save=False):
     """
     qconfig.set(qconfig.themeMode, theme, save)
     updateStyleSheet()
+    qconfig.themeChangedFinished.emit()
+
+
+def toggleTheme(save=False):
+    """ toggle the theme of application
+
+    Parameters
+    ----------
+    save: bool
+        whether to save the change to config file
+    """
+    theme = Theme.LIGHT if isDarkTheme() else Theme.DARK
+    setTheme(theme, save)
 
 
 class ThemeColor(Enum):

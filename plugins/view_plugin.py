@@ -96,13 +96,7 @@ class HorizontalFlipViewPlugin(ViewPlugin, QDesignerCustomWidgetInterface):
     """ Horizontal flip view plugin """
 
     def createWidget(self, parent):
-        w = HorizontalFlipView(parent)
-        w.addImages([
-            ":/qfluentwidgets/images/controls/FlipView.png",
-            ":/qfluentwidgets/images/controls/CommandBar.png",
-            ":/qfluentwidgets/images/controls/Button.png",
-        ])
-        return w
+        return HorizontalFlipView(parent)
 
     def icon(self):
         return super().icon("FlipView")
@@ -115,13 +109,7 @@ class VerticalFlipViewPlugin(ViewPlugin, QDesignerCustomWidgetInterface):
     """ Vertical flip view plugin """
 
     def createWidget(self, parent):
-        w = VerticalFlipView(parent)
-        w.addImages([
-            ":/qfluentwidgets/images/controls/FlipView.png",
-            ":/qfluentwidgets/images/controls/CommandBar.png",
-            ":/qfluentwidgets/images/controls/Button.png",
-        ])
-        return w
+        return VerticalFlipView(parent)
 
     def icon(self):
         return super().icon("FlipView")

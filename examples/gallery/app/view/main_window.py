@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon, QDesktopServices
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow,
-                            SplashScreen, Theme, setTheme, isDarkTheme)
+                            SplashScreen)
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -61,7 +61,6 @@ class MainWindow(FluentWindow):
     def connectSignalToSlot(self):
         signalBus.micaEnableChanged.connect(self.setMicaEffectEnabled)
         signalBus.switchToSampleCard.connect(self.switchToSample)
-        signalBus.toggleThemeSignal.connect(self.toggleTheme)
         signalBus.supportSignal.connect(self.onSupport)
         cfg.themeChanged.connect(lambda: self.setMicaEffectEnabled(self.isMicaEffectEnabled()))
 
@@ -113,13 +112,6 @@ class MainWindow(FluentWindow):
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
         self.show()
         QApplication.processEvents()
-
-    def toggleTheme(self):
-        theme = Theme.LIGHT if isDarkTheme() else Theme.DARK
-        cfg.set(cfg.themeMode, theme)
-
-        if self.isMicaEffectEnabled():
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
     def onSupport(self):
         w = MessageBox(

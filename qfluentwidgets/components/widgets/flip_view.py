@@ -91,7 +91,10 @@ class FlipImageDelegate(QStyledItemDelegate):
         # draw image
         r = self.parent().devicePixelRatioF()
         image = index.data(Qt.UserRole)  # type: QImage
-        image = image.scaled(size* r, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        if image is None:
+            return painter.restore()
+
+        image = image.scaled(size * r, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
         x = option.rect.x() + int((option.rect.width() - size.width()) / 2)
         y = option.rect.y() + int((option.rect.height() - size.height()) / 2)
@@ -240,20 +243,34 @@ class FlipView(QListWidget):
         self.addItems([''] * len(images))
 
         for i in range(N, self.count()):
-            image = images[i - N]
-
-            # convert image to QImage
-            if isinstance(image, str):
-                image = QImage(image)
-            elif isinstance(image, QPixmap):
-                image = image.toImage()
-
-            item = self.item(i)
-            item.setData(Qt.UserRole, image)
-            item.setSizeHint(self.itemSize)
+            self.setItemImage(i, images[i - N])
 
         if self.currentIndex() < 0:
             self._currentIndex = 0
+
+    def setItemImage(self, index: int, image: Union[QImage, QPixmap, str]):
+        """ set the image of specified item """
+        if not 0 <= index < self.count():
+            return
+
+        item = self.item(index)
+
+        # convert image to QImage
+        if isinstance(image, str):
+            image = QImage(image)
+        elif isinstance(image, QPixmap):
+            image = image.toImage()
+
+        item.setData(Qt.UserRole, image)
+        item.setSizeHint(self.itemSize)
+
+    def itemImage(self, index: int) -> QImage:
+        """ get the image of specified item """
+        if not 0 <= index < self.count():
+            return
+
+        item = self.item(index)
+        return item.data(Qt.UserRole) or QImage()
 
     def resizeEvent(self, e):
         w, h = self.width(), self.height()
@@ -269,8 +286,12 @@ class FlipView(QListWidget):
     def enterEvent(self, e):
         super().enterEvent(e)
         self.isHover = True
-        self.preButton.fadeIn()
-        self.nextButton.fadeIn()
+
+        if self.currentIndex() > 0:
+            self.preButton.fadeIn()
+
+        if self.currentIndex() < self.count() - 1:
+            self.nextButton.fadeIn()
 
     def leaveEvent(self, e):
         super().leaveEvent(e)

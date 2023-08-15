@@ -6,9 +6,10 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QPainter, QColor
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
 
+from ..common.config import qconfig
 from ..common.icon import FluentIconBase
 from ..common.router import qrouter
-from ..common.style_sheet import FluentStyleSheet, isDarkTheme
+from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
@@ -38,6 +39,8 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         # enable mica effect on win11
         self.setMicaEffectEnabled(True)
 
+        qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
+
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
                         position=NavigationItemPosition.TOP):
         """ add sub interface """
@@ -56,6 +59,10 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
             return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
 
         return QColor(0, 0, 0, 0) if isDarkTheme() else QColor(255, 255, 255, 50)
+
+    def _onThemeChangedFinished(self):
+        if self.isMicaEffectEnabled():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
     def paintEvent(self, e):
         super().paintEvent(e)

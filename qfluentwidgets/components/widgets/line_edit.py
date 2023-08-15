@@ -234,18 +234,23 @@ class CompleterMenu(RoundMenu):
             self.view.setMinimumWidth(p.width())
             self.adjustSize()
 
-        # show menu
+        # determine the animation type by choosing the maximum height of view
         x = -self.width()//2 + self.layout().contentsMargins().left() + p.width()//2
         y = p.height() - self.layout().contentsMargins().top() + 2
-        pos = p.mapToGlobal(QPoint(x, y))
+        pd = p.mapToGlobal(QPoint(x, y))
+        hd = self.view.heightForAnimation(pd, MenuAnimationType.FADE_IN_DROP_DOWN)
 
-        aniType = MenuAnimationType.FADE_IN_DROP_DOWN
-        self.view.adjustSize(pos, aniType)
+        pu = p.mapToGlobal(QPoint(x, 7))
+        hu = self.view.heightForAnimation(pd, MenuAnimationType.FADE_IN_PULL_UP)
 
-        if self.view.height() < 100 and self.view.itemsHeight() > self.view.height():
+        if hd >= hu:
+            pos = pd
+            aniType = MenuAnimationType.FADE_IN_DROP_DOWN
+        else:
+            pos = pu
             aniType = MenuAnimationType.FADE_IN_PULL_UP
-            pos = p.mapToGlobal(QPoint(x, 7))
-            self.view.adjustSize(pos, aniType)
+
+        self.view.adjustSize(pos, aniType)
 
         # update border style
         self.view.setProperty('dropDown', aniType == MenuAnimationType.FADE_IN_DROP_DOWN)
