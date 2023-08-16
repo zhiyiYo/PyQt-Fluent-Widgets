@@ -2,22 +2,26 @@
 import sys
 from pathlib import Path
 
-from PyQt6.QtCore import Qt, QPoint
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
+from PyQt6.QtCore import Qt, QPoint, QSize, QUrl
+from PyQt6.QtGui import QIcon, QFont, QColor
+from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QSizePolicy
 
 from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, CaptionLabel, PushButton,
                             TransparentToolButton, FluentIcon, RoundMenu, Action, ElevatedCardWidget,
-                            ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar)
+                            ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar, SimpleCardWidget,
+                            HeaderCardWidget, InfoBarIcon, HyperlinkLabel, HorizontalFlipView,
+                            PrimaryPushButton, TitleLabel, PillPushButton, setFont, SingleDirectionScrollArea,
+                            VerticalSeparator)
+
 
 def isWin11():
     return sys.platform == 'win32' and sys.getwindowsversion().build >= 22000
 
-if isWin11() :
+
+if isWin11():
     from qframelesswindow import AcrylicWindow as Window
 else:
     from qframelesswindow import FramelessWindow as Window
-
 
 
 class AppCard(CardWidget):
@@ -88,17 +92,184 @@ class EmojiCard(ElevatedCardWidget):
         self.setFixedSize(168, 176)
 
 
+class StatisticsWidget(QWidget):
+    """ Statistics widget """
 
-class Demo1(Window):
+    def __init__(self, title: str, value: str, parent=None):
+        super().__init__(parent=parent)
+        self.titleLabel = CaptionLabel(title, self)
+        self.valueLabel = BodyLabel(value, self)
+        self.vBoxLayout = QVBoxLayout(self)
+
+        self.vBoxLayout.setContentsMargins(16, 0, 16, 0)
+        self.vBoxLayout.addWidget(self.valueLabel, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignBottom)
+
+        setFont(self.valueLabel, 18, QFont.Weight.DemiBold)
+        self.titleLabel.setTextColor(QColor(96, 96, 96), QColor(206, 206, 206))
+
+
+class AppInfoCard(SimpleCardWidget):
+    """ App information card """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.iconLabel = ImageLabel(":/qfluentwidgets/images/logo.png", self)
+        self.iconLabel.setBorderRadius(8, 8, 8, 8)
+        self.iconLabel.scaledToWidth(120)
+
+        self.nameLabel = TitleLabel('QFluentWidgets', self)
+        self.installButton = PrimaryPushButton('安装', self)
+        self.companyLabel = HyperlinkLabel(
+            QUrl('https://github.com/zhiyiYo/PyQt-Fluent-Widgets'), 'Shokokawaii Inc.', self)
+        self.installButton.setFixedWidth(160)
+
+        self.scoreWidget = StatisticsWidget('平均', '5.0', self)
+        self.separator = VerticalSeparator(self)
+        self.commentWidget = StatisticsWidget('评论数', '3K', self)
+
+        self.descriptionLabel = BodyLabel(
+            'PyQt-Fluent-Widgets 是一个基于 PyQt/PySide 的 Fluent Design 风格组件库，包含许多美观实用的组件，支持亮暗主题无缝切换和自定义主题色，帮助开发者快速实现美观优雅的现代化界面。', self)
+        self.descriptionLabel.setWordWrap(True)
+
+        self.tagButton = PillPushButton('组件库', self)
+        self.tagButton.setCheckable(False)
+        setFont(self.tagButton, 12)
+        self.tagButton.setFixedSize(80, 32)
+
+        self.shareButton = TransparentToolButton(FluentIcon.SHARE, self)
+        self.shareButton.setFixedSize(32, 32)
+        self.shareButton.setIconSize(QSize(14, 14))
+
+        self.hBoxLayout = QHBoxLayout(self)
+        self.vBoxLayout = QVBoxLayout()
+        self.topLayout = QHBoxLayout()
+        self.statisticsLayout = QHBoxLayout()
+        self.buttonLayout = QHBoxLayout()
+
+        self.initLayout()
+
+    def initLayout(self):
+        self.hBoxLayout.setSpacing(30)
+        self.hBoxLayout.setContentsMargins(34, 24, 24, 24)
+        self.hBoxLayout.addWidget(self.iconLabel)
+        self.hBoxLayout.addLayout(self.vBoxLayout)
+
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.setSpacing(0)
+
+        # name label and install button
+        self.vBoxLayout.addLayout(self.topLayout)
+        self.topLayout.setContentsMargins(0, 0, 0, 0)
+        self.topLayout.addWidget(self.nameLabel)
+        self.topLayout.addWidget(self.installButton, 0, Qt.AlignmentFlag.AlignRight)
+
+        # company label
+        self.vBoxLayout.addSpacing(3)
+        self.vBoxLayout.addWidget(self.companyLabel)
+
+        # statistics widgets
+        self.vBoxLayout.addSpacing(20)
+        self.vBoxLayout.addLayout(self.statisticsLayout)
+        self.statisticsLayout.setContentsMargins(0, 0, 0, 0)
+        self.statisticsLayout.setSpacing(10)
+        self.statisticsLayout.addWidget(self.scoreWidget)
+        self.statisticsLayout.addWidget(self.separator)
+        self.statisticsLayout.addWidget(self.commentWidget)
+        self.statisticsLayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
+
+        # description label
+        self.vBoxLayout.addSpacing(20)
+        self.vBoxLayout.addWidget(self.descriptionLabel)
+
+        # button
+        self.vBoxLayout.addSpacing(12)
+        self.buttonLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.addLayout(self.buttonLayout)
+        self.buttonLayout.addWidget(self.tagButton, 0, Qt.AlignmentFlag.AlignLeft)
+        self.buttonLayout.addWidget(self.shareButton, 0, Qt.AlignmentFlag.AlignRight)
+
+
+class GalleryCard(HeaderCardWidget):
+    """ Gallery card """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setTitle('屏幕截图')
+
+        self.flipView = HorizontalFlipView(self)
+        self.expandButton = TransparentToolButton(
+            FluentIcon.CHEVRON_RIGHT_MED, self)
+
+        self.expandButton.setFixedSize(32, 32)
+        self.expandButton.setIconSize(QSize(12, 12))
+
+        self.flipView.addImages([
+            'resource/shoko1.jpg', 'resource/shoko2.jpg',
+            'resource/shoko3.jpg', 'resource/shoko4.jpg',
+        ])
+        self.flipView.setBorderRadius(8)
+        self.flipView.setSpacing(10)
+
+        self.headerLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.viewLayout.addWidget(self.flipView)
+
+
+class DescriptionCard(HeaderCardWidget):
+    """ Description card """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.descriptionLabel = BodyLabel(
+            'PyQt-Fluent-Widgets 是一个基于 PyQt/PySide 的 Fluent Design 风格组件库，包含许多美观实用的组件，支持亮暗主题无缝切换和自定义主题色，搭配所见即所得的 QtDesigner，帮助开发者快速实现美观优雅的现代化界面。', self)
+
+        self.descriptionLabel.setWordWrap(True)
+        self.viewLayout.addWidget(self.descriptionLabel)
+        self.setTitle('描述')
+
+
+class SystemRequirementCard(HeaderCardWidget):
+    """ System requirements card """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setTitle('系统要求')
+        self.infoLabel = BodyLabel('此产品适用于你的设备。具有复选标记的项目符合开发人员的系统要求。', self)
+        self.successIcon = IconWidget(InfoBarIcon.SUCCESS, self)
+        self.detailButton = HyperlinkLabel('详细信息', self)
+
+        self.vBoxLayout = QVBoxLayout()
+        self.hBoxLayout = QHBoxLayout()
+
+        self.successIcon.setFixedSize(16, 16)
+        self.hBoxLayout.setSpacing(10)
+        self.vBoxLayout.setSpacing(16)
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+
+        self.hBoxLayout.addWidget(self.successIcon)
+        self.hBoxLayout.addWidget(self.infoLabel)
+        self.vBoxLayout.addLayout(self.hBoxLayout)
+        self.vBoxLayout.addWidget(self.detailButton)
+
+        self.viewLayout.addLayout(self.vBoxLayout)
+
+
+class MicaWindow(Window):
 
     def __init__(self):
         super().__init__()
         self.setTitleBar(MSFluentTitleBar(self))
-        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
-        self.setWindowTitle('Fluent Emoji gallery')
-
         if isWin11():
             self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+
+
+class Demo1(MicaWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+        self.setWindowTitle('Fluent Emoji gallery')
 
         self.flowLayout = FlowLayout(self)
 
@@ -115,15 +286,11 @@ class Demo1(Window):
         self.flowLayout.addWidget(card)
 
 
-class Demo2(Window):
+class Demo2(MicaWindow):
 
     def __init__(self):
         super().__init__()
-        self.setTitleBar(MSFluentTitleBar(self))
         self.resize(600, 600)
-
-        if isWin11():
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
         self.vBoxLayout = QVBoxLayout(self)
 
@@ -145,6 +312,80 @@ class Demo2(Window):
         self.vBoxLayout.addWidget(card, alignment=Qt.AlignmentFlag.AlignTop)
 
 
+class Demo3(MicaWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+
+        self.hBoxLayout = QHBoxLayout(self)
+        self.scrollArea = SingleDirectionScrollArea(self)
+        self.view = QWidget(self)
+
+        self.vBoxLayout = QVBoxLayout(self.view)
+        self.appCard = AppInfoCard(self)
+        self.galleryCard = GalleryCard(self)
+        self.descriptionCard = DescriptionCard(self)
+        self.systemCard = SystemRequirementCard(self)
+
+        self.scrollArea.setWidget(self.view)
+        self.scrollArea.setWidgetResizable(True)
+
+        self.hBoxLayout.setContentsMargins(0, 48, 0, 0)
+        self.hBoxLayout.addWidget(self.scrollArea)
+
+        self.vBoxLayout.setSpacing(10)
+        self.vBoxLayout.setContentsMargins(30, 0, 30, 30)
+        self.vBoxLayout.addWidget(self.appCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.galleryCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.descriptionCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.systemCard, 0, Qt.AlignmentFlag.AlignTop)
+
+        self.resize(780, 800)
+        self.titleBar.raise_()
+        self.scrollArea.setStyleSheet(
+            "QScrollArea {border: none; background:transparent}")
+        self.view.setStyleSheet('QWidget {background:transparent}')
+
+
+class Demo3(MicaWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+
+        self.hBoxLayout = QHBoxLayout(self)
+        self.scrollArea = SingleDirectionScrollArea(self)
+        self.view = QWidget(self)
+
+        self.vBoxLayout = QVBoxLayout(self.view)
+        self.appCard = AppInfoCard(self)
+        self.galleryCard = GalleryCard(self)
+        self.descriptionCard = DescriptionCard(self)
+        self.systemCard = SystemRequirementCard(self)
+
+        self.scrollArea.setWidget(self.view)
+        self.scrollArea.setWidgetResizable(True)
+
+        self.hBoxLayout.setContentsMargins(0, 48, 0, 0)
+        self.hBoxLayout.addWidget(self.scrollArea)
+
+        self.vBoxLayout.setSpacing(10)
+        self.vBoxLayout.setContentsMargins(30, 0, 30, 30)
+        self.vBoxLayout.addWidget(self.appCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.galleryCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.descriptionCard, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.systemCard, 0, Qt.AlignmentFlag.AlignTop)
+
+        self.resize(780, 800)
+        self.titleBar.raise_()
+        self.scrollArea.setStyleSheet(
+            "QScrollArea {border: none; background:transparent}")
+        self.view.setStyleSheet('QWidget {background:transparent}')
+
+
 if __name__ == '__main__':
     # setTheme(Theme.DARK)
 
@@ -153,4 +394,6 @@ if __name__ == '__main__':
     w1.show()
     w2 = Demo2()
     w2.show()
+    w3 = Demo3()
+    w3.show()
     app.exec()

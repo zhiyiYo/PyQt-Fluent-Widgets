@@ -2,8 +2,8 @@
 from typing import List, Union
 
 from PyQt6.QtCore import Qt, pyqtSignal, QModelIndex, QSize, pyqtProperty, QRectF, QPropertyAnimation
-from PyQt6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent
-from PyQt6.QtWidgets import QStyleOptionViewItem, QWidget, QListWidget, QStyledItemDelegate, QListWidgetItem
+from PyQt6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainterPath
+from PyQt6.QtWidgets import QStyleOptionViewItem, QListWidget, QStyledItemDelegate, QListWidgetItem
 
 from ...common.overload import singledispatchmethod
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet
@@ -77,9 +77,14 @@ class FlipImageDelegate(QStyledItemDelegate):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.borderRadius = 0
 
     def itemSize(self):
         return self.parent().itemSize
+
+    def setBorderRadius(self, radius: int):
+        self.borderRadius = radius
+        self.parent().viewport().update()
 
     def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         painter.save()
@@ -94,12 +99,17 @@ class FlipImageDelegate(QStyledItemDelegate):
         if image is None:
             return painter.restore()
 
-        image = image.scaled(size * r, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
-
         x = option.rect.x() + int((option.rect.width() - size.width()) / 2)
         y = option.rect.y() + int((option.rect.height() - size.height()) / 2)
-        painter.drawImage(QRectF(x, y, size.width(), size.height()), image)
+        rect = QRectF(x, y, size.width(), size.height())
 
+        # clipped path
+        path = QPainterPath()
+        path.addRoundedRect(rect, self.borderRadius, self.borderRadius)
+
+        image = image.scaled(size * r, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        painter.setClipPath(path)
+        painter.drawImage(rect, image)
         painter.restore()
 
 
@@ -132,8 +142,7 @@ class FlipView(QListWidget):
         self.scrollBar.setForceHidden(True)
 
         self.setUniformItemSizes(True)
-        self.setGridSize(self.itemSize)
-        self.setFixedSize(self.itemSize)
+        self.setMinimumSize(self.itemSize)
         self.setItemDelegate(self.delegate)
         self.setMovement(QListWidget.Movement.Static)
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
@@ -167,7 +176,6 @@ class FlipView(QListWidget):
             return
 
         self._itemSize = size
-        self.setGridSize(size)
 
         for i in range(self.count()):
             item = self.item(i)
@@ -178,6 +186,13 @@ class FlipView(QListWidget):
     def getItemSize(self):
         """ get the size of item """
         return self._itemSize
+
+    def setBorderRadius(self, radius: int):
+        """ set the border radius of item """
+        self.delegate.setBorderRadius(radius)
+
+    def getBorderRadius(self):
+        return self.delegate.borderRadius
 
     def scrollPrevious(self):
         """ scroll to previous item """
@@ -219,6 +234,7 @@ class FlipView(QListWidget):
         else:
             value = self.itemSize.height() * index
 
+        value += (2 * index + 1) * self.spacing()
         self.scrollBar.scrollTo(value)
 
     def currentIndex(self):
@@ -315,6 +331,7 @@ class FlipView(QListWidget):
             self.scrollPrevious()
 
     itemSize = pyqtProperty(QSize, getItemSize, setItemSize)
+    borderRadius = pyqtProperty(int, getBorderRadius, setBorderRadius)
 
 
 class HorizontalFlipView(FlipView):

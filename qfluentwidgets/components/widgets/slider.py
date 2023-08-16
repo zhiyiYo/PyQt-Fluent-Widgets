@@ -147,7 +147,7 @@ class Slider(QSlider):
             return
 
         painter.setBrush(themeColor())
-        aw = (self.value() - self.minimum()) / self.maximum() * (w - r*2)
+        aw = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (w - r*2)
         painter.drawRoundedRect(QRectF(r, r-2, aw, 4), 2, 2)
 
     def _drawVerticalGroove(self, painter: QPainter):
@@ -158,7 +158,7 @@ class Slider(QSlider):
             return
 
         painter.setBrush(themeColor())
-        ah = (self.value() - self.minimum()) / self.maximum() * (h - r*2)
+        ah = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (h - r*2)
         painter.drawRoundedRect(QRectF(r-2, r, 4, ah), 2, 2)
 
     def resizeEvent(self, e):

@@ -148,7 +148,7 @@ class HyperlinkButton(PushButton):
         FluentStyleSheet.BUTTON.apply(self)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         setFont(self)
-        self.clicked.connect(lambda i: QDesktopServices.openUrl(self.getUrl()))
+        self.clicked.connect(self._onClicked)
 
     @__init__.register
     def _(self, url: str, text: str, parent: QWidget = None, icon: Union[QIcon, FluentIconBase, str] = None):
@@ -162,6 +162,10 @@ class HyperlinkButton(PushButton):
 
     def setUrl(self, url: Union[str, QUrl]):
         self._url = QUrl(url)
+
+    def _onClicked(self):
+        if self.getUrl().isValid():
+            QDesktopServices.openUrl(self.getUrl())
 
     def _drawIcon(self, icon, painter, rect, state=QIcon.State.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
