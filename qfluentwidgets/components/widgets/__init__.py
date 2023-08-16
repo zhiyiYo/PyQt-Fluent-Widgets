@@ -5,7 +5,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
                      TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentTogglePushButton,
                      TransparentToggleToolButton, TransparentDropDownPushButton, TransparentDropDownToolButton,
                      PillPushButton, PillToolButton)
-from .card_widget import CardWidget, ElevatedCardWidget
+from .card_widget import CardWidget, ElevatedCardWidget, SimpleCardWidget, HeaderCardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
@@ -37,3 +37,4 @@ from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView,
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
 from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode
 from .pips_pager import PipsPager, VerticalPipsPager, HorizontalPipsPager, PipsScrollButtonDisplayMode
+from .separator import HorizontalSeparator, VerticalSeparator

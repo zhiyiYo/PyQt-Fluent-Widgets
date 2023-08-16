@@ -142,7 +142,7 @@ class FlipView(QListWidget):
         self.scrollBar.setForceHidden(True)
 
         self.setUniformItemSizes(True)
-        self.setFixedSize(self.itemSize)
+        self.setMinimumSize(self.itemSize)
         self.setItemDelegate(self.delegate)
         self.setMovement(QListWidget.Static)
         self.setVerticalScrollMode(self.ScrollPerPixel)
@@ -234,6 +234,7 @@ class FlipView(QListWidget):
         else:
             value = self.itemSize.height() * index
 
+        value += (2 * index + 1) * self.spacing()
         self.scrollBar.scrollTo(value)
 
     def currentIndex(self):

@@ -105,6 +105,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     INFO_BADGE = "info_badge"
     PIPS_PAGER = "pips_pager"
     TABLE_VIEW = "table_view"
+    CARD_WIDGET = "card_widget"
     TIME_PICKER = "time_picker"
     COLOR_DIALOG = "color_dialog"
     SETTING_CARD = "setting_card"
