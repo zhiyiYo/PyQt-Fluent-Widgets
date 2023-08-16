@@ -2,13 +2,14 @@
 
 from typing import List, Union
 
-from PySide6.QtCore import Qt, Property, QPoint, Signal, QSize, QRectF
+from PySide6.QtCore import Qt, Property, QPoint, Signal, QSize, QRectF, QUrl
 from PySide6.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
-                         QImageReader, QBrush, QMovie)
-from PySide6.QtWidgets import QLabel, QWidget
+                         QImageReader, QBrush, QMovie, QDesktopServices)
+from PySide6.QtWidgets import QLabel, QWidget, QPushButton, QApplication
 
 from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
+from ...common.style_sheet import FluentStyleSheet
 from ...common.config import qconfig, isDarkTheme
 
 
@@ -394,3 +395,50 @@ class AvatarWidget(ImageLabel):
         painter.drawImage(self.rect(), image)
 
     radius = Property(int, getRadius, setRadius)
+
+
+class HyperlinkLabel(QPushButton):
+    """ Hyperlink label """
+
+    @singledispatchmethod
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self._url = QUrl()
+
+        setFont(self, 14)
+        self.setUnderlineVisible(False)
+        FluentStyleSheet.LABEL.apply(self)
+        self.setCursor(Qt.PointingHandCursor)
+        self.clicked.connect(self._onClicked)
+
+    @__init__.register
+    def _(self, text: str, parent=None):
+        self.__init__(parent)
+        self.setText(text)
+
+    @__init__.register
+    def _(self, url: QUrl, text: str, parent=None):
+        self.__init__(parent)
+        self.setText(text)
+        self._url = url
+
+    def getUrl(self) -> QUrl:
+        return self._url
+
+    def setUrl(self, url: Union[QUrl, str]):
+        self._url = QUrl(url)
+
+    def isUnderlineVisible(self):
+        return self._isUnderlineVisible
+
+    def setUnderlineVisible(self, isVisible: bool):
+        self._isUnderlineVisible = isVisible
+        self.setProperty('underline', isVisible)
+        self.setStyle(QApplication.style())
+
+    def _onClicked(self):
+        if self.getUrl().isValid():
+            QDesktopServices.openUrl(self.getUrl())
+
+    url = Property(QUrl, getUrl, setUrl)
+    underlineVisible = Property(bool, isUnderlineVisible, setUnderlineVisible)

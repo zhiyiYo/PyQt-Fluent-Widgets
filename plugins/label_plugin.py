@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
 from qfluentwidgets import (BodyLabel, CaptionLabel, StrongBodyLabel, SubtitleLabel, TitleLabel, LargeTitleLabel,
-                            DisplayLabel, ImageLabel, AvatarWidget)
+                            DisplayLabel, ImageLabel, AvatarWidget, HyperlinkLabel)
 
 from plugin_base import PluginBase
 
@@ -114,6 +114,32 @@ class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
         return "DisplayLabel"
 
 
+class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
+    """ Hyperlink label plugin """
+
+    def createWidget(self, parent):
+        return HyperlinkLabel(parent)
+
+    def icon(self):
+        return super().icon("HyperlinkButton")
+
+    def name(self):
+        return "HyperlinkLabel"
+
+
+class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
+    """ Hyperlink label plugin """
+
+    def createWidget(self, parent):
+        return HyperlinkLabel(parent)
+
+    def icon(self):
+        return super().icon("HyperlinkButton")
+
+    def name(self):
+        return "HyperlinkLabel"
+
+
 class ImageLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
     """ Image label plugin """
 
@@ -130,7 +156,7 @@ class ImageLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
         return f"""<widget class="{self.name()}" name="{self.name()}"></widget>"""
 
 
-class AvatarPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
+class AvatarPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
     """ Avatar plugin """
 
     def createWidget(self, parent):

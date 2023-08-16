@@ -27,6 +27,8 @@ class FlowLayout(QLayout):
         self._aniGroup = QParallelAnimationGroup(self)
         self._verticalSpacing = 10
         self._horizontalSpacing = 10
+        self.duration = 300
+        self.ease = QEasingCurve.Linear
         self.needAni = needAni
         self.isTight = isTight
 
@@ -40,7 +42,8 @@ class FlowLayout(QLayout):
 
         ani = QPropertyAnimation(w, b'geometry')
         ani.setEndValue(QRect(QPoint(0, 0), w.size()))
-        ani.setDuration(300)
+        ani.setDuration(self.duration)
+        ani.setEasingCurve(self.ease)
         w.setProperty('flowAni', ani)
         self._anis.append(ani)
         self._aniGroup.addAnimation(ani)
@@ -58,6 +61,9 @@ class FlowLayout(QLayout):
         """
         if not self.needAni:
             return
+
+        self.duration = duration
+        self.ease = ease
 
         for ani in self._anis:
             ani.setDuration(duration)
