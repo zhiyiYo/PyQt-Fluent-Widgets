@@ -1,10 +1,10 @@
 # coding:utf-8
 import sys
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
 from qfluentwidgets import (CaptionLabel, BodyLabel, StrongBodyLabel, SubtitleLabel, TitleLabel,
-                            LargeTitleLabel, DisplayLabel, setTheme, Theme)
+                            LargeTitleLabel, DisplayLabel, setTheme, Theme, HyperlinkLabel, setFont)
 
 
 class Demo(QWidget):
@@ -15,6 +15,12 @@ class Demo(QWidget):
         self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
         self.vBoxLayout.setSpacing(20)
 
+        self.hyperlinkLabel = HyperlinkLabel(QUrl('https://github.com/'), 'GitHub')
+        # self.hyperlinkLabel.setUrl('https://github.com/zhiyiYo/QMaterialWidgets')
+        # self.hyperlinkLabel.setUnderlineVisible(True)
+        # setFont(self.hyperlinkLabel, 18)
+
+        self.vBoxLayout.addWidget(self.hyperlinkLabel)
         self.vBoxLayout.addWidget(CaptionLabel('Caption'))
         self.vBoxLayout.addWidget(BodyLabel('Body'))
         self.vBoxLayout.addWidget(StrongBodyLabel('Body Strong'))
@@ -24,7 +30,7 @@ class Demo(QWidget):
         self.vBoxLayout.addWidget(DisplayLabel('Display'))
 
         # customize text color
-        # self.vBoxLayout.itemAt(0).widget().setTextColor('#009faa', '#009faa')
+        # self.vBoxLayout.itemAt(1).widget().setTextColor('#009faa', '#009faa')
 
         # setTheme(Theme.DARK)
         # self.setStyleSheet("QWidget{background: rgb(32, 32, 32)}")
