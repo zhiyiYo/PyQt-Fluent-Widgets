@@ -198,6 +198,7 @@ class RangeSettingCard(SettingCard):
         qconfig.set(self.configItem, value)
         self.valueLabel.setNum(value)
         self.valueLabel.adjustSize()
+        self.slider.setValue(value)
 
 
 class PushSettingCard(SettingCard):

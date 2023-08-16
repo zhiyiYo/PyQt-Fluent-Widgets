@@ -54,6 +54,11 @@ class Demo(QWidget):
         self.flipView.addImages([str(i) for i in Path('./resource').glob('*')])
         self.pager.setPageNumber(self.flipView.count())
 
+        # adjust border radius
+        # self.flipView.setBorderRadius(15)
+        # self.flipView.setFixedSize(QSize(710, 270))
+        # self.flipView.setSpacing(15)
+
         self.pager.currentIndexChanged.connect(self.flipView.setCurrentIndex)
         self.flipView.currentIndexChanged.connect(self.pager.setCurrentIndex)
 
