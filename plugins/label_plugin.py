@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (BodyLabel, CaptionLabel, StrongBodyLabel, SubtitleLabel, TitleLabel, LargeTitleLabel,
-                            DisplayLabel, ImageLabel, AvatarWidget)
+                            DisplayLabel, ImageLabel, AvatarWidget, HyperlinkLabel)
 
 from plugin_base import PluginBase
 
@@ -112,6 +112,19 @@ class DisplayLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "DisplayLabel"
+
+
+class DisplayLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Hyperlink label plugin """
+
+    def createWidget(self, parent):
+        return HyperlinkLabel(parent)
+
+    def icon(self):
+        return super().icon("HyperlinkButton")
+
+    def name(self):
+        return "HyperlinkLabel"
 
 
 class ImageLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
