@@ -515,5 +515,7 @@
         <file>images/controls/VariableSizedWrapGrid.png</file>
         <file>images/controls/Viewbox.png</file>
         <file>images/controls/TitleBar.png</file>
+        <file>images/controls/Line.png</file>
+        <file>images/controls/VerticalLine.png</file>
     </qresource>
 </RCC>
