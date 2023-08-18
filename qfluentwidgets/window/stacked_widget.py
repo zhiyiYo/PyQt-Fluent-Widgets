@@ -45,6 +45,9 @@ class StackedWidget(QFrame):
     def currentIndex(self):
         return self.view.currentIndex()
 
+    def currentWidget(self):
+        return self.view.currentWidget()
+
     def indexOf(self, widget):
         return self.view.indexOf(widget)
 
