@@ -104,8 +104,6 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.addGroupWidget(self.radioWidget)
         self.addGroupWidget(self.customColorWidget)
 
-        self._adjustViewSize()
-
     def __onRadioButtonClicked(self, button: RadioButton):
         """ radio button clicked slot """
         if button.text() == self.choiceLabel.text():
