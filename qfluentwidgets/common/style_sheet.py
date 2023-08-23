@@ -1,10 +1,10 @@
 # coding:utf-8
 from enum import Enum
 from string import Template
-from typing import Union
+from typing import List, Union
 import weakref
 
-from PyQt5.QtCore import QFile, QObject
+from PyQt5.QtCore import QFile, QObject, QEvent
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QWidget
 
@@ -17,21 +17,34 @@ class StyleSheetManager(QObject):
     def __init__(self):
         self.widgets = weakref.WeakKeyDictionary()
 
-    def register(self, file: str, widget: QWidget):
+    def register(self, source, widget: QWidget, reset=True):
         """ register widget to manager
 
         Parameters
         ----------
-        file: str
-            qss file path
+        source: str | StyleSheetBase
+            qss source, it could be:
+            * `str`: qss file path
+            * `StyleSheetBase`: style sheet instance
 
         widget: QWidget
             the widget to set style sheet
+
+        reset: bool
+            whether to reset the qss source
         """
+        if isinstance(source, str):
+            source = StyleSheetFile(source)
+
         if widget not in self.widgets:
             widget.destroyed.connect(self.deregister)
+            widget.installEventFilter(CustomStyleSheetWatcher(widget))
+            self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
 
-        self.widgets[widget] = file
+        if not reset:
+            self.source(widget).add(source)
+        else:
+            self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
 
     def deregister(self, widget: QWidget):
         """ deregister widget from manager """
@@ -42,6 +55,10 @@ class StyleSheetManager(QObject):
 
     def items(self):
         return self.widgets.items()
+
+    def source(self, widget: QWidget):
+        """ get the qss source of widget """
+        return self.widgets.get(widget, StyleSheetCompose([]))
 
 
 styleSheetManager = StyleSheetManager()
@@ -76,7 +93,7 @@ class StyleSheetBase:
 
     def content(self, theme=Theme.AUTO):
         """ get the content of style sheet """
-        return getStyleSheet(self, theme)
+        return getStyleSheetFromFile(self.path(theme))
 
     def apply(self, widget: QWidget, theme=Theme.AUTO):
         """ apply style sheet to widget """
@@ -125,29 +142,135 @@ class FluentStyleSheet(StyleSheetBase, Enum):
         return f":/qfluentwidgets/qss/{theme.value.lower()}/{self.value}.qss"
 
 
-def getStyleSheet(file: Union[str, StyleSheetBase], theme=Theme.AUTO):
-    """ get style sheet
+class StyleSheetFile(StyleSheetBase):
+    """ Style sheet file """
 
-    Parameters
-    ----------
-    file: str | StyleSheetBase
-        qss file
+    def __init__(self, path: str):
+        super().__init__()
+        self.filePath = path
 
-    theme: Theme
-        the theme of style sheet
-    """
-    if isinstance(file, StyleSheetBase):
-        file = file.path(theme)
+    def path(self, theme=Theme.AUTO):
+        return self.filePath
 
+
+class CustomStyleSheet(StyleSheetBase):
+    """ Custom style sheet """
+
+    DARK_QSS_KEY = 'darkCustomQss'
+    LIGHT_QSS_KEY = 'lightCustomQss'
+
+    def __init__(self, widget: QWidget) -> None:
+        super().__init__()
+        self.widget = widget
+
+    def path(self, theme=Theme.AUTO):
+        return ''
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, CustomStyleSheet):
+            return False
+
+        return other.widget is self.widget
+
+    def setCustomStyleSheet(self, lightQss: str, darkQss: str):
+        """ set custom style sheet in light and dark theme mode """
+        self.setLightStyleSheet(lightQss)
+        self.setDarkStyleSheet(darkQss)
+        return self
+
+    def setLightStyleSheet(self, qss: str):
+        """ set the style sheet in light mode """
+        self.widget.setProperty(self.LIGHT_QSS_KEY, qss)
+        return self
+
+    def setDarkStyleSheet(self, qss: str):
+        """ set the style sheet in dark mode """
+        self.widget.setProperty(self.DARK_QSS_KEY, qss)
+        return self
+
+    def lightStyleSheet(self) -> str:
+        return self.widget.property(self.LIGHT_QSS_KEY) or ''
+
+    def darkStyleSheet(self) -> str:
+        return self.widget.property(self.DARK_QSS_KEY) or ''
+
+    def content(self, theme=Theme.AUTO) -> str:
+        theme = qconfig.theme if theme == Theme.AUTO else theme
+
+        if theme == Theme.LIGHT:
+            return self.lightStyleSheet()
+
+        return self.darkStyleSheet()
+
+
+class CustomStyleSheetWatcher(QObject):
+    """ Custom style sheet watcher """
+
+    def eventFilter(self, obj: QWidget, e: QEvent):
+        if e.type() != QEvent.DynamicPropertyChange:
+            return super().eventFilter(obj, e)
+
+        name = e.propertyName().data().decode()
+        if name in [CustomStyleSheet.LIGHT_QSS_KEY, CustomStyleSheet.DARK_QSS_KEY]:
+            addStyleSheet(obj, CustomStyleSheet(obj))
+
+        return super().eventFilter(obj, e)
+
+
+class StyleSheetCompose(StyleSheetBase):
+    """ Style sheet compose """
+
+    def __init__(self, sources: List[StyleSheetBase]):
+        super().__init__()
+        self.sources = sources
+
+    def content(self, theme=Theme.AUTO):
+        return '\n'.join([i.content(theme) for i in self.sources])
+
+    def add(self, source: StyleSheetBase):
+        """ add style sheet source """
+        if source is self or source in self.sources:
+            return
+
+        self.sources.append(source)
+
+    def remove(self, source: StyleSheetBase):
+        """ remove style sheet source """
+        if source not in self.sources:
+            return
+
+        self.sources.remove(source)
+
+
+def getStyleSheetFromFile(file: Union[str, QFile]):
+    """ get style sheet from qss file """
     f = QFile(file)
     f.open(QFile.ReadOnly)
     qss = str(f.readAll(), encoding='utf-8')
     f.close()
+    return qss
 
-    return applyThemeColor(qss)
+
+def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
+    """ get style sheet
+
+    Parameters
+    ----------
+    source: str | StyleSheetBase
+        qss source, it could be:
+          * `str`: qss file path
+          * `StyleSheetBase`: style sheet instance
+
+    theme: Theme
+        the theme of style sheet
+    """
+    if isinstance(source, str):
+        source = StyleSheetFile(source)
+
+    return applyThemeColor(source.content(theme))
 
 
-def setStyleSheet(widget, file: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
+def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
     """ set the style sheet of widget
 
     Parameters
@@ -155,8 +278,10 @@ def setStyleSheet(widget, file: Union[str, StyleSheetBase], theme=Theme.AUTO, re
     widget: QWidget
         the widget to set style sheet
 
-    file: str | StyleSheetBase
-        qss file
+    source: str | StyleSheetBase
+        qss source, it could be:
+          * `str`: qss file path
+          * `StyleSheetBase`: style sheet instance
 
     theme: Theme
         the theme of style sheet
@@ -166,9 +291,56 @@ def setStyleSheet(widget, file: Union[str, StyleSheetBase], theme=Theme.AUTO, re
         the widget will be updated automatically when the theme changes
     """
     if register:
-        styleSheetManager.register(file, widget)
+        styleSheetManager.register(source, widget)
 
-    widget.setStyleSheet(getStyleSheet(file, theme))
+    widget.setStyleSheet(getStyleSheet(source, theme))
+
+
+def setCustomStyleSheet(widget: QWidget, lightQss: str, darkQss: str):
+    """ set custom style sheet
+
+    Parameters
+    ----------
+    widget: QWidget
+        the widget to add style sheet
+
+    lightQss: str
+        style sheet used in light theme mode
+
+    darkQss: str
+        style sheet used in light theme mode
+    """
+    CustomStyleSheet(widget).setCustomStyleSheet(lightQss, darkQss)
+
+
+def addStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
+    """ add style sheet to widget
+
+    Parameters
+    ----------
+    widget: QWidget
+        the widget to set style sheet
+
+    source: str | StyleSheetBase
+        qss source, it could be:
+          * `str`: qss file path
+          * `StyleSheetBase`: style sheet instance
+
+    theme: Theme
+        the theme of style sheet
+
+    register: bool
+        whether to register the widget to the style manager. If `register=True`, the style of
+        the widget will be updated automatically when the theme changes
+    """
+    if register:
+        styleSheetManager.register(source, widget, reset=False)
+        qss = styleSheetManager.source(widget).content(theme)
+    else:
+        qss = widget.styleSheet() + '\n' + getStyleSheet(source, theme)
+
+    if qss.rstrip() != widget.styleSheet().rstrip():
+        widget.setStyleSheet(qss)
 
 
 def updateStyleSheet():
