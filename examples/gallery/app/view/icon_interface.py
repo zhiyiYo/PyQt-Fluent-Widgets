@@ -47,7 +47,7 @@ class IconCard(QFrame):
         self.vBoxLayout.addSpacing(14)
         self.vBoxLayout.addWidget(self.nameLabel, 0, Qt.AlignmentFlag.AlignHCenter)
 
-        text = self.nameLabel.fontMetrics().elidedText(icon.value, Qt.TextElideMode.ElideRight, 78)
+        text = self.nameLabel.fontMetrics().elidedText(icon.value, Qt.TextElideMode.ElideRight, 90)
         self.nameLabel.setText(text)
 
     def mouseReleaseEvent(self, e):

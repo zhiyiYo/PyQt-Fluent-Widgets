@@ -309,6 +309,7 @@ class FluentIcon(FluentIconBase, Enum):
     LAYOUT = "Layout"
     GITHUB = "GitHub"
     UPDATE = "Update"
+    REMOVE = "Remove"
     RETURN = "Return"
     PEOPLE = "People"
     QRCODE = "QRCode"

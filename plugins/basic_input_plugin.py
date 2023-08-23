@@ -8,7 +8,7 @@ from qfluentwidgets import (PrimaryPushButton, SplitPushButton, DropDownPushButt
                             PrimarySplitPushButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
                             TransparentToolButton, TransparentPushButton, ToggleToolButton, TransparentToggleToolButton,
                             TransparentTogglePushButton, TransparentDropDownPushButton, TransparentDropDownToolButton,
-                            PillPushButton, PillToolButton)
+                            PillPushButton, PillToolButton, HorizontalSeparator, VerticalSeparator)
 
 from plugin_base import PluginBase
 from task_menu_factory import EditTextTaskMenuFactory
@@ -458,4 +458,30 @@ class PixmapLabelPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "PixmapLabel"
+
+
+class HorizontalSeparatorPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Horizontal separator plugin """
+
+    def createWidget(self, parent):
+        return HorizontalSeparator(parent)
+
+    def icon(self):
+        return super().icon('Line')
+
+    def name(self):
+        return "HorizontalSeparator"
+
+
+class VerticalSeparatorPlugin(BasicInputPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Vertical separator plugin """
+
+    def createWidget(self, parent):
+        return VerticalSeparator(parent)
+
+    def icon(self):
+        return super().icon('VerticalLine')
+
+    def name(self):
+        return "VerticalSeparator"
 

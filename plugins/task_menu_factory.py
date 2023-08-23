@@ -1,12 +1,13 @@
 # coding: utf-8
 from typing import Type
+from PyQt5 import QtWidgets
 
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QWidget
 from PyQt6.QtDesigner import QPyDesignerTaskMenuExtension, QExtensionFactory, QDesignerFormWindowInterface, QPyDesignerCustomWidgetPlugin
 
 
-from qfluentwidgets import MessageBox, LineEdit
+from qfluentwidgets import MessageBox, LineEdit, TextEdit, CustomStyleSheet
 
 
 class EditTextDialog(MessageBox):
@@ -29,6 +30,29 @@ class EditTextDialog(MessageBox):
             max(self.contentLabel.width(), self.titleLabel.width()) + 48,
             self.contentLabel.y() + self.lineEdit.height() + 105
         )
+
+
+class EditQssDialog(MessageBox):
+
+    def __init__(self, qss: str, parent=None):
+        super().__init__('Edit Style Sheet', '', parent)
+        self.contentLabel.hide()
+
+        self.textEdit = TextEdit(self.widget)
+        self.textEdit.setPlainText(qss)
+
+        self.textEdit.setFocus()
+        self.textEdit.setPlaceholderText('Enter the custom qss of widget')
+        self.textEdit.setFixedSize(500, 500)
+
+        self.textLayout.addWidget(self.textEdit)
+        self.widget.setFixedSize(
+            max(self.contentLabel.width(), self.titleLabel.width()) + 48,
+            self.contentLabel.y() + self.textEdit.height() + 105
+        )
+
+    def qss(self):
+        return self.textEdit.toPlainText()
 
 
 class TaskMenuExtensionBase(QPyDesignerTaskMenuExtension):
@@ -59,6 +83,34 @@ class EditTextTaskMenuExtension(TaskMenuExtensionBase):
     def taskActions(self):
         return [self.editTextAction]
 
+
+class CustomStyleSheetTaskMenuExtension(QPyDesignerTaskMenuExtension):
+    """ Custom style sheet task menu extension """
+
+    def __init__(self, widget, parent):
+        super().__init__(parent)
+        self.widget = widget
+        self.customStyleSheet = CustomStyleSheet(self.widget)
+        self.lightQssAct = QAction('Edit custom qss in light mode', None)
+        self.darkQssAct = QAction('Edit custom qss in dark mode', None)
+        self.lightQssAct.triggered.connect(self.onEditLightQss)
+        self.darkQssAct.triggered.connect(self.onEditDarkQss)
+
+    def taskActions(self):
+        return [self.lightQssAct, self.darkQssAct]
+
+    def preferredEditAction(self) -> QAction:
+        return self.lightQssAct
+
+    def onEditLightQss(self):
+        w = EditQssDialog(self.customStyleSheet.lightStyleSheet(), self.widget.window())
+        if w.exec():
+            self.customStyleSheet.setLightStyleSheet(w.qss())
+
+    def onEditDarkQss(self):
+        w = EditQssDialog(self.customStyleSheet.darkStyleSheet(), self.widget.window())
+        if w.exec():
+            self.customStyleSheet.setDarkStyleSheet(w.qss())
 
 
 class EditTextIconTaskMenuExtension(TaskMenuExtensionBase):
@@ -99,5 +151,13 @@ class TaskMenuFactoryBase(QExtensionFactory):
 class EditTextTaskMenuFactory(TaskMenuFactoryBase):
     """ Edit text task menu factory """
 
-    Extention = EditTextTaskMenuExtension
+    Extention = CustomStyleSheetTaskMenuExtension
+    widgets = []
+
+
+class EditCustomStyleSheetTaskMenuFactory(TaskMenuFactoryBase):
+    """ Edit custom style sheet task menu factory """
+
+    widgets = []
+    Extention = CustomStyleSheetTaskMenuExtension
 
