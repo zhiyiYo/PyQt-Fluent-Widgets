@@ -339,7 +339,7 @@ class TextEdit(QTextEdit):
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos())
 
 
 class PlainTextEdit(QPlainTextEdit):
@@ -354,5 +354,5 @@ class PlainTextEdit(QPlainTextEdit):
 
     def contextMenuEvent(self, e):
         menu = TextEditMenu(self)
-        menu.exec_(e.globalPos())
+        menu.exec(e.globalPos())
 

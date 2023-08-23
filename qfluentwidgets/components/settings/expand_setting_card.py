@@ -128,6 +128,9 @@ class ExpandSettingCard(QScrollArea):
         self.scrollLayout.setSpacing(0)
         self.scrollLayout.addWidget(self.view)
         self.scrollLayout.addWidget(self.spaceWidget)
+        
+        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
+        self.card.hBoxLayout.addSpacing(8)
 
         # initialize expand animation
         self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
@@ -146,6 +149,8 @@ class ExpandSettingCard(QScrollArea):
 
     def addWidget(self, widget: QWidget):
         """ add widget to tail """
+        N = self.card.hBoxLayout.count()
+        self.card.hBoxLayout.removeItem(self.card.hBoxLayout.itemAt(N-1))
         self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignRight)
         self.card.hBoxLayout.addSpacing(19)
         self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
@@ -241,3 +246,4 @@ class ExpandGroupSettingCard(ExpandSettingCard):
 
         widget.setParent(self.view)
         self.viewLayout.addWidget(widget)
+        self._adjustViewSize()

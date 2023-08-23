@@ -340,6 +340,8 @@
         <file>images/icons/Play_black.svg</file>
         <file>images/icons/PlaySolid_white.svg</file>
         <file>images/icons/PlaySolid_black.svg</file>
+        <file>images/icons/Remove_white.svg</file>
+        <file>images/icons/Remove_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
@@ -515,5 +517,7 @@
         <file>images/controls/VariableSizedWrapGrid.png</file>
         <file>images/controls/Viewbox.png</file>
         <file>images/controls/TitleBar.png</file>
+        <file>images/controls/Line.png</file>
+        <file>images/controls/VerticalLine.png</file>
     </qresource>
 </RCC>

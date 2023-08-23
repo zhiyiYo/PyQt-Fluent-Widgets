@@ -9,7 +9,8 @@ from qfluentwidgets import (Action, DropDownPushButton, DropDownToolButton, Push
                             PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
                             TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentToolButton,
                             TransparentToggleToolButton, TransparentTogglePushButton, TransparentDropDownToolButton,
-                            TransparentDropDownPushButton, PillPushButton, PillToolButton)
+                            TransparentDropDownPushButton, PillPushButton, PillToolButton, setCustomStyleSheet,
+                            CustomStyleSheet)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -33,6 +34,11 @@ class ToolButtonDemo(ButtonView):
 
         # tool button
         self.toolButton = ToolButton(FIF.SETTING, self)
+
+        # !IMPORTANT: add custom style sheet
+        # lightQss = 'ToolButton{border-radius: 9px}'
+        # darkQss = 'ToolButton{border-radius: 0px; background: red}'
+        # setCustomStyleSheet(self.toolButton, lightQss, darkQss)
 
         # change the size of tool button
         # self.toolButton.resize(50, 50)

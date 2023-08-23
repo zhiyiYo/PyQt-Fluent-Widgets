@@ -101,7 +101,38 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
     borderRadius = Property(int, getBorderRadius, setBorderRadius)
 
 
-class ElevatedCardWidget(CardWidget):
+
+class SimpleCardWidget(CardWidget):
+    """ Simple card widget """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def _normalBackgroundColor(self):
+        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
+
+    def _hoverBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def _pressedBackgroundColor(self):
+        return self._normalBackgroundColor()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setBrush(self.backgroundColor)
+
+        if isDarkTheme():
+            painter.setPen(QColor(0, 0, 0, 48))
+        else:
+            painter.setPen(QColor(0, 0, 0, 12))
+
+        r = self.borderRadius
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
+
+
+
+class ElevatedCardWidget(SimpleCardWidget):
     """ Card widget with shadow effect """
 
     def __init__(self, parent=None):
@@ -137,45 +168,11 @@ class ElevatedCardWidget(CardWidget):
         self.elevatedAni.setEndValue(end)
         self.elevatedAni.start()
 
-    def _normalBackgroundColor(self):
-        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
-
     def _hoverBackgroundColor(self):
         return QColor(255, 255, 255, 16) if isDarkTheme() else QColor(255, 255, 255)
 
     def _pressedBackgroundColor(self):
         return QColor(255, 255, 255, 6 if isDarkTheme() else 118)
-
-    def paintEvent(self, e):
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setBrush(self.backgroundColor)
-
-        if isDarkTheme():
-            painter.setPen(QColor(0, 0, 0, 48))
-        else:
-            painter.setPen(QColor(0, 0, 0, 12))
-
-        r = self.borderRadius
-        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
-
-
-
-class SimpleCardWidget(ElevatedCardWidget):
-    """ Simple card widget """
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.shadowAni.setHoverColor(QColor(0, 0, 0, 0))
-
-    def _hoverBackgroundColor(self):
-        return self._normalBackgroundColor()
-
-    def _pressedBackgroundColor(self):
-        return self._normalBackgroundColor()
-
-    def _startElevateAni(self, start, end):
-        pass
 
 
 
