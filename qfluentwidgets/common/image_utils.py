@@ -1,5 +1,6 @@
 # coding:utf-8
 from math import floor
+from time import time
 
 import numpy as np
 from colorthief import ColorThief
@@ -11,11 +12,11 @@ from .exception_handler import exceptionHandler
 
 
 
-def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize= None):
-    if not imagePath.startswith(':'):
-        image = Image.open(imagePath)
+def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
+    if isinstance(image, str) and not image.startswith(':'):
+        image = Image.open(image)
     else:
-        image = Image.fromqpixmap(QPixmap(imagePath))
+        image = Image.fromqpixmap(QPixmap(image))
 
     if blurPicSize:
         # adjust image size to reduce computation
