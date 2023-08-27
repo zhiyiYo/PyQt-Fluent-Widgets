@@ -2,8 +2,8 @@
 import sys
 from pathlib import Path
 
-from PySide2.QtCore import Qt, QPoint, QSize, QUrl
-from PySide2.QtGui import QIcon, QFont, QColor
+from PySide2.QtCore import Qt, QPoint, QSize, QUrl, QRect
+from PySide2.QtGui import QIcon, QFont, QColor, QPainter
 from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QSizePolicy
 
 from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, CaptionLabel, PushButton,
@@ -12,6 +12,8 @@ from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, 
                             HeaderCardWidget, InfoBarIcon, HyperlinkLabel, HorizontalFlipView,
                             PrimaryPushButton, TitleLabel, PillPushButton, setFont, SingleDirectionScrollArea,
                             VerticalSeparator)
+
+from qfluentwidgets.components.widgets.acrylic_label import AcrylicBrush
 
 
 def isWin11():
@@ -256,6 +258,76 @@ class SystemRequirementCard(HeaderCardWidget):
         self.viewLayout.addLayout(self.vBoxLayout)
 
 
+class LightBox(QWidget):
+    """ Light box """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        if isDarkTheme():
+            tintColor = QColor(32, 32, 32, 200)
+            luminosityColor = QColor(0, 0, 0, 0)
+        else:
+            tintColor = QColor(255, 255, 255, 160)
+            luminosityColor = QColor(255, 255, 255, 0)
+
+        self.acrylicBrush = AcrylicBrush(self, 30, tintColor, luminosityColor)
+
+        self.vBoxLayout = QVBoxLayout(self)
+        self.closeButton = TransparentToolButton(FluentIcon.CLOSE, self)
+        self.flipView = HorizontalFlipView(self)
+        self.nameLabel = BodyLabel('屏幕截图 1', self)
+        self.pageNumButton = PillPushButton('1 / 4', self)
+
+        self.pageNumButton.setCheckable(False)
+        self.pageNumButton.setFixedSize(80, 32)
+        setFont(self.nameLabel, 16, QFont.DemiBold)
+
+        self.closeButton.setFixedSize(32, 32)
+        self.closeButton.setIconSize(QSize(14, 14))
+        self.closeButton.clicked.connect(self.hide)
+
+        self.vBoxLayout.setContentsMargins(26, 28, 26, 28)
+        self.vBoxLayout.addWidget(self.closeButton, 0, Qt.AlignRight | Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.flipView, 1)
+        self.vBoxLayout.addWidget(self.nameLabel, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addSpacing(10)
+        self.vBoxLayout.addWidget(self.pageNumButton, 0, Qt.AlignHCenter)
+
+        self.flipView.addImages([
+            'resource/shoko1.jpg', 'resource/shoko2.jpg',
+            'resource/shoko3.jpg', 'resource/shoko4.jpg',
+        ])
+        self.flipView.currentIndexChanged.connect(self.setCurrentIndex)
+
+    def showEvent(self, e):
+        rect = QRect(self.mapToGlobal(QPoint()), self.size())
+        self.acrylicBrush.grabImage(rect)
+        super().showEvent(e)
+
+    def setCurrentIndex(self, index: int):
+        self.nameLabel.setText(f'屏幕截图 {index + 1}')
+        self.pageNumButton.setText(f'{index + 1} / {self.flipView.count()}')
+        self.flipView.setCurrentIndex(index)
+
+    def paintEvent(self, e):
+        if self.acrylicBrush.isAvailable():
+            return self.acrylicBrush.paint()
+
+        painter = QPainter(self)
+        painter.setPen(Qt.NoPen)
+        if isDarkTheme():
+            painter.setBrush(QColor(32, 32, 32))
+        else:
+            painter.setBrush(QColor(255, 255, 255))
+
+        painter.drawRect(self.rect())
+
+    def resizeEvent(self, e):
+        w = self.width() - 52
+        self.flipView.setItemSize(QSize(w, w * 9 // 16))
+
+
+
 class MicaWindow(Window):
 
     def __init__(self):
@@ -336,6 +408,10 @@ class Demo3(MicaWindow):
         self.descriptionCard = DescriptionCard(self)
         self.systemCard = SystemRequirementCard(self)
 
+        self.lightBox = LightBox(self)
+        self.lightBox.hide()
+        self.galleryCard.flipView.itemClicked.connect(self.showLightBox)
+
         self.scrollArea.setWidget(self.view)
         self.scrollArea.setWidgetResizable(True)
 
@@ -354,6 +430,16 @@ class Demo3(MicaWindow):
         self.scrollArea.setStyleSheet(
             "QScrollArea {border: none; background:transparent}")
         self.view.setStyleSheet('QWidget {background:transparent}')
+
+    def showLightBox(self):
+        index = self.galleryCard.flipView.currentIndex()
+        self.lightBox.setCurrentIndex(index)
+        self.lightBox.show()
+
+    def resizeEvent(self, e):
+        super().resizeEvent(e)
+        self.lightBox.resize(self.width(), self.height() - 48)
+        self.lightBox.move(0, 48)
 
 
 if __name__ == '__main__':
