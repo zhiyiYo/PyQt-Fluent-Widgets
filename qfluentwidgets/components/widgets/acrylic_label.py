@@ -1,15 +1,20 @@
 # coding:utf-8
 import warnings
+from  typing import Union
 
-from PySide6.QtCore import Qt, QThread, Signal
-from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap
-from PySide6.QtWidgets import QLabel
+from PySide6.QtCore import Qt, QThread, Signal, QRect
+from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap, QPainterPath
+from PySide6.QtWidgets import QLabel, QApplication, QWidget
 
 try:
     from ...common.image_utils import gaussianBlur
+
+    isAcrylicAvailable = True
 except ImportError as e:
     warnings.warn(
         '`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
+
+    isAcrylicAvailable = False
 
     def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
         return QPixmap(imagePath)
@@ -145,3 +150,96 @@ class AcrylicLabel(QLabel):
             self.setPixmap(self.blurPixmap.scaled(
                 self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))
 
+
+class AcrylicBrush:
+    """ Acrylic brush """
+
+    def __init__(self, device: QWidget, blurRadius: int, tintColor=QColor(242, 242, 242, 150),
+                 luminosityColor=QColor(255, 255, 255, 10), noiseOpacity=0.03):
+        self.device = device
+        self.blurRadius = blurRadius
+        self.tintColor = QColor(tintColor)
+        self.luminosityColor = QColor(luminosityColor)
+        self.noiseOpacity = noiseOpacity
+        self.noiseImage = QImage(':/qfluentwidgets/images/acrylic/noise.png')
+        self.originalImage = QPixmap()
+        self.image = QPixmap()
+
+        self.clipPath = QPainterPath()
+
+    def setBlurRadius(self, radius: int):
+        if radius == self.blurRadius:
+            return
+
+        self.blurRadius = radius
+        self.setImage(self.originalImage)
+
+    def setTintColor(self, color: QColor):
+        self.tintColor = QColor(color)
+        self.device.update()
+
+    def setLuminosityColor(self, color: QColor):
+        self.luminosityColor = QColor(color)
+        self.device.update()
+
+    def isAvailable(self):
+        return isAcrylicAvailable
+
+    def grabImage(self, rect: QRect):
+        """ grab image from screen
+
+        Parameters
+        ----------
+        rect: QRect
+            grabbed region
+        """
+        screen = QApplication.screenAt(self.device.window().pos())
+        x, y, w, h = rect.x(), rect.y(), rect.width(), rect.height()
+        self.setImage(screen.grabWindow(0, x, y, w, h))
+
+    def setImage(self, image: Union[str, QImage, QPixmap]):
+        """ set blurred image """
+        if isinstance(image, str):
+            image = QPixmap(image)
+        elif isinstance(image, QImage):
+            image = QPixmap.fromImage(image)
+
+        self.originalImage = image
+        if not image.isNull():
+            self.image = gaussianBlur(image, self.blurRadius)
+
+        self.device.update()
+
+    def setClipPath(self, path: QPainterPath):
+        self.clipPath = path
+        self.device.update()
+
+    def textureImage(self):
+        texture = QImage(64, 64, QImage.Format_ARGB32_Premultiplied)
+        texture.fill(self.luminosityColor)
+
+        # paint tint color
+        painter = QPainter(texture)
+        painter.fillRect(texture.rect(), self.tintColor)
+
+        # paint noise
+        painter.setOpacity(self.noiseOpacity)
+        painter.drawImage(texture.rect(), self.noiseImage)
+
+        return texture
+
+    def paint(self):
+        device = self.device
+
+        painter = QPainter(device)
+        painter.setRenderHints(QPainter.Antialiasing)
+
+        if not self.clipPath.isEmpty():
+            painter.setClipPath(self.clipPath)
+
+        # paint image
+        image = self.image.scaled(device.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        painter.drawPixmap(0, 0, image)
+
+        # paint acrylic texture
+        painter.fillRect(device.rect(), QBrush(self.textureImage()))

@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt, QEasingCurve
 from PySide6.QtWidgets import QWidget, QStackedWidget, QVBoxLayout, QLabel, QHBoxLayout, QFrame, QSizePolicy
 from qfluentwidgets import (Pivot, qrouter, SegmentedWidget, TabBar, CheckBox, ComboBox,
-                            TabCloseButtonDisplayMode, BodyLabel, SpinBox)
+                            TabCloseButtonDisplayMode, BodyLabel, SpinBox, BreadcrumbBar)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -20,6 +20,23 @@ class NavigationViewInterface(GalleryInterface):
             parent=parent
         )
         self.setObjectName('navigationViewInterface')
+
+        # breadcrumb bar
+        breadcrumb = BreadcrumbBar(self)
+        items = [
+            self.tr("Home"), self.tr("Documents"), self.tr("Study"),
+            self.tr("Janpanese Sensei"), self.tr("Action Film"), self.tr("G Cup"),
+            self.tr("Mikami Yua"), self.tr("Folder1"), self.tr("Folder2"),
+        ]
+        for i in items:
+            breadcrumb.addItem(i, i)
+
+        self.addExampleCard(
+            title=self.tr('Breadcrumb bar'),
+            widget=breadcrumb,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py',
+            stretch=1
+        )
 
         self.addExampleCard(
             title=self.tr('A basic pivot'),
