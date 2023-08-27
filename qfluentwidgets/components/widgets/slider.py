@@ -95,9 +95,9 @@ class Slider(QSlider):
     def setOrientation(self, orientation: Qt.Orientation) -> None:
         super().setOrientation(orientation)
         if orientation == Qt.Orientation.Horizontal:
-            self.setFixedHeight(22)
+            self.setMinimumHeight(22)
         else:
-            self.setFixedWidth(22)
+            self.setMinimumWidth(22)
 
     def mousePressEvent(self, e: QMouseEvent):
         self._pressedPos = e.pos()
