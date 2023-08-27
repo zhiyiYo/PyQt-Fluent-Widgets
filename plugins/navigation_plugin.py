@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (NavigationInterface, NavigationPanel, Pivot, SegmentedWidget, NavigationBar,
-                            FluentIcon, TabBar)
+                            FluentIcon, TabBar, BreadcrumbBar)
 
 from plugin_base import PluginBase
 
@@ -12,6 +12,23 @@ class NavigationPlugin(PluginBase):
 
     def group(self):
         return super().group() + ' (Navigation)'
+
+
+class BreadcrumbBarPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Breadcrumb plugin """
+
+    def createWidget(self, parent):
+        w = BreadcrumbBar(parent)
+        w.addItem('Home', 'Home')
+        w.addItem('Documents', 'Documents')
+        return w
+
+    def icon(self):
+        return super().icon("BreadcrumbBar")
+
+    def name(self):
+        return "BreadcrumbBar"
+
 
 
 class NavigationInterfacePlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
