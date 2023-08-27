@@ -1,6 +1,6 @@
 # coding: utf-8
 from typing import Type
-from PyQt5 import QtWidgets
+from PyQt6 import QtWidgets
 
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QWidget

@@ -5,3 +5,4 @@ from .navigation_interface import NavigationInterface
 from .navigation_bar import NavigationBarPushButton, NavigationBar
 from .pivot import Pivot, PivotItem
 from .segmented_widget import SegmentedItem, SegmentedWidget
+from .breadcrumb import BreadcrumbBar, BreadcrumbItem

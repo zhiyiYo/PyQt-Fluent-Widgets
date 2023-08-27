@@ -53,7 +53,7 @@ python demo.py
 If you encounter `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`, it indicates that the package version you installed is too low. You can replace the mirror source with https://pypi.org/simple and reinstall again.
 
 ## Documentation
-Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://qfluentwidgets.github.io/) 👈
+Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://qfluentwidgets.com) 👈
 
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
