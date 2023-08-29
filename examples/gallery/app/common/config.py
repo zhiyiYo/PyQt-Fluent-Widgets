@@ -5,7 +5,7 @@ from enum import Enum
 from PyQt5.QtCore import QLocale
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             OptionsValidator, RangeConfigItem, RangeValidator,
-                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer, __version__)
+                            FolderListValidator, Theme, FolderValidator, ConfigSerializer, __version__)
 
 
 class Language(Enum):
@@ -66,4 +66,5 @@ SUPPORT_URL = "https://afdian.net/a/zhiyiYo"
 
 
 cfg = Config()
+cfg.themeMode.value = Theme.AUTO
 qconfig.load('app/config/config.json', cfg)
