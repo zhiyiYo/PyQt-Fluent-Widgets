@@ -17,7 +17,7 @@ setuptools.setup(
     url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6",
     packages=setuptools.find_packages(),
     install_requires=[
-        "PySide6<6.5.0",
+        "PySide6<=6.4.2",
         "PySideSix-Frameless-Window>=0.3.1",
         "darkdetect",
     ],
