@@ -34,7 +34,7 @@ class NavigationViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('Breadcrumb bar'),
             widget=breadcrumb,
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py',
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/breadcrumb_bar/demo.py',
             stretch=1
         )
 
@@ -47,7 +47,7 @@ class NavigationViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('A segmented control'),
             widget=SegmentedInterface(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/segmented_widget/demo.py'
         )
 
         card = self.addExampleCard(
