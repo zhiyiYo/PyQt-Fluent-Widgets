@@ -404,12 +404,16 @@ class SmoothScrollBar(ScrollBar):
 
         self.__value = self.value()
 
-    def setValue(self, value):
+    def setValue(self, value, useAni=True):
         if value == self.value():
             return
 
         # stop running animation
         self.ani.stop()
+
+        if not useAni:
+            self.val = value
+            return
 
         # adjust the duration
         dv = abs(value - self.value())
@@ -422,19 +426,19 @@ class SmoothScrollBar(ScrollBar):
         self.ani.setEndValue(value)
         self.ani.start()
 
-    def scrollValue(self, value):
+    def scrollValue(self, value, useAni=True):
         """ scroll the specified distance """
         self.__value += value
         self.__value = max(self.minimum(), self.__value)
         self.__value = min(self.maximum(), self.__value)
-        self.setValue(self.__value)
+        self.setValue(self.__value, useAni)
 
-    def scrollTo(self, value):
+    def scrollTo(self, value, useAni=True):
         """ scroll to the specified position """
         self.__value = value
         self.__value = max(self.minimum(), self.__value)
         self.__value = min(self.maximum(), self.__value)
-        self.setValue(self.__value)
+        self.setValue(self.__value, useAni)
 
     def resetValue(self, value):
         self.__value = value

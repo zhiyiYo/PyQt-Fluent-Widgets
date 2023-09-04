@@ -1,6 +1,5 @@
 # coding:utf-8
 import sys
-from time import time
 
 from PyQt5.QtCore import Qt, QCalendar, QDate
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
@@ -37,9 +36,6 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
     app = QApplication(sys.argv)
-    t0 = time()
     w = Demo()
-    t1 = time()
-    print('耗时：', t1-t0)
     w.show()
     app.exec_()
