@@ -1,4 +1,6 @@
+# coding: utf-8
 import sys
+from pathlib import Path
 
 from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtMultimediaWidgets import QGraphicsVideoItem
@@ -25,12 +27,12 @@ class Demo1(QWidget):
         self.vBoxLayout.addWidget(self.simplePlayBar)
         self.vBoxLayout.addWidget(self.standardPlayBar)
 
-        # local music
+        # online music
         url = QUrl("https://files.cnblogs.com/files/blogs/677826/beat.zip?t=1693900324")
         self.simplePlayBar.player.setSource(url)
 
-        # online music
-        url = QUrl.fromLocalFile('resource/aiko - シアワセ.mp3')
+        # local music
+        url = QUrl.fromLocalFile(str(Path('resource/aiko - シアワセ.mp3').absolute()))
         self.standardPlayBar.player.setSource(url)
 
         # self.standardPlayBar.play()
