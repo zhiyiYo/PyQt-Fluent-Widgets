@@ -342,6 +342,18 @@
         <file>images/icons/PlaySolid_black.svg</file>
         <file>images/icons/Remove_white.svg</file>
         <file>images/icons/Remove_black.svg</file>
+        <file>images/icons/Pause_white.svg</file>
+        <file>images/icons/Pause_black.svg</file>
+        <file>images/icons/PauseBold_white.svg</file>
+        <file>images/icons/PauseBold_black.svg</file>
+        <file>images/icons/Volume_white.svg</file>
+        <file>images/icons/Volume_black.svg</file>
+        <file>images/icons/Mute_white.svg</file>
+        <file>images/icons/Mute_black.svg</file>
+        <file>images/icons/SkipBack_white.svg</file>
+        <file>images/icons/SkipBack_black.svg</file>
+        <file>images/icons/SkipForward_white.svg</file>
+        <file>images/icons/SkipForward_black.svg</file>
 
         <file>images/acrylic/noise.png</file>
         <file>images/folder_list_dialog/Close_white.png</file>
@@ -406,6 +418,7 @@
         <file>qss/dark/flip_view.qss</file>
         <file>qss/dark/label.qss</file>
         <file>qss/dark/card_widget.qss</file>
+        <file>qss/dark/media_player.qss</file>
 
         <file>qss/light/color_dialog.qss</file>
         <file>qss/light/dialog.qss</file>
@@ -440,6 +453,7 @@
         <file>qss/light/flip_view.qss</file>
         <file>qss/light/label.qss</file>
         <file>qss/light/card_widget.qss</file>
+        <file>qss/light/media_player.qss</file>
 
         <file>i18n/qfluentwidgets.zh_CN.qm</file>
         <file>i18n/qfluentwidgets.zh_HK.qm</file>
