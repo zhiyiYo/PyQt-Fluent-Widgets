@@ -1,4 +1,5 @@
 # coding:utf-8
+import sys
 from typing import Union, List, Iterable
 
 from PyQt5.QtCore import Qt, pyqtSignal, QRectF, QPoint, QObject, QEvent
@@ -288,9 +289,12 @@ class ComboBoxBase(QObject):
         self.dropMenu = None
 
     def _onDropMenuClosed(self):
-        pos = self.mapFromGlobal(QCursor.pos())
-        if not self.rect().contains(pos):
+        if sys.platform != "win32":
             self.dropMenu = None
+        else:
+            pos = self.mapFromGlobal(QCursor.pos())
+            if not self.rect().contains(pos):
+                self.dropMenu = None
 
     def _showComboMenu(self):
         if not self.items:
