@@ -126,6 +126,9 @@ class ComboBoxBase(QObject):
                 self.currentTextChanged.emit(self.currentText())
                 self.currentIndexChanged.emit(0)
 
+        if self.count() == 0:
+            self.clear()
+
     def currentIndex(self):
         return self._currentIndex
 
