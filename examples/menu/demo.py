@@ -30,8 +30,8 @@ class Demo(QWidget):
         # add actions
         menu.addAction(Action(FIF.COPY, 'Copy'))
         menu.addAction(Action(FIF.CUT, 'Cut'))
-        menu.menuActions()[0].setCheckable(True)
-        menu.menuActions()[0].setChecked(True)
+        menu.actions()[0].setCheckable(True)
+        menu.actions()[0].setChecked(True)
 
         # add sub menu
         submenu = RoundMenu("Add to", self)
@@ -54,14 +54,14 @@ class Demo(QWidget):
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], Action(FIF.SETTING, 'Settings', shortcut='Ctrl+S'))
+            menu.actions()[-1], Action(FIF.SETTING, 'Settings', shortcut='Ctrl+S'))
         menu.insertActions(
-            menu.menuActions()[-1],
+            menu.actions()[-1],
             [Action(FIF.HELP, 'Help', shortcut='Ctrl+H'),
              Action(FIF.FEEDBACK, 'Feedback', shortcut='Ctrl+F')]
         )
-        menu.menuActions()[-2].setCheckable(True)
-        menu.menuActions()[-2].setChecked(True)
+        menu.actions()[-2].setCheckable(True)
+        menu.actions()[-2].setChecked(True)
 
         # show menu
         menu.exec(e.globalPos(), aniType=MenuAnimationType.DROP_DOWN)

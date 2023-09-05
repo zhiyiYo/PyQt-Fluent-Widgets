@@ -311,7 +311,7 @@ class ComboBoxBase(QObject):
 
         # set the selected item
         if self.currentIndex() >= 0 and self.items:
-            menu.setDefaultAction(menu.menuActions()[self.currentIndex()])
+            menu.setDefaultAction(menu.actions()[self.currentIndex()])
 
         # determine the animation type by choosing the maximum height of view
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
