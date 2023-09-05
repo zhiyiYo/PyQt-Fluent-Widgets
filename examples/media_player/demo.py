@@ -3,10 +3,10 @@ import sys
 from pathlib import Path
 
 from PyQt5.QtCore import QUrl, Qt
-from PyQt5.QtMultimediaWidgets import QGraphicsVideoItem
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QGraphicsView, QGraphicsScene
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-from qfluentwidgets import SimpleMediaPlayBar, setTheme, Theme, StandardMediaPlayBar, VideoWidget
+from qfluentwidgets import setTheme, Theme
+from qfluentwidgets.multimedia import SimpleMediaPlayBar, StandardMediaPlayBar, VideoWidget
 
 
 class Demo1(QWidget):
