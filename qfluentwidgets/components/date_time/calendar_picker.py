@@ -20,14 +20,10 @@ class CalendarPicker(QPushButton):
         self._date = QDate()
         self._dateFormat = Qt.SystemLocaleDate
 
-        self.view = CalendarView(self.window())
-        self.view.hide()
-
         self.setText(self.tr('Pick a date'))
         FluentStyleSheet.CALENDAR_PICKER.apply(self)
 
         self.clicked.connect(self._showCalendarView)
-        self.view.dateChanged.connect(self._onDateChanged)
 
     def getDate(self):
         return self._date
@@ -35,7 +31,6 @@ class CalendarPicker(QPushButton):
     def setDate(self, date: QDate):
         """ set the selected date """
         self._onDateChanged(date)
-        self.view.setDate(date)
 
     def getDateFormat(self):
         return self._dateFormat
@@ -46,9 +41,15 @@ class CalendarPicker(QPushButton):
             self.setText(self.date.toString(self.dateFormat))
 
     def _showCalendarView(self):
-        x = int(self.width()/2 - self.view.sizeHint().width()/2)
+        view = CalendarView(self.window())
+        view.dateChanged.connect(self._onDateChanged)
+
+        if self.date.isValid():
+            view.setDate(self.date)
+
+        x = int(self.width()/2 - view.sizeHint().width()/2)
         y = self.height()
-        self.view.exec(self.mapToGlobal(QPoint(x, y)))
+        view.exec(self.mapToGlobal(QPoint(x, y)))
 
     def _onDateChanged(self, date: QDate):
         self._date = QDate(date)

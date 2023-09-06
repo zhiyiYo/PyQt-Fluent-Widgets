@@ -58,7 +58,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         if not self.isMicaEffectEnabled():
             return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
 
-        return QColor(0, 0, 0, 0) if isDarkTheme() else QColor(255, 255, 255, 50)
+        return QColor(0, 0, 0, 0)
 
     def _onThemeChangedFinished(self):
         if self.isMicaEffectEnabled():

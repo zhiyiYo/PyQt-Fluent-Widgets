@@ -5,7 +5,7 @@ from enum import Enum
 from PySide2.QtCore import QLocale
 from qfluentwidgets import (qconfig, QConfig, ConfigItem, OptionsConfigItem, BoolValidator,
                             OptionsValidator, RangeConfigItem, RangeValidator,
-                            FolderListValidator, EnumSerializer, FolderValidator, ConfigSerializer, __version__)
+                            FolderListValidator, Theme, FolderValidator, ConfigSerializer, __version__)
 
 
 class Language(Enum):
@@ -57,7 +57,7 @@ class Config(QConfig):
 YEAR = 2023
 AUTHOR = "zhiyiYo"
 VERSION = __version__
-HELP_URL = "https://qfluentwidgets.github.io"
+HELP_URL = "https://qfluentwidgets.com"
 REPO_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
 EXAMPLE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2/examples"
 FEEDBACK_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
@@ -66,4 +66,5 @@ SUPPORT_URL = "https://afdian.net/a/zhiyiYo"
 
 
 cfg = Config()
+cfg.themeMode.value = Theme.AUTO
 qconfig.load('app/config/config.json', cfg)

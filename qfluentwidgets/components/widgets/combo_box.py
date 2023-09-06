@@ -1,4 +1,5 @@
 # coding:utf-8
+import sys
 from typing import Union, List, Iterable
 
 from PySide2.QtCore import Qt, Signal, QRectF, QPoint, QObject, QEvent
@@ -111,6 +112,9 @@ class ComboBoxBase:
                 self.setCurrentIndex(0)
                 self.currentTextChanged.emit(self.currentText())
                 self.currentIndexChanged.emit(0)
+
+        if self.count() == 0:
+            self.clear()
 
     def currentIndex(self):
         return self._currentIndex
@@ -271,9 +275,12 @@ class ComboBoxBase:
         self.dropMenu = None
 
     def _onDropMenuClosed(self):
-        pos = self.mapFromGlobal(QCursor.pos())
-        if not self.rect().contains(pos):
+        if sys.platform != "win32":
             self.dropMenu = None
+        else:
+            pos = self.mapFromGlobal(QCursor.pos())
+            if not self.rect().contains(pos):
+                self.dropMenu = None
 
     def _showComboMenu(self):
         if not self.items:
@@ -294,7 +301,7 @@ class ComboBoxBase:
 
         # set the selected item
         if self.currentIndex() >= 0 and self.items:
-            menu.setDefaultAction(menu.menuActions()[self.currentIndex()])
+            menu.setDefaultAction(menu.actions()[self.currentIndex()])
 
         # determine the animation type by choosing the maximum height of view
         x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2

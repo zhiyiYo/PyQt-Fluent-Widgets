@@ -324,12 +324,20 @@ class HomeInterface(ScrollArea):
         # navigation
         navigationView = SampleCardView(self.tr('Navigation'), self.view)
         navigationView.addSampleCard(
+            icon=":/gallery/images/controls/BreadcrumbBar.png",
+            title="BreadcrumbBar",
+            content=self.tr(
+                "Shows the trail of navigation taken to the current location."),
+            routeKey="navigationViewInterface",
+            index=0
+        )
+        navigationView.addSampleCard(
             icon=":/gallery/images/controls/Pivot.png",
             title="Pivot",
             content=self.tr(
                 "Presents information from different sources in a tabbed view."),
             routeKey="navigationViewInterface",
-            index=0
+            index=1
         )
         navigationView.addSampleCard(
             icon=":/gallery/images/controls/TabView.png",
@@ -337,7 +345,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "Presents information from different sources in a tabbed view."),
             routeKey="navigationViewInterface",
-            index=2
+            index=3
         )
         self.vBoxLayout.addWidget(navigationView)
 
