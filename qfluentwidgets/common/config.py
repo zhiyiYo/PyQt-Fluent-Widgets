@@ -262,7 +262,7 @@ class QConfig(QObject):
     themeColorChanged = Signal(QColor)
 
     themeMode = OptionsConfigItem(
-        "QFluentWidgets", "ThemeMode", Theme.AUTO, OptionsValidator(Theme), EnumSerializer(Theme))
+        "QFluentWidgets", "ThemeMode", Theme.LIGHT, OptionsValidator(Theme), EnumSerializer(Theme))
     themeColor = ColorConfigItem("QFluentWidgets", "ThemeColor", '#009faa')
 
     def __init__(self):

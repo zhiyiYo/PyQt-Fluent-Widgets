@@ -145,6 +145,39 @@
     </message>
 </context>
 <context>
+    <name>MessageBoxBase</name>
+    <message>
+        <source>OK</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>VolumeView</name>
+    <message>
+        <source>Unmute</source>
+        <translation>取消静音</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation>静音</translation>
+    </message>
+</context>
+<context>
+    <name>PlayButton</name>
+    <message>
+        <source>Play</source>
+        <translation>播放</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>暂停</translation>
+    </message>
+</context>
+<context>
     <name>NavigationPanel</name>
     <message>
         <source>Open Navigation</source>

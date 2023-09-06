@@ -1,6 +1,5 @@
 # coding:utf-8
 import sys
-from time import time
 
 from PySide6.QtCore import Qt, QCalendar, QDate
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout

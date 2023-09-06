@@ -1,9 +1,3 @@
-SettingCard {
-    border: 1px solid rgb(35, 35, 35);
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.051);
-}
-
 QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: white;

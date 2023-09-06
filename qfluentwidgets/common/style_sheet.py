@@ -125,6 +125,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     CARD_WIDGET = "card_widget"
     TIME_PICKER = "time_picker"
     COLOR_DIALOG = "color_dialog"
+    MEDIA_PLAYER = "media_player"
     SETTING_CARD = "setting_card"
     TEACHING_TIP = "teaching_tip"
     FLUENT_WINDOW = "fluent_window"
