@@ -122,6 +122,10 @@ class MainWindow(FluentWindow):
         if w.exec():
             QDesktopServices.openUrl(QUrl(SUPPORT_URL))
 
+    def resizeEvent(self, e):
+        super().resizeEvent(e)
+        self.splashScreen.resize(self.size())
+
     def switchToSample(self, routeKey, index):
         """ switch to sample """
         interfaces = self.findChildren(GalleryInterface)
