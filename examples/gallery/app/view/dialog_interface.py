@@ -1,8 +1,9 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QUrl
 
 from qfluentwidgets import (PushButton, Dialog, MessageBox, ColorDialog, TeachingTip, TeachingTipTailPosition,
-                            InfoBarIcon, Flyout, FlyoutView, TeachingTipView, FlyoutAnimationType)
+                            InfoBarIcon, Flyout, FlyoutView, TeachingTipView, FlyoutAnimationType, SubtitleLabel,
+                            LineEdit, MessageBoxBase)
 from ..common.translator import Translator
 from .gallery_interface import GalleryInterface
 
@@ -33,6 +34,14 @@ class DialogInterface(GalleryInterface):
             self.tr('A message box with mask'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/message_dialog/demo.py'
+        )
+
+        button = PushButton(self.tr('Show dialog'))
+        button.clicked.connect(self.showCustomDialog)
+        self.addExampleCard(
+            self.tr('A custom message box'),
+            button,
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/custom_message_box/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -94,6 +103,11 @@ class DialogInterface(GalleryInterface):
             print('Yes button is pressed')
         else:
             print('Cancel button is pressed')
+
+    def showCustomDialog(self):
+        w = CustomMessageBox(self.window())
+        if w.exec():
+            print(w.urlLineEdit.text())
 
     def showColorDialog(self):
         w = ColorDialog(Qt.cyan, self.tr('Choose color'), self.window())
@@ -158,3 +172,30 @@ class DialogInterface(GalleryInterface):
 
         # show view
         Flyout.make(view, self.complexFlyoutButton, self.window(), FlyoutAnimationType.SLIDE_RIGHT)
+
+
+class CustomMessageBox(MessageBoxBase):
+    """ Custom message box """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.titleLabel = SubtitleLabel(self.tr('Open URL'), self)
+        self.urlLineEdit = LineEdit(self)
+
+        self.urlLineEdit.setPlaceholderText(self.tr('Enter the URL of a file, stream, or playlist'))
+        self.urlLineEdit.setClearButtonEnabled(True)
+
+        # add widget to view layout
+        self.viewLayout.addWidget(self.titleLabel)
+        self.viewLayout.addWidget(self.urlLineEdit)
+
+        # change the text of button
+        self.yesButton.setText(self.tr('Open'))
+        self.cancelButton.setText(self.tr('Cancel'))
+
+        self.widget.setMinimumWidth(360)
+        self.yesButton.setDisabled(True)
+        self.urlLineEdit.textChanged.connect(self._validateUrl)
+
+    def _validateUrl(self, text):
+        self.yesButton.setEnabled(QUrl(text).isValid())

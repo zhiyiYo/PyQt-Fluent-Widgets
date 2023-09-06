@@ -145,6 +145,17 @@
     </message>
 </context>
 <context>
+    <name>MessageBoxBase</name>
+    <message>
+        <source>OK</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>VolumeView</name>
     <message>
         <source>Unmute</source>

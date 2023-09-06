@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
+<TS version="2.1" language="zh_HK" sourcelanguage="en_US">
 <context>
     <name>BasicInputInterface</name>
     <message>
@@ -270,6 +270,29 @@
     </message>
 </context>
 <context>
+    <name>CustomMessageBox</name>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="182"/>
+        <source>Open URL</source>
+        <translation>打開 URL</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="185"/>
+        <source>Enter the URL of a file, stream, or playlist</source>
+        <translation>輸入文件、流或者播放列表的 URL</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="193"/>
+        <source>Open</source>
+        <translation>打開</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="194"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>DateTimeInterface</name>
     <message>
         <location filename="../../view/date_time_interface.py" line="37"/>
@@ -310,103 +333,108 @@
 <context>
     <name>DialogInterface</name>
     <message>
-        <location filename="../../view/dialog_interface.py" line="38"/>
+        <location filename="../../view/dialog_interface.py" line="47"/>
         <source>Show dialog</source>
         <translation>顯示對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="24"/>
+        <location filename="../../view/dialog_interface.py" line="25"/>
         <source>A frameless message box</source>
         <translation>無邊框對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="32"/>
+        <location filename="../../view/dialog_interface.py" line="33"/>
         <source>A message box with mask</source>
         <translation>帶遮罩的對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="40"/>
+        <location filename="../../view/dialog_interface.py" line="49"/>
         <source>A color dialog</source>
         <translation>顏色對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="79"/>
+        <location filename="../../view/dialog_interface.py" line="88"/>
         <source>This is a frameless message dialog</source>
         <translation>這是一個無邊框對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="90"/>
+        <location filename="../../view/dialog_interface.py" line="99"/>
         <source>If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.</source>
         <translation>一生消えない傷でいいな，絆創膏の様にいつも包んでよ。貴方のそばでわがまま言いたいな，一分一秒刻み貴方を知り，あたしをあげる~</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="99"/>
+        <location filename="../../view/dialog_interface.py" line="113"/>
         <source>Choose color</source>
         <translation>選擇顏色</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="89"/>
+        <location filename="../../view/dialog_interface.py" line="98"/>
         <source>This is a message dialog with mask</source>
         <translation>這是一個帶遮罩的對話框</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="70"/>
+        <location filename="../../view/dialog_interface.py" line="79"/>
         <source>Show teaching tip</source>
         <translation>顯示氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="64"/>
+        <location filename="../../view/dialog_interface.py" line="73"/>
         <source>A teaching tip</source>
         <translation>氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="104"/>
+        <location filename="../../view/dialog_interface.py" line="118"/>
         <source>With respect, let&apos;s advance towards a new stage of the spin.</source>
         <translation>表達敬意吧，表達出敬意，然後邁向回旋的另一個全新階段！</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="117"/>
+        <location filename="../../view/dialog_interface.py" line="131"/>
         <source>The shortest shortcut is to take a detour.</source>
         <translation>最短的捷徑就是繞遠路，繞遠路才是我的最短捷徑。</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="72"/>
+        <location filename="../../view/dialog_interface.py" line="81"/>
         <source>A teaching tip with image and button</source>
         <translation>帶圖片和按鈕的氣泡彈窗</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="54"/>
+        <location filename="../../view/dialog_interface.py" line="63"/>
         <source>Show flyout</source>
         <translation>顯示浮出控件</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="48"/>
+        <location filename="../../view/dialog_interface.py" line="57"/>
         <source>A simple flyout</source>
         <translation>簡單的浮出控件</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="56"/>
+        <location filename="../../view/dialog_interface.py" line="65"/>
         <source>A flyout with image and button</source>
         <translation>帶圖片和按鈕的浮出控件</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="134"/>
+        <location filename="../../view/dialog_interface.py" line="148"/>
         <source>Believe in the spin, just keep believing!</source>
         <translation>相信回旋吧，隻管相信就是了！</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="143"/>
+        <location filename="../../view/dialog_interface.py" line="157"/>
         <source>Julius·Zeppeli</source>
         <translation>傑洛·齊貝林</translation>
     </message>
     <message>
-        <location filename="../../view/dialog_interface.py" line="143"/>
+        <location filename="../../view/dialog_interface.py" line="157"/>
         <source>Where the tennis ball will land when it touches the net, no one can predict.
 If that moment comes, I hope the &apos;goddess&apos; exists.
 In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>觸網而起的網球會落到哪一側，誰也無法知曉。
 如果那種時刻到來，我希望「女神」是存在的。
 這樣的話，不管網球落到哪一邊，我都會坦然接受的吧。</translation>
+    </message>
+    <message>
+        <location filename="../../view/dialog_interface.py" line="41"/>
+        <source>A custom message box</source>
+        <translation>自定義對話框</translation>
     </message>
 </context>
 <context>
@@ -954,14 +982,14 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>學習資料</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="27"/>
+        <location filename="../../view/navigation_view_interface.py" line="28"/>
         <source>Janpanese Sensei</source>
-        <translation>霓虹老師</translation>
+        <translation>霓虹國老師</translation>
     </message>
     <message>
         <location filename="../../view/navigation_view_interface.py" line="28"/>
         <source>Action Film</source>
-        <translation>動作電影</translation>
+        <translation>動作類型電影</translation>
     </message>
     <message>
         <location filename="../../view/navigation_view_interface.py" line="28"/>
@@ -969,19 +997,19 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>G Cup</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>Mikami Yua</source>
         <translation>三上老師</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>Folder1</source>
-        <translation>文件夾1</translation>
+        <translation>文件夾 1</translation>
     </message>
     <message>
         <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>Folder2</source>
-        <translation>文件夾2</translation>
+        <translation>文件夾 2</translation>
     </message>
     <message>
         <location filename="../../view/navigation_view_interface.py" line="34"/>
