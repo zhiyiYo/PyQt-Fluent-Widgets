@@ -116,7 +116,7 @@ class TeachingTip(QWidget):
     """ Teaching tip """
 
     def __init__(self, view: FlyoutViewBase, target: QWidget, duration=1000,
-                 tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
+                 tailPosition=TeachingTipTailPosition.BOTTOM, parent=None, isDeleteOnClose=True):
         """
         Parameters
         ----------
@@ -135,10 +135,14 @@ class TeachingTip(QWidget):
 
         parent: QWidget
             parent widget
+
+        isDeleteOnClose: bool
+            whether delete flyout automatically when flyout is closed
         """
         super().__init__(parent=parent)
         self.target = target
         self.duration = duration
+        self.isDeleteOnClose = isDeleteOnClose
         self.manager = TeachingTipManager.make(tailPosition)
 
         self.hBoxLayout = QHBoxLayout(self)
@@ -186,6 +190,12 @@ class TeachingTip(QWidget):
         self.opacityAni.start()
         super().showEvent(e)
 
+    def closeEvent(self, e):
+        if self.isDeleteOnClose:
+            self.deleteLater()
+
+        super().closeEvent(e)
+
     def eventFilter(self, obj, e: QEvent):
         if self.parent() and obj is self.parent().window():
             if e.type() in [QEvent.Type.Resize, QEvent.Type.WindowStateChange, QEvent.Type.Move]:
@@ -207,7 +217,7 @@ class TeachingTip(QWidget):
 
     @classmethod
     def make(cls, view: FlyoutViewBase, target: QWidget, duration=1000, tailPosition=TeachingTipTailPosition.BOTTOM,
-             parent=None):
+             parent=None, isDeleteOnClose=True):
         """
         Parameters
         ----------
@@ -226,15 +236,18 @@ class TeachingTip(QWidget):
 
         parent: QWidget
             parent widget
+
+        isDeleteOnClose: bool
+            whether delete flyout automatically when flyout is closed
         """
-        w = cls(view, target, duration, tailPosition, parent)
+        w = cls(view, target, duration, tailPosition, parent, isDeleteOnClose)
         w.show()
         return w
 
     @classmethod
     def create(cls, target: QWidget, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
                image: Union[str, QPixmap, QImage] = None, isClosable=True, duration=1000,
-               tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
+               tailPosition=TeachingTipTailPosition.BOTTOM, parent=None, isDeleteOnClose=True):
         """
         Parameters
         ----------
@@ -262,9 +275,12 @@ class TeachingTip(QWidget):
 
         parent: QWidget
             parent widget
+
+        isDeleteOnClose: bool
+            whether delete flyout automatically when flyout is closed
         """
         view = TeachingTipView(title, content, icon, image, isClosable, tailPosition)
-        w = cls.make(view, target, duration, tailPosition, parent)
+        w = cls.make(view, target, duration, tailPosition, parent, isDeleteOnClose)
         view.closed.connect(w.close)
         return w
 
@@ -273,8 +289,8 @@ class PopupTeachingTip(TeachingTip):
     """ Pop up teaching tip """
 
     def __init__(self, view: FlyoutViewBase, target: QWidget, duration=1000,
-                 tailPosition=TeachingTipTailPosition.BOTTOM, parent=None):
-        super().__init__(view, target, duration, tailPosition, parent)
+                 tailPosition=TeachingTipTailPosition.BOTTOM, parent=None, isDeleteOnClose=True):
+        super().__init__(view, target, duration, tailPosition, parent, isDeleteOnClose)
         self.setWindowFlags(Qt.WindowType.Popup |
                             Qt.WindowType.FramelessWindowHint |
                             Qt.WindowType.NoDropShadowWindowHint)

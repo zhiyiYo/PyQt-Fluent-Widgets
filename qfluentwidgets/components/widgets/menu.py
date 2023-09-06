@@ -402,9 +402,11 @@ class RoundMenu(QMenu):
         """ create menu action item  """
         if not before:
             self._actions.append(action)
+            super().addAction(action)
         elif before in self._actions:
             index = self._actions.index(before)
             self._actions.insert(index, action)
+            super().insertAction(before, action)
         else:
             raise ValueError('`before` is not in the action list')
 
@@ -504,6 +506,7 @@ class RoundMenu(QMenu):
         action.setProperty('item', None)
         item = self.view.takeItem(index)
         item.setData(Qt.ItemDataRole.UserRole, None)
+        super().removeAction(action)
 
         # delete widget
         widget = self.view.itemWidget(item)
@@ -729,6 +732,9 @@ class RoundMenu(QMenu):
             y = self.y() - h + m.bottom()
 
         self.move(x, y)
+
+    def paintEvent(self, e):
+        pass
 
 
 class MenuAnimationManager(QObject):

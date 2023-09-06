@@ -163,13 +163,23 @@ class ScrollViewBase(QListWidget):
         self.setItemDelegate(self.delegate)
         self.setViewMode(QListWidget.ViewMode.IconMode)
         self.setResizeMode(QListWidget.ResizeMode.Adjust)
+
+        self.vScrollBar.ani.finished.connect(self._onFirstScrollFinished)
+        self.vScrollBar.setScrollAnimation(1)
         self.setDate(self.date)
 
-        self.vScrollBar.setScrollAnimation(300, QEasingCurve.Type.OutQuad)
         self.vScrollBar.setForceHidden(True)
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+    def _onFirstScrollFinished(self):
+        self.vScrollBar.setScrollAnimation(300, QEasingCurve.Type.OutQuad)
+        self.vScrollBar.ani.disconnect()
+
+    def _onFirstScrollFinished(self):
+        self.vScrollBar.setScrollAnimation(300, QEasingCurve.Type.OutQuad)
+        self.vScrollBar.ani.disconnect()
 
     def scrollUp(self):
         self.scrollToPage(self.currentPage - 1)
@@ -204,7 +214,13 @@ class ScrollViewBase(QListWidget):
         self.viewport().update()
 
     def wheelEvent(self, e):
-        pass
+        if self.vScrollBar.ani.state() == QPropertyAnimation.Running:
+            return
+
+        if e.angleDelta().y() < 0:
+            self.scrollDown()
+        else:
+            self.scrollUp()
 
     def mousePressEvent(self, e):
         super().mousePressEvent(e)
@@ -535,6 +551,7 @@ class CalendarView(QWidget):
         self.setWindowFlags(Qt.WindowType.Popup | Qt.WindowType.FramelessWindowHint |
                             Qt.WindowType.NoDropShadowWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose, True)
 
         self.stackedWidget.addWidget(self.dayView)
         self.stackedWidget.addWidget(self.monthView)

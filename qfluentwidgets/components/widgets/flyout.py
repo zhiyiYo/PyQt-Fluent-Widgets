@@ -200,11 +200,14 @@ class FlyoutView(FlyoutViewBase):
 class Flyout(QWidget):
     """ Flyout """
 
-    def __init__(self, view: FlyoutViewBase, parent=None):
+    closed = pyqtSignal()
+
+    def __init__(self, view: FlyoutViewBase, parent=None, isDeleteOnClose=True):
         super().__init__(parent=parent)
         self.view = view
         self.hBoxLayout = QHBoxLayout(self)
         self.aniManager = None  # type: FlyoutAnimationManager
+        self.isDeleteOnClose = isDeleteOnClose
 
         self.hBoxLayout.setContentsMargins(15, 8, 15, 20)
         self.hBoxLayout.addWidget(self.view)
@@ -225,6 +228,13 @@ class Flyout(QWidget):
         self.view.setGraphicsEffect(None)
         self.view.setGraphicsEffect(self.shadowEffect)
 
+    def closeEvent(self, e):
+        if self.isDeleteOnClose:
+            self.deleteLater()
+
+        super().closeEvent(e)
+        self.closed.emit()
+
     def exec(self, pos: QPoint, aniType=FlyoutAnimationType.PULL_UP):
         """ show calendar view """
         self.aniManager = FlyoutAnimationManager.make(aniType, self)
@@ -233,7 +243,7 @@ class Flyout(QWidget):
 
     @classmethod
     def make(cls, view: FlyoutViewBase, target: Union[QWidget, QPoint] = None, parent=None,
-             aniType=FlyoutAnimationType.PULL_UP):
+             aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True):
         """ create and show a flyout
 
         Parameters
@@ -249,8 +259,11 @@ class Flyout(QWidget):
 
         aniType: FlyoutAnimationType
             flyout animation type
+
+        isDeleteOnClose: bool
+            whether delete flyout automatically when flyout is closed
         """
-        w = Flyout(view, parent)
+        w = Flyout(view, parent, isDeleteOnClose)
 
         if target is None:
             return w
@@ -268,7 +281,7 @@ class Flyout(QWidget):
     @classmethod
     def create(cls, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
                image: Union[str, QPixmap, QImage] = None, isClosable=False, target: Union[QWidget, QPoint] = None,
-               parent=None, aniType=FlyoutAnimationType.PULL_UP):
+               parent=None, aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True):
         """ create and show a flyout using the default view
 
         Parameters
@@ -296,9 +309,12 @@ class Flyout(QWidget):
 
         aniType: FlyoutAnimationType
             flyout animation type
+
+        isDeleteOnClose: bool
+            whether delete flyout automatically when flyout is closed
         """
         view = FlyoutView(title, content, icon, image, isClosable)
-        w = cls.make(view, target, parent, aniType)
+        w = cls.make(view, target, parent, aniType, isDeleteOnClose)
         view.closed.connect(w.close)
         return w
 

@@ -1,5 +1,5 @@
 ExpandSettingCard {
-    border: 1px solid rgb(35, 35, 35);
+    border: 1px solid transparent;
     border-radius: 6px;
     background-color: transparent;
 }
@@ -16,20 +16,6 @@ ExpandSettingCard {
     background-color: transparent;
 }
 
-ExpandSettingCard[isExpand=false]>SettingCard {
-    border: 1px solid rgb(35, 35, 35);
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.051);
-}
-
-ExpandSettingCard[isExpand=true]>SettingCard {
-    border: 1px solid rgb(35, 35, 35);
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    background-color: rgba(255, 255, 255, 0.051);
-}
 
 QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';

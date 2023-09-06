@@ -83,6 +83,20 @@ class SettingCard(QFrame):
         """ set the value of config item """
         pass
 
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+
+        if isDarkTheme():
+            painter.setBrush(QColor(255, 255, 255, 13))
+            painter.setPen(QColor(0, 0, 0, 50))
+        else:
+            painter.setBrush(QColor(255, 255, 255, 170))
+            painter.setPen(QColor(0, 0, 0, 19))
+
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 6, 6)
+
+
 
 class SwitchSettingCard(SettingCard):
     """ Setting card with switch button """

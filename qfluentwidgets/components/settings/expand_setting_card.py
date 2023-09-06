@@ -1,8 +1,7 @@
 # coding:utf-8
 from typing import Union
-from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
-from PyQt6.QtGui import QColor, QPainter
+from PyQt6.QtGui import QColor, QPainter, QIcon, QPainterPath
 from PyQt6.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout
 
 from ...common.config import isDarkTheme
@@ -93,20 +92,115 @@ class SpaceWidget(QWidget):
         self.setFixedHeight(1)
 
 
+class HeaderSettingCard(SettingCard):
+    """ Header setting card """
+
+    def __init__(self, icon, title, content=None, parent=None):
+        super().__init__(icon, title, content, parent)
+        self.expandButton = ExpandButton(self)
+
+        self.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addSpacing(8)
+
+        self.installEventFilter(self)
+
+    def eventFilter(self, obj, e):
+        if obj is self:
+            if e.type() == QEvent.Type.Enter:
+                self.expandButton.setHover(True)
+            elif e.type() == QEvent.Type.Leave:
+                self.expandButton.setHover(False)
+            elif e.type() == QEvent.Type.MouseButtonPress and e.button() == Qt.MouseButton.LeftButton:
+                self.expandButton.setPressed(True)
+            elif e.type() == QEvent.Type.MouseButtonRelease and e.button() == Qt.MouseButton.LeftButton:
+                self.expandButton.setPressed(False)
+                self.expandButton.click()
+
+        return super().eventFilter(obj, e)
+
+    def addWidget(self, widget: QWidget):
+        """ add widget to tail """
+        N = self.hBoxLayout.count()
+        self.hBoxLayout.removeItem(self.hBoxLayout.itemAt(N - 1))
+        self.hBoxLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addSpacing(19)
+        self.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addSpacing(8)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+
+        if isDarkTheme():
+            painter.setBrush(QColor(255, 255, 255, 13))
+        else:
+            painter.setBrush(QColor(255, 255, 255, 170))
+
+        p = self.parent()  # type: ExpandSettingCard
+        path = QPainterPath()
+        path.setFillRule(Qt.FillRule.WindingFill)
+        path.addRoundedRect(QRectF(self.rect().adjusted(1, 1, -1, -1)), 6, 6)
+
+        # set the bottom border radius to 0 if parent is expanded
+        if p.isExpand:
+            path.addRect(1, self.height() - 8, self.width() - 2, 8)
+
+        painter.drawPath(path.simplified())
+
+
+class ExpandBorderWidget(QWidget):
+    """ Expand setting card border widget """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+        parent.installEventFilter(self)
+
+    def eventFilter(self, obj, e):
+        if obj is self.parent() and e.type() == QEvent.Type.Resize:
+            self.resize(e.size())
+
+        return super().eventFilter(obj, e)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setBrush(Qt.BrushStyle.NoBrush)
+
+        if isDarkTheme():
+            painter.setPen(QColor(0, 0, 0, 50))
+        else:
+            painter.setPen(QColor(0, 0, 0, 19))
+
+        p = self.parent()  # type: ExpandSettingCard
+        r, d = 6, 12
+        ch, h, w = p.card.height(), self.height(), self.width()
+
+        # only draw rounded rect if parent is not expanded
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
+
+        # draw the seperator line under card widget
+        if ch < h:
+            painter.drawLine(1, ch, w - 1, ch)
+
+
+
 class ExpandSettingCard(QScrollArea):
     """ Expandable setting card """
 
     def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
         super().__init__(parent=parent)
         self.isExpand = False
-        self.expandButton = ExpandButton(self)
+
         self.scrollWidget = QFrame(self)
         self.view = QFrame(self.scrollWidget)
-        self.card = SettingCard(icon, title, content, self)
+        self.card = HeaderSettingCard(icon, title, content, self)
 
         self.scrollLayout = QVBoxLayout(self.scrollWidget)
         self.viewLayout = QVBoxLayout(self.view)
         self.spaceWidget = SpaceWidget(self.scrollWidget)
+        self.borderWidget = ExpandBorderWidget(self)
 
         # expand animation
         self.expandAni = QPropertyAnimation(self.verticalScrollBar(), b'value', self)
@@ -128,9 +222,6 @@ class ExpandSettingCard(QScrollArea):
         self.scrollLayout.addWidget(self.view)
         self.scrollLayout.addWidget(self.spaceWidget)
 
-        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
-        self.card.hBoxLayout.addSpacing(8)
-
         # initialize expand animation
         self.expandAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.expandAni.setDuration(200)
@@ -144,15 +235,11 @@ class ExpandSettingCard(QScrollArea):
 
         self.card.installEventFilter(self)
         self.expandAni.valueChanged.connect(self._onExpandValueChanged)
-        self.expandButton.clicked.connect(self.toggleExpand)
+        self.card.expandButton.clicked.connect(self.toggleExpand)
 
     def addWidget(self, widget: QWidget):
         """ add widget to tail """
-        self.card.hBoxLayout.removeItem(self.card.hBoxLayout.itemAt(-1))
-        self.card.hBoxLayout.addWidget(widget, 0, Qt.AlignmentFlag.AlignRight)
-        self.card.hBoxLayout.addSpacing(19)
-        self.card.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignmentFlag.AlignRight)
-        self.card.hBoxLayout.addSpacing(8)
+        self.card.addWidget(widget)
 
     def wheelEvent(self, e):
         pass
@@ -186,20 +273,6 @@ class ExpandSettingCard(QScrollArea):
     def resizeEvent(self, e):
         self.card.resize(self.width(), self.card.height())
 
-    def eventFilter(self, obj, e):
-        if obj is self.card:
-            if e.type() == QEvent.Type.Enter:
-                self.expandButton.setHover(True)
-            elif e.type() == QEvent.Type.Leave:
-                self.expandButton.setHover(False)
-            elif e.type() == QEvent.Type.MouseButtonPress and e.button() == Qt.MouseButton.LeftButton:
-                self.expandButton.setPressed(True)
-            elif e.type() == QEvent.Type.MouseButtonRelease and e.button() == Qt.MouseButton.LeftButton:
-                self.expandButton.setPressed(False)
-                self.expandButton.click()
-
-        return super().eventFilter(obj, e)
-
     def _onExpandValueChanged(self):
         vh = self.viewLayout.sizeHint().height()
         h = self.viewportMargins().top()
@@ -228,8 +301,13 @@ class GroupSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        c = 35 if isDarkTheme() else 230
-        painter.setPen(QColor(c, c, c))
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+
+        if isDarkTheme():
+            painter.setPen(QColor(0, 0, 0, 50))
+        else:
+            painter.setPen(QColor(0, 0, 0, 19))
+
         painter.drawLine(0, 1, self.width(), 1)
 
 

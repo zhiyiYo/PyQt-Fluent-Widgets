@@ -136,9 +136,9 @@ class MenuInterface(GalleryInterface):
 
         # insert actions
         menu.insertAction(
-            menu.menuActions()[-1], Action(FIF.SETTING, self.tr('Settings')))
+            menu.actions()[-1], Action(FIF.SETTING, self.tr('Settings')))
         menu.insertActions(
-            menu.menuActions()[-1],
+            menu.actions()[-1],
             [
                 Action(FIF.HELP, self.tr('Help')),
                 Action(FIF.FEEDBACK, self.tr('Feedback'))
