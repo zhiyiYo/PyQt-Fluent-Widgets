@@ -25,14 +25,14 @@ class ViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('A simple ListView'),
             widget=ListFrame(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/list_view/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/view/list_view/demo.py'
         )
 
         # table view
         self.addExampleCard(
             title=self.tr('A simple TableView'),
             widget=TableFrame(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/table_view/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/view/table_view/demo.py'
         )
 
         # tree view
@@ -40,14 +40,14 @@ class ViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('A simple TreeView'),
             widget=frame,
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tree_view/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/view/tree_view/demo.py'
         )
 
         frame = TreeFrame(self, True)
         self.addExampleCard(
             title=self.tr('A TreeView with Multi-selection enabled'),
             widget=frame,
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tree_view/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/view/tree_view/demo.py'
         )
 
         # flip view
@@ -61,7 +61,7 @@ class ViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('Flip view'),
             widget=w,
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/flip_view/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/view/flip_view/demo.py'
         )
 
 

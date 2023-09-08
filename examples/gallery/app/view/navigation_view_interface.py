@@ -34,26 +34,26 @@ class NavigationViewInterface(GalleryInterface):
         self.addExampleCard(
             title=self.tr('Breadcrumb bar'),
             widget=breadcrumb,
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/breadcrumb_bar/demo.py',
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/breadcrumb_bar/demo.py',
             stretch=1
         )
 
         self.addExampleCard(
             title=self.tr('A basic pivot'),
             widget=PivotInterface(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pivot/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/pivot/demo.py'
         )
 
         self.addExampleCard(
             title=self.tr('A segmented control'),
             widget=SegmentedInterface(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/segmented_widget/demo.py'
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/segmented_widget/demo.py'
         )
 
         card = self.addExampleCard(
             title=self.tr('A tab bar'),
             widget=TabInterface(self),
-            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/tab_view/demo.py',
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/tab_view/demo.py',
             stretch=1
         )
         card.topLayout.setContentsMargins(12, 0, 0, 0)
