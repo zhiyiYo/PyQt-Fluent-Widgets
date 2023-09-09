@@ -34,7 +34,7 @@ class ScrollInterface(GalleryInterface):
         card = self.addExampleCard(
             self.tr('Smooth scroll area'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll_area/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll/scroll_area/demo.py',
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is too hot 🥵'))
@@ -51,7 +51,7 @@ class ScrollInterface(GalleryInterface):
         card = self.addExampleCard(
             self.tr('Smooth scroll area implemented by animation'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/scroll_area/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll/scroll_area/demo.py',
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵'))
@@ -68,7 +68,7 @@ class ScrollInterface(GalleryInterface):
         card = self.addExampleCard(
             self.tr('Single direction scroll scroll area'),
             w,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/scroll_area/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll/scroll_area/demo.py',
         )
         card.card.installEventFilter(ToolTipFilter(card.card, showDelay=500))
         card.card.setToolTip(self.tr('Chitanda Eru is so hot 🥵🥵🥵'))
@@ -82,6 +82,6 @@ class ScrollInterface(GalleryInterface):
         card = self.addExampleCard(
             self.tr('Pips pager'),
             pager,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/pips_pager/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/scroll/pips_pager/demo.py',
         )
         card.topLayout.setContentsMargins(12, 20, 12, 20)
