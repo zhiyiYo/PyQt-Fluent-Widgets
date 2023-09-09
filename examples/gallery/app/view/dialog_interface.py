@@ -25,7 +25,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A frameless message box'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/dialog/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -33,7 +33,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A message box with mask'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/message_dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/message_dialog/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -41,7 +41,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A custom message box'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/custom_message_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/custom_message_box/demo.py'
         )
 
         button = PushButton(self.tr('Show dialog'))
@@ -49,7 +49,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A color dialog'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/color_dialog/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/color_dialog/demo.py'
         )
 
         self.simpleFlyoutButton = PushButton(self.tr('Show flyout'))
@@ -57,7 +57,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple flyout'),
             self.simpleFlyoutButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/flyout/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/flyout/demo.py'
         )
 
         self.complexFlyoutButton = PushButton(self.tr('Show flyout'))
@@ -65,7 +65,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A flyout with image and button'),
             self.complexFlyoutButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/flyout/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/flyout/demo.py'
         )
 
         self.teachingButton = PushButton(self.tr('Show teaching tip'))
@@ -73,7 +73,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A teaching tip'),
             self.teachingButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/teaching_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/teaching_tip/demo.py'
         )
 
         self.teachingRightButton = PushButton(self.tr('Show teaching tip'))
@@ -81,7 +81,7 @@ class DialogInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A teaching tip with image and button'),
             self.teachingRightButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/teaching_tip/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/dialog_flyout/teaching_tip/demo.py'
         )
 
     def showDialog(self):

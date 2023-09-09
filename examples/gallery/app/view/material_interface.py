@@ -30,7 +30,7 @@ class MaterialInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Acrylic label'),
             self.label,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/acrylic_label/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide2/examples/material/acrylic_label/demo.py',
             stretch=1
         )
 
