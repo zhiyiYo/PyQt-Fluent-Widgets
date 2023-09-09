@@ -21,14 +21,14 @@ class LayoutInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Flow layout without animation'),
             self.createWidget(),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/flow_layout/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/layout/flow_layout/demo.py',
             stretch=1
         )
 
         self.addExampleCard(
             self.tr('Flow layout with animation'),
             self.createWidget(True),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/flow_layout/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/layout/flow_layout/demo.py',
             stretch=1
         )
 

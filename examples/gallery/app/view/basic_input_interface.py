@@ -29,7 +29,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple button with text content'),
             PushButton(self.tr('Standard push button')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # tool button
@@ -39,21 +39,21 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A button with graphical content'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # primary color push button
         self.addExampleCard(
             self.tr('Accent style applied to push button'),
             PrimaryPushButton(self.tr('Accent style button')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # primary color tool button
         self.addExampleCard(
             self.tr('Accent style applied to tool button'),
             PrimaryToolButton(FluentIcon.BASKETBALL),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # pill push button
@@ -81,14 +81,14 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A transparent tool button'),
             TransparentToolButton(FluentIcon.BOOK_SHELF, self),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # 2-state check box
         self.addExampleCard(
             self.tr('A 2-state CheckBox'),
             CheckBox(self.tr('Two-state CheckBox')),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/check_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/check_box/demo.py'
         )
 
         # 3-state check box
@@ -97,7 +97,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A 3-state CheckBox'),
             checkBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/check_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/check_box/demo.py'
         )
 
         # combo box
@@ -108,7 +108,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A ComboBox with items'),
             comboBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/combo_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/combo_box/demo.py'
         )
 
         # editable combo box
@@ -124,7 +124,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('An editable ComboBox'),
             comboBox,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/combo_box/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/combo_box/demo.py'
         )
 
         # drop down button
@@ -136,7 +136,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         button = DropDownToolButton(FluentIcon.MAIL, self)
@@ -144,7 +144,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # primary color drop down button
@@ -153,7 +153,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A primary color push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         button = PrimaryDropDownToolButton(FluentIcon.MAIL, self)
@@ -161,7 +161,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A primary color tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # transparent drop down button
@@ -209,7 +209,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A group of RadioButton controls in a button group'),
             radioWidget,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/radio_button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/radio_button/demo.py'
         )
 
         # horizontal slider
@@ -220,7 +220,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple horizontal slider'),
             slider,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/slider/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/slider/demo.py'
         )
 
         # split button
@@ -229,7 +229,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A split push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         ikunMenu = RoundMenu(parent=self)
@@ -245,7 +245,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A split tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # primary color split button
@@ -254,7 +254,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A primary color split push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         button = PrimarySplitToolButton(FluentIcon.BASKETBALL, self)
@@ -262,7 +262,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A primary color split tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # switch button
@@ -271,14 +271,14 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A simple switch button'),
             self.switchButton,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/switch_button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/switch_button/demo.py'
         )
 
         # toggle button
         self.addExampleCard(
             self.tr('A simple toggle push button'),
             ToggleButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/basic_input/button/demo.py'
         )
 
         # toggle tool button

@@ -67,12 +67,12 @@ class CommandButton(TransparentToggleToolButton):
 
     def setAction(self, action: QAction):
         self._action = action
+        self._onActionChanged()
+
         self.clicked.connect(action.trigger)
         action.toggled.connect(self._onActionToggled)
         action.changed.connect(self._onActionChanged)
 
-        # set tool tip
-        self.setToolTip(action.toolTip())
         self.installEventFilter(CommandToolTipFilter(self, 700))
 
     def _onActionChanged(self):
@@ -80,6 +80,7 @@ class CommandButton(TransparentToggleToolButton):
         self.setIcon(action.icon())
         self.setText(action.text())
         self.setToolTip(action.toolTip())
+        self.setEnabled(action.isEnabled())
 
     def _onActionToggled(self, isChecked: bool):
         self.setCheckable(True)
@@ -99,6 +100,11 @@ class CommandButton(TransparentToggleToolButton):
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
         else:
             painter.setPen(Qt.black if isDarkTheme() else Qt.white)
+
+        if not self.isEnabled():
+            painter.setOpacity(0.43)
+        elif self.isPressed:
+            painter.setOpacity(0.63)
 
         # draw icon and text
         style = self.toolButtonStyle()
@@ -325,8 +331,7 @@ class CommandBar(QFrame):
 
     def _createButton(self, action: QAction):
         """ create command button """
-        button = CommandButton(action.icon(), self)
-        button.setText(action.text())
+        button = CommandButton(self)
         button.setAction(action)
         button.setToolButtonStyle(self.toolButtonStyle())
         button.setTight(self.isButtonTight())

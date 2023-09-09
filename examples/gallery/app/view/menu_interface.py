@@ -52,7 +52,7 @@ class MenuInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Rounded corners menu'),
             self.button1,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/menu/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/menu/demo.py'
         )
 
         # custom widget menu
@@ -63,7 +63,7 @@ class MenuInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Rounded corners menu with custom widget'),
             self.button3,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/widget_menu/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/widget_menu/demo.py'
         )
 
 
@@ -75,14 +75,14 @@ class MenuInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Checkable menu'),
             self.button2,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/menu/demo.py'
         )
 
         # command bar
         self.addExampleCard(
             self.tr('Command bar'),
             self.createCommandBar(),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/menu/command_bar.py',
             stretch=1
         )
 
@@ -104,7 +104,7 @@ class MenuInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Command bar flyout'),
             widget,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/demo.py',
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/menu/command_bar/demo.py',
             stretch=1
         )
 
