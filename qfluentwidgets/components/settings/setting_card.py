@@ -15,6 +15,7 @@ from ..widgets.button import HyperlinkButton
 from ...common.style_sheet import FluentStyleSheet
 from ...common.config import qconfig, isDarkTheme, ConfigItem, OptionsConfigItem
 from ...common.icon import FluentIconBase
+from ...components.widgets.line_edit import LineEdit
 
 
 class SettingCard(QFrame):
@@ -430,3 +431,59 @@ class ComboBoxSettingCard(SettingCard):
 
         self.comboBox.setCurrentText(self.optionToText[value])
         qconfig.set(self.configItem, value)
+
+class LineEditSettingCard(SettingCard):
+    contentChanged = pyqtSignal(str)
+
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], title, configItem: ConfigItem, tip=None,
+                 placeholder: str = "", parent=None):
+        """
+        Parameters
+        ----------
+        icon: str | QIcon | FluentIconBase
+            the icon to be drawn
+
+        title: str
+            the title of card
+
+        configItem: ConfigItem
+            configuration item operated by the card
+
+        tip: str
+            the tip of card
+
+        placeholder: str
+            the placeholder of lineEdit
+
+        parent: QWidget
+            parent widget
+        """
+        super().__init__(icon, title, tip, parent)
+        self.configItem = configItem
+        self.lineEdit = LineEdit(self)
+        self.lineEdit.setPlaceholderText(placeholder)
+
+        if configItem:
+            self.lineEdit.setText(qconfig.get(configItem))
+            self.setValue(qconfig.get(configItem))
+            configItem.valueChanged.connect(self.setValue)
+
+        # add lineEdit widget to layout
+        self.hBoxLayout.addWidget(self.lineEdit, 0, Qt.AlignmentFlag.AlignRight)
+        self.hBoxLayout.addSpacing(16)
+
+        self.lineEdit.editingFinished.connect(self.__onEditingFinished)
+
+    def __onEditingFinished(self):
+        """ lineEdit editing finished signal slot """
+        text = self.lineEdit.text()
+        self.setValue(text)
+        self.contentChanged.emit(text)
+
+    def setValue(self, value):
+        """ set the value of lineEdit """
+        if self.configItem:
+            qconfig.set(self.configItem, value)
+
+        self.lineEdit.setText(value)
+
