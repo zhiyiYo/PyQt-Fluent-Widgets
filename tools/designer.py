@@ -65,10 +65,15 @@ env.insert('PYTHONPATH', str(project_dir))
 if sys.platform == "darwin":
     env.insert('DYLD_LIBRARY_PATH', get_python_lib() + "/../..")
 
+args = []
+for arg in sys.argv:
+    if arg.endswith("ui"):
+        args.append(arg)
+
 # launch QtDesigner
 designer = QProcess()
 designer.setProcessEnvironment(env)
-
-designer.start(get_designer_path(), [])
+# add the arguments to allow .ui files to be opened directly without dragging and dropping in designer
+designer.start(get_designer_path(), args)
 designer.waitForFinished(-1)
 sys.exit(designer.exitCode())
