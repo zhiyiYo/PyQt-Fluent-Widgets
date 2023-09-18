@@ -1011,16 +1011,16 @@ class EditMenu(RoundMenu):
         if QApplication.clipboard().mimeData().hasText():
             if self._parentText():
                 if self._parentSelectedText():
-                    if self.parent().isReadOnly():
+                    if self.parent().isReadOnly:
                         self.addActions([self.copyAct, self.selectAllAct])
                     else:
                         self.addActions(self.action_list)
                 else:
-                    if self.parent().isReadOnly():
+                    if self.parent().isReadOnly:
                         self.addAction(self.selectAllAct)
                     else:
                         self.addActions(self.action_list[2:])
-            elif not self.parent().isReadOnly():
+            elif not self.parent().isReadOnly:
                 self.addAction(self.pasteAct)
             else:
                 return
@@ -1029,13 +1029,13 @@ class EditMenu(RoundMenu):
                 return
 
             if self._parentSelectedText():
-                if self.parent().isReadOnly():
+                if self.parent().isReadOnly:
                     self.addAction([self.copyAct, self.selectAllAct])
                 else:
                     self.addActions(
                         self.action_list[:2] + self.action_list[3:])
             else:
-                if self.parent().isReadOnly():
+                if self.parent().isReadOnly:
                     self.addAction(self.selectAllAct)
                 else:
                     self.addActions(self.action_list[3:])
