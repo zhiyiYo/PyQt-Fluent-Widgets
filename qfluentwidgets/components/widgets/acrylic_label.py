@@ -194,6 +194,9 @@ class AcrylicBrush:
             grabbed region
         """
         screen = QApplication.screenAt(self.device.window().pos())
+        if not screen:
+            screen = QApplication.screens()[0]
+
         x, y, w, h = rect.x(), rect.y(), rect.width(), rect.height()
         self.setImage(screen.grabWindow(0, x, y, w, h))
 
