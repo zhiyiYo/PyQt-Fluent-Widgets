@@ -229,7 +229,7 @@ class MenuActionListWidget(QListWidget):
         for i in range(self.count()):
             item = self.item(i)
             if not self.itemWidget(item):
-                item.setSizeHint(item.sizeHint().width(), height)
+                item.setSizeHint(QSize(item.sizeHint().width(), height))
 
         self._itemHeight = height
         self.adjustSize()
