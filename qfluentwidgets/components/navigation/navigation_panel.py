@@ -2,16 +2,17 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QObject
-from PyQt5.QtGui import QResizeEvent, QIcon
+from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint
+from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
                                 NavigationTreeWidget)
+from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
 from ...common.router import qrouter
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
 
@@ -64,6 +65,9 @@ class NavigationPanel(QFrame):
         self._isMenuButtonVisible = True
         self._isReturnButtonVisible = False
         self._isCollapsible = True
+        self._isAcrylicEnabled = False
+
+        self.acrylicBrush = AcrylicBrush(self, 30)
 
         self.scrollArea = SingleDirectionScrollArea(self)
         self.scrollWidget = QWidget()
@@ -145,6 +149,17 @@ class NavigationPanel(QFrame):
 
         self.topLayout.addWidget(self.returnButton, 0, Qt.AlignTop)
         self.topLayout.addWidget(self.menuButton, 0, Qt.AlignTop)
+
+    def _updateAcrylicColor(self):
+        if isDarkTheme():
+            tintColor = QColor(32, 32, 32, 200)
+            luminosityColor = QColor(0, 0, 0, 0)
+        else:
+            tintColor = QColor(255, 255, 255, 180)
+            luminosityColor = QColor(255, 255, 255, 0)
+
+        self.acrylicBrush.tintColor = tintColor
+        self.acrylicBrush.luminosityColor = luminosityColor
 
     def widget(self, routeKey: str):
         if routeKey not in self.items:
@@ -394,6 +409,19 @@ class NavigationPanel(QFrame):
         self.expandWidth = width
         NavigationWidget.EXPAND_WIDTH = width - 10
 
+    def setAcrylicEnabled(self, isEnabled: bool):
+        if isEnabled == self.isAcrylicEnabled():
+            return
+
+        self._isAcrylicEnabled = isEnabled
+        self.setProperty("transparent", self._canDrawAcrylic())
+        self.setStyle(QApplication.style())
+        self.update()
+
+    def isAcrylicEnabled(self):
+        """ whether the acrylic effect is enabled """
+        return self._isAcrylicEnabled
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
@@ -409,6 +437,12 @@ class NavigationPanel(QFrame):
             self.setProperty('menu', True)
             self.setStyle(QApplication.style())
             self.displayMode = NavigationDisplayMode.MENU
+
+            # grab acrylic image
+            if self._canDrawAcrylic():
+                self.acrylicBrush.grabImage(
+                    QRect(self.mapToGlobal(QPoint()), QSize(self.expandWidth, self.height())))
+
             if not self._parent.isWindow():
                 pos = self.parent().pos()
                 self.setParent(self.window())
@@ -540,6 +574,23 @@ class NavigationPanel(QFrame):
         spacing = self.topLayout.count() * self.topLayout.spacing()
         spacing += self.bottomLayout.count() * self.bottomLayout.spacing()
         return 36 + th + bh + sh + spacing
+
+    def _canDrawAcrylic(self):
+        return self.acrylicBrush.isAvailable() and self.isAcrylicEnabled()
+
+    def paintEvent(self, e):
+        if not self._canDrawAcrylic() or self.displayMode != NavigationDisplayMode.MENU:
+            return super().paintEvent(e)
+
+        path = QPainterPath()
+        path.addRoundedRect(0, 1, self.width() - 1, self.height() - 1, 7, 7)
+        self.acrylicBrush.setClipPath(path)
+
+        self._updateAcrylicColor()
+        self.acrylicBrush.paint()
+
+        super().paintEvent(e)
+
 
 
 class NavigationItemLayout(QVBoxLayout):

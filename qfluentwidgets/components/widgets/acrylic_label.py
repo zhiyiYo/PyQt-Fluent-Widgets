@@ -11,13 +11,18 @@ try:
 
     isAcrylicAvailable = True
 except ImportError as e:
-    warnings.warn(
-        '`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
-
     isAcrylicAvailable = False
 
     def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
         return QPixmap(imagePath)
+
+
+def checkAcrylicAvailability():
+    if not isAcrylicAvailable:
+        warnings.warn(
+            '`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
+
+    return isAcrylicAvailable
 
 
 class BlurCoverThread(QThread):
@@ -119,6 +124,8 @@ class AcrylicLabel(QLabel):
             parent window
         """
         super().__init__(parent=parent)
+        checkAcrylicAvailability()
+
         self.imagePath = ''
         self.blurPixmap = QPixmap()
         self.blurRadius = blurRadius
@@ -209,6 +216,8 @@ class AcrylicBrush:
 
         self.originalImage = image
         if not image.isNull():
+            checkAcrylicAvailability()
+
             self.image = gaussianBlur(image, self.blurRadius)
 
         self.device.update()
