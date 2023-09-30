@@ -138,8 +138,6 @@ class LineEdit(QLineEdit):
         # create menu
         if not self._completerMenu:
             self.setCompleterMenu(CompleterMenu(self))
-            # self._completerMenu = CompleterMenu(self)
-            # self._completerMenu.activated.connect(self._completer.activated)
 
         # add menu items
         self.completer().setCompletionPrefix(self.text())
@@ -203,14 +201,22 @@ class CompleterMenu(RoundMenu):
         if self.items == items and self.isVisible():
             return False
 
-        self.clear()
-        self.items = items
-
-        # add items
-        for i in items:
-            self.addAction(QAction(i, triggered=lambda c, x=i: self.__onItemSelected(x)))
-
+        self.setItems(items)
         return True
+
+    def setItems(self, items: List[str]):
+        """ set completion items """
+        self.clear()
+
+        self.items = items
+        self.view.addItems(items)
+
+        for i in range(self.view.count()):
+            item = self.view.item(i)
+            item.setSizeHint(QSize(1, self.itemHeight))
+
+    def _onItemClicked(self, item):
+        self._hideMenu(False)
 
     def eventFilter(self, obj, e: QEvent):
         if e.type() != QEvent.KeyPress:

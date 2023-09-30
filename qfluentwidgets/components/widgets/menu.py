@@ -202,8 +202,8 @@ class MenuActionListWidget(QListWidget):
         size = QSize()
         for i in range(self.count()):
             s = self.item(i).sizeHint()
-            size.setWidth(max(s.width(), size.width()))
-            size.setHeight(size.height() + s.height())
+            size.setWidth(max(s.width(), size.width(), 1))
+            size.setHeight(max(1, size.height() + s.height()))
 
         # adjust the height of viewport
         w, h = MenuAnimationManager.make(self, aniType).availableViewSize(pos)
