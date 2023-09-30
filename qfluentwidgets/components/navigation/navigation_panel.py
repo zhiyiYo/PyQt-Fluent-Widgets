@@ -583,7 +583,9 @@ class NavigationPanel(QFrame):
             return super().paintEvent(e)
 
         path = QPainterPath()
+        path.setFillRule(Qt.WindingFill)
         path.addRoundedRect(0, 1, self.width() - 1, self.height() - 1, 7, 7)
+        path.addRect(0, 1, 8, self.height() - 1)
         self.acrylicBrush.setClipPath(path)
 
         self._updateAcrylicColor()
