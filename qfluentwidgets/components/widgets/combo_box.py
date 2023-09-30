@@ -296,11 +296,14 @@ class ComboBoxBase(QObject):
             if not self.rect().contains(pos):
                 self.dropMenu = None
 
+    def _createComboMenu(self):
+        return ComboBoxMenu(self)
+
     def _showComboMenu(self):
         if not self.items:
             return
 
-        menu = ComboBoxMenu(self)
+        menu = self._createComboMenu()
         for i, item in enumerate(self.items):
             menu.addAction(
                 QAction(item.icon, item.text, triggered=lambda c, x=i: self._onItemClicked(x)))

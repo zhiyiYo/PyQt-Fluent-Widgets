@@ -120,14 +120,26 @@ class LineEdit(QLineEdit):
         elif self._completerMenu:
             self._completerMenu.close()
 
+    def setCompleterMenu(self, menu):
+        """ set completer menu
+
+        Parameters
+        ----------
+        menu: CompleterMenu
+            completer menu
+        """
+        menu.activated.connect(self._completer.activated)
+        self._completerMenu = menu
+
     def _showCompleterMenu(self):
         if not self.completer() or not self.text():
             return
 
         # create menu
         if not self._completerMenu:
-            self._completerMenu = CompleterMenu(self)
-            self._completerMenu.activated.connect(self._completer.activated)
+            self.setCompleterMenu(CompleterMenu(self))
+            # self._completerMenu = CompleterMenu(self)
+            # self._completerMenu.activated.connect(self._completer.activated)
 
         # add menu items
         self.completer().setCompletionPrefix(self.text())
