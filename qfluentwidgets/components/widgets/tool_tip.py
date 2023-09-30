@@ -39,7 +39,7 @@ class ToolTip(QFrame):
         self.__text = text
         self.__duration = 1000
 
-        self.container = QFrame(self)
+        self.container = self._createContainer()
         self.timer = QTimer(self)
 
         self.setLayout(QHBoxLayout())
@@ -102,6 +102,9 @@ class ToolTip(QFrame):
         FluentStyleSheet.TOOL_TIP.apply(self)
         self.label.adjustSize()
         self.adjustSize()
+
+    def _createContainer(self):
+        return QFrame(self)
 
     def showEvent(self, e):
         self.opacityAni.setStartValue(0)
@@ -277,7 +280,7 @@ class ToolTipFilter(QObject):
             parent = self.parent()  # type: QWidget
             if self._canShowToolTip():
                 if self._tooltip is None:
-                    self._tooltip = ToolTip(parent.toolTip(), parent.window())
+                    self._tooltip = self._createToolTip()
 
                 t = parent.toolTipDuration() if parent.toolTipDuration() > 0 else -1
                 self._tooltip.setDuration(t)
@@ -288,6 +291,9 @@ class ToolTipFilter(QObject):
             self.hideToolTip()
 
         return super().eventFilter(obj, e)
+
+    def _createToolTip(self):
+        return ToolTip(self.parent().toolTip(), self.parent().window())
 
     def hideToolTip(self):
         """ hide tool tip """

@@ -12,6 +12,10 @@ NavigationPanel[menu=false] {
     border-bottom-right-radius: 7px;
 }
 
+NavigationPanel[transparent=true] {
+    background-color: transparent;
+}
+
 QScrollArea, #scrollWidget {
     border: none;
     background-color: transparent;

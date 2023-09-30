@@ -2,10 +2,14 @@ ToolTip {
     border-radius: 4px;
 }
 
-ToolTip > #container {
+ToolTip>#container {
     border: 1px solid rgba(0, 0, 0, 0.06);
     background-color: rgb(243, 243, 243);
     border-radius: 4px;
+}
+
+ToolTip>#container[transparent=true] {
+    background-color: transparent;
 }
 
 

@@ -64,6 +64,7 @@ class ComboBoxBase:
         self._currentIndex = -1
         self._maxVisibleItems = -1
         self.dropMenu = None
+        self._placeholderText = ""
 
         FluentStyleSheet.COMBO_BOX.apply(self)
         self.installEventFilter(self)
@@ -282,11 +283,14 @@ class ComboBoxBase:
             if not self.rect().contains(pos):
                 self.dropMenu = None
 
+    def _createComboMenu(self):
+        return ComboBoxMenu(self)
+
     def _showComboMenu(self):
         if not self.items:
             return
 
-        menu = ComboBoxMenu(self)
+        menu = self._createComboMenu()
         for i, item in enumerate(self.items):
             menu.addAction(
                 QAction(item.icon, item.text, triggered=lambda x=i: self._onItemClicked(x)))
@@ -359,7 +363,17 @@ class ComboBox(QPushButton, ComboBoxBase):
         return super().eventFilter(obj, e)
 
     def setPlaceholderText(self, text: str):
-        self.setText(text)
+        self._placeholderText = text
+
+        if self.currentIndex() <= 0:
+            self.setText(text)
+
+    def setCurrentIndex(self, index: int):
+        if index < 0:
+            self._currentIndex = -1
+            self.setPlaceholderText(self._placeholderText)
+        else:
+            super().setCurrentIndex(index)
 
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
@@ -409,8 +423,20 @@ class EditableComboBox(LineEdit, ComboBoxBase):
     def currentText(self):
         return self.text()
 
+    def setCurrentIndex(self, index: int):
+        if index < 0:
+            self._currentIndex = -1
+            self.setText("")
+            self.setPlaceholderText(self._placeholderText)
+        else:
+            super().setCurrentIndex(index)
+
     def clear(self):
         ComboBoxBase.clear(self)
+
+    def setPlaceholderText(self, text: str):
+        self._placeholderText = text
+        super().setPlaceholderText(text)
 
     def _onReturnPressed(self):
         if not self.text():
