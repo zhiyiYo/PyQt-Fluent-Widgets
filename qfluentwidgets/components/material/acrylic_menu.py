@@ -1,7 +1,7 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, QRect, QRectF, QSize
 from PyQt5.QtGui import QPainter, QColor, QPainterPath
-from PyQt5.QtWidgets import QLineEdit, QListWidgetItem, QAction
+from PyQt5.QtWidgets import QLineEdit, QListWidgetItem, QListWidget
 
 from ..widgets.menu  import (RoundMenu, MenuAnimationType, MenuAnimationManager, MenuActionListWidget,
                              IndicatorMenuItemDelegate, LineEditMenu, MenuIndicatorType, CheckableMenu)
@@ -18,8 +18,8 @@ class AcrylicMenuActionListWidget(MenuActionListWidget):
         self.setViewportMargins(0, 0, 0, 0)
         self.setProperty("transparent", True)
 
-        super().addItem(self._createPlaceholderItem(self._topMargin()))
-        super().addItem(self._createPlaceholderItem(self._bottomMargin()))
+        super().addItem(self.createPlaceholderItem(self._topMargin()))
+        super().addItem(self.createPlaceholderItem(self._bottomMargin()))
 
     def _updateAcrylicColor(self):
         if isDarkTheme():
@@ -54,7 +54,7 @@ class AcrylicMenuActionListWidget(MenuActionListWidget):
     def addItem(self, item):
         return super().insertItem(self.count() - 1, item)
 
-    def _createPlaceholderItem(self, height=2):
+    def createPlaceholderItem(self, height=2):
         item = QListWidgetItem()
         item.setSizeHint(QSize(1, height))
         item.setFlags(Qt.ItemFlag.NoItemFlags)
@@ -136,6 +136,20 @@ class AcrylicCompleterMenu(AcrylicMenuBase, CompleterMenu):
         self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setItemHeight(33)
+
+    def setItems(self, items: str):
+        """ set completion items """
+        self.view.clear()
+
+        self.items = items
+        QListWidget.addItem(self.view, self.view.createPlaceholderItem(self.view._topMargin()))
+        self.view.addItems(items)
+
+        for i in range(1, self.view.count()):
+            item = self.view.item(i)
+            item.setSizeHint(QSize(1, self.itemHeight))
+
+        QListWidget.addItem(self.view, self.view.createPlaceholderItem(self.view._bottomMargin()))
 
 
 class AcrylicLineEditMenu(AcrylicMenuBase, LineEditMenu):
