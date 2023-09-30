@@ -77,7 +77,6 @@ class CommandButton(TransparentToggleToolButton):
 
     def _onActionChanged(self):
         action = self.action()
-        print(action.toolTip())
         self.setIcon(action.icon())
         self.setText(action.text())
         self.setToolTip(action.toolTip())
