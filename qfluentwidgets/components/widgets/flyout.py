@@ -263,7 +263,7 @@ class Flyout(QWidget):
         isDeleteOnClose: bool
             whether delete flyout automatically when flyout is closed
         """
-        w = Flyout(view, parent, isDeleteOnClose)
+        w = cls(view, parent, isDeleteOnClose)
 
         if target is None:
             return w

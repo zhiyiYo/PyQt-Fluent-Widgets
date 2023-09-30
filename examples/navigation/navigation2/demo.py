@@ -97,7 +97,7 @@ class Window(FramelessWindow):
         self.setTitleBar(CustomTitleBar(self))
 
         # use dark theme mode
-        setTheme(Theme.DARK)
+        # setTheme(Theme.DARK)
 
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(
@@ -130,6 +130,9 @@ class Window(FramelessWindow):
         self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
 
     def initNavigation(self):
+        # enable acrylic effect
+        # self.navigationInterface.setAcrylicEnabled(True)
+
         self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
         self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
         self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')

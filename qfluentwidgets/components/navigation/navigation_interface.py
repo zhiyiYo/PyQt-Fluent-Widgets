@@ -230,6 +230,13 @@ class NavigationInterface(QWidget):
     def setCollapsible(self, collapsible: bool):
         self.panel.setCollapsible(collapsible)
 
+    def isAcrylicEnabled(self):
+        return self.panel.isAcrylicEnabled()
+
+    def setAcrylicEnabled(self, isEnabled: bool):
+        """ set whether the acrylic background effect is enabled """
+        self.panel.setAcrylicEnabled(isEnabled)
+
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
 

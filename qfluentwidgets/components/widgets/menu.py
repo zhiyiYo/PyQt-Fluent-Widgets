@@ -203,8 +203,8 @@ class MenuActionListWidget(QListWidget):
         size = QSize()
         for i in range(self.count()):
             s = self.item(i).sizeHint()
-            size.setWidth(max(s.width(), size.width()))
-            size.setHeight(size.height() + s.height())
+            size.setWidth(max(s.width(), size.width(), 1))
+            size.setHeight(max(1, size.height() + s.height()))
 
         # adjust the height of viewport
         w, h = MenuAnimationManager.make(self, aniType).availableViewSize(pos)
@@ -230,7 +230,7 @@ class MenuActionListWidget(QListWidget):
         for i in range(self.count()):
             item = self.item(i)
             if not self.itemWidget(item):
-                item.setSizeHint(item.sizeHint().width(), height)
+                item.setSizeHint(QSize(item.sizeHint().width(), height))
 
         self._itemHeight = height
         self.adjustSize()
@@ -501,10 +501,16 @@ class RoundMenu(QMenu):
         if action not in self._actions:
             return
 
-        index = self._actions.index(action)
+        # remove action
+        item = action.property("item")
         self._actions.remove(action)
         action.setProperty('item', None)
-        item = self.view.takeItem(index)
+
+        if not item:
+            return
+
+        # remove item
+        self.view.takeItem(self.view.row(item))
         item.setData(Qt.ItemDataRole.UserRole, None)
         super().removeAction(action)
 
@@ -518,8 +524,9 @@ class RoundMenu(QMenu):
         if action not in self._actions:
             return
 
-        index = self._actions.index(action)
-        self.view.setCurrentRow(index)
+        item = action.property("item")
+        if item:
+            self.view.setCurrentItem(item)
 
     def addMenu(self, menu):
         """ add sub menu
@@ -597,7 +604,7 @@ class RoundMenu(QMenu):
         w = self.view.width()-m.left()-m.right()
 
         # add separator to list widget
-        item = QListWidgetItem(self.view)
+        item = QListWidgetItem()
         item.setFlags(Qt.ItemFlag.NoItemFlags)
         item.setSizeHint(QSize(w, 9))
         self.view.addItem(item)

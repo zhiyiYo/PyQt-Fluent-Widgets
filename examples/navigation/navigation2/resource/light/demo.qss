@@ -8,7 +8,7 @@ Widget {
 }
 
 Window {
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(243, 243, 243);
 }
 
 CustomTitleBar > QLabel#titleLabel {

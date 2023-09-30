@@ -43,6 +43,9 @@ class NavigationBar(QWidget):
         self.navigationPanel.setMenuButtonVisible(True)
         self.navigationPanel.hide()
 
+        # enable acrylic effect
+        self.navigationPanel.setAcrylicEnabled(True)
+
         self.window().installEventFilter(self)
 
     def setTitle(self, title: str):
@@ -84,7 +87,7 @@ class Window(FramelessWindow):
         self.setTitleBar(StandardTitleBar(self))
 
         # use dark theme mode
-        setTheme(Theme.DARK)
+        # setTheme(Theme.DARK)
 
         # change the theme color
         # setThemeColor('#0078d4')

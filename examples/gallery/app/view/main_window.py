@@ -51,6 +51,9 @@ class MainWindow(FluentWindow):
         self.textInterface = TextInterface(self)
         self.viewInterface = ViewInterface(self)
 
+        # enable acrylic effect
+        self.navigationInterface.setAcrylicEnabled(True)
+
         self.connectSignalToSlot()
 
         # add items to navigation interface
