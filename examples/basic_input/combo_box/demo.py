@@ -1,26 +1,30 @@
 # coding:utf-8
 import sys
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication, QWidget, QCompleter
+from PySide6.QtWidgets import QApplication, QWidget, QCompleter, QHBoxLayout
 from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox, setFont
 
 class Demo(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.comboBox = EditableComboBox(self)
+        self.comboBox = ComboBox(self)
+        self.hBoxLayout = QHBoxLayout(self)
 
         items = ['shoko 🥰', '西宫硝子', 'aiko', '柳井爱子']
         self.comboBox.addItems(items)
         self.comboBox.setCurrentIndex(0)
         self.comboBox.currentTextChanged.connect(print)
-        self.comboBox.move(200, 200)
+
+        # self.comboBox.setPlaceholderText("选择一个脑婆")
+        # self.comboBox.setCurrentIndex(-1)
 
         # NOTE: Completer is only applicable to EditableComboBox
         # self.completer = QCompleter(items, self)
         # self.comboBox.setCompleter(self.completer)
 
         self.resize(500, 500)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignCenter)
         self.setStyleSheet('Demo{background:white}')
 
         # setTheme(Theme.DARK)

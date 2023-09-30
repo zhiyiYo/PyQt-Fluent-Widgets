@@ -368,6 +368,12 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         child.setVisible(self.isExpanded)
         child.expandAni.valueChanged.connect(lambda: self.setFixedSize(self.sizeHint()))
 
+        # connect height changed signal to parent recursively
+        p = self.treeParent
+        while p:
+            child.expandAni.valueChanged.connect(lambda v, p=p: p.setFixedSize(p.sizeHint()))
+            p = p.treeParent
+
         if index < 0:
             index = len(self.treeChildren)
 

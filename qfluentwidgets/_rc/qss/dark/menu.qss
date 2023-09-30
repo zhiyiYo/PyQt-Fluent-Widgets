@@ -12,6 +12,10 @@ MenuActionListWidget {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
+MenuActionListWidget[transparent=true] {
+    background-color: transparent;
+}
+
 MenuActionListWidget::item {
     padding-left: 10px;
     padding-right: 10px;
