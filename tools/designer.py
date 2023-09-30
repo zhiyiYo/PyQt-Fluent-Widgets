@@ -69,6 +69,9 @@ if sys.platform == "darwin":
 designer = QProcess()
 designer.setProcessEnvironment(env)
 
-designer.start(get_designer_path(), [])
+# open ui files
+ui_files = [i for i in sys.argv[1:] if i.lower().endswith(".ui")]
+designer.start(get_designer_path(), ui_files)
+
 designer.waitForFinished(-1)
 sys.exit(designer.exitCode())
