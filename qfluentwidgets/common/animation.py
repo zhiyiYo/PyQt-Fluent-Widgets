@@ -1,5 +1,5 @@
 # coding: utf-8
-from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal
+from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal, QPoint
 from PyQt5.QtGui import QMouseEvent, QEnterEvent, QColor
 from PyQt5.QtWidgets import QWidget, QLineEdit, QGraphicsDropShadowEffect
 
@@ -187,45 +187,63 @@ class DropShadowAnimation(QPropertyAnimation):
         super().__init__(parent=parent)
         self.normalColor = normalColor
         self.hoverColor = hoverColor
+        self.offset = QPoint(0, 0)
+        self.blurRadius = 38
         self.isHover = False
 
         self.shadowEffect = QGraphicsDropShadowEffect(self)
         self.shadowEffect.setColor(self.normalColor)
 
-        parent.setGraphicsEffect(self.shadowEffect)
         parent.installEventFilter(self)
-        self.setTargetObject(self.shadowEffect)
-        self.setPropertyName(b'color')
-        self.setDuration(150)
 
     def setBlurRadius(self, radius: int):
-        self.shadowEffect.setBlurRadius(radius)
+        self.blurRadius = radius
 
     def setOffset(self, dx: int, dy: int):
-        self.shadowEffect.setOffset(dx, dy)
+        self.offset = QPoint(dx, dy)
 
     def setNormalColor(self, color: QColor):
         self.normalColor = color
-        if not self.isHover:
-            self.shadowEffect.setColor(color)
 
     def setHoverColor(self, color: QColor):
         self.hoverColor = color
-        if self.isHover:
-            self.shadowEffect.setColor(color)
 
     def setColor(self, color):
-        self.shadowEffect.setColor(color)
+        pass
+
+    def _createShadowEffect(self):
+        self.shadowEffect = QGraphicsDropShadowEffect(self)
+        self.shadowEffect.setOffset(self.offset)
+        self.shadowEffect.setBlurRadius(self.blurRadius)
+        self.shadowEffect.setColor(self.normalColor)
+
+        self.setTargetObject(self.shadowEffect)
+        self.setStartValue(self.shadowEffect.color())
+        self.setPropertyName(b'color')
+        self.setDuration(150)
+
+        return self.shadowEffect
 
     def eventFilter(self, obj, e):
         if obj is self.parent() and self.parent().isEnabled():
             if e.type() in [QEvent.Type.Enter]:
                 self.isHover = True
+
+                if self.state() != QPropertyAnimation.State.Running:
+                    self.parent().setGraphicsEffect(self._createShadowEffect())
+
                 self.setEndValue(self.hoverColor)
                 self.start()
             elif e.type() in [QEvent.Type.Leave, QEvent.Type.MouseButtonPress]:
                 self.isHover = False
-                self.setEndValue(self.normalColor)
-                self.start()
+                if self.parent().graphicsEffect():
+                    self.finished.connect(self._onAniFinished)
+                    self.setEndValue(self.normalColor)
+                    self.start()
 
         return super().eventFilter(obj, e)
+
+    def _onAniFinished(self):
+        self.finished.disconnect()
+        self.shadowEffect = None
+        self.parent().setGraphicsEffect(None)
