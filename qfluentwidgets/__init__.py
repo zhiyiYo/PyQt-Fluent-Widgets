@@ -4,7 +4,7 @@ PyQt-Fluent-Widgets
 A fluent design widgets library based on PyQt5.
 
 Documentation is available in the docstrings and
-online at https://pyqt-fluent-widgets.readthedocs.io.
+online at https://qfluentwidgets.com.
 
 Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/master/examples.
 
