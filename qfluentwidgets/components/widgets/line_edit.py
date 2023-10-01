@@ -217,6 +217,7 @@ class CompleterMenu(RoundMenu):
 
     def _onItemClicked(self, item):
         self._hideMenu(False)
+        self.__onItemSelected(item.text())
 
     def eventFilter(self, obj, e: QEvent):
         if e.type() != QEvent.KeyPress:
