@@ -1037,7 +1037,7 @@ class EditMenu(RoundMenu):
 
             if self._parentSelectedText():
                 if self.parent().isReadOnly():
-                    self.addAction([self.copyAct, self.selectAllAct])
+                    self.addActions([self.copyAct, self.selectAllAct])
                 else:
                     self.addActions(
                         self.action_list[:2] + self.action_list[3:])
