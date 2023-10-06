@@ -54,8 +54,9 @@ class FluentLabelBase(QLabel):
     def _init(self):
         self.setFont(self.getFont())
         self.setTextColor()
-        qconfig.themeChanged.connect(
+        connect = qconfig.themeChanged.connect(
             lambda: self.setTextColor(self.lightColor, self.darkColor))
+        self.destroyed.connect(lambda: self.disconnect(connect))
         return self
 
     def getFont(self):
