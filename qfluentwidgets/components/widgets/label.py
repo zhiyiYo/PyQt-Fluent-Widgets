@@ -9,6 +9,7 @@ from PySide2.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, Q
                          QImageReader, QBrush, QMovie, QDesktopServices)
 from PySide2.QtWidgets import QLabel, QWidget, QPushButton, QApplication
 
+from ...common.exception_handler import exceptionHandler
 from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
 from ...common.style_sheet import FluentStyleSheet
@@ -65,6 +66,7 @@ class FluentLabelBase(QLabel):
     def getFont(self):
         raise NotImplementedError
 
+    @exceptionHandler()
     def setTextColor(self, light=QColor(0, 0, 0), dark=QColor(255, 255, 255)):
         """ set the text color of label
 
