@@ -315,7 +315,7 @@ class TeachingTipManager(QObject):
 
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
         x = min(max(-2, x) if QCursor().pos().x() >=
-                0 else x, rect.width() - tip.width() - 4)
+                0 else x, rect.right() - tip.width() - 4)
         y = min(max(-2, y), rect.height() - tip.height() - 4)
 
         return QPoint(x, y)
