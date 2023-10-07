@@ -1,15 +1,17 @@
 # coding:utf-8
 from enum import Enum
 
-from PySide6.QtCore import Qt, QSize, QRectF
-from PySide6.QtGui import QPainter, QPainterPath
+from PySide6.QtCore import Qt, QSize, QRectF, QPoint
+from PySide6.QtGui import QPainter, QPainterPath, QColor
 from PySide6.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
-                             QDateEdit, QDateTimeEdit, QTimeEdit, QLineEdit, QAbstractSpinBox)
+                               QDateEdit, QDateTimeEdit, QTimeEdit, QVBoxLayout)
 
-from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...common.font import setFont
-from ...components.widgets import LineEditMenu
+from .button import TransparentToolButton
+from .line_edit import LineEditMenu
+from .flyout import Flyout, FlyoutViewBase, FlyoutAnimationType
 
 
 class SpinIcon(FluentIconBase, Enum):
@@ -50,7 +52,58 @@ class SpinButton(QToolButton):
         if self.isPressed:
             painter.setOpacity(0.7)
 
-        self._icon.render(painter, QRectF(10, 9, 11, 11))
+        self._icon.render(painter, QRectF(10, 6.5, 11, 11))
+
+
+class CompactSpinButton(QToolButton):
+    """ Compact spin button """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setFixedSize(26, 33)
+        self.setCursor(Qt.IBeamCursor)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+
+        x = (self.width() - 10) / 2
+        s = 9
+
+        SpinIcon.UP.render(painter, QRectF(x, self.height() / 2 - s + 1, s, s))
+        SpinIcon.DOWN.render(painter, QRectF(x, self.height() / 2 , s, s))
+
+
+class SpinFlyoutView(FlyoutViewBase):
+    """ Spin flyout view """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.upButton = TransparentToolButton(SpinIcon.UP, self)
+        self.downButton = TransparentToolButton(SpinIcon.DOWN, self)
+        self.vBoxLayout = QVBoxLayout(self)
+
+        self.upButton.setFixedSize(36, 36)
+        self.downButton.setFixedSize(36, 36)
+        self.upButton.setIconSize(QSize(13, 13))
+        self.downButton.setIconSize(QSize(13, 13))
+
+        self.vBoxLayout.setContentsMargins(6, 6, 6, 6)
+        self.vBoxLayout.setSpacing(0)
+        self.vBoxLayout.addWidget(self.upButton)
+        self.vBoxLayout.addWidget(self.downButton)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+
+        painter.setBrush(
+            QColor(46, 46, 46) if isDarkTheme() else QColor(249, 249, 249))
+        painter.setPen(
+            QColor(0, 0, 0, 51) if isDarkTheme() else QColor(0, 0, 0, 15))
+
+        rect = self.rect().adjusted(1, 1, -1, -1)
+        painter.drawRoundedRect(rect, 8, 8)
 
 
 class SpinBoxBase:
@@ -58,25 +111,13 @@ class SpinBoxBase:
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.hBoxLayout = QHBoxLayout(self)
 
         self.setProperty('transparent', True)
         FluentStyleSheet.SPIN_BOX.apply(self)
         self.setButtonSymbols(QSpinBox.NoButtons)
         self.setFixedHeight(33)
         setFont(self)
-
-        self.hBoxLayout = QHBoxLayout(self)
-        self.upButton = SpinButton(SpinIcon.UP, self)
-        self.downButton = SpinButton(SpinIcon.DOWN, self)
-
-        self.hBoxLayout.setContentsMargins(0, 4, 4, 4)
-        self.hBoxLayout.setSpacing(5)
-        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignRight)
-        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignRight)
-        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-
-        self.upButton.clicked.connect(self.stepUp)
-        self.downButton.clicked.connect(self.stepDown)
 
         self.setAttribute(Qt.WA_MacShowFocusRect, False)
         self.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -85,11 +126,6 @@ class SpinBoxBase:
     def _showContextMenu(self, pos):
         menu = LineEditMenu(self.lineEdit())
         menu.exec_(self.mapToGlobal(pos))
-
-    def setAccelerated(self, on: bool):
-        super().setAccelerated(on)
-        self.upButton.setAutoRepeat(on)
-        self.downButton.setAutoRepeat(on)
 
     def _drawBorderBottom(self):
         if not self.hasFocus():
@@ -109,43 +145,108 @@ class SpinBoxBase:
 
         painter.fillPath(path, themeColor())
 
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        self._drawBorderBottom()
 
-class SpinBox(SpinBoxBase, QSpinBox):
+
+class InlineSpinBoxBase(SpinBoxBase):
+    """ Inline spin box base """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.upButton = SpinButton(SpinIcon.UP, self)
+        self.downButton = SpinButton(SpinIcon.DOWN, self)
+
+        self.hBoxLayout.setContentsMargins(0, 4, 4, 4)
+        self.hBoxLayout.setSpacing(5)
+        self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+
+        self.upButton.clicked.connect(self.stepUp)
+        self.downButton.clicked.connect(self.stepDown)
+
+    def setAccelerated(self, on: bool):
+        super().setAccelerated(on)
+        self.upButton.setAutoRepeat(on)
+        self.downButton.setAutoRepeat(on)
+
+
+class CompactSpinBoxBase(SpinBoxBase):
+    """ Compact spin box base """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.compactSpinButton = CompactSpinButton(self)
+        self.spinFlyoutView = SpinFlyoutView(self)
+        self.spinFlyout = Flyout(self.spinFlyoutView, self, False)
+
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.hBoxLayout.addWidget(self.compactSpinButton, 0, Qt.AlignRight)
+        self.hBoxLayout.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+
+        self.compactSpinButton.clicked.connect(self._showFlyout)
+        self.spinFlyoutView.upButton.clicked.connect(self.stepUp)
+        self.spinFlyoutView.downButton.clicked.connect(self.stepDown)
+
+        self.spinFlyout.hide()
+
+    def setAccelerated(self, on: bool):
+        super().setAccelerated(on)
+        self.spinFlyoutView.upButton.setAutoRepeat(on)
+        self.spinFlyoutView.downButton.setAutoRepeat(on)
+
+    def focusInEvent(self, e):
+        super().focusInEvent(e)
+        self._showFlyout()
+
+    def _showFlyout(self):
+        if self.spinFlyout.isVisible():
+            return
+
+        y = int(self.compactSpinButton.height() / 2 - 46)
+        pos = self.compactSpinButton.mapToGlobal(QPoint(-12, y))
+
+        self.spinFlyout.exec(pos, FlyoutAnimationType.FADE_IN)
+
+
+class SpinBox(InlineSpinBoxBase, QSpinBox):
     """ Spin box """
 
-    def paintEvent(self, e):
-        QSpinBox.paintEvent(self, e)
-        self._drawBorderBottom()
+
+class CompactSpinBox(CompactSpinBoxBase, QSpinBox):
+    """ Compact spin box """
 
 
-class DoubleSpinBox(SpinBoxBase, QDoubleSpinBox):
+class DoubleSpinBox(InlineSpinBoxBase, QDoubleSpinBox):
     """ Double spin box """
 
-    def paintEvent(self, e):
-        QDoubleSpinBox.paintEvent(self, e)
-        self._drawBorderBottom()
+
+class CompactDoubleSpinBox(CompactSpinBoxBase, QDoubleSpinBox):
+    """ Compact double spin box """
 
 
-class TimeEdit(SpinBoxBase, QTimeEdit):
+class TimeEdit(InlineSpinBoxBase, QTimeEdit):
     """ Time edit """
 
-    def paintEvent(self, e):
-        QTimeEdit.paintEvent(self, e)
-        self._drawBorderBottom()
+
+class CompactTimeEdit(CompactSpinBoxBase, QTimeEdit):
+    """ Compact time edit """
 
 
-class DateTimeEdit(SpinBoxBase, QDateTimeEdit):
+class DateTimeEdit(InlineSpinBoxBase, QDateTimeEdit):
     """ Date time edit """
 
-    def paintEvent(self, e):
-        QDateTimeEdit.paintEvent(self, e)
-        self._drawBorderBottom()
+
+class CompactDateTimeEdit(CompactSpinBoxBase, QDateTimeEdit):
+    """ Compact date time edit """
 
 
-class DateEdit(SpinBoxBase, QDateEdit):
+class DateEdit(InlineSpinBoxBase, QDateEdit):
     """ Date edit """
 
-    def paintEvent(self, e):
-        QDateEdit.paintEvent(self, e)
-        self._drawBorderBottom()
+
+class CompactDateEdit(CompactSpinBoxBase, QDateEdit):
+    """ Compact date edit """
 
