@@ -201,7 +201,7 @@ class CompactSpinBoxBase(SpinBoxBase):
         if self.spinFlyout.isVisible():
             return
 
-        y = int(self.compactSpinButton.height() / 2 - 44)
+        y = int(self.compactSpinButton.height() / 2 - 46)
         pos = self.compactSpinButton.mapToGlobal(QPoint(-12, y))
 
         self.spinFlyout.exec(pos, FlyoutAnimationType.FADE_IN)
