@@ -60,21 +60,21 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('Pill push button'),
             PillPushButton(self.tr('Tag'), self, FluentIcon.TAG),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # pill tool button
         self.addExampleCard(
             self.tr('Pill tool button'),
             PillToolButton(FluentIcon.BASKETBALL),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # transparent push button
         self.addExampleCard(
             self.tr('A transparent push button'),
             TransparentPushButton(self.tr('Transparent push button'), self, FluentIcon.BOOK_SHELF),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # transparent tool button
@@ -170,7 +170,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A transparent push button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # transparent drop down tool button
@@ -179,7 +179,7 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A transparent tool button with drop down menu'),
             button,
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # hyperlink button
@@ -187,7 +187,7 @@ class BasicInputInterface(GalleryInterface):
             self.tr('A hyperlink button that navigates to a URI'),
             HyperlinkButton(
                 'https://github.com/zhiyiYo/QMaterialWidgets', self.tr('GitHub home page'), self, FluentIcon.LINK),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # radio button
@@ -292,14 +292,14 @@ class BasicInputInterface(GalleryInterface):
         self.addExampleCard(
             self.tr('A transparent toggle push button'),
             TransparentTogglePushButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
         # transparent toggle tool button
         self.addExampleCard(
             self.tr('A transparent toggle tool button'),
             TransparentToggleToolButton(FluentIcon.BASKETBALL, self),
-            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/button/demo.py'
+            'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
 
