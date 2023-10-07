@@ -1,4 +1,9 @@
-SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit {
+SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit,
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
     color: black;
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 0, 0, 13);
@@ -9,11 +14,24 @@ SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit {
     selection-background-color: --ThemeColorLight1;
 }
 
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
+    padding: 0px 26px 0 10px;
+}
+
 SpinBox:hover,
 DoubleSpinBox:hover,
 DateEdit:hover,
 DateTimeEdit:hover,
-TimeEdit:hover {
+TimeEdit:hover,
+CompactSpinBox:hover,
+CompactDoubleSpinBox:hover,
+CompactDateEdit:hover,
+CompactDateTimeEdit:hover,
+CompactTimeEdit:hover {
     background-color: rgba(249, 249, 249, 0.5);
     border: 1px solid rgba(0, 0, 0, 13);
     border-bottom: 1px solid rgba(0, 0, 0, 100);
@@ -23,7 +41,12 @@ SpinBox:focus,
 DoubleSpinBox:focus,
 DateEdit:focus,
 DateTimeEdit:focus,
-TimeEdit:focus {
+TimeEdit:focus,
+CompactSpinBox:focus,
+CompactDoubleSpinBox:focus,
+CompactDateEdit:focus,
+CompactDateTimeEdit:focus,
+CompactTimeEdit:focus {
     border-bottom: 1px solid rgba(0, 0, 0, 13);
     background-color: white;
 }
@@ -32,7 +55,12 @@ SpinBox:disabled,
 DoubleSpinBox:disabled,
 DateEdit:disabled,
 DateTimeEdit:disabled,
-TimeEdit:disabled {
+TimeEdit:disabled,
+CompactSpinBox:disabled,
+CompactDoubleSpinBox:disabled,
+CompactDateEdit:disabled,
+CompactDateTimeEdit:disabled,
+CompactTimeEdit:disabled {
     color: rgba(0, 0, 0, 150);
     background-color: rgba(249, 249, 249, 0.5);
     border: 1px solid rgba(0, 0, 0, 13);
