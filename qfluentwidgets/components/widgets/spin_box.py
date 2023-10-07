@@ -127,11 +127,6 @@ class SpinBoxBase:
         menu = LineEditMenu(self.lineEdit())
         menu.exec_(self.mapToGlobal(pos))
 
-    def setAccelerated(self, on: bool):
-        super().setAccelerated(on)
-        self.upButton.setAutoRepeat(on)
-        self.downButton.setAutoRepeat(on)
-
     def _drawBorderBottom(self):
         if not self.hasFocus():
             return
@@ -172,6 +167,10 @@ class InlineSpinBoxBase(SpinBoxBase):
         self.upButton.clicked.connect(self.stepUp)
         self.downButton.clicked.connect(self.stepDown)
 
+    def setAccelerated(self, on: bool):
+        super().setAccelerated(on)
+        self.upButton.setAutoRepeat(on)
+        self.downButton.setAutoRepeat(on)
 
 
 class CompactSpinBoxBase(SpinBoxBase):
@@ -196,6 +195,11 @@ class CompactSpinBoxBase(SpinBoxBase):
     def focusInEvent(self, e):
         super().focusInEvent(e)
         self._showFlyout()
+
+    def setAccelerated(self, on: bool):
+        super().setAccelerated(on)
+        self.spinFlyoutView.upButton.setAutoRepeat(on)
+        self.spinFlyoutView.downButton.setAutoRepeat(on)
 
     def _showFlyout(self):
         if self.spinFlyout.isVisible():

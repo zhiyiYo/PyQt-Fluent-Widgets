@@ -19,6 +19,8 @@ class Demo(QWidget):
 
         self.spinBox = SpinBox(self)
         self.compactSpinBox = CompactSpinBox(self)
+        self.spinBox.setAccelerated(True)
+        self.compactSpinBox.setAccelerated(True)
 
         self.timeEdit = TimeEdit(self)
         self.compactTimeEdit = CompactTimeEdit(self)
