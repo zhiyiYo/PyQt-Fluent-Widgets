@@ -2,7 +2,9 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
-from qfluentwidgets import SpinBox, DoubleSpinBox, TextEdit, TimeEdit, DateTimeEdit, LineEdit, PlainTextEdit, DateEdit, SearchLineEdit
+from qfluentwidgets import (SpinBox, CompactSpinBox, DoubleSpinBox, CompactDoubleSpinBox, TextEdit,
+                            TimeEdit, CompactTimeEdit, DateTimeEdit, CompactDateTimeEdit,
+                            LineEdit, PlainTextEdit, DateEdit, CompactDateEdit, SearchLineEdit)
 
 from plugin_base import PluginBase
 
@@ -128,3 +130,68 @@ class DoubleSpinBoxPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "DoubleSpinBox"
+
+
+class CompactDateEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Compact date edit plugin """
+
+    def createWidget(self, parent):
+        return CompactDateEdit(parent)
+
+    def icon(self):
+        return super().icon("NumberBox")
+
+    def name(self):
+        return "CompactDateEdit"
+
+
+class CompactTimeEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Compact time edit plugin """
+
+    def createWidget(self, parent):
+        return CompactTimeEdit(parent)
+
+    def icon(self):
+        return super().icon("NumberBox")
+
+    def name(self):
+        return "CompactTimeEdit"
+
+
+class CompactDateTimeEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Date time edit plugin """
+
+    def createWidget(self, parent):
+        return CompactDateTimeEdit(parent)
+
+    def icon(self):
+        return super().icon("NumberBox")
+
+    def name(self):
+        return "CompactDateTimeEdit"
+
+
+class CompactSpinBoxPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Compact spin box plugin """
+
+    def createWidget(self, parent):
+        return CompactSpinBox(parent)
+
+    def icon(self):
+        return super().icon("NumberBox")
+
+    def name(self):
+        return "CompactSpinBox"
+
+
+class CompactDoubleSpinBoxPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Compact double spin box plugin """
+
+    def createWidget(self, parent):
+        return CompactDoubleSpinBox(parent)
+
+    def icon(self):
+        return super().icon("NumberBox")
+
+    def name(self):
+        return "CompactDoubleSpinBox"
