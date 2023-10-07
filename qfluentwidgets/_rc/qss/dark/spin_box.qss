@@ -2,7 +2,12 @@ SpinBox,
 DoubleSpinBox,
 DateEdit,
 DateTimeEdit,
-TimeEdit {
+TimeEdit,
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
     background-color: rgba(255, 255, 255, 0.0605);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5442);
@@ -14,11 +19,24 @@ TimeEdit {
     selection-color: black;
 }
 
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
+    padding: 0px 26px 0 10px;
+}
+
 SpinBox:hover,
 DoubleSpinBox:hover,
 DateEdit:hover,
 DateTimeEdit:hover,
-TimeEdit:hover {
+TimeEdit:hover,
+CompactSpinBox:hover,
+CompactDoubleSpinBox:hover,
+CompactDateEdit:hover,
+CompactDateTimeEdit:hover,
+CompactTimeEdit:hover {
     background-color: rgba(255, 255, 255, 0.0837);
 }
 
@@ -26,7 +44,12 @@ SpinBox[transparent=true]:focus,
 DoubleSpinBox[transparent=true]:focus,
 DateEdit[transparent=true]:focus,
 DateTimeEdit[transparent=true]:focus,
-TimeEdit[transparent=true]:focus{
+TimeEdit[transparent=true]:focus,
+CompactSpinBox[transparent=true]:focus,
+CompactDoubleSpinBox[transparent=true]:focus,
+CompactDateEdit[transparent=true]:focus,
+CompactDateTimeEdit[transparent=true]:focus,
+CompactTimeEdit[transparent=true]:focus {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     background-color: rgba(30, 30, 30, 0.7);
 }
@@ -35,7 +58,12 @@ SpinBox:disabled,
 DoubleSpinBox:disabled,
 DateEdit:disabled,
 DateTimeEdit:disabled,
-TimeEdit:disabled{
+TimeEdit:disabled,
+CompactSpinBox:disabled,
+CompactDoubleSpinBox:disabled,
+CompactDateEdit:disabled,
+CompactDateTimeEdit:disabled,
+CompactTimeEdit:disabled {
     color: rgba(255, 255, 255, 150);
     background-color: rgba(255, 255, 255, 0.0837);
     border: 1px solid gba(255, 255, 255, 0.0698);
@@ -45,7 +73,12 @@ SpinBox[transparent=false]:focus,
 DoubleSpinBox[transparent=false]:focus,
 DateEdit[transparent=false]:focus,
 DateTimeEdit[transparent=false]:focus,
-TimeEdit[transparent=false]:focus {
+TimeEdit[transparent=false]:focus,
+CompactSpinBox[transparent=false]:focus,
+CompactDoubleSpinBox[transparent=false]:focus,
+CompactDateEdit[transparent=false]:focus,
+CompactDateTimeEdit[transparent=false]:focus,
+CompactTimeEdit[transparent=false]:focus {
     background: rgb(31, 31, 31);
 }
 
