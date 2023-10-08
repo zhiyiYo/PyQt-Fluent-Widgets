@@ -4,7 +4,8 @@ from PyQt5.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (SpinBox, CompactSpinBox, DoubleSpinBox, CompactDoubleSpinBox, TextEdit,
                             TimeEdit, CompactTimeEdit, DateTimeEdit, CompactDateTimeEdit,
-                            LineEdit, PlainTextEdit, DateEdit, CompactDateEdit, SearchLineEdit)
+                            LineEdit, PlainTextEdit, DateEdit, CompactDateEdit, SearchLineEdit,
+                            PasswordLineEdit)
 
 from plugin_base import PluginBase
 
@@ -35,10 +36,23 @@ class SearchLineEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
         return SearchLineEdit(parent)
 
     def icon(self):
-        return super().icon("IconElement")
+        return super().icon("TextBox")
 
     def name(self):
         return "SearchLineEdit"
+
+
+class PasswordLineEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Password line edit plugin """
+
+    def createWidget(self, parent):
+        return PasswordLineEdit(parent)
+
+    def icon(self):
+        return super().icon("PasswordBox")
+
+    def name(self):
+        return "PasswordLineEdit"
 
 
 class TextEditPlugin(TextPlugin, QPyDesignerCustomWidgetPlugin):
