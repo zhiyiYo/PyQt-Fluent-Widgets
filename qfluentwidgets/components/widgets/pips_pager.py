@@ -97,7 +97,13 @@ class PipsDelegate(QStyledItemDelegate):
 
 
 class PipsPager(QListWidget):
-    """ Pips pager """
+    """ Pips pager
+
+    Constructors
+    ------------
+    * PipsPager(`parent`: QWidget = None)
+    * PipsPager(`orient`: Qt.Orientation, `parent`: QWidget = None)
+    """
 
     currentIndexChanged = pyqtSignal(int)
 

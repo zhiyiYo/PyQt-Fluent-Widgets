@@ -34,7 +34,15 @@ class InfoBadgePosition(Enum):
 
 
 class InfoBadge(QLabel):
-    """ Information badge """
+    """ Information badge
+
+    Constructors
+    ------------
+    * InfoBadge(`parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    * InfoBadge(`text`: str, `parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    * InfoBadge(`num`: int, `parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    * InfoBadge(`num`: float, `parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    """
 
     @singledispatchmethod
     def __init__(self, parent: QWidget = None, level=InfoLevel.ATTENTION):
@@ -247,7 +255,13 @@ class DotInfoBadge(InfoBadge):
 
 
 class IconInfoBadge(InfoBadge):
-    """ Icon icon badge """
+    """ Icon icon badge
+
+    Constructors
+    ------------
+    * IconInfoBadge(`parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    * IconInfoBadge(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None, `level`=InfoLevel.ATTENTION)
+    """
 
     @singledispatchmethod
     def __init__(self, parent: QWidget = None, level=InfoLevel.ATTENTION):

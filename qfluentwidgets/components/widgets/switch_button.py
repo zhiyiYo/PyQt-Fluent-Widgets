@@ -128,7 +128,13 @@ class IndicatorPosition(Enum):
 
 
 class SwitchButton(QWidget):
-    """ Switch button class """
+    """ Switch button class
+
+    Constructors
+    ------------
+    * SwitchButton(`parent`: QWidget = None)
+    * SwitchButton(`text`: str = "Off", `parent`: QWidget = None, `indicatorPos`=IndicatorPosition.LEFT)
+    """
 
     checkedChanged = pyqtSignal(bool)
 
