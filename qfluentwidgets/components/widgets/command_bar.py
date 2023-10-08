@@ -15,7 +15,13 @@ from .flyout import FlyoutViewBase, Flyout
 
 
 class CommandButton(TransparentToggleToolButton):
-    """ Command button """
+    """ Command button
+
+    Constructors
+    ------------
+    * CommandButton(`parent`: QWidget = None)
+    * CommandButton(`icon`: QIcon | str | FluentIconBase = None, `parent`: QWidget = None)
+    """
 
     def _postInit(self):
         super()._postInit()

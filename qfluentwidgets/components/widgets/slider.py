@@ -68,7 +68,13 @@ class SliderHandle(QWidget):
 
 
 class Slider(QSlider):
-    """ A slider can be clicked """
+    """ A slider can be clicked
+
+    Constructors
+    ------------
+    * Slider(`parent`: QWidget = None)
+    * Slider(`orient`: Qt.Orientation, `parent`: QWidget = None)
+    """
 
     clicked = pyqtSignal(int)
 

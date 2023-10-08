@@ -429,12 +429,19 @@ class HomeInterface(ScrollArea):
             index=0
         )
         textView.addSampleCard(
+            icon=":/gallery/images/controls/PasswordBox.png",
+            title="PasswordLineEdit",
+            content=self.tr("A control for entering passwords."),
+            routeKey="textInterface",
+            index=2
+        )
+        textView.addSampleCard(
             icon=":/gallery/images/controls/NumberBox.png",
             title="SpinBox",
             content=self.tr(
                 "A text control used for numeric input and evaluation of algebraic equations."),
             routeKey="textInterface",
-            index=1
+            index=3
         )
         textView.addSampleCard(
             icon=":/gallery/images/controls/RichEditBox.png",
@@ -442,7 +449,7 @@ class HomeInterface(ScrollArea):
             content=self.tr(
                 "A rich text editing control that supports formatted text, hyperlinks, and other rich content."),
             routeKey="textInterface",
-            index=6
+            index=8
         )
         self.vBoxLayout.addWidget(textView)
 

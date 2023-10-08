@@ -1,6 +1,7 @@
 # coding: utf-8
 from typing import List, Union
-from PyQt6.QtCore import QSize, Qt, QRectF, pyqtSignal, QPoint, QTimer, QEvent, QAbstractItemModel
+
+from PyQt6.QtCore import QSize, Qt, QRectF, pyqtSignal, QPoint, QTimer, QEvent, QAbstractItemModel, pyqtProperty
 from PyQt6.QtGui import QPainter, QPainterPath, QIcon, QCursor, QAction
 from PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QToolButton, QTextEdit,
                              QPlainTextEdit, QCompleter, QStyle, QWidget)
@@ -375,3 +376,54 @@ class PlainTextEdit(QPlainTextEdit):
         menu = TextEditMenu(self)
         menu.exec(e.globalPos())
 
+
+class PasswordLineEdit(LineEdit):
+    """ Password line edit """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.viewButton = LineEditButton(FIF.VIEW, self)
+
+        self.setEchoMode(QLineEdit.EchoMode.Password)
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
+        self.hBoxLayout.addWidget(self.viewButton, 0, Qt.AlignmentFlag.AlignRight)
+        self.setClearButtonEnabled(False)
+
+        self.viewButton.installEventFilter(self)
+        self.viewButton.setIconSize(QSize(13, 13))
+        self.viewButton.setFixedSize(29, 25)
+
+    def setPasswordVisible(self, isVisible: bool):
+        """ set the visibility of password """
+        if isVisible:
+            self.setEchoMode(QLineEdit.EchoMode.Normal)
+        else:
+            self.setEchoMode(QLineEdit.EchoMode.Password)
+
+    def isPasswordVisible(self):
+        return self.echoMode() == QLineEdit.EchoMode.Normal
+
+    def setClearButtonEnabled(self, enable: bool):
+        self._isClearButtonEnabled = enable
+
+        if self.viewButton.isHidden():
+            self.setTextMargins(0, 0, 28*enable, 0)
+        else:
+            self.setTextMargins(0, 0, 28*enable + 30, 0)
+
+    def setViewPasswordButtonVisible(self, isVisible: bool):
+        """ set the visibility of view password button """
+        self.viewButton.setVisible(isVisible)
+
+    def eventFilter(self, obj, e):
+        if obj is not self.viewButton:
+            return super().eventFilter(obj, e)
+
+        if e.type() == QEvent.Type.MouseButtonPress:
+            self.setPasswordVisible(True)
+        elif e.type() == QEvent.Type.MouseButtonRelease:
+            self.setPasswordVisible(False)
+
+        return super().eventFilter(obj, e)
+
+    passwordVisible = pyqtProperty(bool, isPasswordVisible, setPasswordVisible)

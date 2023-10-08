@@ -79,11 +79,6 @@
         <translation>三态复选框</translation>
     </message>
     <message>
-        <location filename="../../view/basic_input_interface.py" line="186"/>
-        <source>GitHub home page</source>
-        <translation>GItHub 主页</translation>
-    </message>
-    <message>
         <location filename="../../view/basic_input_interface.py" line="314"/>
         <source>Star Platinum</source>
         <translation>白金之星</translation>
@@ -267,6 +262,11 @@
         <location filename="../../view/basic_input_interface.py" line="67"/>
         <source>Pill tool button</source>
         <translation>椭圆工具按钮</translation>
+    </message>
+    <message>
+        <location filename="../../view/basic_input_interface.py" line="186"/>
+        <source>QFluentWidgets official website</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -723,12 +723,12 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../view/main_window.py" line="68"/>
+        <location filename="../../view/main_window.py" line="71"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/main_window.py" line="92"/>
+        <location filename="../../view/main_window.py" line="95"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
@@ -1581,54 +1581,64 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TextInterface</name>
     <message>
-        <location filename="../../view/text_interface.py" line="24"/>
+        <location filename="../../view/text_interface.py" line="25"/>
         <source>ko no dio da！</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="26"/>
+        <location filename="../../view/text_interface.py" line="27"/>
         <source>A LineEdit with a clear button</source>
         <translation>带清空按钮的输入框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="76"/>
+        <location filename="../../view/text_interface.py" line="86"/>
         <source>A DoubleSpinBox with a spin button</source>
         <translation>浮点数旋转框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="83"/>
+        <location filename="../../view/text_interface.py" line="93"/>
         <source>A DateEdit with a spin button</source>
         <translation>日期编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="90"/>
+        <location filename="../../view/text_interface.py" line="100"/>
         <source>A TimeEdit with a spin button</source>
         <translation>时间编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="97"/>
+        <location filename="../../view/text_interface.py" line="107"/>
         <source>A DateTimeEdit with a spin button</source>
         <translation>日期时间编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="69"/>
+        <location filename="../../view/text_interface.py" line="79"/>
         <source>A SpinBox with a spin button</source>
         <translation>旋转框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="108"/>
+        <location filename="../../view/text_interface.py" line="118"/>
         <source>A simple TextEdit</source>
         <translation>富文本框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="62"/>
+        <location filename="../../view/text_interface.py" line="63"/>
         <source>A autosuggest line edit</source>
         <translation>带补全功能的输入框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="34"/>
+        <location filename="../../view/text_interface.py" line="35"/>
         <source>Type a stand name</source>
         <translation>输入替身名称</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="71"/>
+        <source>Enter you password</source>
+        <translation>请输入密码</translation>
+    </message>
+    <message>
+        <location filename="../../view/text_interface.py" line="72"/>
+        <source>A password line edit</source>
+        <translation>密码输入框</translation>
     </message>
 </context>
 <context>
