@@ -424,8 +424,8 @@
     </message>
     <message>
         <location filename="../../view/dialog_interface.py" line="157"/>
-        <source>Where the tennis ball will land when it touches the net, no one can predict. 
-If that moment comes, I hope the &apos;goddess&apos; exists. 
+        <source>Where the tennis ball will land when it touches the net, no one can predict.
+If that moment comes, I hope the &apos;goddess&apos; exists.
 In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>触网而起的网球会落到哪一侧，谁也无法知晓。
 如果那种时刻到来，我希望「女神」是存在的。
@@ -1632,7 +1632,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="71"/>
-        <source>Enter you password</source>
+        <source>Enter your password</source>
         <translation>请输入密码</translation>
     </message>
     <message>

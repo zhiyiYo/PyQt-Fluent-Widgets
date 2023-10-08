@@ -1632,7 +1632,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
     <message>
         <location filename="../../view/text_interface.py" line="71"/>
-        <source>Enter you password</source>
+        <source>Enter your password</source>
         <translation>請輸入密碼</translation>
     </message>
     <message>
