@@ -41,7 +41,13 @@ class PixmapLabel(QLabel):
 
 
 class FluentLabelBase(QLabel):
-    """ Fluent label base class """
+    """ Fluent label base class
+
+    Constructors
+    ------------
+    * FluentLabelBase(`parent`: QWidget = None)
+    * FluentLabelBase(`text`: str, `parent`: QWidget = None)
+    """
 
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
@@ -129,56 +135,104 @@ class FluentLabelBase(QLabel):
 
 
 class CaptionLabel(FluentLabelBase):
-    """ Caption text label """
+    """ Caption text label
+
+    Constructors
+    ------------
+    * CaptionLabel(`parent`: QWidget = None)
+    * CaptionLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(12)
 
 
 class BodyLabel(FluentLabelBase):
-    """ Body text label """
+    """ Body text label
+
+    Constructors
+    ------------
+    * BodyLabel(`parent`: QWidget = None)
+    * BodyLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(14)
 
 
 class StrongBodyLabel(FluentLabelBase):
-    """ Strong body text label """
+    """ Strong body text label
+
+    Constructors
+    ------------
+    * StrongBodyLabel(`parent`: QWidget = None)
+    * StrongBodyLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(14, QFont.DemiBold)
 
 
 class SubtitleLabel(FluentLabelBase):
-    """ Sub title text label """
+    """ Subtitle text label
+
+    Constructors
+    ------------
+    * SubtitleLabel(`parent`: QWidget = None)
+    * SubtitleLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(20, QFont.DemiBold)
 
 
 class TitleLabel(FluentLabelBase):
-    """ Sub title text label """
+    """ Sub title text label
+
+    Constructors
+    ------------
+    * TitleLabel(`parent`: QWidget = None)
+    * TitleLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(28, QFont.DemiBold)
 
 
 class LargeTitleLabel(FluentLabelBase):
-    """ Large title text label """
+    """ Large title text label
+
+    Constructors
+    ------------
+    * LargeTitleLabel(`parent`: QWidget = None)
+    * LargeTitleLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(40, QFont.DemiBold)
 
 
 class DisplayLabel(FluentLabelBase):
-    """ Display text label """
+    """ Display text label
+
+    Constructors
+    ------------
+    * DisplayLabel(`parent`: QWidget = None)
+    * DisplayLabel(`text`: str, `parent`: QWidget = None)
+    """
 
     def getFont(self):
         return getFont(68, QFont.DemiBold)
 
 
 class ImageLabel(QLabel):
-    """ Image label """
+    """ Image label
+
+    Constructors
+    ------------
+    * ImageLabel(`parent`: QWidget = None)
+    * ImageLabel(`image`: str | QImage | QPixmap, `parent`: QWidget = None)
+    """
 
     clicked = Signal()
 
@@ -359,7 +413,13 @@ class ImageLabel(QLabel):
 
 
 class AvatarWidget(ImageLabel):
-    """ Avatar widget """
+    """ Avatar widget
+
+    Constructors
+    ------------
+    * AvatarWidget(`parent`: QWidget = None)
+    * AvatarWidget(`image`: str | QImage | QPixmap, `parent`: QWidget = None)
+    """
 
     def _postInit(self):
         self.setRadius(48)
@@ -400,7 +460,14 @@ class AvatarWidget(ImageLabel):
 
 
 class HyperlinkLabel(QPushButton):
-    """ Hyperlink label """
+    """ Hyperlink label
+
+    Constructors
+    ------------
+    * HyperlinkLabel(`parent`: QWidget = None)
+    * HyperlinkLabel(`text`: str, `parent`: QWidget = None)
+    * HyperlinkLabel(`url`: QUrl, `parent`: QWidget = None)
+    """
 
     @singledispatchmethod
     def __init__(self, parent=None):

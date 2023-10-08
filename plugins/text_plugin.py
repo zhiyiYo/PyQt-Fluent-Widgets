@@ -2,7 +2,9 @@
 from PySide6.QtCore import Qt
 from PySide6.QtDesigner import QDesignerCustomWidgetInterface
 
-from qfluentwidgets import SpinBox, DoubleSpinBox, TextEdit, TimeEdit, DateTimeEdit, LineEdit, PlainTextEdit, DateEdit, SearchLineEdit
+from qfluentwidgets import (SpinBox, CompactSpinBox, DoubleSpinBox, CompactDoubleSpinBox, TextEdit,
+                            TimeEdit, CompactTimeEdit, DateTimeEdit, CompactDateTimeEdit,
+                            LineEdit, PlainTextEdit, DateEdit, CompactDateEdit, SearchLineEdit, PasswordLineEdit)
 
 from plugin_base import PluginBase
 
@@ -33,10 +35,23 @@ class SearchLineEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
         return SearchLineEdit(parent)
 
     def icon(self):
-        return super().icon("IconElement")
+        return super().icon("TextBox")
 
     def name(self):
         return "SearchLineEdit"
+
+
+class PasswordLineEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):
+    """ Password line edit plugin """
+
+    def createWidget(self, parent):
+        return PasswordLineEdit(parent)
+
+    def icon(self):
+        return super().icon("PasswordBox")
+
+    def name(self):
+        return "PasswordLineEdit"
 
 
 class TextEditPlugin(TextPlugin, QDesignerCustomWidgetInterface):

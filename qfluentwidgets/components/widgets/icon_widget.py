@@ -10,7 +10,13 @@ from ...common.overload import singledispatchmethod
 
 
 class IconWidget(QWidget):
-    """ Icon widget """
+    """ Icon widget
+
+    Constructors
+    ------------
+    * IconWidget(`parent`: QWidget = None)
+    * IconWidget(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None)
+    """
 
     @singledispatchmethod
     def __init__(self, parent=None):

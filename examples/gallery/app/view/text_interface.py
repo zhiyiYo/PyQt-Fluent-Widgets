@@ -1,7 +1,8 @@
 # coding:utf-8
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QCompleter
-from qfluentwidgets import LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit, TextEdit, SearchLineEdit
+from qfluentwidgets import (LineEdit, SpinBox, DoubleSpinBox, TimeEdit, DateTimeEdit, DateEdit,
+                            TextEdit, SearchLineEdit, PasswordLineEdit)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -63,6 +64,16 @@ class TextInterface(GalleryInterface):
             title=self.tr("A autosuggest line edit"),
             widget=lineEdit,
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PySide6/examples/text/line_edit/demo.py'
+        )
+
+        # password line edit
+        passwordLineEdit = PasswordLineEdit(self)
+        passwordLineEdit.setFixedWidth(230)
+        passwordLineEdit.setPlaceholderText(self.tr("Enter you password"))
+        self.addExampleCard(
+            title=self.tr("A password line edit"),
+            widget=passwordLineEdit,
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/text/line_edit/demo.py'
         )
 
         # spin box

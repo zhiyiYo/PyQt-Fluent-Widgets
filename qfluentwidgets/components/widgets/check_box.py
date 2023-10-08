@@ -23,7 +23,13 @@ class CheckBoxIcon(FluentIconBase, Enum):
 
 
 class CheckBox(QCheckBox):
-    """ Check box """
+    """ Check box
+
+    Constructors
+    ------------
+    * CheckBox(`parent`: QWidget = None)
+    * CheckBox(`text`: str, `parent`: QWidget = None)
+    """
 
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
