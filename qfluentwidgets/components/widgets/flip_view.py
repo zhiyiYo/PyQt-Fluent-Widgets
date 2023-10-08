@@ -114,7 +114,13 @@ class FlipImageDelegate(QStyledItemDelegate):
 
 
 class FlipView(QListWidget):
-    """ Flip view """
+    """ Flip view
+
+    Constructors
+    ------------
+    * FlipView(`parent`: QWidget = None)
+    * FlipView(`orient`: Qt.Orientation, `parent`: QWidget = None)
+    """
 
     currentIndexChanged = Signal(int)
 

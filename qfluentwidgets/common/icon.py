@@ -180,7 +180,7 @@ class FluentIconBase:
         raise NotImplementedError
 
     def icon(self, theme=Theme.AUTO, color: QColor = None):
-        """ create an fluent icon
+        """ create a fluent icon
 
         Parameters
         ----------
@@ -188,7 +188,7 @@ class FluentIconBase:
             the theme of icon
             * `Theme.Light`: black icon
             * `Theme.DARK`: white icon
-            * `Theme.AUTO`: icon color depends on `config.theme`
+            * `Theme.AUTO`: icon color depends on `qconfig.theme`
 
         color: QColor | Qt.GlobalColor | str
             icon color, only applicable to svg icon
@@ -439,7 +439,14 @@ def toQIcon(icon: Union[QIcon, FluentIconBase, str]) -> QIcon:
 
 
 class Action(QAction):
-    """ Fluent action """
+    """ Fluent action
+
+    Constructors
+    ------------
+    * IconWidget(`parent`: QWidget = None, `**kwargs`)
+    * IconWidget(`text`: str, `parent`: QWidget = None, `**kwargs`)
+    * IconWidget(`icon`: QIcon | FluentIconBase, `parent`: QWidget = None, `**kwargs`)
+    """
 
     @singledispatchmethod
     def __init__(self, parent: QObject = None, **kwargs):
