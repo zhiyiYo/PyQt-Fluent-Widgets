@@ -1,0 +1,404 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:2
+#: b109fe0f82f74781a6a3edac433a7a2d
+msgid "flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:8
+#: 604e2db7c0264ac1aee2ff1114640325
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 7c4b6e6b721e4aefaf2f4a8190bd5d5f
+msgid ""
+":py:obj:`FlyoutAnimationType "
+"<qfluentwidgets.components.widgets.flyout.FlyoutAnimationType>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 287e4fce292c467195d4068d0d742861 74a6a988e4cd4076b9cd3566a439a3e4
+msgid "Flyout animation type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: fd9d292bcf82400d89790f587ca41127
+msgid ""
+":py:obj:`IconWidget "
+"<qfluentwidgets.components.widgets.flyout.IconWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: de75015a61834ba5a76793ac9d0d5626
+msgid ""
+":py:obj:`FlyoutViewBase "
+"<qfluentwidgets.components.widgets.flyout.FlyoutViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:79
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 9f0eff3423ab4bc18163c112c4df9f98 fac68754ad2f4c839e41c8ea776d32e4
+msgid "Flyout view base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 0e27e9dc2bb347e2b784155c12e788a3
+msgid ""
+":py:obj:`FlyoutView "
+"<qfluentwidgets.components.widgets.flyout.FlyoutView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 73a7be3063cb42dfbcb874ec125afebe 87be10ed1f4e405f87c718db2606c6b2
+msgid "Flyout view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 894a75e58ce2476e82cd79b908b21e31
+msgid ":py:obj:`Flyout <qfluentwidgets.components.widgets.flyout.Flyout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:112
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: bc1fe62bcb234e8fa27de47f5b8369a6 f62a11cca2f44607977d0cac8466c8ba
+msgid "Flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 113447fd06454ed88fc63098957233df
+msgid ""
+":py:obj:`FlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.FlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:194
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 05be17f9aa22443a84b34133ad8f10a9 d7fe87ea08544b799629d6dbb5cd27de
+msgid "Flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 84c54f1380184cd2a2a3a79334c19671
+msgid ""
+":py:obj:`PullUpFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.PullUpFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:234
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 27b669b6320b4911bc3f2f15f226d1ea 5571ad3dff0045cb86962b4398f0a5a1
+msgid "Pull up flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 39aedd61ad1a4aa4ad37d3cb8ca4f7c4
+msgid ""
+":py:obj:`DropDownFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.DropDownFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:251
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 13d3af9c8b3f44ea890c88c2eb4c2d48 a006f550d5a04a7dabd5795a6813afae
+msgid "Drop down flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 430bde501cdc47d4b0b800a2522e5700
+msgid ""
+":py:obj:`SlideLeftFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.SlideLeftFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:268
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: a582b6a600944214b0098cdba19a74a0 af512088e84f43fdbcb1cfc9fee5826b
+msgid "Slide left flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: d06980cd2c3d434d95e5bb4569e6d496
+msgid ""
+":py:obj:`SlideRightFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.SlideRightFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:285
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 613ba6aa008c470f85a76272e840fb6c bf3bea065adc4915ae79917515a83b02
+msgid "Slide right flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 9bf8b839cc6544808f6d4346dea2f9d4
+msgid ""
+":py:obj:`FadeInFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.FadeInFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:302
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 3b36a59507ff478193ced64a58574f83 5001423ab09f4a8686e7e2e95b31e896
+msgid "Fade in flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 9a88b1ef51c74af88f6e5d858ad4e763
+msgid ""
+":py:obj:`DummyFlyoutAnimationManager "
+"<qfluentwidgets.components.widgets.flyout.DummyFlyoutAnimationManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:319
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:29:<autosummary>:1
+#: 3682772ef226414c92003058fceb6087 a7cfd6f708b2465aa0a161f7dd819bfe
+msgid "Dummy flyout animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:32
+#: c5190f7ef99b47c59207deb6444d576d
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:110
+#: 0a9e871ac0e3455190740084f034b97b a1bf463d6fd64a84a8f633559771f28a
+#: e1162555f69c4d218e360b76839c7b12
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:91
+#: 6823dc858f2641afbd4703ee370f9058
+msgid "Bases: :py:obj:`FlyoutViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:101
+#: 1c76ae4af33f400bb1b7b3426ade2a76
+msgid "add widget to view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:120
+#: 42c8de12f4c743379986651ff3472824
+msgid "add shadow to dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:128
+#: 118f9ab251994ecd916b91bb10b505ff
+msgid "show calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:134
+#: 20e7080d04dd46c5afc50a7f900455da
+msgid "create and show a flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:137
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:160
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:206
+#: 7b8e8d021d2449118cbf4ce27d85a46b 8707efb6cab8452982118c543e4f79e4
+#: fc2d1776c14f4575b39a22906eb4e6a2
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:139
+#: 276216d24a18406386375f37a70a9390
+msgid "view: FlyoutViewBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:139
+#: 6b510fff85b34e1ab9a40298f1114aa0
+msgid "flyout view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:142
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:177
+#: 8cf93217bd2248469cf2d76f7745a1fc b720743157c445a8a9b8d6b63d544963
+msgid "target: QWidget | QPoint"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:142
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:177
+#: 0cb9a51ecf8b463aaa990264e4dafa5c 14e62a829e574561a40bbba6b580a61b
+msgid "the target widget or position to show flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:180
+#: 59ef8e6f76d34e34ba7b23ae3821c979 cdf30e42360f4e79b935ad6864b1da84
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:180
+#: 0eab8b3452c141f3a965a01d6e3d0308 39e8b69001e547b6a60e23d36248eb44
+msgid "parent window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:183
+#: 057d4197eaa34b9a9fa65a91e1689dc6 a74f9d94508140d691c370c8f0a54bec
+msgid "aniType: FlyoutAnimationType"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:183
+#: 28be7a67819d4b2a8d1aac68287b2205 5b2dec1016bf41428a79f86d918e12ad
+msgid "flyout animation type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:150
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:185
+#: 2c817e58fa67422386d1b869d9d9366d 442834413358407e9b1bfb8d5375e19b
+msgid "isDeleteOnClose: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:151
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:186
+#: 37713fe3bc7e4713944177371463f608 4a21897a741240b18c25e0465fe3210a
+msgid "whether delete flyout automatically when flyout is closed"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:157
+#: 9544e56885f244b1b4c94536ddcabd15
+msgid "create and show a flyout using the default view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:162
+#: 6bc1caf924bf4a1b93254e076fa186f1
+msgid "title: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:162
+#: d1d6153103ba4a7ab4ec5087c4766cd6
+msgid "the title of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:165
+#: ff2f18244d78466986cd950b43e2e73f
+msgid "content: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:165
+#: 0eb139f423224325a477b7970a17b7c5
+msgid "the content of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:168
+#: ae482211b37341a0a69c190d061ba35e
+msgid "icon: InfoBarIcon | FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:168
+#: d758811db0a647c9873159e97545a035
+msgid "the icon of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:171
+#: c2a5e562adb344889c0652499b85f7f0
+msgid "image: str | QPixmap | QImage"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:171
+#: 7fbef4a807074aad95342b7bc0648c71
+msgid "the image of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:174
+#: 3f1fb69ff51d4ca78348885334159981
+msgid "isClosable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:174
+#: 90e31545e9c94c6590bce0b991dd9115
+msgid "whether to show the close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:192
+#: f2677e5eb0d04d1ea57edc12d8c9d96f
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:203
+#: 5f706d8a8904464794653a489feaa0cf
+msgid "register menu animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:207
+#: 6eb66554ee8841b3a209a2b2653d05c3
+msgid "name: Any"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:208
+#: 32a33c4c81124642b6b09b4e8add5e0d
+msgid "the name of manager, it should be unique"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:214
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:260
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:277
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:294
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:311
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:323
+#: 1170583b639740de9cda530b7b7b02c1 38748c5736b64cd694a97619d33c098e
+#: 4bf06e006b01465abfbf6987da21442d 71f6c36cfd7e4e5187ef1dfa1173fe04
+#: 9aec858d25f2483590bb2594b4d29e0e b2f2770e26b14d1485300de3ecbfd723
+#: f9a0f758433c4efb9d2f15a439ec3812
+msgid "start animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:220
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:238
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:255
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:272
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:289
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:306
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:328
+#: 0bcc5226e7f84ee38e0ee8051132913a 49525fed87de42998dc6da584ae53b8a
+#: 56b438ef7ced4ad59059e1f4074ca408 88e94391e04b4798ad5bc2be968819a7
+#: 910b652c57f34b9a8b7e156431f4c8ee abed09d1cf4c4e87910b51093f08a293
+#: fad3ba4c21f1441699586af8930a65b7
+msgid "return the top left position relative to the target"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:226
+#: 7cfe79821407481db04bc358154334d8
+msgid "mask animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:232
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:249
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:266
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:283
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:300
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flyout/index.rst:317
+#: 0727f1ebb6ef4a8b884d520b91e12b85 5d8cdfb2b7794b8da52fe6b56606d9c7
+#: c0313c2eea1046f896f76b9a775912ab d6cf5f4abd6e41d38480aa10054aa353
+#: d77c1ef8b4144c7f8e4b1ad7d7591f0b d9914fd3806f40c49295cc20facfbc28
+msgid "Bases: :py:obj:`FlyoutAnimationManager`"
+msgstr ""
+

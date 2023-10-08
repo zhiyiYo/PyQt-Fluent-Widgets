@@ -1,0 +1,197 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:2
+#: e14d3f04441c466296dc1f55756f7075
+msgid "acrylic_flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:8
+#: 12cdad3ce34443ed9eda36cb27166fd5
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: 7c7eb7558387473b895baa71316035ea
+msgid ""
+":py:obj:`AcrylicFlyoutViewBase "
+"<qfluentwidgets.components.material.acrylic_flyout.AcrylicFlyoutViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: 443c14a14b7f45bea95f7716928de834 fce241d2cbc54c40937c20e0c15e2d4d
+msgid "Acrylic flyout view base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: f3b955bdd0b046ef810f4536473d593a
+msgid ""
+":py:obj:`AcrylicFlyoutView "
+"<qfluentwidgets.components.material.acrylic_flyout.AcrylicFlyoutView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:38
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: 3f3edfa4a67545a1b68151fcfd803458 b2cb368513bf4cbfba73105d24f21539
+msgid "Acrylic flyout view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: 40821f1c81fd44f997bc938c98329e0b
+msgid ""
+":py:obj:`AcrylicFlyout "
+"<qfluentwidgets.components.material.acrylic_flyout.AcrylicFlyout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:20:<autosummary>:1
+#: 568020474cc2481c9e4f388b44379c22 7bfe2e3302aa4d7594f01e050488b88e
+msgid "Acrylic flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:23
+#: 266f2711b6374cfc84fee7d2cf76188e
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:36
+#: 3da6d3c59dea4e37a0f46b2e8f62b501
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutView`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:49
+#: 2e51edbb96764a77ba5317e9b0423a10
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.flyout.Flyout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:56
+#: 3f8df5b3d3db464699188f57b8492d49
+msgid "create and show a flyout using the default view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:59
+#: 579b99b498b447c2a6a1561211ce843f
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:61
+#: 63d34bc0e4204fd78ca28533f640f310
+msgid "title: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:61
+#: 20b9c260a79d4a0aae6791af354c7cfa
+msgid "the title of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:64
+#: 932c75138bdc47b5a1a7caea4a6067bc
+msgid "content: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:64
+#: 2f95afcf346a4a329468da04a5104841
+msgid "the content of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:67
+#: 0b1b024dc8ae4778b447d6edc1dc3a07
+msgid "icon: InfoBarIcon | FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:67
+#: 39dfaf0d5abe4e8da67c008325b54c95
+msgid "the icon of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:70
+#: 99dfdb66ed474d7a92a5d6707af0cd57
+msgid "image: str | QPixmap | QImage"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:70
+#: 80d094751575484da750dd37b02fd88a
+msgid "the image of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:73
+#: 0da67254f7194d13a10a51be360c23f8
+msgid "isClosable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:73
+#: 071c6c2583f84df6a7ccbddc6e54f967
+msgid "whether to show the close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:76
+#: 18634c5c1e3144b3897db5c064ebceb2
+msgid "target: QWidget | QPoint"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:76
+#: c9951a10298d4f75839b8c81cf89cc97
+msgid "the target widget or position to show flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:79
+#: 6714d8fb0e83456aa2764df0c9eee88c
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:79
+#: 0ec1744a88a242e98694ced6ad2ed904
+msgid "parent window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:82
+#: 2ac8977ce7784022a6dec01d7541ddf7
+msgid "aniType: FlyoutAnimationType"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:82
+#: 3260aff3a5df4189ab5f75a701b03bf4
+msgid "flyout animation type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:84
+#: 9cb841d57b304fb09986d46e90ba8ea3
+msgid "isDeleteOnClose: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:85
+#: 92537ee0b83e4acc9a0e4658a48742ea
+msgid "whether delete flyout automatically when flyout is closed"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_flyout/index.rst:90
+#: 790d6822298644e7975d5c7b1091062d
+msgid "show calendar view"
+msgstr ""
+

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,17 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:2
-#: f836cb3de8cb46e3b5b669b03f225342
+#: 7db7a448a76b4f7e95886e1a61dfc5d9
 msgid "info_bar"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:8
-#: d9c5ec6400e44375b052498bad3cb01d
+#: c84b28bcd3ee409486664d75a587d5b0
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 76c33f487cbd40baa4742da275a89297
+#: 219835d3e1f6430296b9622173ba9175
 msgid ""
 ":py:obj:`InfoBarIcon "
 "<qfluentwidgets.components.widgets.info_bar.InfoBarIcon>`\\"
@@ -39,12 +39,12 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:33
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 28a2f48b05ae4c24900f0127404f6f31
+#: 912f984d11dd43d29fb356c0fe6fe9ce fe046fe5be5f492893c6b1822241e619
 msgid "Info bar icon"
 msgstr "消息条图标"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 55e817c461b34f54a537379bab9548d9
+#: 5d2596c3185a41a4ae0e2cec47dd2fb2
 msgid ""
 ":py:obj:`InfoBarPosition "
 "<qfluentwidgets.components.widgets.info_bar.InfoBarPosition>`\\"
@@ -52,12 +52,12 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:73
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: e5c31704e2d5460fbfa4586efb13d83a
+#: 9e9dcd6fe11440db8cf3d29e1b387c25 9fe7c5bf7a284218adb6394c30156ca5
 msgid "Info bar position"
 msgstr "消息条弹出位置"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: cdac4df47ff64d9bb2e3dfb9257775d0
+#: 1740af6f74e44890bf3c82e5b24ad197
 msgid ""
 ":py:obj:`InfoIconWidget "
 "<qfluentwidgets.components.widgets.info_bar.InfoIconWidget>`\\"
@@ -65,23 +65,23 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:115
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 47db584d44384cf39cbefd1f6a6f9437
+#: 9f2eb77d61c04169924e67902d0a5d2b d655097813f14f5a8badd4f58eec2693
 msgid "Icon widget"
 msgstr "消息条图标部件"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 60696bc0f7014e1cabcb91ac66dfd237
+#: 6f88912fcdb94aeba2054aa95c11906c
 msgid ":py:obj:`InfoBar <qfluentwidgets.components.widgets.info_bar.InfoBar>`\\"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:125
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 42a6aa28afc74198b1dd7f55d866e307
+#: 35c2075d320e4f05a0f09faf7b409e11 9a9725010fe44b059e2982b8dc9b7d3c
 msgid "Information bar"
 msgstr "消息条"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 6f098a6a88a74a98844e0d7eff1d9584
+#: 4ad4613eaad84ffab01311a7a8a3b57c
 msgid ""
 ":py:obj:`InfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.InfoBarManager>`\\"
@@ -89,182 +89,199 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:183
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: e0bbedff25094aeaae6c9ddc8fa01a2f
+#: c10a683f193148278d955634729501bc de8ba37b27524893805d91cbeb49099f
 msgid "Info bar manager"
 msgstr "消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: e78658d4cc374c18b43cf86231b6de36
+#: 6e5cb14e382d47e699da9a68ffa74409
 msgid ""
 ":py:obj:`TopInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.TopInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:209
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:224
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: be018313c45c428b8f18c9c2d4359a93
+#: 11c110ac39044a21b38f4fbf3899e8f2 3624ec11dddb46e68c27c5491916429b
 msgid "Top position info bar manager"
 msgstr "顶部消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 7a454e5c233f43d4a0d5be8ee4f2acfa
+#: 5a6826ab2bb94e5caa5d4b907e85396f
 msgid ""
 ":py:obj:`TopRightInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.TopRightInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:216
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:231
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 45b63a8b0e8b480d954e1de2a9c2afef
+#: 409b0d931fdd4fbf81a39506d27828d6 a46ad57797ab48fca5867540efc447ee
 msgid "Top right position info bar manager"
 msgstr "\"右上角消息条管理"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: b9ebc90b5f0d489fbb123ae8f4aa18e6
+#: e7641964734f4f3898e32bd88d098231
 msgid ""
 ":py:obj:`BottomRightInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.BottomRightInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:238
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: a35b4086943b406c896fa552108e9eab
+#: f3a0d6a1e403493bbf23a0015cd8b82e f57f1fd7b2774cdabbd37dceb6bd305e
 msgid "Bottom right position info bar manager"
 msgstr "右下角消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: fe53c83b0c844719bb7cb48894dcf2b5
+#: 9c03b2e85c934975b90319341508d0cc
 msgid ""
 ":py:obj:`TopLeftInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.TopLeftInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:230
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:245
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 82ef65c3556a401e977c9265ed139b36
+#: 54c812b7c43c4102accb4cca99af7925 5731866924a14a83beaadf70febc7b3c
 msgid "Top left position info bar manager"
 msgstr "左上角消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: efccc354f4d34191b3f581de5a7d7655
+#: 6b4b6312c13c441180cc84e6926ca47e
 msgid ""
 ":py:obj:`BottomLeftInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.BottomLeftInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:237
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:252
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: ea3d83ed70dc4a8d97316b30c513786d
+#: 54bead2b69084666bb6d3aacced2d68a 9e1e4239e0d24d8ab983729736e61c55
 msgid "Bottom left position info bar manager"
 msgstr "左下角消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: 4cb068f5b9fc4ee49e0d8e593371414c
+#: 4ce1cd541fad4aa98694faa7e406e2c1
 msgid ""
 ":py:obj:`BottomInfoBarManager "
 "<qfluentwidgets.components.widgets.info_bar.BottomInfoBarManager>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:244
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:259
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:28:<autosummary>:1
-#: cfc872fdfb6c4769be3660e55f79e3e2
+#: 04722aa0171846318a0f3457044a353c 5c0f2303a4164405b73fe6db819c27d0
 msgid "Bottom position info bar manager"
 msgstr "底部消息条管理器"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:31
-#: 81451dec06e9470ba1f7cc25073d6d1a
+#: b7b9d8f2927f45e7a3946e200e78799b
 msgid ""
 "Bases: :py:obj:`qfluentwidgets.common.icon.FluentIconBase`, "
 ":py:obj:`enum.Enum`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:57
-#: eb25eb51c4cb461aa135c4be5c589cd9
+#: 0a0c43aa9cbe4c1ba0641c6d04ee8d30
 msgid "get the path of icon"
 msgstr "返回图标路径"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:60
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:141
-#: 0b75cd9f7c994433b9989c889050bd4c
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:208
+#: 736bdbb0205040beb9656e43d684cc79 78f6c200ede8482e8fdbd0dd012485e2
+#: cf1b87355f4444d88466dc3862bedee5
 msgid "Parameters"
 msgstr "参数"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:64
-#: fd499cd081b54dc792a02d77f8d076f2
+#: fffa7b2e313643678afd4bc4c91f0bb3
 msgid "theme: Theme"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:62
-#: 5b9fd931408e429695cd9e7ed9334181
+#: 10b42e394ca647a38ae79802765fd504
 msgid ""
 "the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
 "* `Theme.AUTO`: icon color depends on `config.theme`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:71
-#: 14ca70651ce548048a50e89784d162c3
+#: b2b9a59a1b4c4fdfb6986c4e90021575
 msgid "Bases: :py:obj:`enum.Enum`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:113
-#: 56dcdafb8c6646e98b754cc6ebae32fb
+#: f362ccbc2abf466abe4a3fec0429d553
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:123
-#: ea4eaabf0085486cac49bd02da4a2d6a
+#: 89b09e9074074ab4aa49729db51eaf1c
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:133
-#: 4c28c13b8493473bb3f7421d4614a2f6
+#: 16e31b9da2ac43a391bbb32cd7093a06
 msgid "add widget to info bar"
 msgstr "添加小部件到消息条"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:138
-#: 565d384c04f0494c9b798abc20bd77ab
+#: c0daf2c6e93b4a82ae2733b6cbc88e8d
 msgid "set the custom background color"
 msgstr "设置自定义背景色"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:142
-#: 2419d273eb794be59f8b79617feda5a6
+#: 373bba3e9f6f43bb80bea3dabb6f8a6d
 msgid "light, dark: str | Qt.GlobalColor | QColor"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:143
-#: ea90458a18a342fd8830db587dab1bb4
+#: 18490aaf62994d359c4defc7fae86989
 msgid "background color in light/dark theme mode"
 msgstr "亮/暗模式下的背景色"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:181
-#: af8bbb8218be4f499c20f58c3122d578
+#: 3e23bbccf5d140e3b1af896fce57f965
 msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:187
-#: 100cd8c431144020890b845383b9d5b4
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:191
+#: d4488f37dc36464a8b70f2f2f079bac2
 msgid "add info bar"
 msgstr "添加消息条"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:192
-#: fcda0b9d797145efa28bc74581cc60d6
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:196
+#: 19e0a87e0b6346fe9d4c3e6bcb018704
 msgid "remove info bar"
 msgstr "移除消息条"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:201
-#: 8c7582904063475199ca7446da9ab424
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:205
+#: b625e896d8a4466bb5655f3fa2c1a24c
+msgid "register menu animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:209
+#: 5fa8600840d1486d91ce080abcb9bd74
+msgid "name: Any"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:210
+#: f9ef9a4aa8fd42b581c0f2f5e1227c02
+msgid "the name of manager, it should be unique"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:216
+#: 9b8b99253c304cffb69e1b0b1456289e
 msgid "mask info bar manager according to the display position"
 msgstr "根据弹出位置创建消息条管理器"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:207
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:214
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:221
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:228
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:235
-#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:242
-#: 2ceb13a587864dd4ae25a6bd725fad31 8e988be307a14790b581d27857136772
-#: dc1fc2162fdc457d83a4fa7d99daab6d f1d450f6526347e5821951655b4ddc48
-#: fece523e07ac42aeab694546d9588973
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:222
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:229
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:236
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:250
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_bar/index.rst:257
+#: 205eae04f74c479983d7ca7317b91939 3b30e63ba2ab4864803b5193152fe777
+#: 5f653bd30d3a405a8105b156ed828cec 6f1d68e3f2b441fea2b12b646192f27c
+#: c84bb0da02204a2f86f69277cf858c0f f987624a1d504cfa97df9c3d997e4e90
 msgid "Bases: :py:obj:`InfoBarManager`"
 msgstr ""
 

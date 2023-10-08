@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:2
+#: ad071c9569be4ce4a710bbbbac6fe0f9
+msgid "segmented_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:8
+#: 0f879548817e46daac082200134ff47f
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:19:<autosummary>:1
+#: 95681d7490e24710a6ab02a605b346b3
+msgid ""
+":py:obj:`SegmentedItem "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:19:<autosummary>:1
+#: 011d4263377a452a816a0af61a6435de 296150fde511404e93cd0b1e9a2f2c45
+msgid "Segmented item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:19:<autosummary>:1
+#: f82901ff20ea44c39e12ba0e45fd9764
+msgid ""
+":py:obj:`SegmentedWidget "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:19:<autosummary>:1
+#: ad619f400f774fb5818ba5e151a5b693 b213bce9695a4b30aa7c5f107c1f155c
+msgid "Segmented widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:22
+#: e43175b6be084305ae627dd044406e0d
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.PivotItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:32
+#: f7431d5e6ed443e7b60a40c3993845e7
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.Pivot`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:38
+#: d059a9bacc534cbab5c8bd2778aa312d
+msgid "insert item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:41
+#: bee38b0994ab46a9b03b65ac3f8ecc57
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:43
+#: 530735e2d7fa4bdabe7d5c5e41e24026
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:43
+#: 068905a95bd6447db6b7d2d5b2f4273d
+msgid "insert position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:46
+#: e0b387e3e8d945d29146478d46fc029b
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:46
+#: 3e97a3da5b1b4839a0f0b0d804649548
+msgid "the unique name of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:49
+#: 37df83f7ac524580841e8183dd677a23
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:49
+#: 2b0b2de33e6445e38b7994017fe0d396
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:52
+#: 4bc1aeb651ba4e90a354ffcda055fe26
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:52
+#: 17b2851b266a4d548e7dc13fafc1b279
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:54
+#: 1010854d208a402ab867952fa863cab9
+msgid "icon: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:55
+#: d88e86030dfa43518dd98f58e50c68dc
+msgid "the icon of navigation item"
+msgstr ""
+

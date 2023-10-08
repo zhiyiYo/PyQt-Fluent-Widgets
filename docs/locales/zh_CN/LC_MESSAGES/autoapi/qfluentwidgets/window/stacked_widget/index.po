@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:2
+#: 60a9980edef84d5d8dc784189477052d
+msgid "stacked_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:8
+#: 175e3a36307b42f6b2ff28bc306eac49
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:18:<autosummary>:1
+#: d0760730792d43419c347d376ac761ee
+msgid ""
+":py:obj:`StackedWidget "
+"<qfluentwidgets.window.stacked_widget.StackedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:18:<autosummary>:1
+#: 1686ed9ca40b4f03869372ddefbe8d72 429985ca3f994d0487c809fac2e1edf1
+msgid "Stacked widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:21
+#: 8a7956b1eeea42569a964e364472c472
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/stacked_widget/index.rst:31
+#: daca209f78734f87be27acb25b4441ae
+msgid "add widget to view"
+msgstr ""
+

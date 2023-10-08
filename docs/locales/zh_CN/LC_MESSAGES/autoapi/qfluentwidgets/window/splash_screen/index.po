@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:2
+#: 4989acefa9484f57b70d56631bab97df
+msgid "splash_screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:8
+#: 1c95e4c1aff1448b93a21eb285b91d46
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:18:<autosummary>:1
+#: 2f676091847342b3a9b8d8fe432b687a
+msgid ""
+":py:obj:`SplashScreen "
+"<qfluentwidgets.window.splash_screen.SplashScreen>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:18:<autosummary>:1
+#: 87493e04be0b44fb9dbff6084a9e9caa f86291a0a4d34f32949ebad903556397
+msgid "Splash screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:21
+#: c459ecd302e140dc81203bc0e0d338bc
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:39
+#: 087e02c6a8f244e6a941023470d58ecc
+msgid "set title bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/splash_screen/index.rst:50
+#: 64e55b376f714ecaa299f9b9d9c4fee3
+msgid "close splash screen"
+msgstr ""
+

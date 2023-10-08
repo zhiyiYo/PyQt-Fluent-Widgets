@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:2
+#: 2b837fead3b941e89b0fed35e7dddc7b
+msgid "card_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:8
+#: e8a62b25098e4420a79365841caec834
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: d7716a2968dc435abdda1cf448cf8c58
+msgid ""
+":py:obj:`CardWidget "
+"<qfluentwidgets.components.widgets.card_widget.CardWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 97acf414040c42f3b784803d3a6b4092 bafe2d4489164b56b4a45f09ff4edb8f
+msgid "Card widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 8be9f8c257494a21ac28c59212999ff1
+msgid ""
+":py:obj:`SimpleCardWidget "
+"<qfluentwidgets.components.widgets.card_widget.SimpleCardWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:60
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 329e82580f3e4321bfb3fcd32d8f41b4 d6b03d67ef50445c97d319519212b3f4
+msgid "Simple card widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: a9273e37712b44d6a3127c8a2a70fbd3
+msgid ""
+":py:obj:`ElevatedCardWidget "
+"<qfluentwidgets.components.widgets.card_widget.ElevatedCardWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:70
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 8c02e406a8394adfac7b11e75a6e3302 b5f8ec781bb54a57850c7dcfbab94521
+msgid "Card widget with shadow effect"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 36b489e0517a41ffa80195e0cc8fde55
+msgid ""
+":py:obj:`CardSeparator "
+"<qfluentwidgets.components.widgets.card_widget.CardSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 8b7135da3a25469db9fd770bb3485e51 ec8d4ce287ff468d90670a00ceb0f798
+msgid "Card separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 0202f88c9bf5483c80e4c8aa7acea02c
+msgid ""
+":py:obj:`HeaderCardWidget "
+"<qfluentwidgets.components.widgets.card_widget.HeaderCardWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:96
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:22:<autosummary>:1
+#: 6cad843564c14897abcc2b4afee7a5f0 bf7a374e0dd54f6f94bf3649a530111d
+msgid "Header card widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:25
+#: 8fdbae3823ec484c817ba9c01f9fed3b
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.common.animation.BackgroundAnimationWidget`, "
+":py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:58
+#: 565f1deaf8334d398a4a355f6f349c1c
+msgid "Bases: :py:obj:`CardWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:94
+#: 934f337f2b05496694091fccc71ddab1 fd3722b66618416694d0d3805e793dc1
+msgid "Bases: :py:obj:`SimpleCardWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/card_widget/index.rst:84
+#: 0b1f1199418c4552b13e255aa85baf4b
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,17 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:2
-#: 9f0342c458ca4e5aaf869ad31f541035
+#: 238d1e78c9f64fcdb882aabca805be90
 msgid "image_utils"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:8
-#: 0c4cfd30fe3e47b3bdc913c0f256fab2
+#: 1639dfc19f114fbdb6c8039f2864ff56
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
-#: 1e1c95197b2648f083747a2c172584e7
+#: 31ccd17888644086a9e92d2a3f8e62c7
 msgid ""
 ":py:obj:`DominantColor "
 "<qfluentwidgets.common.image_utils.DominantColor>`\\"
@@ -39,59 +39,66 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:31
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
-#: 1651a04c2d7d4887b61eec65e6339fee 18c2b1a6a35141db8bc5804e232c0c1b
+#: 34b715fc91bb4f2095d92f97f446022e bc611e871e584bfb88f95e285d3c75f9
 msgid "Dominant color class"
 msgstr "主题色类"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:25:<autosummary>:1
-#: 17815330aa7e44909c051b4c6e8f800c
+#: 8b97845e109d49ef8dddff6bdc64d389
 msgid ""
 ":py:obj:`gaussianBlur <qfluentwidgets.common.image_utils.gaussianBlur>`\\"
-" \\(imagePath\\[\\, blurRadius\\, brightFactor\\, ...\\]\\)"
+" \\(image\\[\\, blurRadius\\, brightFactor\\, ...\\]\\)"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:36
-#: a990b80fa329447899c4572b1869fe03
+#: dd3977cedfe0443b8a50fcc2e01863f1
 msgid "extract dominant color from image"
 msgstr "提取图片的主题色"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:39
-#: edc2a47b3051414fa746bd0dd5769849
+#: c481895639e7494fa412b482a9ae6af1
 msgid "Parameters"
 msgstr "参数"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:41
-#: 967a5b452b7544b29a0fcbffbcf2401b
+#: 86831ef3f4994ae081189f085d740217
 msgid "imagePath: str"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:41
-#: 6b73d2ab8f80468d92c113b1420fb0b5
+#: 97f6a2b28feb4b1bb11d163329b35168
 msgid "image path"
 msgstr "图像路径"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:44
-#: 8465149253db4573bf52b5ffcdf8c47f
+#: a8f6a8fb366a47c6bab7dd9b645cd24c
 msgid "Returns"
 msgstr "返回值"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:45
-#: 67fa745e3a024f1d8da88ce63a631bef
+#: baf442233f90417c8993dd6c8fece1b6
 msgid "r, g, b: int"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:46
-#: f5f2fc0b260c4972a22424c8d6bbc02e
+#: e20a1ab11f2c44519706485ac38f331e
 msgid "gray value of each color channel"
 msgstr "各个通道的灰度值"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:52
-#: 19f2861a09784604bfc65eabd7ea71e5
+#: 89b0cfe2d70f4fea9114f654b5d2793f
 msgid "convert rgb to hsv"
 msgstr "将 rgb 转换为 hsv"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:58
-#: 68a1155ce877453e818321175d96eb5a
+#: ff7513ce2f7f4f8a955053726b39d74d
 msgid "convert hsv to rgb"
 msgstr "将 hsv 转换为 rgb"
+
+#~ msgid ""
+#~ ":py:obj:`gaussianBlur "
+#~ "<qfluentwidgets.common.image_utils.gaussianBlur>`\\ "
+#~ "\\(imagePath\\[\\, blurRadius\\, brightFactor\\, "
+#~ "...\\]\\)"
+#~ msgstr ""
 

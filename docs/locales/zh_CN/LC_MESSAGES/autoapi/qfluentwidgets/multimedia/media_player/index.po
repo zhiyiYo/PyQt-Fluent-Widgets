@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:2
+#: f7531ee48483471ea02662574ee4ccdb
+msgid "media_player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:8
+#: 312caf482b6f49daadecf769fe12e115
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:19:<autosummary>:1
+#: 345bec1578da4142ad2e323d3025014f
+msgid ""
+":py:obj:`MediaPlayerBase "
+"<qfluentwidgets.multimedia.media_player.MediaPlayerBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:19:<autosummary>:1
+#: 8014e79af33945a8bdc22f8a9926db77 cc5215f4fafc44dfa0e87f1fbec61b59
+msgid "Media player base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:19:<autosummary>:1
+#: 55c7ae64e6ff415ba6e237361afbaf5a
+msgid ""
+":py:obj:`MediaPlayer "
+"<qfluentwidgets.multimedia.media_player.MediaPlayer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:165
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:19:<autosummary>:1
+#: 3f418e22985c40009f512e043184e789 48ab551ade8842c4a2c31304f61144cf
+msgid "Media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:22
+#: 39090d4ba95e4fefab5651bc7deb9d66
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:57
+#: 565fcf2b19514258b3d7e31d54e0ee28
+msgid "Whether the media is playing"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:63
+#: 14dd7ef278574390835f58ac9010bcc3
+msgid "Return the status of the current media stream"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:69
+#: b9ecb1e0f352420ea886e0b1be757e0a
+msgid "Return the playback status of the current media stream"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:75
+#: c07601efda4749698f39cd62c620771a
+msgid "Returns the duration of the current media in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:81
+#: 65161fad7a7e4b81b0bf22127c42d71f
+msgid "Returns the current position inside the media being played back in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:87
+#: 604ca3ff29cc45efac9582edbca49a6e
+msgid "Return the volume of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:176
+#: 7c0c56fd01f94a4d87ff6e8349de9bb8 e7068899901b47dfaa023c81248cad34
+msgid "Return the active media source being used"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:99
+#: f2a56680e46e42828903981fadb7e09f
+msgid "Pause playing the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:105
+#: 6ffd1649d57a43e09c7cb67f4cef13fb
+msgid "Start or resume playing the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:111
+#: c2d2f4a966a3497b80a6c316c85b9864
+msgid "Stop playing, and reset the play position to the beginning"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:117
+#: 74b25db3ea0e4138a0885e6e156448ed
+msgid "Return the playback rate of the current media"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:123
+#: 5dba719144724a239b91d316853012a2
+msgid "Sets the position of media in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:129
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:181
+#: 145073d4d2c14b0884dbfd8fc74f3685 a6ca156eb5784377b860abf7e96676a6
+msgid "Sets the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:135
+#: bd4eacc4aaeb4281a49271de28f5200c
+msgid "Sets the playback rate of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:141
+#: 8ace09bb5f90416e855c371dca895fc1
+msgid "Sets the volume of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:151
+#: 8a8be6e1ab984bc4b760b49090ed8ff4
+msgid "Return the video output to be used by the media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:157
+#: 9e217f2d8c1e448fb5010f4cb44f8ac7
+msgid "Sets the video output to be used by the media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/media_player/index.rst:163
+#: a5f8aef998e146be8f00b487ad6188e1
+msgid "Bases: :py:obj:`PyQt5.QtMultimedia.QMediaPlayer`"
+msgstr ""
+

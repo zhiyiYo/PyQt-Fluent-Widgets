@@ -1,0 +1,241 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:2
+#: b0360a574d7446a299ce90ffaaefc693
+msgid "fluent_window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:8
+#: 9cb7fc0dde2047e9ac1b28dd96139f96
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: e9af6b699f4b4a0f8f5998c620c632ba
+msgid ""
+":py:obj:`FluentWindowBase "
+"<qfluentwidgets.window.fluent_window.FluentWindowBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:29
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 8c1445e1a5744654a41b5f52bb270a6a b0f042fad6104f729a3afd4fb3af362e
+msgid "Fluent window base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 3f88b892bebf4af7aaef7995ab4a29bb
+msgid ""
+":py:obj:`FluentTitleBar "
+"<qfluentwidgets.window.fluent_window.FluentTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 0cf834fce3fe420784878912e21accda 5d183302399e40d2a2e165fa8f80372a
+#: 9a21758e94804f2b8d35b585e7c34c97 bf773533b4bf4188a829e110266fdfd3
+msgid "Fluent title bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: bb2cc860fce04614bb9fd9b5b9edcdb7
+msgid ""
+":py:obj:`FluentWindow "
+"<qfluentwidgets.window.fluent_window.FluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 42bb09ee6fe346b2bf1d9e5994fdf66c 462f3d006720448cabcc1157002b1096
+msgid "Fluent window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: aa517739e5e74d48ad6ce0c4a43da46a
+msgid ""
+":py:obj:`MSFluentTitleBar "
+"<qfluentwidgets.window.fluent_window.MSFluentTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 59ae92bc4c504fb98ebfc2d443f451fa
+msgid ""
+":py:obj:`MSFluentWindow "
+"<qfluentwidgets.window.fluent_window.MSFluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 4dad275f17634193ab436e29a612e183 76d6b05e4c2442da8336a26dfb20216d
+msgid "Fluent window in Microsoft Store style"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: ef24d7368cfd4aaa8d2cd77c5df0f6c2
+msgid ""
+":py:obj:`SplitTitleBar "
+"<qfluentwidgets.window.fluent_window.SplitTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:139
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 9fec4775bba9433fb001b647b5903b70 e89f1487a1364016bfb458c35e8df937
+msgid "Title bar with minimize, maximum and close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 6ec84bff7359472192536e57e26ebf55
+msgid ""
+":py:obj:`SplitFluentWindow "
+"<qfluentwidgets.window.fluent_window.SplitFluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:152
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:24:<autosummary>:1
+#: 4bfc9adaf4cf44e59ee5b81f1dc33933 e504fa8de5e147b3a8466433abcd5bf8
+msgid "Fluent window with split style"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:27
+#: 8cea6b580cd54284a6d4a17fe59d5623
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.common.animation.BackgroundAnimationWidget`, "
+":py:obj:`qfluentwidgets.components.widgets.frameless_window.FramelessWindow`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:34
+#: 7c6851fea2e54e7594759717c35a5194
+msgid "add sub interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:45
+#: 46897cfe013c40bdb97ea8c4099b36c5
+msgid "set whether the mica effect is enabled, only available on Win11"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:54
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:137
+#: 0532f7cf612045bbb626184d55093a16 e2f9bdf0d62e4639a943ae76d6d6e986
+msgid "Bases: :py:obj:`qframelesswindow.TitleBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:67
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:107
+#: 29cf8490977b4967ace0f93719dabbe6 a5b16769795a4d2bb3a65434666eecdf
+msgid "Bases: :py:obj:`FluentWindowBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:73
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:113
+#: 29e3645459bc4a5ca6535e4458e13c4a b519b86fcee64910a8633a296f9992dc
+msgid ""
+"add sub interface, the object name of `interface` should be set already "
+"before calling this method"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:117
+#: 85592810893a4d018d71c8114b89771e e34f52bf0f934a1bb3d1af6bd3f42bee
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:79
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:119
+#: 69fdaa45d7564a708b3e4981c2b0da28 f30bb7127b314298989ea78f08ac2aaa
+msgid "interface: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:79
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:119
+#: 4bf6061c49da4ffabfe87a43628ee78e 97e73fdf77094cd48c7c9a1dbe93cac9
+msgid "the subinterface to be added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:122
+#: 016c2e54d759421fa654d1b1061f3f2e 605a9129704646f39f67bdb132267354
+msgid "icon: FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:122
+#: 7d34d66193a34d1dbeb80e6546b53cc2 99e2cc2db85749eea43895536b98be4a
+msgid "the icon of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:125
+#: 9c6c6ec15ba945feaa14d401cd6a84bb f0eca2a21d854d77883ac44e47e178f0
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:125
+#: 77323ceeed864f5ea20361ea477a1d2d d434d097d3ab49469d72d88f9b4553ba
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:130
+#: 5690f6285c8b46fd95e645c2c8fbd77c 721cbad13197485fb1151af016920c25
+msgid "position: NavigationItemPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:131
+#: 93a7b8edaff6474e860a23795aaf9960 a80aae303eb3423eb6a89e2179620330
+msgid "the position of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:90
+#: 1cc87c4b9f554397968f0a1c22ab582d
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:91
+#: 897f468274624f73b8a6ce295ab8212d
+msgid "the parent of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:100
+#: 13a6ee5fa1b743dda93e24dbd1512e1e
+msgid "Bases: :py:obj:`FluentTitleBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:128
+#: 4119c37511e04c6091b2e3be00823ee6
+msgid "selectedIcon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:128
+#: 046bac0e1fe8444aac554a97e670f6e2
+msgid "the icon of navigation item in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/fluent_window/index.rst:150
+#: 1b408be1235044b98eda51718e6a366b
+msgid "Bases: :py:obj:`FluentWindow`"
+msgstr ""
+

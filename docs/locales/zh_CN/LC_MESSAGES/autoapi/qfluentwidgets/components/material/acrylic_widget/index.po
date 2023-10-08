@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_widget/index.rst:2
+#: c76a4041255c4cd293670a533aab52a7
+msgid "acrylic_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_widget/index.rst:8
+#: f5b633c1fed4479ebfd23d338fe507c4
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_widget/index.rst:18:<autosummary>:1
+#: 662c95d7a5194986bda088941a779409
+msgid ""
+":py:obj:`AcrylicWidget "
+"<qfluentwidgets.components.material.acrylic_widget.AcrylicWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_widget/index.rst:21
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_widget/index.rst:18:<autosummary>:1
+#: 26dcfece9fe343e096b6b52684382f18 f81bea2d17314a82a449ea42b0e286ce
+msgid "Acrylic widget"
+msgstr ""
+

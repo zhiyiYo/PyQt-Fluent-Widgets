@@ -1,0 +1,483 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:2
+#: 3a70b0429b894657b206e06d6fb711d5
+msgid "material"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:23
+#: 400a661d10fd40f6a988296835bb2c61
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 848c9c756d9b420d854918b38b92b930
+msgid ":py:obj:`AcrylicMenu <qfluentwidgets.components.material.AcrylicMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: c25801c190074582b6a5b808989175fb e2419221ca3842fd8c83c4a7bbfe9b6a
+msgid "Acrylic menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: ac8836d9a8504736a79001ee8eab8cad
+msgid ""
+":py:obj:`AcrylicLineEditMenu "
+"<qfluentwidgets.components.material.AcrylicLineEditMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:62
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 603ddd3613564080a5aae25ccf1d7042 b5f8756b0405443e95bf6c8632327d19
+msgid "Acrylic line edit menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 0a2febf53dad4e5698326b6a10718e59
+msgid ""
+":py:obj:`AcrylicCheckableMenu "
+"<qfluentwidgets.components.material.AcrylicCheckableMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 7f7026b2ad3249d3a5ca90eb023c4ced eb13f47012f141c28d5ba4f6ac213679
+msgid "Checkable menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: c6aeddd36d69444f851b833d81bc2da5
+msgid ""
+":py:obj:`AcrylicCheckableSystemTrayMenu "
+"<qfluentwidgets.components.material.AcrylicCheckableSystemTrayMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:76
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 887cc24cda6f4d3c89d968577701fd29 c3f73513b91944e5af1ef7bf09db1df3
+msgid "Checkable system tray menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: e952bf719e4140809f96be60fc9bfb78
+msgid ""
+":py:obj:`AcrylicSystemTrayMenu "
+"<qfluentwidgets.components.material.AcrylicSystemTrayMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 02fb17f1800f41c58197779e610cc453 5cdb385fc27c409cb31ca3c2d7a75f03
+msgid "System tray menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 5c5b43be37294c59bc78c0e96507f502
+msgid ""
+":py:obj:`AcrylicLineEditBase "
+"<qfluentwidgets.components.material.AcrylicLineEditBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: d85c590fefed46beb9ac8eb64f1cfe8d e340e7ec2c1946fdae1d1bab8020a3ac
+msgid "Acrylic line edit base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: af86afd6395840e6acacb6c0d1289d86
+msgid ""
+":py:obj:`AcrylicLineEdit "
+"<qfluentwidgets.components.material.AcrylicLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:107
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 1c1643b371c8406597ce90b83ec5559f 7946a8d817d74626a1dc2beb703cc10e
+msgid "Acrylic line edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 81d574fa560e45f9b13338f820fc481c
+msgid ""
+":py:obj:`AcrylicSearchLineEdit "
+"<qfluentwidgets.components.material.AcrylicSearchLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 3248bdcaefb3439a9c374940b0a26a33 7661e38acdf04dd196895c334baeebe0
+msgid "Acrylic search line edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: ca60c2214b4849b5b124be3c277e9ef2
+msgid ""
+":py:obj:`AcrylicComboBox "
+"<qfluentwidgets.components.material.AcrylicComboBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:121
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:140
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 1ad5242995c74062b12a8cfbc9c4d2b8 3a645d9eea204a338a8a014605accd64
+#: 68a0cd505abd4599902f06ee800cb100 807a6a9c1cdf4e2c92b5a5b8a3f1a482
+msgid "Acrylic combo box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: e26521c641304079839666d202380cff
+msgid ""
+":py:obj:`AcrylicComboBoxSettingCard "
+"<qfluentwidgets.components.material.AcrylicComboBoxSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:128
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 10630e4918f4444abb32863ef3e03a6b 2f284499dc6e4dbba27350b8324e00f9
+msgid "Setting card with a combo box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 07787a041fa54e60ab836aa58ea6c1cc
+msgid ""
+":py:obj:`AcrylicEditableComboBox "
+"<qfluentwidgets.components.material.AcrylicEditableComboBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 1c37fcecc6b94bcd8b1e8cda5175cc8e
+msgid ""
+":py:obj:`AcrylicWidget "
+"<qfluentwidgets.components.material.AcrylicWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 439b2b1bb3a746f7b8ae3ac5dd1d51b6 b8b22c6fa68d4745bd93c69aa9bc9861
+msgid "Acrylic widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 06f9360b89244f7dbb5f20e5ead3c10b
+msgid ":py:obj:`AcrylicBrush <qfluentwidgets.components.material.AcrylicBrush>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:156
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: b81dd50887a2425d9c1a37a05ef6a73e fd82335003a54eb7a0ecf0735add65ad
+msgid "Acrylic brush"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: bba5c64cfb2e4f099d9a72a422a140cf
+msgid ""
+":py:obj:`AcrylicFlyoutView "
+"<qfluentwidgets.components.material.AcrylicFlyoutView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:199
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 5a9c1c13a07b423fb5d97a98a97205ad d39955cb6c8c4bcdbf81cd174d678774
+msgid "Acrylic flyout view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 0564e1dff9564b4f8b0a1d7fe04d83e3
+msgid ""
+":py:obj:`AcrylicFlyoutViewBase "
+"<qfluentwidgets.components.material.AcrylicFlyoutViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 240a325c74d04b06a89aae7cd9cdd2f3 e304611e7f2f402bbcc04399e2b6f398
+msgid "Acrylic flyout view base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 422ba22f5a044f22bbfdafee4206e5fd
+msgid ""
+":py:obj:`AcrylicFlyout "
+"<qfluentwidgets.components.material.AcrylicFlyout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 347932975809473d8b2284648d77d2b0 b1692a6ed1b74a949ae3e2e7d66f7005
+msgid "Acrylic flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: e7eed254e99445c38605d1730d39f580
+msgid ""
+":py:obj:`AcrylicToolTip "
+"<qfluentwidgets.components.material.AcrylicToolTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:272
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 99c320776f9b4dc88335a8b211c9c9b6 fa253dc12227483eac35c3a0017f2fc8
+msgid "Acrylic tool tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: e70b039ce9e2460dbf7de80d6768e612
+msgid ""
+":py:obj:`AcrylicToolTipFilter "
+"<qfluentwidgets.components.material.AcrylicToolTipFilter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:282
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:50:<autosummary>:1
+#: 661ef4a02b10466da434e8e10794b5bb da22f15102c54f65a0e6cda6016c77c1
+msgid "Acrylic tool tip filter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:53
+#: be797b499f5943dcbb6b5efdc0730627
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:60
+#: 9d9062525cd64b91bc2ee368ce931ffa
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.LineEditMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:67
+#: a313cc2de59c49ec9b9d03ec51c9f001
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.CheckableMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:74
+#: 5301d0f6f3044d7a80d62eb12a1a49fc
+msgid "Bases: :py:obj:`AcrylicCheckableMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:84
+#: a3468c962dd04739bbe0d230ce44174e
+msgid "Bases: :py:obj:`AcrylicMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:105
+#: 641e3a9c58c1473c9c71b0943923e15e
+msgid ""
+"Bases: :py:obj:`AcrylicLineEditBase`, "
+":py:obj:`qfluentwidgets.components.widgets.line_edit.LineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:112
+#: 1fdd33d0dbff4fd2919e4ae0121da74b
+msgid ""
+"Bases: :py:obj:`AcrylicLineEditBase`, "
+":py:obj:`qfluentwidgets.components.widgets.line_edit.SearchLineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:119
+#: 622827e7c3b7490083048b765da9e72b
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.combo_box.ComboBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:126
+#: b24dc136f6834cbab8ff4a3d5c2d5ad7
+msgid "Bases: :py:obj:`qfluentwidgets.components.settings.SettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:132
+#: 3445763ef66249d394acf044981caeb8
+msgid "set the value of config item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:138
+#: a472c839b1ee490fb646a8880a7016da
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_line_edit.AcrylicLineEditBase`,"
+" :py:obj:`qfluentwidgets.components.widgets.combo_box.EditableComboBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:172
+#: 1ea69ddedf2d4763ac27880c84d5bc09
+msgid "grab image from screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:175
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:233
+#: 64a8639154dc481b895cdee0c2709466 df01b69a9bad464fa9c1807a9f219dd6
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:176
+#: 6ab7e43a49c6478d99c1d28da09c56aa
+msgid "rect: QRect"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:177
+#: 4e881117a59f47b99d57d37fdcfe8a6e
+msgid "grabbed region"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:182
+#: d71f20bd7e9647d1b56c6d33fe360f09
+msgid "set blurred image"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:197
+#: c197304eb54b46d4af2af74ce42533ba
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutView`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:210
+#: 92821dcbc59147f88d0d49d58a807702
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:223
+#: 08bcca41897244eeb0fdc5c5f9818be5
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.flyout.Flyout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:230
+#: c2dc0e02381646449d2d792bf3626569
+msgid "create and show a flyout using the default view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:235
+#: 5826e07d40954739a96b711e5771bdd7
+msgid "title: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:235
+#: 62dea964e8b64aaeb6b4d328b46c7231
+msgid "the title of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:238
+#: d369d5ef8da14a23974971343f474730
+msgid "content: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:238
+#: f05cb2875c2a4a009bd8cebdc17c9f9c
+msgid "the content of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:241
+#: b305a32cec444fcfad5e898a7a7ed86c
+msgid "icon: InfoBarIcon | FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:241
+#: 813ef8745dc7452aaa2dfe6eb10bd1b7
+msgid "the icon of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:244
+#: 24ccf0bae9234a9ab519eefb7369c78c
+msgid "image: str | QPixmap | QImage"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:244
+#: 3416628643824a7ead2221b9121ad159
+msgid "the image of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:247
+#: 61fbcf6e0c1e476496442bf8cc323dc4
+msgid "isClosable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:247
+#: 5be05ee709b34eb28295696b63b32933
+msgid "whether to show the close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:250
+#: 4ef418606a154d9380c3a55c3e66505e
+msgid "target: QWidget | QPoint"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:250
+#: af8ff2618115487aa52c37af552785cd
+msgid "the target widget or position to show flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:253
+#: e6714cd0ad3e4a13872f51474a6eeede
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:253
+#: af3bd233576944fea8c3f9142d9c0a23
+msgid "parent window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:256
+#: 32f31ddd28c944d2b764e9ff6ad4143a
+msgid "aniType: FlyoutAnimationType"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:256
+#: 6e1ec72c0a97484fba7e05ee39ca3d90
+msgid "flyout animation type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:258
+#: 4df6bbdbfb9749dabe9ee5e7a45308bd
+msgid "isDeleteOnClose: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:259
+#: e800dba1f6ff43e1a571bec1012d97af
+msgid "whether delete flyout automatically when flyout is closed"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:264
+#: 45250142b91a4f299b377b5e1c90a998
+msgid "show calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:270
+#: f3c0077868134ef59f9d187d0bffb1b4
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.tool_tip.ToolTip`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/index.rst:280
+#: 5e167fff09f84071b129a407583f0409
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.tool_tip.ToolTipFilter`"
+msgstr ""
+

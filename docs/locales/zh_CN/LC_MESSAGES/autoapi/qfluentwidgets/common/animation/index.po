@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,42 +21,87 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:2
-#: 159a580a13f24fc096cacbaa6b242071
+#: a45e86b2936b43c7b401aa337c03d9b0
 msgid "animation"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:8
-#: ba53627a32d2403a9f7c78b642027bec
+#: d3da0a4e99884489a369b3362515206e
 msgid "Module Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
-#: 2391e9ce09a24747b29d7c194a99dccd
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 73516b65bdc3480b8193dabdd1f8a1f3
 msgid ":py:obj:`AnimationBase <qfluentwidgets.common.animation.AnimationBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:24
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:34
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
-#: 088f7370e00d4c07ae732ab1e42b862d 3d6d843b701c4d169e27f2467f7bf8cf
-#: 7ac9eedc8f174ecf9902952bdac9aad7 d76a62d885b946b6a68ec5c3e8f73c5f
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 4efd0144fcf4499b86ac1665cd5e6792 5b1bf6371d1c47c39fa25954c1199fef
+#: a1c95e089b754d2a9c7febe8d2979336 d1776e1c42994eef95d689771bd84566
 msgid "Animation base class"
 msgstr "动画基类"
 
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:19:<autosummary>:1
-#: c0ef1d83b7674c57a169c00bb9855dd9
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 52187d3dd9a047f28629b4d871bde285
 msgid ""
 ":py:obj:`TranslateYAnimation "
 "<qfluentwidgets.common.animation.TranslateYAnimation>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22
-#: b438b3ce7b77471bab11022eb4317d84
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: dc5d6bec1396464e8aebb0226dc5b31a
+msgid ""
+":py:obj:`BackgroundAnimationWidget "
+"<qfluentwidgets.common.animation.BackgroundAnimationWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 01e54e28437d41a7bbf2109dc04f95c9 92255a1ffd5c4e2fab2d80dbbb4f55a7
+msgid "Background animation widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 2b2d1fb531134074a8e59238c4297ad6
+msgid ""
+":py:obj:`BackgroundColorObject "
+"<qfluentwidgets.common.animation.BackgroundColorObject>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 0f8c5b9f80bd45b7ba4deee9dc291faa 4121dd547c0d46a1b5ae9ae4ecbb9cac
+msgid "Background color object"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 85723b1cc5c04a69b0232b4cc5492f4a
+msgid ""
+":py:obj:`DropShadowAnimation "
+"<qfluentwidgets.common.animation.DropShadowAnimation>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:22:<autosummary>:1
+#: 5110a8ffc1a6484da415ded889be673b ccb9957bfc54479b96ff0aeb719b18b3
+msgid "Drop shadow animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:81
+#: 5379b0ebdfb646a595dcae767593906e faf5285eb5fb4bba96fa7188d09b3014
 msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:32
-#: fcad6f5d108e45d3b4a9f0d4ca88e141
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:35
+#: 0c9337c95196449786ddcf69ceb187bb
 msgid "Bases: :py:obj:`AnimationBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/animation/index.rst:91
+#: 4432ddd80ea14cc49f85a00f36d72c9f
+msgid "Bases: :py:obj:`PyQt5.QtCore.QPropertyAnimation`"
 msgstr ""
 

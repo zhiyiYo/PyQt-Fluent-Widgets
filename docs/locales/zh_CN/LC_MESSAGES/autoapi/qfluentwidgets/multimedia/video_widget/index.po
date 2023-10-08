@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:2
+#: 2f6325a8a99747869049580c9c9cb558
+msgid "video_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:8
+#: 751bf5ebd2244963b7d67593743746fc
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:19:<autosummary>:1
+#: c4eebf2c07b84dd389ba7a3d99ee52ad
+msgid ""
+":py:obj:`GraphicsVideoItem "
+"<qfluentwidgets.multimedia.video_widget.GraphicsVideoItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:19:<autosummary>:1
+#: 1fed9fdea35547458a9b1b3d9fce77ef 562afb278154489b88af1eb685c42afd
+msgid "Graphics video item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:19:<autosummary>:1
+#: faa20da5dadf4796b42a9c21afff469e
+msgid ""
+":py:obj:`VideoWidget "
+"<qfluentwidgets.multimedia.video_widget.VideoWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:19:<autosummary>:1
+#: a6295ba97b514d969546619ce9d9a4f6 e4bbfed5af734aa6b96c2428a595cdc1
+msgid "Video widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:22
+#: 12fd51289b2c4f7ca92b80ed4d873ab9
+msgid "Bases: :py:obj:`PyQt5.QtMultimediaWidgets.QGraphicsVideoItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:32
+#: 410f3ef13be0463486e25f84b1f6f6fb
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QGraphicsView`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:41
+#: 6924bec5381a4765a112bee903927f3a
+msgid "set the video to play"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/video_widget/index.rst:67
+#: 41941e97288c4acfb35a74efe367a5fb
+msgid "toggle play state"
+msgstr ""
+

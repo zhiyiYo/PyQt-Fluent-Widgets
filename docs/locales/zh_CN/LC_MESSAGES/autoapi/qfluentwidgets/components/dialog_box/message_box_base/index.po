@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:2
+#: 88802143712b49f596a93e1015f698c4
+msgid "message_box_base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:8
+#: 87afd26363fd48488ad072020e3aa853
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:18:<autosummary>:1
+#: ea18fe8fe9144a638c9bf725f057dc20
+msgid ""
+":py:obj:`MessageBoxBase "
+"<qfluentwidgets.components.dialog_box.message_box_base.MessageBoxBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:18:<autosummary>:1
+#: 9f0f890a50ce4cd8bae05f544941cbc3 df934503f6124331ba8903de83cebaf9
+msgid "Message box base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/message_box_base/index.rst:21
+#: 1660be80c728404f9daeac5623c07675
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`"
+msgstr ""
+

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 10:30+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,66 +21,88 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:2
-#: b309d62afdf0458e92514f9eed2c779c
+#: 91814b7826b64ba2b0288f6abeb9eb70
 msgid "font"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:8
-#: 50b9a5c2e82d4e8c8cd94175a045efb4
+#: 266f25b1283e46578d0b31d2b2c29b0f
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
-#: dee34d737d1245d29cf9ce494fb135c1
+#: e9616b2277264d37884c2c2f28bb5dd2
 msgid ""
 ":py:obj:`setFont <qfluentwidgets.common.font.setFont>`\\ \\(widget\\[\\, "
-"fontSize\\]\\)"
+"fontSize\\, weight\\]\\)"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:22
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
-#: 13cd4e3a636041c7b0c307e4113a4eac 9050b7c7c4054dffa5263a7405fc5361
+#: 28b28744f68f458a8eea4d84ba570a45 6a15418fea3e4c26ba69a7b8e481ee25
 msgid "set the font of widget"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
-#: a3acc67d86ba469cbae2051a2ccb5259
+#: 86d2bfeed32e47699f197020e37ca2dd
 msgid ""
 ":py:obj:`getFont <qfluentwidgets.common.font.getFont>`\\ "
-"\\(\\[fontSize\\]\\)"
+"\\(\\[fontSize\\, weight\\]\\)"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:38
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:19:<autosummary>:1
-#: 6a005fa26a8244b885215db322b47337 d67f34c0ac5c429cb6554c932eca116c
+#: a1113e3584d4483c943d33520e895f3e be3e74044fef4a569aedba4c4b59ca8c
 msgid "create font"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:25
-#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:38
-#: 3a97c656abb245ad8f7873e0cf47c60e f5ef3316452844b2a91707833e967e6c
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:41
+#: 3c49679ecad14979a25b1170baf00a7e 83eaf19aa4414befae63d91b6559c27e
 msgid "Parameters"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:27
-#: 084742e18e0c4ca2b7afc0340f804d98
+#: 4f5e450011d2454a9d304284a1860de1
 msgid "widget: QWidget"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:27
-#: a3a2feb7bb774b569c884379d24d328d
+#: 3489a569786e4ed1a7cb087213e103af
 msgid "the widget to set font"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:29
-#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:39
-#: 8d012510b74349f88d1b511f66c0dd31 aebb59aa8abc40229d3bc0fe518c6221
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:43
+#: 8fbab91620b64d8682e9e25a31178762 9d3655fc34184fd097fe4d755343546a
 msgid "fontSize: int"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/font/index.rst:30
-#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:40
-#: bfcbce01b12d407b9bde50974edd68a0 d0556904140c4799bb621a98d7db1f80
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:43
+#: 7be6d0e57f30485d9d4846fd1f52315c ec531a9d7a704f00a8e9b785423e8385
 msgid "font pixel size"
 msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:45
+#: 25d28dca776e4daf9a6bca0c74315870 adbca2e9fb184f53937cf041abf6ff26
+msgid "weight: `QFont.Weight`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:33
+#: ../../source/autoapi/qfluentwidgets/common/font/index.rst:46
+#: 1319ec9a8469498591ea23c3a96a8010 ea5b800ad6b34c288657256dcfd4f4ae
+msgid "font weight"
+msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`setFont <qfluentwidgets.common.font.setFont>`\\ "
+#~ "\\(widget\\[\\, fontSize\\]\\)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`getFont <qfluentwidgets.common.font.getFont>`\\ "
+#~ "\\(\\[fontSize\\]\\)"
+#~ msgstr ""
 

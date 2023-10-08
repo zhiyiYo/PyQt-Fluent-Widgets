@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,270 +21,314 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:2
-#: 3e1995385d59462282ebe6fe675a2e06
+#: 8900c749e93044ea8ed39052cf8481d4
 msgid "combo_box"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:8
-#: 3512ca16ea534bf098b0f712f3b38b35
+#: 643e22e306854b6a9f64c0ad597687d9
 msgid "Module Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: bbf37dcacff94c2b8ca32c93dc76fed1
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: 0755a4c09120459395fcb080d440baac
 msgid ""
 ":py:obj:`ComboItem "
 "<qfluentwidgets.components.widgets.combo_box.ComboItem>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:26
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: e242de2997334f5a94fcfe6dd38139dd e5f9f2e685604c50a4588b0155ef9ad4
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: 635c7ba34ee94a808d9b225e9616280c 833fc8d07c43445ebb2954700cc23304
 msgid "Combo box item"
 msgstr "下拉框项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: b8c9fc802b094a4a821db50052d610f3
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: f0a96f0c6bb6403f958fb83646157e20
 msgid ""
 ":py:obj:`ComboBoxBase "
 "<qfluentwidgets.components.widgets.combo_box.ComboBoxBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:36
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: 161c0138ea7c4e17b3dab03525ec4023 653ed84d99b145468064add32cd4c366
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: c35dcbbcaedc44de999f43a5561eac00 df658ffbbcb444abac81094ee2a42a89
 msgid "Combo box base"
 msgstr "下拉框基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: d6693982243c4b708737caa407f91e1b
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: f4fd4a26641f4135a1d20c77e6b80622
 msgid ""
 ":py:obj:`ComboBox "
 "<qfluentwidgets.components.widgets.combo_box.ComboBox>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:183
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: 2602607113124de9b0442fc07b485b03 2790d8b406c2429ca1c8971af8a53f13
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:188
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: 67281e4c7eb9401f97b0943602a745fd 68933531d6784fc4926a17405750a177
 msgid "Combo box"
 msgstr "下拉框"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: da72f2b25ea54c2a8a3de5357542586e
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: e4f0f4b69aec4c21a234eb361b024c9c
 msgid ""
 ":py:obj:`EditableComboBox "
 "<qfluentwidgets.components.widgets.combo_box.EditableComboBox>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:207
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: 4446f565c23a48c28ab96f937c0ab510 a09cf2c8916a4ef382c73b86b8a5c8a8
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:222
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: ab1f2ec802d44087b2ebf92796621459 b4bbe3caf69c4ef89f26d7d8265a6d3b
 msgid "Editable combo box"
 msgstr "可编辑下拉框"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: d00e4d93087b4a24840c68bceeba28fe
-msgid ""
-":py:obj:`ComboMenuItemDelegate "
-"<qfluentwidgets.components.widgets.combo_box.ComboMenuItemDelegate>`\\"
-msgstr ""
-
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:225
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: 1f619a0cd0254f29aba3a345493ed6a1 c49cb7c5c0da426fbf5cbce77948c671
-msgid "Combo box drop menu item delegate"
-msgstr "下拉菜单项委托类"
-
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: c9464f5342174b769c8e14609b1ff209
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: 600526e366b241f994ffc67864bdfd79
 msgid ""
 ":py:obj:`ComboBoxMenu "
 "<qfluentwidgets.components.widgets.combo_box.ComboBoxMenu>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:235
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:23:<autosummary>:1
-#: 105d9b1cb1c74ac4a6fbedd9b0d3a0e0 cb404fe7e95441b796f8b17383f9abef
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:258
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:22:<autosummary>:1
+#: 1ad05f8e33d648b79a918fe751a91b88 4550cb9a8d6b4f688e4d30696306a99b
 msgid "Combo box menu"
 msgstr "下拉菜单"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:34
-#: 15496a3ea2234e63a6168e4b040c56de
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:33
+#: 832c5d8fb5344a50bb70129759bc153f
 msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:51
-#: ade37d4a10694798ac286efe22a05d59
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:50
+#: 2014a719d50b47f1b9c63572f5deed25
 msgid "add item"
 msgstr "添加选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:54
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:66
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:85
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:105
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:115
-#: 183f6075d8a741e0a398953b13aeb0a7 857780ba76244e3c966be94e2a7019a9
-#: a859facfb05747f1968ed305d32bb1d6 bb3b29c3e1b6431fb6b46f8d86a0be15
-#: d309d18371e346df9da05f51d50c783c
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:84
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:104
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:206
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:265
+#: 2c4a4d28eb174cd3bf14c3d5f8b1ee3a 34b9b4273fab427e89cf0b37a16366e6
+#: 424e5440344349c08219d1dbc9b6ccf0 65aafb69dd9c4c7fa4f2648e02d91092
+#: 6d1d0eda62404c589435354ee4e1cab8 c5d0d4896e6748a48eaf019cc2b279f7
+#: e624a0b8fd3a4629b8ba45d1f4bf7107 feddc07af9d84f878e53834c4a377ac3
 msgid "Parameters"
 msgstr "参数"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:56
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:106
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:119
-#: 374c50c85e5e4b708351bec5627691f5 803924e4dd1545e68b6c067b31f58a7a
-#: c7130e6d766c4e0398ac414f585b4314
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:105
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:118
+#: 4b6b00683c0c438cb90b2c29bb0123da 9798769930e44551babdea14a3b5153e
+#: a1ba2406ea184b368e5547631186f2ab
 msgid "text: str"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:56
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:68
-#: 358711ca4a544a7cbe3d48f04708a39d 4047d08d01954d8ca32f3bebf646a0e3
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:67
+#: a6fc730577274ec0a2f14f6c8cacf2ff e2bee0ac691e4b17a6b2a72302382aad
 msgid "the text of item"
 msgstr "选项的文本"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:58
-#: 069dafeb8f754385b58ad123e3069b73
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:57
+#: 8335210c09074b3eb2d4135794458966
 msgid "icon: str | QIcon | FluentIconBase"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:63
-#: e3b0db71dde3402f933d78a9b7c4dabb
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:62
+#: f52f2efe8eea4b919cda19f77b322c05
 msgid "add items"
 msgstr "添加多个选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:67
-#: bbf7d03fa3314d1d8e8f6eac61e14e0a
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:66
+#: 0ea0f0a9e34d44b6bd2628c396387d16
 msgid "text: Iterable[str]"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:73
-#: e0e57a95b6b34e78831eec1527c64579
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:72
+#: e14be4069aad460ab43d8ea58cc77100
 msgid ""
 "Removes the item at the given index from the combobox. This will update "
 "the current index if the index is removed."
 msgstr "移除指定索引处的选项。如果当前项被移除，该操作会更新当前选中的选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:82
-#: 1d754f57321547e08c98ec3e0a87ce68
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:81
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:203
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:237
+#: 739f96e5dd1343faa9e3289e606a8590 c998e45cf0ca432ba3b982c1128bd41c
+#: edb93532b5cd4c959709ba128d61b878
 msgid "set current index"
 msgstr "设置当前索引"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:86
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:117
-#: 243a9236381847489ac3686259bba00a 634739910725432583dca487abc981ee
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:85
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:207
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:241
+#: 66b7d949a8614e7abd53916e04b5608e 9f6e209dca5e4ef58dbb98526468ffd8
+#: b93d252b8eb9463d9410712a83f16ee9 c92cc771df604a288efc7cff26c2b073
 msgid "index: int"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:87
-#: a630fe691e59419da8694561e42b7d9b
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:208
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:242
+#: 00700e39549d469ead3d48cfe4910284 65442ac236954bfbb0edf4787e3a1960
+#: f0b3989dcc6349febec04da4625a8026
 msgid "current index"
 msgstr "返回当前索引"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:101
-#: 3c68ac6b374a47df8a78479a0ccd89aa
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:100
+#: 33e8b93630f4495d9b58f91fea2f40b3
 msgid ""
 "set the current text displayed in combo box, text should be in the item "
 "list"
 msgstr "设置当前选项，`text` 需要在选项中"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:107
-#: 9c9749ff17474dbabdcd73e3278da6e0
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:106
+#: 6b664347ad214e758c726156cddbc6bd
 msgid "text displayed in combo box"
 msgstr "当前选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:112
-#: 973e4b8e450e46a0b453f41da54e38fb
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:111
+#: 68f65609a03f44b0b4518ff7f949f40e
 msgid "set the text of item"
 msgstr "设置选项的文本"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:117
-#: f06a4fe4b4ba450a8730e03a18ebcb99
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:116
+#: c1c11d56534545abbf01132570cbe820
 msgid "the index of item"
 msgstr "选项的索引"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:120
-#: e5d7c82abd1c49d3ac1616bb64b9d96f
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:119
+#: 81ece7347d0243d69058e2a6ce2895f2
 msgid "new text of item"
 msgstr "选项的新文本"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:125
-#: 173ecff113324f0cacf6c5ba5e768b40
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:124
+#: 8ae30acb04a84778a63bc58abd15f3a3
 msgid "Returns the data in the given index"
 msgstr "返回指定索引处的数据"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:130
-#: 894cd18468d94edcb8e018549e0febda
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:129
+#: 949410bfbe47478b87753436ffd6fbb3
 msgid "Returns the text in the given index"
 msgstr "返回指定索引处的文本"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:135
-#: 1b630947184b415fb4f02f588a78e403
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:134
+#: 03d33d18ddf34a5890927e7712a5b4c0
 msgid "Returns the icon in the given index"
 msgstr "返回指定索引处的图标"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:140
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:145
-#: 34cff4fbc35b41188b7af9a272ae4e39 7f7f26ea3f294bc5831fe2454c87f35e
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:139
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:144
+#: 3ccdef614056440f9c13f1e1912a3370 9a4db6c518594bd6a4485c47f4a85eaa
 msgid "Sets the data role for the item on the given index"
 msgstr "设置选项的数据"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:150
-#: ff3d2185035e4d5ba0e92e7b92719212
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:149
+#: e926b7d5b3fa410bb365d189ab5dfe41
 msgid ""
 "Returns the index of the item containing the given data, otherwise "
 "returns -1"
 msgstr "返回含有该数据的选项索引，如果找不到匹配的选项就返回 -1"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:155
-#: 262a018c29c84b43aba3792e6d034f2d
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:154
+#: 8807f066b55c4628a56e0c399242c114
 msgid ""
 "Returns the index of the item containing the given text; otherwise "
 "returns -1."
 msgstr "返回含有该文本的选项索引，如果找不到匹配的选项就返回 -1"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:160
-#: 74ae981a44fe441585f1c17ab9e913d0
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:247
+#: 7f49d38363204c07a4b9de0d2284693c a513a9c642f8480c856e0e491a588b97
 msgid "Clears the combobox, removing all items."
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:165
-#: 00725df691c94bcd9b607e30c4cb521d
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:164
+#: 85852d5e09914b7fa3ea616124c563ff
 msgid "Returns the number of items in the combobox"
 msgstr "返回选项数量"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:170
-#: 8e1a834410174e29afe3c076407bee0e
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:169
+#: 7172d82d40814da790fbaa0167bb587b
 msgid "Inserts item into the combobox at the given index."
 msgstr "在指定索引处插入选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:175
-#: 17c975a6ee094d34a87356b11d065a69
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:174
+#: c622f02321794d23a838aaf3ea2be1f5
 msgid "Inserts items into the combobox, starting at the index specified."
 msgstr "在指定索引处插入多个选项"
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:181
-#: 89d15ff832da4b8db94de33180323d1c
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:186
+#: 91c3fb62418a413a954ad05f7c85dc25
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`, :py:obj:`ComboBoxBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:205
-#: 0f87551bf2a946c1af631b19d01b260b
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:220
+#: 908754bbdf4c4ac09ab188857d5ace25
 msgid ""
 "Bases: :py:obj:`qfluentwidgets.components.widgets.line_edit.LineEdit`, "
 ":py:obj:`ComboBoxBase`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:223
-#: f48101962a4843d19d2b6e3f60bb0ac1
-msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.MenuItemDelegate`"
-msgstr ""
-
-#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:233
-#: 9ae4fdd52c4a4fcb8737f7ef7952941c
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:256
+#: 26b4e33af7484803806663e8e3e152e0
 msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
 msgstr ""
 
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:262
+#: f10ede06313c4f1d91de05e214ddbcaa
+msgid "show menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:267
+#: 5a2ddee338f342de845e238b786083e6
+msgid "pos: QPoint"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:267
+#: 19e889c51f1c49e6998a5951ec17f9ae
+msgid "pop-up position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:270
+#: 07f277c0dc4e48a494227148dadbdf1c
+msgid "ani: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:270
+#: 445830f7e37b4518888dc1593ebf41a2
+msgid "Whether to show pop-up animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:272
+#: 5a35520be930477a8d729afb89e9875e
+msgid "aniType: MenuAnimationType"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/combo_box/index.rst:273
+#: d6dc61b1d0db461faefa022336b4583e
+msgid "menu animation type"
+msgstr ""
+
 #~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`ComboMenuItemDelegate "
+#~ "<qfluentwidgets.components.widgets.combo_box.ComboMenuItemDelegate>`\\"
+#~ msgstr ""
+
+#~ msgid "Combo box drop menu item delegate"
+#~ msgstr "下拉菜单项委托类"
+
+#~ msgid ""
+#~ "Bases: "
+#~ ":py:obj:`qfluentwidgets.components.widgets.menu.MenuItemDelegate`"
 #~ msgstr ""
 

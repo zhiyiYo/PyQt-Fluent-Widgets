@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,30 +21,224 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:2
-#: 40a6af00cfc04070863d9d4260a7a048
+#: 65c46e42574142cfb188420c750e462c
 msgid "label"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:8
-#: 8646dcf0fc37413ba6932d465b9bd402
+#: c1eb65f180064ee18060596193cd9698
 msgid "Module Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:18:<autosummary>:1
-#: 242fbfdfee5e43d9a33cf5cce31fed4c
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 85b80f984ffe4e41b484c4bea362871b
 msgid ""
 ":py:obj:`PixmapLabel "
 "<qfluentwidgets.components.widgets.label.PixmapLabel>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:23
-#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:18:<autosummary>:1
-#: 77e5c84f05fc4091ae94bdea64003534 cd38f3d2bc17417cb2d8000abe3b5187
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: cdfb3f21613843b8a6e79f7d37bd5d4f ce8b5a8d48194e83b9272f6470c1470b
 msgid "Label for high dpi pixmap"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:21
-#: 2be4e7928f07407785e158bb74a57756
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 2405281970c54c3d956a29d2cda2c6d5
+msgid ""
+":py:obj:`FluentLabelBase "
+"<qfluentwidgets.components.widgets.label.FluentLabelBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 18d051792e3e45c29ff4d91bc46887ca ebf909b0c6164d07b458639be9eea6b0
+msgid "Fluent label base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 89f471b5b0694ec4a5a6eca653d42c04
+msgid ""
+":py:obj:`CaptionLabel "
+"<qfluentwidgets.components.widgets.label.CaptionLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 67d32a6a9a4846c9ab20fda886e1759e 8ff76f73df1840ed92152f44260842a0
+msgid "Caption text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: b1e0d280094d47519a5aa096ac6fffe5
+msgid ":py:obj:`BodyLabel <qfluentwidgets.components.widgets.label.BodyLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:96
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 4d6d36e3c79f42948c41aab757e8f971 9cee7f77a1e14d9392c0f9460441accb
+msgid "Body text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 67bffb80cdfc441c805bd3468098afca
+msgid ""
+":py:obj:`StrongBodyLabel "
+"<qfluentwidgets.components.widgets.label.StrongBodyLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: b5789c44c49e43f69764857a5da95298 c89d4b1d284f4f3999ca57e180b92770
+msgid "Strong body text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 8c0d8b7ddacd4d59bd31b00e2b4bb7ea
+msgid ""
+":py:obj:`SubtitleLabel "
+"<qfluentwidgets.components.widgets.label.SubtitleLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:126
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 0fefe0bbda634832930c139ed3f2a64e 15f884d053f4436882a0c90884107973
+#: 5c671599577049e296a8e1b1e5ae7e26 75964abbaa5b4edd9a1ac8cd24d577b3
+msgid "Sub title text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: c70ed74806e84edd88652ff1f2adfd7c
+msgid ""
+":py:obj:`TitleLabel "
+"<qfluentwidgets.components.widgets.label.TitleLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 53f6904a931049dda4d93555ccf648ba
+msgid ""
+":py:obj:`LargeTitleLabel "
+"<qfluentwidgets.components.widgets.label.LargeTitleLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:136
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: b58ef028ac1a428a8d84466f966b36be f206f46ed864440dbd9c32ed4cc1ae95
+msgid "Large title text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 23bccd9216694a99bdab0e66269c731f
+msgid ""
+":py:obj:`DisplayLabel "
+"<qfluentwidgets.components.widgets.label.DisplayLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:146
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 818c11f8e9c94480a170514adc365129 b17730d983eb41228bf8f8d5bc0a47db
+msgid "Display text label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: eea1d360f8ff4103925a81b387f7244a
+msgid ""
+":py:obj:`ImageLabel "
+"<qfluentwidgets.components.widgets.label.ImageLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:156
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 57eb06cdccdc4c8db91a3f73d07a4ab6 a71f8929c47f482caaefed07fb5fad26
+msgid "Image label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 7942018758604432a50ebb364dc830a5
+msgid ""
+":py:obj:`AvatarWidget "
+"<qfluentwidgets.components.widgets.label.AvatarWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:213
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 6e4f0cf1f0304a509e5079ce033f9401 83856a01c89c463eafff22032b0baf44
+msgid "Avatar widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 5647b43ffa75421694e1abdfc901f944
+msgid ""
+":py:obj:`HyperlinkLabel "
+"<qfluentwidgets.components.widgets.label.HyperlinkLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:233
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:29:<autosummary>:1
+#: 327886b172cf4f0cadcb2f4ba48a7676 aaf4ccf80ce0443e88fd7d1b9290945e
+msgid "Hyperlink label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:154
+#: 1d31104eb4184ea4a29b40416535d7f7 30089d5048c1410a9ed3067da14ead0c
+#: 48c11bf4df0b4ff0a7e40d845dbd0174
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLabel`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:58
+#: 34ec9116009e48969d56be730ccec0a7
+msgid "set the text color of label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:61
+#: b53975d5040e49dcac14682d6d3523ae
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:62
+#: 71072c5a69354b999c3837ee911fced8
+msgid "light, dark: QColor | Qt.GlobalColor | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:63
+#: 8bbbfe20ed5e4062abbca38567f96bc9
+msgid "text color in light/dark mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:84
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:104
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:124
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:134
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:144
+#: 33155311f08341e99c5870c4f88289c5 6eb6aee5dca043b587055326ea0da637
+#: 74133be40960473b99e230770bbf6865 9b9994c4c26942558f00bba3952375c5
+#: c3ad607a13c44298b0c59fb7c73ecfba c9be8cef6b8241cb9b859f4a42cadb16
+#: dda0862e7f874969bd283dc17397a8a2
+msgid "Bases: :py:obj:`FluentLabelBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:164
+#: 0b7a941bb82f481eb84598d76bbee6e1
+msgid "set the border radius of image"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:169
+#: 04772d5b5f4a438b9e39d2b0d8098726
+msgid "set the image of label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:211
+#: 420db1b90bd145868e47a4baa39705c9
+msgid "Bases: :py:obj:`ImageLabel`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/label/index.rst:231
+#: f8a943bb1f4c4b7293207df3dd04c329
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
 msgstr ""
 

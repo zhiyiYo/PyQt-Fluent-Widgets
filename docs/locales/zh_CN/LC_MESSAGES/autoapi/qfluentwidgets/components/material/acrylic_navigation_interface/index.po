@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:2
+#: 0000d98b9da940079c5b8ac897d398b2
+msgid "acrylic_navigation_interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:8
+#: 2bd6f07be8074d48a4f3c0a5b629e961
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:19:<autosummary>:1
+#: 9c05d4f85fa24d7ca10dd40aaec8a045
+msgid ""
+":py:obj:`AcrylicNavigationPanel "
+"<qfluentwidgets.components.material.acrylic_navigation_interface.AcrylicNavigationPanel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:19:<autosummary>:1
+#: 46dbb5825aeb4b2e8b69b74d5bc8b7eb 77b85d2763e141fabfc0e8c0277af137
+msgid "Acrylic navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:19:<autosummary>:1
+#: 4be9221d6065473a858b11ae3f9c0df7
+msgid ""
+":py:obj:`AcrylicNavigationInterface "
+"<qfluentwidgets.components.material.acrylic_navigation_interface.AcrylicNavigationInterface>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:19:<autosummary>:1
+#: 49a0ded556e6491cbb76e51d01283f91 dbaab4baa8e34caea6a6d40773999373
+msgid "Acrylic navigation interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:22
+#: 7aa837ab21704c9b9fe558f44b7948a2
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`qfluentwidgets.components.navigation.NavigationPanel`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:28
+#: 5fe6ce3d3f6d4a4994271ca90f1bcd23
+msgid "expand navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_navigation_interface/index.rst:34
+#: 532301426b6e4f58810c13644643651e
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.NavigationInterface`"
+msgstr ""
+
