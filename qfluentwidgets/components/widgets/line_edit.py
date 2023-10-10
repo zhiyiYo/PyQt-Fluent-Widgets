@@ -207,7 +207,7 @@ class CompleterMenu(RoundMenu):
 
     def setItems(self, items: List[str]):
         """ set completion items """
-        self.clear()
+        self.view.clear()
 
         self.items = items
         self.view.addItems(items)
