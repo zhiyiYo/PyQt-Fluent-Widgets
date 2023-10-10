@@ -42,7 +42,7 @@ class OpacityAniStackedWidget(QStackedWidget):
             ani.setStartValue(1)
             ani.setEndValue(0)
 
-        self.widget(index_).show()
+        # self.widget(index_).show()
         self.__nextIndex = index
         ani.start()
 
