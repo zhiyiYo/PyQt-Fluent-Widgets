@@ -135,8 +135,8 @@ class ToolTipPositionManager:
         x, y = pos.x(), pos.y()
 
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
-        x = min(max(-2, x) if QCursor().pos().x() >= 0 else x, rect.right() - tooltip.width() - 4)
-        y = min(max(-2, y), rect.bottom() - tooltip.height() - 4)
+        x = max(rect.left(), min(pos.x(), rect.right() - tooltip.width() - 4))
+        y = max(rect.top(), min(pos.y(), rect.bottom() - tooltip.height() - 4))
 
         return QPoint(x, y)
 
