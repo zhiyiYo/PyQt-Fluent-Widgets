@@ -30,6 +30,7 @@ class SingleDirectionScrollArea(QScrollArea):
             scroll orientation
         """
         super().__init__(parent)
+        self.orient = orient
         self.smoothScroll = SmoothScroll(self, orient)
         self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
         self.hScrollBar = SmoothScrollBar(Qt.Horizontal, self)
@@ -52,7 +53,16 @@ class SingleDirectionScrollArea(QScrollArea):
         """
         self.smoothScroll.setSmoothMode(mode)
 
+    def keyPressEvent(self, e):
+        if e.key() in [Qt.Key_Left, Qt.Key_Right]:
+            return
+
+        return super().keyPressEvent(e)
+
     def wheelEvent(self, e: QWheelEvent):
+        if e.angleDelta().x() != 0:
+            return
+
         self.smoothScroll.wheelEvent(e)
         e.setAccepted(True)
 
