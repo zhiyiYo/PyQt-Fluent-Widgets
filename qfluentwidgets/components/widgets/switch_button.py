@@ -111,14 +111,15 @@ class Indicator(ToolButton):
 
             return QColor(255, 255, 255, 96) if isDark else QColor(0, 0, 0, 91)
 
-    @Property(float)
-    def sliderX(self):
+    def getSliderX(self):
         return self._sliderX
 
-    @sliderX.setter
-    def sliderX(self, x):
-        self._sliderX = x
+    def setSliderX(self, x):
+        self._sliderX = max(x, 5)
         self.update()
+
+    sliderX = Property(float, getSliderX, setSliderX)
+
 
 class IndicatorPosition(Enum):
     """ Indicator position """
