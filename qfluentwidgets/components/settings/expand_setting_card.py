@@ -273,6 +273,7 @@ class ExpandSettingCard(QScrollArea):
 
     def resizeEvent(self, e):
         self.card.resize(self.width(), self.card.height())
+        self.scrollWidget.resize(self.width(), self.scrollWidget.height())
 
     def _onExpandValueChanged(self):
         vh = self.viewLayout.sizeHint().height()
