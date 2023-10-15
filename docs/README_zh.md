@@ -43,7 +43,7 @@ pip install PyQt-Fluent-Widgets -i https://pypi.org/simple/
 pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
-如果项目中使用的是 Qt5、Qt6、PySide2、PySide6 或者 PyQt6，可以在 [Qt5](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/Qt5)、[Qt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/Qt6)、[PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。
+如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。Qt5 和 Qt6 的组件库需要从 [官网](https://qfluentwidgets.com/zh/price) 购买许可证后方可使用。
 
 > **Warning**
 > 请勿同时安装 PyQt-Fluent-Widgets、PyQt6-Fluent-Widgets、PySide2-Fluent-Widgets 和 PySide6-Fluent-Widgets，因为他们的包名都是 `qfluentwidgets`

@@ -43,7 +43,7 @@ Or install full-featured version:
 pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
-If you are using Qt5, Qt6, PySide2, PySide6 or PyQt6, you can download the code in [Qt5](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/Qt5), [Qt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/Qt6), [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2), [PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) or [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) branch.
+If you are using PySide2, PySide6 or PyQt6, you can download the code in [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2), [PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) or [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) branch. The component libraries of Qt5 and Qt6 require purchasing a license from the [official website](https://qfluentwidgets.com/price) in order to use them.
 
 > **Warning**
 > Don't install PyQt-Fluent-Widgets, PyQt6-Fluent-Widgets, PySide2-Fluent-Widgets and PySide6-Fluent-Widgets at the same time, because their package names are all `qfluentwidgets`.
