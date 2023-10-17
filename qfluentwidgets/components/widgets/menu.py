@@ -441,7 +441,8 @@ class RoundMenu(QMenu):
         else:
             # add a blank character to increase space between icon and text
             item.setText(" " + action.text())
-            w = 60 + self.view.fontMetrics().width(item.text()) + sw
+            space = 4 - self.view.fontMetrics().width(" ")
+            w = 60 + self.view.fontMetrics().width(item.text()) + sw + space
 
         item.setSizeHint(QSize(w, self.itemHeight))
         return w
