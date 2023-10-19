@@ -90,17 +90,17 @@ class Demo(ImageLabel):
         ])
 
         # add separator
-        menu.addAction(QAction(f'Select all', shortcut='Ctrl+A'))
         menu.addSeparator()
+        menu.addAction(QAction(f'Select all', shortcut='Ctrl+A'))
 
         # insert actions
-        #menu.insertAction(
-        #    menu.actions()[-1], Action(FIF.SETTING, 'Settings', shortcut='Ctrl+S'))
-        #menu.insertActions(
-        #    menu.actions()[-1],
-        #    [Action(FIF.HELP, 'Help', shortcut='Ctrl+H'),
-        #     Action(FIF.FEEDBACK, 'Feedback', shortcut='Ctrl+F')]
-        #)
+        menu.insertAction(
+            menu.actions()[-1], Action(FIF.SETTING, 'Settings', shortcut='Ctrl+S'))
+        menu.insertActions(
+            menu.actions()[-1],
+            [Action(FIF.HELP, 'Help', shortcut='Ctrl+H'),
+             Action(FIF.FEEDBACK, 'Feedback', shortcut='Ctrl+F')]
+        )
         menu.actions()[-2].setCheckable(True)
         menu.actions()[-2].setChecked(True)
 
