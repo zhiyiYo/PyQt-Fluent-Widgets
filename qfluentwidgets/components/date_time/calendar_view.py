@@ -214,7 +214,7 @@ class ScrollViewBase(QListWidget):
         self.viewport().update()
 
     def wheelEvent(self, e):
-        if self.vScrollBar.ani.state() == QPropertyAnimation.Running:
+        if self.vScrollBar.ani.state() == QPropertyAnimation.State.Running:
             return
 
         if e.angleDelta().y() < 0:
