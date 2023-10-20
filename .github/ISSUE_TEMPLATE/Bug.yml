@@ -60,7 +60,7 @@ body:
     id: code
     attributes:
       label: Minimum code
-      description: Minimum code to reproduce the error.
+      description: Minimum code to reproduce the error. Please ensure that the code can run after pasting.
       render: python3
     validations:
       required: true
