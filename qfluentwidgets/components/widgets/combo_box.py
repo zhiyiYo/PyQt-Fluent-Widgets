@@ -416,6 +416,15 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.clearButton.disconnect()
         self.clearButton.clicked.connect(self._onClearButtonClicked)
 
+    def setCompleterMenu(self, menu):
+        super().setCompleterMenu(menu)
+        menu.activated.connect(self.__onActivated)
+
+    def __onActivated(self, text):
+        index = self.findText(text)
+        if index >= 0:
+            self.setCurrentIndex(index)
+
     def currentText(self):
         return self.text()
 
