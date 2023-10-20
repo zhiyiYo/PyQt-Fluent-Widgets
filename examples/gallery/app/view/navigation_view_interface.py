@@ -2,7 +2,8 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QStackedWidget, QVBoxLayout, QLabel, QHBoxLayout, QFrame, QSizePolicy
 from qfluentwidgets import (Pivot, qrouter, SegmentedWidget, TabBar, CheckBox, ComboBox,
-                            TabCloseButtonDisplayMode, BodyLabel, SpinBox, BreadcrumbBar)
+                            TabCloseButtonDisplayMode, BodyLabel, SpinBox, BreadcrumbBar,
+                            SegmentedToggleToolWidget, FluentIcon)
 
 from .gallery_interface import GalleryInterface
 from ..common.translator import Translator
@@ -50,6 +51,12 @@ class NavigationViewInterface(GalleryInterface):
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/PyQt6/examples/navigation/segmented_widget/demo.py'
         )
 
+        self.addExampleCard(
+            title=self.tr('Another segmented control'),
+            widget=self.createToggleToolWidget(),
+            sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/segmented_tool_widget/demo.py'
+        )
+
         card = self.addExampleCard(
             title=self.tr('A tab bar'),
             widget=TabInterface(self),
@@ -57,6 +64,14 @@ class NavigationViewInterface(GalleryInterface):
             stretch=1
         )
         card.topLayout.setContentsMargins(12, 0, 0, 0)
+
+    def createToggleToolWidget(self):
+        w = SegmentedToggleToolWidget(self)
+        w.addItem('k1', FluentIcon.TRANSPARENT)
+        w.addItem('k2', FluentIcon.CHECKBOX)
+        w.addItem('k3', FluentIcon.CONSTRACT)
+        w.setCurrentItem('k1')
+        return w
 
 
 class PivotInterface(QWidget):

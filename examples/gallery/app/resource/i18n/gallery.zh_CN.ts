@@ -423,18 +423,18 @@
         <translation>杰洛·齐贝林</translation>
     </message>
     <message>
+        <location filename="../../view/dialog_interface.py" line="41"/>
+        <source>A custom message box</source>
+        <translation>自定义对话框</translation>
+    </message>
+    <message>
         <location filename="../../view/dialog_interface.py" line="157"/>
-        <source>Where the tennis ball will land when it touches the net, no one can predict. 
-If that moment comes, I hope the &apos;goddess&apos; exists. 
+        <source>Where the tennis ball will land when it touches the net, no one can predict.
+If that moment comes, I hope the &apos;goddess&apos; exists.
 In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>触网而起的网球会落到哪一侧，谁也无法知晓。
 如果那种时刻到来，我希望「女神」是存在的。
 这样的话，不管网球落到哪一边，我都会坦然接受的吧。</translation>
-    </message>
-    <message>
-        <location filename="../../view/dialog_interface.py" line="41"/>
-        <source>A custom message box</source>
-        <translation>自定义对话框</translation>
     </message>
 </context>
 <context>
@@ -952,85 +952,90 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>NavigationViewInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="41"/>
+        <location filename="../../view/navigation_view_interface.py" line="42"/>
         <source>A basic pivot</source>
         <translation>顶部导航栏</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="47"/>
+        <location filename="../../view/navigation_view_interface.py" line="48"/>
         <source>A segmented control</source>
         <translation>分段导航栏</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="53"/>
+        <location filename="../../view/navigation_view_interface.py" line="60"/>
         <source>A tab bar</source>
         <translation>标签栏</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="27"/>
+        <location filename="../../view/navigation_view_interface.py" line="28"/>
         <source>Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="27"/>
+        <location filename="../../view/navigation_view_interface.py" line="28"/>
         <source>Documents</source>
         <translation>文档</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="27"/>
+        <location filename="../../view/navigation_view_interface.py" line="28"/>
         <source>Study</source>
         <translation>学习资料</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>Janpanese Sensei</source>
         <translation>霓虹国老师</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>Action Film</source>
         <translation>动作类型电影</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="28"/>
+        <location filename="../../view/navigation_view_interface.py" line="29"/>
         <source>G Cup</source>
         <translation>G Cup</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="29"/>
+        <location filename="../../view/navigation_view_interface.py" line="30"/>
         <source>Mikami Yua</source>
         <translation>三上老师</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="29"/>
+        <location filename="../../view/navigation_view_interface.py" line="30"/>
         <source>Folder1</source>
         <translation>文件夹 1</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="29"/>
+        <location filename="../../view/navigation_view_interface.py" line="30"/>
         <source>Folder2</source>
         <translation>文件夹 2</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="34"/>
+        <location filename="../../view/navigation_view_interface.py" line="35"/>
         <source>Breadcrumb bar</source>
         <translation>面包屑导航栏</translation>
+    </message>
+    <message>
+        <location filename="../../view/navigation_view_interface.py" line="54"/>
+        <source>Another segmented control</source>
+        <translation>另一种分段导航栏</translation>
     </message>
 </context>
 <context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="80"/>
+        <location filename="../../view/navigation_view_interface.py" line="94"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="81"/>
+        <location filename="../../view/navigation_view_interface.py" line="95"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="82"/>
+        <location filename="../../view/navigation_view_interface.py" line="96"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
@@ -1495,57 +1500,57 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TabInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="133"/>
+        <location filename="../../view/navigation_view_interface.py" line="147"/>
         <source>IsTabMovable</source>
         <translation>启用标签拖拽</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="134"/>
+        <location filename="../../view/navigation_view_interface.py" line="148"/>
         <source>IsTabScrollable</source>
         <translation>启用标签滚动</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="138"/>
+        <location filename="../../view/navigation_view_interface.py" line="152"/>
         <source>TabCloseButtonDisplayMode</source>
         <translation>关闭按钮显示模式</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="160"/>
+        <location filename="../../view/navigation_view_interface.py" line="174"/>
         <source>Always</source>
         <translation>始终显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="161"/>
+        <location filename="../../view/navigation_view_interface.py" line="175"/>
         <source>OnHover</source>
         <translation>进入时显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="162"/>
+        <location filename="../../view/navigation_view_interface.py" line="176"/>
         <source>Never</source>
         <translation>从不显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="165"/>
+        <location filename="../../view/navigation_view_interface.py" line="179"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="167"/>
+        <location filename="../../view/navigation_view_interface.py" line="181"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="169"/>
+        <location filename="../../view/navigation_view_interface.py" line="183"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="135"/>
+        <location filename="../../view/navigation_view_interface.py" line="149"/>
         <source>IsTabShadowEnabled</source>
         <translation>启用标签阴影</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="136"/>
+        <location filename="../../view/navigation_view_interface.py" line="150"/>
         <source>TabMaximumWidth</source>
         <translation>标签最大宽度</translation>
     </message>
@@ -1591,32 +1596,32 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>带清空按钮的输入框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="86"/>
+        <location filename="../../view/text_interface.py" line="87"/>
         <source>A DoubleSpinBox with a spin button</source>
         <translation>浮点数旋转框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="93"/>
+        <location filename="../../view/text_interface.py" line="94"/>
         <source>A DateEdit with a spin button</source>
         <translation>日期编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="100"/>
+        <location filename="../../view/text_interface.py" line="101"/>
         <source>A TimeEdit with a spin button</source>
         <translation>时间编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="107"/>
+        <location filename="../../view/text_interface.py" line="108"/>
         <source>A DateTimeEdit with a spin button</source>
         <translation>日期时间编辑框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="79"/>
+        <location filename="../../view/text_interface.py" line="80"/>
         <source>A SpinBox with a spin button</source>
         <translation>旋转框</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="118"/>
+        <location filename="../../view/text_interface.py" line="119"/>
         <source>A simple TextEdit</source>
         <translation>富文本框</translation>
     </message>
@@ -1631,12 +1636,12 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>输入替身名称</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="71"/>
-        <source>Enter you password</source>
+        <location filename="../../view/text_interface.py" line="72"/>
+        <source>Enter your password</source>
         <translation>请输入密码</translation>
     </message>
     <message>
-        <location filename="../../view/text_interface.py" line="72"/>
+        <location filename="../../view/text_interface.py" line="73"/>
         <source>A password line edit</source>
         <translation>密码输入框</translation>
     </message>
