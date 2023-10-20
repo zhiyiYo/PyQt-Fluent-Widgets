@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtDesigner import QPyDesignerCustomWidgetPlugin
 
 from qfluentwidgets import (NavigationInterface, NavigationPanel, Pivot, SegmentedWidget, NavigationBar,
-                            FluentIcon, TabBar, BreadcrumbBar)
+                            FluentIcon, TabBar, BreadcrumbBar, SegmentedToolWidget, SegmentedToggleToolWidget)
 
 from plugin_base import PluginBase
 
@@ -106,6 +106,42 @@ class SegmentedWidgetPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
 
     def name(self):
         return "SegmentedWidget"
+
+
+class SegmentedToolWidgetPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Segmented tool widget plugin """
+
+    def createWidget(self, parent):
+        p = SegmentedToolWidget(parent)
+        p.addItem(f'k1', FluentIcon.TRANSPARENT)
+        p.addItem(f'k2', FluentIcon.CHECKBOX)
+        p.addItem(f'k3', FluentIcon.CONSTRACT)
+        p.setCurrentItem('k1')
+        return p
+
+    def icon(self):
+        return super().icon("Pivot")
+
+    def name(self):
+        return "SegmentedToolWidget"
+
+
+class SegmentedToggleToolWidgetPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
+    """ Segmented tool widget plugin """
+
+    def createWidget(self, parent):
+        p = SegmentedToggleToolWidget(parent)
+        p.addItem(f'k1', FluentIcon.TRANSPARENT)
+        p.addItem(f'k2', FluentIcon.CHECKBOX)
+        p.addItem(f'k3', FluentIcon.CONSTRACT)
+        p.setCurrentItem('k1')
+        return p
+
+    def icon(self):
+        return super().icon("Pivot")
+
+    def name(self):
+        return "SegmentedToggleToolWidget"
 
 
 class TabBarPlugin(NavigationPlugin, QPyDesignerCustomWidgetPlugin):
