@@ -6,7 +6,8 @@ from PySide2.QtGui import QIcon, QDesktopServices
 from PySide2.QtWidgets import QLabel, QHBoxLayout, QVBoxLayout, QApplication, QFrame, QWidget
 
 from qfluentwidgets import (NavigationBar, NavigationItemPosition, NavigationWidget, MessageBox,
-                            isDarkTheme, setTheme, Theme, setThemeColor, SearchLineEdit, PopUpAniStackedWidget)
+                            isDarkTheme, setTheme, Theme, setThemeColor, SearchLineEdit,
+                            PopUpAniStackedWidget, getFont)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, TitleBar
 
@@ -164,6 +165,12 @@ class Window(FramelessWindow):
 
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.navigationBar.setCurrentItem(self.homeInterface.objectName())
+
+        # hide the text of button when selected
+        # self.navigationBar.setSelectedTextVisible(False)
+
+        # adjust the font size of button
+        # self.navigationBar.setFont(getFont(12))
 
     def initWindow(self):
         self.resize(900, 700)
