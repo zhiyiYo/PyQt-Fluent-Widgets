@@ -796,7 +796,7 @@ class MenuAnimationManager(QObject):
         rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = min(pos.y() - 4, rect.bottom() - h)
+        y = min(pos.y() - 4, rect.bottom() - h + 10)
 
         return QPoint(x, y)
 
