@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication
 from ...common.font import setFont
 from ...common.icon import FluentIconBase
 from ...common.style_sheet import themeColor, FluentStyleSheet
-from ..widgets.button import PushButton, ToolButton
+from ..widgets.button import PushButton, ToolButton, TransparentToggleToolButton
 from .pivot import Pivot, PivotItem
 
 
@@ -72,6 +72,25 @@ class SegmentedToolItem(ToolButton):
         painter.drawRoundedRect(x, self.height() - 3, 16, 3, 1.5, 1.5)
 
 
+class SegmentedToggleToolItem(TransparentToggleToolButton):
+
+    itemClicked = pyqtSignal(bool)
+
+    def _postInit(self):
+        super()._postInit()
+        self.isSelected = False
+
+        self.setFixedSize(50, 32)
+        self.clicked.connect(lambda: self.itemClicked.emit(True))
+
+    def setSelected(self, isSelected: bool):
+        if self.isSelected == isSelected:
+            return
+
+        self.isSelected = isSelected
+        self.setChecked(isSelected)
+
+
 class SegmentedWidget(Pivot):
     """ Segmented widget """
 
@@ -118,6 +137,16 @@ class SegmentedToolWidget(Pivot):
         if routeKey in self.items:
             return
 
-        item = SegmentedToolItem(icon)
+        item = self._createItem(icon)
         self.insertWidget(index, routeKey, item, onClick)
         return item
+
+    def _createItem(self, icon):
+        return SegmentedToolItem(icon)
+
+
+class SegmentedToggleToolWidget(SegmentedToolWidget):
+    """ Segmented toggle tool widget """
+
+    def _createItem(self, icon):
+        return SegmentedToggleToolItem(icon)

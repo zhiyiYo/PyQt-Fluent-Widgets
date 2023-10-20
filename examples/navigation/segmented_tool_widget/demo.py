@@ -4,7 +4,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QStackedWidget, QVBoxLayout, QLabel, QHBoxLayout
 
-from qfluentwidgets import Pivot, setTheme, Theme, FluentIcon, SegmentedToolWidget
+from qfluentwidgets import Pivot, setTheme, Theme, FluentIcon, SegmentedToggleToolWidget, SegmentedToolWidget
 
 
 class Demo(QWidget):
@@ -22,7 +22,8 @@ class Demo(QWidget):
         """)
         self.resize(400, 400)
 
-        self.pivot = SegmentedToolWidget(self)
+        # self.pivot = SegmentedToolWidget(self)
+        self.pivot = SegmentedToggleToolWidget(self)
         self.stackedWidget = QStackedWidget(self)
 
         self.hBoxLayout = QHBoxLayout()
@@ -37,7 +38,7 @@ class Demo(QWidget):
         self.addSubInterface(self.albumInterface, 'albumInterface', FluentIcon.ALBUM)
         self.addSubInterface(self.artistInterface, 'artistInterface', FluentIcon.PEOPLE)
 
-        self.hBoxLayout.addWidget(self.pivot, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.pivot, 0, Qt.AlignCenter)
         self.vBoxLayout.addLayout(self.hBoxLayout)
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(30, 10, 30, 30)
