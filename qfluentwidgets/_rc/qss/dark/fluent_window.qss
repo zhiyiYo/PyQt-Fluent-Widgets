@@ -2,6 +2,10 @@ FluentTitleBar, SplitTitleBar {
     background-color: transparent;
 }
 
+StackedWidget[isTransparent=true] {
+    background-color: transparent;
+    border: none;
+}
 
 FluentTitleBar>QLabel#titleLabel,
 SplitTitleBar>QLabel#titleLabel {
