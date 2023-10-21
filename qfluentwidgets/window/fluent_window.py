@@ -4,7 +4,7 @@ import sys
 
 from PySide2.QtCore import Qt
 from PySide2.QtGui import QIcon, QPainter, QColor
-from PySide2.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
+from PySide2.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication
 
 from ..common.config import qconfig
 from ..common.icon import FluentIconBase
@@ -53,6 +53,13 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         widget = self.stackedWidget.widget(index)
         self.navigationInterface.setCurrentItem(widget.objectName())
         qrouter.push(self.stackedWidget, widget.objectName())
+
+        self._updateStackedBackground()
+
+    def _updateStackedBackground(self):
+        isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
+        self.stackedWidget.setProperty("isTransparent", isTransparent)
+        self.stackedWidget.setStyle(QApplication.style())
 
     def _normalBackgroundColor(self):
         if not self.isMicaEffectEnabled():
@@ -155,7 +162,7 @@ class FluentWindow(FluentWindowBase):
         self.titleBar.raise_()
 
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        position=NavigationItemPosition.TOP, parent=None) -> NavigationTreeWidget:
+                        position=NavigationItemPosition.TOP, parent=None, isTransparent=False) -> NavigationTreeWidget:
         """ add sub interface, the object name of `interface` should be set already
         before calling this method
 
@@ -175,12 +182,16 @@ class FluentWindow(FluentWindowBase):
 
         parent: QWidget
             the parent of navigation item
+
+        isTransparent: bool
+            whether to use transparent background
         """
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
         if parent and not parent.objectName():
             raise ValueError("The object name of `parent` can't be empty string.")
 
+        interface.setProperty("isStackedTransparent", isTransparent)
         self.stackedWidget.addWidget(interface)
 
         # add navigation item
@@ -200,6 +211,8 @@ class FluentWindow(FluentWindowBase):
             self.stackedWidget.currentChanged.connect(self._onCurrentInterfaceChanged)
             self.navigationInterface.setCurrentItem(routeKey)
             qrouter.setDefaultRouteKey(self.stackedWidget, routeKey)
+
+        self._updateStackedBackground()
 
         return item
 
@@ -234,7 +247,7 @@ class MSFluentWindow(FluentWindowBase):
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        selectedIcon=None, position=NavigationItemPosition.TOP) -> NavigationBarPushButton:
+                        selectedIcon=None, position=NavigationItemPosition.TOP, isTransparent=False) -> NavigationBarPushButton:
         """ add sub interface, the object name of `interface` should be set already
         before calling this method
 
@@ -258,6 +271,7 @@ class MSFluentWindow(FluentWindowBase):
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
 
+        interface.setProperty("isStackedTransparent", isTransparent)
         self.stackedWidget.addWidget(interface)
 
         # add navigation item
@@ -275,6 +289,8 @@ class MSFluentWindow(FluentWindowBase):
             self.stackedWidget.currentChanged.connect(self._onCurrentInterfaceChanged)
             self.navigationInterface.setCurrentItem(routeKey)
             qrouter.setDefaultRouteKey(self.stackedWidget, routeKey)
+
+        self._updateStackedBackground()
 
         return item
 

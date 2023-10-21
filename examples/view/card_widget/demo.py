@@ -2,16 +2,16 @@
 import sys
 from pathlib import Path
 
-from PySide2.QtCore import Qt, QPoint, QSize, QUrl, QRect
+from PySide2.QtCore import Qt, QPoint, QSize, QUrl, QRect, QPropertyAnimation
 from PySide2.QtGui import QIcon, QFont, QColor, QPainter
-from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QSizePolicy
+from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QGraphicsOpacityEffect
 
 from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, CaptionLabel, PushButton,
                             TransparentToolButton, FluentIcon, RoundMenu, Action, ElevatedCardWidget,
                             ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar, SimpleCardWidget,
                             HeaderCardWidget, InfoBarIcon, HyperlinkLabel, HorizontalFlipView,
                             PrimaryPushButton, TitleLabel, PillPushButton, setFont, SingleDirectionScrollArea,
-                            VerticalSeparator)
+                            VerticalSeparator, MSFluentWindow, NavigationItemPosition)
 
 from qfluentwidgets.components.widgets.acrylic_label import AcrylicBrush
 
@@ -265,12 +265,15 @@ class LightBox(QWidget):
         super().__init__(parent=parent)
         if isDarkTheme():
             tintColor = QColor(32, 32, 32, 200)
-            luminosityColor = QColor(0, 0, 0, 0)
         else:
             tintColor = QColor(255, 255, 255, 160)
-            luminosityColor = QColor(255, 255, 255, 0)
 
-        self.acrylicBrush = AcrylicBrush(self, 30, tintColor, luminosityColor)
+        self.acrylicBrush = AcrylicBrush(self, 30, tintColor, QColor(0, 0, 0, 0))
+
+        self.opacityEffect = QGraphicsOpacityEffect(self)
+        self.opacityAni = QPropertyAnimation(self.opacityEffect, b"opacity", self)
+        self.opacityEffect.setOpacity(1)
+        self.setGraphicsEffect(self.opacityEffect)
 
         self.vBoxLayout = QVBoxLayout(self)
         self.closeButton = TransparentToolButton(FluentIcon.CLOSE, self)
@@ -284,7 +287,7 @@ class LightBox(QWidget):
 
         self.closeButton.setFixedSize(32, 32)
         self.closeButton.setIconSize(QSize(14, 14))
-        self.closeButton.clicked.connect(self.hide)
+        self.closeButton.clicked.connect(self.fadeOut)
 
         self.vBoxLayout.setContentsMargins(26, 28, 26, 28)
         self.vBoxLayout.addWidget(self.closeButton, 0, Qt.AlignRight | Qt.AlignTop)
@@ -298,11 +301,6 @@ class LightBox(QWidget):
             'resource/shoko3.jpg', 'resource/shoko4.jpg',
         ])
         self.flipView.currentIndexChanged.connect(self.setCurrentIndex)
-
-    def showEvent(self, e):
-        rect = QRect(self.mapToGlobal(QPoint()), self.size())
-        self.acrylicBrush.grabImage(rect)
-        super().showEvent(e)
 
     def setCurrentIndex(self, index: int):
         self.nameLabel.setText(f'屏幕截图 {index + 1}')
@@ -326,6 +324,26 @@ class LightBox(QWidget):
         w = self.width() - 52
         self.flipView.setItemSize(QSize(w, w * 9 // 16))
 
+    def fadeIn(self):
+        rect = QRect(self.mapToGlobal(QPoint()), self.size())
+        self.acrylicBrush.grabImage(rect)
+
+        self.opacityAni.setStartValue(0)
+        self.opacityAni.setEndValue(1)
+        self.opacityAni.setDuration(150)
+        self.opacityAni.start()
+        self.show()
+
+    def fadeOut(self):
+        self.opacityAni.setStartValue(1)
+        self.opacityAni.setEndValue(0)
+        self.opacityAni.setDuration(150)
+        self.opacityAni.finished.connect(self._onAniFinished)
+        self.opacityAni.start()
+
+    def _onAniFinished(self):
+        self.opacityAni.finished.disconnect()
+        self.hide()
 
 
 class MicaWindow(Window):
@@ -391,15 +409,11 @@ class Demo2(MicaWindow):
         self.vBoxLayout.addWidget(card, alignment=Qt.AlignTop)
 
 
-class Demo3(MicaWindow):
+class AppInterface(SingleDirectionScrollArea):
 
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('PyQt-Fluent-Widgets')
-        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
-        self.hBoxLayout = QHBoxLayout(self)
-        self.scrollArea = SingleDirectionScrollArea(self)
         self.view = QWidget(self)
 
         self.vBoxLayout = QVBoxLayout(self.view)
@@ -412,34 +426,49 @@ class Demo3(MicaWindow):
         self.lightBox.hide()
         self.galleryCard.flipView.itemClicked.connect(self.showLightBox)
 
-        self.scrollArea.setWidget(self.view)
-        self.scrollArea.setWidgetResizable(True)
-
-        self.hBoxLayout.setContentsMargins(0, 48, 0, 0)
-        self.hBoxLayout.addWidget(self.scrollArea)
+        self.setWidget(self.view)
+        self.setWidgetResizable(True)
+        self.setObjectName("appInterface")
 
         self.vBoxLayout.setSpacing(10)
-        self.vBoxLayout.setContentsMargins(30, 0, 30, 30)
+        self.vBoxLayout.setContentsMargins(0, 0, 10, 30)
         self.vBoxLayout.addWidget(self.appCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.galleryCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.descriptionCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.systemCard, 0, Qt.AlignTop)
 
-        self.resize(780, 800)
-        self.titleBar.raise_()
-        self.scrollArea.setStyleSheet(
-            "QScrollArea {border: none; background:transparent}")
+        self.setStyleSheet("QScrollArea {border: none; background:transparent}")
         self.view.setStyleSheet('QWidget {background:transparent}')
 
     def showLightBox(self):
         index = self.galleryCard.flipView.currentIndex()
         self.lightBox.setCurrentIndex(index)
-        self.lightBox.show()
+        self.lightBox.fadeIn()
 
     def resizeEvent(self, e):
         super().resizeEvent(e)
-        self.lightBox.resize(self.width(), self.height() - 48)
-        self.lightBox.move(0, 48)
+        self.lightBox.resize(self.size())
+
+
+class Demo3(MSFluentWindow):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.appInterface = AppInterface(self)
+
+        # add sub interfaces
+        self.addSubInterface(self.appInterface, FluentIcon.LIBRARY, "库", FluentIcon.LIBRARY_FILL, isTransparent=True)
+        self.navigationInterface.addItem("editInterface", FluentIcon.EDIT, "编辑", selectable=False)
+
+        self.navigationInterface.addItem(
+            "settingInterface", FluentIcon.SETTING, "设置", position=NavigationItemPosition.BOTTOM, selectable=False)
+
+        self.resize(880, 760)
+        self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+
+        self.titleBar.raise_()
 
 
 if __name__ == '__main__':
