@@ -114,21 +114,8 @@ class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
         return "DisplayLabel"
 
 
-class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
-    """ Hyperlink label plugin """
-
-    def createWidget(self, parent):
-        return HyperlinkLabel(parent)
-
-    def icon(self):
-        return super().icon("HyperlinkButton")
-
-    def name(self):
-        return "HyperlinkLabel"
-
-
-class DisplayLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
-    """ Hyperlink label plugin """
+class HyperlinkLabelPlugin(LabelPlugin, QDesignerCustomWidgetInterface):
+    """ Hyperlink link label plugin """
 
     def createWidget(self, parent):
         return HyperlinkLabel(parent)
