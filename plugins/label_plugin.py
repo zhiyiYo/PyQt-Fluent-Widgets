@@ -114,7 +114,7 @@ class DisplayLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
         return "DisplayLabel"
 
 
-class DisplayLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
+class HyperlinkLabelPlugin(LabelPlugin, QPyDesignerCustomWidgetPlugin):
     """ Hyperlink label plugin """
 
     def createWidget(self, parent):
