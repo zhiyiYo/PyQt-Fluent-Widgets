@@ -45,7 +45,7 @@ class ElevatedCardWidgetPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
         return "ElevatedCardWidget"
 
 
-class SimpleCardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class SimpleCardWidgetPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
     """ Simple card widget plugin """
 
     def createWidget(self, parent):
@@ -58,7 +58,7 @@ class SimpleCardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
         return "SimpleCardWidget"
 
 
-class HeaderCardWidgetPlugin(ContainerPlugin, QPyDesignerCustomWidgetPlugin):
+class HeaderCardWidgetPlugin(ContainerPlugin, QDesignerCustomWidgetInterface):
     """ Header card widget plugin """
 
     def createWidget(self, parent):
