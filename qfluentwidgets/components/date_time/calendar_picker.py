@@ -18,7 +18,7 @@ class CalendarPicker(QPushButton):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._date = QDate()
-        self._dateFormat = 'yyyy/M/d'
+        self._dateFormat = Qt.DateFormat.ISODate
 
         self.setText(self.tr('Pick a date'))
         FluentStyleSheet.CALENDAR_PICKER.apply(self)

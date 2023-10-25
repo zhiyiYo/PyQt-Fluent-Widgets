@@ -22,7 +22,7 @@ class Demo(QWidget):
 
         # customize date format
         # self.picker.setDateFormat(Qt.TextDate)
-        # self.picker.setDateFormat('yyyy-M-d')
+        # self.picker.setDateFormat('yyyy/M/d')
 
         self.hBoxLayout = QHBoxLayout(self)
         self.hBoxLayout.addWidget(self.picker, 0, Qt.AlignmentFlag.AlignCenter)
