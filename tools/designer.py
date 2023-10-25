@@ -25,7 +25,7 @@ def get_designer_path():
     path = Path(f"{site_packages}/qt6_applications/Qt/bin/{designer_name}")
     if not path.exists():
         raise Exception(
-            "Can't find available QtDesigner for current environment. You can try `pyqt6-plugins` to solve this problem.")
+            "Can't find available QtDesigner for current environment. You can try `pip install pyqt6-plugins` to solve this problem.")
 
     # check pyqt6 dll
     if sys.platform == "win32":
