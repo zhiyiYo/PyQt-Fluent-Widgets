@@ -295,7 +295,7 @@ class ComboBoxBase:
             menu.addAction(QAction(item.icon, item.text))
 
         # fixes issue #468
-        menu.view.itemClicked.connect(lambda i: self._onItemClicked(self.findText(i.text())))
+        menu.view.itemClicked.connect(lambda i: self._onItemClicked(self.findText(i.text().lstrip())))
 
         if menu.view.width() < self.width():
             menu.view.setMinimumWidth(self.width())
