@@ -149,7 +149,7 @@ class PopUpAniStackedWidget(QStackedWidget):
         else:
             deltaX, deltaY = nextAniInfo.deltaX, nextAniInfo.deltaY
             pos = nextWidget.pos() + QPoint(deltaX, deltaY)
-            self.__setAnimation(ani, pos, QPoint(nextWidget.x(), self.y()), duration, easingCurve)
+            self.__setAnimation(ani, pos, QPoint(nextWidget.x(), 0), duration, easingCurve)
             super().setCurrentIndex(index)
 
         # start animation
