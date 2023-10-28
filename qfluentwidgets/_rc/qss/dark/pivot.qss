@@ -70,17 +70,9 @@ SegmentedToolItem[isSelected=false]:pressed {
 
 SegmentedItem[isSelected=true],
 SegmentedToolItem[isSelected=true] {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: rgba(255, 255, 255, 0.0605);
-    border: 1px solid rgba(255, 255, 255, 0.053);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     margin: 0px;
     color: white;
-}
-
-SegmentedItem[isSelected=true]:hover,
-SegmentedItem[isSelected=true]:pressed {
-    color: white;
+    background-color: transparent;
 }
