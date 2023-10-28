@@ -4,7 +4,7 @@ from typing import Union, List, Iterable
 
 from PyQt5.QtCore import Qt, pyqtSignal, QRectF, QPoint, QObject, QEvent
 from PyQt5.QtGui import QPainter, QCursor, QIcon
-from PyQt5.QtWidgets import QAction, QPushButton, QStyledItemDelegate, QStyle
+from PyQt5.QtWidgets import QAction, QPushButton, QApplication
 
 from .menu import RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .line_edit import LineEdit, LineEditButton
@@ -366,14 +366,23 @@ class ComboBox(QPushButton, ComboBoxBase):
         self._placeholderText = text
 
         if self.currentIndex() <= 0:
+            self._updateTextState(True)
             self.setText(text)
 
     def setCurrentIndex(self, index: int):
         if index < 0:
             self._currentIndex = -1
             self.setPlaceholderText(self._placeholderText)
-        else:
+        elif 0 <= index < len(self.items):
+            self._updateTextState(False)
             super().setCurrentIndex(index)
+
+    def _updateTextState(self, isPlaceholder):
+        if self.property("isPlaceholderText") == isPlaceholder:
+            return
+
+        self.setProperty("isPlaceholderText", isPlaceholder)
+        self.setStyle(QApplication.style())
 
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)

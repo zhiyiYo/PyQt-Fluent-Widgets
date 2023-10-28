@@ -13,6 +13,10 @@ ToolButton {
     padding: 5px 9px 6px 8px;
 }
 
+PushButton[isPlaceholderText=true] {
+    color: rgba(255, 255, 255, 0.6063);
+}
+
 PushButton[hasIcon=false] {
     padding: 5px 12px 6px 12px;
 }
