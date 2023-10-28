@@ -2,7 +2,7 @@
 import sys
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import QApplication, QWidget, QCompleter, QHBoxLayout
-from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox, setFont
+from qfluentwidgets import ComboBox, setTheme, Theme, setThemeColor, EditableComboBox, setFont, FluentThemeColor
 
 
 class Demo(QWidget):
@@ -12,9 +12,12 @@ class Demo(QWidget):
         self.comboBox = ComboBox(self)
         self.hBoxLayout = QHBoxLayout(self)
 
-        items = ['shoko 🥰', '西宫硝子', 'aiko', '柳井爱子']
+        self.comboBox.setPlaceholderText("选择一个脑婆")
+
+        items = ['shoko 🥰', '西宫硝子', '宝多六花', '小鸟游六花']
         self.comboBox.addItems(items)
-        self.comboBox.setCurrentIndex(0)
+        self.comboBox.setCurrentIndex(-1)
+
         self.comboBox.currentTextChanged.connect(print)
 
         # self.comboBox.setPlaceholderText("选择一个脑婆")
@@ -29,7 +32,7 @@ class Demo(QWidget):
         self.setStyleSheet('Demo{background:white}')
 
         # setTheme(Theme.DARK)
-        # setThemeColor('#0078d4')
+        # setThemeColor(FluentThemeColor.DEFAULT_BLUE.color())
         # setFont(self.comboBox, 16)
 
 

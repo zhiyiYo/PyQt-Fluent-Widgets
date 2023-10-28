@@ -5,7 +5,7 @@ from PySide2.QtCore import QModelIndex, Qt
 from PySide2.QtGui import QPalette
 from PySide2.QtWidgets import QApplication, QStyleOptionViewItem, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout
 
-from qfluentwidgets import TableWidget, isDarkTheme, setTheme, Theme, TableView, TableItemDelegate
+from qfluentwidgets import TableWidget, isDarkTheme, setTheme, Theme, TableView, TableItemDelegate, setCustomStyleSheet
 
 
 class CustomTableItemDelegate(TableItemDelegate):
@@ -38,6 +38,10 @@ class Demo(QWidget):
 
         # select row on right-click
         # self.tableView.setSelectRightClickedRow(True)
+
+        # enable border
+        self.tableView.setBorderVisible(True)
+        self.tableView.setBorderRadius(8)
 
         self.tableView.setWordWrap(False)
         self.tableView.setRowCount(60)
@@ -85,10 +89,10 @@ class Demo(QWidget):
         # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
 
-        self.setStyleSheet("Demo{background: rgb(249, 249, 249)} ")
-        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.setStyleSheet("Demo{background: rgb(255, 255, 255)} ")
+        self.hBoxLayout.setContentsMargins(50, 30, 50, 30)
         self.hBoxLayout.addWidget(self.tableView)
-        self.resize(635, 700)
+        self.resize(735, 760)
 
 
 if __name__ == "__main__":

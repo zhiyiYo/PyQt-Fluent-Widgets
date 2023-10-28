@@ -58,6 +58,9 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def _updateStackedBackground(self):
         isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
+        if bool(self.stackedWidget.property("isTransparent")) == isTransparent:
+            return
+        
         self.stackedWidget.setProperty("isTransparent", isTransparent)
         self.stackedWidget.setStyle(QApplication.style())
 

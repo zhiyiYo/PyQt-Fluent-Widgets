@@ -7,7 +7,7 @@ from PySide2.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionVi
                              QTableView, QTableWidget, QWidget, QTableWidgetItem, QHeaderView)
 
 from ...common.font import getFont
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, setCustomStyleSheet
 from .line_edit import LineEdit
 from .scroll_bar import SmoothScrollDelegate
 
@@ -157,6 +157,8 @@ class TableBase:
         self.setAlternatingRowColors(True)
         self.setItemDelegate(self.delegate)
         self.setSelectionBehavior(TableWidget.SelectRows)
+        self.horizontalHeader().setHighlightSections(False)
+        self.verticalHeader().setHighlightSections(False)
 
         self.entered.connect(lambda i: self._setHoverRow(i.row()))
         self.pressed.connect(lambda i: self._setPressedRow(i.row()))
@@ -165,6 +167,16 @@ class TableBase:
     def showEvent(self, e):
         QTableView.showEvent(self, e)
         self.resizeRowsToContents()
+
+    def setBorderVisible(self, isVisible: bool):
+        """ set the visibility of border """
+        self.setProperty("isBorderVisible", isVisible)
+        self.setStyle(QApplication.style())
+
+    def setBorderRadius(self, radius: int):
+        """ set the radius of border """
+        qss = f"QTableView{{border-radius: {radius}px}}"
+        setCustomStyleSheet(self, qss, qss)
 
     def _setHoverRow(self, row: int):
         """ set hovered row """

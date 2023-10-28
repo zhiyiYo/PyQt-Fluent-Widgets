@@ -7,7 +7,6 @@ from qfluentwidgets import TreeWidget, setTheme, Theme, TreeView
 
 
 class Demo(QWidget):
-    """ 树形控件演示 """
 
     def __init__(self):
         super().__init__()
@@ -20,9 +19,12 @@ class Demo(QWidget):
         model.setRootPath('.')
         self.view.setModel(model)
 
+        self.view.setBorderVisible(True)
+        self.view.setBorderRadius(8)
+
         self.hBoxLayout.addWidget(self.view)
-        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.resize(700, 600)
+        self.hBoxLayout.setContentsMargins(50, 30, 50, 30)
+        self.resize(800, 660)
 
 
 if __name__ == '__main__':
