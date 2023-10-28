@@ -203,5 +203,5 @@ class TableFrame(TableWidget):
             for j in range(5):
                 self.setItem(i, j, QTableWidgetItem(songInfo[j]))
 
-        self.setFixedSize(623, 440)
+        self.setFixedSize(625, 440)
         self.resizeColumnsToContents()

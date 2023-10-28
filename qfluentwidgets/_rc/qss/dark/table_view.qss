@@ -84,7 +84,7 @@ QHeaderView::section {
     color: rgb(203, 203, 203);
     padding-left: 5px;
     padding-right: 5px;
-    border: 1px solid rgba(0, 0, 0, 21);
+    border: 1px solid rgba(255, 255, 255, 21);
     font: 13px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }
 
@@ -125,7 +125,7 @@ QHeaderView::up-arrow {
 
 QTableCornerButton::section {
     background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 21);
+    border: 1px solid rgba(255, 255, 255, 21);
 }
 
 QTableCornerButton::section:pressed {

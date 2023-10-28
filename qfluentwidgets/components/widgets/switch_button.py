@@ -32,7 +32,7 @@ class Indicator(ToolButton):
         self.checkedChanged.emit(self.isChecked())
 
     def _toggleSlider(self):
-        self.slideAni.setStartValue(self.slideAni.currentValue())
+        self.slideAni.setStartValue(self.slideAni.value())
         self.slideAni.setEndValue(25 if self.isChecked() else 5)
         self.slideAni.start()
 
@@ -63,7 +63,7 @@ class Indicator(ToolButton):
     def _drawCircle(self, painter: QPainter):
         painter.setPen(Qt.NoPen)
         painter.setBrush(self._sliderColor())
-        painter.drawEllipse(int(self.slideAni.targetObject().scale), 5, 12, 12)
+        painter.drawEllipse(int(self.slideAni.value()), 5, 12, 12)
 
     def _backgroundColor(self):
         isDark = isDarkTheme()

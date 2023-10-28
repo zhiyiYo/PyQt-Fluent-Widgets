@@ -175,7 +175,7 @@ class HyperlinkButton(PushButton):
     Constructors
     ------------
     * HyperlinkButton(`parent`: QWidget = None)
-    * HyperlinkButton(`url`: text, `text`: str, `parent`: QWidget = None,
+    * HyperlinkButton(`url`: str, `text`: str, `parent`: QWidget = None,
                       `icon`: QIcon | str | FluentIconBase = None)
     """
 

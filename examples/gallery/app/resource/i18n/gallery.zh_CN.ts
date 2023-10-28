@@ -266,7 +266,7 @@
     <message>
         <location filename="../../view/basic_input_interface.py" line="186"/>
         <source>QFluentWidgets official website</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1025,17 +1025,17 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>PivotInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="94"/>
+        <location filename="../../view/navigation_view_interface.py" line="95"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="95"/>
+        <location filename="../../view/navigation_view_interface.py" line="96"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="96"/>
+        <location filename="../../view/navigation_view_interface.py" line="97"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
@@ -1500,57 +1500,57 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TabInterface</name>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="147"/>
+        <location filename="../../view/navigation_view_interface.py" line="148"/>
         <source>IsTabMovable</source>
         <translation>启用标签拖拽</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="148"/>
+        <location filename="../../view/navigation_view_interface.py" line="149"/>
         <source>IsTabScrollable</source>
         <translation>启用标签滚动</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="152"/>
+        <location filename="../../view/navigation_view_interface.py" line="153"/>
         <source>TabCloseButtonDisplayMode</source>
         <translation>关闭按钮显示模式</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="174"/>
+        <location filename="../../view/navigation_view_interface.py" line="175"/>
         <source>Always</source>
         <translation>始终显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="175"/>
+        <location filename="../../view/navigation_view_interface.py" line="176"/>
         <source>OnHover</source>
         <translation>进入时显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="176"/>
+        <location filename="../../view/navigation_view_interface.py" line="177"/>
         <source>Never</source>
         <translation>从不显示</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="179"/>
+        <location filename="../../view/navigation_view_interface.py" line="180"/>
         <source>Song</source>
         <translation>歌曲</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="181"/>
+        <location filename="../../view/navigation_view_interface.py" line="182"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="183"/>
+        <location filename="../../view/navigation_view_interface.py" line="184"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="149"/>
+        <location filename="../../view/navigation_view_interface.py" line="150"/>
         <source>IsTabShadowEnabled</source>
         <translation>启用标签阴影</translation>
     </message>
     <message>
-        <location filename="../../view/navigation_view_interface.py" line="150"/>
+        <location filename="../../view/navigation_view_interface.py" line="151"/>
         <source>TabMaximumWidth</source>
         <translation>标签最大宽度</translation>
     </message>
@@ -1558,27 +1558,27 @@ In that case, I would accept it no matter which side the ball falls on.</source>
 <context>
     <name>TableFrame</name>
     <message>
-        <location filename="../../view/view_interface.py" line="163"/>
+        <location filename="../../view/view_interface.py" line="164"/>
         <source>Title</source>
         <translation>标题</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="163"/>
+        <location filename="../../view/view_interface.py" line="164"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="163"/>
+        <location filename="../../view/view_interface.py" line="164"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="163"/>
+        <location filename="../../view/view_interface.py" line="164"/>
         <source>Year</source>
         <translation>年份</translation>
     </message>
     <message>
-        <location filename="../../view/view_interface.py" line="163"/>
+        <location filename="../../view/view_interface.py" line="164"/>
         <source>Duration</source>
         <translation>时长</translation>
     </message>

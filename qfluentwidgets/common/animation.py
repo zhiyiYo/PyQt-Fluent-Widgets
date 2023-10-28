@@ -387,7 +387,6 @@ class OpacityObject(FluentAnimationProperObject):
     opacity = pyqtProperty(float, getValue, setValue)
 
 
-
 class FluentAnimation(QPropertyAnimation):
     """ Fluent animation base """
 
@@ -415,6 +414,23 @@ class FluentAnimation(QPropertyAnimation):
     def speedToDuration(self, speed: FluentAnimationSpeed):
         return 100
 
+    def startAnimation(self, endValue, startValue=None):
+        self.stop()
+        
+        if startValue is None:
+            self.setStartValue(self.value())
+        else:
+            self.setStartValue(startValue)
+
+        self.setEndValue(endValue)
+        self.start()
+
+    def value(self):
+        return self.targetObject().getValue()
+
+    def setValue(self, value):
+        self.targetObject().setValue(value)
+
     @classmethod
     def register(cls, name):
         """ register menu animation manager
@@ -434,20 +450,19 @@ class FluentAnimation(QPropertyAnimation):
 
     @classmethod
     def create(cls, aniType: FluentAnimationType, propertyType: FluentAnimationProperty,
-               speed=FluentAnimationSpeed.FAST, value=None, parent=None):
+               speed=FluentAnimationSpeed.FAST, value=None, parent=None) -> "FluentAnimation":
         if aniType not in cls.animations:
             raise ValueError(f"`{aniType}` has not been registered.")
 
         obj = FluentAnimationProperObject.create(propertyType, parent)
-        ani = cls.animations[aniType](parent)   # type: QPropertyAnimation
-
-        if value is not None:
-            obj.setValue(value)
-            ani.setStartValue(value)
+        ani = cls.animations[aniType](parent)
 
         ani.setSpeed(speed)
         ani.setTargetObject(obj)
         ani.setPropertyName(propertyType.value.encode())
+
+        if value is not None:
+            ani.setValue(value)
 
         return ani
 
