@@ -149,17 +149,18 @@ class TreeFrame(Frame):
                 it += 1
 
 
-class TableFrame(Frame):
+class TableFrame(TableWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.table = TableWidget(self)
-        self.addWidget(self.table)
 
-        self.table.verticalHeader().hide()
-        self.table.setColumnCount(5)
-        self.table.setRowCount(60)
-        self.table.setHorizontalHeaderLabels([
+        self.verticalHeader().hide()
+        self.setBorderRadius(8)
+        self.setBorderVisible(True)
+
+        self.setColumnCount(5)
+        self.setRowCount(60)
+        self.setHorizontalHeaderLabels([
             self.tr('Title'), self.tr('Artist'), self.tr('Album'),
             self.tr('Year'), self.tr('Duration')
         ])
@@ -199,7 +200,7 @@ class TableFrame(Frame):
         songInfos += songInfos
         for i, songInfo in enumerate(songInfos):
             for j in range(5):
-                self.table.setItem(i, j, QTableWidgetItem(songInfo[j]))
+                self.setItem(i, j, QTableWidgetItem(songInfo[j]))
 
-        self.setFixedSize(650, 440)
-        self.table.resizeColumnsToContents()
+        self.setFixedSize(625, 440)
+        self.resizeColumnsToContents()

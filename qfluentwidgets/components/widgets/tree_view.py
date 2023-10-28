@@ -1,10 +1,9 @@
 # coding:utf-8
-
 from PySide6.QtCore import Qt, QSize
 from PySide6.QtGui import QPainter, QColor, QPalette
-from PySide6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView
+from PySide6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
 from .scroll_area import SmoothScrollDelegate
 
@@ -62,6 +61,9 @@ class TreeViewBase:
     def _initView(self):
         self.scrollDelagate = SmoothScrollDelegate(self)
 
+        self.header().setHighlightSections(False)
+        self.header().setDefaultAlignment(Qt.AlignCenter)
+
         self.setItemDelegate(TreeItemDelegate(self))
         self.setIconSize(QSize(16, 16))
 
@@ -70,6 +72,16 @@ class TreeViewBase:
     def drawBranches(self, painter, rect, index):
         rect.moveLeft(15)
         return QTreeView.drawBranches(self, painter, rect, index)
+
+    def setBorderVisible(self, isVisible: bool):
+        """ set the visibility of border """
+        self.setProperty("isBorderVisible", isVisible)
+        self.setStyle(QApplication.style())
+
+    def setBorderRadius(self, radius: int):
+        """ set the radius of border """
+        qss = f"QTreeView{{border-radius: {radius}px}}"
+        setCustomStyleSheet(self, qss, qss)
 
 
 class TreeWidget(TreeViewBase, QTreeWidget):

@@ -25,3 +25,7 @@ ComboBox:disabled {
     border: 1px solid rgba(255, 255, 255, 0.053);
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
+
+ComboBox[isPlaceholderText=true] {
+    color: rgba(255, 255, 255, 0.6063);
+}

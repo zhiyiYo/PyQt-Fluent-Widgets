@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout, Q
 from ...common.font import setFont
 from ...common.router import qrouter
 from ...common.style_sheet import themeColor, FluentStyleSheet
+from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty
 from ..widgets.button import PushButton
 from .navigation_panel import RouteKeyError
 
@@ -34,21 +35,6 @@ class PivotItem(PushButton):
         self.setStyle(QApplication.style())
         self.update()
 
-    def paintEvent(self, e):
-        super().paintEvent(e)
-
-        # draw indicator
-        if not self.isSelected:
-            return
-
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
-        painter.setBrush(themeColor())
-
-        x = int(self.width() / 2 - 8)
-        painter.drawRoundedRect(x, self.height() - 3, 16, 3, 1.5, 1.5)
-
 
 class Pivot(QWidget):
     """ Pivot """
@@ -56,13 +42,11 @@ class Pivot(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.items = {}  # type: Dict[str, PivotItem]
+        self._currentRouteKey = None
 
         self.hBoxLayout = QHBoxLayout(self)
-
-        # self.setWidget(self.view)
-        # self.setWidgetResizable(True)
-        # self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        # self.setViewportMargins(0, 0, 0, 0)
+        self.slideAni = FluentAnimation.create(
+            FluentAnimationType.POINT_TO_POINT, FluentAnimationProperty.SCALE, value=0, parent=self)
 
         FluentStyleSheet.PIVOT.apply(self)
 
@@ -191,6 +175,13 @@ class Pivot(QWidget):
 
         self.items.clear()
 
+    def currentItem(self):
+        """ Returns the current selected item """
+        if self._currentRouteKey is None:
+            return None
+
+        return self.widget(self._currentRouteKey)
+
     def setCurrentItem(self, routeKey: str):
         """ set current selected item
 
@@ -201,6 +192,9 @@ class Pivot(QWidget):
         """
         if routeKey not in self.items:
             return
+
+        self._currentRouteKey = routeKey
+        self.slideAni.startAnimation(self.widget(routeKey).x())
 
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
@@ -222,3 +216,17 @@ class Pivot(QWidget):
             raise RouteKeyError(f"`{routeKey}` is illegal.")
 
         return self.items[routeKey]
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+
+        if not self.currentItem():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(themeColor())
+
+        x = int(self.currentItem().width() / 2 - 8 + self.slideAni.value())
+        painter.drawRoundedRect(x, self.height() - 3, 16, 3, 1.5, 1.5)
