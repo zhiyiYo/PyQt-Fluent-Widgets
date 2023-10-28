@@ -8,6 +8,10 @@ QTreeView {
     selection-background-color: transparent;
 }
 
+QTableView[isBorderVisible=true] {
+    border: 1px solid rgba(255, 255, 255, 21);
+}
+
 QTreeView::item {
     padding: 4px;
     margin-top: 2px;
@@ -85,4 +89,61 @@ QTreeView::indicator:checked:disabled,
 QTreeView::indicator:indeterminate:disabled {
     border: 1px solid rgb(82, 82, 82);
     background-color: rgb(82, 82, 82);
+}
+
+QHeaderView {
+    background-color: transparent;
+}
+
+QHeaderView::section {
+    background-color: transparent;
+    color: rgb(203, 203, 203);
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid rgba(0, 0, 0, 21);
+    font: 13px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+QHeaderView::section:horizontal {
+    border-left: none;
+    height: 33px;
+}
+
+QTreeView[isBorderVisible=true] QHeaderView::section:horizontal {
+    border-top: none;
+}
+
+QHeaderView::section:horizontal:last {
+    border-right: none;
+}
+
+QHeaderView::section:vertical {
+    border-top: none;
+}
+
+QHeaderView::section:checked {
+    background-color: transparent;
+}
+
+QHeaderView::down-arrow {
+    subcontrol-origin: padding;
+    subcontrol-position: center right;
+    margin-right: 6px;
+    image: url(:/qfluentwidgets/images/table_view/Down_white.svg);
+}
+
+QHeaderView::up-arrow {
+    subcontrol-origin: padding;
+    subcontrol-position: center right;
+    margin-right: 6px;
+    image: url(:/qfluentwidgets/images/table_view/Up_white.svg);
+}
+
+QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 21);
+}
+
+QTableCornerButton::section:pressed {
+    background-color: rgba(255, 255, 255, 16);
 }
