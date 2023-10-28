@@ -1,5 +1,6 @@
 # coding: utf-8
-from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal, QPoint
+from enum import Enum
+from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal, QPoint, QPointF
 from PyQt5.QtGui import QMouseEvent, QEnterEvent, QColor
 from PyQt5.QtWidgets import QWidget, QLineEdit, QGraphicsDropShadowEffect
 
@@ -247,3 +248,268 @@ class DropShadowAnimation(QPropertyAnimation):
         self.finished.disconnect()
         self.shadowEffect = None
         self.parent().setGraphicsEffect(None)
+
+
+class FluentAnimationSpeed(Enum):
+    """ Fluent animation speed """
+    FAST = 0
+    MEDIUM = 1
+    SLOW = 2
+
+
+class FluentAnimationType(Enum):
+    """ Fluent animation type """
+    FAST_INVOKE = 0
+    STRONG_INVOKE = 1
+    FAST_DISMISS = 2
+    SOFT_DISMISS = 3
+    POINT_TO_POINT = 4
+    FADE_IN_OUT = 5
+
+
+class FluentAnimationProperty(Enum):
+    """ Fluent animation property """
+    POSITION = "position"
+    SCALE = "scale"
+    ANGLE = "angle"
+    OPACITY = "opacity"
+
+
+
+class FluentAnimationProperObject(QObject):
+    """ Fluent animation property object """
+
+    objects = {}
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+
+    def getValue(self):
+        return 0
+
+    def setValue(self):
+        pass
+
+    @classmethod
+    def register(cls, name):
+        """ register menu animation manager
+
+        Parameters
+        ----------
+        name: Any
+            the name of manager, it should be unique
+        """
+        def wrapper(Manager):
+            if name not in cls.objects:
+                cls.objects[name] = Manager
+
+            return Manager
+
+        return wrapper
+
+    @classmethod
+    def create(cls, propertyType: FluentAnimationProperty, parent=None):
+        if propertyType not in cls.objects:
+            raise ValueError(f"`{propertyType}` has not been registered")
+
+        return cls.objects[propertyType](parent)
+
+
+@FluentAnimationProperObject.register(FluentAnimationProperty.POSITION)
+class PositionObject(FluentAnimationProperObject):
+    """ Position object """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._position = QPoint()
+
+    def getValue(self):
+        return self._position
+
+    def setValue(self, pos: QPoint):
+        self._position = pos
+        self.parent().update()
+
+    position = pyqtProperty(QPoint, getValue, setValue)
+
+
+@FluentAnimationProperObject.register(FluentAnimationProperty.SCALE)
+class ScaleObject(FluentAnimationProperObject):
+    """ Scale object """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._scale = 1
+
+    def getValue(self):
+        return self._scale
+
+    def setValue(self, scale: float):
+        self._scale = scale
+        self.parent().update()
+
+    scale = pyqtProperty(float, getValue, setValue)
+
+
+@FluentAnimationProperObject.register(FluentAnimationProperty.ANGLE)
+class AngleObject(FluentAnimationProperObject):
+    """ Angle object """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._angle = 0
+
+    def getValue(self):
+        return self._angle
+
+    def setValue(self, angle: float):
+        self._angle = angle
+        self.parent().update()
+
+    angle = pyqtProperty(float, getValue, setValue)
+
+
+@FluentAnimationProperObject.register(FluentAnimationProperty.OPACITY)
+class OpacityObject(FluentAnimationProperObject):
+    """ Opacity object """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._opacity = 0
+
+    def getValue(self):
+        return self._opacity
+
+    def setValue(self, opacity: float):
+        self._opacity = opacity
+        self.parent().update()
+
+    opacity = pyqtProperty(float, getValue, setValue)
+
+
+
+class FluentAnimation(QPropertyAnimation):
+    """ Fluent animation base """
+
+    animations = {}
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.setSpeed(FluentAnimationSpeed.FAST)
+        self.setEasingCurve(self.curve())
+
+    @classmethod
+    def createBezierCurve(cls, x1, y1, x2, y2):
+        curve = QEasingCurve(QEasingCurve.BezierSpline)
+        curve.addCubicBezierSegment(QPointF(x1, y1), QPointF(x2, y2), QPointF(1, 1))
+        return curve
+
+    @classmethod
+    def curve(cls):
+        return cls.createBezierCurve(0, 0, 1, 1)
+
+    def setSpeed(self, speed: FluentAnimationSpeed):
+        """ set the speed of animation """
+        self.setDuration(self.speedToDuration(speed))
+
+    def speedToDuration(self, speed: FluentAnimationSpeed):
+        return 100
+
+    @classmethod
+    def register(cls, name):
+        """ register menu animation manager
+
+        Parameters
+        ----------
+        name: Any
+            the name of manager, it should be unique
+        """
+        def wrapper(Manager):
+            if name not in cls.animations:
+                cls.animations[name] = Manager
+
+            return Manager
+
+        return wrapper
+
+    @classmethod
+    def create(cls, aniType: FluentAnimationType, propertyType: FluentAnimationProperty,
+               speed=FluentAnimationSpeed.FAST, value=None, parent=None):
+        if aniType not in cls.animations:
+            raise ValueError(f"`{aniType}` has not been registered.")
+
+        obj = FluentAnimationProperObject.create(propertyType, parent)
+        ani = cls.animations[aniType](parent)   # type: QPropertyAnimation
+
+        if value is not None:
+            obj.setValue(value)
+            ani.setStartValue(value)
+
+        ani.setSpeed(speed)
+        ani.setTargetObject(obj)
+        ani.setPropertyName(propertyType.value.encode())
+
+        return ani
+
+
+@FluentAnimation.register(FluentAnimationType.FAST_INVOKE)
+class FastInvokeAnimation(FluentAnimation):
+    """ Fast invoke animation """
+
+    @classmethod
+    def curve(cls):
+        return cls.createBezierCurve(0, 0, 0, 1)
+
+    def speedToDuration(self, speed: FluentAnimationSpeed):
+        if speed == FluentAnimationSpeed.FAST:
+            return 187
+        if speed == FluentAnimationSpeed.MEDIUM:
+            return 333
+
+        return 500
+
+
+@FluentAnimation.register(FluentAnimationType.STRONG_INVOKE)
+class StrongInvokeAnimation(FluentAnimation):
+    """ Strong invoke animation """
+
+    @classmethod
+    def curve(cls):
+        return cls.createBezierCurve(0.13, 1.62, 0, 0.92)
+
+    def speedToDuration(self, speed: FluentAnimationSpeed):
+        return 667
+
+
+@FluentAnimation.register(FluentAnimationType.FAST_DISMISS)
+class FastDismissAnimation(FastInvokeAnimation):
+    """ Fast dismiss animation """
+
+
+@FluentAnimation.register(FluentAnimationType.SOFT_DISMISS)
+class SoftDismissAnimation(FluentAnimation):
+    """ Soft dismiss animation """
+
+    @classmethod
+    def curve(cls):
+        return cls.createBezierCurve(1, 0, 1, 1)
+
+    def speedToDuration(self, speed: FluentAnimationSpeed):
+        return 167
+
+
+@FluentAnimation.register(FluentAnimationType.POINT_TO_POINT)
+class PointToPointAnimation(FastDismissAnimation):
+    """ Point to point animation """
+
+    @classmethod
+    def curve(cls):
+        return cls.createBezierCurve(0.55, 0.55, 0, 1)
+
+
+@FluentAnimation.register(FluentAnimationType.FADE_IN_OUT)
+class FadeInOutAnimation(FluentAnimation):
+    """ Fade in/out animation """
+
+    def speedToDuration(self, speed: FluentAnimationSpeed):
+        return 83
