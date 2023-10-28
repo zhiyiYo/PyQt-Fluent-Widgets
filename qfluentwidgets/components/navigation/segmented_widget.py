@@ -104,7 +104,7 @@ class SegmentedWidget(Pivot):
             painter.setBrush(QColor(255, 255, 255, 179))
 
         item = self.currentItem()
-        rect = item.rect().adjusted(1, 1, -1, -1).translated(self.slideAni.value(), 0)
+        rect = item.rect().adjusted(1, 1, -1, -1).translated(int(self.slideAni.value()), 0)
         painter.drawRoundedRect(rect, 5, 5)
 
         # draw indicator
