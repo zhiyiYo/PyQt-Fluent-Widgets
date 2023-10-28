@@ -76,7 +76,7 @@ class CommandButton(TransparentToggleToolButton):
         self._onActionChanged()
 
         self.clicked.connect(action.trigger)
-        action.toggled.connect(self._onActionToggled)
+        action.toggled.connect(self.setChecked)
         action.changed.connect(self._onActionChanged)
 
         self.installEventFilter(CommandToolTipFilter(self, 700))
@@ -87,10 +87,8 @@ class CommandButton(TransparentToggleToolButton):
         self.setText(action.text())
         self.setToolTip(action.toolTip())
         self.setEnabled(action.isEnabled())
-
-    def _onActionToggled(self, isChecked: bool):
-        self.setCheckable(True)
-        self.setChecked(isChecked)
+        self.setCheckable(action.isCheckable())
+        self.setChecked(action.isChecked())
 
     def action(self):
         return self._action
