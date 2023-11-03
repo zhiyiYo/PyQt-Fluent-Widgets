@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-<a href="../README.md">English</a> | 简体中文
+<a href="../README.md">English</a> | 简体中文 | <a href="https://qfluentwidgets.com/">官网</a>
 </p>
 
 ![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
