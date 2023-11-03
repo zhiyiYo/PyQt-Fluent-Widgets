@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-<a href="../README.md">English</a> | 简体中文
+<a href="../README.md">English</a> | 简体中文 | <a href="https://qfluentwidgets.com/">官方网站</a>
 </p>
 
 ![Interface](https://raw.githubusercontent.com/zhiyiYo/PyQt-Fluent-Widgets/master/docs/source/_static/Interface.jpg)
@@ -45,7 +45,7 @@ pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 
 如果项目中使用的是 PySide2、PySide6 或者 PyQt6，可以在 [PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [PyQt6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PyQt6) 分支下载对应的代码。
 
-Qt5 和 Qt6 的组件库非开源，可从 [发行页面](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) 下载体验编译好的示例程序 `QFluentWidgets_*.*.*.zip`，如需购买使用请联系 [shokokawaii@foxmail.com](mailto:shokokawaii@foxmail.com).
+C++ QFluentWidgets 组件库非开源，可从 [发行页面](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) 下载体验编译好的示例程序 `QFluentWidgets_*.*.*.zip`，如需购买使用请先了解 [价格方案](https://qfluentwidgets.com/zh/price) 并联系 [shokokawaii@foxmail.com](mailto:shokokawaii@foxmail.com).
 
 > **Warning**
 > 请勿同时安装 PyQt-Fluent-Widgets、PyQt6-Fluent-Widgets、PySide2-Fluent-Widgets 和 PySide6-Fluent-Widgets，因为他们的包名都是 `qfluentwidgets`
