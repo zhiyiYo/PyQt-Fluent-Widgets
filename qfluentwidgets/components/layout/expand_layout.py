@@ -74,6 +74,8 @@ class ExpandLayout(QLayout):
         width = rect.width() - margin.left() - margin.right()
 
         for i, w in enumerate(self.__widgets):
+            if not w.isVisible():
+                continue
             y += (i>0)*self.spacing()
             if move:
                 w.setGeometry(QRect(QPoint(x, y), QSize(width, w.height())))
