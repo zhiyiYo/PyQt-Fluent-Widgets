@@ -44,6 +44,8 @@ Or install full-featured version:
 pip install "PySide6-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
+The [Pro version](https://qfluentwidgets.com/pages/pro) library contains more advance components. You can download `PySide6-Fluent-Widgets-Pro-Gallery.7z` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) for preview purposes.
+
 ## Run Example
 After installing PySide6-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
 ```python
