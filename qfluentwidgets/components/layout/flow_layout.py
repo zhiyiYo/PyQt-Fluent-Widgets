@@ -187,4 +187,4 @@ class FlowLayout(QLayout):
             self._aniGroup.stop()
             self._aniGroup.start()
 
-        return y + rowHeight - rect.y()
+        return y + rowHeight + margin.bottom() - rect.y()
