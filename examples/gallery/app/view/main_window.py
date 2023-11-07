@@ -128,7 +128,8 @@ class MainWindow(FluentWindow):
 
     def resizeEvent(self, e):
         super().resizeEvent(e)
-        self.splashScreen.resize(self.size())
+        if hasattr(self, 'splashScreen'):
+            self.splashScreen.resize(self.size())
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """
