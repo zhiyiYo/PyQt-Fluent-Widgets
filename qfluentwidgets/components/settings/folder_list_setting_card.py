@@ -5,7 +5,7 @@ from pathlib import Path
 from PySide6.QtCore import Qt, Signal, QSize
 from PySide6.QtGui import QPainter, QIcon
 from PySide6.QtWidgets import (QPushButton, QFileDialog, QWidget, QLabel,
-                             QHBoxLayout, QToolButton)
+                               QHBoxLayout, QToolButton, QSizePolicy)
 
 from ...components.widgets.button import ToolButton, PushButton
 from ...common.config import ConfigItem, qconfig
@@ -32,6 +32,7 @@ class FolderItem(QWidget):
         self.removeButton.setIconSize(QSize(12, 12))
 
         self.setFixedHeight(53)
+        self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Fixed)
         self.hBoxLayout.setContentsMargins(48, 0, 60, 0)
         self.hBoxLayout.addWidget(self.folderLabel, 0, Qt.AlignLeft)
         self.hBoxLayout.addSpacing(16)

@@ -1,5 +1,6 @@
 # coding:utf-8
 import json
+from copy import deepcopy
 from enum import Enum
 from pathlib import Path
 from typing import List
@@ -275,7 +276,7 @@ class QConfig(QObject):
         """ get the value of config item """
         return item.value
 
-    def set(self, item, value, save=True):
+    def set(self, item, value, save=True, copy=True):
         """ set the value of config item
 
         Parameters
@@ -288,11 +289,14 @@ class QConfig(QObject):
 
         save: bool
             whether to save the change to config file
+
+        copy: bool
+            whether to deep copy the new value
         """
         if item.value == value:
             return
 
-        item.value = value
+        item.value = deepcopy(value) if copy else value
 
         if save:
             self.save()
