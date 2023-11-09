@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
-from qfluentwidgets import IndeterminateProgressBar, ProgressBar
+from qfluentwidgets import IndeterminateProgressBar, ProgressBar, FluentThemeColor
 
 
 class Demo(QWidget):
@@ -13,6 +13,10 @@ class Demo(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         self.progressBar = ProgressBar(self)
         self.inProgressBar = IndeterminateProgressBar(self)
+
+        # change the color of bar
+        # self.progressBar.setCustomBarColor(FluentThemeColor.DEFAULT_BLUE.color(), FluentThemeColor.GOLD.color())
+        # self.inProgressBar.setCustomBarColor(FluentThemeColor.DEFAULT_BLUE.color(), FluentThemeColor.GOLD.color())
 
         self.progressBar.setValue(50)
         self.vBoxLayout.addWidget(self.progressBar)
