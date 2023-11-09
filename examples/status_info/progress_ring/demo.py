@@ -3,7 +3,8 @@ import sys
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
-from qfluentwidgets import ProgressRing, SpinBox, setTheme, Theme, IndeterminateProgressRing, setFont, FluentThemeColor
+from qfluentwidgets import (ProgressRing, SpinBox, setTheme, Theme, IndeterminateProgressRing, setFont,
+                            FluentThemeColor, ToggleToolButton, FluentIcon)
 
 
 class Demo(QWidget):
@@ -16,6 +17,7 @@ class Demo(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         self.hBoxLayout = QHBoxLayout()
 
+        self.button = ToggleToolButton(FluentIcon.PAUSE_BOLD, self)
         self.spinner = IndeterminateProgressRing(self)
         self.progressRing = ProgressRing(self)
         self.spinBox = SpinBox(self)
@@ -53,7 +55,18 @@ class Demo(QWidget):
         self.vBoxLayout.setContentsMargins(30, 30, 30, 30)
         self.vBoxLayout.addLayout(self.hBoxLayout)
         self.vBoxLayout.addWidget(self.spinner, 0, Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.button, 0, Qt.AlignHCenter)
         self.resize(400, 400)
+
+        self.button.clicked.connect(self.onButtonClicked)
+
+    def onButtonClicked(self):
+        if not self.progressRing.isPaused():
+            self.progressRing.pause()
+            self.button.setIcon(FluentIcon.PLAY_SOLID)
+        else:
+            self.progressRing.resume()
+            self.button.setIcon(FluentIcon.PAUSE_BOLD)
 
 
 

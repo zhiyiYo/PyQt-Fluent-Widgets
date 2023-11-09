@@ -53,7 +53,7 @@ class ProgressRing(ProgressBar):
             return
 
         # draw bar
-        pen.setColor(self.darkBarColor() if isDarkTheme() else self.lightBarColor())
+        pen.setColor(self.barColor())
         painter.setPen(pen)
         degree = int(self.val / (self.maximum() - self.minimum()) * 360)
         painter.drawArc(rc, 90*16, -degree*16)
