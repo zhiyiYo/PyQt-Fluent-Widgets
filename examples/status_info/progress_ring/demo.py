@@ -3,7 +3,7 @@ import sys
 
 from PySide2.QtCore import Qt, QTimer
 from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
-from qfluentwidgets import ProgressRing, SpinBox, setTheme, Theme, IndeterminateProgressRing, setFont
+from qfluentwidgets import ProgressRing, SpinBox, setTheme, Theme, IndeterminateProgressRing, setFont, FluentThemeColor
 
 
 class Demo(QWidget):
@@ -38,6 +38,10 @@ class Demo(QWidget):
         # change thickness
         # self.progressRing.setStrokeWidth(4)
         # self.spinner.setStrokeWidth(4)
+
+        # change the color of bar
+        # self.progressRing.setCustomBarColor(FluentThemeColor.DEFAULT_BLUE.color(), FluentThemeColor.GOLD.color())
+        # self.spinner.setCustomBarColor(FluentThemeColor.DEFAULT_BLUE.color(), FluentThemeColor.GOLD.color())
 
         self.spinBox.setRange(0, 100)
         self.spinBox.setValue(50)

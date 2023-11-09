@@ -154,6 +154,7 @@ class FlowLayout(QLayout):
 
     def _doLayout(self, rect: QRect, move: bool):
         """ adjust widgets position according to the window size """
+        aniRestart = False
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
         y = rect.y() + margin.top()
@@ -174,17 +175,19 @@ class FlowLayout(QLayout):
                 rowHeight = 0
 
             if move:
+                target = QRect(QPoint(x, y), item.sizeHint())
                 if not self.needAni:
-                    item.setGeometry(QRect(QPoint(x, y), item.sizeHint()))
-                else:
+                    item.setGeometry(target)
+                elif target != self._anis[i].endValue():
                     self._anis[i].stop()
-                    self._anis[i].setEndValue(QRect(QPoint(x, y), item.sizeHint()))
+                    self._anis[i].setEndValue(target)
+                    aniRestart = True
 
             x = nextX
             rowHeight = max(rowHeight, item.sizeHint().height())
 
-        if self.needAni:
+        if self.needAni and aniRestart:
             self._aniGroup.stop()
             self._aniGroup.start()
 
-        return y + rowHeight - rect.y()
+        return y + rowHeight + margin.bottom() - rect.y()
