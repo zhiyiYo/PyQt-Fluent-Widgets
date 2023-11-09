@@ -1,5 +1,6 @@
 # coding:utf-8
 import json
+from copy import deepcopy
 from enum import Enum
 from pathlib import Path
 
@@ -274,7 +275,7 @@ class QConfig(QObject):
         """ get the value of config item """
         return item.value
 
-    def set(self, item, value, save=True):
+    def set(self, item, value, save=True, copy=True):
         """ set the value of config item
 
         Parameters
@@ -287,11 +288,14 @@ class QConfig(QObject):
 
         save: bool
             whether to save the change to config file
+
+        copy: bool
+            whether to deep copy the new value
         """
         if item.value == value:
             return
 
-        item.value = value
+        item.value = deepcopy(value) if copy else value
 
         if save:
             self.save()
@@ -392,6 +396,7 @@ class QConfig(QObject):
 
 
 qconfig = QConfig()
+print("\n\033[1;33m📢 Tips:\033[0m QFluentWidgets Pro is now released. Click \033[1;96mhttps://qfluentwidgets.com/pages/pro\033[0m to learn more about it.\n")
 
 
 def isDarkTheme():

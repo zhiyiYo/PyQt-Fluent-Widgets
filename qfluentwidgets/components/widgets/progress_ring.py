@@ -53,7 +53,7 @@ class ProgressRing(ProgressBar):
             return
 
         # draw bar
-        pen.setColor(themeColor())
+        pen.setColor(self.darkBarColor() if isDarkTheme() else self.lightBarColor())
         painter.setPen(pen)
         degree = int(self.val / (self.maximum() - self.minimum()) * 360)
         painter.drawArc(rc, 90*16, -degree*16)
@@ -72,6 +72,8 @@ class IndeterminateProgressRing(QProgressBar):
         super().__init__(parent=parent)
         self.lightBackgroundColor = QColor(0, 0, 0, 0)
         self.darkBackgroundColor = QColor(255, 255, 255, 0)
+        self._lightBarColor = QColor()
+        self._darkBarColor = QColor()
         self._strokeWidth = 6
 
         self._startAngle = -180
@@ -156,6 +158,24 @@ class IndeterminateProgressRing(QProgressBar):
         self.startAngle = 0
         self.spanAngle = 0
 
+    def lightBarColor(self):
+        return self._lightBarColor if self._lightBarColor.isValid() else themeColor()
+
+    def darkBarColor(self):
+        return self._darkBarColor if self._darkBarColor.isValid() else themeColor()
+
+    def setCustomBarColor(self, light, dark):
+        """ set the custom bar color
+
+        Parameters
+        ----------
+        light, dark: str | Qt.GlobalColor | QColor
+            bar color in light/dark theme mode
+        """
+        self._lightBarColor = QColor(light)
+        self._darkBarColor = QColor(dark)
+        self.update()
+
     def setCustomBackgroundColor(self, light, dark):
         """ set the custom background color
 
@@ -183,7 +203,7 @@ class IndeterminateProgressRing(QProgressBar):
         painter.drawArc(rc, 0, 360*16)
 
         # draw bar
-        pen.setColor(themeColor())
+        pen.setColor(self.darkBarColor() if isDarkTheme() else self.lightBarColor())
         painter.setPen(pen)
 
         startAngle = -self.startAngle + 180
