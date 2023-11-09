@@ -7,7 +7,6 @@ from PyQt5.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWid
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme
 from ...common.overload import singledispatchmethod
-from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty, FluentAnimationSpeed
 from .button import ToolButton
 
 
@@ -21,8 +20,9 @@ class Indicator(ToolButton):
         self.setCheckable(True)
         self.setFixedSize(42, 22)
 
-        self.slideAni = FluentAnimation.create(
-            FluentAnimationType.FAST_DISMISS, FluentAnimationProperty.SCALE, value=5, parent=self)
+        self._sliderX = 5
+        self.slideAni = QPropertyAnimation(self, b'sliderX', self)
+        self.slideAni.setDuration(120)
 
         self.toggled.connect(self._toggleSlider)
 
@@ -32,7 +32,6 @@ class Indicator(ToolButton):
         self.checkedChanged.emit(self.isChecked())
 
     def _toggleSlider(self):
-        self.slideAni.setStartValue(self.slideAni.value())
         self.slideAni.setEndValue(25 if self.isChecked() else 5)
         self.slideAni.start()
 
@@ -63,7 +62,7 @@ class Indicator(ToolButton):
     def _drawCircle(self, painter: QPainter):
         painter.setPen(Qt.NoPen)
         painter.setBrush(self._sliderColor())
-        painter.drawEllipse(int(self.slideAni.value()), 5, 12, 12)
+        painter.drawEllipse(int(self.sliderX), 5, 12, 12)
 
     def _backgroundColor(self):
         isDark = isDarkTheme()
@@ -111,6 +110,15 @@ class Indicator(ToolButton):
                 return QColor(255, 255, 255, 201) if isDark else QColor(0, 0, 0, 156)
 
             return QColor(255, 255, 255, 96) if isDark else QColor(0, 0, 0, 91)
+
+    def getSliderX(self):
+        return self._sliderX
+
+    def setSliderX(self, x):
+        self._sliderX = max(x, 5)
+        self.update()
+
+    sliderX = pyqtProperty(float, getSliderX, setSliderX)
 
 
 class IndicatorPosition(Enum):
