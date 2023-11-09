@@ -113,6 +113,15 @@ class ProgressBar(QProgressBar):
     def isError(self):
         return self._isError
 
+    def barColor(self):
+        if self.isPaused():
+            return QColor(252, 225, 0) if isDarkTheme() else QColor(157, 93, 0)
+
+        if self.isError():
+            return QColor(255, 153, 164) if isDarkTheme() else QColor(196, 43, 28)
+
+        return self.darkBarColor() if isDarkTheme() else self.lightBarColor()
+
     def valText(self):
         if self.maximum() <= self.minimum():
             return ""
@@ -146,7 +155,7 @@ class ProgressBar(QProgressBar):
 
         # draw bar
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(self.darkBarColor() if isDarkTheme() else self.lightBarColor())
+        painter.setBrush(self.barColor())
         w = int(self.val / (self.maximum() - self.minimum()) * self.width())
         r = self.height() / 2
         painter.drawRoundedRect(0, 0, w, self.height(), r, r)
@@ -273,19 +282,21 @@ class IndeterminateProgressBar(QProgressBar):
     def isError(self):
         return self._isError
 
+    def barColor(self):
+        if self.isError():
+            return QColor(255, 153, 164) if isDarkTheme() else QColor(196, 43, 28)
+
+        if self.isPaused():
+            return QColor(252, 225, 0) if isDarkTheme() else QColor(157, 93, 0)
+
+        return self.darkBarColor() if isDarkTheme() else self.lightBarColor()
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         painter.setPen(Qt.PenStyle.NoPen)
-
-        if self.aniGroup.state() == QPropertyAnimation.State.Running:
-            painter.setBrush(self.darkBarColor() if isDarkTheme() else self.lightBarColor())
-        elif self.aniGroup.state() == QPropertyAnimation.State.Paused:
-            painter.setBrush(
-                QColor(252, 225, 0) if isDarkTheme() else QColor(157, 93, 0))
-        elif self._isError:
-            painter.setBrush(QColor(196, 43, 28))
+        painter.setBrush(self.barColor())
 
         # draw short bar
         x = int((self.shortPos - 0.4) * self.width())

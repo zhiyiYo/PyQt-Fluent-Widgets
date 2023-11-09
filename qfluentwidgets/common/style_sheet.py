@@ -336,7 +336,7 @@ def addStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=The
     """
     if register:
         styleSheetManager.register(source, widget, reset=False)
-        qss = styleSheetManager.source(widget).content(theme)
+        qss = getStyleSheet(styleSheetManager.source(widget), theme)
     else:
         qss = widget.styleSheet() + '\n' + getStyleSheet(source, theme)
 
