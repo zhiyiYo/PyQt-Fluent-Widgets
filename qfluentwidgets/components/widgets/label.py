@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QLabel, QWidget, QApplication, QPushButton
 
 from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet
 from ...common.config import qconfig, isDarkTheme
 
 
@@ -58,10 +58,10 @@ class FluentLabelBase(QLabel):
         self.setText(text)
 
     def _init(self):
+        FluentStyleSheet.LABEL.apply(self)
         self.setFont(self.getFont())
         self.setTextColor()
-        connect = qconfig.themeChanged.connect(
-            lambda: self.setTextColor(self.lightColor, self.darkColor))
+        connect = qconfig.themeChanged.connect(lambda: self.setTextColor(self.lightColor, self.darkColor))
         self.destroyed.connect(lambda: self.disconnect(connect))
         return self
 
@@ -79,10 +79,11 @@ class FluentLabelBase(QLabel):
         self._lightColor = QColor(light)
         self._darkColor = QColor(dark)
 
-        palette = self.palette()
-        color = self.darkColor if isDarkTheme() else self.lightColor
-        palette.setColor(QPalette.WindowText, color)
-        self.setPalette(palette)
+        setCustomStyleSheet(
+            self,
+            f"FluentLabelBase{{color:{self.lightColor.name()}}}",
+            f"FluentLabelBase{{color:{self.darkColor.name()}}}"
+        )
 
     @pyqtProperty(QColor)
     def lightColor(self):

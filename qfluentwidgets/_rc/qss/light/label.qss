@@ -1,3 +1,7 @@
+FluentLabelBase {
+    color: black;
+}
+
 HyperlinkLabel {
     color: --ThemeColorPrimary;
     border: none;
