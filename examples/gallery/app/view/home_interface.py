@@ -87,6 +87,7 @@ class BannerWidget(QWidget):
         else:
             gradient.setColorAt(0, QColor(0, 0, 0, 255))
             gradient.setColorAt(1, QColor(0, 0, 0, 0))
+            
         painter.fillPath(path, QBrush(gradient))
 
         # draw banner image
