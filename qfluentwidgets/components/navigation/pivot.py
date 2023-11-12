@@ -218,12 +218,11 @@ class Pivot(QWidget):
         return self.items[routeKey]
     
     def resizeEvent(self, e) -> None:
-        super().resizeEvent(e)
+            super().resizeEvent(e)
 
-        if self._currentRouteKey is not None:
-            currentItem = self.widget(self._currentRouteKey)
-            if currentItem:
-                self.slideAni.startAnimation(currentItem.x())
+            item = self.currentItem()
+            if item is not None:
+                self.slideAni.setValue(item.x())
 
     def paintEvent(self, e):
         super().paintEvent(e)
