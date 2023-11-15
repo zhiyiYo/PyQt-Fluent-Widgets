@@ -91,7 +91,7 @@ class ToolBar(QWidget):
         self.feedbackButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(FEEDBACK_URL)))
 
-
+        self.subtitleLabel.setTextColor(QColor(96, 96, 96), QColor(216, 216, 216))
 
 
 class ExampleCard(QWidget):
