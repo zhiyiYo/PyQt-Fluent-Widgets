@@ -21,6 +21,7 @@ class PushButton(QPushButton):
     ------------
     * PushButton(`parent`: QWidget = None)
     * PushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str | FluentIconBase = None)
+    * PushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     @singledispatchmethod
@@ -39,6 +40,14 @@ class PushButton(QPushButton):
         self.__init__(parent=parent)
         self.setText(text)
         self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: QIcon, text: str, parent: QWidget = None):
+        self.__init__(text, parent, icon)
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, text: str, parent: QWidget = None):
+        self.__init__(text, parent, icon)
 
     def _postInit(self):
         pass
@@ -110,6 +119,7 @@ class PrimaryPushButton(PushButton):
     ------------
     * PrimaryPushButton(`parent`: QWidget = None)
     * PrimaryPushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str | FluentIconBase = None)
+    * PrimaryPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
@@ -132,6 +142,7 @@ class TransparentPushButton(PushButton):
     ------------
     * TransparentPushButton(`parent`: QWidget = None)
     * TransparentPushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str | FluentIconBase = None)
+    * TransparentPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
 
@@ -142,6 +153,7 @@ class ToggleButton(PushButton):
     ------------
     * ToggleButton(`parent`: QWidget = None)
     * ToggleButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str | FluentIconBase = None)
+    * ToggleButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def _postInit(self):
@@ -166,6 +178,7 @@ class TransparentTogglePushButton(TogglePushButton):
     * TransparentTogglePushButton(`parent`: QWidget = None)
     * TransparentTogglePushButton(`text`: str, `parent`: QWidget = None,
                                   `icon`: QIcon | str | FluentIconBase = None)
+    * TransparentTogglePushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
 
@@ -194,6 +207,14 @@ class HyperlinkButton(PushButton):
         self.setText(text)
         self.url.setUrl(url)
         self.setIcon(icon)
+
+    @__init__.register
+    def _(self, icon: QIcon, url: str, text: str, parent: QWidget = None):
+        self.__init__(url, text, parent, icon)
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, url: str, text: str, parent: QWidget = None):
+        self.__init__(url, text, parent, icon)
 
     def getUrl(self):
         return self._url
@@ -465,6 +486,7 @@ class DropDownPushButton(DropDownButtonBase, PushButton):
     * DropDownPushButton(`parent`: QWidget = None)
     * DropDownPushButton(`text`: str, `parent`: QWidget = None,
                          `icon`: QIcon | str | FluentIconBase = None)
+    * DropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def mouseReleaseEvent(self, e):
@@ -484,6 +506,7 @@ class TransparentDropDownPushButton(DropDownPushButton):
     * TransparentDropDownPushButton(`parent`: QWidget = None)
     * TransparentDropDownPushButton(`text`: str, `parent`: QWidget = None,
                                     `icon`: QIcon | str | FluentIconBase = None)
+    * TransparentDropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
 
@@ -535,6 +558,7 @@ class PrimaryDropDownPushButton(PrimaryDropDownButtonBase, PrimaryPushButton):
     * PrimaryDropDownPushButton(`parent`: QWidget = None)
     * PrimaryDropDownPushButton(`text`: str, `parent`: QWidget = None,
                                 `icon`: QIcon | str | FluentIconBase = None)
+    * PrimaryDropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def mouseReleaseEvent(self, e):
@@ -699,6 +723,14 @@ class SplitPushButton(SplitWidgetBase):
         self.setText(text)
         self.setIcon(icon)
 
+    @__init__.register
+    def _(self, icon: QIcon, text: str, parent: QWidget = None):
+        self.__init__(text, parent, icon)
+
+    @__init__.register
+    def _(self, icon: FluentIconBase, text: str, parent: QWidget = None):
+        self.__init__(text, parent, icon)
+
     def _postInit(self):
         pass
 
@@ -730,6 +762,7 @@ class PrimarySplitPushButton(SplitPushButton):
     * PrimarySplitPushButton(`parent`: QWidget = None)
     * PrimarySplitPushButton(`text`: str, `parent`: QWidget = None,
                              `icon`: QIcon | str | FluentIconBase = None)
+    * PrimarySplitPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def _postInit(self):
@@ -865,6 +898,7 @@ class PillPushButton(TogglePushButton, PillButtonBase):
     * PillPushButton(`parent`: QWidget = None)
     * PillPushButton(`text`: str, `parent`: QWidget = None,
                      `icon`: QIcon | str | FluentIconBase = None)
+    * PillPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
     def paintEvent(self, e):
