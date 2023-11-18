@@ -52,14 +52,18 @@ class FlyoutViewBase(QWidget):
     def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
         raise NotImplementedError
 
+    def backgroundColor(self):
+        return QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)
+
+    def borderColor(self):
+        return QColor(0, 0, 0, 45) if isDarkTheme() else QColor(0, 0, 0, 16)
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
 
-        painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
-        painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(195, 195, 195))
+        painter.setBrush(self.backgroundColor())
+        painter.setPen(self.borderColor())
 
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)
