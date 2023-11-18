@@ -74,6 +74,9 @@ class Window(FluentWindow):
             position=InfoBadgePosition.NAVIGATION_ITEM
         )
 
+        # NOTE: enable acrylic effect
+        # self.navigationInterface.setAcrylicEnabled(True)
+
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))

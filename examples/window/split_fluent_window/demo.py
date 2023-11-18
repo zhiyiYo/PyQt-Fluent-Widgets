@@ -67,6 +67,9 @@ class Window(SplitFluentWindow):
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
+        # NOTE: enable acrylic effect
+        # self.navigationInterface.setAcrylicEnabled(True)
+
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))

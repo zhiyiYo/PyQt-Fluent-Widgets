@@ -157,8 +157,9 @@ class NavigationPushButton(NavigationWidget):
 
         painter.setFont(self.font())
         painter.setPen(QColor(c, c, c))
-        painter.drawText(QRect(44+pl, 0, self.width()-57-pl-pr,
-                            self.height()), Qt.AlignVCenter, self.text())
+
+        left = 44 + pl if not self.icon().isNull() else pl + 32
+        painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignVCenter, self.text())
 
 
 class NavigationToolButton(NavigationPushButton):
