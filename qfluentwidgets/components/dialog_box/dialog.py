@@ -97,6 +97,15 @@ class Ui_MessageBox:
         self.yesButton.adjustSize()
         self.cancelButton.adjustSize()
 
+    def setContentCopyable(self, isCopyable: bool):
+        """ set whether the content is copyable """
+        if isCopyable:
+            self.contentLabel.setTextInteractionFlags(
+                Qt.TextInteractionFlag.TextSelectableByMouse)
+        else:
+            self.contentLabel.setTextInteractionFlags(
+                Qt.TextInteractionFlag.NoTextInteraction)
+
 
 class Dialog(FramelessDialog, Ui_MessageBox):
     """ Dialog box """
