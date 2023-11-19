@@ -254,6 +254,22 @@ class ColorConfigItem(ConfigItem):
         return f'{self.__class__.__name__}[value={self.value.name()}]'
 
 
+try:
+    from winreg import OpenKey, QueryValueEx, HKEY_CURRENT_USER as HKCU, KEY_QUERY_VALUE
+except ImportError:
+    # not Windows
+    def getSysThemeColor(fallback='#009faa'):
+        # we cannot get system theme color
+        return fallback
+else:
+    def getSysThemeColor(fallback='#009faa'):
+        try:
+            with OpenKey(HKCU, r"Software\Microsoft\Windows\DWM", 0, KEY_QUERY_VALUE) as key:
+                return '#'+hex(QueryValueEx(key, "ColorizationColor")[0])[4:]
+        except Exception:
+            # key not found, maybe not Windows 10/11
+            return fallback
+
 class QConfig(QObject):
     """ Config of app """
 

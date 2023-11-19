@@ -8,7 +8,7 @@ from PyQt5.QtCore import QFile, QObject, QEvent
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QWidget
 
-from .config import qconfig, Theme, isDarkTheme
+from .config import qconfig, Theme, isDarkTheme, getSysThemeColor
 
 
 class StyleSheetManager(QObject):
@@ -448,7 +448,7 @@ def themeColor():
     return ThemeColor.PRIMARY.color()
 
 
-def setThemeColor(color, save=False):
+def setThemeColor(color=None, save=False):
     """ set theme color
 
     Parameters
@@ -459,6 +459,8 @@ def setThemeColor(color, save=False):
     save: bool
         whether to save to change to config file
     """
+    if not color:
+        color = getSysThemeColor()
     color = QColor(color)
     qconfig.set(qconfig.themeColor, color, save=save)
     updateStyleSheet()

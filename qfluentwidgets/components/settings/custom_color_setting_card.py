@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QButtonGroup, QVBoxLayout, QPushBut
 from ..dialog_box import ColorDialog
 from .expand_setting_card import ExpandGroupSettingCard
 from ..widgets.button import RadioButton
-from ...common.config import qconfig, ColorConfigItem
+from ...common.config import qconfig, ColorConfigItem, getSysThemeColor
 from ...common.icon import FluentIconBase
 
 
@@ -51,6 +51,8 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.radioLayout = QVBoxLayout(self.radioWidget)
         self.defaultRadioButton = RadioButton(
             self.tr('Default color'), self.radioWidget)
+        self.autoRadioButton = RadioButton(
+            self.tr('Use system setting'), self.radioWidget)
         self.customRadioButton = RadioButton(
             self.tr('Custom color'), self.radioWidget)
         self.buttonGroup = QButtonGroup(self)
@@ -67,10 +69,16 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
     def __initWidget(self):
         self.__initLayout()
 
-        if self.defaultColor != self.customColor:
+        if QColor(getSysThemeColor()) == self.customColor:
+            self.autoRadioButton.setChecked(True)
+            self.customRadioButton.setEnabled(True)
+            self.chooseColorButton.setEnabled(True)
+        elif self.defaultColor != self.customColor:
+            self.autoRadioButton.setEnabled(True)
             self.customRadioButton.setChecked(True)
             self.chooseColorButton.setEnabled(True)
         else:
+            self.autoRadioButton.setEnabled(True)
             self.defaultRadioButton.setChecked(True)
             self.chooseColorButton.setEnabled(False)
 
@@ -89,8 +97,10 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.radioLayout.setAlignment(Qt.AlignTop)
         self.radioLayout.setContentsMargins(48, 18, 0, 18)
         self.buttonGroup.addButton(self.customRadioButton)
+        self.buttonGroup.addButton(self.autoRadioButton)
         self.buttonGroup.addButton(self.defaultRadioButton)
         self.radioLayout.addWidget(self.customRadioButton)
+        self.radioLayout.addWidget(self.autoRadioButton)
         self.radioLayout.addWidget(self.defaultRadioButton)
         self.radioLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
 
@@ -112,7 +122,13 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.choiceLabel.setText(button.text())
         self.choiceLabel.adjustSize()
 
-        if button is self.defaultRadioButton:
+        if button is self.autoRadioButton:
+            self.chooseColorButton.setDisabled(True)
+            color = QColor(getSysThemeColor(self.defaultColor))
+            qconfig.set(self.configItem, color)
+            if self.defaultColor != self.customColor:
+                self.colorChanged.emit(color)
+        elif button is self.defaultRadioButton:
             self.chooseColorButton.setDisabled(True)
             qconfig.set(self.configItem, self.defaultColor)
             if self.defaultColor != self.customColor:
