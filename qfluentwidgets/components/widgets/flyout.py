@@ -56,7 +56,7 @@ class FlyoutViewBase(QWidget):
         return QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)
 
     def borderColor(self):
-        return QColor(0, 0, 0, 45) if isDarkTheme() else QColor(0, 0, 0, 16)
+        return QColor(0, 0, 0, 45) if isDarkTheme() else QColor(0, 0, 0, 17)
 
     def paintEvent(self, e):
         painter = QPainter(self)

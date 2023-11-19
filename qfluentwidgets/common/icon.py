@@ -443,9 +443,9 @@ class Action(QAction):
 
     Constructors
     ------------
-    * IconWidget(`parent`: QWidget = None, `**kwargs`)
-    * IconWidget(`text`: str, `parent`: QWidget = None, `**kwargs`)
-    * IconWidget(`icon`: QIcon | FluentIconBase, `parent`: QWidget = None, `**kwargs`)
+    * Action(`parent`: QWidget = None, `**kwargs`)
+    * Action(`text`: str, `parent`: QWidget = None, `**kwargs`)
+    * Action(`icon`: QIcon | FluentIconBase, `parent`: QWidget = None, `**kwargs`)
     """
 
     @singledispatchmethod

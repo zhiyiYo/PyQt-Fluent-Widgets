@@ -107,7 +107,7 @@ class TeachTipBubble(QWidget):
         painter.setBrush(
             QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
         painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(0, 0, 0, 16))
+            QColor(23, 23, 23) if isDarkTheme() else QColor(0, 0, 0, 17))
 
         self.manager.draw(self, painter)
 
