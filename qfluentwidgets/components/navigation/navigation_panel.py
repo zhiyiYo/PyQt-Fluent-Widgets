@@ -11,7 +11,7 @@ from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, 
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
-from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, FlyoutAnimationManager
+from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, SlideRightFlyoutAnimationManager
 from ..material.acrylic_flyout import AcrylicFlyout, AcrylicFlyoutViewBase
 from ...common.router import qrouter
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
@@ -524,21 +524,26 @@ class NavigationPanel(QFrame):
         if not widget.isRoot() or widget.isLeaf():
             return
 
-        menu = NavigationFlyoutMenu(widget)
         layout = QHBoxLayout()
-        layout.addWidget(menu)
-        layout.setContentsMargins(0, 0, 0, 0)
 
         if self._canDrawAcrylic():
             view = AcrylicFlyoutViewBase()
             view.setLayout(layout)
-            flyout = AcrylicFlyout.make(view, widget, self.window(), FlyoutAnimationType.SLIDE_RIGHT)
+            flyout = AcrylicFlyout(view, self.window())
         else:
             view = FlyoutViewBase()
             view.setLayout(layout)
-            flyout = Flyout.make(view, widget, self.window(), FlyoutAnimationType.SLIDE_RIGHT)
+            flyout = Flyout(view, self.window())
 
+        # add navigation menu to flyout
+        menu = NavigationFlyoutMenu(widget, view)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(menu)
+
+        # execuse flyout animation
         flyout.resize(flyout.sizeHint())
+        pos = SlideRightFlyoutAnimationManager(flyout).position(widget)
+        flyout.exec(pos, FlyoutAnimationType.SLIDE_RIGHT)
 
         menu.expanded.connect(lambda: self._adjustFlyoutMenuSize(flyout, widget, menu))
 

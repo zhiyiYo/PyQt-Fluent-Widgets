@@ -578,14 +578,18 @@ class NavigationFlyoutMenu(ScrollArea):
             self.treeChildren.append(node)
             self.vBoxLayout.addWidget(node)
 
-        self._expandNodes(self)
+        self._initNode(self)
         self._adjustViewSize(False)
 
-    def _expandNodes(self, root: NavigationTreeWidget):
+    def _initNode(self, root: NavigationTreeWidget):
         for c in root.treeChildren:
             c.nodeDepth -= 1
             c.setCompacted(False)
-            self._expandNodes(c)
+
+            if c.isLeaf():
+                c.clicked.connect(self.window().fadeOut)
+
+            self._initNode(c)
 
     def _adjustViewSize(self, emit=True):
         w = self._suitableWidth()
@@ -597,10 +601,7 @@ class NavigationFlyoutMenu(ScrollArea):
 
         self.view.setFixedSize(w, self.view.sizeHint().height())
 
-        if self.window().parent():
-            h = min(self.window().parent().height() - 48, self.view.height())
-        else:
-            h = self.view.height()
+        h = min(self.window().parent().height() - 48, self.view.height())
 
         self.setFixedSize(w, h)
 
@@ -615,8 +616,7 @@ class NavigationFlyoutMenu(ScrollArea):
                 w = max(w, node.suitableWidth() + 10)
 
         window = self.window().parent()  # type: QWidget
-        w = min(window.width() // 2 - 25, w) if window else w
-        return w + 10
+        return min(window.width() // 2 - 25, w) + 10
 
     def visibleTreeNodes(self):
         nodes = []

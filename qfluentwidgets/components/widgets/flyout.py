@@ -321,6 +321,14 @@ class Flyout(QWidget):
         view.closed.connect(w.close)
         return w
 
+    def fadeOut(self):
+        self.fadeOutAni = QPropertyAnimation(self, b'windowOpacity', self)
+        self.fadeOutAni.finished.connect(self.close)
+        self.fadeOutAni.setStartValue(1)
+        self.fadeOutAni.setEndValue(0)
+        self.fadeOutAni.setDuration(120)
+        self.fadeOutAni.start()
+
 
 class FlyoutAnimationManager(QObject):
     """ Flyout animation manager """
@@ -378,7 +386,7 @@ class FlyoutAnimationManager(QObject):
         raise NotImplementedError
 
     @classmethod
-    def make(cls, aniType: FlyoutAnimationType, flyout: Flyout):
+    def make(cls, aniType: FlyoutAnimationType, flyout: Flyout) -> "FlyoutAnimationManager":
         """ mask animation manager """
         if aniType not in cls.managers:
             raise ValueError(f'`{aniType}` is an invalid animation type.')
