@@ -57,19 +57,31 @@ class MaskDialogBase(QDialog):
         opacityAni.start()
         super().showEvent(e)
 
-    def closeEvent(self, e):
-        """ fade out """
+    def accept(self):
+        """ hide dialog box """
         self.widget.setGraphicsEffect(None)
         opacityEffect = QGraphicsOpacityEffect(self)
         self.setGraphicsEffect(opacityEffect)
         opacityAni = QPropertyAnimation(opacityEffect, b'opacity', self)
         opacityAni.setStartValue(1)
         opacityAni.setEndValue(0)
-        opacityAni.setDuration(100)
+        opacityAni.setDuration(200)
         opacityAni.setEasingCurve(QEasingCurve.OutCubic)
-        opacityAni.finished.connect(self.deleteLater)
+        opacityAni.finished.connect(lambda: self.done(QDialog.Accepted))
         opacityAni.start()
-        e.ignore()
+
+    def reject(self):
+        """ hide dialog box """
+        self.widget.setGraphicsEffect(None)
+        opacityEffect = QGraphicsOpacityEffect(self)
+        self.setGraphicsEffect(opacityEffect)
+        opacityAni = QPropertyAnimation(opacityEffect, b'opacity', self)
+        opacityAni.setStartValue(1)
+        opacityAni.setEndValue(0)
+        opacityAni.setDuration(200)
+        opacityAni.setEasingCurve(QEasingCurve.OutCubic)
+        opacityAni.finished.connect(lambda: self.done(QDialog.Rejected))
+        opacityAni.start()
 
     def resizeEvent(self, e):
         self.windowMask.resize(self.size())
