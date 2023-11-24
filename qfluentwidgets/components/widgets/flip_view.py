@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List, Union
 
-from PySide6.QtCore import Qt, Signal, QModelIndex, QSize, Property, QRectF, QPropertyAnimation
+from PySide6.QtCore import Qt, Signal, QModelIndex, QSize, Property, QRectF, QPropertyAnimation, QSizeF
 from PySide6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainterPath
 from PySide6.QtWidgets import QStyleOptionViewItem, QListWidget, QStyledItemDelegate, QListWidgetItem
 
@@ -79,8 +79,9 @@ class FlipImageDelegate(QStyledItemDelegate):
         super().__init__(parent)
         self.borderRadius = 0
 
-    def itemSize(self):
-        return self.parent().itemSize
+    def itemSize(self, index: int):
+        p = self.parent() # type: FlipView
+        return p.item(index).sizeHint()
 
     def setBorderRadius(self, radius: int):
         self.borderRadius = radius
@@ -91,10 +92,11 @@ class FlipImageDelegate(QStyledItemDelegate):
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
 
-        size = self.itemSize()  # type: QSize
+        size = self.itemSize(index.row())  # type: QSize
+        p = self.parent()  # type: FlipView
 
         # draw image
-        r = self.parent().devicePixelRatioF()
+        r = p.devicePixelRatioF()
         image = index.data(Qt.UserRole)  # type: QImage
         if image is None:
             return painter.restore()
@@ -107,8 +109,16 @@ class FlipImageDelegate(QStyledItemDelegate):
         path = QPainterPath()
         path.addRoundedRect(rect, self.borderRadius, self.borderRadius)
 
-        image = image.scaled(size * r, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        image = image.scaled(size * r, p.aspectRatioMode, Qt.SmoothTransformation)
         painter.setClipPath(path)
+
+        # center crop image
+        if p.aspectRatioMode == Qt.AspectRatioMode.KeepAspectRatioByExpanding:
+            iw, ih = image.width(), image.height()
+            size = QSizeF(size) * r
+            x, y = (iw - size.width()) / 2, (ih - size.height()) / 2
+            image = image.copy(int(x), int(y), int(size.width()), int(size.height()))
+
         painter.drawImage(rect, image)
         painter.restore()
 
@@ -139,6 +149,7 @@ class FlipView(QListWidget):
     def _postInit(self):
         self.isHover = False
         self._currentIndex = -1
+        self._aspectRatioMode = Qt.AspectRatioMode.IgnoreAspectRatio
         self._itemSize = QSize(480, 270)  # 16:9
 
         self.delegate = FlipImageDelegate(self)
@@ -147,7 +158,7 @@ class FlipView(QListWidget):
         self.scrollBar.setScrollAnimation(500)
         self.scrollBar.setForceHidden(True)
 
-        self.setUniformItemSizes(True)
+        # self.setUniformItemSizes(True)
         self.setMinimumSize(self.itemSize)
         self.setItemDelegate(self.delegate)
         self.setMovement(QListWidget.Static)
@@ -184,8 +195,7 @@ class FlipView(QListWidget):
         self._itemSize = size
 
         for i in range(self.count()):
-            item = self.item(i)
-            item.setSizeHint(size)
+            self._adjustItemSize(self.item(i))
 
         self.viewport().update()
 
@@ -236,9 +246,9 @@ class FlipView(QListWidget):
         self._currentIndex = index
 
         if self.isHorizontal():
-            value = self.itemSize.width() * index
+            value = sum(self.item(i).sizeHint().width() for i in range(index))
         else:
-            value = self.itemSize.height() * index
+            value = sum(self.item(i).sizeHint().height() for i in range(index))
 
         value += (2 * index + 1) * self.spacing()
         self.scrollBar.scrollTo(value)
@@ -284,7 +294,22 @@ class FlipView(QListWidget):
             image = image.toImage()
 
         item.setData(Qt.UserRole, image)
-        item.setSizeHint(self.itemSize)
+        self._adjustItemSize(item)
+
+    def _adjustItemSize(self, item: QListWidgetItem):
+        image = self.itemImage(self.row(item))
+
+        if self.aspectRatioMode == Qt.AspectRatioMode.KeepAspectRatio:
+            if self.isHorizontal():
+                h = self.itemSize.height()
+                w = int(image.width() * h / image.height())
+            else:
+                w = self.itemSize.width()
+                h = int(image.height() * w / image.width())
+        else:
+            w, h = self.itemSize.width(), self.itemSize.height()
+
+        item.setSizeHint(QSize(w, h))
 
     def itemImage(self, index: int) -> QImage:
         """ get the image of specified item """
@@ -336,8 +361,23 @@ class FlipView(QListWidget):
         else:
             self.scrollPrevious()
 
+    def getAspectRatioMode(self):
+        return self._aspectRatioMode
+
+    def setAspectRatioMode(self, mode: Qt.AspectRatioMode):
+        if mode == self.aspectRatioMode:
+            return
+
+        self._aspectRatioMode = mode
+
+        for i in range(self.count()):
+            self._adjustItemSize(self.item(i))
+
+        self.viewport().update()
+
     itemSize = Property(QSize, getItemSize, setItemSize)
     borderRadius = Property(int, getBorderRadius, setBorderRadius)
+    aspectRatioMode = Property(bool, getAspectRatioMode, setAspectRatioMode)
 
 
 class HorizontalFlipView(FlipView):

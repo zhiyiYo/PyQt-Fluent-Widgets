@@ -37,6 +37,7 @@ QLabel#titleLabel {
     padding: 0;
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     border: none;
+    selection-background-color: --ThemeColorLight1;
 }
 
 QLabel#windowTitleLabel {

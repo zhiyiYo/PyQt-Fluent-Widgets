@@ -4,13 +4,15 @@ from typing import Dict, Union
 
 from PySide6.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, Signal, QPoint
 from PySide6.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
-                                NavigationTreeWidget)
+                                NavigationTreeWidget, NavigationFlyoutMenu)
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import SingleDirectionScrollArea
 from ..widgets.tool_tip import ToolTipFilter
+from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, SlideRightFlyoutAnimationManager
+from ..material.acrylic_flyout import AcrylicFlyout, AcrylicFlyoutViewBase
 from ...common.router import qrouter
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
 from ...common.icon import FluentIconBase
@@ -504,12 +506,62 @@ class NavigationPanel(QFrame):
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget
         if not widget.isSelectable:
-            return
+            return self._showFlyoutNavigationMenu(widget)
 
         self.setCurrentItem(widget.property('routeKey'))
-        if widget is not self.menuButton and self.displayMode == NavigationDisplayMode.MENU \
-                and not (isinstance(widget, NavigationTreeWidgetBase) and not widget.isLeaf()):
+
+        isLeaf = not isinstance(widget, NavigationTreeWidgetBase) or widget.isLeaf()
+        if self.displayMode == NavigationDisplayMode.MENU and isLeaf:
             self.collapse()
+        elif self.isCollapsed():
+            self._showFlyoutNavigationMenu(widget)
+
+    def _showFlyoutNavigationMenu(self, widget: NavigationTreeWidget):
+        """ show flyout navigation menu """
+        if not (self.isCollapsed() and isinstance(widget, NavigationTreeWidget)):
+            return
+
+        if not widget.isRoot() or widget.isLeaf():
+            return
+
+        layout = QHBoxLayout()
+
+        if self._canDrawAcrylic():
+            view = AcrylicFlyoutViewBase()
+            view.setLayout(layout)
+            flyout = AcrylicFlyout(view, self.window())
+        else:
+            view = FlyoutViewBase()
+            view.setLayout(layout)
+            flyout = Flyout(view, self.window())
+
+        # add navigation menu to flyout
+        menu = NavigationFlyoutMenu(widget, view)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(menu)
+
+        # execuse flyout animation
+        flyout.resize(flyout.sizeHint())
+        pos = SlideRightFlyoutAnimationManager(flyout).position(widget)
+        flyout.exec(pos, FlyoutAnimationType.SLIDE_RIGHT)
+
+        menu.expanded.connect(lambda: self._adjustFlyoutMenuSize(flyout, widget, menu))
+
+    def _adjustFlyoutMenuSize(self, flyout: Flyout, widget: NavigationTreeWidget, menu: NavigationFlyoutMenu):
+        flyout.view.setFixedSize(menu.size())
+        flyout.setFixedSize(flyout.layout().sizeHint())
+
+        manager = flyout.aniManager
+        pos = manager.position(widget)
+
+        rect = self.window().geometry()
+        w, h = flyout.sizeHint().width() + 5, flyout.sizeHint().height()
+        x = max(rect.left(), min(pos.x(), rect.right() - w))
+        y = max(rect.top() + 42, min(pos.y() - 4, rect.bottom() - h + 5))
+        flyout.move(x, y)
+
+    def isCollapsed(self):
+        return self.displayMode == NavigationDisplayMode.COMPACT
 
     def resizeEvent(self, e: QResizeEvent):
         if e.oldSize().height() == self.height():

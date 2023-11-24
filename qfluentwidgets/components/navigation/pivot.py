@@ -216,6 +216,13 @@ class Pivot(QWidget):
             raise RouteKeyError(f"`{routeKey}` is illegal.")
 
         return self.items[routeKey]
+    
+    def resizeEvent(self, e) -> None:
+            super().resizeEvent(e)
+
+            item = self.currentItem()
+            if item is not None:
+                self.slideAni.setValue(item.x())
 
     def paintEvent(self, e):
         super().paintEvent(e)

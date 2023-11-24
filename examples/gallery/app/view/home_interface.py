@@ -2,7 +2,7 @@
 import json
 
 from PySide6.QtCore import Qt, Signal, QRectF
-from PySide6.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath
+from PySide6.QtGui import QPixmap, QPainter, QColor, QBrush, QPainterPath, QLinearGradient
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel
 
 from qfluentwidgets import ScrollArea, isDarkTheme, FluentIcon
@@ -72,23 +72,29 @@ class BannerWidget(QWidget):
 
         path = QPainterPath()
         path.setFillRule(Qt.WindingFill)
-        w, h = self.width(), 200
+        w, h = self.width(), self.height()
         path.addRoundedRect(QRectF(0, 0, w, h), 10, 10)
         path.addRect(QRectF(0, h-50, 50, 50))
         path.addRect(QRectF(w-50, 0, 50, 50))
         path.addRect(QRectF(w-50, h-50, 50, 50))
         path = path.simplified()
 
+        # init linear gradient effect
+        gradient = QLinearGradient(0, 0, 0, h)
+
         # draw background color
         if not isDarkTheme():
-            painter.fillPath(path, QColor(206, 216, 228))
+            gradient.setColorAt(0, QColor(207, 216, 228, 255))
+            gradient.setColorAt(1, QColor(207, 216, 228, 0))
         else:
-            painter.fillPath(path, QColor(0, 0, 0))
+            gradient.setColorAt(0, QColor(0, 0, 0, 255))
+            gradient.setColorAt(1, QColor(0, 0, 0, 0))
+
+        painter.fillPath(path, QBrush(gradient))
 
         # draw banner image
         pixmap = self.banner.scaled(
             self.size(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
-        path.addRect(QRectF(0, h, w, self.height() - h))
         painter.fillPath(path, QBrush(pixmap))
 
 
