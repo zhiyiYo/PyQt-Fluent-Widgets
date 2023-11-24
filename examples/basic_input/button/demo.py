@@ -117,51 +117,51 @@ class PushButtonDemo(ButtonView):
 
         # push button
         self.pushButton1 = PushButton('Standard push button')
-        self.pushButton2 = PushButton('Standard push button with icon', self, FIF.FOLDER)
+        self.pushButton2 = PushButton(FIF.FOLDER, 'Standard push button with icon', self)
 
         # primary color push button
         self.primaryButton1 = PrimaryPushButton('Accent style button', self)
-        self.primaryButton2 = PrimaryPushButton('Accent style button with icon', self, FIF.UPDATE)
+        self.primaryButton2 = PrimaryPushButton(FIF.UPDATE, 'Accent style button with icon', self)
 
         # transparent push button
         self.transparentPushButton1 = TransparentPushButton('Transparent push button', self)
-        self.transparentPushButton2 = TransparentPushButton('Transparent push button', self, FIF.BOOK_SHELF)
+        self.transparentPushButton2 = TransparentPushButton(FIF.BOOK_SHELF, 'Transparent push button', self)
 
         # toggle button
         self.toggleButton1 = TogglePushButton('Toggle push button', self)
-        self.toggleButton2 = TogglePushButton('Toggle push button', self, FIF.SEND)
+        self.toggleButton2 = TogglePushButton(FIF.SEND, 'Toggle push button', self)
 
         # transparent toggle push button
         self.transparentTogglePushButton1 = TransparentTogglePushButton('Transparent toggle button', self)
-        self.transparentTogglePushButton2 = TransparentTogglePushButton('Transparent toggle button', self, FIF.BOOK_SHELF)
+        self.transparentTogglePushButton2 = TransparentTogglePushButton(FIF.BOOK_SHELF, 'Transparent toggle button', self)
 
         # drop down push button
         self.dropDownPushButton1 = DropDownPushButton('Email', self)
-        self.dropDownPushButton2 = DropDownPushButton('Email', self, FIF.MAIL)
+        self.dropDownPushButton2 = DropDownPushButton(FIF.MAIL, 'Email', self)
         self.dropDownPushButton1.setMenu(self.menu)
         self.dropDownPushButton2.setMenu(self.menu)
 
         # primary color drop down push button
         self.primaryDropDownPushButton1 = PrimaryDropDownPushButton('Email', self)
-        self.primaryDropDownPushButton2 = PrimaryDropDownPushButton('Email', self, FIF.MAIL)
+        self.primaryDropDownPushButton2 = PrimaryDropDownPushButton(FIF.MAIL, 'Email', self)
         self.primaryDropDownPushButton1.setMenu(self.menu)
         self.primaryDropDownPushButton2.setMenu(self.menu)
 
         # primary color drop down push button
         self.transparentDropDownPushButton1 = TransparentDropDownPushButton('Email', self)
-        self.transparentDropDownPushButton2 = TransparentDropDownPushButton('Email', self, FIF.MAIL)
+        self.transparentDropDownPushButton2 = TransparentDropDownPushButton(FIF.MAIL, 'Email', self)
         self.transparentDropDownPushButton1.setMenu(self.menu)
         self.transparentDropDownPushButton2.setMenu(self.menu)
 
         # split push button
         self.splitPushButton1 = SplitPushButton('Split push button', self)
-        self.splitPushButton2 = SplitPushButton('Split push button', self, FIF.GITHUB)
+        self.splitPushButton2 = SplitPushButton(FIF.GITHUB, 'Split push button', self)
         self.splitPushButton1.setFlyout(self.menu)
         self.splitPushButton2.setFlyout(self.menu)
 
         # primary split push button
         self.primarySplitPushButton1 = PrimarySplitPushButton('Split push button', self)
-        self.primarySplitPushButton2 = PrimarySplitPushButton('Split push button', self, FIF.GITHUB)
+        self.primarySplitPushButton2 = PrimarySplitPushButton(FIF.GITHUB, 'Split push button', self)
         self.primarySplitPushButton1.setFlyout(self.menu)
         self.primarySplitPushButton2.setFlyout(self.menu)
 
@@ -180,7 +180,7 @@ class PushButtonDemo(ButtonView):
 
         # pill push button
         self.pillPushButton1 = PillPushButton('Pill Push Button', self)
-        self.pillPushButton2 = PillPushButton('Pill Push Button', self, FIF.CALENDAR)
+        self.pillPushButton2 = PillPushButton(FIF.CALENDAR, 'Pill Push Button', self)
 
         self.gridLayout = QGridLayout(self)
         self.gridLayout.addWidget(self.pushButton1, 0, 0)

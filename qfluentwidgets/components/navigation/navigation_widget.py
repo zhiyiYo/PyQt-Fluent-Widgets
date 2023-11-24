@@ -2,21 +2,25 @@
 from typing import Union, List
 
 from PySide2.QtCore import (Qt, Signal, QRect, QRectF, QPropertyAnimation, Property, QMargins,
-                          QEasingCurve, QPoint, QEvent)
+                          QEasingCurve, QPoint, QEvent, QSize)
 from PySide2.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PySide2.QtWidgets import QWidget, QVBoxLayout
+from collections import deque
 
 from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
+from ..widgets.scroll_area import ScrollArea
+from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
 
 
 class NavigationWidget(QWidget):
     """ Navigation widget """
 
     clicked = Signal(bool)  # whether triggered by the user
+    selectedChanged = Signal(bool)
     EXPAND_WIDTH = 312
 
     def __init__(self, isSelectable: bool, parent=None):
@@ -79,6 +83,7 @@ class NavigationWidget(QWidget):
 
         self.isSelected = isSelected
         self.update()
+        self.selectedChanged.emit(isSelected)
 
 
 class NavigationPushButton(NavigationWidget):
@@ -157,8 +162,9 @@ class NavigationPushButton(NavigationWidget):
 
         painter.setFont(self.font())
         painter.setPen(QColor(c, c, c))
-        painter.drawText(QRect(44+pl, 0, self.width()-57-pl-pr,
-                            self.height()), Qt.AlignVCenter, self.text())
+
+        left = 44 + pl if not self.icon().isNull() else pl + 16
+        painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignVCenter, self.text())
 
 
 class NavigationToolButton(NavigationPushButton):
@@ -319,11 +325,14 @@ class NavigationTreeWidgetBase(NavigationWidget):
 class NavigationTreeWidget(NavigationTreeWidgetBase):
     """ Navigation tree widget """
 
+    expanded = Signal()
+
     def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, parent=None):
         super().__init__(isSelectable, parent)
 
         self.treeChildren = []  # type: List[NavigationTreeWidget]
         self.isExpanded = False
+        self._icon = icon
 
         self.itemWidget = NavigationTreeItem(icon, text, isSelectable, self)
         self.vBoxLayout = QVBoxLayout(self)
@@ -339,6 +348,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.itemWidget.itemClicked.connect(self._onClicked)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.expandAni.valueChanged.connect(lambda g: self.setFixedSize(g.size()))
+        self.expandAni.valueChanged.connect(self.expanded)
 
     def addChild(self, child):
         self.insertChild(-1, child)
@@ -359,6 +369,26 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         super().setFont(font)
         self.itemWidget.setFont(font)
 
+    def clone(self):
+        root = NavigationTreeWidget(self._icon, self.text(), self.isSelectable, self.parent())
+        root.setSelected(self.isSelected)
+        root.setFixedSize(self.size())
+        root.nodeDepth = self.nodeDepth
+
+        root.clicked.connect(self.clicked)
+        self.selectedChanged.connect(root.setSelected)
+
+        for child in self.treeChildren:
+            root.addChild(child.clone())
+
+        return root
+
+    def suitableWidth(self):
+        m = self.itemWidget._margins()
+        left = 57 + m.left() if not self.icon().isNull() else m.left() + 29
+        tw = self.itemWidget.fontMetrics().boundingRect(self.text()).width()
+        return left + tw + m.right()
+
     def insertChild(self, index, child):
         if child in self.treeChildren:
             return
@@ -367,6 +397,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         child.nodeDepth = self.nodeDepth + 1
         child.setVisible(self.isExpanded)
         child.expandAni.valueChanged.connect(lambda: self.setFixedSize(self.sizeHint()))
+        child.expandAni.valueChanged.connect(self.expanded)
 
         # connect height changed signal to parent recursively
         p = self.treeParent
@@ -485,3 +516,116 @@ class NavigationAvatarWidget(NavigationWidget):
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
             painter.setFont(self.font())
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+
+
+@InfoBadgeManager.register(InfoBadgePosition.NAVIGATION_ITEM)
+class NavigationItemInfoBadgeManager(InfoBadgeManager):
+    """ Navigation item info badge manager """
+
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self.target:
+            if e.type() == QEvent.Show:
+                self.badge.show()
+
+        return super().eventFilter(obj, e)
+
+    def position(self):
+        target = self.target
+        self.badge.setVisible(target.isVisible())
+
+        if target.isCompacted:
+            return target.geometry().topRight() - QPoint(self.badge.width() + 2, -2)
+
+        if isinstance(target, NavigationTreeWidget):
+            dx = 10 if target.isLeaf() else 35
+            x = target.geometry().right() - self.badge.width() - dx
+            y = target.y() + 18 - self.badge.height() // 2
+        else:
+            x = target.geometry().right() - self.badge.width() - 10
+            y = target.geometry().center().y() - self.badge.height() // 2
+
+        return QPoint(x, y)
+
+
+class NavigationFlyoutMenu(ScrollArea):
+    """ Navigation flyout menu """
+
+    expanded = Signal()
+
+    def __init__(self, tree: NavigationTreeWidget, parent=None):
+        super().__init__(parent)
+        self.view = QWidget(self)
+
+        self.treeWidget = tree
+        self.treeChildren = []
+
+        self.vBoxLayout = QVBoxLayout(self.view)
+
+        self.setWidget(self.view)
+        self.setWidgetResizable(True)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setStyleSheet("ScrollArea{border:none;background:transparent}")
+        self.view.setStyleSheet("QWidget{border:none;background:transparent}")
+
+        self.vBoxLayout.setSpacing(5)
+        self.vBoxLayout.setContentsMargins(5, 8, 5, 8)
+
+        # add nodes to menu
+        for child in tree.treeChildren:
+            node = child.clone()
+            node.expanded.connect(self._adjustViewSize)
+
+            self.treeChildren.append(node)
+            self.vBoxLayout.addWidget(node)
+
+        self._initNode(self)
+        self._adjustViewSize(False)
+
+    def _initNode(self, root: NavigationTreeWidget):
+        for c in root.treeChildren:
+            c.nodeDepth -= 1
+            c.setCompacted(False)
+
+            if c.isLeaf():
+                c.clicked.connect(self.window().fadeOut)
+
+            self._initNode(c)
+
+    def _adjustViewSize(self, emit=True):
+        w = self._suitableWidth()
+
+        # adjust the width of node
+        for node in self.visibleTreeNodes():
+            node.setFixedWidth(w - 10)
+            node.itemWidget.setFixedWidth(w - 10)
+
+        self.view.setFixedSize(w, self.view.sizeHint().height())
+
+        h = min(self.window().parent().height() - 48, self.view.height())
+
+        self.setFixedSize(w, h)
+
+        if emit:
+            self.expanded.emit()
+
+    def _suitableWidth(self):
+        w = 0
+
+        for node in self.visibleTreeNodes():
+            if not node.isHidden():
+                w = max(w, node.suitableWidth() + 10)
+
+        window = self.window().parent()  # type: QWidget
+        return min(window.width() // 2 - 25, w) + 10
+
+    def visibleTreeNodes(self):
+        nodes = []
+        queue = deque()
+        queue.extend(self.treeChildren)
+
+        while queue:
+            node = queue.popleft()  # type: NavigationTreeWidget
+            nodes.append(node)
+            queue.extend([i for i in node.treeChildren if not i.isHidden()])
+
+        return nodes

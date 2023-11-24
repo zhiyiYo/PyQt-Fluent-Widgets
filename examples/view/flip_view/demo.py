@@ -43,6 +43,9 @@ class Demo(QWidget):
         self.flipView = HorizontalFlipView(self)
         self.pager = HorizontalPipsPager(self)
 
+        # change aspect ratio mode
+        self.flipView.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatio)
+
         # adjust view size
         # self.flipView.setItemSize(QSize(320, 180))
         # self.flipView.setFixedSize(QSize(320, 180))
