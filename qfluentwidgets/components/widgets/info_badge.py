@@ -10,7 +10,6 @@ from ...common.font import setFont
 from ...common.icon import drawIcon, FluentIconBase, toQIcon
 from ...common.overload import singledispatchmethod
 from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme, Theme
-from ..navigation.navigation_widget import NavigationTreeWidget
 
 
 class InfoLevel(Enum):
@@ -481,30 +480,3 @@ class BottomLeftInfoBadgeManager(InfoBadgeManager):
         return QPoint(x, y)
 
 
-@InfoBadgeManager.register(InfoBadgePosition.NAVIGATION_ITEM)
-class NavigationItemInfoBadgeManager(InfoBadgeManager):
-    """ Navigation item info badge manager """
-
-    def eventFilter(self, obj, e: QEvent):
-        if obj is self.target:
-            if e.type() == QEvent.Type.Show:
-                self.badge.show()
-
-        return super().eventFilter(obj, e)
-
-    def position(self):
-        target = self.target
-        self.badge.setVisible(target.isVisible())
-
-        if target.isCompacted:
-            return target.geometry().topRight() - QPoint(self.badge.width() + 2, -2)
-
-        if isinstance(target, NavigationTreeWidget):
-            dx = 10 if target.isLeaf() else 35
-            x = target.geometry().right() - self.badge.width() - dx
-            y = target.y() + 18 - self.badge.height() // 2
-        else:
-            x = target.geometry().right() - self.badge.width() - 10
-            y = target.geometry().center().y() - self.badge.height() // 2
-
-        return QPoint(x, y)

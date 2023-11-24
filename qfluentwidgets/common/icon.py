@@ -12,10 +12,21 @@ from .overload import singledispatchmethod
 
 
 class FluentIconEngine(QIconEngine):
+    """ Fluent icon engine """
 
-    def __init__(self, icon):
+    def __init__(self, icon, reverse=False):
+        """
+        Parameters
+        ----------
+        icon: QICon | Icon | FluentIconBase
+            the icon to be drawn
+
+        reverse: bool
+            whether to reverse the theme of icon
+        """
         super().__init__()
         self.icon = icon
+        self.isThemeReversed = reverse
 
     def paint(self, painter, rect, mode, state):
         painter.save()
@@ -27,8 +38,16 @@ class FluentIconEngine(QIconEngine):
 
         # change icon color according to the theme
         icon = self.icon
+
+        if not self.isThemeReversed:
+            theme = Theme.AUTO
+        else:
+            theme = Theme.LIGHT if isDarkTheme() else Theme.DARK
+
         if isinstance(self.icon, Icon):
-            icon = self.icon.fluentIcon.icon()
+            icon = self.icon.fluentIcon.icon(theme)
+        elif isinstance(self.icon, FluentIconBase):
+            icon = self.icon.icon(theme)
 
         if rect.x() == 19:
             rect = rect.adjusted(-1, 0, 0, 0)
@@ -178,7 +197,7 @@ class FluentIconBase:
         """
         raise NotImplementedError
 
-    def icon(self, theme=Theme.AUTO, color: QColor = None):
+    def icon(self, theme=Theme.AUTO, color: QColor = None) -> QIcon:
         """ create a fluent icon
 
         Parameters
@@ -199,6 +218,16 @@ class FluentIconBase:
 
         color = QColor(color).name()
         return QIcon(SvgIconEngine(writeSvg(path, fill=color)))
+
+    def qicon(self, reverse=False) -> QIcon:
+        """ convert to QIcon, the theme of icon will be updated synchronously with app
+
+        Parameters
+        ----------
+        reverse: bool
+            whether to reverse the theme of icon
+        """
+        return QIcon(FluentIconEngine(self, reverse))
 
     def render(self, painter, rect, theme=Theme.AUTO, indexes=None, **attributes):
         """ draw svg icon
@@ -442,9 +471,9 @@ class Action(QAction):
 
     Constructors
     ------------
-    * IconWidget(`parent`: QWidget = None, `**kwargs`)
-    * IconWidget(`text`: str, `parent`: QWidget = None, `**kwargs`)
-    * IconWidget(`icon`: QIcon | FluentIconBase, `parent`: QWidget = None, `**kwargs`)
+    * Action(`parent`: QWidget = None, `**kwargs`)
+    * Action(`text`: str, `parent`: QWidget = None, `**kwargs`)
+    * Action(`icon`: QIcon | FluentIconBase, `parent`: QWidget = None, `**kwargs`)
     """
 
     @singledispatchmethod

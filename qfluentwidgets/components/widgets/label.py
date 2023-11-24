@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QLabel, QWidget, QPushButton, QApplication
 from ...common.exception_handler import exceptionHandler
 from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
-from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet, setCustomStyleSheet
 from ...common.config import qconfig, isDarkTheme
 
 

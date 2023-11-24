@@ -25,8 +25,8 @@ class AcrylicFlyoutViewBase(AcrylicWidget, FlyoutViewBase):
 
         # draw border
         painter.setBrush(Qt.BrushStyle.NoBrush)
-        painter.setPen(QColor(23, 23, 23) if isDarkTheme() else QColor(195, 195, 195))
-        rect = self.rect().adjusted(1, 1, -1, -1)
+        painter.setPen(self.borderColor())
+        rect = QRectF(self.rect()).adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)
 
 
@@ -45,7 +45,7 @@ class AcrylicFlyoutView(AcrylicWidget, FlyoutView):
 
         # draw border
         painter.setBrush(Qt.BrushStyle.NoBrush)
-        painter.setPen(QColor(23, 23, 23) if isDarkTheme() else QColor(195, 195, 195))
+        painter.setPen(self.borderColor())
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)
 

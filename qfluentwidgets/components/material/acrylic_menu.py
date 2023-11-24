@@ -62,7 +62,7 @@ class AcrylicMenuActionListWidget(MenuActionListWidget):
 
     def clipPath(self):
         path = QPainterPath()
-        path.addRoundedRect(QRectF(self.rect().adjusted(0, 0, -2.5, -2.5)), 8, 8)
+        path.addRoundedRect(QRectF(self.rect()).adjusted(0, 0, -2.5, -2.5), 8, 8)
         return path
 
     def paintEvent(self, e) -> None:
@@ -113,7 +113,7 @@ class AcrylicCompleterMenuActionListWidget(AcrylicMenuActionListWidget):
     def clipPath(self):
         path = QPainterPath()
         path.setFillRule(Qt.FillRule.WindingFill)
-        path.addRoundedRect(QRectF(self.rect().adjusted(1, 1, -2.5, -2.5)), 8, 8)
+        path.addRoundedRect(QRectF(self.rect()).adjusted(1, 1, -2.5, -2.5), 8, 8)
 
         if self.property("dropDown"):
             path.addRect(1, 1, 11, 11)

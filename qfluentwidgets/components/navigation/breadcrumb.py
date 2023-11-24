@@ -233,8 +233,8 @@ class BreadcrumbBar(QWidget):
 
     def clear(self):
         """ clear all items """
-        for item in self.items:
-            self.items.pop()
+        while self.items:
+            item = self.items.pop()
             self.itemMap.pop(item.routeKey)
             item.deleteLater()
 

@@ -174,8 +174,8 @@ class HexColorLineEdit(ColorLineEdit):
     """ Hex color line edit """
 
     def __init__(self, color, parent=None, enableAlpha=False):
-        f = QColor.NameFormat.HexArgb if enableAlpha else QColor.NameFormat.HexRgb
-        super().__init__(QColor(color).name(f)[1:], parent)
+        self.colorFormat = QColor.NameFormat.HexArgb if enableAlpha else QColor.NameFormat.HexRgb
+        super().__init__(QColor(color).name(self.colorFormat)[1:], parent)
 
         if enableAlpha:
             self.setValidator(QRegularExpressionValidator(QRegularExpression(r'[A-Fa-f0-9]{8}')))
@@ -189,7 +189,7 @@ class HexColorLineEdit(ColorLineEdit):
 
     def setColor(self, color):
         """ set color """
-        self.setText(color.name()[1:])
+        self.setText(color.name(self.colorFormat)[1:])
 
 
 class OpacityLineEdit(ColorLineEdit):
