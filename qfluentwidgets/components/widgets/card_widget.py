@@ -51,7 +51,7 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         w, h = self.width(), self.height()
-        r = 5
+        r = self.borderRadius
         d = 2 * r
 
         isDark = isDarkTheme()
@@ -59,14 +59,14 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
         # draw top border
         path = QPainterPath()
         # path.moveTo(1, h - r)
-        path.arcMoveTo(1, h - d - 1, d, d, 225)
-        path.arcTo(1, h - d - 1, d, d, 225, -45)
+        path.arcMoveTo(1, h - d - 1, d, d, 240)
+        path.arcTo(1, h - d - 1, d, d, 225, -60)
         path.lineTo(1, r)
         path.arcTo(1, 1, d, d, -180, -90)
         path.lineTo(w - r, 1)
         path.arcTo(w - d - 1, 1, d, d, 90, -90)
         path.lineTo(w - 1, h - r)
-        path.arcTo(w - d - 1, h - d - 1, d, d, 0, -45)
+        path.arcTo(w - d - 1, h - d - 1, d, d, 0, -60)
 
         topBorderColor = QColor(0, 0, 0, 20)
         if isDark:
@@ -81,10 +81,10 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
 
         # draw bottom border
         path = QPainterPath()
-        path.arcMoveTo(1, h - d - 1, d, d, 225)
-        path.arcTo(1, h - d - 1, d, d, 225, 45)
+        path.arcMoveTo(1, h - d - 1, d, d, 240)
+        path.arcTo(1, h - d - 1, d, d, 240, 30)
         path.lineTo(w - r - 1, h - 1)
-        path.arcTo(w - d - 1, h - d - 1, d, d, 270, 45)
+        path.arcTo(w - d - 1, h - d - 1, d, d, 270, 30)
 
         bottomBorderColor = topBorderColor
         if not isDark and self.isHover and not self.isPressed:

@@ -295,7 +295,11 @@ class QConfig(QObject):
         if item.value == value:
             return
 
-        item.value = deepcopy(value) if copy else value
+        # deepcopy new value
+        try:
+            item.value = deepcopy(value) if copy else value
+        except:
+            item.value = value
 
         if save:
             self.save()

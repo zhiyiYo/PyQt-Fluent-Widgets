@@ -159,12 +159,16 @@ class PushButtonDemo(ButtonView):
         self.splitPushButton2 = SplitPushButton(FIF.GITHUB, 'Split push button', self)
         self.splitPushButton1.setFlyout(self.menu)
         self.splitPushButton2.setFlyout(self.menu)
+        # self.splitPushButton1.setDropIcon(FIF.SEND_FILL)
+        # self.splitPushButton1.setDropIconSize(QSize(14, 14))
 
         # primary split push button
         self.primarySplitPushButton1 = PrimarySplitPushButton('Split push button', self)
         self.primarySplitPushButton2 = PrimarySplitPushButton(FIF.GITHUB, 'Split push button', self)
         self.primarySplitPushButton1.setFlyout(self.menu)
         self.primarySplitPushButton2.setFlyout(self.menu)
+        # self.primarySplitPushButton1.setDropIcon(FIF.SEND_FILL)
+        # self.primarySplitPushButton1.setDropIconSize(QSize(14, 14))
 
         # hyperlink button
         self.hyperlinkButton1 = HyperlinkButton(

@@ -596,6 +596,7 @@ class SplitDropButton(ToolButton):
 
     def _postInit(self):
         self.arrowAni = TranslateYAnimation(self)
+        self.setIcon(FIF.ARROW_DOWN)
         self.setIconSize(QSize(10, 10))
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -609,13 +610,14 @@ class SplitDropButton(ToolButton):
         else:
             painter.setOpacity(0.63)
 
-        super()._drawIcon(FIF.ARROW_DOWN, painter, rect)
+        super()._drawIcon(icon, painter, rect)
 
 
 class PrimarySplitDropButton(PrimaryToolButton):
 
     def _postInit(self):
         self.arrowAni = TranslateYAnimation(self)
+        self.setIcon(FIF.ARROW_DOWN)
         self.setIconSize(QSize(10, 10))
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -629,8 +631,10 @@ class PrimarySplitDropButton(PrimaryToolButton):
         else:
             painter.setOpacity(1)
 
-        theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
-        super()._drawIcon(FIF.ARROW_DOWN.icon(theme), painter, rect)
+        if isinstance(icon, FluentIconBase):
+            icon = icon.icon(Theme.DARK if not isDarkTheme() else Theme.LIGHT)
+
+        super()._drawIcon(icon, painter, rect)
 
 
 class SplitWidgetBase(QWidget):
@@ -667,6 +671,15 @@ class SplitWidgetBase(QWidget):
         self.dropButton.clicked.connect(self.dropDownClicked)
         self.dropButton.clicked.connect(self.showFlyout)
         self.hBoxLayout.addWidget(button)
+
+    def setDropIcon(self, icon: Union[str, QIcon, FluentIconBase]):
+        """ set the icon of drop down button """
+        self.dropButton.setIcon(icon)
+        self.dropButton.removeEventFilter(self.dropButton.arrowAni)
+
+    def setDropIconSize(self, size: QSize):
+        """ set the icon size of drop down button """
+        self.dropButton.setIconSize(size)
 
     def setFlyout(self, flyout):
         """ set the widget pops up when drop down button is clicked
