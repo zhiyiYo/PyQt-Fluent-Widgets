@@ -56,14 +56,14 @@ class TextWrap:
     @classmethod
     @lru_cache(maxsize=32)
     def split_long_token(cls, token: str, width: int) -> List[str]:
-        """Splitt long token into smaller chunks."""
+        """Split long token into smaller chunks."""
         return [token[i : i + width] for i in range(0, len(token), width)]
 
     @classmethod
     def tokenizer(cls, text: str):
         """tokenize line"""
 
-        buffer: str = ""
+        buffer = ""
         last_char_type: Optional[CharType] = None
 
         for char in text:
@@ -102,6 +102,7 @@ class TextWrap:
             whether a line break occurs in the text
         """
 
+        width = int(width)
         lines = text.splitlines()
         is_wrapped = False
         wrapped_lines = []
