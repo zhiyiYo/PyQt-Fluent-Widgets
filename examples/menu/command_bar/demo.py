@@ -33,6 +33,7 @@ class Demo1(QWidget):
         self.addButton(FluentIcon.ADD, 'Add')
         self.commandBar.addSeparator()
 
+        self.isEdit = False
         self.commandBar.addAction(Action(FluentIcon.EDIT, 'Edit', triggered=self.onEdit, checkable=True))
         self.addButton(FluentIcon.COPY, 'Copy')
         self.addButton(FluentIcon.SHARE, 'Share')
@@ -52,8 +53,9 @@ class Demo1(QWidget):
         action.triggered.connect(lambda: print(text))
         self.commandBar.addAction(action)
 
-    def onEdit(self, isChecked):
-        print('Enter edit mode' if isChecked else 'Exit edit mode')
+    def onEdit(self):
+        self.isEdit = not self.isEdit
+        print('Enter edit mode' if self.isEdit else 'Exit edit mode')
 
     def createDropDownButton(self):
         button = TransparentDropDownPushButton('Menu', self, FluentIcon.MENU)
