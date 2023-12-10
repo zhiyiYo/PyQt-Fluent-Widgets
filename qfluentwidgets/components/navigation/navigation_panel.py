@@ -387,7 +387,7 @@ class NavigationPanel(QFrame):
             self.widget(item.parentRouteKey).removeChild(item.widget)
 
         if isinstance(item.widget, NavigationTreeWidgetBase):
-            for child in item.widget.findChildren(NavigationWidget, options=Qt.FindChildrenRecursively):
+            for child in item.widget.findChildren(NavigationWidget, options=Qt.FindChildOption.FindChildrenRecursively):
                 key = child.property('routeKey')
                 if key is None:
                     continue
