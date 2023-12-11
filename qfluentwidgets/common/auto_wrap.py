@@ -1,36 +1,86 @@
-# coding: utf-8
+from enum import Enum, auto
+from functools import lru_cache
+from re import sub
+from typing import List, Optional, Tuple
+from unicodedata import east_asian_width
+
+
+class CharType(Enum):
+    SPACE = auto()
+    ASIAN = auto()
+    LATIN = auto()
+
+
 class TextWrap:
-    """ Text wrap """
+    """Text wrap"""
 
-    char_widths = [
-        (126, 1), (159, 0), (687, 1), (710, 0),
-        (711, 1), (727, 0), (733, 1), (879, 0),
-        (1154, 1), (1161, 0), (4347, 1), (4447, 2),
-        (7467, 1), (7521, 0), (8369, 1), (8426, 0),
-        (9000, 1), (9002, 2), (11021, 1), (12350, 2),
-        (12351, 1), (12438, 2), (12442, 0), (19893, 2),
-        (19967, 1), (55203, 2), (63743, 1), (64106, 2),
-        (65039, 1), (65059, 0), (65131, 2), (65279, 1),
-        (65376, 2), (65500, 1), (65510, 2), (120831, 1),
-        (262141, 2), (1114109, 1),
-    ]
+    EAST_ASAIN_WIDTH_TABLE = {
+        "F": 2,
+        "H": 1,
+        "W": 2,
+        "A": 1,
+        "N": 1,
+        "Na": 1,
+    }
 
     @classmethod
-    def get_width(cls, char):
-        """Return the screen column width for a char"""
-        o = ord(char)
-        if o == 0xe or o == 0xf:
-            return 0
-
-        for num, wid in cls.char_widths:
-            if o <= num:
-                return wid
-
-        return 1
+    @lru_cache(maxsize=128)
+    def get_width(cls, char: str) -> int:
+        """Returns the width of the char"""
+        return cls.EAST_ASAIN_WIDTH_TABLE.get(east_asian_width(char), 1)
 
     @classmethod
-    def wrap(cls, text: str, width: int, once=True):
-        """ Wrap according to string length
+    @lru_cache(maxsize=32)
+    def get_text_width(cls, text: str) -> int:
+        """Returns the width of the text"""
+        return sum(cls.get_width(char) for char in text)
+
+    @classmethod
+    @lru_cache(maxsize=128)
+    def get_char_type(cls, char: str) -> CharType:
+        """Returns the type of the char"""
+
+        if char.isspace():
+            return CharType.SPACE
+
+        if cls.get_width(char) == 1:
+            return CharType.LATIN
+
+        return CharType.ASIAN
+
+    @classmethod
+    def process_text_whitespace(cls, text: str) -> str:
+        """Process whitespace and leading and trailing spaces in strings"""
+        return sub(pattern=r"\s+", repl=" ", string=text).strip()
+
+    @classmethod
+    @lru_cache(maxsize=32)
+    def split_long_token(cls, token: str, width: int) -> List[str]:
+        """Split long token into smaller chunks."""
+        return [token[i : i + width] for i in range(0, len(token), width)]
+
+    @classmethod
+    def tokenizer(cls, text: str):
+        """tokenize line"""
+
+        buffer = ""
+        last_char_type: Optional[CharType] = None
+
+        for char in text:
+            char_type = cls.get_char_type(char)
+
+            if buffer and (char_type != last_char_type or char_type != CharType.LATIN):
+                yield buffer
+                buffer = ""
+
+            buffer += char
+            last_char_type = char_type
+
+        yield buffer
+
+    @classmethod
+    def wrap(cls, text: str, width: int, once: bool = True) -> Tuple[str, bool]:
+        """Wrap according to string length
 
         Parameters
         ----------
@@ -51,76 +101,64 @@ class TextWrap:
         is_wrapped: bool
             whether a line break occurs in the text
         """
-        texts = text.strip().split('\n')
-        result = []
+
+        width = int(width)
+        lines = text.splitlines()
         is_wrapped = False
+        wrapped_lines = []
 
-        for text in texts:
-            text_wrapped, wrapped = cls._wrap_line(text, width, once)
-            is_wrapped |= wrapped
-            result.append(text_wrapped)
-            if once:
-                result.extend(texts[1:])
-                break
+        for line in lines:
+            line = cls.process_text_whitespace(line)
 
-        return '\n'.join(result), is_wrapped
+            if cls.get_text_width(line) > width:
+                wrapped_line, is_wrapped = cls._wrap_line(line, width, once)
+                wrapped_lines.append(wrapped_line)
+
+                if once:
+                    wrapped_lines.append(text[len(wrapped_line) :].rstrip())
+                    return "".join(wrapped_lines), is_wrapped
+
+            else:
+                wrapped_lines.append(line)
+
+        return "\n".join(wrapped_lines), is_wrapped
 
     @classmethod
-    def _wrap_line(cls, text: str, width: int, once=True):
-        count = 0
-        last_count = 0
-        chars = []
-        is_wrapped = False
-        break_pos = 0
-        is_break_alpha = True
-        n_inside_break = 0
+    def _wrap_line(cls, text: str, width: int, once: bool = True) -> Tuple[str, bool]:
+        line_buffer = ""
+        wrapped_lines = []
+        current_width = 0
 
-        i = 0
-        while i < len(text):
-            c = text[i]
-            length = cls.get_width(c)
-            count += length
+        for token in cls.tokenizer(text):
+            token_width = cls.get_text_width(token)
 
-            # record the position of blank character
-            if c == " " or length > 1:
-                break_pos = i + n_inside_break
-                last_count = count
-                is_break_alpha = length == 1
-
-            # No line breaks
-            if count <= width:
-                chars.append(c)
-                i += 1
+            if token == " " and current_width == 0:
                 continue
 
-            # wrap at the position of the previous space
-            if break_pos > 0 and is_break_alpha:
-                if c != " ":
-                    chars[break_pos] = '\n'
-                    chars.append(c)
+            if current_width + token_width <= width:
+                line_buffer += token
+                current_width += token_width
 
-                    # Wrap inside long words
-                    if last_count != 0:
-                        count -= last_count
-                        last_count = 0
-                    else:
-                        chars.insert(i, '\n')
-                        break_pos = i
-                        n_inside_break += 1
-                else:
-                    chars.append('\n')
-                    count = 0
-                    last_count = 0
+                if current_width == width:
+                    wrapped_lines.append(line_buffer.rstrip())
+                    line_buffer = ""
+                    current_width = 0
             else:
-                chars.extend(('\n', c))
-                count = length
+                if current_width != 0:
+                    wrapped_lines.append(line_buffer.rstrip())
 
-            is_wrapped = True
+                chunks = cls.split_long_token(token, width)
 
-            # early return
-            if once:
-                return ''.join(chars)+text[i+1:], True
+                for chunk in chunks[:-1]:
+                    wrapped_lines.append(chunk.rstrip())
 
-            i += 1
+                line_buffer = chunks[-1]
+                current_width = cls.get_text_width(chunks[-1])
 
-        return ''.join(chars), is_wrapped
+        if current_width != 0:
+            wrapped_lines.append(line_buffer.rstrip())
+
+        if once:
+            return "\n".join([wrapped_lines[0], " ".join(wrapped_lines[1:])]), True
+
+        return "\n".join(wrapped_lines), True

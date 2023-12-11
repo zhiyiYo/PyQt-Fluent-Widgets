@@ -7,6 +7,7 @@ ComboBox {
     color: black;
     background-color: rgba(255, 255, 255, 0.7);
     text-align: left;
+    outline: none;
 }
 
 ComboBox:hover {

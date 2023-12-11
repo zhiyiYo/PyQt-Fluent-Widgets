@@ -10,6 +10,7 @@ from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect, QLabel, QHBoxL
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet
 from ...common.icon import FluentIconBase, drawIcon, FluentIcon
+from ...common.screen import getCurrentScreenGeometry
 from .button import TransparentToolButton
 from .label import ImageLabel
 
@@ -375,7 +376,7 @@ class FlyoutAnimationManager(QObject):
         raise NotImplementedError
 
     def _adjustPosition(self, pos):
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = self.flyout.sizeHint().width() + 5, self.flyout.sizeHint().height()
         x = max(rect.left(), min(pos.x(), rect.right() - w))
         y = max(rect.top(), min(pos.y() - 4, rect.bottom() - h + 5))
