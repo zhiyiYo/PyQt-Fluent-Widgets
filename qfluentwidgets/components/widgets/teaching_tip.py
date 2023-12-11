@@ -7,6 +7,7 @@ from PyQt5.QtGui import QPainter, QColor, QPainterPath, QIcon, QCursor, QPolygon
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QApplication, QGraphicsDropShadowEffect
 
 from ...common.icon import FluentIconBase
+from ...common.screen import getCurrentScreenGeometry
 from ...common.style_sheet import isDarkTheme
 from .flyout import FlyoutView, FlyoutViewBase
 
@@ -311,7 +312,7 @@ class TeachingTipManager(QObject):
         pos = self._pos(tip)
         x, y = pos.x(), pos.y()
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         x = max(rect.left(), min(pos.x(), rect.right() - tip.width() - 4))
         y = max(rect.top(), min(pos.y(), rect.bottom() - tip.height() - 4))
 
