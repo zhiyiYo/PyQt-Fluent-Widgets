@@ -14,6 +14,7 @@ from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.screen import getCurrentScreenGeometry
 from ...common.font import getFont
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
@@ -731,7 +732,7 @@ class RoundMenu(QMenu):
 
     def adjustPosition(self):
         m = self.layout().contentsMargins()
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = self.layout().sizeHint().width() + 5, self.layout().sizeHint().height()
 
         x = min(self.x() - m.left(), rect.right() - w)
@@ -765,7 +766,7 @@ class MenuAnimationManager(QObject):
 
     def availableViewSize(self, pos: QPoint):
         """ Return the available size of view """
-        ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        ss = getCurrentScreenGeometry()
         w, h = ss.width() - 100, ss.height() - 100
         return w, h
 
@@ -777,7 +778,7 @@ class MenuAnimationManager(QObject):
 
     def _endPosition(self, pos):
         m = self.menu
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
         y = min(pos.y() - 4, rect.bottom() - h + 10)
@@ -839,7 +840,7 @@ class DropDownMenuAnimationManager(MenuAnimationManager):
         self.ani.start()
 
     def availableViewSize(self, pos: QPoint):
-        ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        ss = getCurrentScreenGeometry()
         return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
 
     def _onValueChanged(self):
@@ -854,7 +855,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
 
     def _endPosition(self, pos):
         m = self.menu
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
         y = max(pos.y() - h + 13, 4)
@@ -869,7 +870,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
         self.ani.start()
 
     def availableViewSize(self, pos: QPoint):
-        ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        ss = getCurrentScreenGeometry()
         return ss.width() - 100, max(pos.y() - 28, 1)
 
     def _onValueChanged(self):
@@ -905,7 +906,7 @@ class FadeInDropDownMenuAnimationManager(MenuAnimationManager):
         self.aniGroup.start()
 
     def availableViewSize(self, pos: QPoint):
-        ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        ss = getCurrentScreenGeometry()
         return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
 
 
@@ -922,7 +923,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
 
     def _endPosition(self, pos):
         m = self.menu
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
         y = max(pos.y() - h + 15, 4)
@@ -943,7 +944,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
         self.aniGroup.start()
 
     def availableViewSize(self, pos: QPoint):
-        ss = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        ss = getCurrentScreenGeometry()
         return ss.width() - 100, pos.y() - 28
 
 

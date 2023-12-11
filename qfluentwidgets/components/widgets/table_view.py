@@ -1,11 +1,13 @@
 # coding: utf-8
 from typing import List, Union
 
-from PyQt6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtProperty
+from PyQt6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtProperty, QRectF
 from PyQt6.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
 from PyQt6.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QHeaderView)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QStyle,
+                             QStyleOptionButton)
 
+from .check_box import CheckBoxIcon
 from ...common.font import getFont
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, setCustomStyleSheet
 from .line_edit import LineEdit
@@ -128,15 +130,45 @@ class TableItemDelegate(QStyledItemDelegate):
             else:
                 alpha = 17
 
-            # draw indicator
-            if index.column() == 0 and self.parent().horizontalScrollBar().value() == 0:
-                self._drawIndicator(painter, option, index)
-
         painter.setBrush(QColor(c, c, c, alpha))
         self._drawBackground(painter, option, index)
 
+        # draw indicator
+        if index.row() in self.selectedRows and index.column() == 0 and self.parent().horizontalScrollBar().value() == 0:
+            self._drawIndicator(painter, option, index)
+
+        if index.data(Qt.ItemDataRole.CheckStateRole) is not None:
+            self._drawCheckBox(painter, option, index)
+
         painter.restore()
         super().paint(painter, option, index)
+
+    def _drawCheckBox(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        painter.save()
+        checkState = Qt.CheckState(index.data(Qt.ItemDataRole.CheckStateRole))
+
+        isDark = isDarkTheme()
+
+        r = 4.5
+        x = option.rect.x() + 15
+        y = option.rect.center().y() - 9.5
+        rect = QRectF(x, y, 19, 19)
+
+        if checkState == Qt.CheckState.Unchecked:
+            painter.setBrush(QColor(0, 0, 0, 26) if isDark else QColor(0, 0, 0, 6))
+            painter.setPen(QColor(255, 255, 255, 142) if isDark else QColor(0, 0, 0, 122))
+            painter.drawRoundedRect(rect, r, r)
+        else:
+            painter.setPen(themeColor())
+            painter.setBrush(themeColor())
+            painter.drawRoundedRect(rect, r, r)
+
+            if checkState == Qt.CheckState.Checked:
+                CheckBoxIcon.ACCEPT.render(painter, rect)
+            else:
+                CheckBoxIcon.PARTIAL_ACCEPT.render(painter, rect)
+
+        painter.restore()
 
 
 

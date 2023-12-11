@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
                              QHBoxLayout, QLabel, QWidget)
 
 from ...common import FluentStyleSheet
+from ...common.screen import getCurrentScreenGeometry
 
 
 class ToolTipPosition(Enum):
@@ -134,7 +135,7 @@ class ToolTipPositionManager:
         pos = self._pos(tooltip, parent)
         x, y = pos.x(), pos.y()
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         x = max(rect.left(), min(pos.x(), rect.right() - tooltip.width() - 4))
         y = max(rect.top(), min(pos.y(), rect.bottom() - tooltip.height() - 4))
 

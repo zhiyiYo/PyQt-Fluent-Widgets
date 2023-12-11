@@ -13,6 +13,7 @@ from PyQt6.QtWidgets import (QApplication, QFrame, QPushButton, QHBoxLayout, QVB
 from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, ThemeColor
 from ...common.font import getFont
+from ...common.screen import getCurrentScreenGeometry
 from ..widgets.button import TransparentToolButton
 from ..widgets.scroll_bar import SmoothScrollBar
 
@@ -614,7 +615,7 @@ class CalendarView(QWidget):
         if self.isVisible():
             return
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = self.sizeHint().width() + 5, self.sizeHint().height()
         pos.setX(max(rect.left(), min(pos.x(), rect.right() - w)))
         pos.setY(max(rect.top(), min(pos.y() - 4, rect.bottom() - h + 5)))

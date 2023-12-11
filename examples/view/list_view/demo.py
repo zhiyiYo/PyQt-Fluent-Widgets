@@ -1,6 +1,8 @@
 # coding: utf-8
 import sys
 
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QListWidgetItem, QListWidget, QWidget, QHBoxLayout
 
 from qfluentwidgets import ListView, setTheme, Theme, ListWidget
@@ -34,7 +36,7 @@ class Demo(QWidget):
         for stand in stands:
             item = QListWidgetItem(stand)
             # item.setIcon(QIcon(':/qfluentwidgets/images/logo.png'))
-            # item.setCheckState(Qt.Unchecked)
+            # item.setCheckState(Qt.CheckState.Unchecked)
             self.listWidget.addItem(item)
 
         self.setStyleSheet("Demo{background: rgb(249, 249, 249)} ")
