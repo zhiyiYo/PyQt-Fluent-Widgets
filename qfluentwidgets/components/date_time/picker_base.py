@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (QApplication, QWidget, QFrame, QVBoxLayout, QHBox
 from ..widgets.cycle_list_widget import CycleListWidget
 from ..widgets.button import TransparentToolButton
 from ...common.icon import FluentIcon
+from ...common.screen import getCurrentScreenGeometry
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
 
 
@@ -533,7 +534,7 @@ class PickerPanel(QWidget):
         # show before running animation, or the height calculation will be wrong
         self.show()
 
-        rect = QApplication.screenAt(QCursor.pos()).availableGeometry()
+        rect = getCurrentScreenGeometry()
         w, h = self.width() + 5, self.height()
         pos.setX(
             min(pos.x() - self.layout().contentsMargins().left(), rect.right() - w))
