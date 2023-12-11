@@ -16,7 +16,7 @@ def getCurrentScreen():
 
 def getCurrentScreenGeometry(avaliable=True):
     """ get current screen geometry """
-    screen = getCurrentScreen() or QApplication().primaryScreen()
+    screen = getCurrentScreen() or QApplication.primaryScreen()
 
     # this should not happen
     if not screen:
