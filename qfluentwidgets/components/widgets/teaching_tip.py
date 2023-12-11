@@ -185,6 +185,7 @@ class TeachingTip(QWidget):
             QTimer.singleShot(self.duration, self._fadeOut)
 
         self.move(self.manager.position(self))
+        self.adjustSize()
         self.opacityAni.setDuration(167)
         self.opacityAni.setStartValue(0)
         self.opacityAni.setEndValue(1)
