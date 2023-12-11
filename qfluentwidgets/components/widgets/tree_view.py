@@ -49,7 +49,7 @@ class TreeItemDelegate(QStyledItemDelegate):
 
         isDark = isDarkTheme()
 
-        r = 4
+        r = 4.5
         x = option.rect.x() + 23
         y = option.rect.center().y() - 9
         rect = QRectF(x, y, 19, 19)

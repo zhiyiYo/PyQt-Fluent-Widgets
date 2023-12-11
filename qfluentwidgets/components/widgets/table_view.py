@@ -149,7 +149,7 @@ class TableItemDelegate(QStyledItemDelegate):
 
         isDark = isDarkTheme()
 
-        r = 4
+        r = 4.5
         x = option.rect.x() + 15
         y = option.rect.center().y() - 9.5
         rect = QRectF(x, y, 19, 19)
