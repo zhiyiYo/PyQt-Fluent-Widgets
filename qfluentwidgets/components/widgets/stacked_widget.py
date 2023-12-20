@@ -12,8 +12,8 @@ class OpacityAniStackedWidget(QStackedWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.__nextIndex = 0
-        self.__effects = []  # type:List[QPropertyAnimation]
-        self.__anis = []     # type:List[QPropertyAnimation]
+        self.__effects = {}  # type:dict[QWidget, QGraphicsOpacityEffect]
+        self.__anis = {}     # type:dict[QWidget, QPropertyAnimation]
 
     def addWidget(self, w: QWidget):
         super().addWidget(w)
@@ -22,34 +22,41 @@ class OpacityAniStackedWidget(QStackedWidget):
         effect.setOpacity(1)
         ani = QPropertyAnimation(effect, b'opacity', self)
         ani.setDuration(220)
+        ani.setEasingCurve(QEasingCurve.Type.Linear)
         ani.finished.connect(self.__onAniFinished)
-        self.__anis.append(ani)
-        self.__effects.append(effect)
+        self.__effects[w] = effect
+        self.__anis[w] = ani
         w.setGraphicsEffect(effect)
+
+    def removeWidget(self, w: QWidget) -> None:
+        super().removeWidget(w)
+        del self.__effects[w]
+        del self.__anis[w]
 
     def setCurrentIndex(self, index: int):
         index_ = self.currentIndex()
         if index == index_:
             return
 
-        if index > index_:
-            ani = self.__anis[index]
-            ani.setStartValue(0)
-            ani.setEndValue(1)
-            super().setCurrentIndex(index)
-        else:
-            ani = self.__anis[index_]
-            ani.setStartValue(1)
-            ani.setEndValue(0)
+        curAni = self.__anis[self.widget(index_)]
+        nextAni = self.__anis[self.widget(index)]
 
-        self.widget(index_).show()
+        curAni.setStartValue(1)  # 当前页面淡出
+        curAni.setEndValue(0)
+
+        nextAni.setStartValue(0)  # 下一个页面淡入
+        nextAni.setEndValue(1)
+
         self.__nextIndex = index
-        ani.start()
+        curAni.start()
+        nextAni.start()
 
     def setCurrentWidget(self, w: QWidget):
         self.setCurrentIndex(self.indexOf(w))
 
     def __onAniFinished(self):
+        if self.currentIndex() == self.__nextIndex:
+            return
         super().setCurrentIndex(self.__nextIndex)
 
 
