@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import List
 
-from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
-from PyQt5.QtWidgets import QLayout, QWidgetItem, QLayoutItem
+from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QEvent, QTimer
+from PyQt5.QtWidgets import QLayout, QWidgetItem, QLayoutItem, QWidget
 
 
 class FlowLayout(QLayout):
@@ -23,7 +23,7 @@ class FlowLayout(QLayout):
         """
         super().__init__(parent)
         self._items = []    # type: List[QLayoutItem]
-        self._anis = []
+        self._anis = []    # type: List[QPropertyAnimation]
         self._aniGroup = QParallelAnimationGroup(self)
         self._verticalSpacing = 10
         self._horizontalSpacing = 10
@@ -31,6 +31,11 @@ class FlowLayout(QLayout):
         self.ease = QEasingCurve.Linear
         self.needAni = needAni
         self.isTight = isTight
+        self._deBounceTimer = QTimer(self)
+        self._deBounceTimer.setSingleShot(True)
+        self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
+        self.parentWidget().installEventFilter(self) if isinstance(parent, QWidget) else ...
+
 
     def addItem(self, item):
         self._items.append(item)
@@ -80,7 +85,7 @@ class FlowLayout(QLayout):
 
     def takeAt(self, index: int):
         if 0 <= index < len(self._items):
-            item = self._items[index]   # type: QWidgetItem
+            item = self._items[index]   # type: QLayoutItem
             ani = item.widget().property('flowAni')
             if ani:
                 self._anis.remove(ani)
@@ -120,7 +125,7 @@ class FlowLayout(QLayout):
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        self._doLayout(rect, True)
+        self._deBounceTimer.start(80)
 
     def sizeHint(self):
         return self.minimumSize()
@@ -151,6 +156,12 @@ class FlowLayout(QLayout):
     def horizontalSpacing(self):
         """ get horizontal spacing between widgets """
         return self._horizontalSpacing
+    
+    def eventFilter(self, obj, event: QEvent) -> bool:
+        if event.type() == QEvent.Type.Show:
+            self._doLayout(self.geometry(), True)
+        
+        return super().eventFilter(obj, event)
 
     def _doLayout(self, rect: QRect, move: bool):
         """ adjust widgets position according to the window size """
@@ -163,7 +174,7 @@ class FlowLayout(QLayout):
         spaceY = self.verticalSpacing()
 
         for i, item in enumerate(self._items):
-            if item.widget() and not item.widget().isVisible() and self.isTight:
+            if item.widget() and not item.widget().isHidden() and self.isTight:
                 continue
 
             nextX = x + item.sizeHint().width() + spaceX
