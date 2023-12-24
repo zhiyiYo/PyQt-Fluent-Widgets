@@ -34,7 +34,8 @@ class FlowLayout(QLayout):
         self._deBounceTimer = QTimer(self)
         self._deBounceTimer.setSingleShot(True)
         self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
-        self.parentWidget().installEventFilter(self) if isinstance(parent, QWidget) else ...
+        if isinstance(self.parent(), QWidget) or isinstance(self.parent(), QLayout):
+            self.parent().installEventFilter(self)
 
 
     def addItem(self, item):
