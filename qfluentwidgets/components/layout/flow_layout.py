@@ -1,8 +1,8 @@
 # coding:utf-8
 from typing import List
 
-from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QEvent, QTimer
-from PyQt5.QtWidgets import QLayout, QWidgetItem, QLayoutItem, QWidget
+from PyQt5.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QEvent, QTimer, QObject
+from PyQt5.QtWidgets import QLayout, QWidgetItem, QLayoutItem
 
 
 class FlowLayout(QLayout):
@@ -34,7 +34,7 @@ class FlowLayout(QLayout):
         self._deBounceTimer = QTimer(self)
         self._deBounceTimer.setSingleShot(True)
         self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
-        if isinstance(self.parent(), QWidget) or isinstance(self.parent(), QLayout):
+        if parent:
             self.parent().installEventFilter(self)
 
 
