@@ -87,6 +87,7 @@ class NavigationPanel(QFrame):
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
+        self.minimumExpandWidth = 1008
 
         self.isMinimalEnabled = isMinimalEnabled
         if isMinimalEnabled:
@@ -422,6 +423,10 @@ class NavigationPanel(QFrame):
         self.expandWidth = width
         NavigationWidget.EXPAND_WIDTH = width - 10
 
+    def setMinimumExpandWidth(self, width: int):
+        """ Set the minimum window width that allows panel to be expanded """
+        self.minimumExpandWidth = width
+
     def setAcrylicEnabled(self, isEnabled: bool):
         if isEnabled == self.isAcrylicEnabled():
             return
@@ -443,8 +448,8 @@ class NavigationPanel(QFrame):
 
         # determine the display mode according to the width of window
         # https://learn.microsoft.com/en-us/windows/apps/design/controls/navigationview#default
-        expandWidth = 1007 + self.expandWidth - 322
-        if (self.window().width() > expandWidth and not self.isMinimalEnabled) or not self._isCollapsible:
+        expandWidth = self.minimumExpandWidth + self.expandWidth - 322
+        if (self.window().width() >= expandWidth and not self.isMinimalEnabled) or not self._isCollapsible:
             self.displayMode = NavigationDisplayMode.EXPAND
         else:
             self.setProperty('menu', True)
@@ -472,7 +477,7 @@ class NavigationPanel(QFrame):
                 QRect(self.pos(), QSize(self.expandWidth, self.height())))
             self.expandAni.start()
         else:
-            self.setFixedWidth(self.expandWidth)
+            self.resize(self.expandWidth, self.height())
             self._onExpandAniFinished()
 
     def collapse(self):
@@ -593,9 +598,9 @@ class NavigationPanel(QFrame):
                 self.collapse()
         elif e.type() == QEvent.Type.Resize:
             w = e.size().width()
-            if w < 1008 and self.displayMode == NavigationDisplayMode.EXPAND:
+            if w < self.minimumExpandWidth and self.displayMode == NavigationDisplayMode.EXPAND:
                 self.collapse()
-            elif w >= 1008 and self.displayMode == NavigationDisplayMode.COMPACT and \
+            elif w >= self.minimumExpandWidth and self.displayMode == NavigationDisplayMode.COMPACT and \
                     not self._isMenuButtonVisible:
                 self.expand()
 

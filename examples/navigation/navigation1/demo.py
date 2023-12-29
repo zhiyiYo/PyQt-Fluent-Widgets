@@ -122,6 +122,10 @@ class Window(FramelessWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
 
+        # NOTE: set the minimum window width that allows the navigation panel to be expanded
+        # self.navigationInterface.setMinimumExpandWidth(900)
+        # self.navigationInterface.expand(useAni=False)
+
         self.setQss()
 
     def addSubInterface(self, interface, icon, text: str, position=NavigationItemPosition.TOP, parent=None):
