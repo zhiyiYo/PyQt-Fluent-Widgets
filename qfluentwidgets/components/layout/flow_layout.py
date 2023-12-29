@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import List
 
-from PySide6.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve
+from PySide6.QtCore import QSize, QPoint, Qt, QRect, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QEvent, QTimer, QObject
 from PySide6.QtWidgets import QLayout, QWidgetItem, QLayoutItem
 
 
@@ -23,7 +23,7 @@ class FlowLayout(QLayout):
         """
         super().__init__(parent)
         self._items = []    # type: List[QLayoutItem]
-        self._anis = []
+        self._anis = []    # type: List[QPropertyAnimation]
         self._aniGroup = QParallelAnimationGroup(self)
         self._verticalSpacing = 10
         self._horizontalSpacing = 10
@@ -31,12 +31,25 @@ class FlowLayout(QLayout):
         self.ease = QEasingCurve.Linear
         self.needAni = needAni
         self.isTight = isTight
+        self._deBounceTimer = QTimer(self)
+        self._deBounceTimer.setSingleShot(True)
+        self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
+        self._wParent = None
+        self._isInstalledEventFilter = False
 
     def addItem(self, item):
         self._items.append(item)
 
     def addWidget(self, w):
         super().addWidget(w)
+
+        if not self._isInstalledEventFilter:
+            if w.parent():
+                self._wParent = w.parent()
+                w.parent().installEventFilter(self)
+            else:
+                w.installEventFilter(self)
+
         if not self.needAni:
             return
 
@@ -80,7 +93,7 @@ class FlowLayout(QLayout):
 
     def takeAt(self, index: int):
         if 0 <= index < len(self._items):
-            item = self._items[index]   # type: QWidgetItem
+            item = self._items[index]   # type: QLayoutItem
             ani = item.widget().property('flowAni')
             if ani:
                 self._anis.remove(ani)
@@ -120,7 +133,11 @@ class FlowLayout(QLayout):
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        self._doLayout(rect, True)
+
+        if self.needAni:
+            self._deBounceTimer.start(80)
+        else:
+            self._doLayout(rect, True)
 
     def sizeHint(self):
         return self.minimumSize()
@@ -151,6 +168,18 @@ class FlowLayout(QLayout):
     def horizontalSpacing(self):
         """ get horizontal spacing between widgets """
         return self._horizontalSpacing
+
+    def eventFilter(self, obj: QObject, event: QEvent) -> bool:
+        if obj in [w.widget() for w in self._items] and event.type() == QEvent.Type.ParentChange:
+            self._wParent = obj.parent()
+            obj.parent().installEventFilter(self)
+            self._isInstalledEventFilter = True
+
+        if obj == self._wParent and event.type() == QEvent.Type.Show:
+            self._doLayout(self.geometry(), True)
+            self._isInstalledEventFilter = True
+
+        return super().eventFilter(obj, event)
 
     def _doLayout(self, rect: QRect, move: bool):
         """ adjust widgets position according to the window size """

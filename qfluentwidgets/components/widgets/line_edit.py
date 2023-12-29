@@ -417,7 +417,7 @@ class PasswordLineEdit(LineEdit):
         self.viewButton.setVisible(isVisible)
 
     def eventFilter(self, obj, e):
-        if obj is not self.viewButton:
+        if obj is not self.viewButton or not self.isEnabled():
             return super().eventFilter(obj, e)
 
         if e.type() == QEvent.MouseButtonPress:
