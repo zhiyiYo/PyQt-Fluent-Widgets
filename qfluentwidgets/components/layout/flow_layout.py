@@ -35,6 +35,10 @@ class FlowLayout(QLayout):
         self._deBounceTimer.setSingleShot(True)
         self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
         self._isInstalledEventFilter = False
+        self._wParent = None
+        if self.parent():
+            self.parent().installEventFilter(self)
+            self._isInstalledEventFilter = True
 
     def addItem(self, item):
         self._items.append(item)
@@ -43,7 +47,6 @@ class FlowLayout(QLayout):
         super().addWidget(w)
         if not self._isInstalledEventFilter:
             w.installEventFilter(self)
-            self._isInstalledEventFilter = True
 
         if not self.needAni:
             return
@@ -160,8 +163,16 @@ class FlowLayout(QLayout):
         """ get horizontal spacing between widgets """
         return self._horizontalSpacing
     
-    def eventFilter(self, obj, event: QEvent) -> bool:
+    def eventFilter(self, obj: QObject, event: QEvent) -> bool:
         if event.type() == QEvent.Type.ParentChange:
+            self._wParent = obj.parent()
+            obj.parent().installEventFilter(self)
+
+        if obj == self._wParent and event.type() == QEvent.Type.Show:
+            self._doLayout(self.geometry(), True)
+            self._isInstalledEventFilter = True
+
+        if obj == self.parent() and event.type() == QEvent.Type.Show:
             self._doLayout(self.geometry(), True)
         
         return super().eventFilter(obj, event)
