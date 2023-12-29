@@ -161,7 +161,7 @@ class FlowLayout(QLayout):
         return self._horizontalSpacing
     
     def eventFilter(self, obj: QObject, event: QEvent) -> bool:
-        if event.type() == QEvent.Type.ParentChange:
+        if obj in self.children() and event.type() == QEvent.Type.ParentChange:
             self._wParent = obj.parent()
             obj.parent().installEventFilter(self)
             self._isInstalledEventFilter = True
