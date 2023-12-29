@@ -133,7 +133,11 @@ class FlowLayout(QLayout):
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        self._deBounceTimer.start(80)
+        
+        if self.needAni:
+            self._deBounceTimer.start(80)
+        else:
+            self._doLayout(rect, True)
 
     def sizeHint(self):
         return self.minimumSize()
@@ -188,7 +192,7 @@ class FlowLayout(QLayout):
         spaceY = self.verticalSpacing()
 
         for i, item in enumerate(self._items):
-            if item.widget() and not item.widget().isHidden() and self.isTight:
+            if item.widget() and not item.widget().isVisible() and self.isTight:
                 continue
 
             nextX = x + item.sizeHint().width() + spaceX
