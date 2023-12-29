@@ -36,9 +36,6 @@ class FlowLayout(QLayout):
         self._deBounceTimer.timeout.connect(lambda: self._doLayout(self.geometry(), True))
         self._isInstalledEventFilter = False
         self._wParent = None
-        if self.parent():
-            self.parent().installEventFilter(self)
-            self._isInstalledEventFilter = True
 
     def addItem(self, item):
         self._items.append(item)
@@ -167,14 +164,11 @@ class FlowLayout(QLayout):
         if event.type() == QEvent.Type.ParentChange:
             self._wParent = obj.parent()
             obj.parent().installEventFilter(self)
+            self._isInstalledEventFilter = True
 
         if obj == self._wParent and event.type() == QEvent.Type.Show:
             self._doLayout(self.geometry(), True)
-            self._isInstalledEventFilter = True
 
-        if obj == self.parent() and event.type() == QEvent.Type.Show:
-            self._doLayout(self.geometry(), True)
-        
         return super().eventFilter(obj, event)
 
     def _doLayout(self, rect: QRect, move: bool):
