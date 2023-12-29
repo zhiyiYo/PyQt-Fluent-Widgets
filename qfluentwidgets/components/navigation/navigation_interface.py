@@ -215,9 +215,21 @@ class NavigationInterface(QWidget):
         """
         self.panel.setCurrentItem(name)
 
+    def expand(self, useAni=True):
+        """ expand navigation panel """
+        self.panel.expand(useAni)
+
+    def toggle(self):
+        """ toggle navigation panel """
+        self.panel.toggle()
+
     def setExpandWidth(self, width: int):
         """ set the maximum width """
         self.panel.setExpandWidth(width)
+
+    def setMinimumExpandWidth(self, width: int):
+        """ Set the minimum window width that allows panel to be expanded """
+        self.panel.setMinimumExpandWidth(width)
 
     def setMenuButtonVisible(self, isVisible: bool):
         """ set whether the menu button is visible """
