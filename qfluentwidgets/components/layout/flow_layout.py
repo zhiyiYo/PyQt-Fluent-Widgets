@@ -43,7 +43,11 @@ class FlowLayout(QLayout):
     def addWidget(self, w):
         super().addWidget(w)
         if not self._isInstalledEventFilter:
-            w.installEventFilter(self)
+            if w.parent():
+                self._wParent = w.parent()
+                w.parent().installEventFilter(self)
+            else:
+                w.installEventFilter(self)
 
         if not self.needAni:
             return
@@ -161,12 +165,13 @@ class FlowLayout(QLayout):
         return self._horizontalSpacing
     
     def eventFilter(self, obj: QObject, event: QEvent) -> bool:
-        if obj in self.children() and event.type() == QEvent.Type.ParentChange:
+        if obj in [w.widget() for w in self._items] and event.type() == QEvent.Type.ParentChange:
             self._wParent = obj.parent()
             obj.parent().installEventFilter(self)
             self._isInstalledEventFilter = True
 
         if obj == self._wParent and event.type() == QEvent.Type.Show:
+            self._isInstalledEventFilter = True
             self._doLayout(self.geometry(), True)
 
         return super().eventFilter(obj, event)
