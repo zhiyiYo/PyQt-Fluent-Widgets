@@ -46,13 +46,13 @@ class NavigationViewInterface(GalleryInterface):
         )
 
         self.addExampleCard(
-            title=self.tr('A segmented control'),
+            title=self.tr('A segmented control bar'),
             widget=SegmentedInterface(self),
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/segmented_widget/demo.py'
         )
 
         self.addExampleCard(
-            title=self.tr('Another segmented control'),
+            title=self.tr('Another segmented control bar'),
             widget=self.createToggleToolWidget(),
             sourcePath='https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/navigation/segmented_tool_widget/demo.py'
         )

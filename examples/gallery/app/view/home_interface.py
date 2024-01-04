@@ -154,7 +154,7 @@ class HomeInterface(ScrollArea):
             icon=":/gallery/images/controls/DropDownButton.png",
             title="DropDownButton",
             content=self.tr(
-                "A button that displays a flyout of choices when clicked."),
+                "A button that displays a flyout with choices when clicked."),
             routeKey="basicInputInterface",
             index=12
         )

@@ -50,7 +50,7 @@ class SettingInterface(ScrollArea):
         self.micaCard = SwitchSettingCard(
             FIF.TRANSPARENT,
             self.tr('Mica effect'),
-            self.tr('Apply semi transparent to windows and surfaces'),
+            self.tr('Apply Microsoft\'s Mica to the window (semi-transparent blurring of your wallpaper)'),
             cfg.micaEnabled,
             self.personalGroup
         )
@@ -99,7 +99,7 @@ class SettingInterface(ScrollArea):
             cfg.blurRadius,
             FIF.ALBUM,
             self.tr('Acrylic blur radius'),
-            self.tr('The greater the radius, the more blurred the image'),
+            self.tr('The greater the radius, the more blurred the image will be.'),
             self.materialGroup
         )
 
@@ -109,7 +109,7 @@ class SettingInterface(ScrollArea):
         self.updateOnStartUpCard = SwitchSettingCard(
             FIF.UPDATE,
             self.tr('Check for updates when the application starts'),
-            self.tr('The new version will be more stable and have more features'),
+            self.tr('New versions contain new features and changes.'),
             configItem=cfg.checkUpdateAtStartUp,
             parent=self.updateSoftwareGroup
         )
@@ -196,7 +196,7 @@ class SettingInterface(ScrollArea):
         """ show restart tooltip """
         InfoBar.success(
             self.tr('Updated successfully'),
-            self.tr('Configuration takes effect after restart'),
+            self.tr('Configuration will take effect after restarting the app.'),
             duration=1500,
             parent=self
         )

@@ -130,11 +130,11 @@ class TreeFrame(Frame):
         item2 = QTreeWidgetItem([self.tr('JoJo 3 - Stardust Crusaders')])
         item21 = QTreeWidgetItem([self.tr('Jotaro Kujo')])
         item21.addChildren([
-            QTreeWidgetItem(['空条承太郎']),
-            QTreeWidgetItem(['空条蕉太狼']),
-            QTreeWidgetItem(['阿强']),
-            QTreeWidgetItem(['卖鱼强']),
-            QTreeWidgetItem(['那个无敌的男人']),
+            QTreeWidgetItem(['Jotaro Kujo']),
+            QTreeWidgetItem(['Empty Banana Wolf']),
+            QTreeWidgetItem(['Aqiag']),
+            QTreeWidgetItem(['Selling Fish']),
+            QTreeWidgetItem(['The Invincible Man']),
         ])
         item2.addChild(item21)
         self.tree.addTopLevelItem(item2)
@@ -165,39 +165,38 @@ class TableFrame(TableWidget):
             self.tr('Title'), self.tr('Artist'), self.tr('Album'),
             self.tr('Year'), self.tr('Duration')
         ])
-
         songInfos = [
-            ['かばん', 'aiko', 'かばん', '2004', '5:04'],
-            ['爱你', '王心凌', '爱你', '2004', '3:39'],
-            ['星のない世界', 'aiko', '星のない世界/横顔', '2007', '5:30'],
-            ['横顔', 'aiko', '星のない世界/横顔', '2007', '5:06'],
-            ['秘密', 'aiko', '秘密', '2008', '6:27'],
-            ['シアワセ', 'aiko', '秘密', '2008', '5:25'],
-            ['二人', 'aiko', '二人', '2008', '5:00'],
-            ['スパークル', 'RADWIMPS', '君の名は。', '2016', '8:54'],
-            ['なんでもないや', 'RADWIMPS', '君の名は。', '2016', '3:16'],
-            ['前前前世', 'RADWIMPS', '人間開花', '2016', '4:35'],
-            ['恋をしたのは', 'aiko', '恋をしたのは', '2016', '6:02'],
-            ['夏バテ', 'aiko', '恋をしたのは', '2016', '4:41'],
-            ['もっと', 'aiko', 'もっと', '2016', '4:50'],
-            ['問題集', 'aiko', 'もっと', '2016', '4:18'],
-            ['半袖', 'aiko', 'もっと', '2016', '5:50'],
-            ['ひねくれ', '鎖那', 'Hush a by little girl', '2017', '3:54'],
-            ['シュテルン', '鎖那', 'Hush a by little girl', '2017', '3:16'],
-            ['愛は勝手', 'aiko', '湿った夏の始まり', '2018', '5:31'],
-            ['ドライブモード', 'aiko', '湿った夏の始まり', '2018', '3:37'],
-            ['うん。', 'aiko', '湿った夏の始まり', '2018', '5:48'],
-            ['キラキラ', 'aikoの詩。', '2019', '5:08', 'aiko'],
-            ['恋のスーパーボール', 'aiko', 'aikoの詩。', '2019', '4:31'],
-            ['磁石', 'aiko', 'どうしたって伝えられないから', '2021', '4:24'],
-            ['食べた愛', 'aiko', '食べた愛/あたしたち', '2021', '5:17'],
-            ['列車', 'aiko', '食べた愛/あたしたち', '2021', '4:18'],
-            ['花の塔', 'さユり', '花の塔', '2022', '4:35'],
-            ['夏恋のライフ', 'aiko', '夏恋のライフ', '2022', '5:03'],
-            ['あかときリロード', 'aiko', 'あかときリロード', '2023', '4:04'],
-            ['荒れた唇は恋を失くす', 'aiko', '今の二人をお互いが見てる', '2023', '4:07'],
-            ['ワンツースリー', 'aiko', '今の二人をお互いが見てる', '2023', '4:47'],
-        ]
+             ['bag', 'aiko', 'bag', '2004', '5:04'],
+             ['Love You', 'Wang Xinling', 'Love You', '2004', '3:39'],
+             ['A world without stars', 'aiko', 'A world without stars/profile', '2007', '5:30'],
+             ['Profile', 'aiko', 'Starless World/Profile', '2007', '5:06'],
+             ['secret', 'aiko', 'secret', '2008', '6:27'],
+             ['Shiawase', 'aiko', 'Secret', '2008', '5:25'],
+             ['two people', 'aiko', 'two people', '2008', '5:00'],
+             ['Sparkle', 'RADWIMPS', 'Your Name. ', '2016', '8:54'],
+             ['Nothing', 'RADWIMPS', 'Your Name. ', '2016', '3:16'],
+             ['Pre-Zen Pre-Life', 'RADWIMPS', 'Human Flowering', '2016', '4:35'],
+             ['I fell in love', 'aiko', 'I fell in love', '2016', '6:02'],
+             ['Summer fatigue', 'aiko', 'Koi shita wa', '2016', '4:41'],
+             ['more', 'aiko', 'more', '2016', '4:50'],
+             ['Question set', 'aiko', 'more', '2016', '4:18'],
+             ['short sleeve', 'aiko', 'more', '2016', '5:50'],
+             ['Hinekure', 'Chainana', 'Hush a by little girl', '2017', '3:54'],
+             ['Stern', 'Kashina', 'Hush a by little girl', '2017', '3:16'],
+             ['Love is selfish', 'aiko', 'The beginning of a humid summer', '2018', '5:31'],
+             ['Drive Mode', 'aiko', 'Wet Summer Start', '2018', '3:37'],
+             ['Yeah. ', 'aiko', 'The beginning of humid summer', '2018', '5:48'],
+             ['Glitter', 'aiko\'s poem. ', '2019', '5:08', 'aiko'],
+             ['Super Ball of Love', 'aiko', 'aiko\'s poem. ', '2019', '4:31'],
+             ['Magnet', 'aiko', 'I can\'t tell you what happened', '2021', '4:24'],
+             ['Ai ate', 'aiko', 'Ai ate/us', '2021', '5:17'],
+             ['Train', 'aiko', 'I ate love/us', '2021', '4:18'],
+             ['Flower Tower', 'Sayuri', 'Flower Tower', '2022', '4:35'],
+             ['Summer Love Life', 'aiko', 'Summer Love Life', '2022', '5:03'],
+             ['Aka Toki Reload', 'aiko', 'Aka Toki Reload', '2023', '4:04'],
+             ['Chapped lips make love disappear', 'aiko', 'The two of us are looking at each other now', '2023', '4:07'],
+             ['One Two Three', 'aiko', 'We are looking at each other now', '2023', '4:47'],
+         ]
         songInfos += songInfos
         for i, songInfo in enumerate(songInfos):
             for j in range(5):

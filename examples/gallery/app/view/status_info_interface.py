@@ -90,7 +90,7 @@ class StatusInfoInterface(GalleryInterface):
         )
 
         # long info bar
-        content = self.tr("My name is kira yoshikake, 33 years old. Living in the villa area northeast of duwangting, unmarried. I work in Guiyou chain store. Every day I have to work overtime until 8 p.m. to go home. I don't smoke. The wine is only for a taste. Sleep at 11 p.m. for 8 hours a day. Before I go to bed, I must drink a cup of warm milk, then do 20 minutes of soft exercise, get on the bed, and immediately fall asleep. Never leave fatigue and stress until the next day. Doctors say I'm normal.")
+        content = self.tr("My name is Kira Yoshikake. I am 33 years old and unmarried, living in the villa area northeast of duwangting. I also don't smoke. I work in a Guiyou chain store. Every day I have to work overtime until 8 PM, then go home. I drink wine only for it\'s taste. I sleep at 11 p.m, for 8 hours a day. Before I go to bed, I drink a cup of warm milk, then do 20 minutes of soft exercise, go to my bed, and immediately fall asleep. I'll never leave fatigue and stress until the next day. My doctors say I'm normal.")
         infoBar = InfoBar(
             icon=InfoBarIcon.WARNING,
             title=self.tr('Warning'),
@@ -111,7 +111,7 @@ class StatusInfoInterface(GalleryInterface):
         infoBar = InfoBar(
             icon=FluentIcon.GITHUB,
             title=self.tr('GitHub'),
-            content=self.tr("When you look long into an abyss, the abyss looks into you."),
+            content=self.tr("When you look into an abyss for a while, the abyss looks into you."),
             orient=Qt.Horizontal,
             isClosable=True,
             duration=-1,
@@ -239,7 +239,7 @@ class StatusInfoInterface(GalleryInterface):
             orient=Qt.Horizontal,
             isClosable=False,   # disable close button
             position=InfoBarPosition.TOP_LEFT,
-            duration=2000,
+            duration=-1,
             parent=self
         )
 
@@ -257,11 +257,11 @@ class StatusInfoInterface(GalleryInterface):
     def createBottomInfoBar(self):
         InfoBar.success(
             title=self.tr('Lesson 1'),
-            content=self.tr("Don't have any strange expectations of me."),
+            content=self.tr("Don't have any strange expectations for me."),
             orient=Qt.Horizontal,
             isClosable=True,
             position=InfoBarPosition.BOTTOM,
-            duration=2000,    # won't disappear automatically
+            duration=-1,    # won't disappear automatically
             parent=self
         )
 
@@ -272,7 +272,7 @@ class StatusInfoInterface(GalleryInterface):
             orient=Qt.Horizontal,
             isClosable=True,
             position=InfoBarPosition.BOTTOM_LEFT,
-            duration=1500,    # won't disappear automatically
+            duration=-1,    # won't disappear automatically
             parent=self
         )
 

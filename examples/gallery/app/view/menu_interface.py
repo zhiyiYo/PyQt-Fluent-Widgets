@@ -91,7 +91,7 @@ class MenuInterface(GalleryInterface):
         widget.layout().setContentsMargins(0, 0, 0, 0)
         widget.layout().setSpacing(10)
 
-        label = QLabel(self.tr('Click the image to open a command bar flyout 👇️🥵'))
+        label = QLabel(self.tr('Click the image to open a command bar flyout 👇️'))
         self.imageLabel = ImageLabel(':/gallery/images/chidanta5.jpg')
         self.imageLabel.scaledToWidth(350)
         self.imageLabel.setBorderRadius(8, 8, 8, 8)

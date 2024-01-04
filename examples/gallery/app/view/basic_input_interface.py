@@ -25,10 +25,10 @@ class BasicInputInterface(GalleryInterface):
         )
         self.setObjectName('basicInputInterface')
 
-        # simple push button
+        # simple clickable button
         self.addExampleCard(
             self.tr('A simple button with text content'),
-            PushButton(self.tr('Standard push button')),
+            PushButton(self.tr('Standard clickable button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
@@ -42,9 +42,9 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
-        # primary color push button
+        # primary color clickable button
         self.addExampleCard(
-            self.tr('Accent style applied to push button'),
+            self.tr('Accent style applied to clickable button'),
             PrimaryPushButton(self.tr('Accent style button')),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -56,9 +56,9 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
-        # pill push button
+        # pill clickable button
         self.addExampleCard(
-            self.tr('Pill push button'),
+            self.tr('Pill clickable button'),
             PillPushButton(self.tr('Tag'), self, FluentIcon.TAG),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -70,10 +70,10 @@ class BasicInputInterface(GalleryInterface):
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
-        # transparent push button
+        # transparent clickable button
         self.addExampleCard(
-            self.tr('A transparent push button'),
-            TransparentPushButton(self.tr('Transparent push button'), self, FluentIcon.BOOK_SHELF),
+            self.tr('A transparent clickable button'),
+            TransparentPushButton(self.tr('Transparent clickable button'), self, FluentIcon.BOOK_SHELF),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
 
@@ -134,7 +134,7 @@ class BasicInputInterface(GalleryInterface):
         button = DropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
         button.setMenu(menu)
         self.addExampleCard(
-            self.tr('A push button with drop down menu'),
+            self.tr('A clickable button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -151,7 +151,7 @@ class BasicInputInterface(GalleryInterface):
         button = PrimaryDropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
         button.setMenu(menu)
         self.addExampleCard(
-            self.tr('A primary color push button with drop down menu'),
+            self.tr('A primary color clickable button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -168,7 +168,7 @@ class BasicInputInterface(GalleryInterface):
         button = TransparentDropDownPushButton(self.tr('Email'), self, FluentIcon.MAIL)
         button.setMenu(menu)
         self.addExampleCard(
-            self.tr('A transparent push button with drop down menu'),
+            self.tr('A transparent clickable button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -227,7 +227,7 @@ class BasicInputInterface(GalleryInterface):
         button = SplitPushButton(self.tr('Choose your stand'), self, FluentIcon.BASKETBALL)
         button.setFlyout(self.createStandMenu(button))
         self.addExampleCard(
-            self.tr('A split push button with drop down menu'),
+            self.tr('A split clickable button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -252,7 +252,7 @@ class BasicInputInterface(GalleryInterface):
         button = PrimarySplitPushButton(self.tr('Choose your stand'), self, FluentIcon.BASKETBALL)
         button.setFlyout(self.createStandMenu(button))
         self.addExampleCard(
-            self.tr('A primary color split push button with drop down menu'),
+            self.tr('A primary color split clickable button with drop down menu'),
             button,
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -276,7 +276,7 @@ class BasicInputInterface(GalleryInterface):
 
         # toggle button
         self.addExampleCard(
-            self.tr('A simple toggle push button'),
+            self.tr('A simple toggle clickable button'),
             ToggleButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
@@ -290,7 +290,7 @@ class BasicInputInterface(GalleryInterface):
 
         # transparent toggle button
         self.addExampleCard(
-            self.tr('A transparent toggle push button'),
+            self.tr('A transparent toggle clickable button'),
             TransparentTogglePushButton(self.tr('Start practicing'), self, FluentIcon.BASKETBALL),
             'https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/basic_input/button/demo.py'
         )
