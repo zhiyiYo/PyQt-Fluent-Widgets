@@ -3,4 +3,4 @@ PySide2-Frameless-Window>=0.3.1
 darkdetect
 colorthief
 scipy
-pillow<=9.4.0
+pillow

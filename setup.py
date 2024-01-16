@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PySide2-Fluent-Widgets",
-    version="1.4.5",
+    version="1.4.6",
     keywords="pyside2 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -22,7 +22,7 @@ setuptools.setup(
         "darkdetect",
     ],
     extras_require = {
-        'full': ['scipy', 'pillow<=9.4.0', 'colorthief']
+        'full': ['scipy', 'pillow', 'colorthief']
     },
     classifiers=[
         'Programming Language :: Python :: 3',
