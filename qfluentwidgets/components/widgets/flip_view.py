@@ -377,7 +377,7 @@ class FlipView(QListWidget):
 
     itemSize = pyqtProperty(QSize, getItemSize, setItemSize)
     borderRadius = pyqtProperty(int, getBorderRadius, setBorderRadius)
-    aspectRatioMode = pyqtProperty(bool, getAspectRatioMode, setAspectRatioMode)
+    aspectRatioMode = pyqtProperty(Qt.AspectRatioMode, getAspectRatioMode, setAspectRatioMode)
 
 
 class HorizontalFlipView(FlipView):
