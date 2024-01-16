@@ -1,11 +1,13 @@
 # coding:utf-8
 from math import floor
-from time import time
+from io import BytesIO
+from typing import Union
 
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
 from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtCore import QIODevice, QBuffer
 from scipy.ndimage.filters import gaussian_filter
 
 from .exception_handler import exceptionHandler
@@ -16,7 +18,7 @@ def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
     if isinstance(image, str) and not image.startswith(':'):
         image = Image.open(image)
     else:
-        image = Image.fromqpixmap(QPixmap(image))
+        image = fromqpixmap(QPixmap(image))
 
     if blurPicSize:
         # adjust image size to reduce computation
@@ -39,8 +41,36 @@ def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
             image[:, :, i], blurRadius) * brightFactor
 
     # convert ndarray to QPixmap
-    h, w, _ = image.shape
-    return QPixmap.fromImage(QImage(image.data, w, h, 3*w, QImage.Format_RGB888))
+    h, w, c = image.shape
+    if c == 3:
+        format = QImage.Format_RGB888
+    else:
+        format = QImage.Format_RGBA8888
+
+    return QPixmap.fromImage(QImage(image.data, w, h, c*w, format))
+
+
+# https://github.com/python-pillow/Pillow/blob/main/src/PIL/ImageQt.py
+def fromqpixmap(im: Union[QImage, QPixmap]):
+    """
+    :param im: QImage or PIL ImageQt object
+    """
+    buffer = QBuffer()
+    buffer.open(QIODevice.OpenModeFlag.ReadWrite)
+
+    # preserve alpha channel with png
+    # otherwise ppm is more friendly with Image.open
+    if im.hasAlphaChannel():
+        im.save(buffer, "png")
+    else:
+        im.save(buffer, "ppm")
+
+    b = BytesIO()
+    b.write(buffer.data())
+    buffer.close()
+    b.seek(0)
+
+    return Image.open(b)
 
 
 class DominantColor:

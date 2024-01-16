@@ -377,7 +377,7 @@ class FlipView(QListWidget):
 
     itemSize = Property(QSize, getItemSize, setItemSize)
     borderRadius = Property(int, getBorderRadius, setBorderRadius)
-    aspectRatioMode = Property(bool, getAspectRatioMode, setAspectRatioMode)
+    aspectRatioMode = Property(Qt.AspectRatioMode, getAspectRatioMode, setAspectRatioMode)
 
 
 class HorizontalFlipView(FlipView):
