@@ -9,6 +9,7 @@ class Icon(FluentIconBase, Enum):
     GRID = "Grid"
     MENU = "Menu"
     TEXT = "Text"
+    PRICE = "Price"
     EMOJI_TAB_SYMBOLS = "EmojiTabSymbols"
 
     def path(self, theme=Theme.AUTO):

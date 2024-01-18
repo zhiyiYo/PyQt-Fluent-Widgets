@@ -23,7 +23,7 @@ from .status_info_interface import StatusInfoInterface
 from .setting_interface import SettingInterface
 from .text_interface import TextInterface
 from .view_interface import ViewInterface
-from ..common.config import SUPPORT_URL, cfg
+from ..common.config import ZH_SUPPORT_URL, EN_SUPPORT_URL, cfg
 from ..common.icon import Icon
 from ..common.signal_bus import signalBus
 from ..common.translator import Translator
@@ -87,10 +87,13 @@ class MainWindow(FluentWindow):
         self.addSubInterface(self.viewInterface, Icon.GRID, t.view, pos)
 
         # add custom widget to bottom
-        self.navigationInterface.addWidget(
-            routeKey='avatar',
-            widget=NavigationAvatarWidget('zhiyiYo', ':/gallery/images/shoko.png'),
+        self.navigationInterface.addItem(
+            routeKey='price',
+            icon=Icon.PRICE,
+            text=t.price,
             onClick=self.onSupport,
+            selectable=False,
+            tooltip=t.price,
             position=NavigationItemPosition.BOTTOM
         )
         self.addSubInterface(
@@ -116,15 +119,11 @@ class MainWindow(FluentWindow):
         QApplication.processEvents()
 
     def onSupport(self):
-        w = MessageBox(
-            '支持作者🥰',
-            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
-            self
-        )
-        w.yesButton.setText('来啦老弟')
-        w.cancelButton.setText('下次一定')
-        if w.exec():
-            QDesktopServices.openUrl(QUrl(SUPPORT_URL))
+        language = cfg.get(cfg.language).value
+        if language.name() == "zh_CN":
+            QDesktopServices.openUrl(QUrl(ZH_SUPPORT_URL))
+        else:
+            QDesktopServices.openUrl(QUrl(EN_SUPPORT_URL))
 
     def resizeEvent(self, e):
         super().resizeEvent(e)
