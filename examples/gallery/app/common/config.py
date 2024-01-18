@@ -62,7 +62,8 @@ REPO_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets"
 EXAMPLE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6/examples"
 FEEDBACK_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues"
 RELEASE_URL = "https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases/latest"
-SUPPORT_URL = "https://afdian.net/a/zhiyiYo"
+ZH_SUPPORT_URL = "https://qfluentwidgets.com/zh/price/"
+EN_SUPPORT_URL = "https://qfluentwidgets.com/price/"
 
 
 cfg = Config()
