@@ -1727,6 +1727,11 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <translation>导航</translation>
     </message>
     <message>
+        <location filename="../../common/translator.py" line="18"/>
+        <source>Price</source>
+        <translation>价格方案</translation>
+    </message>
+    <message>
         <location filename="../../common/translator.py" line="14"/>
         <source>Dialogs &amp; flyouts</source>
         <translation>对话框和弹出窗口</translation>

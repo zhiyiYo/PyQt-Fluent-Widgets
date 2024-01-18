@@ -429,10 +429,12 @@
     </message>
     <message>
         <location filename="../../view/dialog_interface.py" line="157"/>
-        <source>Where the tennis ball will land when it touches the net, no one can predict. 
-If that moment comes, I hope the &apos;goddess&apos; exists. 
+        <source>Where the tennis ball will land when it touches the net, no one can predict.
+If that moment comes, I hope the &apos;goddess&apos; exists.
 In that case, I would accept it no matter which side the ball falls on.</source>
-        <translation type="unfinished"></translation>
+        <translation>觸網而起的網球會落到哪一側，誰也無法知曉。
+如果那種時刻到來，我希望「女神」是存在的。
+這樣的話，不管網球落到哪一邊，我都會坦然接受的吧。</translation>
     </message>
 </context>
 <context>
@@ -1723,6 +1725,11 @@ In that case, I would accept it no matter which side the ball falls on.</source>
         <location filename="../../common/translator.py" line="18"/>
         <source>Navigation</source>
         <translation>導航</translation>
+    </message>
+    <message>
+        <location filename="../../common/translator.py" line="18"/>
+        <source>Price</source>
+        <translation>價格方案</translation>
     </message>
     <message>
         <location filename="../../common/translator.py" line="14"/>
