@@ -65,6 +65,13 @@ If you encounter `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`, 
 ## Documentation
 Want to know more about PyQt-Fluent-Widgets? Please read the [help document](https://qfluentwidgets.com) 👈
 
+
+## License
+PyQt-Fluent-Widgets is licensed under [GPLv3](./LICENSE) for non-commercial project. For commercial use, please purchase a [commercial license](https://qfluentwidgets.com/price).
+
+Copyright © 2021 by zhiyiYo.
+
+
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
@@ -81,15 +88,10 @@ If this project helps you a lot and you want to support the development and main
 
 ## See Also
 Here are some projects based on PyQt-Fluent-Widgets:
-* [**zhiyiYo/QMaterialWidgets**: A material design widgets library based on PySide](https://qmaterialwidgets.vercel.app)
+* [**zhiyiYo/QMaterialWidgets**: A material design widgets library based on PyQt/PySide](https://qmaterialwidgets.vercel.app)
 * [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: A gobang robot based on reinforcement learning](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
 
 ## Reference
 * [**Windows design**: Design guidelines and toolkits for creating native app experiences](https://learn.microsoft.com/zh-cn/windows/apps/design/)
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
-
-## License
-PyQt-Fluent-Widgets is licensed under [GPLv3](./LICENSE).
-
-Copyright © 2021 by zhiyiYo.

@@ -60,8 +60,17 @@ python demo.py
 
 如果遇到 `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`，这表明安装的包版本过低。可以按照上面的安装指令将 pypi 源替换为 https://pypi.org/simple 并重新安装.
 
+
 ## 在线文档📕
 想要了解 PyQt-Fluent-Widgets 的正确使用姿势？请仔细阅读 [帮助文档](https://qfluentwidgets.com/zh/) 👈
+
+
+## 许可证📄
+PyQt-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证授权非商用项目，商用项目需购买[商用许可证](https://qfluentwidgets.com/zh/price)。
+
+组件库受软件著作权保护，软著登字第12532763号，任何盗用、破解组件库或未经授权的商业使用均被视为侵权行为。
+
+版权所有 © 2021 by zhiyiYo.
 
 ## 支持💖
 个人开发不易，如果这个组件库帮助了您，可以考虑在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 上请作者喝一瓶快乐水。您的支持就是作者继续开发和维护项目的动力 🥰。
@@ -79,15 +88,10 @@ python demo.py
 
 ## 另见👀
 下面是一些基于 PyQt-Fluent-Widgets 的项目：
-* [**zhiyiYo/QMaterialWidgets**: 基于 PySide 的 Material Design 风格组件库](https://qmaterialwidgets.vercel.app/zh/)
+* [**zhiyiYo/QMaterialWidgets**: 基于 PyQt/PySide 的 Material Design 风格组件库](https://qmaterialwidgets.vercel.app/zh/)
 * [**zhiyiYo/Groove**: 基于 PyQt5 的跨平台音乐播放器](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: 基于强化学习的五子棋机器人](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
 
 ## 参考
 * [**Windows design**: Design guidelines and toolkits for creating native app experiences](https://learn.microsoft.com/zh-cn/windows/apps/design/)
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
-
-## 许可证
-PyQt-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证.
-
-Copyright © 2021 by zhiyiYo.
