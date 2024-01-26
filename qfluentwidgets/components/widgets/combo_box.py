@@ -142,11 +142,18 @@ class ComboBoxBase(QObject):
         index: int
             current index
         """
-        if not 0 <= index < len(self.items):
+        if not 0 <= index < len(self.items) or index == self.currentIndex():
             return
+
+        oldText = self.currentText()
 
         self._currentIndex = index
         self.setText(self.items[index].text)
+
+        if oldText != self.currentText():
+            self.currentTextChanged.emit(self.currentText())
+
+        self.currentIndexChanged.emit(index)
 
     def setText(self, text: str):
         super().setText(text)
@@ -347,8 +354,6 @@ class ComboBoxBase(QObject):
             return
 
         self.setCurrentIndex(index)
-        self.currentTextChanged.emit(self.currentText())
-        self.currentIndexChanged.emit(index)
 
 
 class ComboBox(QPushButton, ComboBoxBase):

@@ -27,7 +27,7 @@ class Demo(QWidget):
         # self.comboBox.setCompleter(self.completer)
 
         self.resize(500, 500)
-        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignCenter)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignCenter)
         self.setStyleSheet('Demo{background:white}')
 
         # setTheme(Theme.DARK)
