@@ -65,6 +65,13 @@ If you encounter `ImportError: cannot import name 'XXX' from 'qfluentwidgets'`, 
 ## Documentation
 Want to know more about PySide2-Fluent-Widgets? Please read the [help document](https://qfluentwidgets.com) 👈
 
+
+## License
+PySide2-Fluent-Widgets adopts dual licenses. Non-commercial usage is licensed under [GPLv3](./LICENSE). For commercial purposes, please purchase [commercial license](https://qfluentwidgets.com/price) to support the development of this project.
+
+Copyright © 2021 by zhiyiYo.
+
+
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
@@ -80,8 +87,3 @@ Here are some projects based on PyQt-Fluent-Widgets:
 ## Reference
 * [**Windows design**: Design guidelines and toolkits for creating native app experiences](https://learn.microsoft.com/zh-cn/windows/apps/design/)
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
-
-## License
-PySide2-Fluent-Widgets adopts dual licenses. Non-commercial usage is licensed under [GPLv3](./LICENSE). For commercial purposes, please purchase [commercial license](https://qfluentwidgets.com/price) to support the development of this project.
-
-Copyright © 2021 by zhiyiYo.

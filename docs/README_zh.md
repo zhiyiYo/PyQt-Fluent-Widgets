@@ -59,6 +59,15 @@ python demo.py
 ## 在线文档📕
 想要了解 PySide2-Fluent-Widgets 的正确使用姿势？请仔细阅读 [帮助文档](https://qfluentwidgets.com/zh/) 👈
 
+
+## 许可证📄
+PySide2-Fluent-Widgets 使用双许可证。非商业用途使用 [GPLv3](../LICENSE) 许可证进行授权，商用请购买 [商用许可证](https://qfluentwidgets.com/zh/price) 以支持项目的开发。
+
+组件库受软件著作权保护，软著登字第12532763号，任何盗用、破解组件库或未经授权的商业使用均被视为侵权行为。
+
+Copyright © 2021 by zhiyiYo.
+
+
 ## 支持💖
 个人开发不易，如果这个组件库帮助了您，或者是想支持作者继续开发和维护这个组件库，可以在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 上请作者喝一杯奶茶。您的支持就是作者开发和维护项目的动力 🥰。
 
@@ -80,8 +89,3 @@ python demo.py
 ## 参考
 * [**Windows design**: Design guidelines and toolkits for creating native app experiences](https://learn.microsoft.com/zh-cn/windows/apps/design/)
 * [**Microsoft/WinUI-Gallery**: An app demonstrates the controls available in WinUI and the Fluent Design System](https://github.com/microsoft/WinUI-Gallery)
-
-## 许可证
-PySide2-Fluent-Widgets 使用双许可证。非商业用途使用 [GPLv3](../LICENSE) 许可证进行授权，商用请购买 [商用许可证](https://qfluentwidgets.com/zh/price) 以支持项目的开发。
-
-Copyright © 2021 by zhiyiYo.
