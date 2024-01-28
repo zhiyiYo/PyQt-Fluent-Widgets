@@ -119,10 +119,10 @@ class ComboBoxBase(QObject):
         self.items.pop(index)
 
         if index < self.currentIndex():
-            self._onItemClicked(self._currentIndex - 1)
+            self.setCurrentIndex(self._currentIndex - 1)
         elif index == self.currentIndex():
             if index > 0:
-                self._onItemClicked(self._currentIndex - 1)
+                self.setCurrentIndex(self._currentIndex - 1)
             else:
                 self.setCurrentIndex(0)
                 self.currentTextChanged.emit(self.currentText())
@@ -270,7 +270,7 @@ class ComboBoxBase(QObject):
         self.items.insert(index, item)
 
         if index <= self.currentIndex():
-            self._onItemClicked(self.currentIndex() + 1)
+            self.setCurrentIndex(self.currentIndex() + 1)
 
     def insertItems(self, index: int, texts: Iterable[str]):
         """ Inserts items into the combobox, starting at the index specified. """
@@ -281,7 +281,7 @@ class ComboBoxBase(QObject):
             pos += 1
 
         if index <= self.currentIndex():
-            self._onItemClicked(self.currentIndex() + pos - index)
+            self.setCurrentIndex(self.currentIndex() + pos - index)
 
     def setMaxVisibleItems(self, num: int):
         self._maxVisibleItems = num
