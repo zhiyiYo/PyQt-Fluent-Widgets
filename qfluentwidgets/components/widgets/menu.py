@@ -9,7 +9,7 @@ from PyQt5.QtGui import (QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCurso
                          QFontMetrics, QKeySequence)
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
-                             QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
+                             QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem, QLabel)
 
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
@@ -1213,3 +1213,42 @@ class CheckableSystemTrayMenu(CheckableMenu):
     def showEvent(self, e):
         super().showEvent(e)
         self.adjustPosition()
+
+
+class LabelContextMenu(RoundMenu):
+    """ Label context menu """
+
+    def __init__(self, parent: QLabel):
+        super().__init__("", parent)
+        self.selectedText = parent.selectedText()
+
+        self.copyAct = QAction(
+            FIF.COPY.icon(),
+            self.tr("Copy"),
+            self,
+            shortcut="Ctrl+C",
+            triggered=self._onCopy
+        )
+        self.selectAllAct = QAction(
+            self.tr("Select all"),
+            self,
+            shortcut="Ctrl+A",
+            triggered=self._onSelectAll
+        )
+
+    def _onCopy(self):
+        QApplication.clipboard().setText(self.selectedText)
+
+    def _onSelectAll(self):
+        self.label().setSelection(0, len(self.label().text()))
+
+    def label(self) -> QLabel:
+        return self.parent()
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        if self.label().hasSelectedText():
+            self.addActions([self.copyAct, self.selectAllAct])
+        else:
+            self.addAction(self.selectAllAct)
+
+        return super().exec(pos, ani, aniType)
