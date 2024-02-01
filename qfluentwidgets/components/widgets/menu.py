@@ -874,7 +874,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
         rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 13, 4)
+        y = max(pos.y() - h + 13, rect.top() + 4)
         return QPoint(x, y)
 
     def exec(self, pos):
@@ -887,7 +887,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, max(pos.y() - 28, 1)
+        return ss.width() - 100, max(pos.y() - ss.top() - 28, 1)
 
     def _onValueChanged(self):
         w, h = self._menuSize()
@@ -942,7 +942,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
         rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 15, 4)
+        y = max(pos.y() - h + 15, rect.top() + 4)
         return QPoint(x, y)
 
     def exec(self, pos):
@@ -961,7 +961,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, pos.y() - 28
+        return ss.width() - 100, pos.y()- ss.top() - 28
 
 
 class EditMenu(RoundMenu):

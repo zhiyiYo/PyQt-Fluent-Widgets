@@ -258,7 +258,7 @@ class CompleterMenu(RoundMenu):
         hd = self.view.heightForAnimation(pd, MenuAnimationType.FADE_IN_DROP_DOWN)
 
         pu = p.mapToGlobal(QPoint(x, 7))
-        hu = self.view.heightForAnimation(pd, MenuAnimationType.FADE_IN_PULL_UP)
+        hu = self.view.heightForAnimation(pu, MenuAnimationType.FADE_IN_PULL_UP)
 
         if hd >= hu:
             pos = pd
