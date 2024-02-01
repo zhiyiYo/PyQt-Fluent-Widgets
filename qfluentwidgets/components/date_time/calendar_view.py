@@ -138,6 +138,8 @@ class DayScrollItemDelegate(ScrollItemDelegate):
 class ScrollViewBase(QListWidget):
     """ Scroll view base class """
 
+    pageChanged = pyqtSignal(int)
+
     def __init__(self, Delegate: Type[ScrollItemDelegate], parent=None):
         super().__init__(parent)
         self.cols = 4
@@ -192,6 +194,7 @@ class ScrollViewBase(QListWidget):
         y = self.gridSize().height() * self.pageRows * page
         self.vScrollBar.setValue(y)
         self.delegate.setRange(*self.currentPageRange())
+        self.pageChanged.emit(page)
 
     def currentPageRange(self):
         return 0, 0
@@ -280,6 +283,7 @@ class CalendarViewBase(QFrame):
         self.scrollView = view
         self.scrollView.itemClicked.connect(lambda i: self.itemClicked.emit(i.data(Qt.UserRole)))
         self.vBoxLayout.addWidget(view)
+        view.pageChanged.connect(self._updateTitle)
         self._updateTitle()
 
     def setDate(self, date: QDate):
