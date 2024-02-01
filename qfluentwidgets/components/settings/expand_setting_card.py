@@ -31,12 +31,15 @@ class ExpandButton(QAbstractButton):
 
         # draw background
         r = 255 if isDarkTheme() else 0
-        if self.isPressed:
-            color = QColor(r, r, r, 10)
-        elif self.isHover:
-            color = QColor(r, r, r, 14)
+        color = Qt.transparent
+
+        if self.isEnabled():
+            if self.isPressed:
+                color = QColor(r, r, r, 10)
+            elif self.isHover:
+                color = QColor(r, r, r, 14)
         else:
-            color = Qt.transparent
+            painter.setOpacity(0.36)
 
         painter.setBrush(color)
         painter.drawRoundedRect(self.rect(), 4, 4)
@@ -69,7 +72,11 @@ class ExpandButton(QAbstractButton):
         self.update()
 
     def __onClicked(self):
-        self.rotateAni.setEndValue(180 if self.angle < 180 else 0)
+        self.setExpand(self.angle < 180)
+
+    def setExpand(self, isExpand: bool):
+        self.rotateAni.stop()
+        self.rotateAni.setEndValue(180 if isExpand else 0)
         self.rotateAni.setDuration(200)
         self.rotateAni.start()
 
@@ -266,6 +273,7 @@ class ExpandSettingCard(QScrollArea):
             self.expandAni.setEndValue(self.verticalScrollBar().maximum())
 
         self.expandAni.start()
+        self.card.expandButton.setExpand(isExpand)
 
     def toggleExpand(self):
         """ toggle expand status """

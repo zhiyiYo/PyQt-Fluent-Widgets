@@ -82,7 +82,7 @@ class ToolBar(QWidget):
         self.supportButton.setToolTip(self.tr('Support me'))
         self.feedbackButton.setToolTip(self.tr('Send feedback'))
 
-        self.themeButton.clicked.connect(lambda: toggleTheme(True))
+        self.themeButton.clicked.connect(lambda: toggleTheme(True, True))
         self.supportButton.clicked.connect(signalBus.supportSignal)
         self.documentButton.clicked.connect(
             lambda: QDesktopServices.openUrl(QUrl(HELP_URL)))
