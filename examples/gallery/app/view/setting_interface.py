@@ -220,8 +220,8 @@ class SettingInterface(ScrollArea):
             self.__onDownloadFolderCardClicked)
 
         # personalization
-        self.themeCard.optionChanged.connect(lambda ci: setTheme(cfg.get(ci)))
-        self.themeColorCard.colorChanged.connect(setThemeColor)
+        self.themeCard.optionChanged.connect(lambda ci: setTheme(cfg.get(ci), lazy=True))
+        self.themeColorCard.colorChanged.connect(lambda: setThemeColor(lazy=True))
         self.micaCard.checkedChanged.connect(signalBus.micaEnableChanged)
 
         # about
