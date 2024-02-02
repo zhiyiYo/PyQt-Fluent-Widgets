@@ -14,7 +14,20 @@ from ..widgets.icon_widget import IconWidget
 from ..widgets.button import HyperlinkButton
 from ...common.style_sheet import FluentStyleSheet
 from ...common.config import qconfig, isDarkTheme, ConfigItem, OptionsConfigItem
-from ...common.icon import FluentIconBase
+from ...common.icon import FluentIconBase, drawIcon
+
+
+class SettingIconWidget(IconWidget):
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+
+        if not self.isEnabled():
+            painter.setOpacity(0.36)
+
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
+        drawIcon(self._icon, painter, self.rect())
+
 
 
 class SettingCard(QFrame):
@@ -37,7 +50,7 @@ class SettingCard(QFrame):
             parent widget
         """
         super().__init__(parent=parent)
-        self.iconLabel = IconWidget(icon, self)
+        self.iconLabel = SettingIconWidget(icon, self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(content or '', self)
         self.hBoxLayout = QHBoxLayout(self)

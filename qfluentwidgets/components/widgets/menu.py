@@ -9,7 +9,7 @@ from PyQt6.QtGui import (QIcon, QAction, QColor, QPainter, QPen, QPixmap, QRegio
                          QFontMetrics, QKeySequence)
 from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
-                             QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem)
+                             QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem, QLabel)
 
 from ...common.icon import FluentIcon as FIF
 from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
@@ -858,7 +858,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
         rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 13, 4)
+        y = max(pos.y() - h + 13, rect.top() + 4)
         return QPoint(x, y)
 
     def exec(self, pos):
@@ -871,7 +871,7 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, max(pos.y() - 28, 1)
+        return ss.width() - 100, max(pos.y() - ss.top() - 28, 1)
 
     def _onValueChanged(self):
         w, h = self._menuSize()
@@ -926,7 +926,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
         rect = getCurrentScreenGeometry()
         w, h = m.width() + 5, m.height()
         x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 15, 4)
+        y = max(pos.y() - h + 15, rect.top() + 4)
         return QPoint(x, y)
 
     def exec(self, pos):
@@ -945,7 +945,7 @@ class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
 
     def availableViewSize(self, pos: QPoint):
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, pos.y() - 28
+        return ss.width() - 100, pos.y()- ss.top() - 28
 
 
 class EditMenu(RoundMenu):
@@ -1200,3 +1200,42 @@ class CheckableSystemTrayMenu(CheckableMenu):
     def showEvent(self, e):
         super().showEvent(e)
         self.adjustPosition()
+
+
+class LabelContextMenu(RoundMenu):
+    """ Label context menu """
+
+    def __init__(self, parent: QLabel):
+        super().__init__("", parent)
+        self.selectedText = parent.selectedText()
+
+        self.copyAct = QAction(
+            FIF.COPY.icon(),
+            self.tr("Copy"),
+            self,
+            shortcut="Ctrl+C",
+            triggered=self._onCopy
+        )
+        self.selectAllAct = QAction(
+            self.tr("Select all"),
+            self,
+            shortcut="Ctrl+A",
+            triggered=self._onSelectAll
+        )
+
+    def _onCopy(self):
+        QApplication.clipboard().setText(self.selectedText)
+
+    def _onSelectAll(self):
+        self.label().setSelection(0, len(self.label().text()))
+
+    def label(self) -> QLabel:
+        return self.parent()
+
+    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
+        if self.label().hasSelectedText():
+            self.addActions([self.copyAct, self.selectAllAct])
+        else:
+            self.addAction(self.selectAllAct)
+
+        return super().exec(pos, ani, aniType)

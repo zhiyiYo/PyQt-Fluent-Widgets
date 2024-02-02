@@ -7,6 +7,7 @@ from qframelesswindow import FramelessDialog
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import FluentStyleSheet
 from ..widgets.button import PrimaryPushButton
+from ..widgets.label import BodyLabel
 
 from .mask_dialog_base import MaskDialogBase
 
@@ -20,7 +21,7 @@ class Ui_MessageBox:
     def _setUpUi(self, title, content, parent):
         self.content = content
         self.titleLabel = QLabel(title, parent)
-        self.contentLabel = QLabel(content, parent)
+        self.contentLabel = BodyLabel(content, parent)
 
         self.buttonGroup = QFrame(parent)
         self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
@@ -43,6 +44,7 @@ class Ui_MessageBox:
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
 
+        self.contentLabel.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self._adjustText()
 
         self.yesButton.clicked.connect(self.__onYesButtonClicked)
@@ -93,6 +95,7 @@ class Ui_MessageBox:
         self.cancelButton.setObjectName('cancelButton')
 
         FluentStyleSheet.DIALOG.apply(self)
+        FluentStyleSheet.DIALOG.apply(self.contentLabel)
 
         self.yesButton.adjustSize()
         self.cancelButton.adjustSize()

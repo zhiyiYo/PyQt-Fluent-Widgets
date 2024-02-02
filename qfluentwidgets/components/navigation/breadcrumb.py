@@ -312,7 +312,7 @@ class BreadcrumbBar(QWidget):
         hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
         pu = self.mapToGlobal(QPoint(x, 0))
-        hu = menu.view.heightForAnimation(pd, MenuAnimationType.PULL_UP)
+        hu = menu.view.heightForAnimation(pu, MenuAnimationType.PULL_UP)
 
         if hd >= hu:
             menu.view.adjustSize(pd, MenuAnimationType.DROP_DOWN)

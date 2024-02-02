@@ -119,12 +119,12 @@ class ComboBoxBase(QObject):
         self.items.pop(index)
 
         if index < self.currentIndex():
-            self._onItemClicked(self._currentIndex - 1)
+            self.setCurrentIndex(self._currentIndex - 1)
         elif index == self.currentIndex():
             if index > 0:
-                self._onItemClicked(self._currentIndex - 1)
+                self.setCurrentIndex(self._currentIndex - 1)
             else:
-                self.setCurrentIndex(0)
+                self.setText(self.itemText(0))
                 self.currentTextChanged.emit(self.currentText())
                 self.currentIndexChanged.emit(0)
 
@@ -270,7 +270,7 @@ class ComboBoxBase(QObject):
         self.items.insert(index, item)
 
         if index <= self.currentIndex():
-            self._onItemClicked(self.currentIndex() + 1)
+            self.setCurrentIndex(self.currentIndex() + 1)
 
     def insertItems(self, index: int, texts: Iterable[str]):
         """ Inserts items into the combobox, starting at the index specified. """
@@ -281,7 +281,7 @@ class ComboBoxBase(QObject):
             pos += 1
 
         if index <= self.currentIndex():
-            self._onItemClicked(self.currentIndex() + pos - index)
+            self.setCurrentIndex(self.currentIndex() + pos - index)
 
     def setMaxVisibleItems(self, num: int):
         self._maxVisibleItems = num
@@ -334,7 +334,7 @@ class ComboBoxBase(QObject):
         hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
         pu = self.mapToGlobal(QPoint(x, 0))
-        hu = menu.view.heightForAnimation(pd, MenuAnimationType.PULL_UP)
+        hu = menu.view.heightForAnimation(pu, MenuAnimationType.PULL_UP)
 
         if hd >= hu:
             menu.view.adjustSize(pd, MenuAnimationType.DROP_DOWN)
@@ -424,7 +424,7 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         self.hBoxLayout.addWidget(self.dropButton, 0, Qt.AlignmentFlag.AlignRight)
 
         self.dropButton.clicked.connect(self._toggleComboMenu)
-        self.textEdited.connect(self._onTextEdited)
+        self.textChanged.connect(self._onComboTextChanged)
         self.returnPressed.connect(self._onReturnPressed)
 
         self.clearButton.disconnect()
@@ -443,12 +443,16 @@ class EditableComboBox(LineEdit, ComboBoxBase):
         return self.text()
 
     def setCurrentIndex(self, index: int):
+        if index >= self.count() or index == self.currentIndex():
+            return
+
         if index < 0:
             self._currentIndex = -1
             self.setText("")
             self.setPlaceholderText(self._placeholderText)
         else:
-            super().setCurrentIndex(index)
+            self._currentIndex = index
+            self.setText(self.items[index].text)
 
     def clear(self):
         ComboBoxBase.clear(self)
@@ -469,7 +473,7 @@ class EditableComboBox(LineEdit, ComboBoxBase):
             self.addItem(self.text())
             self.setCurrentIndex(self.count() - 1)
 
-    def _onTextEdited(self, text: str):
+    def _onComboTextChanged(self, text: str):
         self._currentIndex = -1
         self.currentTextChanged.emit(text)
 

@@ -34,7 +34,7 @@
 
 
 ## 安装📥
-安装轻量版 (`AcrylicLabel` 不可用)：
+安装轻量版 (亚克力组件不可用)：
 ```shell
 pip install PyQt6-Fluent-Widgets -i https://pypi.org/simple/
 ```
@@ -43,7 +43,10 @@ pip install PyQt6-Fluent-Widgets -i https://pypi.org/simple/
 pip install "PyQt6-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
-如果项目中使用的是 PySide2、PySide6 或者 PyQt5，可以在[PySide2](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2)、[PySide6](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide6) 和 [master](https://github.com/zhiyiYo/PyQt-Fluent-Widgets) 分支下载对应的代码。
+
+[商用高级版](https://qfluentwidgets.com/zh/pages/pro) 组件库包含更多组件，可从 [发行页面](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) 下载体验编译好的示例程序 `PyQt-Fluent-Widgets-Pro-Gallery.zip`。
+
+C++ QFluentWidgets 组件库非开源，可从 [发行页面](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) 下载体验编译好的示例程序 `C++_QFluentWidgets.zip`，价格见 [官网](https://qfluentwidgets.com/zh/price)。
 
 > **Warning**
 > 请勿同时安装 PyQt-Fluent-Widgets、PyQt6-Fluent-Widgets、PySide2-Fluent-Widgets 和 PySide6-Fluent-Widgets，因为他们的包名都是 `qfluentwidgets`
