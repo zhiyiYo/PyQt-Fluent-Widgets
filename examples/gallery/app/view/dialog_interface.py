@@ -89,6 +89,7 @@ class DialogInterface(GalleryInterface):
         content = self.tr(
             "If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.")
         w = Dialog(title, content, self.window())
+        w.setContentCopyable(True)
         if w.exec():
             print('Yes button is pressed')
         else:
@@ -99,6 +100,7 @@ class DialogInterface(GalleryInterface):
         content = self.tr(
             "If the content of the message box is veeeeeeeeeeeeeeeeeeeeeeeeeery long, it will automatically wrap like this.")
         w = MessageBox(title, content, self.window())
+        w.setContentCopyable(True)
         if w.exec():
             print('Yes button is pressed')
         else:

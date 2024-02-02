@@ -31,6 +31,11 @@ QLabel#contentLabel {
     padding: 0;
 }
 
+QLabel:disabled,
+QLabel#contentLabel:disabled {
+    color: rgba(0, 0, 0, 0.36);
+}
+
 FolderItem>QLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
 }

@@ -8,11 +8,11 @@ online at https://qfluentwidgets.com.
 
 Examples are available at https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2/examples.
 
-:copyright: (c) 2023 by zhiyiYo.
-:license: GPLv3, see LICENSE for more details.
+:copyright: (c) 2021 by zhiyiYo.
+:license: GPLv3 for non-commercial project, see README for more details.
 """
 
-__version__ = "1.4.7"
+__version__ = "1.5.0"
 __author__ = "zhiyiYo"
 
 from .components import *

@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PySide2-Fluent-Widgets",
-    version="1.4.7",
+    version="1.5.0",
     keywords="pyside2 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -14,7 +14,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     license="GPLv3",
-    url="https://github.com/zhiyiYo/PyQt-Fluent-Widgets/tree/PySide2",
+    url="https://qfluentwidgets.com",
     packages=setuptools.find_packages(),
     install_requires=[
         "PySide2>=5.15.0",

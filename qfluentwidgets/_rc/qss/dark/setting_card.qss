@@ -16,6 +16,12 @@ RangeSettingCard > QLabel#valueLabel{
     color: rgb(159, 159, 159);
 }
 
+QLabel:disabled,
+QLabel#contentLabel:disabled,
+RangeSettingCard>QLabel#valueLabel:disabled {
+    color: rgba(255, 255, 255, 0.36);
+}
+
 
 QPushButton {
     background: rgba(255, 255, 255, 0.0605);

@@ -45,9 +45,9 @@ pip install "PySide2-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
 
 
-The [Pro version](https://qfluentwidgets.com/pages/pro) library contains more advance components. You can download `PySide6-Fluent-Widgets-Pro-Gallery.7z` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) for preview purposes.
+The [Pro version](https://qfluentwidgets.com/pages/pro) library contains more advance components. You can download `PyQt-Fluent-Widgets-Pro-Gallery.zip` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) for preview purposes.
 
-C++ QFluentWidgets require purchasing a license from the [official website](https://qfluentwidgets.com/price) and contact [shokokawaii@foxmail.com](mailto:shokokawaii@foxmail.com) to retrieve the library. You can also download the compiled demo `QFluentWidgets_v*.*.*.zip` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases).
+C++ QFluentWidgets require purchasing a license from the [official website](https://qfluentwidgets.com/price). You can also download the compiled demo `C++_QFluentWidgets.zip` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases).
 
 > **Warning**
 > Don't install PyQt-Fluent-Widgets, PyQt6-Fluent-Widgets, PySide2-Fluent-Widgets and PySide6-Fluent-Widgets at the same time, because their package names are all `qfluentwidgets`.

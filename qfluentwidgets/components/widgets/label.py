@@ -14,6 +14,7 @@ from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
 from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet, setCustomStyleSheet
 from ...common.config import qconfig, isDarkTheme
+from .menu import LabelContextMenu
 
 
 class PixmapLabel(QLabel):
@@ -67,6 +68,8 @@ class FluentLabelBase(QLabel):
         self.setFont(self.getFont())
         self.setTextColor()
         qconfig.themeChanged.connect(lambda: self.setTextColor(self.lightColor, self.darkColor))
+
+        self.customContextMenuRequested.connect(self._onContextMenuRequested)
         return self
 
     def getFont(self):
@@ -136,6 +139,10 @@ class FluentLabelBase(QLabel):
         font.setStyle()
         font.setUnderline(isUnderline)
         self.setFont(font)
+
+    def _onContextMenuRequested(self, pos):
+        menu = LabelContextMenu(parent=self)
+        menu.exec(self.mapToGlobal(pos))
 
 
 class CaptionLabel(FluentLabelBase):

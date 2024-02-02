@@ -317,6 +317,17 @@
     </message>
 </context>
 <context>
+    <name>LabelContextMenu</name>
+    <message>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全选</translation>
+    </message>
+</context>
+<context>
     <name>PipsPager</name>
     <message>
         <source>Next Page</source>

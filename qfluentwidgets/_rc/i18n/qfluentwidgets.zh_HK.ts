@@ -145,6 +145,17 @@
     </message>
 </context>
 <context>
+    <name>MessageBoxBase</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
     <name>VolumeView</name>
     <message>
         <source>Unmute</source>
@@ -299,6 +310,17 @@
     <message>
         <source>Cancel</source>
         <translation>撤回</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>LabelContextMenu</name>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
     </message>
     <message>
         <source>Select all</source>
