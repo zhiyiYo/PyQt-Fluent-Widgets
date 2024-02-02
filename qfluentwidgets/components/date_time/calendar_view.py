@@ -490,6 +490,7 @@ class DayScrollView(ScrollViewBase):
         self.vScrollBar.scrollTo(y)
 
         self.delegate.setRange(*self.currentPageRange())
+        self.pageChanged.emit(page)
 
     def currentPageRange(self):
         date = self._pageToDate()
