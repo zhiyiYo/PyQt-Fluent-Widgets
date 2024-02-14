@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,266 +21,311 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:2
-#: b828595598134b0994872cf9861472b6
+#: 936caf40d2134342b416ef72915b5f31
 msgid "navigation_widget"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:8
-#: 825e47cefbaf463c9f9bdf8b100d31bf
+#: b7d09231991d4ad0a968e0efb955bb43
 msgid "Module Contents"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: eeeef63e0bb3480eb907f874454472f0
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 30d1162bf37745cba7bce4591440b6be
 msgid ""
 ":py:obj:`NavigationWidget "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:30
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 060a1ae46862419bb8755151f223f5de 3655196a18cb4c36bb1e0533712a8258
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 8805d3193c4a42eaab1cd3c5ff92f3b3 a349deeb15a64d9fa1c0adaaaf532012
 msgid "Navigation widget"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 1d852a689492445eb00ff29a62b9c4fe
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: f04c17d0d3eb4c2b8cbeab6ca1d9d4f0
 msgid ""
 ":py:obj:`NavigationPushButton "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationPushButton>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:76
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: ca513b5f8dfd4cf1996b6eac7ddf348b d7c7ee68cf47415cb36ef7c3e39f1b77
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 3c1408dc992b437db89f3acd6e9b11dc 51eaf48362b3441daf30114e07e2d616
 msgid "Navigation push button"
 msgstr "导航按钮"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: f67ccb101475494e866d9dddf4c5ba7f
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: b100240e603a4010b2f6e49dd82f5cfb
 msgid ""
 ":py:obj:`NavigationToolButton "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationToolButton>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:98
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 91044d1bc0df4f80828a0647569ebad9 ef1d7a2f96cb40e797851e9747b21844
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:104
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: aa2a6c1c8ca54afabcdac0fc1fcad797 e6873ac6c89345048f0dd5211c8ea95b
 msgid "Navigation tool button"
 msgstr "导航工具按钮"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 70658b9f487f4588b661f5efdf3c028c
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: d36c01df07464b3d8a47e9dd3d07ca37
 msgid ""
 ":py:obj:`NavigationSeparator "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationSeparator>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:110
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 2429f7329d6643f6862af3f9ecf824dc 6f16b1adf49a4bd8845da5421ebef298
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 6523fbca837a41ea9912e43f48097b61 ed17799e4ff747c69247c4824cee4179
 msgid "Navigation Separator"
 msgstr "导航分隔符"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 0011ae427c2f4794a762fbd9a7b9453d
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: db5d7ee6ad3649a488afd39e8684bd57
 msgid ""
 ":py:obj:`NavigationTreeItem "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationTreeItem>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:125
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: ae511c1005314d619d16f2e83da8ae38 e1e7c2ca3b7d449da725e26222399a7f
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:131
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 25be5bf8f490430ab592f3d4cbefe7a3 c77a73e326974cbfa3b7682d711ea3a2
 #, fuzzy
 msgid "Navigation tree item widget"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 86ad5ec91f04419bb1f704f2ddbcef4f
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 066234462545437eb5ebdf45d39bdbcb
 msgid ""
 ":py:obj:`NavigationTreeWidgetBase "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationTreeWidgetBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:155
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 12126d98df4b4da299bf7c6ce8b357ac 896600af86a846d2847725331f1ad481
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:161
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 56f335cb46204ea6a820a1593adfef21 93a4b213108f4089b23aa102b974ce87
 #, fuzzy
 msgid "Navigation tree widget base class"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 9f64e31b48d94e609ceb99e081230ba7
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 736be6499a7f4f9d9024a5482dddd694
 msgid ""
 ":py:obj:`NavigationTreeWidget "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationTreeWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:222
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 41c0bf3ae86e4686b65a5a220d08641f c3cacaf5f5e04969ba6db8973f9b00c4
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:228
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 510d8c073dc44bd79c49dfd2ddcbfb20 86028d94956f4240bd08fd4873afee50
 #, fuzzy
 msgid "Navigation tree widget"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 50ae9ffc4c25484eb3bde87c4fc2b9ad
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 71730c22b78d4fe0b6b00608f8c8e51b
 msgid ""
 ":py:obj:`NavigationAvatarWidget "
 "<qfluentwidgets.components.navigation.navigation_widget.NavigationAvatarWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:312
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:25:<autosummary>:1
-#: 6bca2c9470134148aa6cc3bce9817860 d8fa655c28064973986639e0c0d3ca09
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:328
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 205086654dc84c3a9670628380d4b420 6de35562a25949639be8e16e92096d6d
 #, fuzzy
 msgid "Avatar widget"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:28
-#: d0938d51abae4cdf904c69112d3fac16
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 93b15e43066142c4a0502d51660bbcfb
+msgid ""
+":py:obj:`NavigationItemInfoBadgeManager "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationItemInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:344
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 3932519e7b604a058aaf55d9f6512115 860e46cdf33f416fb48bafb1e0ffffc5
+#, fuzzy
+msgid "Navigation item info badge manager"
+msgstr "导航小部件基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 8801e91cdb854f7192a7366153ae88fa
+msgid ""
+":py:obj:`NavigationFlyoutMenu "
+"<qfluentwidgets.components.navigation.navigation_widget.NavigationFlyoutMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:359
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:27:<autosummary>:1
+#: 977f4d26606448c2a709395e82490589 dc76a76e29d144d989625e8c2d78c449
+#, fuzzy
+msgid "Navigation flyout menu"
+msgstr "导航工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:30
+#: f43e41c840a541bba68283f2e205e0c2
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:58
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:102
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:114
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:304
-#: 1ae78cd3acde4a4d9d7a0240ed00ec45 62ccb369a2304cd6ad3e77e24895fc04
-#: 7ea70ecd261945de9293b0313533c4de e6b0b6b219e7473a8c0e4051ef663393
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:64
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:108
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:120
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:320
+#: 1e4bb537ba0744e9a6e46e496dce2947 4084e4c66db84f7eb1283c776e13524e
+#: 8aefd907cf5e4583bb5040d1e71e833a b5e23d9d1c954a3e9b8ff4ebc91197e4
 msgid "set whether the widget is compacted"
 msgstr "设置小部件是否被折叠"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:63
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:291
-#: 80e6e7f17f2745318fdc46d6c6ca0b82 fd560f4992ea485eb1e82afdd3912d1e
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:69
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:307
+#: 0eee7a6781184d778eb931fb1b419e04 644ab918142d4a49a06f8b2920572243
 msgid "set whether the button is selected"
 msgstr "设置是否被选中"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:66
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:163
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:174
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:185
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:206
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:229
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:254
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:264
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:294
-#: 03c9c4f02ce04b828ad15f7ddced05d0 0af8788f3c0548b097432b00bb4d3839
-#: 17358717f5544f2f8bbe26ed745bc03d 554c95743d2f4d8f9f408d6c6770c8a5
-#: 63a3f876cefb4f6b98cd83b9a235b5c2 6988d5ddc6b84d89818f05696abc8990
-#: 737a3cb61cce42289f438ffdba7f7586 c315bd6fe2f541e99ef2e7c6f7fce213
-#: f96b721190384d5889f6da42c113aafa
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:169
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:180
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:191
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:239
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:270
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:280
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:310
+#: 0dc014afa481425f96295802733ba163 1a2d28b24f894b109bc87e1c1a6437ab
+#: 1d1407c6d69147f0aaa351018a53e73e 974a1ed71c074965ab74d45091983b83
+#: 991b8e31d889426a857ae4fa6c9932ae a1c9bfc14da9420f9e138b4b22c110f4
+#: b3b821dd23e64c8989caba3889404d0b bcf5b93440e046d6bdb14c918451cbbb
+#: fc41c0291f7a46059f3b14f7e3f6c064
 msgid "Parameters"
 msgstr "参数"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:67
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:295
-#: 0f0a530048474007b8145cb1a4d37d46 efe65f82b71a49a4a4110259675e72cb
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:73
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:311
+#: be9d1a8464ad4087b2ece9de49d0ae64 f33a9dff6c6a4401b54854c8e9d87d5c
 msgid "isSelected: bool"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:68
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:296
-#: 3f7e537ceb6943adae073fa1f2f60799 63657d15b97b4deb85cdde7d681b1a60
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:312
+#: 5260eb6d68774241b2ecfce56ef73592 b39082441cf742ed85eed12458a7bbba
 msgid "whether the button is selected"
 msgstr "是否被选中"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:74
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:108
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:153
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:310
-#: 01df55d910534ce1983a873e11fecabf 4421483225714144a08e848acf55bc46
-#: 53dd1e8145674520a0048667967b3028 e00f5df2e46b48358b5ff280b088fd73
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:326
+#: 455f4b34627d48c18c49955a947b44c2 69179ade97e1429bbd4f25498df14edf
+#: 7854d43f365c4af282a30c300aac2037 fe9b4facdb0b488693e89b61fdc0dcb8
 msgid "Bases: :py:obj:`NavigationWidget`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:96
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:123
-#: bc800e59d857412db17865483eca1831 e54ff963c1f645648be01e10cc208542
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:129
+#: 6cc63346c8a74fe5aee0ba5010995825 e525458ec4cb4783ac1a1df84a263037
 msgid "Bases: :py:obj:`NavigationPushButton`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:160
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:226
-#: 020b894a07074664ab6ca4f647d70724 c34a2b3589f740e69764cf34b3adf04b
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:166
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:236
+#: 0097b1764f21442ca41bc6da07983f60 4542670b4a714fda821adc3faf2682ad
 msgid "add child"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:164
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:175
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:186
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:230
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:255
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:265
-#: 0cbfa017f88c442aa2f12ff68d7d69b5 4f7f9571e845403cbd051cd92817162a
-#: 715092ca055f40758c4c6d3d280951ea 9d69ea8e22c743a3bb75fe1afafa9e7f
-#: ad1dac34c3dd498891eacc917e5ac660 e49b8729b71046fb8c12ac8a4e2b9fd2
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:170
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:181
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:192
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:271
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:281
+#: 024455984f454e0b90f878cc2abf0a73 0b384d137b0a4407a10b77dad7c88d22
+#: 5b1294c8630e41b9b2d9fa5b942cedf0 c49e5aff49774c89a5bdc9a13c7d53c8
+#: e2e2a5894feb404a808edd762d285fbf f2e9421bc1cb4c3089caa0fa99951a50
 #, fuzzy
 msgid "child: NavigationTreeWidgetBase"
 msgstr "导航小部件基类"
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:165
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:176
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:187
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:231
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:256
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:266
-#: 05d7abc059a8405eb4a2f9d592f373f6 2a97b01d468349d1810e09387d5a6b69
-#: 526d7b35d87e4defba86764db7287911 a7f0009f8d4b4958bbb3c96655cad350
-#: efb1cf227edd4ab1a96d33104ecf58f9 f81c067676214c2bbafdcbfe247bdf07
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:171
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:182
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:193
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:272
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:282
+#: 493a693b67264c8b96c6770970eee698 5fb7aee9041e4dc3bc332bd832d24a33
+#: 6bee1410de734d5e84cb757cd65cc664 7c7813d38ae444c0930a4013e71c6b86
+#: 7d3ca323dd8649f38a12619d511ac225 ae1835c943fc4ae5b35af3ec62e1e77c
 msgid "child item"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:171
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:251
-#: 419952d894eb4ca099ff70ee2e8681e0 e31b040929ff4e49a787a8b92f2de289
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:177
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:267
+#: 09644a3580b64e0eb7b7b1878c9a4127 e09b9d7bef964bba939ed23ef2ea04a7
 msgid "insert child"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:182
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:261
-#: 5a7049b8224a43749183bf02bac165ca b121376395b347cc9d0c6c1d24c1675f
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:188
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:277
+#: c13206305c76444a92b2e44e4e7888b7 ca8af2b89e904067bf7823a2f37c48df
 msgid "remove child"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:192
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:281
-#: 90dbf8c9438245dcb4f372fe223521e2 d16e4f643b1640d09c31ac3390f6df4f
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:198
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:297
+#: 85b5440a9502465b81f1cc88867d198e eddebdf746464ac7836fe5db7f128558
 msgid "is root node"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:197
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:286
-#: 4e6cacbbef6747a2ac2b975ed8f0455e d64df8b006544bc9b6aa994f5d76b7ba
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:203
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:302
+#: 6c539d5059b045119da3ae01652848dd a8856c9f6bf848d48a60d1b0ddfb0d5c
 msgid "is leaf node"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:203
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:276
-#: 1aa4574c4307479db7a00fd17e31bc34 8d71c1afb330489a95b8b4c7b1411c34
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:209
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:292
+#: 2a7f4dc2495b4907ab9c3d18b3f3f75b 833209f337354ea3b5b04b28ffd41542
 msgid "set the expanded status"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:207
-#: 0a1ee6d64b3348ba8cc8f874b09dc20e
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:213
+#: b8925b6b2760415ea5d272f1deadf45f
 msgid "isExpanded: bool"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:208
-#: d80801516e944b98b8d0100927564b69
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:214
+#: 066830652f914ef5927593a9ae1696e5
 msgid "whether to expand node"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:214
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:271
-#: 25fac76c2ddf4dc9a79536697af8c528 78800029917346bb960343edc3057cd7
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:220
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:287
+#: 40ea46eee96d4bfa8dac418eadf53db7 86bc5657abd249b1a9512c7d9cee425c
 msgid "return child items"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:220
-#: 5c02af972bba4cab834bac0f32f004cc
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:226
+#: 6338d0c980be4354a1756850fac7c6ba
 msgid "Bases: :py:obj:`NavigationTreeWidgetBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:342
+#: a6b5ce4eddc0427d921d3a5571c7a27b
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.info_badge.InfoBadgeManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:351
+#: df32344190f64c3ab288f066d1a76e86
+msgid "return the position of info badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_widget/index.rst:357
+#: 049151bcbd9f4240846a44da5897026a
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.scroll_area.ScrollArea`"
 msgstr ""
 

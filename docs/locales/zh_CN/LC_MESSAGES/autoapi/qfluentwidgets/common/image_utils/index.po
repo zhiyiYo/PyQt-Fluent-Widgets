@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,77 +21,96 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:2
-#: 238d1e78c9f64fcdb882aabca805be90
+#: 5d19e17628524df48a9cb7f96c0fd00a
 msgid "image_utils"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:8
-#: 1639dfc19f114fbdb6c8039f2864ff56
+#: afef364212c94d1a9c646f0ed0b60aa1
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
-#: 31ccd17888644086a9e92d2a3f8e62c7
+#: 1550453d4a354f27a95b0316ac7ff5ec
 msgid ""
 ":py:obj:`DominantColor "
 "<qfluentwidgets.common.image_utils.DominantColor>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:31
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:37
 #: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
-#: 34b715fc91bb4f2095d92f97f446022e bc611e871e584bfb88f95e285d3c75f9
+#: 157d1c22276842a6b95ccb4e28278505 3bf4f372a8554b77a3b74516c39c8fbe
 msgid "Dominant color class"
 msgstr "主题色类"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:25:<autosummary>:1
-#: 8b97845e109d49ef8dddff6bdc64d389
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: 6d7593741b314ddfbdd48932d24ef89a
 msgid ""
 ":py:obj:`gaussianBlur <qfluentwidgets.common.image_utils.gaussianBlur>`\\"
 " \\(image\\[\\, blurRadius\\, brightFactor\\, ...\\]\\)"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:36
-#: dd3977cedfe0443b8a50fcc2e01863f1
-msgid "extract dominant color from image"
-msgstr "提取图片的主题色"
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: ac4c114310ad4ff88c8b75d86e21c6ba
+msgid ""
+":py:obj:`fromqpixmap <qfluentwidgets.common.image_utils.fromqpixmap>`\\ "
+"\\(im\\)"
+msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:39
-#: c481895639e7494fa412b482a9ae6af1
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>
+#: bf7a7892f8e54da0ace681e8637475ce
+msgid "param im"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: bcf776b1938c4766bcfd7d5c01f2e56f f19b6977b6664d54bbe9dcbe456fea71
+msgid "QImage or PIL ImageQt object"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:45
+#: 257f6d3d4fec41a995d1ceab57e24f92 3a023afacd9a4f3f8b58eef5c7528c8a
 msgid "Parameters"
 msgstr "参数"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:41
-#: 86831ef3f4994ae081189f085d740217
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:42
+#: 1f9d160b5eae44a9a23c4d9aeeac4217
+msgid "extract dominant color from image"
+msgstr "提取图片的主题色"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:47
+#: a488bce459a548bf9b011083b099b522
 msgid "imagePath: str"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:41
-#: 97f6a2b28feb4b1bb11d163329b35168
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:47
+#: 05c6d63007eb4d709f77831220eb7216
 msgid "image path"
 msgstr "图像路径"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:44
-#: a8f6a8fb366a47c6bab7dd9b645cd24c
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:50
+#: 073ce032eb85478882f84f91d633840f
 msgid "Returns"
 msgstr "返回值"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:45
-#: baf442233f90417c8993dd6c8fece1b6
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:51
+#: 22dc1f81dda14dcab115dadf8c50a496
 msgid "r, g, b: int"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:46
-#: e20a1ab11f2c44519706485ac38f331e
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:52
+#: 2da734e559db44c0ad272abf4729417a
 msgid "gray value of each color channel"
 msgstr "各个通道的灰度值"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:52
-#: 89b0cfe2d70f4fea9114f654b5d2793f
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:58
+#: df43537176ab4d6b9adba8c9e5776d03
 msgid "convert rgb to hsv"
 msgstr "将 rgb 转换为 hsv"
 
-#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:58
-#: ff7513ce2f7f4f8a955053726b39d74d
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:64
+#: 5b62c50a04794ea6a8dc953dffc32341
 msgid "convert hsv to rgb"
 msgstr "将 hsv 转换为 rgb"
 

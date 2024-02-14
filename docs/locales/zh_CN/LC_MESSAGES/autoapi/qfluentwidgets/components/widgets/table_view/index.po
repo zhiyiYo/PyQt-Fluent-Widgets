@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-10 23:18+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,24 +21,24 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:2
-#: e1ad7bf410da494c8f5c21577c27e210
+#: 7502acf540b0465eb42305881bb7c3ac
 msgid "table_view"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:8
-#: 2863c7111b9a47a79a9f46d21263b8a6
+#: ba50dbe8ced847c1a6c2eaad5f7d9d50
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 634b0efd833340749ab79f8c663b86c7
+#: b976efa175ca43fd8696a2ba7b309250
 msgid ""
 ":py:obj:`TableItemDelegate "
 "<qfluentwidgets.components.widgets.table_view.TableItemDelegate>`\\"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 50169e98cdf6465ab73bbf1391a13909
+#: 2cf417cc8d1d416f8f35a9d80ae89efa
 msgid ""
 ":py:obj:`TableBase "
 "<qfluentwidgets.components.widgets.table_view.TableBase>`\\"
@@ -46,48 +46,58 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:53
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 750dce21d50c4292949c13b8c7b6dc5b bceaa74bb20a4f9e98ec0d800e5ecbe5
+#: 485c9128aa45402b802e8b9fabdde861 e69deb43025e498996b2c321e1e3e6a0
 msgid "Table base class"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 382cd4cfa2cc47668f18f1709f0a1bc1
+#: 1066f12e67cb4b338829c1f1951330b9
 msgid ""
 ":py:obj:`TableWidget "
 "<qfluentwidgets.components.widgets.table_view.TableWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:96
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:106
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 2c9b09b114cb4e41b611cb53daa669da 565121224ac149eba8a7464826bcd310
+#: 1d02806cda38427f97ca73e3646940f7 856961bdd52f41b5b594c14b4db80f76
 msgid "Table widget"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: 2a482c9b25554367a98c89b2158b889f
+#: 476a724509924558875e08b74229b551
 msgid ""
 ":py:obj:`TableView "
 "<qfluentwidgets.components.widgets.table_view.TableView>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:129
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
-#: e442a9b886674537ac9dc8ec69cdb0ab e903031324be4dfd980ea7d7518befce
+#: c20aa54b146a4289b417e1afde5286f6 d28eba95088b45f4b95af3aaa00e0bf8
 msgid "Table view"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:24
-#: 40dceeb0aa0e4b43a92f1da5af47c64e
+#: e7e183a4f38341beaaaa01a15b2401b4
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:94
-#: 678d7139fac944109c5088f3a5293e61
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:60
+#: 31114c1afd414bc788f0bc07f676b220
+msgid "set the visibility of border"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:65
+#: 24352c9394284234b827484a3fe994b3
+msgid "set the radius of border"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:104
+#: 29f902cfc24443e3ac7d48135f960602
 msgid "Bases: :py:obj:`TableBase`, :py:obj:`PyQt5.QtWidgets.QTableWidget`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:107
-#: 438baa3912ab47f58b003918e701634a
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:127
+#: 4716e129a4c34db8bf72eea3055e558f
 msgid "Bases: :py:obj:`TableBase`, :py:obj:`PyQt5.QtWidgets.QTableView`"
 msgstr ""
 
