@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,17 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:2
-#: 36daee4a76d8461081d6f6ea7c07f100
+#: 465f146b440d4a4695e4874ad1edb9d5
 msgid "progress_ring"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:8
-#: c57b186cc7624eb78c6e7dbbb08dbe25
+#: 02950221919245df8f64066daafb065c
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:19:<autosummary>:1
-#: d1821644e0764d7aab51947044fc0c1e
+#: 048fef034e414868a411f12166cb2ec0
 msgid ""
 ":py:obj:`ProgressRing "
 "<qfluentwidgets.components.widgets.progress_ring.ProgressRing>`\\"
@@ -39,12 +39,12 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:24
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:19:<autosummary>:1
-#: 0507ec5118cb4f7f9266a627127312f5 75a57a4f7c2846e8afc674b2ecc250ab
+#: ba1bfe9a7695493d91d617d20f43610e ffb81b6ff7dc4eefb0a0d79677c9859f
 msgid "Progress ring"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:19:<autosummary>:1
-#: 532adc829cad42eba77a6dfc6f03fe69
+#: 1f126f01bb4f4a9886741169bcb1b00a
 msgid ""
 ":py:obj:`IndeterminateProgressRing "
 "<qfluentwidgets.components.widgets.progress_ring.IndeterminateProgressRing>`\\"
@@ -52,49 +52,61 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:44
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:19:<autosummary>:1
-#: 17922d8a0e564ce09d5f67e0b08d939c 9166e900f1d9476c903da5614b522a4b
+#: 6162cfe793c9412bab679c0a3e446e26 c1f0d6bfad70499ab41be754ccf00622
 msgid "Indeterminate progress ring"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:22
-#: ace52ccdcb524779a78f5b39c2ce33ee
+#: dee4958ae3ce4f4bae9561619453599e
 msgid ""
 "Bases: "
 ":py:obj:`qfluentwidgets.components.widgets.progress_bar.ProgressBar`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:42
-#: 1e8329c37e8341b49018063283acff34
+#: 717649985c324e558360dddff2f9032e
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QProgressBar`"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:64
-#: e0d22a003cea493999172c371c3438a8
+#: 3bf1c68b0e3e49b3a303136b21a1a5f1
 msgid "start spin"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:69
-#: 58c88b4742814b4da3448c36ca6ff3fa
+#: 9234a5fedc164a3883ce299c793b7ad4
 msgid "stop spin"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:74
-#: 5a4a829d8a0349e8ba563315e16dd828
-msgid "set the custom background color"
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:80
+#: 29516639ce6c431aa1a1ead63b16eb3f
+msgid "set the custom bar color"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:77
-#: 1d04948e70ea4980be0e5ba0daf5f784
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:93
+#: 0c82311d73294d679b6cdd3db4420d56 1d081450fc774437a8b25ceee4a248fa
 msgid "Parameters"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:78
-#: c01905b29c1f4ed6a041606edee51fc2
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:84
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:94
+#: 3c64ab85401c4b4a9170d82f5056d86d 6c491e31fc1d4cb6960a7d6a166d7bd4
 msgid "light, dark: str | Qt.GlobalColor | QColor"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:79
-#: 6f4876ee9f604cdcb6ac8572695aa89a
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:85
+#: 8f427e3b0ed44b07b52432ba9d8e187c
+msgid "bar color in light/dark theme mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:90
+#: cd58170e3bc842f6a0add2afb24350f0
+msgid "set the custom background color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/progress_ring/index.rst:95
+#: 07b1ad63a36842a293630aa865c7f565
 msgid "background color in light/dark theme mode"
 msgstr ""
 

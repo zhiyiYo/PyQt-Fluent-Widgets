@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,17 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:2
-#: e3a763c971b3449e9d2183b2a030c4c0
+#: d1c957cf64b34c7ebc66636d2be1fd9d
 msgid "dialog"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:8
-#: d87551abd1cd4a449587dbdb1f71f42c
+#: 0a3fa5d41c1f4166b99f55eccf8da5ea
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 1d6f8c0518694b3084a4c914f623d889
+#: 9bee48eddc3f44c98a135914d4cfeb67
 msgid ""
 ":py:obj:`Ui_MessageBox "
 "<qfluentwidgets.components.dialog_box.dialog.Ui_MessageBox>`\\"
@@ -39,41 +39,46 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:23
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 5062283c13af44c8adb73e88a3d8fd96 cf36129c32bf49cc84e16b952583647f
+#: ab45e343d21943deb0322ef526a08ecd d505ced080644f9498a978accf79f5f7
 msgid "Ui of message box"
 msgstr "消息框的 Ui 类"
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 5a845e9f368641cc9204d489c251da2b
+#: 801f59775591435297981401df2a3411
 msgid ":py:obj:`Dialog <qfluentwidgets.components.dialog_box.dialog.Dialog>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:38
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:43
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 8c023d35676b4f81b679390f423a23ff 9001364cb2d54a2b81c4794a9570fe8a
+#: 5a8252abe1c443e48cebc8952398d188 b09e0d7008074968a2dec6f457a4b7fb
 msgid "Dialog box"
 msgstr "无边框消息框"
 
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 389f6aae75894c589c3f5ecb2a55dcbe
+#: b1dde6c2ed5e475d83ff3e7105347eff
 msgid ""
 ":py:obj:`MessageBox "
 "<qfluentwidgets.components.dialog_box.dialog.MessageBox>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:61
 #: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:20:<autosummary>:1
-#: 194fcad05c7e4fa58d83c65cfe68a5aa f12a686e07764535b1cd524480b07698
+#: 4120f2c271d34980b2d41a1409f5d070 9a8363a1367842b0a9752bd2753679a2
 msgid "Message box"
 msgstr "带遮罩的消息框"
 
-#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:36
-#: b06e9e3ff4be488b85e5fe76250430f1
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:35
+#: f99a38e5672044d8986a85422227f7cd
+msgid "set whether the content is copyable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:41
+#: cad449b2f8ac48278ae12d7dd225a2c8
 msgid "Bases: :py:obj:`qframelesswindow.FramelessDialog`, :py:obj:`Ui_MessageBox`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:54
-#: 72aee272983147a9b1a340e116ac2ac8
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/dialog/index.rst:59
+#: 4ae872b2ce1c416b8ec6242d0913d7a5
 msgid ""
 "Bases: "
 ":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`,"

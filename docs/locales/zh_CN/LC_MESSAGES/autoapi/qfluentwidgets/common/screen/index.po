@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:2
+#: 5cbc41558be84815afd78c68d42f57f1
+msgid "screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:8
+#: cdfd877627da44a3aed7890115f1f7f5
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:19:<autosummary>:1
+#: b58daf2b841b4f67aef498b4ffdac276
+msgid ""
+":py:obj:`getCurrentScreen "
+"<qfluentwidgets.common.screen.getCurrentScreen>`\\ \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:22
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:19:<autosummary>:1
+#: 537950fc0a7e485ca72a24c85031621a c96fe63ba32d42f5b7b310960aab68f6
+msgid "get current screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:19:<autosummary>:1
+#: 642ab5a36d3b4b67aa2e1c1caf37dc1e
+msgid ""
+":py:obj:`getCurrentScreenGeometry "
+"<qfluentwidgets.common.screen.getCurrentScreenGeometry>`\\ "
+"\\(\\[avaliable\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/common/screen/index.rst:19:<autosummary>:1
+#: 766a955c0bdb4b369bdc0515447bd04e a9fd07381e8c4d4d96f70a5c2b1284da
+msgid "get current screen geometry"
+msgstr ""
+

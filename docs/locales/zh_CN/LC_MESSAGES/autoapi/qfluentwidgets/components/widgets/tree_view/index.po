@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyQt-Fluent-Widgets \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,17 +21,17 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:2
-#: f07db4f0a8674cbfb9eca931fc5c07e7
+#: 2d2db8c2fa65466891ca5bb2e8ef22e8
 msgid "tree_view"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:8
-#: 2c0dad1607fc4f9c87cc6c51b691017e
+#: a7d471b4d6f94c9c8d1cd72a0b22c460
 msgid "Module Contents"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: b8de3ba320b64512bdebb118dc655f00
+#: 9b967b5121f148a3a6cbbc56d3c09c0b
 msgid ""
 ":py:obj:`TreeItemDelegate "
 "<qfluentwidgets.components.widgets.tree_view.TreeItemDelegate>`\\"
@@ -39,61 +39,71 @@ msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:26
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: 5c290ae1822a4fa1b97c416bca34cd34 f91107e009a443a2ae511da8d664c4ae
+#: 7becdb6ee9fa41a186e5be297ef450ed af0ea335ca1b4d969b23a330f3e33bc0
 msgid "Tree item delegate"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: f6c94d4f9e714719abf4c9073ac61212
+#: 9b7dc92644a94ac1a4bd2a2903c13d84
 msgid ""
 ":py:obj:`TreeViewBase "
 "<qfluentwidgets.components.widgets.tree_view.TreeViewBase>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:37
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: f91107e009a443a2ae511da8d664c4ae
+#: 387afd7925394b8d9ba3436f911368e7 57174e1627764661977e63847018e556
 msgid "Tree view base class"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: e1b64a52e1754968947f294be7197587
+#: d8562ce76dd34cd5b5c55bd96d95a01e
 msgid ""
 ":py:obj:`TreeWidget "
 "<qfluentwidgets.components.widgets.tree_view.TreeWidget>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:57
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: 92fef19293d1428797d35613b445cff4
+#: 7dcc38a7b49c4ee182c2cd4b60f2cd21 b58e1932dc2e420596ef363996aa4e2d
 msgid "Tree widget"
 msgstr "树状部件"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: f6c94d4f9e714719abf4c9073ac61212
+#: d0553fce8e744f719e75e809da897662
 msgid ""
 ":py:obj:`TreeView "
 "<qfluentwidgets.components.widgets.tree_view.TreeView>`\\"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:51
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:64
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:21:<autosummary>:1
-#: 94fa9a4897814aca8da40f34e5b015de
+#: 633c0d57cb8e41498546fc36b79c6714 cebf5973ec214cd9a9c2cb2a005a014c
 msgid "Tree view"
 msgstr "树状视图"
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:24
-#: 706f72312b5f46efb75f2c42e7739d2d
+#: 4fa9e088a282466e82260085bcb2a8af
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
 msgstr ""
 
-#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:42
-#: 706f72312b5f46efb75f2c42e7739d2d
-msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeWidget`, :py:obj:`TreeViewBase`"
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:44
+#: 8eed2882427d4c6ba6f207d621c86bfb
+msgid "set the visibility of border"
 msgstr ""
 
 #: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:49
-#: 706f72312b5f46efb75f2c42e7739d2d
+#: 805812fa365e4d868ada42d5ce771ac2
+msgid "set the radius of border"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:55
+#: e18e6f1cf61e4d57b9a77837ec72c54e
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeWidget`, :py:obj:`TreeViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tree_view/index.rst:62
+#: 7290ca82849b4b55ba58967c8f80131d
 msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTreeView`, :py:obj:`TreeViewBase`"
 msgstr ""
 
