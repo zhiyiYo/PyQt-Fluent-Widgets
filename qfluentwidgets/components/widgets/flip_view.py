@@ -266,7 +266,7 @@ class FlipView(QListWidget):
         """ add image """
         self.addImages([image])
 
-    def addImages(self, images: List[Union[QImage, QPixmap, str]], target_size: QSize = None):
+    def addImages(self, images: List[Union[QImage, QPixmap, str]], targetSize: QSize = None):
         """ add images """
         if not images:
             return
@@ -275,12 +275,12 @@ class FlipView(QListWidget):
         self.addItems([''] * len(images))
 
         for i in range(N, self.count()):
-            self.setItemImage(i, images[i - N], target_size=target_size)
+            self.setItemImage(i, images[i - N], targetSize=targetSize)
 
         if self.currentIndex() < 0:
             self._currentIndex = 0
 
-    def setItemImage(self, index: int, image: Union[QImage, QPixmap, str], target_size: QSize = None):
+    def setItemImage(self, index: int, image: Union[QImage, QPixmap, str], targetSize: QSize = None):
         """ set the image of specified item """
         if not 0 <= index < self.count():
             return
@@ -294,8 +294,8 @@ class FlipView(QListWidget):
             image = image.toImage()
 
         # Resize the image if target_size is provided
-        if target_size:
-            image = image.scaled(target_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        if targetSize:
+            image = image.scaled(targetSize, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
 
 
         item.setData(Qt.UserRole, image)
