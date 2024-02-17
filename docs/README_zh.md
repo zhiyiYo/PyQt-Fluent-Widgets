@@ -80,13 +80,6 @@ PyQt-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证授权非商用项目，�
 ## 演示视频📽️
 请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PyQt-Fluent-Widgets 的全部组件和特性 🎉
 
-## 搭配 QtDesigner🚀
-可以运行 `python ./tools/designer.py` 来启动安装了 PyQt-Fluent-Widgets 插件的 QtDesigner。如果操作成功，QtDesigner 的侧边栏中将会显示 PyQt-Fluent-Widgets 的组件。对于旧项目的改造，推荐使用 [视频教程](https://www.bilibili.com/video/BV1na4y1V7jH) 中介绍的 `提升为...`。
-
-项目[发行页面](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases) 提供了内置 PyQt-Fluent-Widgets 插件的 QtDesigner，下载并解压 `FluentDesigner_v*.*.*.zip`，双击运行 `designer/designer.exe` 就能启动 QtDesigner。
-
-> **Note**
-> 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
 
 ## 另见👀
 下面是一些基于 PyQt-Fluent-Widgets 的项目：
