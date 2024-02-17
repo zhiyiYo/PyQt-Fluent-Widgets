@@ -37,36 +37,6 @@ Well, the widget is now promoted to fluent push button. But you won't be able to
 Using plugin
 ^^^^^^^^^^^^
 
-1. create a virtual environment, ``conda`` is the recommended way.
-
-
-2. Activate virtual environment and run the following code in shell:
-
-   .. code-block:: sh
-
-      pip install PyQt-Fluent-Widget
-      pip install pyqt5-tools
-
-3. Download the full code from `PyQt-Fluent-Widgets Repo <https://github.com/zhiyiYo/PyQt-Fluent-Widgets>`_.
-
-4. Run ``python ./tools/designer.py`` to launch Qt Designer (You must use this way to launch Qt Designer).
-
-
-If everything goes smoothly, you will see all PyQt-Fluent-Widgets components in the sidebar of Qt Designer.
-If the startup fails or the components of PyQt-Fluent-Widgets cannot be seen, the solution can be found in `#196 <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/196>`_.
-
-You can also download the compiled QtDesigner from `release page <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases>`_. Download and unzip ``FluentDesigner_v*.*.*.zip``, then run ``designer/designer.exe``, you will launch the QtDesigner that has already installed plugins.
-
-.. raw:: html
-
-   <div style="position: relative; padding: 30% 45%;">
-      <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://player.bilibili.com/player.html?cid=1124976209&aid=953381256&page=1&as_wide=1&high_quality=1&danmaku=0" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>
-   </div>
-
-
-The plugin for PySide6 is unstable and may not start QtDesigner successfully. It is recommended to use QtDesigner of PyQt5/6 to generate ui files.
-
-.. note:: PyQt5 must upgrade PyQt5-Frameless-Window to 0.2.7 in order to use the plugin, while PySide6 and PyQt6 do not need to upgrading to frameless packages. PySide2 does not support plugins, but you can use PyQt5's QtDesigner to generate ui files and then compile them into py files using uic.
 
 
 Complex example
