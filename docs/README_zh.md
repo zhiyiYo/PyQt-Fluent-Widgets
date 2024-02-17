@@ -78,11 +78,6 @@ Copyright © 2021 by zhiyiYo.
 ## 演示视频📽️
 请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PySide2-Fluent-Widgets 的全部组件和特性 🎉
 
-## 搭配 QtDesigner🚀
-切换到 PyQt5 分支（PySide2 无法使用插件），运行 `python ./tools/designer.py` 启动安装了 PyQt-Fluent-Widgets 插件的 QtDesigner。如果操作成功，QtDesigner 的侧边栏中将会显示 PyQt-Fluent-Widgets 的组件。对于旧项目的改造，推荐使用 [视频教程](https://www.bilibili.com/video/BV1na4y1V7jH) 中介绍的 `提升为...`。
-
-> **Note**
-> 推荐在虚拟环境中安装 pyqt5-tools 和 PyQt-Fluent-Widgets，并确保 PyQt5-Frameless-Window 的版本号 >= 0.2.7，不然可能出现各种奇怪的问题。
 
 ## 另见👀
 下面是一些基于 PyQt-Fluent-Widgets 的项目：

@@ -130,7 +130,11 @@ class TableItemDelegate(QStyledItemDelegate):
             else:
                 alpha = 17
 
-        painter.setBrush(QColor(c, c, c, alpha))
+        if index.data(Qt.ItemDataRole.BackgroundRole):
+            painter.setBrush(index.data(Qt.ItemDataRole.BackgroundRole))
+        else:
+            painter.setBrush(QColor(c, c, c, alpha))
+
         self._drawBackground(painter, option, index)
 
         # draw indicator
