@@ -273,9 +273,9 @@ TransparentTogglePushButton:pressed {
 TransparentToolButton:disabled,
 TransparentToggleToolButton:disabled,
 TransparentDropDownToolButton:disabled,
-TransprentPushButton:disabled,
+TransparentPushButton:disabled,
 TransparentDropDownPushButton:disabled,
-TransprentTogglePushButton:disabled {
+TransparentTogglePushButton:disabled {
     background-color: transparent;
     border: none;
 }
