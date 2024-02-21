@@ -162,3 +162,87 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
                 self._adjustText()
 
         return super().eventFilter(obj, e)
+
+class InputMessageBox(MaskDialogBase):
+    yesSignal=pyqtSignal()
+    cancelSignal=pyqtSignal()
+    def __init__(self,parent:QWidget,title:str):
+        super().__init__(parent)
+        self.titleLabel=QLabel(self.widget)
+        self.titleLabel.setText(title)
+        self.titleLabel.setGeometry(0,0,len(title)*20,50)
+        self.inputBox=LineEdit(self.widget)
+        self.vBoxLayout = QVBoxLayout(self.widget)
+        self.buttonGroup = QFrame(parent)
+        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
+        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.textLayout=QVBoxLayout()
+        self.vBoxLayout.addLayout(self.textLayout)
+        self._hBoxLayout.removeWidget(self.widget)
+        self._hBoxLayout.addWidget(self.widget,1,Qt.AlignCenter)
+        self.widget.setFixedSize(
+            max(self.inputBox.width(), self.titleLabel.width()) + 48,
+            self.inputBox.y() + self.inputBox.height() + 105
+        )
+        self.buttonLayout = QHBoxLayout(self.buttonGroup)
+        self.__initWidget()
+        self._adjustText()
+    def __setQSS(self):
+        self.titleLabel.setObjectName("titleLabel")
+        self.inputBox.setObjectName("contentLabel")
+        self.buttonGroup.setObjectName('buttonGroup')
+        self.cancelButton.setObjectName('cancelButton')
+        FluentStyleSheet.DIALOG.apply(self)
+        FluentStyleSheet.DIALOG.apply(self.inputBox)
+
+        self.yesButton.adjustSize()
+        self.cancelButton.adjustSize()
+    def __initWidget(self):
+        self.__setQSS()
+        self.__initLayout()
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.yesButton.setFocus()
+        self.buttonGroup.setFixedHeight(81)
+        self._adjustText()
+        self.yesButton.clicked.connect(self.__onYesButtonClicked)
+        self.cancelButton.clicked.connect(self.__onCancelButtonClicked)
+    def __onCancelButtonClicked(self):
+        self.reject()
+        self.cancelSignal.emit()
+
+    def __onYesButtonClicked(self):
+        self.accept()
+        self.yesSignal.emit()
+    def __initLayout(self):
+        self.vBoxLayout.setSpacing(0)
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.addLayout(self.textLayout, 1)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
+        self.textLayout.addWidget(self.titleLabel)
+        self.textLayout.setSpacing(12)
+        self.textLayout.setContentsMargins(24, 24, 24, 24)
+        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
+        self.textLayout.addWidget(self.inputBox, 0, Qt.AlignTop)
+        self.buttonLayout.setSpacing(12)
+        self.buttonLayout.setContentsMargins(24, 24, 24, 24)
+        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
+        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
+    def _adjustText(self):
+        if self.isWindow():
+            if self.parent():
+                w = max(self.titleLabel.width(), self.parent().width())
+                chars = max(min(w / 9, 140), 30)
+            else:
+                chars = 100
+        else:
+            w = max(self.titleLabel.width(), self.window().width())
+            chars = max(min(w / 9, 100), 30)
+        self.inputBox.setFixedWidth(chars*3)
+    def eventFilter(self, obj, e: QEvent):
+        if obj is self.window():
+            if e.type() == QEvent.Resize:
+                self._adjustText()
+
+        return super().eventFilter(obj, e)
