@@ -75,8 +75,10 @@ Copyright © 2021 by zhiyiYo.
 ## Video Demonstration
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
-## Fluent Client
+## Work with Designer
 [Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [Afadian](https://afdian.net/item/62cc7298cd9411eeb14d52540025c377) or [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600).
+
+You can also create a new virtual environment to launch designer with plugins by running `python ./tools/designer.py`.
 
 ![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
 
