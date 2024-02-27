@@ -83,8 +83,7 @@ class BreadcrumbItem(BreadcrumbWidget):
         self.text = text
 
         rect = self.fontMetrics().boundingRect(text)
-        added = math.ceil(self.font().pixelSize() / 10)
-        w = rect.width() + added
+        w = rect.width() + math.ceil(self.font().pixelSize() / 10)
         if not self.isRoot():
             w += self.spacing * 2
 
