@@ -99,9 +99,13 @@ class PopUpAniStackedWidget(QStackedWidget):
         ))
 
     def removeWidget(self, widget: QWidget):
+        index = self.indexOf(widget)
+        if index == -1:
+            return
+        self.aniInfos.pop(index)
+
         super().removeWidget(widget)
 
-        self.aniInfos.pop(self.indexOf(widget))
 
     def setCurrentIndex(self, index: int, needPopOut: bool = False, showNextWidgetDirectly: bool = True,
                         duration: int = 250, easingCurve=QEasingCurve.OutQuad):
