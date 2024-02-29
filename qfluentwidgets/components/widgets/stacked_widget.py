@@ -102,8 +102,8 @@ class PopUpAniStackedWidget(QStackedWidget):
         index = self.indexOf(widget)
         if index == -1:
             return
-        self.aniInfos.pop(index)
 
+        self.aniInfos.pop(index)
         super().removeWidget(widget)
 
 
