@@ -98,6 +98,11 @@ class PopUpAniStackedWidget(QStackedWidget):
             ani=QPropertyAnimation(widget, b'pos'),
         ))
 
+    def removeWidget(self, widget: QWidget):
+        super().removeWidget(widget)
+
+        self.aniInfos.pop(self.indexOf(widget))
+
     def setCurrentIndex(self, index: int, needPopOut: bool = False, showNextWidgetDirectly: bool = True,
                         duration: int = 250, easingCurve=QEasingCurve.OutQuad):
         """ set current window to display
