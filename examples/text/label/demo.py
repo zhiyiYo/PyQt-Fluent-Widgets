@@ -16,7 +16,7 @@ class Demo(QWidget):
         self.vBoxLayout.setSpacing(20)
 
         self.hyperlinkLabel = HyperlinkLabel(QUrl('https://github.com/'), 'GitHub')
-        # self.hyperlinkLabel.setUrl('https://github.com/zhiyiYo/QMaterialWidgets')
+        # self.hyperlinkLabel.setUrl('https://qfluentwidgets.com')
         # self.hyperlinkLabel.setUnderlineVisible(True)
         # setFont(self.hyperlinkLabel, 18)
 

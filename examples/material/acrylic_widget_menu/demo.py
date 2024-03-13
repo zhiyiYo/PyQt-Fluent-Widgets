@@ -20,7 +20,7 @@ class ProfileCard(QWidget):
         self.nameLabel = BodyLabel(name, self)
         self.emailLabel = CaptionLabel(email, self)
         self.logoutButton = HyperlinkButton(
-            'https://github.com/zhiyiYo/QMaterialWidgets', '注销', self)
+            'https://qfluentwidgets.com', '注销', self)
 
         color = QColor(206, 206, 206) if isDarkTheme() else QColor(96, 96, 96)
         self.emailLabel.setStyleSheet('QLabel{color: '+color.name()+'}')

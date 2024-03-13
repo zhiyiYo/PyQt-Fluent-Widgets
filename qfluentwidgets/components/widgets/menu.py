@@ -1202,17 +1202,19 @@ class CheckableMenu(RoundMenu):
 class SystemTrayMenu(RoundMenu):
     """ System tray menu """
 
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.adjustPosition()
+    def sizeHint(self) -> QSize:
+        m = self.layout().contentsMargins()
+        s = self.layout().sizeHint()
+        return QSize(s.width() - m.right() + 5, s.height() - m.bottom())
 
 
 class CheckableSystemTrayMenu(CheckableMenu):
     """ Checkable system tray menu """
 
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.adjustPosition()
+    def sizeHint(self) -> QSize:
+        m = self.layout().contentsMargins()
+        s = self.layout().sizeHint()
+        return QSize(s.width() - m.right() + 5, s.height() - m.bottom())
 
 
 class LabelContextMenu(RoundMenu):

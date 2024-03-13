@@ -239,6 +239,11 @@ class Flyout(QWidget):
         super().closeEvent(e)
         self.closed.emit()
 
+    def showEvent(self, e):
+        # fixes #780
+        self.activateWindow()
+        super().showEvent(e)
+
     def exec(self, pos: QPoint, aniType=FlyoutAnimationType.PULL_UP):
         """ show calendar view """
         self.aniManager = FlyoutAnimationManager.make(aniType, self)
