@@ -86,8 +86,8 @@ class FluentLabelBase(QLabel):
 
         setCustomStyleSheet(
             self,
-            f"FluentLabelBase{{color:{self.lightColor.name()}}}",
-            f"FluentLabelBase{{color:{self.darkColor.name()}}}"
+            f"FluentLabelBase{{color:{self.lightColor.name(QColor.NameFormat.HexArgb)}}}",
+            f"FluentLabelBase{{color:{self.darkColor.name(QColor.NameFormat.HexArgb)}}}"
         )
 
     @Property(QColor)
