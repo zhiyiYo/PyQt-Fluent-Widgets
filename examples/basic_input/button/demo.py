@@ -172,12 +172,12 @@ class PushButtonDemo(ButtonView):
 
         # hyperlink button
         self.hyperlinkButton1 = HyperlinkButton(
-            url='https://github.com/zhiyiYo/QMaterialWidgets',
+            url='https://qfluentwidgets.com',
             text='Hyper link button',
             parent=self
         )
         self.hyperlinkButton2 = HyperlinkButton(
-            url='https://github.com/zhiyiYo/QMaterialWidgets',
+            url='https://qfluentwidgets.com',
             text='Hyper link button',
             parent=self,
             icon=FIF.LINK

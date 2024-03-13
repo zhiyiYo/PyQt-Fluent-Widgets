@@ -1,4 +1,6 @@
 # coding:utf-8
+import math
+
 from typing import Dict, List
 from PyQt6.QtCore import Qt, pyqtSignal, QRectF, pyqtProperty, QPoint, QEvent, QPointF
 from PyQt6.QtGui import QPainter, QFont, QHoverEvent, QAction
@@ -81,7 +83,7 @@ class BreadcrumbItem(BreadcrumbWidget):
         self.text = text
 
         rect = self.fontMetrics().boundingRect(text)
-        w = rect.width() + 1
+        w = rect.width() + math.ceil(self.font().pixelSize() / 10)
         if not self.isRoot():
             w += self.spacing * 2
 
