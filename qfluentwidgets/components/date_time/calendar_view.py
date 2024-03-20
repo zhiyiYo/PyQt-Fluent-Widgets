@@ -442,26 +442,21 @@ class DayScrollView(ScrollViewBase):
     def _initItems(self):
         startDate = QDate(self.minYear, 1, 1)
         endDate = QDate(self.maxYear, 12, 31)
-        currentDate = startDate
+        totalDays = endDate.toJulianDay() - startDate.toJulianDay()
 
         # add placeholder
-        bias = currentDate.dayOfWeek() - 1
-        for i in range(bias):
-            item = QListWidgetItem(self)
-            item.setFlags(Qt.NoItemFlags)
-            self.addItem(item)
+        item = QListWidgetItem(self)
+        item.setFlags(Qt.NoItemFlags)
+        self.addItem(item)
 
         # add day items
-        items, dates = [], []
-        while currentDate <= endDate:
-            items.append(str(currentDate.day()))
-            dates.append(QDate(currentDate))
-            currentDate = currentDate.addDays(1)
+        dates = [startDate.addDays(i) for i in range(totalDays + 1)]
+        items = [str(date.day()) for date in dates]
 
         self.addItems(items)
-        for i in range(bias, self.count()):
+        for i in range(self.count()):
             item = self.item(i)
-            item.setData(Qt.UserRole, dates[i-bias])
+            item.setData(Qt.UserRole, dates[i-1]) 
             item.setSizeHint(self.gridSize())
 
         self.delegate.setCurrentIndex(self.model().index(self._dateToRow(self.currentDate)))
@@ -553,7 +548,7 @@ class CalendarView(QWidget):
         self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint |
                             Qt.NoDropShadowWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setAttribute(Qt.WA_DeleteOnClose, True)
+        self.setAttribute(Qt.WA_DeleteOnClose, False)
 
         self.stackedWidget.addWidget(self.dayView)
         self.stackedWidget.addWidget(self.monthView)

@@ -23,7 +23,12 @@ class CalendarPicker(QPushButton):
         self.setText(self.tr('Pick a date'))
         FluentStyleSheet.CALENDAR_PICKER.apply(self)
 
+        # Initialize CalendarView as a member variable
+        self.calendar_view = CalendarView(self.window())
+        self.calendar_view.dateChanged.connect(self._onDateChanged)
+
         self.clicked.connect(self._showCalendarView)
+        self.parent().destroyed.connect(self._onDelCalendarView)
 
     def getDate(self):
         return self._date
@@ -37,19 +42,16 @@ class CalendarPicker(QPushButton):
 
     def setDateFormat(self, format: Union[Qt.DateFormat, str]):
         self._dateFormat = format
-        if self.date.isValid():
-            self.setText(self.date.toString(self.dateFormat))
+        if self._date.isValid():
+            self.setText(self._date.toString(self._dateFormat))
 
     def _showCalendarView(self):
-        view = CalendarView(self.window())
-        view.dateChanged.connect(self._onDateChanged)
+        if self._date.isValid():
+            self.calendar_view.setDate(self._date)
 
-        if self.date.isValid():
-            view.setDate(self.date)
-
-        x = int(self.width()/2 - view.sizeHint().width()/2)
+        x = int(self.width()/2 - self.calendar_view.sizeHint().width()/2)
         y = self.height()
-        view.exec(self.mapToGlobal(QPoint(x, y)))
+        self.calendar_view.exec(self.mapToGlobal(QPoint(x, y)))
 
     def _onDateChanged(self, date: QDate):
         self._date = QDate(date)
@@ -59,6 +61,12 @@ class CalendarPicker(QPushButton):
         self.update()
 
         self.dateChanged.emit(date)
+
+    def _onDelCalendarView(self):
+        if self.calendar_view is not None:
+            self.calendar_view.deleteLater()
+            self.calendar_view = None
+
 
     def paintEvent(self, e):
         super().paintEvent(e)
