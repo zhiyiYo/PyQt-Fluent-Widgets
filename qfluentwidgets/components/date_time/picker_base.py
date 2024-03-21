@@ -322,6 +322,9 @@ class PickerBase(QPushButton):
         while self.columns:
             btn = self.columns.pop()
             self.hBoxLayout.removeWidget(btn)
+            # The parent of btn should be explicitly set to None to remove references from its parent.
+            # Otherwise, GC will not collect and remove it until the end of it parent life-cycle
+            btn.setParent(None)
             btn.deleteLater()
 
     def enterEvent(self, e):
