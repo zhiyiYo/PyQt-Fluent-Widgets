@@ -201,7 +201,13 @@ class TableBase:
 
     def showEvent(self, e):
         QTableView.showEvent(self, e)
-        self.resizeRowsToContents()
+        totalRows = self.rowCount() if hasattr(self, "rowCount") else self.model().rowCount(0)
+
+        if totalRows <= 500:
+            self.resizeRowsToContents()
+        else:
+            self._resizeVisibleRowsToContents()
+            self.verticalScrollBar().valueChanged.connect(self._resizeVisibleRowsToContents)
 
     def setBorderVisible(self, isVisible: bool):
         """ set the visibility of border """
@@ -212,6 +218,13 @@ class TableBase:
         """ set the radius of border """
         qss = f"QTableView{{border-radius: {radius}px}}"
         setCustomStyleSheet(self, qss, qss)
+
+    def _resizeVisibleRowsToContents(self):
+        index = self.indexAt(self.rect().topLeft()).row()
+        end = self.indexAt(self.rect().bottomLeft()).row()
+
+        for row in range(index, end + 1):
+            self.resizeRowToContents(row)
 
     def _setHoverRow(self, row: int):
         """ set hovered row """
@@ -234,6 +247,7 @@ class TableBase:
     def resizeEvent(self, e):
         QTableView.resizeEvent(self, e)
         self.viewport().update()
+        self._resizeVisibleRowsToContents()
 
     def keyPressEvent(self, e: QKeyEvent):
         QTableView.keyPressEvent(self, e)
