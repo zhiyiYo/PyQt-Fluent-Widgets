@@ -2,10 +2,9 @@
 from typing import List, Union
 
 from PyQt5.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtProperty, QRectF
-from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
+from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette
 from PyQt5.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QStyle,
-                             QStyleOptionButton)
+                             QTableView, QTableWidget, QWidget, QTableWidgetItem)
 
 from .check_box import CheckBoxIcon
 from ...common.font import getFont
