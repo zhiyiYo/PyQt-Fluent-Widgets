@@ -68,7 +68,7 @@ class TextInterface(GalleryInterface):
         # password line edit
         passwordLineEdit = PasswordLineEdit(self)
         passwordLineEdit.setFixedWidth(230)
-        passwordLineEdit.setPlaceholderText(self.tr("Enter you password"))
+        passwordLineEdit.setPlaceholderText(self.tr("Enter your password"))
         self.addExampleCard(
             title=self.tr("A password line edit"),
             widget=passwordLineEdit,
