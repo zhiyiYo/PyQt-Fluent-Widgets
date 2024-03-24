@@ -124,9 +124,15 @@ class TreeWidget(QTreeWidget, TreeViewBase):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
+    def drawBranches(self, painter, rect, index) -> None:
+        super().drawBranches(painter, rect, index)
+
 
 class TreeView(QTreeView, TreeViewBase):
     """ Tree view """
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+
+    def drawBranches(self, painter, rect, index) -> None:
+        super().drawBranches(painter, rect, index)
