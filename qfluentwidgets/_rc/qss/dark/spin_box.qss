@@ -27,6 +27,29 @@ CompactTimeEdit {
     padding: 0px 26px 0 10px;
 }
 
+SpinBox:read-only,
+DoubleSpinBox:read-only,
+DateEdit:read-only,
+DateTimeEdit:read-only,
+TimeEdit:read-only,
+CompactSpinBox:read-only,
+CompactDoubleSpinBox:read-only,
+CompactDateEdit:read-only,
+CompactDateTimeEdit:read-only,
+CompactTimeEdit:read-only,
+SpinBox[symbolVisible=false],
+DoubleSpinBox[symbolVisible=false],
+DateEdit[symbolVisible=false],
+DateTimeEdit[symbolVisible=false],
+TimeEdit[symbolVisible=false],
+CompactSpinBox[symbolVisible=false],
+CompactDoubleSpinBox[symbolVisible=false],
+CompactDateEdit[symbolVisible=false],
+CompactDateTimeEdit[symbolVisible=false],
+CompactTimeEdit[symbolVisible=false] {
+    padding: 0px 10px 0 10px;
+}
+
 SpinBox:hover,
 DoubleSpinBox:hover,
 DateEdit:hover,
