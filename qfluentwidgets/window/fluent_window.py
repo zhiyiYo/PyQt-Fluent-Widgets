@@ -4,7 +4,7 @@ import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QPainter, QColor
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication, QSizePolicy, QSpacerItem
 
 from ..common.config import qconfig
 from ..common.icon import FluentIconBase
@@ -105,22 +105,26 @@ class FluentTitleBar(TitleBar):
     def __init__(self, parent):
         super().__init__(parent)
         self.setFixedHeight(48)
-        self.hBoxLayout.removeWidget(self.minBtn)
-        self.hBoxLayout.removeWidget(self.maxBtn)
-        self.hBoxLayout.removeWidget(self.closeBtn)
 
+        self.hBoxLayout.takeAt(0)
+        self.initLayout()
+        self.initializeButtonLayout()
+        self.setQSS()
+        self.window().windowTitleChanged.connect(self.setTitle)
+        self.window().windowIconChanged.connect(self.setIcon)
+
+    def initLayout(self):
         # add window icon
         self.iconLabel = QLabel(self)
         self.iconLabel.setFixedSize(18, 18)
-        self.hBoxLayout.insertWidget(0, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
-        self.window().windowIconChanged.connect(self.setIcon)
+        self.hBoxLayout.addWidget(self.iconLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
 
         # add title label
         self.titleLabel = QLabel(self)
-        self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
-        self.window().windowTitleChanged.connect(self.setTitle)
 
+    def initializeButtonLayout(self):
         self.vBoxLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.setSpacing(0)
@@ -131,8 +135,10 @@ class FluentTitleBar(TitleBar):
         self.buttonLayout.addWidget(self.closeBtn)
         self.vBoxLayout.addLayout(self.buttonLayout)
         self.vBoxLayout.addStretch(1)
+        self.hBoxLayout.addSpacerItem(QSpacerItem(1, 1, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed))
         self.hBoxLayout.addLayout(self.vBoxLayout, 0)
 
+    def setQSS(self:TitleBar):
         FluentStyleSheet.FLUENT_WINDOW.apply(self)
 
     def setTitle(self, title):
