@@ -20,8 +20,8 @@ class Demo(QWidget):
         # add completer
         stands = [
             "Star Platinum", "Hierophant Green",
-            "Made in Haven", "King Crimson",
-            "Silver Chariot", "Crazy diamond",
+            "Made in Heaven", "King Crimson",
+            "Silver Chariot", "Crazy Diamond",
             "Metallica", "Another One Bites The Dust",
             "Heaven's Door", "Killer Queen",
             "The Grateful Dead", "Stone Free",
