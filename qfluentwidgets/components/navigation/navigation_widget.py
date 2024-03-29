@@ -33,6 +33,10 @@ class NavigationWidget(QWidget):
         self.treeParent = None
         self.nodeDepth = 0
         self.setFixedSize(40, 36)
+        # Custom font color
+        self._light_mode_color = QColor(0, 0, 0)
+        self._dark_mode_color = QColor(255, 255, 255)
+
 
     def enterEvent(self, e):
         self.isEnter = True
@@ -84,7 +88,24 @@ class NavigationWidget(QWidget):
         self.isSelected = isSelected
         self.update()
         self.selectedChanged.emit(isSelected)
+    
+    # About custom font color, default behavior
+    def getLightColor(self) -> QColor:
+        return self._light_mode_color
+    
+    def getDarkColor(self) -> QColor:
+        return self._dark_mode_color
+    
+    def setLightColor(self, c: QColor):
+        self._light_mode_color = c
+        self.update()
+    
+    def setDarkColor(self, c: QColor):
+        self._dark_mode_color = c
+        self.update()
 
+    lightColor = pyqtProperty(QColor, getLightColor, setLightColor, user=True)
+    darkColor = pyqtProperty(QColor, getDarkColor, setDarkColor, user=True)
 
 class NavigationPushButton(NavigationWidget):
     """ Navigation push button """
@@ -161,7 +182,7 @@ class NavigationPushButton(NavigationWidget):
             return
 
         painter.setFont(self.font())
-        painter.setPen(QColor(c, c, c))
+        painter.setPen(self._dark_mode_color if isDarkTheme() else self._light_mode_color)
 
         left = 44 + pl if not self.icon().isNull() else pl + 16
         painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignVCenter, self.text())
@@ -468,6 +489,23 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         if not clickArrow or self.isCompacted:
             self.clicked.emit(triggerByUser)
 
+    def getLightColor(self) -> QColor:
+        return self.itemWidget._light_mode_color
+    
+    def getDarkColor(self) -> QColor:
+        return self.itemWidget._dark_mode_color
+    
+    def setLightColor(self, c: QColor):
+        self.itemWidget._light_mode_color = c
+        self.update()
+    
+    def setDarkColor(self, c: QColor):
+        self.itemWidget._dark_mode_color = c
+        self.update()
+    
+    lightColor = pyqtProperty(QColor, getLightColor, setLightColor, user=True)
+    darkColor = pyqtProperty(QColor, getDarkColor, setDarkColor, user=True)
+
 
 class NavigationAvatarWidget(NavigationWidget):
     """ Avatar widget """
@@ -475,6 +513,8 @@ class NavigationAvatarWidget(NavigationWidget):
     def __init__(self, name: str, avatar: Union[str, QPixmap, QImage], parent=None):
         super().__init__(isSelectable=False, parent=parent)
         self.name = name
+        self._light_mode_color = QColor(0, 0, 0)
+        self._dark_mode_color = QColor(255, 255, 255)
         self.setAvatar(avatar)
         setFont(self)
 
@@ -513,7 +553,7 @@ class NavigationAvatarWidget(NavigationWidget):
         painter.translate(-8, -6)
 
         if not self.isCompacted:
-            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
+            painter.setPen(self._dark_mode_color if isDarkTheme() else self._light_mode_color)
             painter.setFont(self.font())
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
 
