@@ -1,5 +1,5 @@
 # coding:utf-8
-from typing import Union
+from typing import Union, List
 
 from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
                           QEasingCurve, QPoint, QEvent)
