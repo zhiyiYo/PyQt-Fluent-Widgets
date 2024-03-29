@@ -1,8 +1,8 @@
 # coding:utf-8
-from typing import Union, List
+from typing import Union
 
 from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
-                          QEasingCurve, QPoint, QEvent, QSize)
+                          QEasingCurve, QPoint, QEvent)
 from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from collections import deque
