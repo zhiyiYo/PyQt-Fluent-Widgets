@@ -2,7 +2,7 @@
 from typing import Union, List
 
 from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
-                          QEasingCurve, QPoint, QEvent, QSize)
+                          QEasingCurve, QPoint, QEvent)
 from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from collections import deque
@@ -349,6 +349,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.expandAni.valueChanged.connect(lambda g: self.setFixedSize(g.size()))
         self.expandAni.valueChanged.connect(self.expanded)
+        self.expandAni.finished.connect(self.parentWidget().layout().invalidate)
 
     def addChild(self, child):
         self.insertChild(-1, child)
