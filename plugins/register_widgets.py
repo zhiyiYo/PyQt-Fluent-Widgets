@@ -1,17 +1,11 @@
 from PySide6.QtDesigner import QPyDesignerCustomWidgetCollection
-import os, sys
-from pathlib import Path
-import qfluentwidgets
+import os
 
-plugins_dir = str(Path('.').absolute().joinpath('plugins'))
-sys.path.append(plugins_dir)
-print(plugins_dir)
 plugins = []
 
 def get_modules(py):
     # I don't know why, but they are nessary
     from PySide6.QtDesigner import QDesignerCustomWidgetInterface
-    # from plugin_base import PluginBase
     import inspect
 
     modules = []
@@ -24,7 +18,7 @@ def get_modules(py):
                 modules.append(obj)
     return modules
 
-for filename in os.listdir(plugins_dir):
+for filename in os.listdir('.'):
     if filename.endswith('.py') and not filename.startswith('_'):
         # print(filename)
         # plugins += get_modules(__import__(f"{filename}".replace('.py', '')))
