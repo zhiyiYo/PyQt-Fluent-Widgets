@@ -502,19 +502,33 @@ class SmoothScrollDelegate(QObject):
 
     def eventFilter(self, obj, e: QEvent):
         if e.type() == QEvent.Type.Wheel:
-            if e.angleDelta().y() != 0:
+            verticalScrollBar = self.parent().verticalScrollBar()
+            horizontalScrollBar = self.parent().horizontalScrollBar()
+  
+            # Check if the vertical scroll is at its limit
+            verticalAtEnd = (e.angleDelta().y() < 0 and verticalScrollBar.value() == verticalScrollBar.maximum()) or \
+                            (e.angleDelta().y() > 0 and verticalScrollBar.value() == verticalScrollBar.minimum())
+  
+            # Check if the horizontal scroll is at its limit
+            horizontalAtEnd = (e.angleDelta().x() < 0 and horizontalScrollBar.value() ==
+                                horizontalScrollBar.maximum()) or \
+                              (e.angleDelta().x() > 0 and horizontalScrollBar.value() == horizontalScrollBar.minimum())
+            if e.angleDelta().y() != 0 and not verticalAtEnd:
                 if not self.useAni:
                     self.verticalSmoothScroll.wheelEvent(e)
                 else:
                     self.vScrollBar.scrollValue(-e.angleDelta().y())
-            else:
+                e.setAccepted(True)
+                return True
+            elif e.angleDelta().x() != 0 and not horizontalAtEnd:
                 if not self.useAni:
                     self.horizonSmoothScroll.wheelEvent(e)
                 else:
                     self.hScrollBar.scrollValue(-e.angleDelta().x())
-
-            e.setAccepted(True)
-            return True
+                e.setAccepted(True)
+                return True
+            elif verticalAtEnd or horizontalAtEnd:
+                return False  # Continue propagation of the event
 
         return super().eventFilter(obj, e)
 
