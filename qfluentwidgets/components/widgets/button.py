@@ -106,10 +106,14 @@ class PushButton(QPushButton):
         y = (self.height() - h) / 2
         mw = self.minimumSizeHint().width()
         if mw > 0:
-            self._drawIcon(self._icon, painter, QRectF(
-                12+(self.width()-mw)//2, y, w, h))
+            x = 12 + (self.width() - mw) // 2
         else:
-            self._drawIcon(self._icon, painter, QRectF(12, y, w, h))
+            x = 12
+
+        if self.isRightToLeft():
+            x = self.width() - w - x
+            
+        self._drawIcon(self._icon, painter, QRectF(x, y, w, h))
 
 
 class PrimaryPushButton(PushButton):

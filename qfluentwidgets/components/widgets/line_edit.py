@@ -426,4 +426,11 @@ class PasswordLineEdit(LineEdit):
 
         return super().eventFilter(obj, e)
 
+    def inputMethodQuery(self, query: Qt.InputMethodQuery):
+        # Disable IME for PasswordLineEdit
+        if query == Qt.InputMethodQuery.ImEnabled:
+            return False
+        else:
+            return super().inputMethodQuery(query)
+
     passwordVisible = Property(bool, isPasswordVisible, setPasswordVisible)
