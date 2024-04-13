@@ -1,14 +1,23 @@
 import sys
 
 from PySide6.QtCore import Qt, QTranslator, QLocale
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QIcon, QPixmap, QColor
 from PySide6.QtWidgets import QApplication
-from qframelesswindow import FramelessWindow, StandardTitleBar, AcrylicWindow
-from qfluentwidgets import setThemeColor, FluentTranslator, setTheme, Theme, SplitTitleBar
+from qfluentwidgets import setThemeColor, FluentTranslator, setTheme, Theme, SplitTitleBar, isDarkTheme
 from Ui_LoginWindow import Ui_Form
 
 
-class LoginWindow(AcrylicWindow, Ui_Form):
+def isWin11():
+    return sys.platform == 'win32' and sys.getwindowsversion().build >= 22000
+
+
+if isWin11():
+    from qframelesswindow import AcrylicWindow as Window
+else:
+    from qframelesswindow import FramelessWindow as Window
+
+
+class LoginWindow(Window, Ui_Form):
 
     def __init__(self):
         super().__init__()
@@ -24,7 +33,11 @@ class LoginWindow(AcrylicWindow, Ui_Form):
         self.setWindowIcon(QIcon(":/images/logo.png"))
         self.resize(1000, 650)
 
-        self.windowEffect.setMicaEffect(self.winId(), isDarkMode=False)
+        self.windowEffect.setMicaEffect(self.winId(), isDarkMode=isDarkTheme())
+        if not isWin11():
+            color = QColor(25, 33, 42) if isDarkTheme() else QColor(240, 244, 249)
+            self.setStyleSheet(f"LoginWindow{{background: {color.name()}}}")
+
         self.titleBar.titleLabel.setStyleSheet("""
             QLabel{
                 background: transparent;

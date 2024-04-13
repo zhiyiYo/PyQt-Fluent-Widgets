@@ -1,7 +1,7 @@
 # coding: utf-8
 from typing import List
 from PySide6.QtCore import Qt, Signal, QEasingCurve, QUrl, QSize
-from PySide6.QtGui import QIcon, QDesktopServices
+from PySide6.QtGui import QIcon, QDesktopServices, QColor
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QFrame, QWidget
 
 from qfluentwidgets import (NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow,
@@ -54,6 +54,7 @@ class MainWindow(FluentWindow):
 
         # enable acrylic effect
         self.navigationInterface.setAcrylicEnabled(True)
+        self.setCustomBackgroundColor(QColor(240, 244, 249), QColor(32, 32, 32))
 
         self.connectSignalToSlot()
 
