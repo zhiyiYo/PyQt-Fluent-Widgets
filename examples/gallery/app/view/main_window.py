@@ -1,6 +1,6 @@
 # coding: utf-8
 from PyQt5.QtCore import QUrl, QSize
-from PyQt5.QtGui import QIcon, QDesktopServices
+from PyQt5.QtGui import QIcon, QDesktopServices, QColor
 from PyQt5.QtWidgets import QApplication
 
 from qfluentwidgets import (NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow,
@@ -53,6 +53,7 @@ class MainWindow(FluentWindow):
 
         # enable acrylic effect
         self.navigationInterface.setAcrylicEnabled(True)
+        self.setCustomBackgroundColor(QColor(240, 244, 249), QColor(32, 32, 32))
 
         self.connectSignalToSlot()
 
