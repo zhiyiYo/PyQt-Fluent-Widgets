@@ -4,7 +4,7 @@ from string import Template
 from typing import List, Union
 import weakref
 
-from PySide6.QtCore import QFile, QObject, QEvent
+from PySide6.QtCore import QFile, QObject, QEvent, QDynamicPropertyChangeEvent
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QWidget
 
@@ -212,7 +212,7 @@ class CustomStyleSheetWatcher(QObject):
         if e.type() != QEvent.DynamicPropertyChange:
             return super().eventFilter(obj, e)
 
-        name = e.propertyName().data().decode()
+        name = QDynamicPropertyChangeEvent(e).propertyName().data().decode()
         if name in [CustomStyleSheet.LIGHT_QSS_KEY, CustomStyleSheet.DARK_QSS_KEY]:
             addStyleSheet(obj, CustomStyleSheet(obj))
 
