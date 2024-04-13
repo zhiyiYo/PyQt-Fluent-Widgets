@@ -6,7 +6,7 @@ from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
                             NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
-                            InfoBadgePosition)
+                            InfoBadgePosition, FluentBackgroundTheme)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -85,6 +85,10 @@ class Window(FluentWindow):
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+
+        # use custom background color theme (only available when the mica effect is disabled)
+        self.setCustomBackgroundColor(*FluentBackgroundTheme.DEFAULT_BLUE)
+        # self.setMicaEffectEnabled(False)
 
         # set the minimum window width that allows the navigation panel to be expanded
         # self.navigationInterface.setMinimumExpandWidth(900)
