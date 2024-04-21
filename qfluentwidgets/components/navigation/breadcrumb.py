@@ -194,7 +194,7 @@ class BreadcrumbBar(QWidget):
         if not 0 <= index < len(self.items) or index == self.currentIndex():
             return
 
-        if self.currentIndex() >= 0:
+        if 0<= self.currentIndex() < len(self.items):
             self.currentItem().setSelected(False)
 
         self._currentIndex = index
@@ -244,6 +244,9 @@ class BreadcrumbBar(QWidget):
 
     def popItem(self):
         """ pop trailing item """
+        if not self.items:
+            return
+            
         item = self.items.pop()
         self.itemMap.pop(item.routeKey)
         item.deleteLater()
