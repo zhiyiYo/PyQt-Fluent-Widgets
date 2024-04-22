@@ -246,15 +246,15 @@ class BreadcrumbBar(QWidget):
         """ pop trailing item """
         if not self.items:
             return
-            
-        item = self.items.pop()
-        self.itemMap.pop(item.routeKey)
-        item.deleteLater()
 
-        if self.currentIndex() >= item.index:
+        if self.count() >= 2:
             self.setCurrentIndex(self.currentIndex() - 1)
+        else:
+            self.clear()
 
-        self.updateGeometry()
+    def count(self):
+        """ Returns the number of items """
+        return len(self.items)
 
     def updateGeometry(self):
         if not self.items:
