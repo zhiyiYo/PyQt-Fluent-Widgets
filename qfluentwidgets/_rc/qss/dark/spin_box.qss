@@ -87,9 +87,9 @@ CompactDoubleSpinBox:disabled,
 CompactDateEdit:disabled,
 CompactDateTimeEdit:disabled,
 CompactTimeEdit:disabled {
-    color: rgba(255, 255, 255, 150);
+    color: rgba(255, 255, 255, 92);
     background-color: rgba(255, 255, 255, 0.0837);
-    border: 1px solid gba(255, 255, 255, 0.0698);
+    border: 1px solid rgba(255, 255, 255, 0.0698);
 }
 
 SpinBox[transparent=false]:focus,
