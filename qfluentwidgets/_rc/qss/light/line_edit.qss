@@ -33,7 +33,7 @@ PlainTextEdit:focus {
 
 LineEdit:disabled, TextEdit:disabled,
 PlainTextEdit:disabled {
-    color: rgba(0, 0, 0, 150);
+    color: rgba(0, 0, 0, 92);
     background-color: rgba(249, 249, 249, 0.3);
     border: 1px solid rgba(0, 0, 0, 13);
     border-bottom: 1px solid rgba(0, 0, 0, 13);

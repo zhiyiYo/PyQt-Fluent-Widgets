@@ -6,6 +6,8 @@ from PySide6.QtCore import Qt, QThread, Signal, QRect
 from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap, QPainterPath
 from PySide6.QtWidgets import QLabel, QApplication, QWidget
 
+from ...common.screen import getCurrentScreen
+
 try:
     from ...common.image_utils import gaussianBlur
 
@@ -200,11 +202,13 @@ class AcrylicBrush:
         rect: QRect
             grabbed region
         """
-        screen = QApplication.screenAt(self.device.window().pos())
+        screen = getCurrentScreen()
         if not screen:
             screen = QApplication.screens()[0]
 
         x, y, w, h = rect.x(), rect.y(), rect.width(), rect.height()
+        x -= screen.geometry().x()
+        y -= screen.geometry().y()
         self.setImage(screen.grabWindow(0, x, y, w, h))
 
     def setImage(self, image: Union[str, QImage, QPixmap]):
