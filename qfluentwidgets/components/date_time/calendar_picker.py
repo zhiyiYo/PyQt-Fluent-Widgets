@@ -32,6 +32,14 @@ class CalendarPicker(QPushButton):
         """ set the selected date """
         self._onDateChanged(date)
 
+    def reset(self):
+        """ reset date """
+        self._date = QDate()
+        self.setText(self.tr('Pick a date'))
+        self.setProperty('hasDate', False)
+        self.setStyle(QApplication.style())
+        self.update()
+
     def getDateFormat(self):
         return self._dateFormat
 
