@@ -40,9 +40,19 @@ class FlowLayout(QLayout):
     def addItem(self, item):
         self._items.append(item)
 
+    def insertItem(self, index, item):
+        self._items.insert(index, item)
+
     def addWidget(self, w):
         super().addWidget(w)
+        self._onWidgetAdded(w)
 
+    def insertWidget(self, index, w):
+        self.insertItem(index, QWidgetItem(w))
+        self.addChildWidget(w)
+        self._onWidgetAdded(w, index)
+
+    def _onWidgetAdded(self, w, index=-1):
         if not self._isInstalledEventFilter:
             if w.parent():
                 self._wParent = w.parent()
@@ -58,8 +68,12 @@ class FlowLayout(QLayout):
         ani.setDuration(self.duration)
         ani.setEasingCurve(self.ease)
         w.setProperty('flowAni', ani)
-        self._anis.append(ani)
         self._aniGroup.addAnimation(ani)
+
+        if index == -1:
+            self._anis.append(ani)
+        else:
+            self._anis.insert(index, ani)
 
     def setAnimation(self, duration, ease=QEasingCurve.Linear):
         """ set the moving animation
@@ -133,7 +147,7 @@ class FlowLayout(QLayout):
 
     def setGeometry(self, rect: QRect):
         super().setGeometry(rect)
-        
+
         if self.needAni:
             self._deBounceTimer.start(80)
         else:
@@ -168,7 +182,7 @@ class FlowLayout(QLayout):
     def horizontalSpacing(self):
         """ get horizontal spacing between widgets """
         return self._horizontalSpacing
-    
+
     def eventFilter(self, obj: QObject, event: QEvent) -> bool:
         if obj in [w.widget() for w in self._items] and event.type() == QEvent.Type.ParentChange:
             self._wParent = obj.parent()
@@ -197,7 +211,7 @@ class FlowLayout(QLayout):
 
             nextX = x + item.sizeHint().width() + spaceX
 
-            if nextX - spaceX > rect.right() and rowHeight > 0:
+            if nextX - spaceX > rect.right() - margin.right() and rowHeight > 0:
                 x = rect.x() + margin.left()
                 y = y + rowHeight + spaceY
                 nextX = x + item.sizeHint().width() + spaceX
