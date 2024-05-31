@@ -16,10 +16,16 @@ class ArrowButton(QToolButton):
         super().__init__(parent=parent)
         self.setFixedSize(10, 10)
         self._icon = icon
+        self.opacity = 1
+
+    def setOpacity(self, opacity):
+        self.opacity = opacity
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
+        painter.setOpacity(self.opacity)
 
         s = 7 if self.isDown() else 8
         x = (self.width() - s) / 2
@@ -31,6 +37,8 @@ class ScrollBarGroove(QWidget):
 
     def __init__(self, orient: Qt.Orientation, parent):
         super().__init__(parent=parent)
+        self._opacity = 1
+
         if orient == Qt.Vertical:
             self.setFixedWidth(12)
             self.upButton = ArrowButton(FluentIcon.CARE_UP_SOLID, self)
@@ -50,17 +58,19 @@ class ScrollBarGroove(QWidget):
             self.layout().addWidget(self.downButton, 0, Qt.AlignVCenter)
             self.layout().setContentsMargins(3, 0, 3, 0)
 
-        self.opacityEffect = QGraphicsOpacityEffect(self)
-        self.opacityAni = QPropertyAnimation(self.opacityEffect, b'opacity', self)
-        self.setGraphicsEffect(self.opacityEffect)
-        self.opacityEffect.setOpacity(0)
+        self.opacityAni = QPropertyAnimation(self, b'opacity', self)
+        self.setOpacity(0)
 
     def fadeIn(self):
+        self.opacityAni.stop()
+        self.opacityAni.setStartValue(self.opacity)
         self.opacityAni.setEndValue(1)
         self.opacityAni.setDuration(150)
         self.opacityAni.start()
 
     def fadeOut(self):
+        self.opacityAni.stop()
+        self.opacityAni.setStartValue(self.opacity)
         self.opacityAni.setEndValue(0)
         self.opacityAni.setDuration(150)
         self.opacityAni.start()
@@ -68,6 +78,7 @@ class ScrollBarGroove(QWidget):
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
+        painter.setOpacity(self.opacity)
         painter.setPen(Qt.NoPen)
 
         if not isDarkTheme():
@@ -76,6 +87,17 @@ class ScrollBarGroove(QWidget):
             painter.setBrush(QColor(44, 44, 44, 245))
 
         painter.drawRoundedRect(self.rect(), 6, 6)
+
+    def setOpacity(self, opacity: float):
+        self._opacity = opacity
+        self.upButton.setOpacity(opacity)
+        self.downButton.setOpacity(opacity)
+        self.update()
+
+    def getOpacity(self) -> float:
+        return self._opacity
+
+    opacity = pyqtProperty(float, getOpacity, setOpacity)
 
 
 class ScrollBarHandle(QWidget):
@@ -373,7 +395,7 @@ class ScrollBar(QWidget):
         return self._padding <= pos.x() <= self.width() - self._padding
 
     def _onOpacityAniValueChanged(self):
-        opacity = self.groove.opacityEffect.opacity()
+        opacity = self.groove.opacity
         if self.orientation() == Qt.Vertical:
             self.handle.setFixedWidth(int(3 + opacity * 3))
         else:
