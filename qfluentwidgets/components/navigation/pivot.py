@@ -199,6 +199,10 @@ class Pivot(QWidget):
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
 
+    def showEvent(self, e):
+        super().showEvent(e)
+        self._adjustIndicatorPos()
+
     def setItemFontSize(self, size: int):
         """ set the pixel font size of items """
         for item in self.items.values():
@@ -216,13 +220,16 @@ class Pivot(QWidget):
             raise RouteKeyError(f"`{routeKey}` is illegal.")
 
         return self.items[routeKey]
-    
-    def resizeEvent(self, e) -> None:
-            super().resizeEvent(e)
 
-            item = self.currentItem()
-            if item is not None:
-                self.slideAni.setValue(item.x())
+    def resizeEvent(self, e) -> None:
+        super().resizeEvent(e)
+        self._adjustIndicatorPos()
+
+    def _adjustIndicatorPos(self):
+        item = self.currentItem()
+        if item:
+            self.slideAni.stop()
+            self.slideAni.setValue(item.x())
 
     def paintEvent(self, e):
         super().paintEvent(e)
