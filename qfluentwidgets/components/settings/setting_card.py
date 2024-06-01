@@ -96,6 +96,10 @@ class SettingCard(QFrame):
         """ set the value of config item """
         pass
 
+    def setIconSize(self, width: int, height: int):
+        """ set the icon fixed size """
+        self.iconLabel.setFixedSize(width, height)
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
