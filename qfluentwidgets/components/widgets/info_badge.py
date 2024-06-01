@@ -54,6 +54,7 @@ class InfoBadge(QLabel):
 
         setFont(self, 11)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         FluentStyleSheet.INFO_BADGE.apply(self)
 

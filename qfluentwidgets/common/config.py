@@ -385,7 +385,7 @@ class QConfig(QObject):
                     if items.get(key) is not None:
                         items[key].deserializeFrom(value)
 
-        self.theme = self.get(self.themeMode)
+        self.theme = self.get(self._cfg.themeMode)
 
     @property
     def theme(self):

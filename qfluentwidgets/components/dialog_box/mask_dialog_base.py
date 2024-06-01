@@ -53,7 +53,7 @@ class MaskDialogBase(QDialog):
         opacityAni.setEndValue(1)
         opacityAni.setDuration(200)
         opacityAni.setEasingCurve(QEasingCurve.Type.InSine)
-        opacityAni.finished.connect(opacityEffect.deleteLater)
+        opacityAni.finished.connect(lambda: self.setGraphicsEffect(None))
         opacityAni.start()
         super().showEvent(e)
 
@@ -66,8 +66,12 @@ class MaskDialogBase(QDialog):
         opacityAni.setStartValue(1)
         opacityAni.setEndValue(0)
         opacityAni.setDuration(100)
-        opacityAni.finished.connect(lambda: QDialog.done(self, code))
+        opacityAni.finished.connect(lambda: self._onDone(code))
         opacityAni.start()
+
+    def _onDone(self, code):
+        self.setGraphicsEffect(None)
+        QDialog.done(self, code)
 
     def resizeEvent(self, e):
         self.windowMask.resize(self.size())
