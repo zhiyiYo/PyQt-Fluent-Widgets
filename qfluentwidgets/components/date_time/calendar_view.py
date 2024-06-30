@@ -452,16 +452,14 @@ class DayScrollView(ScrollViewBase):
             self.addItem(item)
 
         # add day items
-        items, dates = [], []
-        while currentDate <= endDate:
-            items.append(str(currentDate.day()))
-            dates.append(QDate(currentDate))
-            currentDate = currentDate.addDays(1)
+        days = startDate.daysTo(endDate)
+        dates = (startDate.addDays(d) for d in range(days))
 
-        self.addItems(items)
-        for i in range(bias, self.count()):
+        self.model().insertRows(self.model().rowCount(), days)
+        for i, d in zip(range(bias, self.count()), dates):
             item = self.item(i)
-            item.setData(Qt.UserRole, dates[i-bias])
+            item.setData(Qt.UserRole, d)
+            item.setData(Qt.DisplayRole, str(d.day()))
             item.setSizeHint(self.gridSize())
 
         self.delegate.setCurrentIndex(self.model().index(self._dateToRow(self.currentDate)))
