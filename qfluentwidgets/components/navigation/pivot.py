@@ -39,6 +39,8 @@ class PivotItem(PushButton):
 class Pivot(QWidget):
     """ Pivot """
 
+    currentItemChanged = Signal(str)
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.items = {}  # type: Dict[str, PivotItem]
@@ -182,6 +184,9 @@ class Pivot(QWidget):
 
         return self.widget(self._currentRouteKey)
 
+    def currentRouteKey(self):
+        return self._currentRouteKey
+
     def setCurrentItem(self, routeKey: str):
         """ set current selected item
 
@@ -190,7 +195,7 @@ class Pivot(QWidget):
         routeKey: str
             the unique name of item
         """
-        if routeKey not in self.items:
+        if routeKey not in self.items or routeKey == self.currentRouteKey():
             return
 
         self._currentRouteKey = routeKey
@@ -198,6 +203,8 @@ class Pivot(QWidget):
 
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
+
+        self.currentItemChanged.emit(routeKey)
 
     def showEvent(self, e):
         super().showEvent(e)
