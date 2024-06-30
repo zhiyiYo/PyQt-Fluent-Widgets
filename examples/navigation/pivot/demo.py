@@ -39,23 +39,16 @@ class Demo(QWidget):
         self.vBoxLayout.addWidget(self.stackedWidget)
         self.vBoxLayout.setContentsMargins(30, 0, 30, 30)
 
-        self.stackedWidget.currentChanged.connect(self.onCurrentIndexChanged)
         self.stackedWidget.setCurrentWidget(self.songInterface)
         self.pivot.setCurrentItem(self.songInterface.objectName())
+        self.pivot.currentItemChanged.connect(
+            lambda k:  self.stackedWidget.setCurrentWidget(self.findChild(QWidget, k)))
 
     def addSubInterface(self, widget: QLabel, objectName, text):
         widget.setObjectName(objectName)
         widget.setAlignment(Qt.AlignCenter)
         self.stackedWidget.addWidget(widget)
-        self.pivot.addItem(
-            routeKey=objectName,
-            text=text,
-            onClick=lambda: self.stackedWidget.setCurrentWidget(widget)
-        )
-
-    def onCurrentIndexChanged(self, index):
-        widget = self.stackedWidget.widget(index)
-        self.pivot.setCurrentItem(widget.objectName())
+        self.pivot.addItem(routeKey=objectName, text=text)
 
 
 if __name__ == '__main__':
