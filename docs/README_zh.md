@@ -80,6 +80,12 @@ PyQt6-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证授权非商用项目，
 请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PyQt-Fluent-Widgets 的全部组件和特性 🎉
 
 
+## Fluent Client🚩
+[Fluent Client](https://www.bilibili.com/video/BV1dS421K7Md) 集成了设计师插件和脚手架功能，支持在 Designer 中直接拖拽使用 QFluentWidgets 的组件，所见即所得，让现代化界面搭建如丝般顺滑！可在 [爱发电](https://afdian.net/item/6726fcc4247311ef8c6852540025c377) 或者 [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600) 购买使用 Fluent Client。
+
+![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
+
+
 ## 另见👀
 下面是一些基于 PyQt-Fluent-Widgets 的项目：
 * [**zhiyiYo/QMaterialWidgets**: 基于 PyQt/PySide 的 Material Design 风格组件库](https://qmaterialwidgets.vercel.app/zh/)

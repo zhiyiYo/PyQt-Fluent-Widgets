@@ -2,7 +2,7 @@
 from typing import List, Union
 
 from PyQt6.QtCore import Qt, pyqtSignal, QModelIndex, QSize, pyqtProperty, QRectF, QPropertyAnimation, QSizeF
-from PyQt6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainterPath
+from PyQt6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainterPath, QImageReader
 from PyQt6.QtWidgets import QStyleOptionViewItem, QListWidget, QStyledItemDelegate, QListWidgetItem
 
 from ...common.overload import singledispatchmethod
@@ -100,6 +100,11 @@ class FlipImageDelegate(QStyledItemDelegate):
         image = index.data(Qt.ItemDataRole.UserRole)  # type: QImage
         if image is None:
             return painter.restore()
+
+        # lazy load image
+        if image.isNull() and index.data(Qt.ItemDataRole.DisplayRole):
+            image.load(index.data(Qt.ItemDataRole.DisplayRole))
+            index.model().setData(index, image, Qt.ItemDataRole.UserRole)
 
         x = option.rect.x() + int((option.rect.width() - size.width()) / 2)
         y = option.rect.y() + int((option.rect.height() - size.height()) / 2)
@@ -288,40 +293,64 @@ class FlipView(QListWidget):
         item = self.item(index)
 
         # convert image to QImage
-        if isinstance(image, str):
-            image = QImage(image)
-        elif isinstance(image, QPixmap):
+        if isinstance(image, QPixmap):
             image = image.toImage()
 
-        # Resize the image if target_size is provided
-        if targetSize:
-            image = image.scaled(targetSize, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        # lazy load
+        if isinstance(image, QImage):
+            item.setData(Qt.ItemDataRole.UserRole, image)
+        else:
+            item.setData(Qt.ItemDataRole.UserRole, QImage())
+            item.setData(Qt.ItemDataRole.DisplayRole, image)
 
-        item.setData(Qt.ItemDataRole.UserRole, image)
         self._adjustItemSize(item)
 
     def _adjustItemSize(self, item: QListWidgetItem):
-        image = self.itemImage(self.row(item))
+        image = self.itemImage(self.row(item), load=False)
+
+        if not image.isNull():
+            size = image.size()
+        else:
+            imagePath = item.data(Qt.ItemDataRole.DisplayRole) or ""
+            size = QImageReader(imagePath).size().expandedTo(QSize(1, 1))
 
         if self.aspectRatioMode == Qt.AspectRatioMode.KeepAspectRatio:
             if self.isHorizontal():
                 h = self.itemSize.height()
-                w = int(image.width() * h / image.height())
+                w = int(size.width() * h / size.height())
             else:
                 w = self.itemSize.width()
-                h = int(image.height() * w / image.width())
+                h = int(size.height() * w / size.width())
         else:
             w, h = self.itemSize.width(), self.itemSize.height()
 
         item.setSizeHint(QSize(w, h))
 
-    def itemImage(self, index: int) -> QImage:
-        """ get the image of specified item """
+    def itemImage(self, index: int, load=True) -> QImage:
+        """ get the image of specified item
+
+        Parameters
+        ----------
+        index: int
+            the index of image
+
+        load: bool
+            whether to load image data
+        """
         if not 0 <= index < self.count():
             return
 
         item = self.item(index)
-        return item.data(Qt.ItemDataRole.UserRole) or QImage()
+        image = item.data(Qt.ItemDataRole.UserRole)  # type: QImage
+
+        if image is None:
+            return QImage()
+
+        imagePath = item.data(Qt.ItemDataRole.DisplayRole)
+        if image.isNull() and imagePath and load:
+            image.load(imagePath)
+
+        return image
 
     def resizeEvent(self, e):
         w, h = self.width(), self.height()
