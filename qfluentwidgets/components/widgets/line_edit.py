@@ -58,7 +58,7 @@ class LineEdit(QLineEdit):
     """ Line edit """
   
     focusLost: Signal = Signal()
-    focusRecieved: Signal = Signal()
+    focusReceived: Signal = Signal()
   
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -109,7 +109,7 @@ class LineEdit(QLineEdit):
         super().focusInEvent(e)
         if self.isClearButtonEnabled():
             self.clearButton.setVisible(bool(self.text()))
-        self.focusRecieved.emit()
+        self.focusReceived.emit()
 
     def __onTextChanged(self, text):
         """ text changed slot """
