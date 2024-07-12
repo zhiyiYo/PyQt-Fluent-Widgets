@@ -20,6 +20,11 @@ if cfg.get(cfg.dpiScale) != "Auto":
 app = QApplication(sys.argv)
 app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
+# fixes issue: https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/848
+if sys.platform == 'win32' and sys.getwindowsversion().build >= 22000:
+    app.setStyle("fusion")
+
+
 # internationalization
 locale = cfg.get(cfg.language).value
 translator = FluentTranslator(locale)
