@@ -220,6 +220,19 @@ class FluentIconBase:
         color = QColor(color).name()
         return QIcon(SvgIconEngine(writeSvg(path, fill=color)))
 
+    def colored(self, lightColor: QColor, darkColor: QColor) -> "ColoredFluentIcon":
+        """ create a colored fluent icon
+
+        Parameters
+        ----------
+        lightColor: str | QColor | Qt.GlobalColor
+            icon color in light mode
+
+        darkColor: str | QColor | Qt.GlobalColor
+            icon color in dark mode
+        """
+        return ColoredFluentIcon(self, lightColor, darkColor)
+
     def qicon(self, reverse=False) -> QIcon:
         """ convert to QIcon, the theme of icon will be updated synchronously with app
 
@@ -264,6 +277,47 @@ class FluentIconBase:
             icon = QIcon(icon)
             rect = QRectF(rect).toRect()
             painter.drawPixmap(rect, icon.pixmap(QRectF(rect).toRect().size()))
+
+
+class ColoredFluentIcon(FluentIconBase):
+    """ Colored fluent icon """
+
+    def __init__(self, icon: FluentIconBase, lightColor, darkColor):
+        """
+        Parameters
+        ----------
+        icon: FluentIconBase
+            the icon to be colored
+
+        lightColor: str | QColor | Qt.GlobalColor
+            icon color in light mode
+
+        darkColor: str | QColor | Qt.GlobalColor
+            icon color in dark mode
+        """
+        super().__init__()
+        self.fluentIcon = icon
+        self.lightColor = QColor(lightColor)
+        self.darkColor = QColor(darkColor)
+
+    def path(self, theme=Theme.AUTO) -> str:
+        return self.fluentIcon.path(theme)
+
+    def render(self, painter, rect, theme=Theme.AUTO, indexes=None, **attributes):
+        icon = self.path(theme)
+
+        if not icon.endswith('.svg'):
+            return self.fluentIcon.render(painter, rect, theme, indexes, attributes)
+
+        if theme == Theme.AUTO:
+            color = self.darkColor if isDarkTheme() else self.lightColor
+        else:
+            color = self.darkColor if theme == Theme.DARK else self.lightColor
+
+        attributes.update(fill=color.name())
+        icon = writeSvg(icon, indexes, **attributes).encode()
+        drawSvgIcon(icon, painter, rect)
+
 
 
 class FluentIcon(FluentIconBase, Enum):

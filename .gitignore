@@ -4,6 +4,7 @@
 
 # 忽略工作区文件
 *.code-workspace
+.DS_Store
 
 # 忽略 .idea
 .idea/
