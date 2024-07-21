@@ -11,7 +11,8 @@ from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, 
                             ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar, SimpleCardWidget,
                             HeaderCardWidget, InfoBarIcon, HyperlinkLabel, HorizontalFlipView,
                             PrimaryPushButton, TitleLabel, PillPushButton, setFont, SingleDirectionScrollArea,
-                            VerticalSeparator, MSFluentWindow, NavigationItemPosition)
+                            VerticalSeparator, MSFluentWindow, NavigationItemPosition, GroupHeaderCardWidget,
+                            ComboBox, SearchLineEdit)
 
 from qfluentwidgets.components.widgets.acrylic_label import AcrylicBrush
 
@@ -124,7 +125,7 @@ class AppInfoCard(SimpleCardWidget):
         self.nameLabel = TitleLabel('QFluentWidgets', self)
         self.installButton = PrimaryPushButton('安装', self)
         self.companyLabel = HyperlinkLabel(
-            QUrl('https://github.com/zhiyiYo/PyQt-Fluent-Widgets'), 'Shokokawaii Inc.', self)
+            QUrl('https://qfluentwidgets.com'), 'Shokokawaii Inc.', self)
         self.installButton.setFixedWidth(160)
 
         self.scoreWidget = StatisticsWidget('平均', '5.0', self)
@@ -151,6 +152,7 @@ class AppInfoCard(SimpleCardWidget):
         self.buttonLayout = QHBoxLayout()
 
         self.initLayout()
+        self.setBorderRadius(8)
 
     def initLayout(self):
         self.hBoxLayout.setSpacing(30)
@@ -199,6 +201,7 @@ class GalleryCard(HeaderCardWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setTitle('屏幕截图')
+        self.setBorderRadius(8)
 
         self.flipView = HorizontalFlipView(self)
         self.expandButton = TransparentToolButton(
@@ -229,6 +232,7 @@ class DescriptionCard(HeaderCardWidget):
         self.descriptionLabel.setWordWrap(True)
         self.viewLayout.addWidget(self.descriptionLabel)
         self.setTitle('描述')
+        self.setBorderRadius(8)
 
 
 class SystemRequirementCard(HeaderCardWidget):
@@ -237,6 +241,8 @@ class SystemRequirementCard(HeaderCardWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setTitle('系统要求')
+        self.setBorderRadius(8)
+
         self.infoLabel = BodyLabel('此产品适用于你的设备。具有复选标记的项目符合开发人员的系统要求。', self)
         self.successIcon = IconWidget(InfoBarIcon.SUCCESS, self)
         self.detailButton = HyperlinkLabel('详细信息', self)
@@ -256,6 +262,29 @@ class SystemRequirementCard(HeaderCardWidget):
         self.vBoxLayout.addWidget(self.detailButton)
 
         self.viewLayout.addLayout(self.vBoxLayout)
+
+
+class SettinsCard(GroupHeaderCardWidget):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setTitle("基本设置")
+        self.setBorderRadius(8)
+
+        self.chooseButton = PushButton("选择")
+        self.comboBox = ComboBox()
+        self.lineEdit = SearchLineEdit()
+
+        self.chooseButton.setFixedWidth(120)
+        self.lineEdit.setFixedWidth(320)
+        self.comboBox.setFixedWidth(320)
+        self.comboBox.addItems(["始终显示（首次打包时建议启用）", "始终隐藏"])
+        self.lineEdit.setPlaceholderText("输入入口脚本的路径")
+
+        self.addGroup("resource/Rocket.svg", "构建目录", "选择 Nuitka 的输出目录", self.chooseButton)
+        self.addGroup("resource/Joystick.svg", "运行终端", "设置是否显示命令行终端", self.comboBox)
+        self.addGroup("resource/Python.svg", "入口脚本", "选择软件的入口脚本", self.lineEdit)
+
 
 
 class LightBox(QWidget):
@@ -420,6 +449,7 @@ class AppInterface(SingleDirectionScrollArea):
         self.appCard = AppInfoCard(self)
         self.galleryCard = GalleryCard(self)
         self.descriptionCard = DescriptionCard(self)
+        self.settingCard = SettinsCard(self)
         self.systemCard = SystemRequirementCard(self)
 
         self.lightBox = LightBox(self)
@@ -434,11 +464,11 @@ class AppInterface(SingleDirectionScrollArea):
         self.vBoxLayout.setContentsMargins(0, 0, 10, 30)
         self.vBoxLayout.addWidget(self.appCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.galleryCard, 0, Qt.AlignTop)
+        self.vBoxLayout.addWidget(self.settingCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.descriptionCard, 0, Qt.AlignTop)
         self.vBoxLayout.addWidget(self.systemCard, 0, Qt.AlignTop)
 
-        self.setStyleSheet("QScrollArea {border: none; background:transparent}")
-        self.view.setStyleSheet('QWidget {background:transparent}')
+        self.enableTransparentBackground()
 
     def showLightBox(self):
         index = self.galleryCard.flipView.currentIndex()
@@ -467,6 +497,7 @@ class Demo3(MSFluentWindow):
         self.resize(880, 760)
         self.setWindowTitle('PyQt-Fluent-Widgets')
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
+        self.setCustomBackgroundColor(QColor(240, 244, 249), QColor(32, 32, 32))
 
         self.titleBar.raise_()
 
