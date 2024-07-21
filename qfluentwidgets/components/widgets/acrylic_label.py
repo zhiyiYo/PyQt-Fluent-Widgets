@@ -22,7 +22,7 @@ except ImportError as e:
 def checkAcrylicAvailability():
     if not isAcrylicAvailable:
         warnings.warn(
-            '`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
+            'Acrylic is not supported in current qfluentwidgets, use `pip install PySide2-Fluent-Widgets[full]` to enable it.')
 
     return isAcrylicAvailable
 
