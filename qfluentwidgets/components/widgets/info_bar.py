@@ -7,11 +7,11 @@ from PyQt6.QtCore import (Qt, QEvent, QSize, QRectF, QObject, QPropertyAnimation
                           QEasingCurve, QTimer, pyqtSignal, QParallelAnimationGroup, QPoint)
 from PyQt6.QtGui import QPainter, QIcon, QColor
 from PyQt6.QtWidgets import (QWidget, QFrame, QLabel, QHBoxLayout, QVBoxLayout,
-                             QToolButton, QGraphicsOpacityEffect)
+                             QGraphicsOpacityEffect)
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import FluentStyleSheet, themeColor
-from ...common.icon import FluentIconBase, Theme, isDarkTheme, writeSvg, drawSvgIcon, drawIcon
+from ...common.icon import FluentIconBase, Theme, isDarkTheme, drawIcon
 from ...common.icon import FluentIcon as FIF
 from .button import TransparentToolButton
 
