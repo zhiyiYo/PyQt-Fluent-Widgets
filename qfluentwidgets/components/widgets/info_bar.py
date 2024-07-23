@@ -1,6 +1,6 @@
 # coding:utf-8
 from enum import Enum
-from typing import Union
+from typing import Optional, Self, Type, Union
 import weakref
 
 from PyQt6.QtCore import (Qt, QEvent, QSize, QRectF, QObject, QPropertyAnimation,
@@ -297,20 +297,20 @@ class InfoBar(QFrame):
 class InfoBarManager(QObject):
     """ Info bar manager """
 
-    managers = {}
+    managers = {}   # type: dict[InfoBarPosition, Type[Self]]
 
     def __init__(self):
         super().__init__()
         self.spacing = 16
         self.margin = 24
-        self.infoBars = weakref.WeakKeyDictionary()
-        self.aniGroups = weakref.WeakKeyDictionary()
-        self.slideAnis = []
-        self.dropAnis = []
+        self.infoBars = weakref.WeakKeyDictionary()     # type: weakref.WeakKeyDictionary[QWidget, list[InfoBar]]
+        self.aniGroups = weakref.WeakKeyDictionary()    # type: weakref.WeakKeyDictionary[QWidget, QParallelAnimationGroup]
+        self.slideAnis = []     # type: list[QPropertyAnimation]
+        self.dropAnis = []      # type: list[QPropertyAnimation]
 
     def add(self, infoBar: InfoBar):
         """ add info bar """
-        p = infoBar.parent()    # type:QWidget
+        p = infoBar.parent()    # type: QWidget | None
         if not p:
             return
 
@@ -344,7 +344,7 @@ class InfoBarManager(QObject):
 
     def remove(self, infoBar: InfoBar):
         """ remove info bar """
-        p = infoBar.parent()
+        p = infoBar.parent()    # type: QWidget | None
         if p not in self.infoBars:
             return
 
@@ -354,13 +354,13 @@ class InfoBarManager(QObject):
         self.infoBars[p].remove(infoBar)
 
         # remove drop animation
-        dropAni = infoBar.property('dropAni')   # type: QPropertyAnimation
+        dropAni = infoBar.property('dropAni')   # type: QPropertyAnimation | None
         if dropAni:
             self.aniGroups[p].removeAnimation(dropAni)
             self.dropAnis.remove(dropAni)
 
         # remove slider animation
-        slideAni = infoBar.property('slideAni')
+        slideAni = infoBar.property('slideAni') # type: QPropertyAnimation | None
         if slideAni:
             self.slideAnis.remove(slideAni)
 
@@ -378,16 +378,16 @@ class InfoBarManager(QObject):
 
         return slideAni
 
-    def _updateDropAni(self, parent):
+    def _updateDropAni(self, parent: QWidget):
         for bar in self.infoBars[parent]:
-            ani = bar.property('dropAni')
+            ani = bar.property('dropAni')   # type: QPropertyAnimation | None
             if not ani:
                 continue
 
             ani.setStartValue(bar.pos())
             ani.setEndValue(self._pos(bar))
 
-    def _pos(self, infoBar: InfoBar, parentSize=None) -> QPoint:
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None) -> QPoint:
         """ return the position of info bar """
         raise NotImplementedError
 
@@ -407,24 +407,24 @@ class InfoBarManager(QObject):
         return super().eventFilter(obj, e)
 
     @classmethod
-    def register(cls, name):
+    def register(cls, position: InfoBarPosition):
         """ register menu animation manager
 
         Parameters
         ----------
-        name: Any
-            the name of manager, it should be unique
+        position: Any
+            the position of the manager, it should be unique
         """
-        def wrapper(Manager):
-            if name not in cls.managers:
-                cls.managers[name] = Manager()
+        def wrapper(Manager: Type[Self]):
+            if position not in cls.managers:
+                cls.managers[position] = Manager()
 
             return Manager
 
         return wrapper
 
     @classmethod
-    def make(cls, position: InfoBarPosition):
+    def make(cls, position: InfoBarPosition) -> Type[Self]:
         """ mask info bar manager according to the display position """
         if position not in cls.managers:
             raise ValueError(f'`{position}` is an invalid animation type.')
@@ -436,8 +436,8 @@ class InfoBarManager(QObject):
 class TopInfoBarManager(InfoBarManager):
     """ Top position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize=None):
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None):
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         x = (infoBar.parent().width() - infoBar.width()) // 2
@@ -457,8 +457,8 @@ class TopInfoBarManager(InfoBarManager):
 class TopRightInfoBarManager(InfoBarManager):
     """ Top right position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize=None):
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None):
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         x = parentSize.width() - infoBar.width() - self.margin
@@ -477,8 +477,8 @@ class TopRightInfoBarManager(InfoBarManager):
 class BottomRightInfoBarManager(InfoBarManager):
     """ Bottom right position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize=None) -> QPoint:
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None) -> QPoint:
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         x = parentSize.width() - infoBar.width() - self.margin
@@ -498,8 +498,8 @@ class BottomRightInfoBarManager(InfoBarManager):
 class TopLeftInfoBarManager(InfoBarManager):
     """ Top left position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize=None) -> QPoint:
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None) -> QPoint:
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         y = self.margin
@@ -518,8 +518,8 @@ class TopLeftInfoBarManager(InfoBarManager):
 class BottomLeftInfoBarManager(InfoBarManager):
     """ Bottom left position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize: QSize = None) -> QPoint:
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None) -> QPoint:
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         y = parentSize.height() - infoBar.height() - self.margin
@@ -538,8 +538,8 @@ class BottomLeftInfoBarManager(InfoBarManager):
 class BottomInfoBarManager(InfoBarManager):
     """ Bottom position info bar manager """
 
-    def _pos(self, infoBar: InfoBar, parentSize: QSize = None) -> QPoint:
-        p = infoBar.parent()
+    def _pos(self, infoBar: InfoBar, parentSize: Optional[QSize]=None) -> QPoint:
+        p = infoBar.parent()    # type: QWidget | None
         parentSize = parentSize or p.size()
 
         x = (parentSize.width() - infoBar.width()) // 2
