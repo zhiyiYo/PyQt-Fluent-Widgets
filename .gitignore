@@ -8,6 +8,9 @@
 # 忽略 .idea
 .idea/
 
+# 忽略 .idea
+.venv/
+
 # 忽略python缓存文件
 */__pycache__
 *.py[cod]
