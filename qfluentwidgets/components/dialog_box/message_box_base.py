@@ -12,9 +12,6 @@ from .mask_dialog_base import MaskDialogBase
 class MessageBoxBase(MaskDialogBase):
     """ Message box base """
 
-    accepted = pyqtSignal()
-    rejected = pyqtSignal()
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.buttonGroup = QFrame(self.widget)
@@ -63,11 +60,9 @@ class MessageBoxBase(MaskDialogBase):
 
     def __onCancelButtonClicked(self):
         self.reject()
-        self.rejected.emit()
 
     def __onYesButtonClicked(self):
         self.accept()
-        self.accepted.emit()
 
     def __setQss(self):
         self.buttonGroup.setObjectName('buttonGroup')

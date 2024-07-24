@@ -8,23 +8,14 @@
   A fluent design widgets library based on PyQt6
 </p>
 
-<p align="center">
-  <a href="https://pypi.org/project/PyQt-Fluent-Widgets" target="_blank">
-    <img src="https://img.shields.io/pypi/v/pyqt6-fluent-widgets?color=%2334D058&label=Version" alt="Version">
-  </a>
+<div align="center">
 
-  <a style="text-decoration:none">
-    <img src="https://static.pepy.tech/personalized-badge/pyqt6-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads" alt="Download"/>
-  </a>
+[![Version](https://img.shields.io/pypi/v/pyqt6-fluent-widgets?color=%2334D058&label=Version)](https://pypi.org/project/PyQt-Fluent-Widgets)
+[![Download](https://static.pepy.tech/personalized-badge/pyqt6-fluent-widgets?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)]()
+[![GPLv3](https://img.shields.io/badge/License-GPLv3-blue?color=#4ec820)](LICENSE)
+[![Platform Win32 | Linux | macOS](https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=#4ec820)]()
 
-  <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/PyQt-6.3.1+-blue?color=#4ec820" alt="PyQt 6.3.1+"/>
-  </a>
-
-  <a style="text-decoration:none">
-    <img src="https://img.shields.io/badge/Platform-Win32%20|%20Linux%20|%20macOS-blue?color=#4ec820" alt="Platform Win32 | Linux | macOS"/>
-  </a>
-</p>
+</div>
 
 <p align="center">
 English | <a href="docs/README_zh.md">简体中文</a>
@@ -74,7 +65,7 @@ Copyright © 2021 by zhiyiYo.
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
 ## Work with Designer
-[Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [Afadian](https://afdian.net/item/62cc7298cd9411eeb14d52540025c377) or [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600).
+[Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600).
 
 ![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
 
