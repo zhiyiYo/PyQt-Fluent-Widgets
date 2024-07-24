@@ -72,7 +72,7 @@ class VideoWidget(QGraphicsView):
         self.playBar.pause()
 
     def stop(self):
-        self.playBar.pause()
+        self.playBar.stop()
 
     def togglePlayState(self):
         """ toggle play state """
