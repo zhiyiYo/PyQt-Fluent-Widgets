@@ -24,7 +24,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
-        self._lightBackgroundColor = QColor(243, 243, 243)
+        self._lightBackgroundColor = QColor(240, 244, 249)
         self._darkBackgroundColor = QColor(32, 32, 32)
         super().__init__(parent=parent)
 

@@ -497,7 +497,6 @@ class Demo3(MSFluentWindow):
         self.resize(880, 760)
         self.setWindowTitle('PyQt-Fluent-Widgets')
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
-        self.setCustomBackgroundColor(QColor(240, 244, 249), QColor(32, 32, 32))
 
         self.titleBar.raise_()
 
