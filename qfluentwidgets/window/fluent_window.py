@@ -2,7 +2,7 @@
 from typing import Union
 import sys
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize, QRect
 from PyQt5.QtGui import QIcon, QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication
 
@@ -16,7 +16,7 @@ from ..components.navigation import (NavigationInterface, NavigationBar, Navigat
                                      NavigationBarPushButton, NavigationTreeWidget)
 from .stacked_widget import StackedWidget
 
-from qframelesswindow import TitleBar
+from qframelesswindow import TitleBar, TitleBarBase
 
 
 class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
@@ -41,6 +41,10 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         # enable mica effect on win11
         self.setMicaEffectEnabled(True)
 
+        # show system title bar buttons on macOS
+        if sys.platform == "darwin":
+            self.setSystemTitleBarButtonVisible(True)
+
         qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
 
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
@@ -62,7 +66,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
         if bool(self.stackedWidget.property("isTransparent")) == isTransparent:
             return
-        
+
         self.stackedWidget.setProperty("isTransparent", isTransparent)
         self.stackedWidget.setStyle(QApplication.style())
 
@@ -111,6 +115,25 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def isMicaEffectEnabled(self):
         return self._isMicaEnabled
+
+    def systemTitleBarRect(self, size: QSize) -> QRect:
+        """ Returns the system title bar rect, only works for macOS
+
+        Parameters
+        ----------
+        size: QSize
+            original system title bar rect
+        """
+        return QRect(size.width() - 75, 0 if self.isFullScreen() else 9, 75, size.height())
+
+    def setTitleBar(self, titleBar):
+        super().setTitleBar(titleBar)
+
+        # hide title bar buttons on macOS
+        if sys.platform == "darwin" and self.isSystemButtonVisible() and isinstance(titleBar, TitleBarBase):
+            titleBar.minBtn.hide()
+            titleBar.maxBtn.hide()
+            titleBar.closeBtn.hide()
 
 
 class FluentTitleBar(TitleBar):
@@ -330,6 +353,9 @@ class SplitTitleBar(TitleBar):
         self.window().windowTitleChanged.connect(self.setTitle)
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self)
+
+        if sys.platform == "darwin":
+            self.setFixedHeight(48)
 
     def setTitle(self, title):
         self.titleLabel.setText(title)

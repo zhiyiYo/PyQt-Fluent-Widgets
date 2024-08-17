@@ -10,7 +10,7 @@ from qfluentwidgets import (CardWidget, setTheme, Theme, IconWidget, BodyLabel, 
                             TransparentToolButton, FluentIcon, RoundMenu, Action, ElevatedCardWidget,
                             ImageLabel, isDarkTheme, FlowLayout, MSFluentTitleBar, SimpleCardWidget,
                             HeaderCardWidget, InfoBarIcon, HyperlinkLabel, HorizontalFlipView,
-                            PrimaryPushButton, TitleLabel, PillPushButton, setFont, SingleDirectionScrollArea,
+                            PrimaryPushButton, TitleLabel, PillPushButton, setFont, ScrollArea,
                             VerticalSeparator, MSFluentWindow, NavigationItemPosition, GroupHeaderCardWidget,
                             ComboBox, SearchLineEdit)
 
@@ -438,7 +438,7 @@ class Demo2(MicaWindow):
         self.vBoxLayout.addWidget(card, alignment=Qt.AlignTop)
 
 
-class AppInterface(SingleDirectionScrollArea):
+class AppInterface(ScrollArea):
 
     def __init__(self, parent=None):
         super().__init__(parent)
