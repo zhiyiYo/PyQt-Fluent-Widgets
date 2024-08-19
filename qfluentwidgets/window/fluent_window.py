@@ -354,9 +354,6 @@ class SplitTitleBar(TitleBar):
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self)
 
-        if sys.platform == "darwin":
-            self.setFixedHeight(48)
-
     def setTitle(self, title):
         self.titleLabel.setText(title)
         self.titleLabel.adjustSize()
@@ -371,6 +368,9 @@ class SplitFluentWindow(FluentWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setTitleBar(SplitTitleBar(self))
+
+        if sys.platform == "darwin":
+            self.titleBar.setFixedHeight(48)
 
         self.widgetLayout.setContentsMargins(0, 0, 0, 0)
 

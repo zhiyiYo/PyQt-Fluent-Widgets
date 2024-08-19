@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtCore import Qt, QTranslator, QLocale
+from PyQt5.QtCore import Qt, QTranslator, QLocale, QRect
 from PyQt5.QtGui import QIcon, QPixmap, QColor
 from PyQt5.QtWidgets import QApplication
 from qfluentwidgets import setThemeColor, FluentTranslator, setTheme, Theme, SplitTitleBar, isDarkTheme
@@ -38,6 +38,12 @@ class LoginWindow(Window, Ui_Form):
             color = QColor(25, 33, 42) if isDarkTheme() else QColor(240, 244, 249)
             self.setStyleSheet(f"LoginWindow{{background: {color.name()}}}")
 
+        if sys.platform == "darwin":
+            self.setSystemTitleBarButtonVisible(True)
+            self.titleBar.minBtn.hide()
+            self.titleBar.maxBtn.hide()
+            self.titleBar.closeBtn.hide()
+
         self.titleBar.titleLabel.setStyleSheet("""
             QLabel{
                 background: transparent;
@@ -56,6 +62,11 @@ class LoginWindow(Window, Ui_Form):
         pixmap = QPixmap(":/images/background.jpg").scaled(
             self.label.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
         self.label.setPixmap(pixmap)
+
+    def systemTitleBarRect(self, size):
+        """ Returns the system title bar rect, only works for macOS """
+        return QRect(size.width() - 75, 0, 75, size.height())
+
 
 
 if __name__ == '__main__':
