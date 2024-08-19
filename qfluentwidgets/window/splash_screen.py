@@ -1,6 +1,7 @@
 # coding:utf-8
 from typing import Union
 from PySide2 import QtGui
+import sys
 
 from PySide2.QtCore import Qt, QSize, QRectF, QEvent
 from PySide2.QtGui import QPixmap, QPainter, QColor, QIcon
@@ -37,6 +38,9 @@ class SplashScreen(QWidget):
 
         if parent:
             parent.installEventFilter(self)
+
+        if sys.platform == "darwin":
+            self.titleBar.hide()
 
     def setIcon(self, icon: Union[str, QIcon, FluentIconBase]):
         self._icon = icon
