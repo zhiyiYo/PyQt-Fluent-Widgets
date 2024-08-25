@@ -297,29 +297,16 @@ class InfoBar(QFrame):
 class InfoBarManager(QObject):
     """ Info bar manager """
 
-    _instance = None
     managers = {}
-
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super(InfoBarManager, cls).__new__(
-                cls, *args, **kwargs)
-            cls._instance.__initialized = False
-
-        return cls._instance
 
     def __init__(self):
         super().__init__()
-        if self.__initialized:
-            return
-
         self.spacing = 16
         self.margin = 24
         self.infoBars = weakref.WeakKeyDictionary()
         self.aniGroups = weakref.WeakKeyDictionary()
         self.slideAnis = []
         self.dropAnis = []
-        self.__initialized = True
 
     def add(self, infoBar: InfoBar):
         """ add info bar """
@@ -430,7 +417,7 @@ class InfoBarManager(QObject):
         """
         def wrapper(Manager):
             if name not in cls.managers:
-                cls.managers[name] = Manager
+                cls.managers[name] = Manager()
 
             return Manager
 
@@ -442,7 +429,7 @@ class InfoBarManager(QObject):
         if position not in cls.managers:
             raise ValueError(f'`{position}` is an invalid animation type.')
 
-        return cls.managers[position]()
+        return cls.managers[position]
 
 
 @InfoBarManager.register(InfoBarPosition.TOP)
