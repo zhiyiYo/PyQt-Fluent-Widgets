@@ -326,7 +326,7 @@ class IconInfoBadge(InfoBadge):
     @classmethod
     def info(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
              position=InfoBadgePosition.TOP_RIGHT):
-        return cls.make(icon, parent, InfoLevel.INFOAMTION)
+        return cls.make(icon, parent, InfoLevel.INFOAMTION, target, position)
 
     @classmethod
     def success(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,

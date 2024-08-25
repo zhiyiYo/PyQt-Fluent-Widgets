@@ -70,7 +70,7 @@ class ExpandLayout(QLayout):
         """ adjust widgets position according to the window size """
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
-        y = rect.y() + margin.top() + margin.bottom()
+        y = rect.y() + margin.top()
         width = rect.width() - margin.left() - margin.right()
 
         for i, w in enumerate(self.__widgets):
