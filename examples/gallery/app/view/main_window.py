@@ -1,10 +1,10 @@
 # coding: utf-8
-from PyQt5.QtCore import QUrl, QSize
+from PyQt5.QtCore import QUrl, QSize, QTimer
 from PyQt5.QtGui import QIcon, QDesktopServices, QColor
 from PyQt5.QtWidgets import QApplication
 
 from qfluentwidgets import (NavigationAvatarWidget, NavigationItemPosition, MessageBox, FluentWindow,
-                            SplashScreen)
+                            SplashScreen, SystemThemeListener, isDarkTheme)
 from qfluentwidgets import FluentIcon as FIF
 
 from .gallery_interface import GalleryInterface
@@ -35,6 +35,9 @@ class MainWindow(FluentWindow):
         super().__init__()
         self.initWindow()
 
+        # create system theme listener
+        self.themeListener = SystemThemeListener(self)
+
         # create sub interface
         self.homeInterface = HomeInterface(self)
         self.iconInterface = IconInterface(self)
@@ -59,6 +62,9 @@ class MainWindow(FluentWindow):
         # add items to navigation interface
         self.initNavigation()
         self.splashScreen.finish()
+
+        # start theme listener
+        self.themeListener.start()
 
     def connectSignalToSlot(self):
         signalBus.micaEnableChanged.connect(self.setMicaEffectEnabled)
@@ -128,6 +134,18 @@ class MainWindow(FluentWindow):
         super().resizeEvent(e)
         if hasattr(self, 'splashScreen'):
             self.splashScreen.resize(self.size())
+
+    def closeEvent(self, e):
+        self.themeListener.terminate()
+        self.themeListener.deleteLater()
+        super().closeEvent(e)
+
+    def _onThemeChangedFinished(self):
+        super()._onThemeChangedFinished()
+
+        # retry
+        if self.isMicaEffectEnabled():
+            QTimer.singleShot(100, lambda: self.windowEffect.setMicaEffect(self.winId(), isDarkTheme()))
 
     def switchToSample(self, routeKey, index):
         """ switch to sample """

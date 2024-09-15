@@ -9,3 +9,4 @@ from .smooth_scroll import SmoothScroll, SmoothMode
 from .translator import FluentTranslator
 from .router import qrouter, Router
 from .color import FluentThemeColor
+from .theme_listener import SystemThemeListener
