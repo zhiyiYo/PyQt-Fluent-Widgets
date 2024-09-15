@@ -12,6 +12,7 @@ class MaskDialogBase(QDialog):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._isClosableOnMaskClicked = False
         self._hBoxLayout = QHBoxLayout(self)
         self.windowMask = QWidget(self)
 
@@ -28,6 +29,7 @@ class MaskDialogBase(QDialog):
         self.setShadowEffect()
 
         self.window().installEventFilter(self)
+        self.windowMask.installEventFilter(self)
 
     def setShadowEffect(self, blurRadius=60, offset=(0, 10), color=QColor(0, 0, 0, 100)):
         """ add shadow to dialog """
@@ -73,6 +75,12 @@ class MaskDialogBase(QDialog):
         self.setGraphicsEffect(None)
         QDialog.done(self, code)
 
+    def isClosableOnMaskClicked(self):
+        return self._isClosableOnMaskClicked
+
+    def setClosableOnMaskClicked(self, isClosable: bool):
+        self._isClosableOnMaskClicked = isClosable
+
     def resizeEvent(self, e):
         self.windowMask.resize(self.size())
 
@@ -81,5 +89,9 @@ class MaskDialogBase(QDialog):
             if e.type() == QEvent.Resize:
                 re = QResizeEvent(e)
                 self.resize(re.size())
+        elif obj is self.windowMask:
+            if e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton \
+                    and self.isClosableOnMaskClicked():
+                self.reject()
 
         return super().eventFilter(obj, e)
