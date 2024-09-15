@@ -43,7 +43,7 @@ class MaskDialogBase(QDialog):
     def setMaskColor(self, color: QColor):
         """ set the color of mask """
         self.windowMask.setStyleSheet(f"""
-            background: rgba({color.red()}, {color.blue()}, {color.green()}, {color.alpha()})
+            background: rgba({color.red()}, {color.green()}, {color.blue()}, {color.alpha()})
         """)
 
     def showEvent(self, e):
