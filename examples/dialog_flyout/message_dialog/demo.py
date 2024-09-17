@@ -23,6 +23,10 @@ class Demo(QWidget):
         content = """If you delete the "Music" folder from the list, the folder will no longer appear in the list, but will not be deleted."""
         # w = MessageDialog(title, content, self)   # Win10 style message box
         w = MessageBox(title, content, self)
+
+        # close the message box when mask is clicked
+        w.setClosableOnMaskClicked(True)
+
         if w.exec():
             print('Yes button is pressed')
         else:
