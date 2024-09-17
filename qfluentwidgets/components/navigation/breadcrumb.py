@@ -218,8 +218,19 @@ class BreadcrumbBar(QWidget):
 
         self.setCurrentIndex(self.items.index(self.itemMap[routeKey]))
 
-    def item(self, routeKey: str):
-        return self.items[routeKey]
+    def setItemText(self, routeKey: str, text: str):
+        item = self.item(routeKey)
+        if item:
+            item.setText(text)
+
+    def item(self, routeKey: str) -> BreadcrumbItem:
+        return self.itemMap.get(routeKey, None)
+
+    def itemAt(self, index: int):
+        if 0 <= index < len(self.items):
+            return self.items[index]
+
+        return None
 
     def currentIndex(self):
         return self._currentIndex

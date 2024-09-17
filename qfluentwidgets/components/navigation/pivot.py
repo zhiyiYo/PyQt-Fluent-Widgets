@@ -218,6 +218,11 @@ class Pivot(QWidget):
             item.setFont(font)
             item.adjustSize()
 
+    def setItemText(self, routeKey: str, text: str):
+        """ set the text of item """
+        item = self.widget(routeKey)
+        item.setText(text)
+
     def _onItemClicked(self):
         item = self.sender()  # type: PivotItem
         self.setCurrentItem(item.property('routeKey'))

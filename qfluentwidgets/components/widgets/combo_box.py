@@ -321,6 +321,7 @@ class ComboBoxBase(QObject):
             menu.adjustSize()
 
         menu.setMaxVisibleItems(self.maxVisibleItems())
+        menu.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         menu.closedSignal.connect(self._onDropMenuClosed)
         self.dropMenu = menu
 
