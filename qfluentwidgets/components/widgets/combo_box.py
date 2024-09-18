@@ -293,7 +293,12 @@ class ComboBoxBase(QObject):
         if not self.dropMenu:
             return
 
-        self.dropMenu.close()
+        # drop menu could be deleted before this method
+        try:
+            self.dropMenu.close()
+        except:
+            pass
+
         self.dropMenu = None
 
     def _onDropMenuClosed(self):
