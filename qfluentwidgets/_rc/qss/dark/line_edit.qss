@@ -1,4 +1,4 @@
-LineEdit, TextEdit, PlainTextEdit {
+LineEdit, TextEdit, PlainTextEdit, TextBrowser {
     background-color: rgba(255, 255, 255, 0.0605);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5442);
@@ -10,11 +10,11 @@ LineEdit, TextEdit, PlainTextEdit {
     selection-color: black;
 }
 
-TextEdit, PlainTextEdit  {
+TextEdit, PlainTextEdit, TextBrowser  {
     padding: 2px 3px 2px 8px;
 }
 
-LineEdit:hover, TextEdit:hover, PlainTextEdit:hover {
+LineEdit:hover, TextEdit:hover, PlainTextEdit:hover, TextBrowser:hover {
     background: rgba(255, 255, 255, 0.0837);
 }
 
@@ -27,12 +27,12 @@ LineEdit[transparent=false]:focus {
     background: rgb(31, 31, 31);
 }
 
-TextEdit:focus, PlainTextEdit:focus {
+TextEdit:focus, PlainTextEdit:focus, TextBrowser:focus {
     border-bottom: 1px solid --ThemeColorPrimary;
     background-color: rgba(30, 30, 30, 0.7);
 }
 
-LineEdit:disabled, TextEdit:disabled, PlainTextEdit:disabled {
+LineEdit:disabled, TextEdit:disabled, PlainTextEdit:disabled, TextBrowser:disabled {
     color: rgba(255, 255, 255, 92);
     background-color: rgba(255, 255, 255, 0.0419);
     border: 1px solid rgba(255, 255, 255, 0.0698);
