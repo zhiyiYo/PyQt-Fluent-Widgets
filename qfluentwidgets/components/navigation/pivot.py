@@ -176,6 +176,7 @@ class Pivot(QWidget):
             w.deleteLater()
 
         self.items.clear()
+        self._currentRouteKey = None
 
     def currentItem(self):
         """ Returns the current selected item """
