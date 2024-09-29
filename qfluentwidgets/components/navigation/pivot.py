@@ -39,6 +39,8 @@ class PivotItem(PushButton):
 class Pivot(QWidget):
     """ Pivot """
 
+    currentItemChanged = pyqtSignal(str)
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.items = {}  # type: Dict[str, PivotItem]
@@ -182,6 +184,9 @@ class Pivot(QWidget):
 
         return self.widget(self._currentRouteKey)
 
+    def currentRouteKey(self):
+        return self._currentRouteKey
+
     def setCurrentItem(self, routeKey: str):
         """ set current selected item
 
@@ -190,7 +195,7 @@ class Pivot(QWidget):
         routeKey: str
             the unique name of item
         """
-        if routeKey not in self.items:
+        if routeKey not in self.items or routeKey == self.currentRouteKey():
             return
 
         self._currentRouteKey = routeKey
@@ -199,6 +204,12 @@ class Pivot(QWidget):
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
 
+        self.currentItemChanged.emit(routeKey)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        self._adjustIndicatorPos()
+
     def setItemFontSize(self, size: int):
         """ set the pixel font size of items """
         for item in self.items.values():
@@ -206,6 +217,11 @@ class Pivot(QWidget):
             font.setPixelSize(size)
             item.setFont(font)
             item.adjustSize()
+
+    def setItemText(self, routeKey: str, text: str):
+        """ set the text of item """
+        item = self.widget(routeKey)
+        item.setText(text)
 
     def _onItemClicked(self):
         item = self.sender()  # type: PivotItem
@@ -216,13 +232,16 @@ class Pivot(QWidget):
             raise RouteKeyError(f"`{routeKey}` is illegal.")
 
         return self.items[routeKey]
-    
-    def resizeEvent(self, e) -> None:
-            super().resizeEvent(e)
 
-            item = self.currentItem()
-            if item is not None:
-                self.slideAni.setValue(item.x())
+    def resizeEvent(self, e) -> None:
+        super().resizeEvent(e)
+        self._adjustIndicatorPos()
+
+    def _adjustIndicatorPos(self):
+        item = self.currentItem()
+        if item:
+            self.slideAni.stop()
+            self.slideAni.setValue(item.x())
 
     def paintEvent(self, e):
         super().paintEvent(e)

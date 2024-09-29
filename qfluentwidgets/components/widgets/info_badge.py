@@ -54,6 +54,7 @@ class InfoBadge(QLabel):
 
         setFont(self, 11)
         self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         FluentStyleSheet.INFO_BADGE.apply(self)
 
@@ -325,7 +326,7 @@ class IconInfoBadge(InfoBadge):
     @classmethod
     def info(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,
              position=InfoBadgePosition.TOP_RIGHT):
-        return cls.make(icon, parent, InfoLevel.INFOAMTION)
+        return cls.make(icon, parent, InfoLevel.INFOAMTION, target, position)
 
     @classmethod
     def success(cls, icon: Union[QIcon, FluentIconBase], parent=None, target: QWidget = None,

@@ -55,7 +55,7 @@ SegmentedToolItem[isSelected=false] {
     background-color: transparent;
     border: none;
     border-radius: 6px;
-    margin: 3px 2px;
+    margin: 3px 0px;
 }
 
 SegmentedItem[isSelected=false]:hover,
@@ -66,7 +66,6 @@ SegmentedToolItem[isSelected=false]:hover {
 SegmentedItem[isSelected=false]:pressed,
 SegmentedToolItem[isSelected=false]:pressed {
     background-color: rgba(0, 0, 0, 6);
-    margin: 3px 4px 3px 4px;
 }
 
 SegmentedItem[isSelected=true],

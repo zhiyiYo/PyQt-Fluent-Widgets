@@ -2,10 +2,10 @@
 import sys
 
 from PyQt5.QtCore import Qt, QUrl
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QColor
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from qfluentwidgets import MessageBoxBase, SubtitleLabel, LineEdit, PushButton, setTheme, Theme
+from qfluentwidgets import MessageBoxBase, SubtitleLabel, LineEdit, PushButton, CaptionLabel, setTheme, Theme
 
 
 class CustomMessageBox(MessageBoxBase):
@@ -19,22 +19,28 @@ class CustomMessageBox(MessageBoxBase):
         self.urlLineEdit.setPlaceholderText('输入文件、流或者播放列表的 URL')
         self.urlLineEdit.setClearButtonEnabled(True)
 
+        self.warningLabel = CaptionLabel("The url is invalid")
+        self.warningLabel.setTextColor("#cf1010", QColor(255, 28, 32))
+
         # add widget to view layout
         self.viewLayout.addWidget(self.titleLabel)
         self.viewLayout.addWidget(self.urlLineEdit)
+        self.viewLayout.addWidget(self.warningLabel)
+        self.warningLabel.hide()
 
         # change the text of button
         self.yesButton.setText('打开')
         self.cancelButton.setText('取消')
 
         self.widget.setMinimumWidth(350)
-        self.yesButton.setDisabled(True)
-        self.urlLineEdit.textChanged.connect(self._validateUrl)
 
         # self.hideYesButton()
 
-    def _validateUrl(self, text):
-        self.yesButton.setEnabled(QUrl(text).isValid())
+    def validate(self):
+        """ Rewrite the virtual method """
+        isValid = QUrl(self.urlLineEdit.text()).isValid()
+        self.warningLabel.setHidden(isValid)
+        return isValid
 
 
 class Demo(QWidget):

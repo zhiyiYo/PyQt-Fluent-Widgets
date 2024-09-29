@@ -12,9 +12,6 @@ from .mask_dialog_base import MaskDialogBase
 class MessageBoxBase(MaskDialogBase):
     """ Message box base """
 
-    accepted = pyqtSignal()
-    rejected = pyqtSignal()
-
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.buttonGroup = QFrame(self.widget)
@@ -61,13 +58,22 @@ class MessageBoxBase(MaskDialogBase):
         self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
         self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
 
+    def validate(self) -> bool:
+        """ validate the data of form before closing dialog
+
+        Returns
+        -------
+        isValid: bool
+            whether the data of form is legal
+        """
+        return True
+
     def __onCancelButtonClicked(self):
         self.reject()
-        self.rejected.emit()
 
     def __onYesButtonClicked(self):
-        self.accept()
-        self.accepted.emit()
+        if self.validate():
+            self.accept()
 
     def __setQss(self):
         self.buttonGroup.setObjectName('buttonGroup')
