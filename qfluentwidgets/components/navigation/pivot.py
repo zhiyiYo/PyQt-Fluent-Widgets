@@ -168,6 +168,9 @@ class Pivot(QWidget):
         qrouter.remove(routeKey)
         item.deleteLater()
 
+        if not self.items:
+            self._currentRouteKey = None
+
     def clear(self):
         """ clear all navigation items """
         for k, w in self.items.items():
