@@ -163,10 +163,14 @@ class CustomStyleSheet(StyleSheetBase):
 
     def __init__(self, widget: QWidget) -> None:
         super().__init__()
-        self.widget = widget
+        self._widget = weakref.ref(widget)
 
     def path(self, theme=Theme.AUTO):
         return ''
+
+    @property
+    def widget(self):
+        return self._widget()
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, CustomStyleSheet):
@@ -182,18 +186,28 @@ class CustomStyleSheet(StyleSheetBase):
 
     def setLightStyleSheet(self, qss: str):
         """ set the style sheet in light mode """
-        self.widget.setProperty(self.LIGHT_QSS_KEY, qss)
+        if self.widget:
+            self.widget.setProperty(self.LIGHT_QSS_KEY, qss)
+
         return self
 
     def setDarkStyleSheet(self, qss: str):
         """ set the style sheet in dark mode """
-        self.widget.setProperty(self.DARK_QSS_KEY, qss)
+        if self.widget:
+            self.widget.setProperty(self.DARK_QSS_KEY, qss)
+
         return self
 
     def lightStyleSheet(self) -> str:
+        if not self.widget:
+            return ''
+
         return self.widget.property(self.LIGHT_QSS_KEY) or ''
 
     def darkStyleSheet(self) -> str:
+        if not self.widget:
+            return ''
+
         return self.widget.property(self.DARK_QSS_KEY) or ''
 
     def content(self, theme=Theme.AUTO) -> str:
