@@ -321,8 +321,8 @@ class QConfig(QObject):
     def toDict(self, serialize=True):
         """ convert config items to `dict` """
         items = {}
-        for name in dir(self._cfg.__class__):
-            item = getattr(self._cfg.__class__, name)
+        for name in dir(self._cfg):
+            item = getattr(self._cfg, name)
             if not isinstance(item, ConfigItem):
                 continue
 
