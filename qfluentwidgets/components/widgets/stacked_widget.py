@@ -9,49 +9,55 @@ from PyQt6.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
 class OpacityAniStackedWidget(QStackedWidget):
     """ Stacked widget with fade in and fade out animation """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None) -> None:
         super().__init__(parent=parent)
-        self.__nextIndex = 0
-        self.__effects = []  # type:List[QPropertyAnimation]
-        self.__anis = []     # type:List[QPropertyAnimation]
+        self.__create_animations()
 
-    def addWidget(self, w: QWidget):
-        super().addWidget(w)
+    def setCurrentIndex(self, index: int) -> None:
+        if index == self.currentIndex(): return
+        if not self.widget(index): return # avoids going to nonexisting index
+        
+        # Current index hides, target index shows
+        self.currentWidget().setGraphicsEffect(self._opacity1)
+        self.widget(index).setGraphicsEffect(self._opacity2)
 
-        effect = QGraphicsOpacityEffect(self)
-        effect.setOpacity(1)
-        ani = QPropertyAnimation(effect, b'opacity', self)
-        ani.setDuration(220)
-        ani.finished.connect(self.__onAniFinished)
-        self.__anis.append(ani)
-        self.__effects.append(effect)
-        w.setGraphicsEffect(effect)
+        # Show target index (currently invisible)
+        self.widget(index).show()
 
-    def setCurrentIndex(self, index: int):
-        index_ = self.currentIndex()
-        if index == index_:
-            return
+        # Start animations
+        self._opacityUp.finished.connect(
+            lambda: self.rst_effects(self.currentWidget(), self.widget(index)))
+        self._opacityDown.start(QAbstractAnimation.DeletionPolicy.KeepWhenStopped)
+        self._opacityUp.start(QAbstractAnimation.DeletionPolicy.KeepWhenStopped)
 
-        if index > index_:
-            ani = self.__anis[index]
-            ani.setStartValue(0)
-            ani.setEndValue(1)
-            super().setCurrentIndex(index)
-        else:
-            ani = self.__anis[index_]
-            ani.setStartValue(1)
-            ani.setEndValue(0)
+    def rst_effects(self, w_hidden: QWidget, w_shown: QWidget) -> None:
+        super().setCurrentWidget(w_shown)
+        w_hidden.setGraphicsEffect(None)
+        w_shown.setGraphicsEffect(None)
+        self.__create_animations()
 
-        self.widget(index_).show()
-        self.__nextIndex = index
-        ani.start()
+    def __create_animations(self) -> None:
 
-    def setCurrentWidget(self, w: QWidget):
+        self._opacity1 = QGraphicsOpacityEffect(self)
+        self._opacity2 = QGraphicsOpacityEffect(self)
+        self._opacity2.setOpacity(0.0)
+
+        ## Animation for both opacities
+        self._opacityDown = QPropertyAnimation(self._opacity1, b'opacity')
+        self._opacityDown.setStartValue(1.0)
+        self._opacityDown.setEndValue(0.0)
+
+        self._opacityUp = QPropertyAnimation(self._opacity2, b'opacity')
+        self._opacityUp.setStartValue(0.0)
+        self._opacityUp.setEndValue(1.0)
+
+    def setDuration(self, ms: int) -> None:
+        """Sets the duration of the transition between widgets"""
+        self._opacityUp.setDuration(ms)
+        self._opacityDown.setDuration(ms)
+
+    def setCurrentWidget(self, w: QWidget) -> None:
         self.setCurrentIndex(self.indexOf(w))
-
-    def __onAniFinished(self):
-        super().setCurrentIndex(self.__nextIndex)
-
 
 class PopUpAniInfo:
     """ Pop up ani info """
