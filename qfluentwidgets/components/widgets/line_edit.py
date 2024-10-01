@@ -4,7 +4,7 @@ from typing import List, Union
 from PySide2.QtCore import QSize, Qt, QRectF, Signal, QPoint, QTimer, QEvent, QAbstractItemModel, Property
 from PySide2.QtGui import QPainter, QPainterPath, QIcon, QCursor
 from PySide2.QtWidgets import (QApplication, QAction, QHBoxLayout, QLineEdit, QToolButton, QTextEdit,
-                             QPlainTextEdit, QCompleter, QStyle, QWidget)
+                             QPlainTextEdit, QCompleter, QStyle, QWidget, QTextBrowser)
 
 
 from ...common.style_sheet import FluentStyleSheet, themeColor
@@ -367,6 +367,21 @@ class PlainTextEdit(QPlainTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.layer = EditLayer(self)
+        self.scrollDelegate = SmoothScrollDelegate(self)
+        FluentStyleSheet.LINE_EDIT.apply(self)
+        setFont(self)
+
+    def contextMenuEvent(self, e):
+        menu = TextEditMenu(self)
+        menu.exec(e.globalPos())
+
+
+class TextBrowser(QTextBrowser):
+    """ Text browser """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)

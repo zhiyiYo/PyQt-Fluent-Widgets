@@ -53,6 +53,8 @@ class ComboItem:
 
 class ComboBoxBase:
     """ Combo box base """
+    activated = Signal(int)
+    textActivated = Signal(str)
 
     def __init__(self, parent=None, **kwargs):
         pass
@@ -342,10 +344,11 @@ class ComboBoxBase:
             self._showComboMenu()
 
     def _onItemClicked(self, index):
-        if index == self.currentIndex():
-            return
+        if index != self.currentIndex():
+            self.setCurrentIndex(index)
 
-        self.setCurrentIndex(index)
+        self.activated.emit(index)
+        self.textActivated.emit(self.currentText())
 
 
 class ComboBox(QPushButton, ComboBoxBase):
@@ -353,6 +356,8 @@ class ComboBox(QPushButton, ComboBoxBase):
 
     currentIndexChanged = Signal(int)
     currentTextChanged = Signal(str)
+    activated = Signal(int)
+    textActivated = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -420,6 +425,8 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
     currentIndexChanged = Signal(int)
     currentTextChanged = Signal(str)
+    activated = Signal(int)
+    textActivated = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

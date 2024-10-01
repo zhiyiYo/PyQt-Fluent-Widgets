@@ -10,7 +10,7 @@ from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
 from .flip_view import FlipView, HorizontalFlipView, VerticalFlipView, FlipImageDelegate
-from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit, PasswordLineEdit
+from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit, PasswordLineEdit, TextBrowser
 from .icon_widget import IconWidget
 from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,
                     LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel, AvatarWidget, HyperlinkLabel)
