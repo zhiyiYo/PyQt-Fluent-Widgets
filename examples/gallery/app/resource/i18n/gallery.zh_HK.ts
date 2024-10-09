@@ -495,7 +495,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
     <message>
         <location filename="../../view/layout_interface.py" line="38"/>
-        <source>Crazy diamond</source>
+        <source>Crazy Diamond</source>
         <translation>瘋狂鑽石</translation>
     </message>
     <message>
@@ -551,7 +551,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="91"/>
-        <source>Made in Haven</source>
+        <source>Made in Heaven</source>
         <translation>天堂製造</translation>
     </message>
     <message>
@@ -566,7 +566,7 @@ In that case, I would accept it no matter which side the ball falls on.</source>
     </message>
     <message>
         <location filename="../../view/view_interface.py" line="92"/>
-        <source>Crazy diamond</source>
+        <source>Crazy Diamond</source>
         <translation>瘋狂鑽石</translation>
     </message>
     <message>
