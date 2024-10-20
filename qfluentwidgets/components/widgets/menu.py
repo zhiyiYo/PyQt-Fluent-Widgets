@@ -351,8 +351,11 @@ class RoundMenu(QMenu):
 
     def clear(self):
         """ clear all actions """
-        for i in range(len(self._actions)-1, -1, -1):
-            self.removeAction(self._actions[i])
+        while self._actions:
+            self.removeAction(self._actions[-1])
+
+        while self._subMenus:
+            self.removeMenu(self._subMenus[-1])
 
     def setIcon(self, icon: Union[QIcon, FluentIconBase]):
         """ set the icon of menu """
@@ -517,14 +520,17 @@ class RoundMenu(QMenu):
             return
 
         # remove item
-        self.view.takeItem(self.view.row(item))
-        item.setData(Qt.ItemDataRole.UserRole, None)
+        self._removeItem(item)
         super().removeAction(action)
 
-        # delete widget
-        widget = self.view.itemWidget(item)
-        if widget:
-            widget.deleteLater()
+    def removeMenu(self, menu):
+        """ remove submenu """
+        if menu not in self._subMenus:
+            return
+
+        item = menu.menuItem
+        self._subMenus.remove(menu)
+        self._removeItem(item)
 
     def setDefaultAction(self, action: Union[QAction, Action]):
         """ set the default action """
@@ -584,6 +590,15 @@ class RoundMenu(QMenu):
         w.resize(item.sizeHint())
 
         return item, w
+
+    def _removeItem(self, item):
+        self.view.takeItem(self.view.row(item))
+        item.setData(Qt.ItemDataRole.UserRole, None)
+
+        # delete widget
+        widget = self.view.itemWidget(item)
+        if widget:
+            widget.deleteLater()
 
     def _showSubMenu(self, item):
         """ show sub menu """

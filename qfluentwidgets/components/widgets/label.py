@@ -319,6 +319,15 @@ class ImageLabel(QLabel):
         if self.movie():
             self.movie().setScaledSize(QSize(w, height))
 
+    def setScaledSize(self, size: QSize):
+        if self.isNull():
+            return
+
+        self.setFixedSize(size)
+
+        if self.movie():
+            self.movie().setScaledSize(size)
+
     def isNull(self):
         return self.image.isNull()
 
