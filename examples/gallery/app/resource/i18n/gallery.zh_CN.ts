@@ -300,6 +300,11 @@
         <translation>日期选择器</translation>
     </message>
     <message>
+        <location filename="../../view/date_time_interface.py" line="37"/>
+        <source>A fast CalendarPicker</source>
+        <translation>快速日历选择器</translation>
+    </message>
+    <message>
         <location filename="../../view/date_time_interface.py" line="43"/>
         <source>A DatePicker in another format</source>
         <translation>另一种格式的日期选择器</translation>

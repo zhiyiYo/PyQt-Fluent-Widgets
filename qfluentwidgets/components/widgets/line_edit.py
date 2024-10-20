@@ -11,6 +11,7 @@ from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
+from .tool_tip import ToolTipFilter
 from .menu import LineEditMenu, TextEditMenu, RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .scroll_bar import SmoothScrollDelegate
 
@@ -21,12 +22,38 @@ class LineEditButton(QToolButton):
     def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
         super().__init__(parent=parent)
         self._icon = icon
+        self._action = None
         self.isPressed = False
         self.setFixedSize(31, 23)
         self.setIconSize(QSize(10, 10))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setObjectName('lineEditButton')
         FluentStyleSheet.LINE_EDIT.apply(self)
+
+    def setAction(self, action: QAction):
+        self._action = action
+        self._onActionChanged()
+
+        self.clicked.connect(action.trigger)
+        action.toggled.connect(self.setChecked)
+        action.changed.connect(self._onActionChanged)
+
+        self.installEventFilter(ToolTipFilter(self, 700))
+
+    def _onActionChanged(self):
+        action = self.action()
+        self.setIcon(action.icon())
+        self.setToolTip(action.toolTip())
+        self.setEnabled(action.isEnabled())
+        self.setCheckable(action.isCheckable())
+        self.setChecked(action.isChecked())
+
+    def action(self):
+        return self._action
+
+    def setIcon(self, icon: Union[str, FluentIconBase, QIcon]):
+        self._icon = icon
+        self.update()
 
     def mousePressEvent(self, e):
         self.isPressed = True
@@ -64,6 +91,9 @@ class LineEdit(QLineEdit):
         self._completer = None  # type: QCompleter
         self._completerMenu = None  # type: CompleterMenu
 
+        self.leftButtons = []   # type: List[LineEditButton]
+        self.rightButtons = []  # type: List[LineEditButton]
+
         self.setProperty("transparent", True)
         FluentStyleSheet.LINE_EDIT.apply(self)
         self.setFixedHeight(33)
@@ -87,7 +117,7 @@ class LineEdit(QLineEdit):
 
     def setClearButtonEnabled(self, enable: bool):
         self._isClearButtonEnabled = enable
-        self.setTextMargins(0, 0, 28*enable, 0)
+        self._adjustTextMargins()
 
     def contextMenuEvent(self, e):
         menu = LineEditMenu(self)
@@ -101,6 +131,35 @@ class LineEdit(QLineEdit):
 
     def completer(self):
         return self._completer
+
+    def addAction(self, action: QAction, position=QLineEdit.ActionPosition.TrailingPosition):
+        QWidget.addAction(self, action)
+
+        button = LineEditButton(action.icon())
+        button.setAction(action)
+        button.setFixedWidth(29)
+
+        if position == QLineEdit.ActionPosition.LeadingPosition:
+            self.hBoxLayout.insertWidget(len(self.leftButtons), button, 0, Qt.AlignLeading)
+            if not self.leftButtons:
+                self.hBoxLayout.insertStretch(1, 1)
+
+            self.leftButtons.append(button)
+        else:
+            self.rightButtons.append(button)
+            self.hBoxLayout.addWidget(button, 0, Qt.AlignRight)
+
+        self._adjustTextMargins()
+
+    def addActions(self, actions, position=QLineEdit.ActionPosition.TrailingPosition):
+        for action in actions:
+            self.addAction(action, position)
+
+    def _adjustTextMargins(self):
+        left = len(self.leftButtons) * 30
+        right = len(self.rightButtons) * 30 + 28 * self.isClearButtonEnabled()
+        m = self.textMargins()
+        self.setTextMargins(left, m.top(), right, m.bottom())
 
     def focusOutEvent(self, e):
         super().focusOutEvent(e)

@@ -10,6 +10,13 @@
     </message>
 </context>
 <context>
+    <name>FastCalendarPicker</name>
+    <message>
+        <source>Pick a date</source>
+        <translation>Выберите дату</translation>
+    </message>
+</context>
+<context>
     <name>MonthScrollView</name>
     <message>
         <source>Jan</source>
@@ -61,7 +68,89 @@
     </message>
 </context>
 <context>
+    <name>FastMonthScrollView</name>
+    <message>
+        <source>Jan</source>
+        <translation>Янв</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>Фев</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>Мар</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>Апр</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>Май</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>Июн</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>Июл</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>Авг</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>Сен</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>Окт</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>Ноя</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>Дек</translation>
+    </message>
+</context>
+<context>
     <name>DayScrollView</name>
+    <message>
+        <source>Mo</source>
+        <translation>Пн</translation>
+    </message>
+    <message>
+        <source>Tu</source>
+        <translation>Вт</translation>
+    </message>
+    <message>
+        <source>We</source>
+        <translation>Ср</translation>
+    </message>
+    <message>
+        <source>Th</source>
+        <translation>Чт</translation>
+    </message>
+    <message>
+        <source>Fr</source>
+        <translation>Пт</translation>
+    </message>
+    <message>
+        <source>Sa</source>
+        <translation>Сб</translation>
+    </message>
+    <message>
+        <source>Su</source>
+        <translation>Вс</translation>
+    </message>
+</context>
+<context>
+    <name>FastDayScrollView</name>
     <message>
         <source>Mo</source>
         <translation>Пн</translation>

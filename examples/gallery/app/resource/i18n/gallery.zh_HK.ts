@@ -325,6 +325,11 @@
         <translation>日曆選擇器</translation>
     </message>
     <message>
+        <location filename="../../view/date_time_interface.py" line="22"/>
+        <source>A fast CalendarPicker</source>
+        <translation>快速日曆選擇器</translation>
+    </message>
+    <message>
         <location filename="../../view/date_time_interface.py" line="30"/>
         <source>A CalendarPicker in another format</source>
         <translation>自定義格式的日曆選擇器</translation>
