@@ -109,6 +109,7 @@ class HeaderSettingCard(SettingCard):
         self.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
         self.hBoxLayout.addSpacing(8)
 
+        self.titleLabel.setObjectName("titleLabel")
         self.installEventFilter(self)
 
     def eventFilter(self, obj, e):
