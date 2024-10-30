@@ -113,6 +113,9 @@ class FlipImageDelegate(QStyledItemDelegate):
         # clipped path
         path = QPainterPath()
         path.addRoundedRect(rect, self.borderRadius, self.borderRadius)
+        subPath = QPainterPath()
+        subPath.addRoundedRect(QRectF(p.rect()), self.borderRadius, self.borderRadius)
+        path = path.intersected(subPath)
 
         image = image.scaled(size * r, p.aspectRatioMode, Qt.SmoothTransformation)
         painter.setClipPath(path)
