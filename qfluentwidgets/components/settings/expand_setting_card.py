@@ -1,5 +1,5 @@
 # coding:utf-8
-from typing import Union
+from typing import List, Union
 from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
 from PyQt5.QtGui import QColor, QPainter, QIcon, QPainterPath
 from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout
@@ -324,6 +324,13 @@ class GroupSeparator(QWidget):
 class ExpandGroupSettingCard(ExpandSettingCard):
     """ Expand group setting card """
 
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
+        super().__init__(icon, title, content, parent)
+        self.widgets = []   # type: List[QWidget]
+
+        self.viewLayout.setContentsMargins(0, 0, 0, 0)
+        self.viewLayout.setSpacing(0)
+
     def addGroupWidget(self, widget: QWidget):
         """ add widget to group """
         # add separator
@@ -331,5 +338,38 @@ class ExpandGroupSettingCard(ExpandSettingCard):
             self.viewLayout.addWidget(GroupSeparator(self.view))
 
         widget.setParent(self.view)
+        self.widgets.append(widget)
         self.viewLayout.addWidget(widget)
         self._adjustViewSize()
+
+    def removeGroupWidget(self, widget: QWidget):
+        """ remove a group from card """
+        if widget not in self.widgets:
+            return
+
+        layoutIndex = self.viewLayout.indexOf(widget)
+        index = self.widgets.index(widget)
+
+        self.viewLayout.removeWidget(widget)
+        self.widgets.remove(widget)
+
+        if not self.widgets:
+            return self._adjustViewSize()
+
+        # remove separator
+        if layoutIndex >= 1:
+            item = self.viewLayout.itemAt(layoutIndex - 1)
+            self.viewLayout.removeItem(item)
+        elif index == 0:
+            item = self.viewLayout.itemAt(0)
+            self.viewLayout.removeItem(item)
+
+        self._adjustViewSize()
+
+    def _adjustViewSize(self):
+        """ adjust view size """
+        h = sum(w.sizeHint().height() + 3 for w in self.widgets)
+        self.spaceWidget.setFixedHeight(h)
+
+        if self.isExpand:
+            self.setFixedHeight(self.card.height()+h)
