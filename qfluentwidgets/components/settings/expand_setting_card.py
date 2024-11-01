@@ -358,11 +358,13 @@ class ExpandGroupSettingCard(ExpandSettingCard):
 
         # remove separator
         if layoutIndex >= 1:
-            item = self.viewLayout.itemAt(layoutIndex - 1)
-            self.viewLayout.removeItem(item)
+            separator = self.viewLayout.itemAt(layoutIndex - 1).widget()
+            separator.deleteLater()
+            self.viewLayout.removeWidget(separator)
         elif index == 0:
-            item = self.viewLayout.itemAt(0)
-            self.viewLayout.removeItem(item)
+            separator = self.viewLayout.itemAt(0).widget()
+            separator.deleteLater()
+            self.viewLayout.removeWidget(separator)
 
         self._adjustViewSize()
 
