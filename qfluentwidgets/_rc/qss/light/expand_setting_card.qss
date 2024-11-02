@@ -17,7 +17,7 @@ ExpandSettingCard {
 }
 
 
-QLabel {
+QLabel#titleLabel {
     font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: black;
     padding: 0;
@@ -29,9 +29,11 @@ QLabel#contentLabel {
     font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
     color: rgb(96, 96, 96);
     padding: 0;
+    background: transparent;
+    border: none;
 }
 
-QLabel:disabled,
+QLabel#titleLabel:disabled,
 QLabel#contentLabel:disabled {
     color: rgba(0, 0, 0, 0.36);
 }

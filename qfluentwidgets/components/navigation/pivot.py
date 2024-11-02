@@ -22,6 +22,7 @@ class PivotItem(PushButton):
         self.isSelected = False
         self.setProperty('isSelected', False)
         self.clicked.connect(lambda: self.itemClicked.emit(True))
+        self.setAttribute(Qt.WA_LayoutUsesWidgetRect)
 
         FluentStyleSheet.PIVOT.apply(self)
         setFont(self, 18)
