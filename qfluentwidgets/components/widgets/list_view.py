@@ -48,10 +48,16 @@ class ListBase:
 
     def _setPressedRow(self, row: int):
         """ set pressed row """
+        if self.selectionMode() == QListView.SelectionMode.NoSelection:
+            return
+        
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
     def _setSelectedRows(self, indexes: List[QModelIndex]):
+        if self.selectionMode() ==  QListView.SelectionMode.NoSelection:
+            return
+
         self.delegate.setSelectedRows(indexes)
         self.viewport().update()
 
