@@ -438,25 +438,36 @@ class AvatarWidget(ImageLabel):
 
     def _postInit(self):
         self.setRadius(48)
+        self.lightBackgroundColor = QColor(0, 0, 0, 50)
+        self.darkBackgroundColor = QColor(255, 255, 255, 50)
 
     def getRadius(self):
         return self._radius
 
     def setRadius(self, radius: int):
         self._radius = radius
+        setFont(self, radius)
         self.setFixedSize(2*radius, 2*radius)
         self.update()
 
-    def paintEvent(self, e):
-        if self.isNull():
-            return
+    def setBackgroundColor(self, light: QColor, dark: QColor):
+        self.lightBackgroundColor = QColor(light)
+        self.darkBackgroundColor = QColor(light)
+        self.update()
 
+    def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
 
+        if not self.isNull():
+            self._drawImageAvatar(painter)
+        else:
+            self._drawTextAvatar(painter)
+
+    def _drawImageAvatar(self, painter: QPainter):
         # center crop image
         image = self.image.scaled(
-            self.size()*self.devicePixelRatioF(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation) # type: QImage
+            self.size()*self.devicePixelRatioF(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)  # type: QImage
 
         iw, ih = image.width(), image.height()
         d = self.getRadius() * 2 * self.devicePixelRatioF()
@@ -470,6 +481,18 @@ class AvatarWidget(ImageLabel):
         painter.setPen(Qt.NoPen)
         painter.setClipPath(path)
         painter.drawImage(self.rect(), image)
+
+    def _drawTextAvatar(self, painter: QPainter):
+        if not self.text():
+            return
+
+        painter.setBrush(self.darkBackgroundColor if isDarkTheme() else self.lightBackgroundColor)
+        painter.setPen(Qt.NoPen)
+        painter.drawEllipse(QRectF(self.rect()))
+
+        painter.setFont(self.font())
+        painter.setPen(Qt.white if isDarkTheme() else Qt.black)
+        painter.drawText(self.rect(), Qt.AlignCenter, self.text()[0].upper())
 
     radius = pyqtProperty(int, getRadius, setRadius)
 

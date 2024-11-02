@@ -13,6 +13,7 @@ from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
 from ..widgets.scroll_area import ScrollArea
+from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
 
 
@@ -511,23 +512,28 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 class NavigationAvatarWidget(NavigationWidget):
     """ Avatar widget """
 
-    def __init__(self, name: str, avatar: Union[str, QPixmap, QImage], parent=None):
+    def __init__(self, name: str, avatar: Union[str, QPixmap, QImage] = None, parent=None):
         super().__init__(isSelectable=False, parent=parent)
         self.name = name
-        self.setAvatar(avatar)
+        self.avatar = AvatarWidget(self)
+
+        self.avatar.setRadius(12)
+        self.avatar.setText(name)
+        self.avatar.move(8, 6)
         setFont(self)
+
+        if avatar:
+            self.setAvatar(avatar)
 
     def setName(self, name: str):
         self.name = name
+        self.avatar.setText(name)
         self.update()
 
     def setAvatar(self, avatar: Union[str, QPixmap, QImage]):
-        if isinstance(avatar, str):
-            avatar = QImage(avatar)
-        elif isinstance(avatar, QPixmap):
-            avatar = avatar.toImage()
-
-        self.avatar = avatar.scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.avatar.setImage(avatar)
+        self.avatar.setRadius(12)
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -544,12 +550,6 @@ class NavigationAvatarWidget(NavigationWidget):
             c = 255 if isDarkTheme() else 0
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
-
-        # draw avatar
-        painter.setBrush(QBrush(self.avatar))
-        painter.translate(8, 6)
-        painter.drawEllipse(0, 0, 24, 24)
-        painter.translate(-8, -6)
 
         if not self.isCompacted:
             painter.setPen(self.textColor())
