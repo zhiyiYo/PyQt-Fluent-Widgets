@@ -262,6 +262,7 @@ class RadioButton(QRadioButton):
         self.isHover = False
 
         FluentStyleSheet.BUTTON.apply(self)
+        self.setAttribute(Qt.WA_MacShowFocusRect, False)
         self._postInit()
 
     @__init__.register
