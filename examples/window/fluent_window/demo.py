@@ -6,7 +6,7 @@ from PyQt6.QtGui import QIcon, QDesktopServices
 from PyQt6.QtWidgets import QApplication, QFrame, QHBoxLayout
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
                             NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
-                            InfoBadgePosition)
+                            InfoBadgePosition, FluentBackgroundTheme)
 from qfluentwidgets import FluentIcon as FIF
 
 

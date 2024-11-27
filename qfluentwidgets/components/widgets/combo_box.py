@@ -56,6 +56,8 @@ class ComboBoxBase(QObject):
 
     currentIndexChanged = pyqtSignal(int)
     currentTextChanged = pyqtSignal(str)
+    activated = pyqtSignal(int)
+    textActivated = pyqtSignal(str)
 
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent=parent)
@@ -293,7 +295,12 @@ class ComboBoxBase(QObject):
         if not self.dropMenu:
             return
 
-        self.dropMenu.close()
+        # drop menu could be deleted before this method
+        try:
+            self.dropMenu.close()
+        except:
+            pass
+
         self.dropMenu = None
 
     def _onDropMenuClosed(self):
@@ -321,6 +328,7 @@ class ComboBoxBase(QObject):
             menu.adjustSize()
 
         menu.setMaxVisibleItems(self.maxVisibleItems())
+        menu.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         menu.closedSignal.connect(self._onDropMenuClosed)
         self.dropMenu = menu
 
@@ -350,10 +358,11 @@ class ComboBoxBase(QObject):
             self._showComboMenu()
 
     def _onItemClicked(self, index):
-        if index == self.currentIndex():
-            return
+        if index != self.currentIndex():
+            self.setCurrentIndex(index)
 
-        self.setCurrentIndex(index)
+        self.activated.emit(index)
+        self.textActivated.emit(self.currentText())
 
 
 class ComboBox(QPushButton, ComboBoxBase):
@@ -361,6 +370,8 @@ class ComboBox(QPushButton, ComboBoxBase):
 
     currentIndexChanged = pyqtSignal(int)
     currentTextChanged = pyqtSignal(str)
+    activated = pyqtSignal(int)
+    textActivated = pyqtSignal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -414,6 +425,8 @@ class EditableComboBox(LineEdit, ComboBoxBase):
 
     currentIndexChanged = pyqtSignal(int)
     currentTextChanged = pyqtSignal(str)
+    activated = pyqtSignal(int)
+    textActivated = pyqtSignal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)

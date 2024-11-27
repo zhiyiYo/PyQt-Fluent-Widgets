@@ -20,6 +20,7 @@ if cfg.get(cfg.dpiScale) != "Auto":
 app = QApplication(sys.argv)
 app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
+
 # internationalization
 locale = cfg.get(cfg.language).value
 translator = FluentTranslator(locale)

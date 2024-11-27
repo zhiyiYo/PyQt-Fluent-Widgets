@@ -44,6 +44,7 @@ class OptionsSettingCard(ExpandSettingCard):
         self.choiceLabel = QLabel(self)
         self.buttonGroup = QButtonGroup(self)
 
+        self.choiceLabel.setObjectName("titleLabel")
         self.addWidget(self.choiceLabel)
 
         # create buttons

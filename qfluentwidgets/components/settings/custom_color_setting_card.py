@@ -77,6 +77,8 @@ class CustomColorSettingCard(ExpandGroupSettingCard):
         self.choiceLabel.setText(self.buttonGroup.checkedButton().text())
         self.choiceLabel.adjustSize()
 
+        self.choiceLabel.setObjectName("titleLabel")
+        self.customLabel.setObjectName("titleLabel")
         self.chooseColorButton.setObjectName('chooseColorButton')
 
         self.buttonGroup.buttonClicked.connect(self.__onRadioButtonClicked)

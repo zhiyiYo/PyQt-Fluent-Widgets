@@ -13,6 +13,7 @@ from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
 from ..widgets.scroll_area import ScrollArea
+from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
 
 
@@ -32,6 +33,11 @@ class NavigationWidget(QWidget):
         self.isSelectable = isSelectable
         self.treeParent = None
         self.nodeDepth = 0
+
+        # text color
+        self.lightTextColor = QColor(0, 0, 0)
+        self.darkTextColor = QColor(255, 255, 255)
+
         self.setFixedSize(40, 36)
 
     def enterEvent(self, e):
@@ -84,6 +90,24 @@ class NavigationWidget(QWidget):
         self.isSelected = isSelected
         self.update()
         self.selectedChanged.emit(isSelected)
+
+    def textColor(self):
+        return self.darkTextColor if isDarkTheme() else self.lightTextColor
+
+    def setLightTextColor(self, color):
+        """ set the text color in light theme mode """
+        self.lightTextColor = QColor(color)
+        self.update()
+
+    def setDarkTextColor(self, color):
+        """ set the text color in dark theme mode """
+        self.darkTextColor = QColor(color)
+        self.update()
+
+    def setTextColor(self, light, dark):
+        """ set the text color in light/dark theme mode """
+        self.setLightTextColor(light)
+        self.setDarkTextColor(dark)
 
 
 class NavigationPushButton(NavigationWidget):
@@ -161,7 +185,7 @@ class NavigationPushButton(NavigationWidget):
             return
 
         painter.setFont(self.font())
-        painter.setPen(QColor(c, c, c))
+        painter.setPen(self.textColor())
 
         left = 44 + pl if not self.icon().isNull() else pl + 16
         painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignmentFlag.AlignVCenter, self.text())
@@ -349,6 +373,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.expandAni.valueChanged.connect(lambda g: self.setFixedSize(g.size()))
         self.expandAni.valueChanged.connect(self.expanded)
+        self.expandAni.finished.connect(self.parentWidget().layout().invalidate)
 
     def addChild(self, child):
         self.insertChild(-1, child)
@@ -364,6 +389,21 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
     def setIcon(self, icon: Union[str, QIcon, FIF]):
         self.itemWidget.setIcon(icon)
+
+    def textColor(self):
+        return self.itemWidget.textColor()
+
+    def setLightTextColor(self, color):
+        """ set the text color in light theme mode """
+        self.itemWidget.setLightTextColor(color)
+
+    def setDarkTextColor(self, color):
+        """ set the text color in dark theme mode """
+        self.itemWidget.setDarkTextColor(color)
+
+    def setTextColor(self, light, dark):
+        """ set the text color in light/dark theme mode """
+        self.itemWidget.setTextColor(light, dark)
 
     def setFont(self, font: QFont):
         super().setFont(font)
@@ -472,24 +512,28 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 class NavigationAvatarWidget(NavigationWidget):
     """ Avatar widget """
 
-    def __init__(self, name: str, avatar: Union[str, QPixmap, QImage], parent=None):
+    def __init__(self, name: str, avatar: Union[str, QPixmap, QImage] = None, parent=None):
         super().__init__(isSelectable=False, parent=parent)
         self.name = name
-        self.setAvatar(avatar)
+        self.avatar = AvatarWidget(self)
+
+        self.avatar.setRadius(12)
+        self.avatar.setText(name)
+        self.avatar.move(8, 6)
         setFont(self)
+
+        if avatar:
+            self.setAvatar(avatar)
 
     def setName(self, name: str):
         self.name = name
+        self.avatar.setText(name)
         self.update()
 
     def setAvatar(self, avatar: Union[str, QPixmap, QImage]):
-        if isinstance(avatar, str):
-            avatar = QImage(avatar)
-        elif isinstance(avatar, QPixmap):
-            avatar = avatar.toImage()
-
-        self.avatar = avatar.scaled(
-            24, 24, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        self.avatar.setImage(avatar)
+        self.avatar.setRadius(12)
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -507,14 +551,8 @@ class NavigationAvatarWidget(NavigationWidget):
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-        # draw avatar
-        painter.setBrush(QBrush(self.avatar))
-        painter.translate(8, 6)
-        painter.drawEllipse(0, 0, 24, 24)
-        painter.translate(-8, -6)
-
         if not self.isCompacted:
-            painter.setPen(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
+            painter.setPen(self.textColor())
             painter.setFont(self.font())
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignmentFlag.AlignVCenter, self.name)
 

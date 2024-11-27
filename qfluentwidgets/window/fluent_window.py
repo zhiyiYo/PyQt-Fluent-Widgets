@@ -2,7 +2,7 @@
 from typing import Union
 import sys
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QSize, QRect
 from PyQt6.QtGui import QIcon, QPainter, QColor
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication
 
@@ -16,7 +16,7 @@ from ..components.navigation import (NavigationInterface, NavigationBar, Navigat
                                      NavigationBarPushButton, NavigationTreeWidget)
 from .stacked_widget import StackedWidget
 
-from qframelesswindow import TitleBar
+from qframelesswindow import TitleBar, TitleBarBase
 
 
 class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
@@ -24,6 +24,8 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
+        self._lightBackgroundColor = QColor(240, 244, 249)
+        self._darkBackgroundColor = QColor(32, 32, 32)
         super().__init__(parent=parent)
 
         self.hBoxLayout = QHBoxLayout(self)
@@ -38,6 +40,10 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
         # enable mica effect on win11
         self.setMicaEffectEnabled(True)
+
+        # show system title bar buttons on macOS
+        if sys.platform == "darwin":
+            self.setSystemTitleBarButtonVisible(True)
 
         qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
 
@@ -60,13 +66,25 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
         if bool(self.stackedWidget.property("isTransparent")) == isTransparent:
             return
-        
+
         self.stackedWidget.setProperty("isTransparent", isTransparent)
         self.stackedWidget.setStyle(QApplication.style())
 
+    def setCustomBackgroundColor(self, light, dark):
+        """ set custom background color
+
+        Parameters
+        ----------
+        light, dark: QColor | Qt.GlobalColor | str
+            background color in light/dark theme mode
+        """
+        self._lightBackgroundColor = QColor(light)
+        self._darkBackgroundColor = QColor(dark)
+        self._updateBackgroundColor()
+
     def _normalBackgroundColor(self):
         if not self.isMicaEffectEnabled():
-            return QColor(32, 32, 32) if isDarkTheme() else QColor(243, 243, 243)
+            return self._darkBackgroundColor if isDarkTheme() else self._lightBackgroundColor
 
         return QColor(0, 0, 0, 0)
 
@@ -97,6 +115,25 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def isMicaEffectEnabled(self):
         return self._isMicaEnabled
+
+    def systemTitleBarRect(self, size: QSize) -> QRect:
+        """ Returns the system title bar rect, only works for macOS
+
+        Parameters
+        ----------
+        size: QSize
+            original system title bar rect
+        """
+        return QRect(size.width() - 75, 0 if self.isFullScreen() else 9, 75, size.height())
+
+    def setTitleBar(self, titleBar):
+        super().setTitleBar(titleBar)
+
+        # hide title bar buttons on macOS
+        if sys.platform == "darwin" and self.isSystemButtonVisible() and isinstance(titleBar, TitleBarBase):
+            titleBar.minBtn.hide()
+            titleBar.maxBtn.hide()
+            titleBar.closeBtn.hide()
 
 
 class FluentTitleBar(TitleBar):
@@ -332,7 +369,16 @@ class SplitFluentWindow(FluentWindow):
         super().__init__(parent)
         self.setTitleBar(SplitTitleBar(self))
 
+        if sys.platform == "darwin":
+            self.titleBar.setFixedHeight(48)
+
         self.widgetLayout.setContentsMargins(0, 0, 0, 0)
 
         self.titleBar.raise_()
         self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
+
+
+class FluentBackgroundTheme:
+    """ Fluent background theme """
+    DEFAULT = (QColor(243, 243, 243), QColor(32, 32, 32))   # light, dark
+    DEFAULT_BLUE = (QColor(240, 244, 249), QColor(25, 33, 42))

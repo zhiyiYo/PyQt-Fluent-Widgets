@@ -6,6 +6,8 @@ from PyQt6.QtCore import Qt, QThread, pyqtSignal, QRect
 from PyQt6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap, QPainterPath
 from PyQt6.QtWidgets import QLabel, QApplication, QWidget
 
+from ...common.screen import getCurrentScreen
+
 try:
     from ...common.image_utils import gaussianBlur
 
@@ -20,7 +22,7 @@ except ImportError as e:
 def checkAcrylicAvailability():
     if not isAcrylicAvailable:
         warnings.warn(
-            '`AcrylicLabel` is not supported in current qfluentwidgets, use `pip install PyQt-Fluent-Widgets[full]` to enable it.')
+            'Acrylic is not supported in current qfluentwidgets, use `pip install PyQt6-Fluent-Widgets[full]` to enable it.')
 
     return isAcrylicAvailable
 
@@ -200,11 +202,13 @@ class AcrylicBrush:
         rect: QRect
             grabbed region
         """
-        screen = QApplication.screenAt(self.device.window().pos())
+        screen = getCurrentScreen()
         if not screen:
             screen = QApplication.screens()[0]
 
         x, y, w, h = rect.x(), rect.y(), rect.width(), rect.height()
+        x -= screen.geometry().x()
+        y -= screen.geometry().y()
         self.setImage(screen.grabWindow(0, x, y, w, h))
 
     def setImage(self, image: Union[str, QImage, QPixmap]):

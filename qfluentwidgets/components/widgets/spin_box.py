@@ -49,7 +49,9 @@ class SpinButton(QToolButton):
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |
                                QPainter.RenderHint.SmoothPixmapTransform)
 
-        if self.isPressed:
+        if not self.isEnabled():
+            painter.setOpacity(0.36)
+        elif self.isPressed:
             painter.setOpacity(0.7)
 
         self._icon.render(painter, QRectF(10, 6.5, 11, 11))

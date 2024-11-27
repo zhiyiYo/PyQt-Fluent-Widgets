@@ -158,7 +158,7 @@ class DialogInterface(GalleryInterface):
     def showComplexFlyout(self):
         view = FlyoutView(
             title=self.tr('Julius·Zeppeli'),
-            content=self.tr("Where the tennis ball will land when it touches the net, no one can predict. \nIf that moment comes, I hope the 'goddess' exists. \nIn that case, I would accept it no matter which side the ball falls on."),
+            content="触网而起的网球会落到哪一侧，谁也无法知晓。\n如果那种时刻到来，我希望「女神」是存在的。\n这样的话，不管网球落到哪一边，我都会坦然接受的吧。",
             image=':/gallery/images/SBR.jpg',
         )
 

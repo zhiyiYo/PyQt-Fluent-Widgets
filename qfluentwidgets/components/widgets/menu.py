@@ -7,7 +7,7 @@ from PyQt6.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QPointF, QMo
                           Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QObject, QParallelAnimationGroup)
 from PyQt6.QtGui import (QIcon, QAction, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
                          QFontMetrics, QKeySequence)
-from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle,
+from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle, QStyleFactory,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem, QLabel)
 
@@ -209,7 +209,9 @@ class MenuActionListWidget(QListWidget):
 
         # adjust the height of viewport
         w, h = MenuAnimationManager.make(self, aniType).availableViewSize(pos)
-        self.viewport().adjustSize()
+
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/844
+        # self.viewport().adjustSize()
 
         # adjust the height of list widget
         m = self.viewportMargins()
@@ -292,6 +294,9 @@ class RoundMenu(QMenu):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setMouseTracking(True)
 
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/848
+        self.setStyle(QStyleFactory.create("fusion"))
+
         self.timer.setSingleShot(True)
         self.timer.setInterval(400)
         self.timer.timeout.connect(self._onShowMenuTimeOut)
@@ -346,8 +351,11 @@ class RoundMenu(QMenu):
 
     def clear(self):
         """ clear all actions """
-        for i in range(len(self._actions)-1, -1, -1):
-            self.removeAction(self._actions[i])
+        while self._actions:
+            self.removeAction(self._actions[-1])
+
+        while self._subMenus:
+            self.removeMenu(self._subMenus[-1])
 
     def setIcon(self, icon: Union[QIcon, FluentIconBase]):
         """ set the icon of menu """
@@ -512,14 +520,17 @@ class RoundMenu(QMenu):
             return
 
         # remove item
-        self.view.takeItem(self.view.row(item))
-        item.setData(Qt.ItemDataRole.UserRole, None)
+        self._removeItem(item)
         super().removeAction(action)
 
-        # delete widget
-        widget = self.view.itemWidget(item)
-        if widget:
-            widget.deleteLater()
+    def removeMenu(self, menu):
+        """ remove submenu """
+        if menu not in self._subMenus:
+            return
+
+        item = menu.menuItem
+        self._subMenus.remove(menu)
+        self._removeItem(item)
 
     def setDefaultAction(self, action: Union[QAction, Action]):
         """ set the default action """
@@ -579,6 +590,15 @@ class RoundMenu(QMenu):
         w.resize(item.sizeHint())
 
         return item, w
+
+    def _removeItem(self, item):
+        self.view.takeItem(self.view.row(item))
+        item.setData(Qt.ItemDataRole.UserRole, None)
+
+        # delete widget
+        widget = self.view.itemWidget(item)
+        if widget:
+            widget.deleteLater()
 
     def _showSubMenu(self, item):
         """ show sub menu """

@@ -7,7 +7,9 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QApplication
 
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIcon as FIF
+from ..widgets.flyout import Flyout, FlyoutAnimationType
 from .calendar_view import CalendarView
+from .fast_calendar_view import FastCalendarView
 
 
 class CalendarPicker(QPushButton):
@@ -31,6 +33,14 @@ class CalendarPicker(QPushButton):
     def setDate(self, date: QDate):
         """ set the selected date """
         self._onDateChanged(date)
+
+    def reset(self):
+        """ reset date """
+        self._date = QDate()
+        self.setText(self.tr('Pick a date'))
+        self.setProperty('hasDate', False)
+        self.setStyle(QApplication.style())
+        self.update()
 
     def getDateFormat(self):
         return self._dateFormat
@@ -74,3 +84,24 @@ class CalendarPicker(QPushButton):
 
     date = pyqtProperty(QDate, getDate, setDate)
     dateFormat = pyqtProperty(Qt.DateFormat, getDateFormat, setDateFormat)
+
+
+class FastCalendarPicker(CalendarPicker):
+    """ Pro calendar picker """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.flyoutAnimationType = FlyoutAnimationType.DROP_DOWN
+
+    def setFlyoutAnimationType(self, aniType: FlyoutAnimationType):
+        self.flyoutAnimationType = aniType
+
+    def _showCalendarView(self):
+        view = FastCalendarView(self.window())
+
+        view.dateChanged.connect(self._onDateChanged)
+
+        if self.date.isValid():
+            view.setDate(self.date)
+
+        Flyout.make(view, self, self.window(), self.flyoutAnimationType)
