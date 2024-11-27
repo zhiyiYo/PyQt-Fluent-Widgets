@@ -22,7 +22,7 @@ class OpacityAniStackedWidget(QStackedWidget):
         self.widget(index).setGraphicsEffect(self._opacity2)
 
         # Show target index (currently invisible)
-        self.widget(index).show()
+        super().setCurrentIndex(index)
 
         # Start animations
         self._opacityUp.finished.connect(
@@ -31,7 +31,6 @@ class OpacityAniStackedWidget(QStackedWidget):
         self._opacityUp.start(QAbstractAnimation.DeletionPolicy.KeepWhenStopped)
 
     def rst_effects(self, w_hidden: QWidget, w_shown: QWidget) -> None:
-        super().setCurrentWidget(w_shown)
         w_hidden.setGraphicsEffect(None)
         w_shown.setGraphicsEffect(None)
         self.__create_animations()
