@@ -535,21 +535,31 @@ class Action(QAction):
     def __init__(self, parent: QObject = None, **kwargs):
         super().__init__(parent, **kwargs)
         self.fluentIcon = None
+        self._color = None
 
     @__init__.register
     def _(self, text: str, parent: QObject = None, **kwargs):
         super().__init__(text, parent, **kwargs)
         self.fluentIcon = None
+        self._color = None
 
     @__init__.register
     def _(self, icon: QIcon, text: str, parent: QObject = None, **kwargs):
         super().__init__(icon, text, parent, **kwargs)
         self.fluentIcon = None
+        self._color = None
 
     @__init__.register
     def _(self, icon: FluentIconBase, text: str, parent: QObject = None, **kwargs):
         super().__init__(icon.icon(), text, parent, **kwargs)
         self.fluentIcon = icon
+        self._color = None
+
+    @__init__.register
+    def _(self,color:QColor, icon: FluentIconBase, text: str, parent: QObject = None, **kwargs):
+        super().__init__(icon.icon(), text, parent, **kwargs)
+        self.fluentIcon = icon
+        self._color = color
 
     def icon(self) -> QIcon:
         if self.fluentIcon:
@@ -563,3 +573,9 @@ class Action(QAction):
             icon = icon.icon()
 
         super().setIcon(icon)
+
+    def setColor(self,color:QColor):
+        self._color = color
+
+    def color(self)->QColor:
+        return self._color
