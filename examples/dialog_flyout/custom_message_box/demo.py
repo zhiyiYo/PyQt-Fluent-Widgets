@@ -38,8 +38,9 @@ class CustomMessageBox(MessageBoxBase):
 
     def validate(self):
         """ Rewrite the virtual method """
-        isValid = QUrl(self.urlLineEdit.text()).isValid()
+        isValid = self.urlLineEdit.text().lower().startswith("http://")
         self.warningLabel.setHidden(isValid)
+        self.urlLineEdit.setError(not isValid)
         return isValid
 
 

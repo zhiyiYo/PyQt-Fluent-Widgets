@@ -1,10 +1,11 @@
 # coding:utf-8
 from enum import Enum
 
-from PySide2.QtCore import QEvent, QObject, QPoint, QTimer, Qt, QPropertyAnimation, QSize
-from PySide2.QtGui import QColor, QCursor
+from PySide2.QtCore import QEvent, QObject, QPoint, QTimer, Qt, QPropertyAnimation, QModelIndex, QRect
+from PySide2.QtGui import QColor, QHelpEvent
 from PySide2.QtWidgets import (QApplication, QFrame, QGraphicsDropShadowEffect,
-                             QHBoxLayout, QLabel, QWidget)
+                             QHBoxLayout, QLabel, QWidget, QAbstractItemView, QStyleOptionViewItem,
+                             QTableView)
 
 from ...common import FluentStyleSheet
 from ...common.screen import getCurrentScreenGeometry
@@ -21,6 +22,13 @@ class ToolTipPosition(Enum):
     TOP_RIGHT = 5
     BOTTOM_LEFT = 6
     BOTTOM_RIGHT = 7
+
+
+class ItemViewToolTipType(Enum):
+    """ Info bar position """
+
+    LIST = 0
+    TABLE = 1
 
 
 class ToolTip(QFrame):
@@ -246,6 +254,44 @@ class BottomLeftToolTipManager(ToolTipPositionManager):
         return QPoint(x, y)
 
 
+class ItemViewToolTipManager(ToolTipPositionManager):
+    """ Item view tooltip position manager """
+
+    def __init__(self, itemRect=QRect()):
+        super().__init__()
+        self.itemRect = itemRect
+
+    def _pos(self, tooltip: ToolTip, view: QAbstractItemView) -> QPoint:
+        pos = view.mapToGlobal(self.itemRect.topLeft())
+        x = pos.x()
+        y = pos.y() - tooltip.height() + 10
+        return QPoint(x, y)
+
+    @staticmethod
+    def make(tipType: ItemViewToolTipType, itemRect: QRect):
+        """ mask info bar manager according to the display tipType """
+        managers = {
+            ItemViewToolTipType.LIST: ItemViewToolTipManager,
+            ItemViewToolTipType.TABLE: TableItemToolTipManager,
+        }
+
+        if tipType not in managers:
+            raise ValueError(f'`{tipType}` is an invalid info bar tipType.')
+
+        return managers[tipType](itemRect)
+
+
+class TableItemToolTipManager(ItemViewToolTipManager):
+    """ Table item view tooltip position manager """
+
+    def _pos(self, tooltip: ToolTip, view: QTableView) -> QPoint:
+        pos = view.mapToGlobal(self.itemRect.topLeft())
+        x = pos.x() + view.verticalHeader().isVisible() * view.verticalHeader().width()
+        y = pos.y() - tooltip.height() + view.horizontalHeader().isVisible() * view.horizontalHeader().height() + 10
+        return QPoint(x, y)
+
+
+
 class ToolTipFilter(QObject):
     """ Tool button with a tool tip """
 
@@ -320,3 +366,94 @@ class ToolTipFilter(QObject):
     def _canShowToolTip(self) -> bool:
         parent = self.parent()  # type: QWidget
         return parent.isWidgetType() and parent.toolTip() and parent.isEnabled()
+
+
+class ItemViewToolTip(ToolTip):
+    """ Item view tool tip """
+
+    def adjustPos(self, view: QAbstractItemView, itemRect: QRect, tooltipType: ItemViewToolTipType):
+        manager = ItemViewToolTipManager.make(tooltipType, itemRect)
+        self.move(manager.position(self, view))
+
+
+
+class ItemViewToolTipDelegate(ToolTipFilter):
+    """ Item view tool tip """
+
+    def __init__(self, parent: QAbstractItemView, showDelay=300, tooltipType=ItemViewToolTipType.TABLE):
+        super().__init__(parent, showDelay, ToolTipPosition.TOP)
+        self.text = ""
+        self.currentIndex = None
+        self.tooltipDuration = -1
+        self.tooltipType = tooltipType
+        self.viewport = parent.viewport()
+
+        parent.installEventFilter(self)
+        parent.viewport().installEventFilter(self)
+        parent.horizontalScrollBar().valueChanged.connect(self.hideToolTip)
+        parent.verticalScrollBar().valueChanged.connect(self.hideToolTip)
+
+    def eventFilter(self, obj: QObject, e: QEvent) -> bool:
+        if obj is self.parent():
+            if e.type() in [QEvent.Type.Hide, QEvent.Type.Leave]:
+                self.hideToolTip()
+            elif e.type() == QEvent.Type.Enter:
+                self.isEnter = True
+        elif obj is self.viewport:
+            if e.type() == QEvent.Type.MouseButtonPress:
+                self.hideToolTip()
+
+        return QObject.eventFilter(self, obj, e)
+
+    def _createToolTip(self):
+        return ItemViewToolTip(self.text, self.parent().window())
+
+    def showToolTip(self):
+        """ show tool tip """
+        if not self._tooltip:
+            self._tooltip = self._createToolTip()
+
+        view = self.parent()  # type: QAbstractItemView
+        self._tooltip.setText(self.text)
+
+        if self.currentIndex:
+            rect = view.visualRect(self.currentIndex)
+        else:
+            rect = QRect()
+
+        self._tooltip.adjustPos(view, rect, self.tooltipType)
+        self._tooltip.show()
+
+    def _canShowToolTip(self) -> bool:
+        return True
+
+    def setText(self, text: str):
+        self.text = text
+        if self._tooltip:
+            self._tooltip.setText(text)
+
+    def setToolTipDuration(self, duration):
+        self.tooltipDuration = duration
+        if self._tooltip:
+            self._tooltip.setDuration(duration)
+
+    def helpEvent(self, event: QHelpEvent, view: QAbstractItemView, option: QStyleOptionViewItem, index: QModelIndex) -> bool:
+        if not event or not view:
+            return False
+
+        if event.type() == QEvent.Type.ToolTip:
+            text = index.data(Qt.ItemDataRole.ToolTipRole)
+            if not text:
+                return False
+
+            self.text = text
+            self.currentIndex = index
+
+            if not self._tooltip:
+                self._tooltip = self._createToolTip()
+                self._tooltip.setDuration(self.tooltipDuration)
+
+            # show the tool tip after delay
+            self.timer.start(self._tooltipDelay)
+
+        return True

@@ -1,14 +1,14 @@
 # coding:utf-8
 from typing import Union
 
-from PySide2.QtCore import Signal, QUrl, Qt, QRectF, QSize, QPoint, Property
-from PySide2.QtGui import QDesktopServices, QIcon, QPainter, QColor
+from PySide2.QtCore import Signal, QUrl, Qt, QRectF, QSize, QPoint, Property, QRect
+from PySide2.QtGui import QDesktopServices, QIcon, QPainter, QColor, QPainterPath
 from PySide2.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButton, QApplication, QWidget, QSizePolicy
 
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon, Icon
 from ...common.icon import FluentIcon as FIF
-from ...common.font import setFont
+from ...common.font import setFont, getFont
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
 from ...common.overload import singledispatchmethod
 from .menu import RoundMenu, MenuAnimationType
@@ -112,7 +112,7 @@ class PushButton(QPushButton):
 
         if self.isRightToLeft():
             x = self.width() - w - x
-            
+
         self._drawIcon(self._icon, painter, QRectF(x, y, w, h))
 
 
@@ -256,12 +256,124 @@ class RadioButton(QRadioButton):
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
         super().__init__(parent)
+        self._lightTextColor = QColor(0, 0, 0)
+        self._darkTextColor = QColor(255, 255, 255)
+        self.indicatorPos = QPoint(11, 12)
+        self.isHover = False
+
         FluentStyleSheet.BUTTON.apply(self)
+        self.setAttribute(Qt.WA_MacShowFocusRect, False)
+        self._postInit()
 
     @__init__.register
     def _(self, text: str, parent: QWidget = None):
         self.__init__(parent)
         self.setText(text)
+
+    def _postInit(self):
+        pass
+
+    def enterEvent(self, e):
+        self.isHover = True
+        self.update()
+
+    def leaveEvent(self, e):
+        self.isHover = False
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
+        self._drawIndicator(painter)
+        self._drawText(painter)
+
+    def _drawText(self, painter: QPainter):
+        if not self.isEnabled():
+            painter.setOpacity(0.36)
+
+        painter.setFont(self.font())
+        painter.setPen(self.textColor())
+        painter.drawText(QRect(29, 0, self.width(), self.height()), Qt.AlignVCenter, self.text())
+
+    def _drawIndicator(self, painter: QPainter):
+        if self.isChecked():
+            if self.isEnabled():
+                borderColor = themeColor()
+            else:
+                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+
+            filledColor = Qt.black if isDarkTheme() else Qt.white
+
+            if self.isHover and not self.isDown():
+                self._drawCircle(painter, self.indicatorPos, 10, 4, borderColor, filledColor)
+            else:
+                self._drawCircle(painter, self.indicatorPos, 10, 5, borderColor, filledColor)
+
+        else:
+            if self.isEnabled():
+                if not self.isDown():
+                    borderColor = QColor(255, 255, 255, 153) if isDarkTheme() else QColor(0, 0, 0, 153)
+                else:
+                    borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+
+                if self.isDown():
+                    filledColor = Qt.black if isDarkTheme() else Qt.white
+                elif self.isHover:
+                    filledColor = QColor(255, 255, 255, 11) if isDarkTheme() else QColor(0, 0, 0, 15)
+                else:
+                    filledColor = QColor(0, 0, 0, 26) if isDarkTheme() else QColor(0, 0, 0, 6)
+            else:
+                filledColor = Qt.transparent
+                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+
+            self._drawCircle(painter, self.indicatorPos, 10, 1, borderColor, filledColor)
+
+            if self.isEnabled() and self.isDown():
+                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 24)
+                self._drawCircle(painter, self.indicatorPos, 9, 4, borderColor, Qt.transparent)
+
+    def _drawCircle(self, painter: QPainter, center: QPoint, radius, thickness, borderColor, filledColor):
+        path = QPainterPath()
+        path.setFillRule(Qt.FillRule.WindingFill)
+
+        # outer circle (border)
+        outerRect = QRectF(center.x() - radius, center.y() - radius, 2 * radius, 2 * radius)
+        path.addEllipse(outerRect)
+
+        # inner center (filled)
+        ir = radius - thickness
+        innerRect = QRectF(center.x() - ir, center.y() - ir, 2 * ir, 2 * ir)
+        innerPath = QPainterPath()
+        innerPath.addEllipse(innerRect)
+
+        path = path.subtracted(innerPath)
+
+        # draw outer ring
+        painter.setPen(Qt.NoPen)
+        painter.fillPath(path, borderColor)
+
+        # fill inner circle
+        painter.fillPath(innerPath, filledColor)
+
+    def textColor(self):
+        return self.darkTextColor if isDarkTheme() else self.lightTextColor
+
+    def getLightTextColor(self) -> QColor:
+        return self._lightTextColor
+
+    def getDarkTextColor(self) -> QColor:
+        return self._darkTextColor
+
+    def setLightTextColor(self, color: QColor):
+        self._lightTextColor = QColor(color)
+        self.update()
+
+    def setDarkTextColor(self, color: QColor):
+        self._darkTextColor = QColor(color)
+        self.update()
+
+    lightTextColor = Property(QColor, getLightTextColor, setLightTextColor)
+    darkTextColor = Property(QColor, getDarkTextColor, setDarkTextColor)
 
 
 class ToolButton(QToolButton):

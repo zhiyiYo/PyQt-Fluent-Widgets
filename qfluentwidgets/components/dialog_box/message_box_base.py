@@ -34,6 +34,8 @@ class MessageBoxBase(MaskDialogBase):
         # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
         self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
         self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        
+        self.yesButton.setAttribute(Qt.WA_MacShowFocusRect, False)
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
