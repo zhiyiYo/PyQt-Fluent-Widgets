@@ -1,9 +1,9 @@
 # coding: utf-8
 from typing import List, Union
 
-from PyQt5.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtProperty, QRectF
-from PyQt5.QtGui import QPainter, QColor, QKeyEvent, QPalette, QBrush
-from PyQt5.QtWidgets import (QStyledItemDelegate, QApplication, QStyleOptionViewItem,
+from PyQt5.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtProperty, QRectF, QEvent
+from PyQt5.QtGui import QHelpEvent, QPainter, QColor, QKeyEvent, QPalette, QBrush
+from PyQt5.QtWidgets import (QAbstractItemView, QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget, QTableWidgetItem, QStyle,
                              QStyleOptionButton)
 
@@ -12,6 +12,7 @@ from ...common.font import getFont
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, setCustomStyleSheet
 from .line_edit import LineEdit
 from .scroll_bar import SmoothScrollDelegate
+from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
 
 
 class TableItemDelegate(QStyledItemDelegate):
@@ -22,6 +23,11 @@ class TableItemDelegate(QStyledItemDelegate):
         self.hoverRow = -1
         self.pressedRow = -1
         self.selectedRows = set()
+
+        if isinstance(parent, QTableView):
+            self.tooltipDelegate = ItemViewToolTipDelegate(parent, 100, ItemViewToolTipType.TABLE)
+        else:
+            self.tooltipDelegate = ItemViewToolTipDelegate(parent, 100, ItemViewToolTipType.LIST)
 
     def setHoverRow(self, row: int):
         self.hoverRow = row
@@ -173,6 +179,9 @@ class TableItemDelegate(QStyledItemDelegate):
                 CheckBoxIcon.PARTIAL_ACCEPT.render(painter, rect)
 
         painter.restore()
+
+    def helpEvent(self, event: QHelpEvent, view: QAbstractItemView, option: QStyleOptionViewItem, index: QModelIndex) -> bool:
+        return self.tooltipDelegate.helpEvent(event, view, option, index)
 
 
 
