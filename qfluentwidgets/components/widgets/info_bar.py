@@ -233,6 +233,7 @@ class InfoBar(QFrame):
     def closeEvent(self, e):
         self.closedSignal.emit()
         self.deleteLater()
+        e.ignore()
 
     def showEvent(self, e):
         self._adjustText()
