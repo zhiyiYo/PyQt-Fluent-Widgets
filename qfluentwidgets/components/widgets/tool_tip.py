@@ -444,6 +444,7 @@ class ItemViewToolTipDelegate(ToolTipFilter):
         if event.type() == QEvent.Type.ToolTip:
             text = index.data(Qt.ItemDataRole.ToolTipRole)
             if not text:
+                self.hideToolTip()
                 return False
 
             self.text = text
