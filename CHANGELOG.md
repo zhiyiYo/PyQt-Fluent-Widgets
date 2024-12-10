@@ -1,5 +1,10 @@
 # 更新日志
 
+## v1.7.3
+
+### 修复
+* 修复表格项工具提示没有及时隐藏的问题
+
 ## v1.7.2
 ### 新特性
 * 重绘单选按钮 ([#1010](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/1010))
