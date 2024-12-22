@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLay
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
                                 NavigationTreeWidget, NavigationFlyoutMenu)
 from ..widgets.acrylic_label import AcrylicBrush
-from ..widgets.scroll_area import SingleDirectionScrollArea
+from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
 from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, SlideRightFlyoutAnimationManager
 from ..material.acrylic_flyout import AcrylicFlyout, AcrylicFlyoutViewBase
@@ -71,7 +71,7 @@ class NavigationPanel(QFrame):
 
         self.acrylicBrush = AcrylicBrush(self, 30)
 
-        self.scrollArea = SingleDirectionScrollArea(self)
+        self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
 
         self.menuButton = NavigationToolButton(FIF.MENU, self)
