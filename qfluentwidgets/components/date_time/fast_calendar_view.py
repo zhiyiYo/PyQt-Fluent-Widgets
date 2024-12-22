@@ -325,16 +325,18 @@ class FastDayScrollView(FastScrollViewBase):
                 self.item(i).setFlags(Qt.ItemFlag.NoItemFlags)
 
         currentDate = left
-        for i in range(left.daysTo(right) - 1):
+        for i in range(left.daysTo(right)):
             item = self.item(i + bias if self.currentPage == 0 else i)
-            item.setText(str(currentDate.day()))
-            item.setData(Qt.ItemDataRole.UserRole, currentDate)
-            currentDate = currentDate.addDays(1)
+            if item:
+                item.setText(str(currentDate.day()))
+                item.setData(Qt.ItemDataRole.UserRole, currentDate)
+                currentDate = currentDate.addDays(1)
 
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
         item = self.currentItem()
-        self._setSelectedDate(item.data(Qt.ItemDataRole.UserRole))
+        if item:
+            self._setSelectedDate(item.data(Qt.ItemDataRole.UserRole))
 
     def pageCount(self):
         return (self.maxYear - self.minYear + 1) * 12
