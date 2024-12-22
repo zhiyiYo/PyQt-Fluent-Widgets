@@ -18,7 +18,7 @@ from ...common.style_sheet import FluentStyleSheet
 class ComboItem:
     """ Combo box item """
 
-    def __init__(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
+    def __init__(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None, isEnabled=True):
         """ add item
 
         Parameters
@@ -31,10 +31,14 @@ class ComboItem:
 
         userData: Any
             user data
+
+        isEnabled: bool
+            whether to enable the item
         """
         self.text = text
         self.userData = userData
         self.icon = icon
+        self.isEnabled = isEnabled
 
     @property
     def icon(self):
@@ -238,6 +242,11 @@ class ComboBoxBase(QObject):
         if 0 <= index < len(self.items):
             self.items[index].icon = icon
 
+    def setItemEnabled(self, index: int, isEnabled: bool):
+        """ Sets the enabled status of the item on the given index """
+        if 0 <= index < len(self.items):
+            self.items[index].isEnabled = isEnabled
+
     def findData(self, data):
         """ Returns the index of the item containing the given data, otherwise returns -1 """
         for i, item in enumerate(self.items):
@@ -320,8 +329,9 @@ class ComboBoxBase(QObject):
 
         menu = self._createComboMenu()
         for i, item in enumerate(self.items):
-            menu.addAction(
-                QAction(item.icon, item.text, triggered=lambda c, x=i: self._onItemClicked(x)))
+            action = QAction(item.icon, item.text, triggered=lambda c, x=i: self._onItemClicked(x))
+            action.setEnabled(item.isEnabled)
+            menu.addAction(action)
 
         if menu.view.width() < self.width():
             menu.view.setMinimumWidth(self.width())
