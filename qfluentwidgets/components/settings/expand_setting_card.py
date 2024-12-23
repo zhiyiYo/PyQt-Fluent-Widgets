@@ -375,3 +375,15 @@ class ExpandGroupSettingCard(ExpandSettingCard):
 
         if self.isExpand:
             self.setFixedHeight(self.card.height()+h)
+
+
+class SimpleExpandGroupSettingCard(ExpandGroupSettingCard):
+    """ Simple expand group setting card """
+
+    def _adjustViewSize(self):
+        """ adjust view size """
+        h = self.viewLayout.sizeHint().height()
+        self.spaceWidget.setFixedHeight(h)
+
+        if self.isExpand:
+            self.setFixedHeight(self.card.height()+h)

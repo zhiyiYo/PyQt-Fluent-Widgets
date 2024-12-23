@@ -1,6 +1,9 @@
 # 更新日志
 
 ## v1.7.4
+### 新组件
+* 添加 `SimpleExpandGroupSettingCard`
+
 ### 新特性
 * 添加禁用下拉框选项的功能 ([#1026](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/1026))
 
