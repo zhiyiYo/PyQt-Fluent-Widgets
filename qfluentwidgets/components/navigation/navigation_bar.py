@@ -12,7 +12,7 @@ from ...common.icon import drawIcon, FluentIconBase, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.router import qrouter
 from ...common.style_sheet import FluentStyleSheet
-from ..widgets.scroll_area import SingleDirectionScrollArea
+from ..widgets.scroll_area import ScrollArea
 from .navigation_widget import NavigationPushButton, NavigationWidget
 from .navigation_panel import RouteKeyError, NavigationItemPosition
 
@@ -153,7 +153,7 @@ class NavigationBar(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-        self.scrollArea = SingleDirectionScrollArea(self)
+        self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
 
         self.vBoxLayout = QVBoxLayout(self)
@@ -173,6 +173,7 @@ class NavigationBar(QWidget):
 
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea.horizontalScrollBar().setEnabled(False)
         self.scrollArea.setWidget(self.scrollWidget)
         self.scrollArea.setWidgetResizable(True)
 
