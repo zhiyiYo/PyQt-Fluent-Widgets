@@ -40,7 +40,7 @@ The [Pro version](https://qfluentwidgets.com/pages/pro) library contains more ad
 
 C++ QFluentWidgets require purchasing a license from the [official website](https://qfluentwidgets.com/price). You can also download the compiled demo `C++_QFluentWidgets.zip` from the [release page](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/releases).
 
-> **Warning**
+> [!Warning]
 > Don't install PyQt-Fluent-Widgets, PyQt6-Fluent-Widgets, PySide2-Fluent-Widgets and PySide6-Fluent-Widgets at the same time, because their package names are all `qfluentwidgets`.
 
 

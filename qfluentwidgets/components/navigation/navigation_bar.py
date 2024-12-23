@@ -82,7 +82,11 @@ class NavigationBarPushButton(NavigationPushButton):
                                QPainter.TextAntialiasing | QPainter.SmoothPixmapTransform)
         painter.setPen(Qt.NoPen)
 
-        # draw background
+        self._drawBackground(painter)
+        self._drawIcon(painter)
+        self._drawText(painter)
+
+    def _drawBackground(self, painter: QPainter):
         if self.isSelected:
             painter.setBrush(QColor(255, 255, 255, 42) if isDarkTheme() else Qt.white)
             painter.drawRoundedRect(self.rect(), 5, 5)
@@ -99,7 +103,7 @@ class NavigationBarPushButton(NavigationPushButton):
             painter.setBrush(QColor(c, c, c, alpha))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-        # draw icon
+    def _drawIcon(self, painter: QPainter):
         if (self.isPressed or not self.isEnter) and not self.isSelected:
             painter.setOpacity(0.6)
         if not self.isEnabled():
@@ -119,10 +123,10 @@ class NavigationBarPushButton(NavigationPushButton):
         else:
             drawIcon(self._icon, painter, rect)
 
+    def _drawText(self, painter: QPainter):
         if self.isSelected and not self._isSelectedTextVisible:
             return
 
-        # draw text
         if self.isSelected:
             painter.setPen(themeColor())
         else:
