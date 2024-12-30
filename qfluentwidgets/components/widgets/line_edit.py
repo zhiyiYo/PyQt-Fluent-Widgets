@@ -83,7 +83,10 @@ class LineEditButton(QToolButton):
 
 class LineEdit(QLineEdit):
     """ Line edit """
-
+  
+    focusLost: Signal = Signal()
+    focusReceived: Signal = Signal()
+  
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._isClearButtonEnabled = False
@@ -176,11 +179,13 @@ class LineEdit(QLineEdit):
     def focusOutEvent(self, e):
         super().focusOutEvent(e)
         self.clearButton.hide()
+        self.focusLost.emit()
 
     def focusInEvent(self, e):
         super().focusInEvent(e)
         if self.isClearButtonEnabled():
             self.clearButton.setVisible(bool(self.text()))
+        self.focusReceived.emit()
 
     def __onTextChanged(self, text):
         """ text changed slot """
