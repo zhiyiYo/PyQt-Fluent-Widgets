@@ -43,18 +43,21 @@ class Demo(QWidget):
         self.button3 = PushButton('Warning', self)
         self.button4 = PushButton('Error', self)
         self.button5 = PushButton('Custom', self)
+        self.button6 = PushButton('Desktop', self)
 
         self.button1.clicked.connect(self.createInfoInfoBar)
         self.button2.clicked.connect(self.createSuccessInfoBar)
         self.button3.clicked.connect(self.createWarningInfoBar)
         self.button4.clicked.connect(self.createErrorInfoBar)
         self.button5.clicked.connect(self.createCustomInfoBar)
+        self.button6.clicked.connect(self.createDeskTopBottomRightInfoBar)
 
         self.hBoxLayout.addWidget(self.button1)
         self.hBoxLayout.addWidget(self.button2)
         self.hBoxLayout.addWidget(self.button3)
         self.hBoxLayout.addWidget(self.button4)
         self.hBoxLayout.addWidget(self.button5)
+        self.hBoxLayout.addWidget(self.button6)
         self.hBoxLayout.setContentsMargins(30, 0, 30, 0)
 
         self.resize(700, 700)
@@ -121,6 +124,15 @@ class Demo(QWidget):
             parent=self
         )
         w.setCustomBackgroundColor('white', '#202020')
+
+    def createDeskTopBottomRightInfoBar(self):
+        InfoBar.warning(
+            title='Plugged Out Notify',
+            content="Battery is 64%",
+            orient=Qt.Vertical,
+            position=InfoBarPosition.BOTTOM_RIGHT,
+            parent=InfoBar.desktopView()
+        )
 
 
 if __name__ == '__main__':
