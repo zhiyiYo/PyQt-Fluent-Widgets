@@ -1,5 +1,6 @@
 # coding:utf-8
 from enum import Enum
+import sys
 from typing import Union
 import weakref
 
@@ -584,7 +585,12 @@ class DesktopInfoBarView(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.SubWindow)
+
+        if sys.platform == "win32":
+            self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.SubWindow)
+        else:
+            self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
+
         self.setAttribute(Qt.WA_TransparentForMouseEvents)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setGeometry(QApplication.primaryScreen().availableGeometry())
