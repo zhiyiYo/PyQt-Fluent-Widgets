@@ -46,7 +46,7 @@ C++ QFluentWidgets require purchasing a license from the [official website](http
 
 ## Run Example
 After installing PyQt-Fluent-Widgets package using pip, you can run any demo in the examples directory, for example:
-```python
+```shell
 cd examples/gallery
 python demo.py
 ```
@@ -67,7 +67,7 @@ Copyright © 2021 by zhiyiYo.
 Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) that shows off what PyQt-Fluent-Widgets are capable of 🎉
 
 ## Work with Designer
-[Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600).
+[Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600) or [Afdian](https://afdian.com/item/6726fcc4247311ef8c6852540025c377).
 
 ![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
 
