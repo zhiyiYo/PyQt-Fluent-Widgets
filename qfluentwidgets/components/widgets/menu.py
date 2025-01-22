@@ -160,6 +160,30 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
 
         painter.restore()
 
+class ColorItemDelegate(ShortcutMenuItemDelegate):
+    def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex) -> None:
+        action: Action = index.data(Qt.UserRole)  # type: QAction
+        if not isinstance(action, Action) or action.color() is None:
+            super(ColorItemDelegate, self).paint(painter, option, index)
+            return
+
+        # <-- the text draw by self.paint
+        ori_text = action.text()
+        action.setText("")
+        super(ColorItemDelegate, self).paint(painter, option, index)
+        action.setText(ori_text)
+
+        painter.save()
+        text = action.text()
+        painter.translate(0, 0)
+        rect = QRectF(43, option.rect.y(),
+                      QFontMetrics(painter.font()).width(text),
+                      option.rect.height())
+        painter.setPen(action.color())
+        painter.drawText(rect, Qt.AlignLeft | Qt.AlignVCenter, text)
+
+        painter.restore()
+
 
 class MenuActionListWidget(QListWidget):
     """ Menu action list widget """
@@ -174,7 +198,7 @@ class MenuActionListWidget(QListWidget):
         self.setDragEnabled(False)
         self.setMouseTracking(True)
         self.setIconSize(QSize(14, 14))
-        self.setItemDelegate(ShortcutMenuItemDelegate(self))
+        self.setItemDelegate(ColorItemDelegate(self))
 
         self.scrollDelegate = SmoothScrollDelegate(self)
         self.setStyleSheet(
