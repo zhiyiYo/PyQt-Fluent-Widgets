@@ -2,6 +2,7 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 
 from .config import Theme, qconfig
+from .style_sheet import setTheme
 import darkdetect
 
 
@@ -19,6 +20,7 @@ class SystemThemeListener(QThread):
     def _onThemeChanged(self, theme: str):
         theme = Theme.DARK if theme.lower() == "dark" else Theme.LIGHT
 
+        setTheme(theme)
         if qconfig.themeMode.value != Theme.AUTO or theme == qconfig.theme:
             return
 
