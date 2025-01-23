@@ -68,7 +68,7 @@ class ToolTip(QFrame):
         # add shadow
         self.shadowEffect = QGraphicsDropShadowEffect(self)
         self.shadowEffect.setBlurRadius(25)
-        self.shadowEffect.setColor(QColor(0, 0, 0, 60))
+        self.shadowEffect.setColor(QColor(0, 0, 0, 50))
         self.shadowEffect.setOffset(0, 5)
         self.container.setGraphicsEffect(self.shadowEffect)
 
