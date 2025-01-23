@@ -88,8 +88,8 @@ class ListFrame(Frame):
 
         stands = [
             self.tr("Star Platinum"), self.tr("Hierophant Green"),
-            self.tr("Made in Haven"), self.tr("King Crimson"),
-            self.tr("Silver Chariot"), self.tr("Crazy diamond"),
+            self.tr("Made in Heaven"), self.tr("King Crimson"),
+            self.tr("Silver Chariot"), self.tr("Crazy Diamond"),
             self.tr("Metallica"), self.tr("Another One Bites The Dust"),
             self.tr("Heaven's Door"), self.tr("Killer Queen"),
             self.tr("The Grateful Dead"), self.tr("Stone Free"),

@@ -35,7 +35,7 @@ class LayoutInterface(GalleryInterface):
     def createWidget(self, animation=False):
         texts = [
             self.tr('Star Platinum'), self.tr('Hierophant Green'),
-            self.tr('Silver Chariot'), self.tr('Crazy diamond'),
+            self.tr('Silver Chariot'), self.tr('Crazy Diamond'),
             self.tr("Heaven's Door"), self.tr('Killer Queen'),
             self.tr("Gold Experience"), self.tr('Sticky Fingers'),
             self.tr("Sex Pistols"), self.tr('Dirty Deeds Done Dirt Cheap'),
