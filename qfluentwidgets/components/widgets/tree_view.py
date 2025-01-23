@@ -1,7 +1,8 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, QSize, QRectF, QModelIndex
 from PyQt5.QtGui import QPainter, QColor, QPalette
-from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
+from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem, \
+    QAbstractItemView
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
@@ -123,6 +124,10 @@ class TreeWidget(QTreeWidget, TreeViewBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+
+    def setColumnCount(self, columns: int):
+        super().setColumnCount(columns)
+        self.setVerticalScrollMode(QAbstractItemView.ScrollPerItem)
 
 
 class TreeView(QTreeView, TreeViewBase):
