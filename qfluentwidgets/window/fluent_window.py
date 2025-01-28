@@ -201,10 +201,17 @@ class FluentWindow(FluentWindowBase):
         self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
         self.titleBar.raise_()
 
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        position=NavigationItemPosition.TOP, parent=None, isTransparent=False) -> NavigationTreeWidget:
-        """ add sub interface, the object name of `interface` should be set already
-        before calling this method
+    def addSubInterface(self,
+                        interface: QWidget,
+                        icon: Union[FluentIconBase, QIcon, str],
+                        text: str,
+                        position=NavigationItemPosition.TOP,
+                        parent=None,
+                        isTransparent=False,
+                        isDisable=False) -> NavigationTreeWidget:
+        """
+        Add sub interface, the object name of `interface` should be set already
+        before calling this method.
 
         Parameters
         ----------
@@ -225,6 +232,10 @@ class FluentWindow(FluentWindowBase):
 
         isTransparent: bool
             whether to use transparent background
+
+        isDisable: bool
+            whether this navigation item should be disabled (non-clickable) 
+            and appear dim gray
         """
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
@@ -245,6 +256,12 @@ class FluentWindow(FluentWindowBase):
             tooltip=text,
             parentRouteKey=parent.objectName() if parent else None
         )
+
+        # If isDisable is True, disable the item and visually dim it
+        if isDisable:
+            item.setEnabled(False)
+            # You can tweak the style below to fit your design
+            item.setStyleSheet("opacity: 0.5;")
 
         # initialize selected item
         if self.stackedWidget.count() == 1:
@@ -286,10 +303,17 @@ class MSFluentWindow(FluentWindowBase):
         self.titleBar.raise_()
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        selectedIcon=None, position=NavigationItemPosition.TOP, isTransparent=False) -> NavigationBarPushButton:
-        """ add sub interface, the object name of `interface` should be set already
-        before calling this method
+    def addSubInterface(self,
+                        interface: QWidget,
+                        icon: Union[FluentIconBase, QIcon, str],
+                        text: str,
+                        selectedIcon=None,
+                        position=NavigationItemPosition.TOP,
+                        isTransparent=False,
+                        isDisable=False) -> NavigationBarPushButton:
+        """
+        Add sub interface, the object name of `interface` should be set already
+        before calling this method.
 
         Parameters
         ----------
@@ -307,6 +331,13 @@ class MSFluentWindow(FluentWindowBase):
 
         position: NavigationItemPosition
             the position of navigation item
+
+        isTransparent: bool
+            whether to use transparent background
+
+        isDisable: bool
+            whether this navigation item should be disabled (non-clickable) 
+            and appear dim gray
         """
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
@@ -324,6 +355,12 @@ class MSFluentWindow(FluentWindowBase):
             selectedIcon=selectedIcon,
             position=position
         )
+
+        # If isDisable is True, disable the item and visually dim it
+        if isDisable:
+            item.setEnabled(False)
+            # You can tweak the style below to fit your design
+            item.setStyleSheet("opacity: 0.5;")
 
         if self.stackedWidget.count() == 1:
             self.stackedWidget.currentChanged.connect(self._onCurrentInterfaceChanged)
