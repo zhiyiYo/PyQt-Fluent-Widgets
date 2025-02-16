@@ -18,6 +18,7 @@ from ...common.screen import getCurrentScreenGeometry
 from ...common.font import getFont
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
+from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
 
 
 class CustomMenuStyle(QProxyStyle):
@@ -107,6 +108,10 @@ class SubMenuItemWidget(QWidget):
 class MenuItemDelegate(QStyledItemDelegate):
     """ Menu item delegate """
 
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.tooltipDelegate = None
+
     def _isSeparator(self, index: QModelIndex):
         return index.model().data(index, Qt.DecorationRole) == "seperator"
 
@@ -125,6 +130,12 @@ class MenuItemDelegate(QStyledItemDelegate):
         painter.drawLine(0, rect.y() + 4, rect.width() + 12, rect.y() + 4)
 
         painter.restore()
+
+    def helpEvent(self, event, view, option, index):
+        if not self.tooltipDelegate:
+            self.tooltipDelegate = ItemViewToolTipDelegate(view, 100, ItemViewToolTipType.LIST)
+
+        return self.tooltipDelegate.helpEvent(event, view, option, index)
 
 
 class ShortcutMenuItemDelegate(MenuItemDelegate):
@@ -266,7 +277,7 @@ class RoundMenu(QMenu):
 
     def __init__(self, title="", parent=None):
         super().__init__(parent=parent)
-        self._title = title
+        self.setTitle(title)
         self._icon = QIcon()
         self._actions = []  # type: List[QAction]
         self._subMenus = []
@@ -360,6 +371,10 @@ class RoundMenu(QMenu):
 
         self._icon = icon
 
+    def setTitle(self, title: str):
+        self._title = title
+        super().setTitle(title)
+
     def addAction(self, action: Union[QAction, Action]):
         """ add action to menu
 
@@ -421,6 +436,8 @@ class RoundMenu(QMenu):
         # disable item if the action is not enabled
         if not action.isEnabled():
             item.setFlags(Qt.NoItemFlags)
+        if action.text() != action.toolTip():
+            item.setToolTip(action.toolTip())
 
         item.setData(Qt.UserRole, action)
         action.setProperty('item', item)
@@ -710,6 +727,9 @@ class RoundMenu(QMenu):
         action = self.sender()  # type: QAction
         item = action.property('item')  # type: QListWidgetItem
         item.setIcon(self._createItemIcon(action))
+
+        if action.text() != action.toolTip():
+            item.setToolTip(action.toolTip())
 
         self._adjustItemText(item, action)
 

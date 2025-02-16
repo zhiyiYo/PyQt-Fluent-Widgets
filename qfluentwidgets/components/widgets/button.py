@@ -182,7 +182,7 @@ class TransparentTogglePushButton(TogglePushButton):
     * TransparentTogglePushButton(`parent`: QWidget = None)
     * TransparentTogglePushButton(`text`: str, `parent`: QWidget = None,
                                   `icon`: QIcon | str | FluentIconBase = None)
-    * TransparentTogglePushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
+    * TransparentTogglePushButton(`icon`: QIcon | FluentIconBase, `text`: str, `parent`: QWidget = None)
     """
 
 
@@ -192,8 +192,8 @@ class HyperlinkButton(PushButton):
     Constructors
     ------------
     * HyperlinkButton(`parent`: QWidget = None)
-    * HyperlinkButton(`url`: str, `text`: str, `parent`: QWidget = None,
-                      `icon`: QIcon | str | FluentIconBase = None)
+    * HyperlinkButton(`url`: str, `text`: str, `parent`: QWidget = None, `icon`: QIcon | str | FluentIconBase = None)
+    * HyperlinkButton(`icon`: QIcon | FluentIconBase, `url`: str, `text`: str, `parent`: QWidget = None)
     """
 
     @singledispatchmethod
@@ -234,9 +234,7 @@ class HyperlinkButton(PushButton):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             icon = icon.icon(color=themeColor())
         elif not self.isEnabled():
-            painter.setOpacity(0.786 if isDarkTheme() else 0.9)
-            if isinstance(icon, FluentIconBase):
-                icon = icon.icon(Theme.DARK)
+            painter.setOpacity(0.3628 if isDarkTheme() else 0.36)
 
         drawIcon(icon, painter, rect, state)
 

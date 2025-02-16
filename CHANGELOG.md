@@ -1,5 +1,15 @@
 # 更新日志
 
+## v1.7.5
+### 新特性
+* 添加 `InfoBar` 桌面通知功能
+* 更新工具提示样式
+
+### 修复
+* 修复菜单无法显示工具提示的问题 ([#1053](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/1053))
+* 修复多媒体组件播放按钮重复触发的问题 ([#1054](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/1054))
+* 修复 `HyperlinkButton` 禁用状态下的图标颜色问题 ([#1038](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/1038))
+
 ## v1.7.4
 ### 新组件
 * 添加 `SimpleExpandGroupSettingCard`

@@ -45,7 +45,7 @@ C++ QFluentWidgets 组件库非开源，可从 [发行页面](https://github.com
 
 ## 运行示例▶️
 使用 pip 安装好 PySide2-Fluent-Widgets 包并下载好此仓库的代码之后，就可以运行 examples 目录下的任意示例程序，比如：
-```python
+```shell
 cd examples/gallery
 python demo.py
 ```

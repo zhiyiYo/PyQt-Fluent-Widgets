@@ -45,8 +45,7 @@ class Demo2(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         self.videoWidget = VideoWidget(self)
 
-        self.videoWidget.setVideo(QUrl(
-            'https://mvwebfs.tx.kugou.com/202309051557/028d27cbe9d79ae1ffafd9748df93090/v2/e7844104727ea50f658319f2723b6243/KGTX/CLTX002/e7844104727ea50f658319f2723b6243.mp4'))
+        self.videoWidget.setVideo(QUrl('https://media.w3.org/2010/05/sintel/trailer.mp4'))
         self.videoWidget.play()
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
