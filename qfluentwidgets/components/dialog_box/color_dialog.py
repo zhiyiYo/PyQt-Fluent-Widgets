@@ -1,7 +1,7 @@
 # coding:utf-8
 from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
 from PyQt5.QtGui import (QBrush, QColor, QPixmap,
-                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
+                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon, QValidator)
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QFrame, QVBoxLayout
 
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
@@ -190,6 +190,28 @@ class HexColorLineEdit(ColorLineEdit):
     def setColor(self, color):
         """ set color """
         self.setText(color.name(self.colorFormat)[1:])
+
+    def insertFromMimeData(self, source):
+        """Handle pasted data"""
+        text = source.text()
+        if text.startswith("#"):
+            text = text[1:]  # Remove the "#" prefix
+
+        state = self.validator().validate(text, 0)[0]
+        if state == QValidator.Acceptable:
+            self.setText(text)
+            self.textEdited.emit(text)
+        else:
+            super().insertFromMimeData(source)
+
+    def keyPressEvent(self, event):
+        """Handle the Ctrl+V paste shortcut"""
+        if event.key() == Qt.Key_V and event.modifiers() == Qt.ControlModifier:
+            clipboard = QApplication.clipboard()
+            mimeData = clipboard.mimeData()
+            self.insertFromMimeData(mimeData)
+        else:
+            super().keyPressEvent(event)
 
 
 class OpacityLineEdit(ColorLineEdit):
