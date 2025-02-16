@@ -314,7 +314,7 @@ class BreadcrumbBar(QWidget):
     def _showHiddenItemsMenu(self):
         self.elideButton.clearState()
 
-        menu = RoundMenu(self)
+        menu = RoundMenu(parent=self)
         menu.setItemHeight(32)
 
         for item in self.hiddenItems:
