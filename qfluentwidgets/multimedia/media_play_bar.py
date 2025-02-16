@@ -144,6 +144,8 @@ class MediaPlayBarBase(QWidget):
 
         self.setGraphicsEffect(self.opacityEffect)
         FluentStyleSheet.MEDIA_PLAYER.apply(self)
+        
+        self.playButton.clicked.connect(self.togglePlayState)
 
     def setMediaPlayer(self, player: MediaPlayerBase):
         """ set media player """
@@ -158,7 +160,6 @@ class MediaPlayBarBase(QWidget):
         # don't use valueChanged, otherwise the sound will be interupted
         self.progressSlider.sliderMoved.connect(self.player.setPosition)
         self.progressSlider.clicked.connect(self.player.setPosition)
-        self.playButton.clicked.connect(self.togglePlayState)
         self.volumeButton.volumeChanged.connect(self.player.setVolume)
         self.volumeButton.mutedChanged.connect(self.player.setMuted)
 
