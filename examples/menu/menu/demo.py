@@ -1,9 +1,12 @@
 # coding:utf-8
 import sys
+
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QApplication, QWidget, QAction, QHBoxLayout, QLabel
-from qfluentwidgets import RoundMenu, setTheme, Theme, Action, MenuAnimationType, MenuItemDelegate, CheckableMenu, MenuIndicatorType
+
 from qfluentwidgets import FluentIcon as FIF
+from qfluentwidgets import RoundMenu, Action, MenuAnimationType
 
 
 class Demo(QWidget):
@@ -29,7 +32,7 @@ class Demo(QWidget):
 
         # add actions
         menu.addAction(Action(FIF.COPY, 'Copy'))
-        menu.addAction(Action(FIF.CUT, 'Cut'))
+        menu.addAction(Action(QColor(255, 0, 0), FIF.CUT, 'Cut'))
         menu.actions()[0].setCheckable(True)
         menu.actions()[0].setChecked(True)
 
