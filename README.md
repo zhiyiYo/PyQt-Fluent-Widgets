@@ -74,7 +74,7 @@ Check out this [▶ example video](https://www.bilibili.com/video/BV12c411L73q) 
 
 ## See Also
 Here are some projects based on PyQt-Fluent-Widgets:
-* [**zhiyiYo/QMaterialWidgets**: A material design widgets library based on PySide](https://qmaterialwidgets.vercel.app)
+* [**zhiyiYo/Fluent-M3U8**: A cross-platform m3u8 downloader](https://fluent-m3u8.org)
 * [**zhiyiYo/Groove**: A cross-platform music player based on PyQt5](https://github.com/zhiyiYo/Groove)
 * [**zhiyiYo/Alpha-Gobang-Zero**: A gobang robot based on reinforcement learning](https://github.com/zhiyiYo/Alpha-Gobang-Zero)
 
