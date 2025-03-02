@@ -1,0 +1,255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:2
+#: 24ae4dbfaf0040faa9b96e7f67f36aa0
+msgid "command_bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:8
+#: cfcdde51ef9a417e93001afb43618df6
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 41e00457d1ec452d828886e6d3fe9672
+msgid ""
+":py:obj:`CommandButton "
+"<qfluentwidgets.components.widgets.command_bar.CommandButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:31
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 280591112c05421bab6d7c107bb8fe2d f033b0fb14404edb93139303807ec3b5
+msgid "Command button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: edc84066245a4bf1b2e87075a4b8df9f
+msgid ""
+":py:obj:`CommandToolTipFilter "
+"<qfluentwidgets.components.widgets.command_bar.CommandToolTipFilter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:70
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 15274998e0024e5faf59016b96396dda 745e497b153c4713862d75759b1b8048
+msgid "Command tool tip filter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: e6088156d9e44ef68caaf2ff31eb7df0
+msgid ""
+":py:obj:`MoreActionsButton "
+"<qfluentwidgets.components.widgets.command_bar.MoreActionsButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 4f642be8346145bebe15304da1b943fb 541d475bc19c4b359e5a627db9879346
+msgid "More action button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: eec963f86bbb40f18cb3ebce012d1ad8
+msgid ""
+":py:obj:`CommandSeparator "
+"<qfluentwidgets.components.widgets.command_bar.CommandSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 07c442a64b5e4a0b8c79f2597dd1d9f5 47e0fe82bb9b4612baf59c8fb458b535
+msgid "Command separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 2b04d6bb4983451283970283b6de232e
+msgid ""
+":py:obj:`CommandMenu "
+"<qfluentwidgets.components.widgets.command_bar.CommandMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 516299d605e54421b4fcd857573af922 ad411994f5ba46cbb7ef1d790b0f19e0
+msgid "Command menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 431ef7465deb479e9af7772895498b24
+msgid ""
+":py:obj:`CommandBar "
+"<qfluentwidgets.components.widgets.command_bar.CommandBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:107
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 091e2ffd77c54112a47211980c5473b6 ce35d3c8170e40ff83ce1ddc3916bade
+msgid "Command bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: c10eb6d086e142df970c5bddfccda204
+msgid ""
+":py:obj:`CommandViewMenu "
+"<qfluentwidgets.components.widgets.command_bar.CommandViewMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:215
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 68ce8314f7d7415c814b1b12644cd9bd bac39b7ca4ff405490446559d6e42e08
+msgid "Command view menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: c0d8ff219d38478ebe3db87705df175f
+msgid ""
+":py:obj:`CommandViewBar "
+"<qfluentwidgets.components.widgets.command_bar.CommandViewBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 14af454a39f14f51b9b3146a79c04176 683aa22e2c1543ddbf4486f73c1868be
+msgid "Command view bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: 0c17d127d029462395e7e3572244dab4
+msgid ""
+":py:obj:`CommandBarView "
+"<qfluentwidgets.components.widgets.command_bar.CommandBarView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:26:<autosummary>:1
+#: f2cdfb55e8a84a4e82fefe205d4dbf1b f4fd47962875479bb2c7e52ecd178a0c
+msgid "Command bar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:29
+#: 5f864689a2774c83a4f44712b1751861
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToggleToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:34
+#: defce3a934ac42bba3e9713b592bfddb
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:35
+#: e71f278a361f40c38fc4aa75ac97c265
+msgid "CommandButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:36
+#: 43f3e1a213774874912a706e59ac115b
+msgid ""
+"CommandButton(`icon`: QIcon | str | FluentIconBase = None, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:68
+#: cece6128d16a4a439b3d79d94f47e865
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.tool_tip.ToolTipFilter`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:75
+#: 74d4bbb89b3548a98f5a1d9c499dba5d
+msgid "Bases: :py:obj:`CommandButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:88
+#: 4ffa84d97de5434083545de48761ce6e
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:98
+#: 41092183974f41a4a60935c5cbbb15db
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:105
+#: 479279f91cc84c1aa9dcb68b14d85744
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:120
+#: f357a23c2ecd407b9a347e835548613b
+msgid "add action"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:123
+#: 5ed2a229116b41fa9f934c2e558d6a08
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:124
+#: bfa3d8b9ff7a4b628c1ba51b8e738661
+msgid "action: QAction"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:125
+#: ecf9addecd0045cabb1bdd78ec01f318
+msgid "the action to add"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:133
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:138
+#: 67034955d1ab481594b3e86a7140921c ec0a945f096d4d5f85fe8635f38b8922
+msgid "add hidden action"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:152
+#: d44bde7ab5674af19b9f62d818f87e79
+msgid "add widget to command bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:166
+#: 5c8df240db194a96a00dd1025796d156
+msgid "set the style of tool button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:204
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:229
+#: b5f8b531e840401eb8029213574de334 d55f2ec55b974b26ac6f4770d5b237b0
+msgid "set the animation direction of more actions menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:213
+#: 49101f7dac024f29a502e2b12f3f4021
+msgid "Bases: :py:obj:`CommandMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:223
+#: 3a0b4eb33abd4d38bee59250b318bc8c
+msgid "Bases: :py:obj:`CommandBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/command_bar/index.rst:238
+#: d7bd2b3aab9b484091fc1f823dd575e0
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutViewBase`"
+msgstr ""
+

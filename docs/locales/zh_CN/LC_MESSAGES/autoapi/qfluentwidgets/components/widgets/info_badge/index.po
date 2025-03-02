@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:2
+#: fb4cb449bc92446a8f2da208c1dceb0f
+msgid "info_badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:8
+#: 2c41efdcc0b7430095dfde986727a64f
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 01b94559bd314cab840543eab64c5133
+msgid ""
+":py:obj:`InfoLevel "
+"<qfluentwidgets.components.widgets.info_badge.InfoLevel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 14b6ba4b1cd84734b1938d6d1a1e55f9 a2ed59e48a904d688840a602e83d89ba
+msgid "Info level"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 61a9f482f9534a2ea3e79888d61cf91e
+msgid ""
+":py:obj:`InfoBadgePosition "
+"<qfluentwidgets.components.widgets.info_badge.InfoBadgePosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:66
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 3f7a61c9a23442d9aab0c62d8ff8227d 472f960c9e00445a9fc51992070ed250
+msgid "Info badge position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: cc204b082816495e9c32e7015e0dda3b
+msgid ""
+":py:obj:`InfoBadge "
+"<qfluentwidgets.components.widgets.info_badge.InfoBadge>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:108
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 37c8b1e6676549f1a41cb71259958775 80740180acdd40398dfa93df2d0f2672
+msgid "Information badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 4d3c306fd7924a0d8fdb30ac4ea2dbb2
+msgid ""
+":py:obj:`DotInfoBadge "
+"<qfluentwidgets.components.widgets.info_badge.DotInfoBadge>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:190
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 475795d9bb3a46d79cb260388f1053f8 df66b6b673ab4201b5d018cc7b67352f
+msgid "Dot info badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 6028e636ee244a0bbf898042fd64a505
+msgid ""
+":py:obj:`IconInfoBadge "
+"<qfluentwidgets.components.widgets.info_badge.IconInfoBadge>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:238
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 1149a2cd2f0f4136a17386dc51dd6c33 466dfb0b56b64e29aed67474ff2f2b72
+msgid "Icon icon badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 7b8136b1d3a64f28a5a54d2b800a974f
+msgid ""
+":py:obj:`InfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.InfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:308
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 271471cabdd04f3da91e5a8c8e29f243 513cebab6ef04748869957bdc9cf9aa5
+msgid "Info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: c8536cc4176e4383aad987a9e58f55b8
+msgid ""
+":py:obj:`TopRightInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.TopRightInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:344
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 80d334cca3244378b860d35e5b1a67eb 87661f61792744e19ad8dd06d3e0f762
+msgid "Top right info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 62ff6979b7d84e818b8bc968adafb272
+msgid ""
+":py:obj:`RightInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.RightInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:356
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 51415eadd7cc476da86e5e22e412b6ac 798a7f8fb8264b28aa7984b8a8cfae23
+msgid "Right info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 9bde3f326bbc4b0ab6c1bb65725a6d7f
+msgid ""
+":py:obj:`BottomRightInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.BottomRightInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:368
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 6b88f8115d4641e0b81f064cc9824975 ba5236fc62134661865ccdf75a333b3d
+msgid "Bottom right info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 29207f7ac7ac4b1ebf03f1474e9d670b
+msgid ""
+":py:obj:`TopLeftInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.TopLeftInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:380
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:392
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 0074148b3d0c4340a4f61f0de085e98c 780d39293f6f44c3a18ea027b24509fb
+#: edb2ecc7849c4301b2fac3593037ff67 f07ac78a76a54c7aaebebc4ab5c249a0
+msgid "Top left info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 5ed616e577d144f88c0eec6401461f92
+msgid ""
+":py:obj:`LeftInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.LeftInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 6d069fbc210c4141963bd3463b6afba4
+msgid ""
+":py:obj:`BottomLeftInfoBadgeManager "
+"<qfluentwidgets.components.widgets.info_badge.BottomLeftInfoBadgeManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:404
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:29:<autosummary>:1
+#: 4f121c167df34d2c8c6c0a38f5c01d34 b8401a0775da44ccbd3a65baaa13ca46
+msgid "Bottom left info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:64
+#: 9a2926c5327648b3b334cf8f9df30f46 ec231c7b36ba4a84aa94f33b9b44922d
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:106
+#: 21c08e9d2ca247d6bfe1731cf3b9ff28
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLabel`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:241
+#: 433afec424e440c68efa6eee2e11b6f7 dd414879cb8b41f087f0a18c686e4ace
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:112
+#: a0da229e9bf941d0bc58284f1a1ac736
+msgid "InfoBadge(`parent`: QWidget = None, `level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:113
+#: 1d7ca9912b0a4c68a195fa6963661a8c
+msgid ""
+"InfoBadge(`text`: str, `parent`: QWidget = None, "
+"`level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:114
+#: b20288b4ad2a4512be0470232d9774b0
+msgid ""
+"InfoBadge(`num`: int, `parent`: QWidget = None, "
+"`level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:115
+#: 629f6593204d4c2bacfa686dabb8199e
+msgid ""
+"InfoBadge(`num`: float, `parent`: QWidget = None, "
+"`level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:119
+#: 20fefc86d1d74b49b462e0a6693d4f70
+msgid "set infomation level"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:127
+#: ba674b0ee9cd41bf97ddbd871ee87ab4
+msgid "set the custom background color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:130
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:168
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:292
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:323
+#: 1edefde6d4a34665b27bf94fbcdaa58e 34f54057f83748f38c4109cf97697547
+#: 4e72d6eadc064b9f927b29f64cf1983c d29b7474179548bfbebdea8ae63f0586
+#: e12bc83d55534ba9954726eadf5f5c2d
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:131
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:173
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:227
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:297
+#: 05f08f6be57b4f789b0ecac8bd879a9e a1369cc095fc43ddb7fa861d46bdae0b
+#: aed9270e39a74aa48fe3dbe6bfdafb6b b630aee624ea4b739019820b3419e773
+msgid "light, dark: str | Qt.GlobalColor | QColor"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:132
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:173
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:227
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:297
+#: 65dff2ed1a3b49549e5fb6da39ee2fa2 8a1e36e320fe44ae9a8b05d24cdab72e
+#: d13a9880bb6c49f38de501d255773777 fff1d7afb6bb482084d050f65e72cbda
+msgid "background color in light/dark theme mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:165
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:222
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:289
+#: 073260a459664b3eab9a647b7bcac126 4df974beb2b740b895af916c39b21fbd
+#: cc62ad0bcff2456cbbcc1e99ac1b79f7
+msgid "create a badge with custom background color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:170
+#: 4f8ce3b9559044cb8219187a422517e5
+msgid "text: str | float"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:170
+#: 120152161be2436f802136cdaa2fbc56
+msgid "the text of badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:229
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:299
+#: 35215dafe9994f14a482fcc637783fb5 85232893940646d3b8d7fc05100ead21
+#: c457dd2042d5463a9f51e15bd825eb2f
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:230
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:300
+#: 14b6c6a21b0942d28f9482cb86ab312e bf1fb5ee4ee54eed8302a8f504328bcf
+#: ed104bf93640497a83b00578e7485b0f
+msgid "parent widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:179
+#: faa0e55f9f1441ccb910846684f9bf56
+msgid "target: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:179
+#: 3998cfd25dec45f9b5140eda41105fda
+msgid "target widget to show the badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:181
+#: 58bb894970d14c71832508a9fa41234c
+msgid "pos: InfoBadgePosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:182
+#: e9265ca8b6e54814aff42a00d37af241
+msgid "the position relative to target"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:188
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:236
+#: 063c2d7fcd314ccb8fda67ff30719c52 d2d3ca57ff0f4f5198d52f2a42ee2439
+msgid "Bases: :py:obj:`InfoBadge`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:242
+#: 5d595c751a7d4e48abf0e8ed2a7f4582
+msgid "IconInfoBadge(`parent`: QWidget = None, `level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:243
+#: 39313f458cbb458b8975021395dc74f4
+msgid ""
+"IconInfoBadge(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = "
+"None, `level`=InfoLevel.ATTENTION)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:247
+#: 9adf247ebffd4d11a2fd3ef248660111
+msgid "set the icon of info badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:294
+#: b604d0678c3341c9b51ba09267745e39
+msgid "icon: QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:294
+#: 725e3e8c1735428ba2ab579c28f0096f
+msgid "the icon of badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:306
+#: 0786c54e10e1496f81d4defb7e87ff1b
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:320
+#: 48ef063fc4e74a3d90b8465c31f32077
+msgid "register menu animation manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:324
+#: 37f9c27bcff44a49b17f00754ee031ab
+msgid "name: Any"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:325
+#: cba231439ea74281a90df6769b244d76
+msgid "the name of manager, it should be unique"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:331
+#: 275959109616473a9fe47d1ad26767cd
+msgid "mask info badge manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:336
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:348
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:360
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:372
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:384
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:396
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:408
+#: 5acaa1a837c04cc89fb0f9b6dcb04f53 7d2c7722b65141728b699b944f80ef7e
+#: 907e585715cd4f5b9f39ce5dcfae728f 9d55de65b11041d4bbdd5a12dacfc674
+#: acb731acf2a945ceac140308279c6aa7 cffa1e27f0f04aecb373d76e28ced7d6
+#: fad8d2e2bf284613830a9749ee6c6052
+msgid "return the position of info badge"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:342
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:354
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:366
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:378
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:390
+#: ../../source/autoapi/qfluentwidgets/components/widgets/info_badge/index.rst:402
+#: 0a67ea107ddc474a8fb62f19ddb1389c 32087f703f5049e592d2ec6bfa4a6160
+#: 9ea859ef1f264fb999bf0245af1ccbe3 c5048f9e048846abb8d2ca5851ce5a9a
+#: cf1c3e54210441138fb902bf7d8fd04c f492cfca60584ebf99d4ab8bedb40fd7
+msgid "Bases: :py:obj:`InfoBadgeManager`"
+msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`NavigationItemInfoBadgeManager "
+#~ "<qfluentwidgets.components.widgets.info_badge.NavigationItemInfoBadgeManager>`\\"
+#~ msgstr ""
+
+#~ msgid "Navigation item info badge manager"
+#~ msgstr ""
+

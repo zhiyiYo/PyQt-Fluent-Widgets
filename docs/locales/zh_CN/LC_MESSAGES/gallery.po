@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-31 19:48+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/gallery.md:1 9eda39ba189a4f0387d6728077e70b56
+msgid "Gallery"
+msgstr "演示"
+
+#: ../../source/gallery.md:3 558e6414d0e14385955d40e368c230a7
+msgid "Basic input"
+msgstr "基本输入"
+
+#: ../../source/gallery.md:4 92ac48c78b944b309638abc7d79ab7a7
+msgid "Button"
+msgstr "按钮"
+
+#: ../../source/gallery.md:7 e2979551733f42fe8e9f0d18f3cd3d61
+msgid "Check Box"
+msgstr "复选框"
+
+#: ../../source/gallery.md:10 2715675a4e7649fcb3d1e963fa688e48
+msgid "Combo Box"
+msgstr "下拉框"
+
+#: ../../source/gallery.md:13 ca1a2fcc67a546dabc36eef5aeb566fc
+msgid "Radio Button"
+msgstr "单选按钮"
+
+#: ../../source/gallery.md:16 52d8da07d2714f878043f1f53397b478
+msgid "Switch Button"
+msgstr "开关按钮"
+
+#: ../../source/gallery.md:19 6e23ea8ed58043ee971e8e6c0caa6f31
+msgid "Slider"
+msgstr "滑动条"
+
+#: ../../source/gallery.md:22 404571cfd21744d5900311f6470d318e
+msgid "Hollow Handle Slider"
+msgstr "滑块中空的滑动条"
+
+#: ../../source/gallery.md:26 ea6c9a739573425594e3df658aab61c5
+msgid "Dialogs"
+msgstr "对话框"
+
+#: ../../source/gallery.md:27 e2f393f51695455d980f1ca0dffedcd4
+msgid "Color Dialog"
+msgstr "颜色选择框"
+
+#: ../../source/gallery.md:30 ec6b35ea78054fc19f79f4094b85f42a
+msgid "Dialog"
+msgstr "无边框消息框"
+
+#: ../../source/gallery.md:33 f8217bc6446549708814ad135b608001
+msgid "Message Box"
+msgstr "带遮罩的消息框"
+
+#: ../../source/gallery.md:36 2be6bb8dee3f4c4893eb2b97f1e85cf9
+msgid "Win10 Style Message Dialog"
+msgstr "Win10 风格消息框"
+
+#: ../../source/gallery.md:39 1176cc32afe44ec58369730068c20aa0
+msgid "Folder List Dialog"
+msgstr "文件选择对话框"
+
+#: ../../source/gallery.md:43 1c60640928064193b2bcb4e72b20359c
+msgid "Menus"
+msgstr "菜单"
+
+#: ../../source/gallery.md:46 c7f97bf45a044c68b9dddcdd7806332e
+msgid "Flow Layout"
+msgstr "流式布局"
+
+#: ../../source/gallery.md:49 a6e154188c2e47028812d079c3c4af5a
+msgid "Navigation"
+msgstr "导航"
+
+#: ../../source/gallery.md:52 58d8084879fc4de1bec7486e9d848ec4
+msgid "Status & info"
+msgstr "进度和消息"
+
+#: ../../source/gallery.md:53 74fb4421320244909cb068162f8ac711
+msgid "State Tool Tip"
+msgstr "进度提示条"
+
+#: ../../source/gallery.md:56 779b9e64e34e4bd888416cbd6e979e6d
+msgid "Tool Tip"
+msgstr "工具提示"
+
+#: ../../source/gallery.md:59 7580f714014e4d69ad31efc51f5a4621
+msgid "Info Bar"
+msgstr "消息条"
+
+#: ../../source/gallery.md:63 ebcbe04c72ff471c9c7b2943ab248666
+msgid "Material"
+msgstr "材料"
+
+#: ../../source/gallery.md:64 fa7e4d18292b46da907d8a2dbe65ad2d
+msgid "Acrylic Label"
+msgstr "亚克力标签"
+

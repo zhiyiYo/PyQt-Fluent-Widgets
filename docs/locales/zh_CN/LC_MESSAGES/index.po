@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-28 23:13+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/index.rst:45 fb4cbedbe5bb42aea3966e9680cfdeab
+msgid "Contents"
+msgstr "目录"
+
+#: ../../source/index.rst:42 fe137bf42c7f480cb2bf9ab5a9592595
+msgid "Welcome to PyQt-Fluent-Widgets's document!"
+msgstr "欢迎来到 PyQt-Fluent-Widgets 帮助文档！"
+
+#: ../../source/index.rst:43 2be6811f7e1e4b9183397096e99090e2
+msgid ""
+"This document will show you all the features of PyQt-Fluent-Widgets and "
+"the best practice of it."
+msgstr "这份文档将展示 PyQt-Fluent-Widgets 的全部特性和正确使用姿势 🚀"
+

@@ -1,0 +1,253 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:2
+#: 3b642b6bc07f40cab9edd2efeb782981
+msgid "segmented_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:8
+#: de5d6ea6ffbe40cca3269f88aa70ee1b
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 13c8cf0fad994dff834fe89dd1d8fad2
+msgid ""
+":py:obj:`SegmentedItem "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 3b18580b52e34968a218e0b766212a55 6448c9f732e14aaaa433abcee17773ca
+msgid "Segmented item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 865447cba39d414c8270d5f85ea0e28b
+msgid ""
+":py:obj:`SegmentedToolItem "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedToolItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 2051c4ab8ee9495ab4e793d9662c05de f735808ee8f44001a9c2f219ed5ef777
+msgid "Pivot item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 6356dd9572654b21a03f9e189626a786
+msgid ""
+":py:obj:`SegmentedToggleToolItem "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedToggleToolItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 3063fea304f445cf8819f20acfb4d883 530959dafbf244eea8c7ccb3a1e42b31
+msgid "Transparent background tool button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: df5a60d247b74a85b224bd3012aa6bc9
+msgid ""
+":py:obj:`SegmentedWidget "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 741a261c804b4b76b616a4606f1aec5d 8df5f3d1ee4b4965be93704414047987
+msgid "Segmented widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: af8030f9a5e94ace9b505eb838fe0872
+msgid ""
+":py:obj:`SegmentedToolWidget "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedToolWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: 355c74d9729b4fbb811bd0c4629c7936 a04dd23403bf49eeb1272431336b5f84
+msgid "Segmented tool widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: be08fd66007b443697c3c0b19b076df2
+msgid ""
+":py:obj:`SegmentedToggleToolWidget "
+"<qfluentwidgets.components.navigation.segmented_widget.SegmentedToggleToolWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:23:<autosummary>:1
+#: ddb9807a549c40fdbe88a6c86a2f77e5 e1425d3d5c9e4951a8072d812a5f0c10
+msgid "Segmented toggle tool widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:26
+#: f5196c071d8f458285eb2f9fa43db1fe
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.PivotItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:33
+#: 83e7733177e44ea8ad409cf8ea727c5c
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:47
+#: a920a4e8e08e46cd90e070f206dc5052
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:52
+#: b2cbb57568bb43dfaa0347725fa741e6
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:53
+#: 167f5d2d29ba409394e5202d023cf4f3
+msgid "TransparentToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:54
+#: 252355804c80480db05c48e44fe8c701
+msgid ""
+"TransparentToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:66
+#: 14b6c4be5d6543f981bd68725e3250e7
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.Pivot`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:120
+#: 326d5571085c475eb385670d6d6c2124 777f11acfa154bbd8591f3ea56416d21
+msgid "insert item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:75
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:107
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:123
+#: 5599436954814352b3408fad66b0bc33 716b16582e4d4a979332c24ffb6133c2
+#: 752d72f9803a4085b39f6d200a6fc36d
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:125
+#: 143e00adb04a44399eaa8c66e135841a a8d8c93f885d4cbea04624c3483733af
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:77
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:125
+#: 52485af2ea3443dbaf6aee06f80f5277 6d082b1f92c44634a47ba596e964693c
+msgid "insert position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:128
+#: 39e9cb293ed445ff855d67f0d5d43e1e a015a22ad905453790a8d6d5ac0fb86c
+#: c6b65500320c4cef81db412dbe57ac95
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:128
+#: 3596e010d875485789a3442ca6d6836c 94d6a939208f4f6db6b6db5e4e579f74
+#: e3ecc9b8cd3347efa97d68bca8efff8d
+msgid "the unique name of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:131
+#: 070861bafea44ee6a8232a0e1f62e292 ee783d87c3ce434ca23f0b05dec1d29f
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:131
+#: 3dc49e1e5c4c4f49bfffe0b0440df28a e475a98f4e5f4f9892167dd99c0c3766
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:134
+#: 76acda20106747e8896c314f8a5d4b18 b8a8ca8fb31c4b9fbaab9deece3f31bf
+#: c96bf2aa92d0400ca081519cb51734fc
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:115
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:134
+#: 1fc6e3bc1c8f46cd9c673484f8478a5e 4d968060c35a4550b0f7ab2e1eca7e31
+#: 8e79a27e1db64c9d8be1ae062cb56412
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:88
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:136
+#: eabe9164694b44f5af0ee59df1d14be3 f10bb7519714449e8a9ebea7b55847bb
+msgid "icon: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:89
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:112
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:137
+#: 63ae947f71bb42daadb63f2cbbe140dc 7573b5795b1949ee822614bfcbea3fb1
+#: c35091f08a4e4e009395101cfeea8bf6
+msgid "the icon of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:98
+#: 4f510d4a592a4339a10d11cd52b23e70
+msgid "Bases: :py:obj:`SegmentedWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:104
+#: 503a7e585cea437bb4e17c59e5229bba
+msgid "add item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:112
+#: fbe9aa14443d4ef1a65565b420b84326
+msgid "icon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/segmented_widget/index.rst:143
+#: 6aa66e5cbdc44304838fe2bcbad89dc9
+msgid "Bases: :py:obj:`SegmentedToolWidget`"
+msgstr ""
+

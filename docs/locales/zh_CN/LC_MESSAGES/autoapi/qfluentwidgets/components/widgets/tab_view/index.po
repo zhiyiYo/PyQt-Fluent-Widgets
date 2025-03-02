@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:2
+#: 060171e73dfa4bbf9395a332435bfd98
+msgid "tab_view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:8
+#: acdc31e347b843c79b9e0adadc553c22
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: f379056f0a8f4cf0aec61f6ae30236a3
+msgid ""
+":py:obj:`TabCloseButtonDisplayMode "
+"<qfluentwidgets.components.widgets.tab_view.TabCloseButtonDisplayMode>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:33
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: 8d495cbccf844ef9ad92a30654b7e18d a5473beae6744822bfa82384bb985908
+msgid "Tab close button display mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: c5556e30b2a34292a27391bb21f0020b
+msgid ""
+":py:obj:`TabToolButton "
+"<qfluentwidgets.components.widgets.tab_view.TabToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: 6696f4c07e534262ab0135a7103911f0 7e0f1e2e9d8f4d5a8d0a1e1c2f7cc2ae
+msgid "Tab tool button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: 358952374eb84bd39f009bc9defad5c4
+msgid ":py:obj:`TabItem <qfluentwidgets.components.widgets.tab_view.TabItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: 60ebe9d516c843d380f8dc6588692816 c3b2763101a044699438f73068c8914a
+msgid "Tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: 673a1881394141739e2cfc7fa1a060af
+msgid ":py:obj:`TabBar <qfluentwidgets.components.widgets.tab_view.TabBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:140
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:22:<autosummary>:1
+#: c474f643e9634e338f930ffdce6c44ff fa4a559e107d42e6853344e9796f39d4
+msgid "Tab bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:28:<autosummary>:1
+#: 42f6e0e0798b4c9cb609ad3b80706b66
+msgid ""
+":py:obj:`checkIndex "
+"<qfluentwidgets.components.widgets.tab_view.checkIndex>`\\ "
+"\\(\\*default\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:28:<autosummary>:1
+#: 056d21d908cd499fb094aec87b3741d3 350cb00d3bbd4ecdae53b6156c3850b8
+msgid "decorator for index checking"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:31
+#: 314d16e405d94a6daf9dc396c3d3ae84
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:186
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:205
+#: 1b1695d0fe924ee0b4733d4359e94a40 5a40f3d98e1049a5b0b271f6967c9491
+#: f332b910337942dcab9ca871d2cccec9
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:57
+#: 1f504f76465c4979af63530baaf9b48b
+msgid "*default:"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:58
+#: bf89fff6d1ae47f1bf38bee95b4d4e96
+msgid "the default value returned when an index overflow"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:63
+#: a1228ec0cfb04c0aa2e8c20991dcab86
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:70
+#: a8034fab88334456bd19c1ed9f4c304e
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.PushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:83
+#: cd9e66a5f9c94fb2803ad3883f7add8c
+msgid "set whether the shadow is enabled"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:244
+#: 6cf5955cd8ee4519a6198430d29c44dc 8dff2a6bff1f40d5975336fe10a66630
+msgid "set close button display mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:108
+#: 1ffd03403cf749b3af80858ab18d23ff
+msgid "set background color in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:138
+#: 30269836e33b43109552aa3ddb57765a
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.scroll_area.SingleDirectionScrollArea`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:183
+#: 58ff0bb73ee44a8282378d062a96ae2a
+msgid "add tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:188
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:210
+#: 4eff89101fb34ab3a017e6b95e618b13 c0e76e96761c45dd91eef575f681ba8f
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:188
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:210
+#: 3b22f13c0e4d44f2802ecc7ea415756a 3bff948a5fe844d7a002a6764ffa2006
+msgid "the unique name of tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:191
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:194
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:213
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:216
+#: 15250f292c8f472e86eedd7d95ca2d3d 4012018336c5492ab59daf3c18009a30
+#: da83f0b061d24ad9b79b01d4758b0923 f5c05f9d722749f0800125f9a8bffcd4
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:191
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:213
+#: 2693c17f3d8d4b0f8825b35da9b92543 c43f6c3d8f084e49bb302ec13bad69ab
+msgid "the text of tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:194
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:216
+#: 0944927c5f04485981ddf742297dc85b a036687dc4fd44b0805917ade60640a2
+msgid "the icon of tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:196
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:218
+#: 0e837ae49c7a447c9ad2c8269c00bcd5 cd44219e92b14207afe40ca3b30e3ae8
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:197
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:219
+#: 2682efee259e414295b73d10774317b4 a4e79b5d4fe74e1cbf33bb57ca689ac4
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:202
+#: 258e39ed57864196be623a3a1d2f1ef7
+msgid "insert tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:207
+#: 26ec43db1f1b4ffea434db4bdef7adb5
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:207
+#: 0e0ed50f7b8644f39ba7cf4ffb8e9dbe
+msgid "the insert position of tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:230
+#: ddeec1da57724a72aa41dc1339172175
+msgid "set current index"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:255
+#: 5a9bf7446a4243de88a6f8a92c589d8c
+msgid "return the bounding rect of all tabs"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:260
+#: 349d842e727f44fbb45bee1c3b9d8098
+msgid "return the visual rectangle of the tab at position index"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:274
+#: 0e5c39b3ea294768a673b5daec6bea26
+msgid "set whether the tab is closable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:282
+#: ee33e4dd8fa74404a4f0bb84c678a3b0
+msgid "set tab icon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:287
+#: 6439d294b66b48f3b5a0b18efe3363c9
+msgid "set tab text"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:292
+#: b73b3783dde64d58bfc940ea2a7b7bcc
+msgid "set the visibility of tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:297
+#: 7159d32ec9be474cbe353d53a1e3179f
+msgid "set the text color of tab item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:302
+#: 6d80e6dacbfe44e08f34e47af5e9c316
+msgid "set tool tip of tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:307
+#: 78078739ea1d4d4293024efcdba9cdbe
+msgid "set the background in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:312
+#: d365308323d944959832a33b8f958025
+msgid "set whether the shadow of tab is enabled"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:332
+#: a0067a868d1d4dd784f648f6e65321e3
+msgid "set the maximum width of tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:337
+#: b1d91db2617648718cf34665a04b341b
+msgid "set the minimum width of tab"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tab_view/index.rst:351
+#: f2fae5b10a804730a64790154c899e1f
+msgid "returns the number of tabs"
+msgstr ""
+

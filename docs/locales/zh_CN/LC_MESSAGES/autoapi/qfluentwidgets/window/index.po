@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:2
+#: ea2c72909a954710b1686809fa9372b6
+msgid "window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:19
+#: 3103eda6c8a34f2d85aa7adf8e9e85ef
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 8e04a4926d2a42c5a6b7c3e181bf50f0
+msgid ":py:obj:`FluentWindow <qfluentwidgets.window.FluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:40
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 4a3e72da60d349dc8b277d7b336f05bd 72bdc3897cf14a16ac18bd409b45bf3e
+msgid "Fluent window"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: df545912c03d47199a71cf92912d8153
+msgid ":py:obj:`MSFluentWindow <qfluentwidgets.window.MSFluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:76
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 674610ef13c1443480a0a6f006143305 855e73d915b74375bec3669f78cfc67e
+msgid "Fluent window in Microsoft Store style"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 8ca74c2368254299800c0ace8e2f7188
+msgid ":py:obj:`SplitFluentWindow <qfluentwidgets.window.SplitFluentWindow>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 20c9080c9edd411e95c88c0e88c959a2 8998e78e6d3a4fe28dac59684249d39f
+msgid "Fluent window with split style"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 5891cc6d7e7d484ebe00166e9f4a9707
+msgid ":py:obj:`FluentTitleBar <qfluentwidgets.window.FluentTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:113
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:126
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 11f1ad7184374f61adc90256b225ed5a 40920d577a534048bfeabf245f9870f7
+#: db6953a7e1644c529ac606f31ff3fd43 e52945bd081d41fa81a43522994041db
+msgid "Fluent title bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 00cba6dc44294eab92e040b8caf351ce
+msgid ":py:obj:`MSFluentTitleBar <qfluentwidgets.window.MSFluentTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 9195ded8a5de440396515d2e527e50a6
+msgid ":py:obj:`SplitTitleBar <qfluentwidgets.window.SplitTitleBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:133
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 1dc699cc0f58406cb1aecfd0b8221bc5 9e60505b402044729e85b269752d3a74
+msgid "Title bar with minimize, maximum and close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 33852458d3214f5b92e15c594a422c4e
+msgid ":py:obj:`SplashScreen <qfluentwidgets.window.SplashScreen>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:146
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:35:<autosummary>:1
+#: 0ca977acc21c45d7aa118b268c8cd4d5 0feeaa68e54745c28a8127d3dcd0d730
+msgid "Splash screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:38
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:74
+#: 28e62fdf74ee4856bef5480787bf6a17 5db5592895cd408ba31a96e23753b69b
+msgid "Bases: :py:obj:`FluentWindowBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:80
+#: 111f3e41a4cd44e0bb4b9138c7fc535b 2184c1cf6c5f4634bd33b39d610c830c
+msgid ""
+"add sub interface, the object name of `interface` should be set already "
+"before calling this method"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:84
+#: 02b3e0abec604366ad49b21709206468 82a2e55d010f49b9b860a815a311cf3a
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:86
+#: 526d96a24cf54eb2bf656b06c9994ab9 ac046b912de34a4b809f2167d16e8859
+msgid "interface: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:86
+#: 83933773049a4417ad48b94023df3a24 b3c29b6381d0413baaaed1b6d453132a
+msgid "the subinterface to be added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:89
+#: 4bb6a34f645f44c6b24506814cf0a140 fac99a88e22c49c897a078d09b14309f
+msgid "icon: FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:89
+#: 3d4a32708efd4917a7a99c015530ed9e c81e7490de254ed7a012d380f348151d
+msgid "the icon of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:92
+#: be5a6307d4644af38cdaf999591b4b99 e214f4f7173f413e9c96ba0eee43c162
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:92
+#: 6d09fb349fd24f6eb93a17c8bf2cba94 9ae655296d204c8fa648745de873bd60
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:97
+#: 7afd18ef5a53492c85b32f666b2b849e e25285860fcf43819478e65d844c458e
+msgid "position: NavigationItemPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:98
+#: 51273a39ffa2449d8f709e28d6364cc6 e77877538c444be8b3c9a978d72eb932
+msgid "the position of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:62
+#: a01f1d6410134f12b6edd67971243646
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:62
+#: d84ae20588c74a6e845524a2ca2a2bc8
+msgid "the parent of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:64
+#: 4dad268e53764c98a6864e18ba5b7efb
+msgid "isTransparent: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:65
+#: bf9926e90e954b2299fd9819b55ae814
+msgid "whether to use transparent background"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:95
+#: 2ea081e0bc64470d8d51908eb70caa84
+msgid "selectedIcon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:95
+#: 49430e76d9e34ddbb31b68c98991c7be
+msgid "the icon of navigation item in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:104
+#: 4a5f16be387642958317838f3fb071e2
+msgid "Bases: :py:obj:`FluentWindow`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:131
+#: 7d4b301a0c5140b7abfcc23b9ff5614f be2fe926edce496c97e578319e4b7cd8
+msgid "Bases: :py:obj:`qframelesswindow.TitleBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:124
+#: dd5b378ae2c24b9aa60e925b70a02d48
+msgid "Bases: :py:obj:`FluentTitleBar`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:144
+#: 7f14a5cbff274de390bff6910018f710
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:162
+#: 100e1b99f3414baab39c0b2766b46b8a
+msgid "set title bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/window/index.rst:173
+#: e4772e486422496bb688d6e59b7a18f2
+msgid "close splash screen"
+msgstr ""
+

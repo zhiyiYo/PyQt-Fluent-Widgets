@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:2
+#: b03d2d8574b94331a2dc9172dad158f3
+msgid "time_picker"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:8
+#: c5c5b6102a9a4675b1462d12cae29dbc
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 126c2382826b46f1af902c19b7da0849
+msgid ""
+":py:obj:`TimePickerBase "
+"<qfluentwidgets.components.date_time.time_picker.TimePickerBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 7b740a508fdd446e9852e692e6fccb13 f07f48fd55b943b6bc10e837e53a52ce
+msgid "Time picker base class"
+msgstr "时间选择器基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 36c367176c6745c885755117dd5ac137
+msgid ""
+":py:obj:`MiniuteFormatter "
+"<qfluentwidgets.components.date_time.time_picker.MiniuteFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:56
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 18037babaf904d22812d65a03538d2f3 6d6209f43f4c4fe794b5be80ac115827
+msgid "Minute formatter"
+msgstr "分钟格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 5b983b1c8cb44ad5839f29c08eb72465
+msgid ""
+":py:obj:`AMHourFormatter "
+"<qfluentwidgets.components.date_time.time_picker.AMHourFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 7e827d121253416fa2df5140324a07cf 8dca32107b69414096aa8ba91573f6cb
+msgid "AM/PM Hour formatter"
+msgstr "AM/PM 小时格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 663ffb8960f44c7992736b27fa5bf0e2
+msgid ""
+":py:obj:`AMPMFormatter "
+"<qfluentwidgets.components.date_time.time_picker.AMPMFormatter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:80
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 20040a6dfbef4ced8b1289bc1b56a2d3 406ba78048ae48d5941b4a39f94b541a
+msgid "AM/PM formatter"
+msgstr "AM/PM 格式化器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: bb758b32abf3414fb9fa1077363276ea
+msgid ""
+":py:obj:`TimePicker "
+"<qfluentwidgets.components.date_time.time_picker.TimePicker>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:92
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 7f79b46355fe4bf8a4e8dc46cb59544b ee63c2657af04f8ca01b78c041430142
+msgid "24 hours time picker"
+msgstr "24小时时间选择器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 3b0f2e76fa41439b8ee7aca851e3ebf9
+msgid ""
+":py:obj:`AMTimePicker "
+"<qfluentwidgets.components.date_time.time_picker.AMTimePicker>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:23:<autosummary>:1
+#: 7d8583f19b9c4fd490426b05427e278b 9e74e313151348d7a4c14cc683a402a4
+msgid "AM/PM time picker"
+msgstr "AM/PM 格式时间选择器"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:26
+#: 23a905d5799c4d75b5aa5d54965864e3
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.date_time.picker_base.PickerBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:96
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:128
+#: 3add540810e14a4185cad74c6659255b 49178846f2894a9da0328d803cbce312
+#: bb2382cf900048848b9f4b1624ee9ba5
+msgid "set current time"
+msgstr "设置当前时间"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:40
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:99
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:131
+#: 2e089546082f434cad19a86fd4f3da57 9ff917c1ba42470da1bb498b036e1f12
+#: db1600dd99cf40cc80d5c81b3f89fc1b
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:132
+#: 8bd1a7bfb9aa454abd7f252cd7e45a7d c8d8b39436f840f8ac2c97bd9b887cc4
+#: fed3b43cf6594d72a2112dbea47ee4e2
+msgid "time: QTime"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:42
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:101
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:133
+#: 2ff92593e868457dbc87fcaaaa98257a 502f05875ed14b338fb22b4cac6e904a
+#: 80b9f217c3bd457488acba6542d900e0
+msgid "current time"
+msgstr "当前时间"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:123
+#: 3785480b6a034611a4624cf282f33cda 444ed68755e44d7496a43da220d2d2cf
+#: a06cc4d137bf41238d0909ceee997ff5
+msgid "set the visibility of seconds column"
+msgstr "设置秒数列是否可见"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:54
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:66
+#: 70bdb704cf004c63a731eb4d5a6aa251 a627581028ac4022acf27d5770e0844b
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.date_time.picker_base.DigitFormatter`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:60
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:84
+#: 132e3420ecba4c038b7c56ca4d0026f9 51e8c620078d4ccd90c7bc294cbf5d9b
+#: d5bca320da484b90aef762f8d1397cae
+msgid "convert original value to formatted value"
+msgstr "将原始值转换为格式化后的字符串"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:78
+#: 3db28462d9d1405b9be03246ed64ad9b
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.date_time.picker_base.PickerColumnFormatter`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:117
+#: 7c8ccd706046454fa1c47e6320a51aa2 c6a28802d8aa4fba94a36ab656e7168e
+msgid "Bases: :py:obj:`TimePickerBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/components/date_time/time_picker/index.rst:138
+#: 63048720529d436d85c5090f63412a26 ea05b8158b534a93ac613950c05989b6
+msgid "initial value of panel"
+msgstr "面板的初始值"
+

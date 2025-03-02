@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:2
+#: 57471f0b780c48148f7d82876245c42f
+msgid "acrylic_combo_box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:8
+#: 74f05495edf74634acb1bce7b045f379
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: b64f58a085ae4bc89282e532f8e89497
+msgid ""
+":py:obj:`AcrylicComboMenuActionListWidget "
+"<qfluentwidgets.components.material.acrylic_combo_box.AcrylicComboMenuActionListWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 1365879f18a8490fae57a3681f3a9644 6fd2c29e30054c40928cc6b6ec0bc1e2
+msgid "Menu action list widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 474856e005a34f818be0ca2b894ccb4d
+msgid ""
+":py:obj:`AcrylicComboBoxMenu "
+"<qfluentwidgets.components.material.acrylic_combo_box.AcrylicComboBoxMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 3ede132863ea49a49910217c1b7fa9e4 fe8747e03ce443509b7d3fad179ea30e
+msgid "Round corner menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 98ba358a4c194875bc26536f69e70244
+msgid ""
+":py:obj:`AcrylicComboBox "
+"<qfluentwidgets.components.material.acrylic_combo_box.AcrylicComboBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 2d198204d5234a0abdaa869f19111e5c ba36789bb90d40c287cadd771622ea23
+#: c15b27fd713948578babca4702d98bb4 fb26441da43c4f75a68a9837fb3e8c8d
+msgid "Acrylic combo box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 72a94db0805e43c78195ba0d571e1a14
+msgid ""
+":py:obj:`AcrylicEditableComboBox "
+"<qfluentwidgets.components.material.acrylic_combo_box.AcrylicEditableComboBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: aaf2f7566bb1420187796c24da3a4303
+msgid ""
+":py:obj:`AcrylicComboBoxSettingCard "
+"<qfluentwidgets.components.material.acrylic_combo_box.AcrylicComboBoxSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:22:<autosummary>:1
+#: 3fb4d024203c405a947c056454a589f0 5af0d2aed0c84ef585cf2ce29ad7499c
+msgid "Setting card with a combo box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:25
+#: 28e2bcc477cf41bab7ef3ca739b438c3
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_menu.AcrylicMenuActionListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:32
+#: 9b8417ac14fc41f589d5eaf8fd8d8eea
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_menu.AcrylicMenuBase`,"
+" :py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:39
+#: 8eb6455a20e44d0dbd2ec573373bee6d
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.combo_box.ComboBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:46
+#: 40619602a682412b8df8378ab213b23e
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_line_edit.AcrylicLineEditBase`,"
+" :py:obj:`qfluentwidgets.components.widgets.combo_box.EditableComboBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:53
+#: 5cbb6d97ae7749d8bf542241a13d2c6d
+msgid "Bases: :py:obj:`qfluentwidgets.components.settings.SettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_combo_box/index.rst:59
+#: d3358c7a2d734679a9a16e21361efe6e
+msgid "set the value of config item"
+msgstr ""
+

@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:2
+#: 7d46e8655e644025922b9375014068bc
+msgid "cycle_list_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:8
+#: 2017da3adb2140d8b031dd78730f9a03
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:19:<autosummary>:1
+#: c7d811322d8c4f77b5b6ed631081ce8a
+msgid ""
+":py:obj:`ScrollButton "
+"<qfluentwidgets.components.widgets.cycle_list_widget.ScrollButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:19:<autosummary>:1
+#: 04a898de6ae24b26a4e23069053011b0
+msgid "Scroll button"
+msgstr "滚动按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:19:<autosummary>:1
+#: d68ed76bb3784519a62f9d432029adb6
+msgid ""
+":py:obj:`CycleListWidget "
+"<qfluentwidgets.components.widgets.cycle_list_widget.CycleListWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:19:<autosummary>:1
+#: ccc8b510baee49bdaca3c9eaec0df69d
+msgid "Cycle list widget"
+msgstr "循环列表部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:22
+#: 74d384201e9948e7a5229a417d979c7d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:35
+#: 1ca996a6ab2e4f299a40ed6756351937
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:45
+#: b10c5d8bdcbc46ff867da6b5a15b8347
+msgid "set items in the list"
+msgstr "设置列表中的选项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:48
+#: 43dba33e9e8042ad9ae22ce0f6101534
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:50
+#: 08bea40d2fc04cf281a35b032f6cbed4
+msgid "items: Iterable[Any]"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:50
+#: 21db833ab10849daaba503adf0bb2357
+msgid "the items to be added"
+msgstr "被添加的选项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:53
+#: fa360a53420841eeb255edea27b692ef
+msgid "itemSize: QSize"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:53
+#: 8dfc2c29d5124af8b4f055b21d658afe
+msgid "the size of item"
+msgstr "选项的尺寸"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:55
+#: c26a2283b7bf414ba418d413d388f901
+msgid "align: Qt.AlignmentFlag"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:56
+#: 27d776ba29ac42c6bdb927feb5ad8be2
+msgid "the text alignment of item"
+msgstr "选项的文本对齐方式"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:61
+#: 0aa2cacecb2441ff9e22aa9a272b3e5e
+msgid "set the selected item"
+msgstr "设置选中的项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:66
+#: 38cf2a0f036d476aad8e102fd95095b4
+msgid "scroll to item"
+msgstr "滚动到选项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:74
+#: 45cee72b46b446318e33b63fe687391c
+msgid "scroll down an item"
+msgstr "滚动到下一个选项"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/cycle_list_widget/index.rst:79
+#: b1167b90732e43ed8cf93f86d85bc9cc
+msgid "scroll up an item"
+msgstr "滚动到上一个选项"
+
+#~ msgid ""
+#~ ":py:obj:`ScrollIcon "
+#~ "<qfluentwidgets.components.widgets.cycle_list_widget.ScrollIcon>`\\"
+#~ msgstr ""
+
+#~ msgid "Scroll icon"
+#~ msgstr "滚动图标"
+
+#~ msgid ""
+#~ "Bases: :py:obj:`qfluentwidgets.common.icon.FluentIconBase`, "
+#~ ":py:obj:`enum.Enum`"
+#~ msgstr ""
+
+#~ msgid "get the path of icon"
+#~ msgstr "返回图标路径"
+
+#~ msgid "theme: Theme"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "the theme of icon * `Theme.Light`: "
+#~ "black icon * `Theme.DARK`: white icon"
+#~ " * `Theme.AUTO`: icon color depends "
+#~ "on `config.theme`"
+#~ msgstr ""
+

@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:2
+#: 7502acf540b0465eb42305881bb7c3ac
+msgid "table_view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:8
+#: ba50dbe8ced847c1a6c2eaad5f7d9d50
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: b976efa175ca43fd8696a2ba7b309250
+msgid ""
+":py:obj:`TableItemDelegate "
+"<qfluentwidgets.components.widgets.table_view.TableItemDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: 2cf417cc8d1d416f8f35a9d80ae89efa
+msgid ""
+":py:obj:`TableBase "
+"<qfluentwidgets.components.widgets.table_view.TableBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: 485c9128aa45402b802e8b9fabdde861 e69deb43025e498996b2c321e1e3e6a0
+msgid "Table base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: 1066f12e67cb4b338829c1f1951330b9
+msgid ""
+":py:obj:`TableWidget "
+"<qfluentwidgets.components.widgets.table_view.TableWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: 1d02806cda38427f97ca73e3646940f7 856961bdd52f41b5b594c14b4db80f76
+msgid "Table widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: 476a724509924558875e08b74229b551
+msgid ""
+":py:obj:`TableView "
+"<qfluentwidgets.components.widgets.table_view.TableView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:129
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:21:<autosummary>:1
+#: c20aa54b146a4289b417e1afde5286f6 d28eba95088b45f4b95af3aaa00e0bf8
+msgid "Table view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:24
+#: e7e183a4f38341beaaaa01a15b2401b4
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:60
+#: 31114c1afd414bc788f0bc07f676b220
+msgid "set the visibility of border"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:65
+#: 24352c9394284234b827484a3fe994b3
+msgid "set the radius of border"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:104
+#: 29f902cfc24443e3ac7d48135f960602
+msgid "Bases: :py:obj:`TableBase`, :py:obj:`PyQt5.QtWidgets.QTableWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/table_view/index.rst:127
+#: 4716e129a4c34db8bf72eea3055e558f
+msgid "Bases: :py:obj:`TableBase`, :py:obj:`PyQt5.QtWidgets.QTableView`"
+msgstr ""
+
+#~ msgid "set hovered row"
+#~ msgstr ""
+
+#~ msgid "set pressed row"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTableWidget`, :py:obj:`TableBase`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTableView`, :py:obj:`TableBase`"
+#~ msgstr ""
+

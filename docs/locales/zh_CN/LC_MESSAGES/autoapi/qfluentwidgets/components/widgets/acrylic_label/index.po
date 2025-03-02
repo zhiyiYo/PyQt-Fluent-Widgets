@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:2
+#: 81fc5e767233497faedf176099fadcc6
+msgid "acrylic_label"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:8
+#: 6ae32a68cbbf4492b078fa3cea45a92b
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 6b7015cad8f84064918bf7acc11acaff
+msgid ""
+":py:obj:`BlurCoverThread "
+"<qfluentwidgets.components.widgets.acrylic_label.BlurCoverThread>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:48
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 55d1acd20286425cae3f4afea9e1c092 b510da27098b4adf86bc4e49457f717e
+msgid "Blur album cover thread"
+msgstr "模糊图片线程"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 1be23f3971d040dc80d8036bc696d129
+msgid ""
+":py:obj:`AcrylicTextureLabel "
+"<qfluentwidgets.components.widgets.acrylic_label.AcrylicTextureLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 23e0ca93c45f49c9b46a0345c3d86121 903b802257d24fdd8faf1645b8fb5f29
+msgid "Acrylic texture label"
+msgstr "亚克力纹理标签"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 471cdb09e1754de0bb8c075fca093469
+msgid ""
+":py:obj:`AcrylicLabel "
+"<qfluentwidgets.components.widgets.acrylic_label.AcrylicLabel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:78
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 928a435824094efe848bf6608f725e46 aeba9a5e34d94bfd8440f6a18f143d0e
+msgid "Acrylic label"
+msgstr "亚克力标签"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 592444fbdcf449959eac0efd7595699c
+msgid ""
+":py:obj:`AcrylicBrush "
+"<qfluentwidgets.components.widgets.acrylic_label.AcrylicBrush>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:22:<autosummary>:1
+#: 418ee993cb034932ba45afed540eaab5 8c5b41e1133042a39b5a358d8f7d88c7
+#, fuzzy
+msgid "Acrylic brush"
+msgstr "亚克力标签"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:30:<autosummary>:1
+#: 0b7f2e265c424dec951576db1936be49
+msgid ""
+":py:obj:`checkAcrylicAvailability "
+"<qfluentwidgets.components.widgets.acrylic_label.checkAcrylicAvailability>`\\"
+" \\(\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:35:<autosummary>:1
+#: f38aa60a6ec04684908e534443589521
+msgid ""
+":py:obj:`isAcrylicAvailable "
+"<qfluentwidgets.components.widgets.acrylic_label.isAcrylicAvailable>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:46
+#: 2a9b0a2487db4173b6bff997c07c2ee2
+msgid "Bases: :py:obj:`PyQt5.QtCore.QThread`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:63
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:76
+#: 64ec1c68542f47b3b6829ecaa4b167f7 ee93272496104242b4bffb349aac6264
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLabel`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:82
+#: 945bdb0018be42a0ad6016607433585d
+msgid "set the image to be blurred"
+msgstr "设置被磨砂的图片"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:110
+#: 0914a18f8b97407aa87ea25bb7c4d442
+msgid "grab image from screen"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:113
+#: 3691ead38e5d413bad41fb77b58e73b2
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:114
+#: 975c76e337e34f8f9200ff34959256db
+msgid "rect: QRect"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:115
+#: 8fb1c1d0767a450a97efc259f68c77cb
+msgid "grabbed region"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/acrylic_label/index.rst:120
+#: d26aec7952a54daca5ee722c4add82d9
+msgid "set blurred image"
+msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`gaussianBlur "
+#~ "<qfluentwidgets.components.widgets.acrylic_label.gaussianBlur>`\\ "
+#~ "\\(imagePath\\[\\, blurRadius\\, brightFactor\\, "
+#~ "...\\]\\)"
+#~ msgstr ""
+

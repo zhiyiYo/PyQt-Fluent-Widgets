@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-03 14:01+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/settings.rst:3 94eb420fa28b4769b99ce2d3c21d3d21
+msgid "Settings"
+msgstr "设置"
+
+#: ../../source/settings.rst:5 6e2b8e815e0546409f3ba068ea009974
+msgid ""
+"PyQt-Fluent-Widgets presents each configuration item as a ``SettingCard``"
+" on the interface. The behavior of user on the ``SettingCard`` will "
+"change the value of the configuration item, and PyQt-Fluent-Widgets will "
+"update the configuration item to the json configuration file "
+"automatically."
+msgstr "PyQt-Fluent-Widgets 将每个配置项表示为界面的一个设置卡。用户在设置卡上的交互行为将会改变相应配置项的值，同时 PyQt-Fluent-Widgets 会自动更新配置文件。"
+
+#: ../../source/settings.rst:8 6465c58827804f949c701668d7383493
+msgid "Config"
+msgstr "配置项"
+
+#: ../../source/settings.rst:10 8488b8fab0c3475bb1a690d679cc133b
+msgid ""
+"PyQt-Fluent-Widgets uses the ``ConfigItem`` class to represent a "
+"configuration item and uses the ``QConfig`` class to read and write the "
+"value of ``ConfigItem``. The ``QConfig`` class will automatically update "
+"the configuration file when the value of the ``ConfigItem`` changes."
+msgstr "PyQt-Fluent-Widgets 使用 ``ConfigItem`` 类来表示一个配置项，并使用 ``QConfig`` 类来读写 ``ConfigItem`` 项的值。当 ``ConfigItem`` 的值发生改变时，``QConfig`` 类会自动将配置项的值同步到配置文件中。"
+
+#: ../../source/settings.rst:12 c3132f30e75f47678582523ee33818d7
+msgid ""
+"Since the value in config file may be manually modified by the user to an"
+" invalid value, PyQt-Fluent-Widgets use ``ConfigValidator`` and its "
+"subclass to verify and correct the config value."
+msgstr "由于配置文件可能被用户手动篡改，导致配置项的值非法，所以 PyQt-Fluent-Widgets 使用 ``ConfigValidator`` 类及其子类来验证和修正配置项的值。"
+
+#: ../../source/settings.rst:14 f82e618d80e145a882e060fa8cffe33f
+msgid ""
+"Json files only support string, boolean value, list and dict, for "
+"enumeration classes or ``QColor``\\ , we can't use ``json.dump()`` to "
+"write them directly into a json file, so PyQt-Fluent-Widgets provides "
+"``ConfigSerializer`` and its subclass to serialize and deserialize config"
+" item from config file. For example, you can use ``ColorSerializer`` to "
+"serialize config items with ``QColor`` value type."
+msgstr ""
+"PyQt-Fluent-Widgets 使用 json 文件来保存配置，而 json 文件只支持字符串、布尔值、列表和字典，对于枚举类或者 "
+"``QColor``，无法直接将它们的值写入 json 文件中。为了解决这个问题，PyQt-Fluent-Widgets 提供了 "
+"``ConfigSerializer`` 类及其子类来序列化和反序列化配置项。举个栗子，可以使用 `ColorSerializer` 来序列化值类型为"
+" ``QColor`` 的配置项。"
+
+#: ../../source/settings.rst:16 7aff5d8231034bb0ad894d6108f4c807
+msgid "``ConfigItem`` has the following attributes:"
+msgstr "``ConfigItem`` 的属性如下表所示："
+
+#: ../../source/settings.rst:21 bc537bc4d9c948078b83aef3ba82e217
+msgid "Attribute"
+msgstr "属性"
+
+#: ../../source/settings.rst:22 97430ac9ab8b4991834aca393876e4eb
+msgid "Type"
+msgstr "数据类型"
+
+#: ../../source/settings.rst:23 ../../source/settings.rst:87
+#: 4d72172068cb4fd0a7e6040816c84a3b 71ff6391ea584f759309b3f298cf7c46
+msgid "Description"
+msgstr "描述"
+
+#: ../../source/settings.rst:24 688808b4907e4bbf9b07651014021dac
+msgid "``group``"
+msgstr ""
+
+#: ../../source/settings.rst:25 ../../source/settings.rst:28
+#: 3fb08c526dba4f2d8663b0a8487819f6 dab57bdcd3f1418c977e7e0271dd9a14
+msgid "``str``"
+msgstr ""
+
+#: ../../source/settings.rst:26 4e79926dde164fc2a7ac0bda539646af
+msgid "The group to which the config item belongs"
+msgstr "配置项所属的组别"
+
+#: ../../source/settings.rst:27 02b2db3c02c34478886a3b0e0c2a6409
+msgid "``name``"
+msgstr ""
+
+#: ../../source/settings.rst:29 0c2fed616c0e4136a33c018c0fd76150
+msgid "Name of config item"
+msgstr "配置项的名字"
+
+#: ../../source/settings.rst:30 9e15084e49b34834b070420cb365948d
+msgid "``default``"
+msgstr ""
+
+#: ../../source/settings.rst:31 f2c11297bb1a42d68d2a91d266a8e438
+msgid "``Any``"
+msgstr ""
+
+#: ../../source/settings.rst:32 031fc5d02c1343229dbbc4ed391d17cb
+msgid ""
+"The default value of config item, it will be used when the value in the "
+"config file is illegal"
+msgstr "配置项的默认值，当配置值非法时将被默认值替代"
+
+#: ../../source/settings.rst:33 d897dec80b88438e9bfa712541c2b8ba
+msgid "``validator``"
+msgstr ""
+
+#: ../../source/settings.rst:34 0ba3f4b572d04ef3b90c166145c1c1ac
+msgid "``ConfigValidator``"
+msgstr ""
+
+#: ../../source/settings.rst:35 024a8839fd4d41cb998c6fe151e9ff4b
+msgid "Config validator"
+msgstr "配置校验器"
+
+#: ../../source/settings.rst:36 ca3bdc616e334dd1a59e3b07070dc564
+msgid "``serializer``"
+msgstr ""
+
+#: ../../source/settings.rst:37 053467349d2842b2bc35fe6c9e7fbbca
+msgid "``ConfigSerializer``"
+msgstr ""
+
+#: ../../source/settings.rst:38 cd984683477c40a8a65103dbac538472
+msgid "Config serializer"
+msgstr "配置序列化器"
+
+#: ../../source/settings.rst:39 b315a93699014f7385eb3ea22650272c
+msgid "``restart``"
+msgstr ""
+
+#: ../../source/settings.rst:40 1021cf3d7f6a4fd994b132f5ce35b20a
+msgid "``bool``"
+msgstr ""
+
+#: ../../source/settings.rst:41 b4c55cc84c4146938865899f3a516cd3
+msgid "Whether to restart the application after updating value"
+msgstr "配置更新后是否重启应用"
+
+#: ../../source/settings.rst:44 f4a9a608806a4d199fd0d7c6c4df627b
+msgid ""
+"You should add config items to the class attribute of ``QConfig`` "
+"subclasss,  then use ``qconfig.load()`` to load config file, for example:"
+msgstr "为了正确读写配置项的值，应该将 ``ConfigItem`` 的实例添加到 ``QConfig`` 子类的类属性中，然后使用 ``qconfig.load()`` 来加载配置文件。下面是一个简单的例子："
+
+#: ../../source/settings.rst:79 e72ec71f16bb480585ed8e14e99d5015
+msgid "Setting card"
+msgstr "设置卡"
+
+#: ../../source/settings.rst:81 8f732aa2ccd44a8fbece12588b793118
+msgid "PyQt-Fluent-Widgets provides many kinds of setting card:"
+msgstr "PyQt-Fluent-Widgets 内置了许多类型的设置卡："
+
+#: ../../source/settings.rst:86 39ee05cd3f27487698ec38e2df5613ff
+msgid "Class"
+msgstr ""
+
+#: ../../source/settings.rst:88 828642da0a2c4c43b85518e1487802a1
+msgid "``HyperlinkCard``"
+msgstr ""
+
+#: ../../source/settings.rst:89 d0d4568707764dac8838291c68f8bcfe
+msgid "Setting card with a hyper link"
+msgstr "超链接设置卡"
+
+#: ../../source/settings.rst:90 4361ee41a68c44dcb156ab0baae4673f
+#, fuzzy
+msgid "``ColorSettingCard``"
+msgstr "设置卡"
+
+#: ../../source/settings.rst:91 50fc9e1d159141bca1a6caf8f166eeca
+msgid "Setting card with a color picker"
+msgstr "拾色器设置卡"
+
+#: ../../source/settings.rst:92 657cb503d5a548f2902591169a049e88
+msgid "``CustomColorSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:93 c260cfb925054c12aeb6a41fa601d55a
+msgid "Setting card with a button to choose color"
+msgstr "颜色选择按钮设置卡"
+
+#: ../../source/settings.rst:94 7e34192459804e0c806d2c798db608a1
+msgid "``ComboBoxSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:95 b66ce004201a42c19b03f93d9c0d61f1
+msgid "Setting card with a combo box"
+msgstr "下拉框设置卡"
+
+#: ../../source/settings.rst:96 c3446c96d62348adb33cc4d36ec4a163
+#, fuzzy
+msgid "``RangeSettingCard``"
+msgstr "设置卡"
+
+#: ../../source/settings.rst:97 b7c17d9fc83a4f98aade98f437493df2
+msgid "Setting card with a slider"
+msgstr "滑动条设置卡"
+
+#: ../../source/settings.rst:98 14eab612557342859888ef33b6209f4f
+#, fuzzy
+msgid "``PushSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:99 b1c7e0fda1394783a4f372cfb10653c1
+msgid "Setting card with a naive push button"
+msgstr "按钮设置卡"
+
+#: ../../source/settings.rst:100 c79bf0522eff4101b1717ca05723a6de
+msgid "``PrimaryPushSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:101 f6f5122c89e147ce831738d8736af2ce
+msgid "Setting card with a primary color push button"
+msgstr "主题色按钮设置卡"
+
+#: ../../source/settings.rst:102 bb5a5f43d563442592c9ec37915aff4e
+msgid "``SwitchSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:103 99cde50964a74a159cf17ff9578d0cb9
+msgid "Setting card with a switch button"
+msgstr "开关按钮设置卡"
+
+#: ../../source/settings.rst:104 054908286b1046b0a20e089641428f25
+msgid "``OptionsSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:105 13fd13fe758f42659737c30fd1c2194a
+msgid "Setting card with a group of radio buttons"
+msgstr "单选按钮设置卡"
+
+#: ../../source/settings.rst:106 eb7e49df72994ae7ba4013e5521077e6
+msgid "``FolderListSettingCard``"
+msgstr ""
+
+#: ../../source/settings.rst:107 e8ba902f47224f628fe349a967cfbcd6
+msgid "Setting card for showing and managing folder list"
+msgstr "文件夹列表设置卡"
+
+#: ../../source/settings.rst:110 0b6ad18262fd44c9b2492a2f2e4eedcf
+msgid ""
+"You can use ``SettingCardGroup.addSettingCard()`` to add a setting card "
+"to the same group, and ``SettingCardGroup`` will adjust its layout "
+"automatically based on the height of setting cards."
+msgstr "可以通过 ``SettingCardGroup.addSettingCard()`` 将多个设置卡添加到同一个组中，``SettingCardGroup`` 会根据设置卡的高度自动调整自己的布局。"
+
+#: ../../source/settings.rst:112 6eaca00314f34d82b913cd753232d7f7
+msgid ""
+"For the usage of these components, see `settings_interface.py "
+"<https://github.com/zhiyiYo/PyQt-Fluent-"
+"Widgets/blob/master/examples/settings/setting_interface.py>`_."
+msgstr "对于上述组件的具体使用方式，参见 `setting_interface.py <https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/examples/settings/setting_interface.py>`_."
+

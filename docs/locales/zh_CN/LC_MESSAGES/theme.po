@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-05 19:40+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/theme.md:1 56fc601e317841218739b6f04d8f85f2
+msgid "Theme"
+msgstr "主题"
+
+#: ../../source/theme.md:3 80312fb2ba3144d28f215168fb2044c7
+msgid "Theme mode"
+msgstr "主题模式"
+
+#: ../../source/theme.md:4 02e5aaea294944e19d598e369567c4a7
+msgid ""
+"You can use the setTheme() method to switch the light/dark theme of PyQt-"
+"Fluent-Widgets. The parameter of setTheme() accepts the following three "
+"values:"
+msgstr "`setTheme()` 函数用于切换 PyQt-Fluent-Widgets 全部组件的亮暗主题。该函数接受下述值："
+
+#: ../../source/theme.md:5 b9569dfded324fab9ce309c48c75fe2d
+msgid "Theme.LIGHT: Light theme"
+msgstr "`Theme.LIGHT`：浅色主题"
+
+#: ../../source/theme.md:6 5db256594b544f10ac1000789c8e0b66
+msgid "Theme.DARK: Dark theme"
+msgstr "`Theme.DARK`：深色主题"
+
+#: ../../source/theme.md:7 e5357a521ab84c4b85a0fe8b3a57616a
+msgid ""
+"Theme.AUTO: Follow system theme. If the system theme cannot be detected, "
+"the light theme will be used."
+msgstr "`Theme.AUTO`：跟随系统主题。如果无法检测到系统的主题，将使用浅色主题。"
+
+#: ../../source/theme.md:9 4c22259dc6dd4f23abe9ebcf6032224f
+msgid ""
+"When the theme changes, the config instance managed by qconfig (i.e., the"
+" config object passed in using the qconfig.load() method) will emit the "
+"themeChanged signal."
+msgstr ""
+"当主题发生改变时，`qconfig` 管理的配置实例（也就是使用 `qconfig.load()` 方法传入的那个配置对象）将会发出 "
+"`themeChanged` 信号。"
+
+#: ../../source/theme.md:11 631f806299024cea87ef5ae4819113c3
+msgid ""
+"If you want to automatically switch the interface style when the theme "
+"changes, you can inherit StyleSheetBase and override the path() method. "
+"Suppose you have a MainWindow class and its qss file paths are "
+"app/resource/qss/light/main_window.qss and "
+"app/resource/qss/dark/main_window.qss, the code can be written like this:"
+msgstr "如果想在主题发生改变时，自动切换界面的样式，可以继承 `StyleSheetBase` 类并重写 `path()` 方法。假设有一个 `MainWindow` 类，它的 qss 文件路径为 `app/resource/qss/light/main_window.qss` 和  `app/resource/qss/dark/main_window.qss`，那么代码可以这么写："
+
+#: ../../source/theme.md:38 ff554da8de2f46e6869b193b92a01440
+msgid "Theme color"
+msgstr "主题色"
+
+#: ../../source/theme.md:39 8844efc2cb8046c5b913a370b6167da9
+msgid ""
+"You can use setThemeColor() method to change the theme color of PyQt-"
+"Fluent-Widgets. This method accepts the following three types of "
+"parameters:"
+msgstr "`setThemeColor()` 函数用于修改全部组件的主题色。该函数接受三种类型的值："
+
+#: ../../source/theme.md:40 cd48615b712343aa9a3ad86c9b8486c3
+msgid "QColor"
+msgstr "`QColor`"
+
+#: ../../source/theme.md:41 6c63cb9cfce04e37ba7ab609fea920c4
+msgid "Qt.GlobalColor"
+msgstr "`Qt.GlobalColor`"
+
+#: ../../source/theme.md:42 9044ec90d31c4bce92629343120a8cc0
+msgid "str: Hex color strings or color names, such as #0065d5 or red."
+msgstr "`str`：十六进制颜色字符串或者颜色名字，比如 `#0065d5` 或者 `red`"
+
+#: ../../source/theme.md:44 5ec79af32b7b47da98d373edcc8427f0
+msgid ""
+"When the theme color changes, the config instance managed by qconfig will"
+" emit the themeColorChanged signal."
+msgstr "当主题发生改变时，`qconfig` 管理的配置实例会发出 `themeColorChanged` 信号。"
+

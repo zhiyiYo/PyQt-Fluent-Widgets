@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:2
+#: d26cc166fcb24fe386c9bfb9003f1bef
+msgid "breadcrumb"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:8
+#: fb6251ee8dda401fb21bbdd262c00a2a
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: f897e11cbae148ac89fc5bf496594fd3
+msgid ""
+":py:obj:`BreadcrumbWidget "
+"<qfluentwidgets.components.navigation.breadcrumb.BreadcrumbWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:26
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 52bcf9ae309d4189867031723f12107b a545fff993524617827ee81203103c39
+msgid "Bread crumb widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 5871c3dec75742e2b626e4cf20990906
+msgid ""
+":py:obj:`ElideButton "
+"<qfluentwidgets.components.navigation.breadcrumb.ElideButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 5217512a59f54e7585b64716f83e225b d310ca9edec242a49d1a84c841ecd565
+msgid "Elide button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 43a43c9292664a5fa4fd043256378762
+msgid ""
+":py:obj:`BreadcrumbItem "
+"<qfluentwidgets.components.navigation.breadcrumb.BreadcrumbItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:62
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 6985ac72d3644973bca949c37d4f373e dcfe175418d448f9bb948ae89eb53d1f
+msgid "Breadcrumb item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 6d91741fbb684817ab22934dc11b9f8c
+msgid ""
+":py:obj:`BreadcrumbBar "
+"<qfluentwidgets.components.navigation.breadcrumb.BreadcrumbBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:87
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:21:<autosummary>:1
+#: 5d41229ce3eb4d47a6f44540a0943c4c cb873d9ddaab449985f2dc1235755669
+msgid "Breadcrumb bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:85
+#: 14a3ebbd63974b938485632f35d33f72 cfde9df193fe4bf1952ea3a4bf37e83d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:47
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:60
+#: 4aba8107da4d477b889829c0ec1f7f9c ec4ec60537ab4577b4569c188173c137
+msgid "Bases: :py:obj:`BreadcrumbWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:103
+#: 898ad41871bc41f890b841275610b5e8
+msgid "add item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:106
+#: 3e6ec27ca266487999062720a1aaeea7
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:108
+#: 423a559cc1ca4ff5857fb1dc6bad0e92
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:108
+#: b080ebe6a62d47408440135c80ade99a
+msgid "unique key of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:110
+#: 8affd7d7ee5d4b92b3c19ed0de9b39e8
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:111
+#: 2443bcd9d64f4ff699efdc88c2143a78
+msgid "the text of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:134
+#: e1bc798cab754875a55f38addcee0c52
+msgid "clear all items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/breadcrumb/index.rst:139
+#: 0a0b5f86ada44463918a2e72a1eef624
+msgid "pop trailing item"
+msgstr ""
+

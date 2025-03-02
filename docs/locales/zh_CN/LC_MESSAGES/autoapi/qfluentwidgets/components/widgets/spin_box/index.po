@@ -1,0 +1,369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:2
+#: ebf925efc1c14a56b0753ead35b585df
+msgid "spin_box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:8
+#: d3976c4245294e858427a49f274b4a66
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: b96a71111ce3419990dd8b958e95fc9a
+msgid ":py:obj:`SpinIcon <qfluentwidgets.components.widgets.spin_box.SpinIcon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 778f983881694f1e8fa9f04d9b797798 ddba840de895414689f2970846bf87cd
+msgid "Spin icon"
+msgstr "微调框图标"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 60217975d2f649cf85ba6b8b57343ccf
+msgid ""
+":py:obj:`SpinButton "
+"<qfluentwidgets.components.widgets.spin_box.SpinButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 3d8839caa62b48bab018d5ae72187852
+msgid ""
+":py:obj:`CompactSpinButton "
+"<qfluentwidgets.components.widgets.spin_box.CompactSpinButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 772704b8756a4fc18faa388e94459b92 a6a4398129ca49f7b169ccb5231cd66c
+msgid "Compact spin button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 2d6a722c3bc046e7a0b0d93a88cca7b1
+msgid ""
+":py:obj:`SpinFlyoutView "
+"<qfluentwidgets.components.widgets.spin_box.SpinFlyoutView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:93
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 0a663e38495d4fa4b47e6ea4582d8af5 b87b131ce1f24a1ebfc519ff730001a4
+msgid "Spin flyout view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: b84c0e34c2674f7796818abac1ca3ee6
+msgid ""
+":py:obj:`SpinBoxBase "
+"<qfluentwidgets.components.widgets.spin_box.SpinBoxBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:101
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 91c7c71674a549f78b4ffbd433b835e5 95a14e7265464d0a95b72d8da159d2ee
+msgid "Spin box ui"
+msgstr "微调框 Ui"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 148a1bebb0014759aaf6ed3ebe267da2
+msgid ""
+":py:obj:`InlineSpinBoxBase "
+"<qfluentwidgets.components.widgets.spin_box.InlineSpinBoxBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:111
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 4b97e0ca5f414c7bb74f930ac58958f4 783f8985dda148288995e01bc7c11f87
+#, fuzzy
+msgid "Inline spin box base"
+msgstr "浮点数微调框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: e4fc319504114b05a16d47ce81a6c831
+msgid ""
+":py:obj:`CompactSpinBoxBase "
+"<qfluentwidgets.components.widgets.spin_box.CompactSpinBoxBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:121
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 1d19c0013b6b46f1b85f9a1c9b6a9279 bc5d06e551094b928852bc9d3254d956
+msgid "Compact spin box base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: b69211a1755b4c2fa62bafd925c3efef
+msgid ":py:obj:`SpinBox <qfluentwidgets.components.widgets.spin_box.SpinBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:134
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 4bc69b36024b4f028d7c56d60e1bd04a 62a7d92857264c34868069fd33d4b189
+msgid "Spin box"
+msgstr "微调框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: ff4c04c8f2654a64a552a9626f176fc9
+msgid ""
+":py:obj:`CompactSpinBox "
+"<qfluentwidgets.components.widgets.spin_box.CompactSpinBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:141
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: be694cab2aaa4a8589af1ca024f822d4 f98c33382de94bd193d1197ce6af6454
+#, fuzzy
+msgid "Compact spin box"
+msgstr "浮点数微调框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 230f9b3b4e7e4b309ade4902f03d437c
+msgid ""
+":py:obj:`DoubleSpinBox "
+"<qfluentwidgets.components.widgets.spin_box.DoubleSpinBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: de0595f7f27b4b1cac73ae61d79b0ba8 fa2f6e12d5c2427ab16a7b17a59762aa
+msgid "Double spin box"
+msgstr "浮点数微调框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 07f57214132a4c3c91e6aa1679402c9b
+msgid ""
+":py:obj:`CompactDoubleSpinBox "
+"<qfluentwidgets.components.widgets.spin_box.CompactDoubleSpinBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:155
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 0fb90e9f27204f8d9e1bca94d93f55e9 4c7dd7cadb0b427fa7b1c5d3f28e0348
+#, fuzzy
+msgid "Compact double spin box"
+msgstr "浮点数微调框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 8f1dacb6823941168f97ec40d727b80f
+msgid ":py:obj:`TimeEdit <qfluentwidgets.components.widgets.spin_box.TimeEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 38bafa6566e04845aaf9e14e99321224 7ce35f8d4ddd463c8f3195e9be7c1ccd
+msgid "Time edit"
+msgstr "时间编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 9ca90c43297c4b63a43926745bd51f7e
+msgid ""
+":py:obj:`CompactTimeEdit "
+"<qfluentwidgets.components.widgets.spin_box.CompactTimeEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:169
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 910fd0b6abb74321bfd7494dd91c80ce b09b008b5e1d4ed79d4466534ee2a600
+#, fuzzy
+msgid "Compact time edit"
+msgstr "日期时间编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 9848a7e3fc59441494ff4970ab932ddf
+msgid ""
+":py:obj:`DateTimeEdit "
+"<qfluentwidgets.components.widgets.spin_box.DateTimeEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 05f59bdf2e6340ec949b16f2b1dcf9c0 d389e909a5e14d12841d0b000cb3f566
+msgid "Date time edit"
+msgstr "日期时间编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: c4edc4aed8d14f138ac7d06b85c14c77
+msgid ""
+":py:obj:`CompactDateTimeEdit "
+"<qfluentwidgets.components.widgets.spin_box.CompactDateTimeEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:183
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 07bcf42650f64dd08b6a4d13672da2e4 fa0d08a737d44b8db100aa0bea3d9696
+#, fuzzy
+msgid "Compact date time edit"
+msgstr "日期时间编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 1e306e15f8e24b78b1d1d097a544151c
+msgid ":py:obj:`DateEdit <qfluentwidgets.components.widgets.spin_box.DateEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:190
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 22bd7e8b8fb843eea25912aa43421191 60a8ffda29394825820dbd59430d762e
+msgid "Date edit"
+msgstr "日期编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: d5003603595243a987a162f810535385
+msgid ""
+":py:obj:`CompactDateEdit "
+"<qfluentwidgets.components.widgets.spin_box.CompactDateEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:197
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:34:<autosummary>:1
+#: 5c057dc0f8b840019351437076feca91 773dc0f1bbf74c09a76331cbd819d2a7
+#, fuzzy
+msgid "Compact date edit"
+msgstr "日期编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:37
+#: e85d9c8f45194aecbf7b227e4e52bc68
+msgid ""
+"Bases: :py:obj:`qfluentwidgets.common.icon.FluentIconBase`, "
+":py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:53
+#: a58739dddbc74575a184c25b26d23387
+msgid "get the path of icon"
+msgstr "返回图标路径"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:56
+#: 1a818107f21c4b2e838c5bc647944a97
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:60
+#: 18418ab58fab403f83d97d594a0a6cb5
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:58
+#: 6d1881f9982e4af69679be0658c61941
+msgid ""
+"the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
+"* `Theme.AUTO`: icon color depends on `config.theme`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:67
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:81
+#: 3b9993de1b3747138c18f922a899b8bc f876107e54904ed992d570f83d53b8dd
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:91
+#: 8134ba0aa4c04b429bfc3611cf3d58c1
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:119
+#: b1e3030f5a484fd3801fb22d6246b289 eca7185fa486451cb8b30f8bd1f31467
+msgid "Bases: :py:obj:`SpinBoxBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:132
+#: fea32ac120554353b15415c257f6ad3c
+msgid "Bases: :py:obj:`InlineSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QSpinBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:139
+#: 872171a1bfbe4df9a77ea3d4db45432a
+msgid "Bases: :py:obj:`CompactSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QSpinBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:146
+#: 0a8948f222df43b480c4d50648a7e692
+msgid ""
+"Bases: :py:obj:`InlineSpinBoxBase`, "
+":py:obj:`PyQt5.QtWidgets.QDoubleSpinBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:153
+#: e6ae6ea9ef264fd1a737b71a70db202b
+msgid ""
+"Bases: :py:obj:`CompactSpinBoxBase`, "
+":py:obj:`PyQt5.QtWidgets.QDoubleSpinBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:160
+#: 6d3161e6da0941c1bb3db17b62a9fc68
+msgid "Bases: :py:obj:`InlineSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QTimeEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:167
+#: eaf10717e16b4453b9f653bca2e8be3a
+msgid "Bases: :py:obj:`CompactSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QTimeEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:174
+#: 1beee03a252a4432bea87e1a0fe74339
+msgid ""
+"Bases: :py:obj:`InlineSpinBoxBase`, "
+":py:obj:`PyQt5.QtWidgets.QDateTimeEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:181
+#: 7e06a02d870f4f489c852549a4afb6fa
+msgid ""
+"Bases: :py:obj:`CompactSpinBoxBase`, "
+":py:obj:`PyQt5.QtWidgets.QDateTimeEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:188
+#: 68a2793eff26405a87c8b79c7dea170d
+msgid "Bases: :py:obj:`InlineSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QDateEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/spin_box/index.rst:195
+#: bcd0a67eb79e456a8290bb8ca8a8b92d
+msgid "Bases: :py:obj:`CompactSpinBoxBase`, :py:obj:`PyQt5.QtWidgets.QDateEdit`"
+msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`Ui_SpinBox "
+#~ "<qfluentwidgets.components.widgets.spin_box.Ui_SpinBox>`\\"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QSpinBox`, :py:obj:`Ui_SpinBox`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QDoubleSpinBox`, :py:obj:`Ui_SpinBox`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTimeEdit`, :py:obj:`Ui_SpinBox`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QDateTimeEdit`, :py:obj:`Ui_SpinBox`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QDateEdit`, :py:obj:`Ui_SpinBox`"
+#~ msgstr ""
+

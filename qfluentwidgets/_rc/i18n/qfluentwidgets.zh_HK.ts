@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
+<!-- The translation of components in PyQt-Fluent-Widgets -->
+<context>
+    <name>CalendarPicker</name>
+    <message>
+        <source>Pick a date</source>
+        <translation>選擇日期</translation>
+    </message>
+</context>
+<context>
+    <name>FastCalendarPicker</name>
+    <message>
+        <source>Pick a date</source>
+        <translation>選擇日期</translation>
+    </message>
+</context>
+<context>
+    <name>MonthScrollView</name>
+    <message>
+        <source>Jan</source>
+        <translation>一月</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>二月</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>三月</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>四月</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>五月</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>六月</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>七月</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>八月</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>九月</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>十月</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>十一月</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>十二月</translation>
+    </message>
+</context>
+<context>
+    <name>FastMonthScrollView</name>
+    <message>
+        <source>Jan</source>
+        <translation>一月</translation>
+    </message>
+    <message>
+        <source>Feb</source>
+        <translation>二月</translation>
+    </message>
+    <message>
+        <source>Mar</source>
+        <translation>三月</translation>
+    </message>
+    <message>
+        <source>Apr</source>
+        <translation>四月</translation>
+    </message>
+    <message>
+        <source>May</source>
+        <translation>五月</translation>
+    </message>
+    <message>
+        <source>Jun</source>
+        <translation>六月</translation>
+    </message>
+    <message>
+        <source>Jul</source>
+        <translation>七月</translation>
+    </message>
+    <message>
+        <source>Aug</source>
+        <translation>八月</translation>
+    </message>
+    <message>
+        <source>Sep</source>
+        <translation>九月</translation>
+    </message>
+    <message>
+        <source>Oct</source>
+        <translation>十月</translation>
+    </message>
+    <message>
+        <source>Nov</source>
+        <translation>十一月</translation>
+    </message>
+    <message>
+        <source>Dec</source>
+        <translation>十二月</translation>
+    </message>
+</context>
+<context>
+    <name>DayScrollView</name>
+    <message>
+        <source>Mo</source>
+        <translation>一</translation>
+    </message>
+    <message>
+        <source>Tu</source>
+        <translation>二</translation>
+    </message>
+    <message>
+        <source>We</source>
+        <translation>三</translation>
+    </message>
+    <message>
+        <source>Th</source>
+        <translation>四</translation>
+    </message>
+    <message>
+        <source>Fr</source>
+        <translation>五</translation>
+    </message>
+    <message>
+        <source>Sa</source>
+        <translation>六</translation>
+    </message>
+    <message>
+        <source>Su</source>
+        <translation>日</translation>
+    </message>
+</context>
+<context>
+    <name>FastDayScrollView</name>
+    <message>
+        <source>Mo</source>
+        <translation>一</translation>
+    </message>
+    <message>
+        <source>Tu</source>
+        <translation>二</translation>
+    </message>
+    <message>
+        <source>We</source>
+        <translation>三</translation>
+    </message>
+    <message>
+        <source>Th</source>
+        <translation>四</translation>
+    </message>
+    <message>
+        <source>Fr</source>
+        <translation>五</translation>
+    </message>
+    <message>
+        <source>Sa</source>
+        <translation>六</translation>
+    </message>
+    <message>
+        <source>Su</source>
+        <translation>日</translation>
+    </message>
+</context>
+<context>
+    <name>ColorDialog</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Edit Color</source>
+        <translation>編輯顏色</translation>
+    </message>
+    <message>
+        <source>Red</source>
+        <translation>紅色</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>藍色</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>綠色</translation>
+    </message>
+    <message>
+        <source>Opacity</source>
+        <translation>透明度</translation>
+    </message>
+</context>
+<context>
+    <name>MessageDialog</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>MessageBox</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>MessageBoxBase</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>VolumeView</name>
+    <message>
+        <source>Unmute</source>
+        <translation>取消靜音</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation>靜音</translation>
+    </message>
+</context>
+<context>
+    <name>PlayButton</name>
+    <message>
+        <source>Play</source>
+        <translation>播放</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>暫停</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationPanel</name>
+    <message>
+        <source>Open Navigation</source>
+        <translation>打開導航</translation>
+    </message>
+    <message>
+        <source>Close Navigation</source>
+        <translation>關閉導航</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>返回</translation>
+    </message>
+</context>
+<context>
+    <name>Dialog</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>FolderListDialog</name>
+    <message>
+        <source>Done</source>
+        <translation>完成</translation>
+    </message>
+    <message>
+        <source>Choose folder</source>
+        <translation>選擇文件夾</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the folder?</source>
+        <translation>是否確認刪除此文件夾？</translation>
+    </message>
+    <message>
+        <source>If you delete the </source>
+        <translation>如果將 </translation>
+    </message>
+    <message>
+        <source> folder and remove it from the list, the folder will no longer appear in the list, but will not be deleted.</source>
+        <translation> 文件夾從列表中移除，則該文件夾不會再出現在列表中，但不會被刪除。</translation>
+    </message>
+</context>
+<context>
+    <name>SwitchSettingCard</name>
+    <message>
+        <source>Off</source>
+        <translation>關</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation>開</translation>
+    </message>
+</context>
+<context>
+    <name>SwitchButton</name>
+    <message>
+        <source>Off</source>
+        <translation>關</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation>開</translation>
+    </message>
+</context>
+<context>
+    <name>CustomColorSettingCard</name>
+    <message>
+        <source>Custom color</source>
+        <translation>自定義顏色</translation>
+    </message>
+    <message>
+        <source>Default color</source>
+        <translation>默認顏色</translation>
+    </message>
+    <message>
+        <source>Choose color</source>
+        <translation>選擇顏色</translation>
+    </message>
+</context>
+<context>
+    <name>ColorPickerButton</name>
+    <message>
+        <source>Choose </source>
+        <translation>選擇</translation>
+    </message>
+</context>
+<context>
+    <name>FolderListSettingCard</name>
+    <message>
+        <source>Add folder</source>
+        <translation>添加文件夾</translation>
+    </message>
+    <message>
+        <source>Choose folder</source>
+        <translation>選擇文件夾</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the folder?</source>
+        <translation>是否確認刪除此文件夾？</translation>
+    </message>
+    <message>
+        <source>If you delete the </source>
+        <translation>如果將 </translation>
+    </message>
+    <message>
+        <source> folder and remove it from the list, the folder will no longer appear in the list, but will not be deleted.</source>
+        <translation> 文件夾從列表中移除，則該文件夾不會再出現在列表中，但不會被刪除。</translation>
+    </message>
+</context>
+<context>
+    <name>LineEditMenu</name>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘貼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>撤回</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>LabelContextMenu</name>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>PipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
+    <name>HorizontalPipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
+    <name>VerticalPipsPager</name>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+</context>
+<context>
+    <name>TextEditMenu</name>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘貼</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>撤回</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>TimePicker</name>
+    <message>
+        <source>hour</source>
+        <translation>時</translation>
+    </message>
+    <message>
+        <source>minute</source>
+        <translation>分</translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation>秒</translation>
+    </message>
+</context>
+<context>
+    <name>AMPMFormatter</name>
+    <message>
+        <source>AM</source>
+        <translation>上午</translation>
+    </message>
+    <message>
+        <source>PM</source>
+        <translation>下午</translation>
+    </message>
+</context>
+<context>
+    <name>AMTimePicker</name>
+    <message>
+        <source>hour</source>
+        <translation>時</translation>
+    </message>
+    <message>
+        <source>minute</source>
+        <translation>分</translation>
+    </message>
+    <message>
+        <source>second</source>
+        <translation>秒</translation>
+    </message>
+    <message>
+        <source>AM</source>
+        <translation>上午</translation>
+    </message>
+    <message>
+        <source>PM</source>
+        <translation>下午</translation>
+    </message>
+</context>
+</TS>

@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-17 16:33+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/designer.rst:3 2b8721c417c5498cba210add09123b72
+msgid "Designer"
+msgstr "设计师"
+
+#: ../../source/designer.rst:5 37439e2c4641401ba6e5857bf2fb6d66
+msgid "In Qt Designer, there are two ways to use PyQt-Fluent-Widgets."
+msgstr "在 Qt Designer 中，有两种使用 PyQt-Fluent-Widgets 的方式。"
+
+#: ../../source/designer.rst:8 43477640aeac42fe9f04385b22f7bcbf
+msgid "Promoting widget"
+msgstr "提升控件"
+
+#: ../../source/designer.rst:10 8e5a80c9d625446da40602e4bc3331b5
+msgid "Right click on a widget, select the ``Promote to ...`` of context menu."
+msgstr "右击一个小部件，选择右击菜单上的 `提升为...`"
+
+#: ../../source/designer.rst:12 aec983c2c94f4d98a3237dfc100972e0
+msgid ""
+"Promoting a widget indicates that it should be replaced with the "
+"specified subclass, in our case the ``qfluentwidgets.PushButton``."
+msgstr "``提升为`` 的作用是把原生部件替换成自定义小部件，在这个例子中是 ``qfluentwidgets.PushButton``。"
+
+#: ../../source/designer.rst:19 76b377f37cdb44d0ab3114e43a5edc4e
+msgid ""
+"You will be presented with a dialog to specify the custom widget class "
+"the placeholder widget will become."
+msgstr "弹出的对话框上需要填写自定义的组件名。"
+
+#: ../../source/designer.rst:21 eefcfc56826b4e1c8fd32e0d8dc3b1eb
+msgid ""
+"The header file is the name of the Python module used to import the "
+"class, which is ``qfluentwidgets``. Specify ``PushButton`` as the class "
+"name of the widget to replace it with."
+msgstr "头文件是组件库的包名 ``qfluentwidgets``，提升的类名称为 ``PushButton``。"
+
+#: ../../source/designer.rst:28 c6fddc1ec71b4c36a2e1759e345b7315
+msgid ""
+"Well, the widget is now promoted to fluent push button. But you won't be "
+"able to see any changes within Qt Designer. Save the window as "
+"``mainwindow.ui`` and compile it to python code, you will see that the "
+"``PushButton`` is imported from ``qfluentwidgets`` package."
+msgstr "完成提升后不会在设计师中看到任何变化，保存 ui 文件后编译为 py 代码，可以发现 ``import`` 的是 ``PushButton``。"
+
+#: ../../source/designer.rst:38 e868c7c80e0a44e79b57d840309321e6
+msgid "Using plugin"
+msgstr "使用插件"
+
+#: ../../source/designer.rst:43 fbff1adc742646e1a19115572b6925af
+msgid "Complex example"
+msgstr "复杂示例"
+
+#: ../../source/designer.rst:44 c0fe99ceea30489c86a694b5d58f24eb
+msgid ""
+"Here is an example that uses a side navigation bar to implement multiple "
+"sub-interfaces window."
+msgstr "下面是一个零样式表 + 100 行代码实现多子界面窗口的例子。"
+
+#~ msgid "create a virtual environment, ``conda`` is the recommended way."
+#~ msgstr "创建一个虚拟环境，推荐使用 ``conda``"
+
+#~ msgid "Activate virtual environment and run the following code in shell:"
+#~ msgstr "激活虚拟环境，在终端中输入下述命令安装所需的包："
+
+#~ msgid ""
+#~ "Download the full code from `PyQt-"
+#~ "Fluent-Widgets Repo <https://github.com/zhiyiYo"
+#~ "/PyQt-Fluent-Widgets>`_."
+#~ msgstr ""
+#~ "从 `PyQt-Fluent-Widgets Repo "
+#~ "<https://github.com/zhiyiYo/PyQt-Fluent-Widgets>`_ "
+#~ "下载代码"
+
+#~ msgid ""
+#~ "Run ``python ./tools/designer.py`` to launch"
+#~ " Qt Designer (You must use this "
+#~ "way to launch Qt Designer)."
+#~ msgstr "运行 ``python ./tools/designer.py`` 来启动设计师软件（必须使用脚本启动）"
+
+#~ msgid ""
+#~ "If everything goes smoothly, you will"
+#~ " see all PyQt-Fluent-Widgets "
+#~ "components in the sidebar of Qt "
+#~ "Designer. If the startup fails or "
+#~ "the components of PyQt-Fluent-Widgets"
+#~ " cannot be seen, the solution can "
+#~ "be found in `#196 <https://github.com/zhiyiYo"
+#~ "/PyQt-Fluent-Widgets/issues/196>`_."
+#~ msgstr ""
+#~ "一切无误的情况下能在侧边栏 Widget Box 中看到 PyQt-"
+#~ "Fluent-Widgets 的组件。如果启动失败或者看不到 PyQt-Fluent-"
+#~ "Widgets 的组件，解决方案参见 `#196 <https://github.com/zhiyiYo"
+#~ "/PyQt-Fluent-Widgets/issues/196>`_。"
+
+#~ msgid ""
+#~ "You can also download the compiled "
+#~ "QtDesigner from `release page "
+#~ "<https://github.com/zhiyiYo/PyQt-Fluent-"
+#~ "Widgets/releases>`_. Download and unzip "
+#~ "``FluentDesigner_v*.*.*.zip``, then run "
+#~ "``designer/designer.exe``, you will launch the"
+#~ " QtDesigner that has already installed "
+#~ "plugins."
+#~ msgstr ""
+#~ "`项目发行页面 <https://github.com/zhiyiYo/PyQt-Fluent-"
+#~ "Widgets/releases>`_ 提供了内置 PyQt-Fluent-Widgets"
+#~ " 插件的 QtDesigner，下载并解压 "
+#~ "``FluentDesigner_v*.*.*.zip``，双击运行 ``designer/designer.exe`` "
+#~ "就能启动 QtDesigner。"
+
+#~ msgid ""
+#~ "The plugin for PySide6 is unstable "
+#~ "and may not start QtDesigner "
+#~ "successfully. It is recommended to use"
+#~ " QtDesigner of PyQt5/6 to generate ui"
+#~ " files."
+#~ msgstr "PySide6 的插件不稳定，可能无法启动 QtDesigner，建议使用 PyQt5/Qt6 的 QtDesigner 来生成 ui 文件。"
+
+#~ msgid ""
+#~ "PyQt5 must upgrade PyQt5-Frameless-Window "
+#~ "to 0.2.7 in order to use the "
+#~ "plugin, while PySide6 and PyQt6 do "
+#~ "not need to upgrading to frameless "
+#~ "packages. PySide2 does not support "
+#~ "plugins, but you can use PyQt5's "
+#~ "QtDesigner to generate ui files and "
+#~ "then compile them into py files "
+#~ "using uic."
+#~ msgstr ""
+#~ "PyQt5 要把 PyQt5-Frameless-Window 升级到 "
+#~ "0.2.7 才能使用插件，PySide6 和 PyQt6 无需升级无边框包。PySide2"
+#~ " 不支持插件，不过可以先用 PyQt5 的 QtDesigner 生成 "
+#~ "ui 文件，然后用 uic 编译成 py 文件。"
+

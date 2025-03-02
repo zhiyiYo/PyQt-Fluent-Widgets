@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:2
+#: 34a47b7de90547f696b9bd8d3fcb0ab7
+msgid "multimedia"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:19
+#: 3cebb0d9ef1f4a9d8d601bde9b331af3
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: b1993b5fe1094713a2da95904f0591c6
+msgid ":py:obj:`MediaPlayer <qfluentwidgets.multimedia.MediaPlayer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 592754814e2b459ab99b5084382464ea a72d172951b745e3ac52ba646f3db345
+msgid "Media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: e0d392bdb74f4e05a2edfe4955d8f093
+msgid ":py:obj:`MediaPlayerBase <qfluentwidgets.multimedia.MediaPlayerBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:63
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 6b20242faf4a45a095e4fcc90d17d073 9b27472d5c6747409e58b75bf53d53a1
+msgid "Media player base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 93c015724ccb4a6ca229c558436e0ccf
+msgid ""
+":py:obj:`MediaPlayBarButton "
+"<qfluentwidgets.multimedia.MediaPlayBarButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:204
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 08a9e1b297a740bb9c00ab54b35367ce eb87b9b58d664f99907af1f8e0e9e734
+msgid "Media play bar button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: da0583aecac34804bcc8b56c6beb6ee0
+msgid ""
+":py:obj:`SimpleMediaPlayBar "
+"<qfluentwidgets.multimedia.SimpleMediaPlayBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:211
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 420ec99f80d24819afffbcdfe067aa9b c898b770513347da9280b12931696e69
+msgid "simple media play bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: f2e98e35f37c4728a42b72088e49021a
+msgid ""
+":py:obj:`StandardMediaPlayBar "
+"<qfluentwidgets.multimedia.StandardMediaPlayBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: f68b211141124b6aa165e0603551f241 fd3c22d72fa94b73949c774eb61f8b35
+msgid "Standard media play bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: a84d5712f75945d2b18d82f4b53cc48e
+msgid ":py:obj:`VideoWidget <qfluentwidgets.multimedia.VideoWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:34:<autosummary>:1
+#: 05d04cb2893847c7a3b13b50aca030ed b54576898065402d99060566f684d1be
+msgid "Video widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:37
+#: f42ca05ffa5549e0a336e56dc92692ab
+msgid "Bases: :py:obj:`PyQt5.QtMultimedia.QMediaPlayer`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:132
+#: 24228a67f7b3495a904e3c5db4a7e19b da6d568e9618436893e92761787b8c76
+msgid "Return the active media source being used"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:168
+#: 36d2eb029db940b3991ca6f27c5dc584 9392ad357c8a49e3838ed4fa198d2ec9
+msgid "Sets the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:61
+#: fdd2faebee7347d4aa616a4dc2f5f803
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:96
+#: a222641ac9c643249003627d94c61fd8
+msgid "Whether the media is playing"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:102
+#: eae8b83f79bb48e2bed7ae3544f94aa0
+msgid "Return the status of the current media stream"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:108
+#: 5877b008bf45466588ce9f9a73ed05af
+msgid "Return the playback status of the current media stream"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:114
+#: 5785895893194bf9a6e7dc1c5e28b625
+msgid "Returns the duration of the current media in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:120
+#: 962a3092efba4773bc788bc3c46861c5
+msgid "Returns the current position inside the media being played back in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:126
+#: b9fc11f2fc644e4a89e7d2ca52e403ed
+msgid "Return the volume of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:138
+#: 84a68ac515924e97a0a2b228439faf36
+msgid "Pause playing the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:144
+#: 77298760a20448ffbbbc58a375e9b364
+msgid "Start or resume playing the current source"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:150
+#: 14de421b4b3c47f7848acc473c0727e3
+msgid "Stop playing, and reset the play position to the beginning"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:156
+#: 36cf85196791449e9f343c3cf05f95b6
+msgid "Return the playback rate of the current media"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:162
+#: 61adfef083394e9f9a3727a8722a83c3
+msgid "Sets the position of media in ms"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:174
+#: 36a6823f6adb4abd810cb8a01efd87fc
+msgid "Sets the playback rate of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:180
+#: 3c8bc6ee6ffd4ada9384b693980ea15e
+msgid "Sets the volume of player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:190
+#: 832dba9dc1e14e98b57130ae4f99a5c4
+msgid "Return the video output to be used by the media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:196
+#: 2b2d6122c97a4392928d2594e94db40e
+msgid "Sets the video output to be used by the media player"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:202
+#: b96c3e6c361e4843a2cb8b6d9fb3dfe2
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:209
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:221
+#: 8751e192434c42ccb608a37429b570f6 9afd88c51a4345db99225951a18c2e96
+msgid "Bases: :py:obj:`MediaPlayBarBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:215
+#: 21d34a42725d45d9a1478e7629d97c68
+msgid "add button to the right side of play bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:227
+#: 7280d7a325024838973394029aa7c632
+msgid "Back up for specified milliseconds"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:232
+#: b48223b33e384e359a55b201b485ac34
+msgid "Fast forward specified milliseconds"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:238
+#: f8cbac1047d74618ae6a26d888246333
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QGraphicsView`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:247
+#: 090f92d412f04c6999deb6981dc83fc7
+msgid "set the video to play"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/multimedia/index.rst:273
+#: b18da0759cb64767a045f5a08413f72d
+msgid "toggle play state"
+msgstr ""
+

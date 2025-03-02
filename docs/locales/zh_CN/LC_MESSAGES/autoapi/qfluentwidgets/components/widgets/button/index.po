@@ -1,0 +1,1005 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:2
+#: aded5e303595495cbc5e4a080a9a1214
+msgid "button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:8
+#: dc8a57641f9a4e28af7a99f27cf908ba
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 170f39780f3f42db80200290aec29cc7
+msgid ""
+":py:obj:`PushButton "
+"<qfluentwidgets.components.widgets.button.PushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 858a05a80e424e90945edcf0d881483e d82784ab74314a85bd9691044b638bcb
+#, fuzzy
+msgid "Push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 15536da2f6cc401aa9ff3ec4e39de271
+msgid ""
+":py:obj:`PrimaryPushButton "
+"<qfluentwidgets.components.widgets.button.PrimaryPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:96
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 7d535a6ef260414c9ff64f8b95eeb2e2 b593e7e90172484c8b453ed58f09d182
+msgid "Primary color push button"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 352eac94f7884c6c97d8eb86febcec6b
+msgid ""
+":py:obj:`TransparentPushButton "
+"<qfluentwidgets.components.widgets.button.TransparentPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 3f6c03d02b2b49d282136c42365e2fc4 48e13e8bad47474b8d9f5911a245a7d1
+#, fuzzy
+msgid "Transparent push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 0ed036d0c7334d39adfff889640a4c57
+msgid ""
+":py:obj:`ToggleButton "
+"<qfluentwidgets.components.widgets.button.ToggleButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:122
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5d30ddfd1cbe45f39fb4bf6c23e7cf86 b24e2889171b40fcbaaa0b4304986204
+#, fuzzy
+msgid "Toggle push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 93470bc8d6b7476e823ab947cd0b5834
+msgid ""
+":py:obj:`TransparentTogglePushButton "
+"<qfluentwidgets.components.widgets.button.TransparentTogglePushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:139
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 222b4f759e0a42a395ebaafd1fbb98b6 6a79f113d64f47f2bef84dabea1c8912
+#, fuzzy
+msgid "Transparent toggle push button"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 061d498b3599420fa3b358059e54e493
+msgid ""
+":py:obj:`HyperlinkButton "
+"<qfluentwidgets.components.widgets.button.HyperlinkButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:153
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 29c9944628524d5c8984825c41adbed3 dc7ca76ca15c4745a8a00cfe274b927d
+msgid "Hyperlink button"
+msgstr "超链接按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5026578cb1c240b785959d739967f154
+msgid ""
+":py:obj:`RadioButton "
+"<qfluentwidgets.components.widgets.button.RadioButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: b69e549551db41a6a084992a5e7374e4 d05938bcdbea41baa12f65d9ddee8f0a
+msgid "Radio button"
+msgstr "单选按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: b3c6b93ea2da4bb6853b169bcac844e3
+msgid ""
+":py:obj:`ToolButton "
+"<qfluentwidgets.components.widgets.button.ToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:189
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:396
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 20d73dc304c3420cb36289908de1f9e6 218f5003f5554fa5944133baab5767ba
+#: 85ee4124e52b498f957bd1092c58a8bc da51460ef15d438aaf674dbb44aa7e6e
+msgid "Tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 833ba90929e0440bbb7baffae9860f14
+msgid ""
+":py:obj:`TransparentToolButton "
+"<qfluentwidgets.components.widgets.button.TransparentToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5747e2d7dbb84b62b3c514fd87683742 5f67b843ee6e484db977edd3b64d6f99
+msgid "Transparent background tool button"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5f075b7dc0874f82bf9a5fccd3bc2f1e
+msgid ""
+":py:obj:`PrimaryToolButton "
+"<qfluentwidgets.components.widgets.button.PrimaryToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:237
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:408
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 1d171aff287841918fae9844eacc8d1e 6826f3a01f294413a30d0fbabb5809c9
+#: 9314025dd6d242cb94a3162e827fb145 e7e5c32b7e3845e08cba7dabb8d80c39
+#, fuzzy
+msgid "Primary color tool button"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 38c6770909114abcb7a5e2016775499f
+msgid ""
+":py:obj:`ToggleToolButton "
+"<qfluentwidgets.components.widgets.button.ToggleToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:249
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: c61c6250e7244d7eb34f425abd78c48b dc5e3c7f9a7a4aae9f15482d875cb356
+#, fuzzy
+msgid "Toggle tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 3cfa7d077b1c41d6a5cdf80b972b6e07
+msgid ""
+":py:obj:`TransparentToggleToolButton "
+"<qfluentwidgets.components.widgets.button.TransparentToggleToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:261
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5262b4a8525142b9854cfd7cd612faf8 efb11a47ae6a43598043922ddb4791a3
+#, fuzzy
+msgid "Transparent toggle tool button"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: b62fa943baa64b148655e3e68a954c9e
+msgid ""
+":py:obj:`DropDownButtonBase "
+"<qfluentwidgets.components.widgets.button.DropDownButtonBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:271
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 2aa314ef254c4615a8bfcb42dd3db14e af035e7bea4f44a3b9db73cf92cc0d5e
+msgid "Drop down button base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: fb7f8f3a852540f28a55c8b4f9dde557
+msgid ""
+":py:obj:`DropDownPushButton "
+"<qfluentwidgets.components.widgets.button.DropDownPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:287
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 14c22e7b3ec04b2ebff6bc16323834c0 d844efdb54db46c2b50ab8c0f9c603dd
+#, fuzzy
+msgid "Drop down push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 7954038bba504e2ea32f88d4770d7af8
+msgid ""
+":py:obj:`TransparentDropDownPushButton "
+"<qfluentwidgets.components.widgets.button.TransparentDropDownPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:307
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 3c1c6db8ce644daabc3e6534e4700f60 8bdaf274f0fa44ca9087dc263e8bb5ca
+#, fuzzy
+msgid "Transparent drop down push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: b2fed8c7015e40c8b881ac0292e3d2e4
+msgid ""
+":py:obj:`DropDownToolButton "
+"<qfluentwidgets.components.widgets.button.DropDownToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:321
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 99f9791145a745f78ce3eb0672848eba ae306aefc5a547c48f0cc0a0a5349c82
+#, fuzzy
+msgid "Drop down tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 051a9a7db6f04503b5d900065e891fbe
+msgid ""
+":py:obj:`TransparentDropDownToolButton "
+"<qfluentwidgets.components.widgets.button.TransparentDropDownToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:339
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 26ebab34226d4ea3898ada4b5ae52c9d a222aa3ea41545d8a7ad4f0a79192b07
+#, fuzzy
+msgid "Transparent drop down tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: ebab0cac401442bcb9b176333ff777c9
+msgid ""
+":py:obj:`PrimaryDropDownButtonBase "
+"<qfluentwidgets.components.widgets.button.PrimaryDropDownButtonBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:351
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 4a583b4b6a0f4872aa86f0fd7a695551 98b067ea11b24d59924de46183955eb0
+#, fuzzy
+msgid "Primary color drop down button base class"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 33476ae20dda4d89b2102cf16a920668
+msgid ""
+":py:obj:`PrimaryDropDownPushButton "
+"<qfluentwidgets.components.widgets.button.PrimaryDropDownPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:358
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 1272eebbdd57411892a1447d2fb219ac 51bbf7faa19b48099a227f58aaf05886
+#, fuzzy
+msgid "Primary color drop down push button"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 29bbe0501a2f4f4999c8acdae3d0321e
+msgid ""
+":py:obj:`PrimaryDropDownToolButton "
+"<qfluentwidgets.components.widgets.button.PrimaryDropDownToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:378
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 9dd8c0f17ae74c5080507221ee518be0 bb0644d31fa143e29351da1108a86b5c
+#, fuzzy
+msgid "Primary drop down tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 54ddb1c9c2e44b97a84e98e6221aa485
+msgid ""
+":py:obj:`SplitDropButton "
+"<qfluentwidgets.components.widgets.button.SplitDropButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: d38f2238a5c74c809696e4cd640b49d5
+msgid ""
+":py:obj:`PrimarySplitDropButton "
+"<qfluentwidgets.components.widgets.button.PrimarySplitDropButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: bff5d3c6654847689b381a527cf64015
+msgid ""
+":py:obj:`SplitWidgetBase "
+"<qfluentwidgets.components.widgets.button.SplitWidgetBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:420
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 5a55bdfb9ee04afa9da5da85d2486e82 f3cb0320eb994a6e865fc3eda263c35a
+msgid "Split widget base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 3d52bb72979d4d1e89f87d4d8128368e
+msgid ""
+":py:obj:`SplitPushButton "
+"<qfluentwidgets.components.widgets.button.SplitPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:467
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 7f6f72571240425cab3620c7c63b8038 cd7fa9d3573842b2a5407fc2f1b1e6e9
+#, fuzzy
+msgid "Split push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: cc67bc481d9447968fd9462f7053059c
+msgid ""
+":py:obj:`PrimarySplitPushButton "
+"<qfluentwidgets.components.widgets.button.PrimarySplitPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:506
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:549
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 571f8542ce38498b925de8c6300ecd0b 6fff99fab48d4e5da90f75d351bc1ddd
+#: 71214208b157423397cef50b8cb4e365 fde7dafbd8e740feb0b516e96c76b600
+#, fuzzy
+msgid "Primary split push button"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 6a53cac47ba3429cb42dea95bc12d689
+msgid ""
+":py:obj:`SplitToolButton "
+"<qfluentwidgets.components.widgets.button.SplitToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:520
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 6054ca40cbad4fde9ad12d76a2b11b0f 9efa1ce2e7eb476da8c2ee843dedff8f
+#, fuzzy
+msgid "Split tool button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 63af7f21f98e4c14bb95d3364cf2f67c
+msgid ""
+":py:obj:`PrimarySplitToolButton "
+"<qfluentwidgets.components.widgets.button.PrimarySplitToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: f5f9ec75388542329f2f4b7435a3274a
+msgid ""
+":py:obj:`PillButtonBase "
+"<qfluentwidgets.components.widgets.button.PillButtonBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:559
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 15445b8682ad4c7ba73fb8f49b3d070e e70e0f0108254305848f8a8f9b5e811e
+#, fuzzy
+msgid "Pill button base class"
+msgstr "主题色按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 32cea0ed1b18487eb10cfaa236a19a8a
+msgid ""
+":py:obj:`PillPushButton "
+"<qfluentwidgets.components.widgets.button.PillPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:569
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:586
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: b4369c3574e346ffbda2b8e9fd7a6034 cee1753cffec4be9b75d7eca684d8679
+#: d4cc9988c6f0465496f5c2445aacadce f0466c47b6ae4cca8ec08cb0c51b1261
+#, fuzzy
+msgid "Pill push button"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:49:<autosummary>:1
+#: 12150973fb6b40399b5054076b0c8711
+msgid ""
+":py:obj:`PillToolButton "
+"<qfluentwidgets.components.widgets.button.PillToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:54:<autosummary>:1
+#: 1fe2455d9cb64b87a0054e29bef33dd0
+msgid ""
+":py:obj:`TogglePushButton "
+"<qfluentwidgets.components.widgets.button.TogglePushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:57
+#: e4f03517df4d48d884d0b5e45a8e35d0
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:62
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:99
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:112
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:125
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:142
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:156
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:179
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:192
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:228
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:240
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:252
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:264
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:290
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:310
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:324
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:342
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:361
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:381
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:399
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:411
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:470
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:509
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:523
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:552
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:572
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:589
+#: 0453fefed6c142208adcc8a11999ba11 08912cb1fe564ad8acc44b262e05ed0d
+#: 1ded292f635144f7ab931ce9d7402ae5 1ffa3a9a59a54610a9e780069c081b2d
+#: 21ca169aa5424d0f836402f19ece5edf 25e60c49f52c48a1a8b502381d01dd72
+#: 275c15fbdb1e450fac6782ef4b61fea5 3b93a3458be54817bc78b3d84eb95676
+#: 3e23a70fe1e34452bcec1ec1f4adbb73 4f862a7eed5c4bdea9e0c936392bdf12
+#: 5595a9d68f29494fa6e2ab4307ffceaa 6234948691e842fcb4b0d69c11a97fbc
+#: 747b57c40c5d45ec94449d2e9738e624 7d64b468a5a648ee99035dd578dc6182
+#: 7f430bce98af4271825ac35f973fada5 9a9dbe35cb5a44a2bc3e7bdb160dcf2b
+#: 9ba2ef15ecae442097ff2c2e36d8a03f a0eef984c8d74eca8facf54df100bf35
+#: a91c9a98acd14a0199ee79531c10b112 ad53607018f3452098ea03c82a8e3c5f
+#: b00a4f96a3c04c9384abbbb9fd9e9852 b133d59897184f068bb38d34d0c654e3
+#: c4e1bd7a2d594fd0bb43ee9ecc29f992 c9e8ad120b594ee28496b8acd2d21c82
+#: d22407671b5145658c83093fb27c9d75 fa0c694a30094ddd8ea126ebf56f97c9
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:63
+#: 07d0f40d8b4e4a5f96db71188f5bac86
+msgid "PushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:64
+#: 1d3ab8d0eca44a518607880ac32cfd15
+msgid ""
+"PushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str | "
+"FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:65
+#: 9d2bcb6cab0f4d42953cc73109d8a0a8
+msgid ""
+"PushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = "
+"None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:107
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:120
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:151
+#: 0763646a229f4778b8f094ea3d5f3e4b 2b74153b865b42b59a0c159667298abd
+#: 961723e98baf4da2a8691d7cdd7650c8 d046aa5df7f34c88be250da8bbe06571
+msgid "Bases: :py:obj:`PushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:100
+#: 828df876a7fc45f3b3725afb6ea6c73b
+msgid "PrimaryPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:101
+#: 97565cfe636943e2bc25162951dbc7f0
+msgid ""
+"PrimaryPushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | "
+"str | FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:102
+#: 2dce32e7e0ba420aa3cd1652de06c7d6
+msgid ""
+"PrimaryPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:113
+#: fb16010e4b70433d8d5f1dbde7b10c21
+msgid "TransparentPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:114
+#: 2edda1188a034dbc95f13ae3490361d2
+msgid ""
+"TransparentPushButton(`text`: str, `parent`: QWidget = None, `icon`: "
+"QIcon | str | FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:115
+#: 26af25d6bdc94f3fac3d1dcf71e3634b
+msgid ""
+"TransparentPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:126
+#: 21e11a8bb69349ec8542a38b81c896c4
+msgid "ToggleButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:127
+#: e8f2f924901e4ca48186e125cd9f958d
+msgid ""
+"ToggleButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | str |"
+" FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:128
+#: 7ae82e029b564d92a00ef0d0142c76ea
+msgid ""
+"ToggleButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget ="
+" None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:137
+#: 7b0fb308155046979ce19882ea688874
+msgid "Bases: :py:obj:`TogglePushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:143
+#: 50f83041f1234967ba2214ef8297aee5
+#, fuzzy
+msgid "TransparentTogglePushButton(`parent`: QWidget = None)"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:144
+#: 59f28d9abf8f44ddb31d9f315bd677b3
+msgid "TransparentTogglePushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:145
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:182
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:293
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:313
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:364
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:512
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:575
+#: 15fe957181cd47ed877b2bc48d6daab1 3325ce0fd7894982b3d15dbe5ea31345
+#: 504bf770af8f43d8a115cdbb93eb0f01 936530c6fdfa43b0ab9f835d31df89d0
+#: a220d9c2900d4248867a2d68576be1e9 badcbda7cd6645529c3f0ff2a3d9c53b
+#: c4382a2374dd47679a7945cb09d535aa ed51b3aa4f9d497db791bb155c319caf
+msgid "`icon`: QIcon | str | FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:146
+#: e53405af83d94748ab0d8f20e03fd3e6
+msgid ""
+"TransparentTogglePushButton(`icon`: QIcon | FluentIcon, `text`: str, "
+"`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:157
+#: dfc0a5a4d5274dc5985164080dbebc08
+msgid "HyperlinkButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:159
+#: 3b104a546afc467bac7a9c95c1a9175d
+msgid "HyperlinkButton(`url`: str, `text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:174
+#: c76949e7722b4f3796fcc072bdffc23c
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QRadioButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:180
+#: 627910b3b0d44642b288fdc14583169d
+msgid "RadioButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:181
+#: ef896bb91698404f9fdeb775be10eea5
+msgid "RadioButton(`url`: text, `text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:187
+#: 91e1e69f80bb40bb9f864cc6ecfd1a9c
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:193
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:400
+#: 462f44618da6467482e1f087ac5edc38 573e523a4dc64b8c96d9933c9385a656
+msgid "ToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:194
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:401
+#: 086465edbe114f67ad4157712c332542 8d5deb66f1a64c4a8b3f9cd8e0c5fd95
+msgid "ToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:235
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:247
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:394
+#: 07c10c92ac3047da813d696f814f8b39 5479fa67bb214f4da1d87decc021cdbe
+#: 69b3e34db2474e97ae637bdabb88f7d1 cfab43bc70124879a12ddfc8fc8106c5
+msgid "Bases: :py:obj:`ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:229
+#: abfbc05035e74191b82f8070fa4ae529
+msgid "TransparentToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:230
+#: 43337aa0eb1f4d7398b92907c24f7576
+msgid ""
+"TransparentToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:412
+#: 9f73d78e72774f3581c6017bd9f1d020 f037b4d108ba4676a6cf298cbcca6cbc
+msgid "PrimaryToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:242
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:413
+#: 284f11ad59154440a4120252de8ebc49 72aed4406496463690cdba2e22df4449
+msgid ""
+"PrimaryToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget"
+" = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:253
+#: 4bf83e520f9743e8b65bad9862bcef09
+msgid "ToggleToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:254
+#: 5ea763ebda4e4a3c938d4fc4ad05bcbd
+msgid ""
+"ToggleToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget "
+"= None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:259
+#: e279576d44da40fe818a3aaea630ab5d
+msgid "Bases: :py:obj:`ToggleToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:265
+#: d159ca5825f146828ee275475ed4bcc2
+#, fuzzy
+msgid "TransparentToggleToolButton(`parent`: QWidget = None)"
+msgstr "透明背景工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:266
+#: aed9a72b1d864dd394f82798cf269dcc
+msgid ""
+"TransparentToggleToolButton(`icon`: QIcon | str | FluentIconBase, "
+"`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:285
+#: 4f474c08e1104f318cea4e40cc320229
+msgid "Bases: :py:obj:`DropDownButtonBase`, :py:obj:`PushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:291
+#: a46f0a0de98240dd886965da9e700d00
+msgid "DropDownPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:292
+#: 231df806097340b89b6b32d85c20a18c
+msgid "DropDownPushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:294
+#: 47a00736c43e41538b6ee18fcedca220
+msgid ""
+"DropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:305
+#: 2ee3898e1f6c4126836f0390501e0937
+#, fuzzy
+msgid "Bases: :py:obj:`DropDownPushButton`"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:311
+#: 6161a7cf76fb4ebcafbfde8c1bdf087d
+#, fuzzy
+msgid "TransparentDropDownPushButton(`parent`: QWidget = None)"
+msgstr "按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:312
+#: 365eb43793274d5e971fe068afd5279c
+msgid "TransparentDropDownPushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:314
+#: 8c87ca0d63984309a0b3b1b3810d055e
+msgid ""
+"TransparentDropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, "
+"`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:319
+#: 0ef7c86c76a3415eb322be21ca5d50e3
+msgid "Bases: :py:obj:`DropDownButtonBase`, :py:obj:`ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:325
+#: a382940242bb4cbba33cb9ad8cd81f1f
+msgid "DropDownToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:326
+#: 6a3fb765b7da4e6a83e1d04d22c6deb8
+msgid ""
+"DropDownToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:337
+#: 99cd95f1a3d742fc99d56f71e54a2dd8
+#, fuzzy
+msgid "Bases: :py:obj:`DropDownToolButton`"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:343
+#: 496f856e208542fda101e48f232f92dc
+#, fuzzy
+msgid "TransparentDropDownToolButton(`parent`: QWidget = None)"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:344
+#: 2db0ffeac40a4c24a1dd6555deaf1262
+msgid ""
+"TransparentDropDownToolButton(`icon`: QIcon | str | FluentIconBase, "
+"`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:349
+#: 505b3a6a3ed54bceb20d28bcbba9c874
+msgid "Bases: :py:obj:`DropDownButtonBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:356
+#: 70a008d0e34f4063901fa98726b9d983
+msgid "Bases: :py:obj:`PrimaryDropDownButtonBase`, :py:obj:`PrimaryPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:362
+#: 0bbefadf3252413eb74b7f41ebae17de
+msgid "PrimaryDropDownPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:363
+#: 79ed067e30b64065aa8a89b66dcecaf8
+msgid "PrimaryDropDownPushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:365
+#: 0c7a3cb3723148baa49b6c4201e06ef4
+msgid ""
+"PrimaryDropDownPushButton(`icon`: QIcon | FluentIcon, `text`: str, "
+"`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:376
+#: 2200fdc7f3a249e4999f7a1f174c6f80
+msgid "Bases: :py:obj:`PrimaryDropDownButtonBase`, :py:obj:`PrimaryToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:382
+#: bcf05a8ff1d04946a3df426102609fb3
+#, fuzzy
+msgid "PrimaryDropDownToolButton(`parent`: QWidget = None)"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:383
+#: b6f2462780e84b7dbfc17dc093a01acb
+msgid ""
+"PrimaryDropDownToolButton(`icon`: QIcon | str | FluentIconBase, `parent`:"
+" QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:406
+#: 058e8f9ca15c4f26bb9467a177e49b1c
+msgid "Bases: :py:obj:`PrimaryToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:418
+#: 3c4c19ec4733497e814cf15a12b3716c
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:428
+#: 254897b9d1f9432c9424af0e1b28d8a4
+msgid "set the widget on left side"
+msgstr "设置左侧部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:433
+#: 3349aa05655d4a218bd94466d510008b
+#, fuzzy
+msgid "set drop dow button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:438
+#: ee4813bbaf7d465c810acddda0211012
+#, fuzzy
+msgid "set the icon of drop down button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:443
+#: db8ab15777a44103a55eea7baced8203
+#, fuzzy
+msgid "set the icon size of drop down button"
+msgstr "工具按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:448
+#: 9dc198a9ad0144a48166cb52e34311c1
+msgid "set the widget pops up when drop down button is clicked"
+msgstr "设置下拉按钮点击时的弹出部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:451
+#: e721146d73ec44438313fc817ae9b46c
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:453
+#: c7ab29f3420f4015ad025953b1c39373
+msgid "flyout: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:453
+#: 2435a7eba9e04ec3977b49bbdc8148eb
+#, fuzzy
+msgid ""
+"the widget pops up when drop down button is clicked. It should contain "
+"`exec(pos: QPoint)` method"
+msgstr "下拉按钮点击时弹出的部件，它需要实现 `exec(pos: QPoint)` 方法，`pos` 参数代表弹出位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:459
+#: 013dafc1511d4c0291fc791d5f1f66cb
+msgid "show flyout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:465
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:518
+#: 9012792cbbd547c897e7c1f2d0ec7365 c9e25af052d645f98f6a95c563753dbc
+msgid "Bases: :py:obj:`SplitWidgetBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:471
+#: 4378920aa4ca4a0b99ae225b5ceacd79
+msgid "SplitPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:472
+#: 6c80c9ce8b0a4060887c928418502439
+msgid ""
+"SplitPushButton(`text`: str, `parent`: QWidget = None, `icon`: QIcon | "
+"str | FluentIconBase = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:504
+#: 2516c5e4db4440a78b1f6f163e5683ad
+msgid "Bases: :py:obj:`SplitPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:510
+#: 42e924d5dd6b46c19163de0fe665994e
+msgid "PrimarySplitPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:511
+#: c14dd6fa3cd3411a9771f08e2907e99e
+msgid "PrimarySplitPushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:513
+#: ea26cd8843a647c8b2f6f86c9d7c1208
+msgid ""
+"PrimarySplitPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`:"
+" QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:524
+#: 3c69bef28809422b94cf81be0f45f3c2
+msgid "SplitToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:525
+#: f28b778612ca4f71b7f328c199fad413
+msgid ""
+"SplitToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget ="
+" None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:547
+#: ed31db88c1a34193aa73d2dff9f6f87f
+msgid "Bases: :py:obj:`SplitToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:553
+#: 83ac33a67cd64064bf9a72f9b0e90a96
+msgid "PrimarySplitToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:554
+#: 352453e2157641399f342c50caef5fe9
+msgid ""
+"PrimarySplitToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:567
+#: bbaa56c4b7a6477baa29f7149a9f04a8
+msgid "Bases: :py:obj:`TogglePushButton`, :py:obj:`PillButtonBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:573
+#: bb85c77ca87c4cabb5ed14df636c0c64
+msgid "PillPushButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:574
+#: 858fadd0567249d1b7739edc19507231
+msgid "PillPushButton(`text`: str, `parent`: QWidget = None,"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:576
+#: a52e9b69ec4947f6a0fc4bf741838636
+msgid ""
+"PillPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget"
+" = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:584
+#: 20177c1c49c241398de8a3eeccf6d120
+msgid "Bases: :py:obj:`ToggleToolButton`, :py:obj:`PillButtonBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:590
+#: 1265b7bf085c46d98041f715601b432e
+msgid "PillToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/button/index.rst:591
+#: 0620bcaf2dd24fe2a61e3f660b539801
+msgid ""
+"PillToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = "
+"None)"
+msgstr ""
+

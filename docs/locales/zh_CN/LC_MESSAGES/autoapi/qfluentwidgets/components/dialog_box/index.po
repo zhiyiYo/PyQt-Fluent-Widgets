@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:2
+#: 1297ce655a4b4aadb1c6305f9a9d82a7
+msgid "dialog_box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:22
+#: 111c9d59dee54527b5c5e3abf54fdd0c
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 1eab22f32c3b4f73b518412b50b94926
+msgid ":py:obj:`ColorDialog <qfluentwidgets.components.dialog_box.ColorDialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:42
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 457be396053a476ca0623349c956dd44 fd092fce5817491a9e1cd8ef102406d3
+msgid "Color dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 19bbc05ecacc44d0ad15e6a519eedc99
+msgid ":py:obj:`Dialog <qfluentwidgets.components.dialog_box.Dialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 30e9f8bb761c4beda4ff451adde98812 d3aaa43493bf427d998c27dc4ea7f94a
+msgid "Dialog box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: a04143444a6f40f283ed2741e83e7b19
+msgid ":py:obj:`MessageBox <qfluentwidgets.components.dialog_box.MessageBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:86
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: ee3b1745291841518189e66e0b90d43b fb261fa03641418fa76759760246a446
+msgid "Message box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: e724a490f6c44194b9389e8c249a947c
+msgid ""
+":py:obj:`FolderListDialog "
+"<qfluentwidgets.components.dialog_box.FolderListDialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:104
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 0528a705355a4615a67cef7ebcbf8cdb 28b3d27dfea64e13bfc66c7b386a1bce
+msgid "Folder list dialog box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 411658a58d4a4fc08d4852e894ca2df4
+msgid ""
+":py:obj:`MessageDialog "
+"<qfluentwidgets.components.dialog_box.MessageDialog>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:115
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 19cf52939597495aaa73bdcf2bdb72c6 a032bd6d206e48ebbcc57abb4e919a85
+msgid "Win10 style message dialog box with a mask"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 2414b2a1661e49efa5fd756734a716cb
+msgid ""
+":py:obj:`MessageBoxBase "
+"<qfluentwidgets.components.dialog_box.MessageBoxBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:130
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:37:<autosummary>:1
+#: 750dc1efdfa3486582fa3e033b60cc5c d9b5dbf6354e4dada830f739e021c873
+msgid "Message box base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:40
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:113
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:128
+#: 56845413843e4651bf32770ceea7a366 88d245a4564042e2838d9eac76d010aa
+#: a7926ce6e6b042ac86cd148f20dc8c38 e43ab403acbb443fb4be39935a73c3f2
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:50
+#: 63280307ad4f4449a1b48c63386b944f
+msgid "set color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:55
+#: f0d0bea335b44907840686a77be47bec
+msgid "update style sheet"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:60
+#: 791bf37217dc4489b90294ebb628f711
+msgid "fade in"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:66
+#: 6b6b6de9c8094c1ebc48a5b353da46ed
+msgid "Bases: :py:obj:`qframelesswindow.FramelessDialog`, :py:obj:`Ui_MessageBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/index.rst:84
+#: 7c5b7c2fcebf45d3aebd841a79c7a648
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase`,"
+" :py:obj:`Ui_MessageBox`"
+msgstr ""
+

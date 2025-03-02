@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:2
+#: c98904a009ac4422b3c1aed282133c0f
+msgid "acrylic_tool_tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:8
+#: eec418290f1d413c8fe24cf0a8dd043a
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: f971e11c76994c1da8fec52f466d6cd8
+msgid ""
+":py:obj:`AcrylicToolTipContainer "
+"<qfluentwidgets.components.material.acrylic_tool_tip.AcrylicToolTipContainer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: 535830f653bf4bd78f8ec5eb3ab389e5 a0ccd126f5d9432a9ab778e7528bd39b
+msgid "Acrylic tool tip container"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: 58a29fa9bbcb4868ad92232b58ccb896
+msgid ""
+":py:obj:`AcrylicToolTip "
+"<qfluentwidgets.components.material.acrylic_tool_tip.AcrylicToolTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: 66ee4808a6b742539ca8f12fc69ce359 b15116032710415191ff1d62602ca56a
+msgid "Acrylic tool tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: dab6532621e24c58bb91b7aff23ffcab
+msgid ""
+":py:obj:`AcrylicToolTipFilter "
+"<qfluentwidgets.components.material.acrylic_tool_tip.AcrylicToolTipFilter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:45
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:20:<autosummary>:1
+#: 459915527fc44558b241352a5e57910f 4c57f395fa154ea98bb812000d28bb65
+msgid "Acrylic tool tip filter"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:23
+#: e6dc798b714a4ee3a002c31660ed5891
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.material.acrylic_widget.AcrylicWidget`,"
+" :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:33
+#: d6a4baeacc0947d8adbccd41c895bf75
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.tool_tip.ToolTip`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_tool_tip/index.rst:43
+#: 419f3f7de58a4a5fa9a3a9ff07b24a8d
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.tool_tip.ToolTipFilter`"
+msgstr ""
+

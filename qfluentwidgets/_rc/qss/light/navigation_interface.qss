@@ -1,0 +1,26 @@
+NavigationPanel[menu=true] {
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgb(229, 229, 229);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+NavigationPanel[menu=false] {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+NavigationPanel[transparent=true] {
+    background-color: transparent;
+}
+
+QScrollArea, #scrollWidget {
+    border: none;
+    background-color: transparent;
+}
+
+/* NavigationInterface {
+    background-color: rgb(243, 243, 243);
+} */

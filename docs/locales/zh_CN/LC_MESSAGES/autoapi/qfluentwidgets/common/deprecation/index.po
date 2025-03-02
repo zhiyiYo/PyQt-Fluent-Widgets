@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-24 10:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:2
+#: 42001f81dc2a4d51bc4edb171c697e04
+msgid "deprecation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:8
+#: d88b170eeb7f4e92be94085e04be64ee
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:19:<autosummary>:1
+#: d45a376b8b2445529bb0bc6410cbd647
+msgid ""
+":py:obj:`warn_deprecated "
+"<qfluentwidgets.common.deprecation.warn_deprecated>`\\ \\(since\\[\\, "
+"message\\, name\\, alternative\\, ...\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:19:<autosummary>:1
+#: 811cfbba21284dbea98153e4bd143908 a741b2852c764b2e938005bf0238d4a4
+msgid "Display a standardized deprecation."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:19:<autosummary>:1
+#: 9866ab1fb90248c58ae038a9c0819de3
+msgid ""
+":py:obj:`deprecated <qfluentwidgets.common.deprecation.deprecated>`\\ "
+"\\(since\\[\\, message\\, name\\, alternative\\, ...\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:84
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:19:<autosummary>:1
+#: 65f38acfd541450fa7d272d606129eee e73199869c154091981641948f26b64d
+msgid "Decorator to mark a function, a class, or a property as deprecated."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:22
+#: 8fa3eaa1ec334204a7ca153058a381a7
+msgid "Bases: :py:obj:`UserWarning`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:24
+#: cd711e59f228497a9b11f11e5f221761
+msgid "A class for issuing deprecation warnings for PyQt-Fluent-Widgets users."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:26
+#: e22b60bbe3a34fa3a10d851af649c249
+msgid ""
+"In light of the fact that Python builtin DeprecationWarnings are ignored "
+"by default as of Python 2.7 (see link below), this class was put in to "
+"allow for the signaling of deprecation, but via UserWarnings which are "
+"not ignored by default."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:31
+#: 2bc3573a4f4c47eb969b38d02a166198
+msgid "https://docs.python.org/dev/whatsnew/2.7.html#the-future-for-python-2-x"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:92
+#: d185cdf2445c4a9da58c803208b98238 f81397ff0284421e9724b74ea0d47767
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:94
+#: 50a02f9f162b428c8e6fa6ad7b9349d8 8ee6448cbd9441988bc085fcae691d23
+msgid "since"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:-1
+#: e276750103da4eb0a4c058f0e8e652a2 ee752ed5f0ad4a39a7f0e2a69c1bff85
+msgid "str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:94
+#: 5b6b21ede13e4b148d405101fc58ca99 d59a03d814ad4b20b21291daa301b5e3
+msgid "The release at which this API became deprecated."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:47
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:100
+#: 5bd81a6c5461448ba11ffd8b91f94f7e 8eb38930583441dbad3cb8b8e467d8db
+msgid "message"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:-1
+#: 0b87f344f8914ec2ad498bac75b49491 3e489c0376f24f4e9d46f48b392476c0
+#: 5066eca31e324c68b85e85bfeb5012d7 813db2844700463ab6604e59ecdeb52c
+#: 9fcbca92c7824237bd1c0bb7e78b5923 b9c60988685742f9891b6adb4266affe
+#: bad84609b94641a18f3af36baebeb5af bbb09e541d6d403d96cf63217234c467
+#: c7bd9f89d3424b0897ed99e7a55647bd d2b86504190845d4aae17ec9db4c4352
+#: db69449ae7844d08ab04ab9390da41c2 feaa580111f44d86b832222bdeaaccbf
+msgid "str, optional"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:97
+#: 09953513b80941f183483a3b84ec5b8c 312bc0960b8746ddb13e1a30d1f8236e
+#, python-format
+msgid ""
+"Override the default deprecation message.  The ``%(since)s``, "
+"``%(name)s``, ``%(alternative)s``, ``%(obj_type)s``, ``%(addendum)s``, "
+"and ``%(removal)s`` format specifiers will be replaced by the values of "
+"the respective arguments passed to this function."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:104
+#: 08f12e00e2614381996708c448360ea7 e025a52e887442c4875e6f697a0b916c
+msgid "name"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:50
+#: c0df274cc4f545d5a93557f54eba08c6
+msgid "The name of the deprecated object."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:109
+#: 4aeafb7ff0434bdaa2157f44d1984835 6f30146e272e486191c366779111be6e
+msgid "alternative"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:53
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:107
+#: 814572a237b54648a2d2881ad49aa4d3 98898d4e4f6f44b4a958a8a5b9c81d79
+msgid ""
+"An alternative API that the user may use in place of the deprecated API."
+"  The deprecation warning will tell the user about this alternative if "
+"provided."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:59
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:113
+#: 66aa39b085af415789108c2d2e2cf891 7ca73b997d1546d5880256806e023375
+msgid "pending"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:-1
+#: 09bc36aa49aa4718bf0b57538d4fff77 1684fd2e3c1440d6aa5f8784d3f9ef74
+msgid "bool, optional"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:58
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:112
+#: 1a54f344724e47fabf0f4fe03ad2ef4f eb08e5b2e26442ddacc3dfc5dccb5292
+msgid ""
+"If True, uses a PendingDeprecationWarning instead of a "
+"DeprecationWarning.  Cannot be used together with *removal*."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:62
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:117
+#: 18a4d7424bf2496fbf5c631726175ce0 96c38d26a1b44297b043c650080ea06e
+msgid "obj_type"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:62
+#: b8c8987042b1495093c54b71dbda7e8e
+msgid "The object type being deprecated."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:120
+#: 8ab87b82114141af995cd3cf0b4f577f aa0681adc3bc48bd8251d299e57db434
+msgid "addendum"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:120
+#: 74dc3aa829d74f0b898941e5dd05fd62 a6c861443e3740eea2430a96571cd261
+msgid "Additional text appended directly to the final message."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:71
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:126
+#: 142511d4aa4442dfa92b9f74fe548f74 1b0cf73151cf4b8aae44d2bf9cd5fe70
+msgid "removal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:68
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:123
+#: b5bbe770349c42ada0e6868a51d96812 d4eeef9a366545c1811d0e868962c675
+msgid ""
+"The expected removal version.  With the default (an empty string), a "
+"removal version is automatically computed from *since*.  Set to other "
+"Falsy values to not schedule a removal date.  Cannot be used together "
+"with *pending*."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:129
+#: 81d74cedf10c4eae87250b95654fbce0 965003053eff4092a6a6d4ea7aa2f86a
+msgid "Examples"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:75
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:130
+#: cb6f19d2b4964b1a8e147584e21d5540 eaccfe74776d49f9805e8c4c9d76302d
+msgid "Basic example::"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:86
+#: 0fe8cdd4b02e4e96b878a459daff76a1
+msgid ""
+"When deprecating a classmethod, a staticmethod, or a property, the "
+"``@deprecated`` decorator should go *under* ``@classmethod`` and "
+"``@staticmethod`` (i.e., `deprecated` should directly decorate the "
+"underlying callable), but *over* ``@property``."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:103
+#: d5548f2d60f84803b587988f4835b5d2
+msgid ""
+"The name used in the deprecation message; if not provided, the name is "
+"automatically determined from the deprecated object."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/deprecation/index.rst:116
+#: a06b917ee8c04695b1a058b6c8a51739
+msgid ""
+"The object type being deprecated; by default, 'class' if decorating a "
+"class, 'attribute' if decorating a property, 'function' otherwise."
+msgstr ""
+

@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:2
+#: 07e3411c99cb45b580e527bb316ff305
+msgid "folder_list_setting_card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:8
+#: cfb16954b1c34083bb783aff05ac785d
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:19:<autosummary>:1
+#: 9ce909fdebe646508cc73f8b98008434
+msgid ""
+":py:obj:`FolderItem "
+"<qfluentwidgets.components.settings.folder_list_setting_card.FolderItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:19:<autosummary>:1
+#: 653c60f0a53b44599073b471f396d6ee f7abb5e97d664cc198b028102eaf3405
+msgid "Folder item"
+msgstr "文件夹小部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:19:<autosummary>:1
+#: 6aa7ddc0b0844a08902c2fe6d2fd0161
+msgid ""
+":py:obj:`FolderListSettingCard "
+"<qfluentwidgets.components.settings.folder_list_setting_card.FolderListSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:19:<autosummary>:1
+#: 5cf64fc399094f1aa20b44ace3219a85 6c03a64f8e1d41b3b2a06cd2c963ac47
+msgid "Folder list setting card"
+msgstr "文件夹列表设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:22
+#: b061b2be8c8e4b7c8cf7c83f83c74138
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/folder_list_setting_card/index.rst:33
+#: 6db3caff10c145b4b8f3b9ae52036e78
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.settings.expand_setting_card.ExpandSettingCard`"
+msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`ToolButton "
+#~ "<qfluentwidgets.components.settings.folder_list_setting_card.ToolButton>`\\"
+#~ msgstr ""
+
+#~ msgid "Tool button"
+#~ msgstr "工具按钮"
+
+#~ msgid ""
+#~ ":py:obj:`PushButton "
+#~ "<qfluentwidgets.components.settings.folder_list_setting_card.PushButton>`\\"
+#~ msgstr ""
+
+#~ msgid "Push button"
+#~ msgstr "按钮"
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+#~ msgstr ""
+

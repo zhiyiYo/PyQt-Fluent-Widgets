@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:2
+#: af54a14d52a742eeb574d2d3ae161004
+msgid "color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:8
+#: 93a90dacc825431887395d1933250afe
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:18:<autosummary>:1
+#: eabcf4716a2e41d5a43561b8a98143b6
+msgid ""
+":py:obj:`FluentThemeColor "
+"<qfluentwidgets.common.color.FluentThemeColor>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:18:<autosummary>:1
+#: 1611317e4d1c4c259f228850003b57d1 312115924fdb46589e3156fd567ee8d3
+msgid "Fluent theme color"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:21
+#: 6bfd1f5562584532ab67fcbb21febdcc
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/color/index.rst:25
+#: 552dbd7208664d4493b9b20955675b45
+msgid "Refer to: https://www.figma.com/file/iM7EPX8Jn37zjeSezb43cF"
+msgstr ""
+

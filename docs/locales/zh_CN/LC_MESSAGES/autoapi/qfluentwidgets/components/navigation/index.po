@@ -1,0 +1,1286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:2
+#: 24da7b958a5c42039ab8c818ec80cff6
+msgid "navigation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:23
+#: 8f5fe357706d467bb2795cc45934ebb6
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 865e0e0652274105a6bd7a1f39035456
+msgid ""
+":py:obj:`NavigationWidget "
+"<qfluentwidgets.components.navigation.NavigationWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:60
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 248f19a7c61a494dabc7ef83e7e80721 4f2287b9b582498ea27dab636de3c8a9
+msgid "Navigation widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 939092f66e464bafb7fe304e2297c4a6
+msgid ""
+":py:obj:`NavigationPushButton "
+"<qfluentwidgets.components.navigation.NavigationPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:110
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 64b167a41c4445db98acb4f66a01d003 b8bb251afba1483a82b14f26d45d4bf0
+msgid "Navigation push button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 7e10531028e243908cc9903944844ff0
+msgid ""
+":py:obj:`NavigationSeparator "
+"<qfluentwidgets.components.navigation.NavigationSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:132
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 30200b7943b948f4a5de0cd244894704 39d6bd5257ef47beb3c014b56772559e
+msgid "Navigation Separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 0fc03922570941aea7c6c698e212e4fb
+msgid ""
+":py:obj:`NavigationToolButton "
+"<qfluentwidgets.components.navigation.NavigationToolButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:147
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 1f2d92ebdbdc479daf1ec7eb18046512 b0b56c6f5c7b4e46bf6c66b9f4aefade
+msgid "Navigation tool button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 73be0d7d1aaf40daa2cb991625ed6589
+msgid ""
+":py:obj:`NavigationTreeWidget "
+"<qfluentwidgets.components.navigation.NavigationTreeWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 8840a0bce1634e7890058f6be605377b dd176f84858d48468c94c59178afa1ae
+msgid "Navigation tree widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 4ffdf3fb3ba54d469ffe44befed7b328
+msgid ""
+":py:obj:`NavigationTreeWidgetBase "
+"<qfluentwidgets.components.navigation.NavigationTreeWidgetBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:259
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 3a70df0fb06e45f4ba09a119b6030233 fbc4fce9e19d4a44824e89b2abb86592
+msgid "Navigation tree widget base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 35ed838a885445ff8808826b3654f60b
+msgid ""
+":py:obj:`NavigationAvatarWidget "
+"<qfluentwidgets.components.navigation.NavigationAvatarWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:326
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: a376218eec0b4a6a8fe987f8677d6ab3 bde5b7e69c45494489166dbc137e64c9
+msgid "Avatar widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 8c6826cb0fff47fda30b4adb9ae55a3b
+msgid ""
+":py:obj:`NavigationPanel "
+"<qfluentwidgets.components.navigation.NavigationPanel>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:342
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 4b44f73f31974b0ba52eef27b702c1fd d719477a771a401cb678bb34def5004d
+msgid "Navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 583b6e4a929f4a67adf6d97e060e87d1
+msgid ""
+":py:obj:`NavigationItemPosition "
+"<qfluentwidgets.components.navigation.NavigationItemPosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:578
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 1b1d951a86514ce0a8811eb6ff8f68bb 6498cc8e4c4a42baba311f828d88cc81
+msgid "Navigation item position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 181be23998984d54b84b2f33463bd3b0
+msgid ""
+":py:obj:`NavigationDisplayMode "
+"<qfluentwidgets.components.navigation.NavigationDisplayMode>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:600
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 02ec1f37c4ce415794b1b52b36df9346 3e5c8524f8e94ff49b707e22fff41af9
+msgid "Navigation display mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 02655952c2034cda83afd93330c652a6
+msgid ""
+":py:obj:`NavigationInterface "
+"<qfluentwidgets.components.navigation.NavigationInterface>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:627
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 3d2823ba61b949888f3d6ca4d3971f88 5fe118e96098479bbe49d32e34abddc6
+msgid "Navigation interface"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 8d689e10dae94a4a856d7082380480db
+msgid ""
+":py:obj:`NavigationBarPushButton "
+"<qfluentwidgets.components.navigation.NavigationBarPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:849
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 09c1fdae1c3c4ac9bdc9bfdd106084ab f5a499f07e1e4b5ba33004e9462a1f35
+msgid "Navigation bar push button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: f07899c637ec404d985c2f9f8da4c16a
+msgid ""
+":py:obj:`NavigationBar "
+"<qfluentwidgets.components.navigation.NavigationBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: b56be060535840aca144509d7e98ef66
+msgid ":py:obj:`Pivot <qfluentwidgets.components.navigation.Pivot>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1019
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 1eb4f2a2172b4c3495823d8c464059de 8baf978beaf44e58bed157da75f42420
+msgid "Pivot"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: b4459d4cad154ae58b0f6a2f8dc9d8f2
+msgid ":py:obj:`PivotItem <qfluentwidgets.components.navigation.PivotItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1146
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1199
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 2df7dc3615d64ae78005e39d4787cdcf 712639e66ffd456ba5b0a653cab849de
+#: 744daac7a1944e76b697745704c0692b a4ac0bfc7a9748e2ba1719745719fc4d
+msgid "Pivot item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: ed47ef18b3fc409897543f7da9d8b05e
+msgid ""
+":py:obj:`SegmentedItem "
+"<qfluentwidgets.components.navigation.SegmentedItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1160
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: d3ea4c32470f43878aef20e461335929 fe4e5de12ea343049cfcb40134e385e6
+msgid "Segmented item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 344b2d702ba9409e8c209361ba86a99d
+msgid ""
+":py:obj:`SegmentedWidget "
+"<qfluentwidgets.components.navigation.SegmentedWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1167
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 599bb4731413475cb75928a276c3eacf 8a7368d5a44d40df84e9cced536161c7
+msgid "Segmented widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 8f64db19eeea4a74bde9345ecc7c473c
+msgid ""
+":py:obj:`SegmentedToolItem "
+"<qfluentwidgets.components.navigation.SegmentedToolItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 40c0c347119d4eb0b00f74329adc8c16
+msgid ""
+":py:obj:`SegmentedToolWidget "
+"<qfluentwidgets.components.navigation.SegmentedToolWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1213
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 089bbab561ae43558130872d684439c7 48a668bda7ae4d33ad1eb53899a00eef
+msgid "Segmented tool widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 1285df3b74554545ad9567b4adbafd26
+msgid ""
+":py:obj:`SegmentedToggleToolItem "
+"<qfluentwidgets.components.navigation.SegmentedToggleToolItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1258
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 33e0d943653647b5ae6e35deaaad4169 a1a223d1c20744cf8bdbcc6ad8e17f72
+msgid "Transparent background tool button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 18d4821c1ea04b6192b30e7393cca228
+msgid ""
+":py:obj:`SegmentedToggleToolWidget "
+"<qfluentwidgets.components.navigation.SegmentedToggleToolWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1277
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: a26525bec21b4b449d1bd50d967675ce b8786baaf1dc4d0680c70b273344f76c
+msgid "Segmented toggle tool widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: a8ab551b719a4fd88372190c7791115b
+msgid ""
+":py:obj:`BreadcrumbBar "
+"<qfluentwidgets.components.navigation.BreadcrumbBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1287
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: de00d678c8d245a88c8364adbd767719 e52f3793c3fe4260aa1cd503a1075330
+msgid "Breadcrumb bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 84a8646b839f47e3a04cde6dfa4436e1
+msgid ""
+":py:obj:`BreadcrumbItem "
+"<qfluentwidgets.components.navigation.BreadcrumbItem>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1362
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:55:<autosummary>:1
+#: 01f2c9b82cb14bcf8723bc1538f9fc2a e38cfd87c0f54a9cb39e988366ffe669
+msgid "Breadcrumb item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:58
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:625
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:876
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1017
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1285
+#: 2aa890c8de2d4796a05e898685038ca4 43e9a1939f384fb3b6630f6379c15dcf
+#: 533310b2b8a9404b91f3cb1093cb1594 6574a7588fa74f1cb5e61c6280d33efc
+#: ae5a49c2ff3a4988b9043f8db2404297
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:92
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:136
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:151
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:251
+#: 0ba8155a87ee407ab6c2cfa665e2fc7f 1cb3ae8ce3eb44c1af886d96bdbb0829
+#: 573b57dd7c76473db56aa77b81ce07b8 813795e55e3f42a2b6886db4f422563f
+msgid "set whether the widget is compacted"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:97
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:238
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:865
+#: 0d3f00db296a431b84beb121d5785a2b 4d4fe5e476254008898f02bf79fe9416
+#: a812815b86b449c98bcabcdb5e873733
+msgid "set whether the button is selected"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:170
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:201
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:211
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:241
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:267
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:278
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:289
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:310
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:356
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:387
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:412
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:446
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:474
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:484
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:497
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:553
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:638
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:669
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:694
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:728
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:756
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:766
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:779
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:789
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:868
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:886
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:914
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:933
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:964
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:986
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:996
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1026
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1045
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1061
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1083
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1102
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1122
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1174
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1220
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1236
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1306
+#: 01b5fb47f89c4f9e9a8cb1ec02e3e845 05d370ef54cd4c84a0868143cb661958
+#: 14d821608dd148cf85e6d5724816d9b8 17a82c1d5ad742ffa76d39606b45194e
+#: 1b80be45ba02465a9c0e0e579692aa56 1e4429da15d44108878b5060fa1e3280
+#: 20bcde1446c44863b3ddd0eed544942d 2bd4fc689ffd472ba8d1f880d6763c28
+#: 3032a7f12d324bd0ac0904227e513290 350a88a28f9b4602aec2287d94419192
+#: 35228770b2294b92a7bef99f6cf72732 365226ddb0734b529e9856339fef3170
+#: 37fc659822024db48680256b96e4ec5f 3f82f26dfd9b44e5be06559ee65162a3
+#: 42347c146c62406ab9ebcacbf5f75b22 439a4635fac94a33a3adade8a6cefc30
+#: 44998a8c6c9740a48888b456fef78a0e 44fb2bdf32f549caa202345b15d49038
+#: 46de530ed5934d939c8c097df1582240 4b8e93160a8743a39c6c4dfdd442b1f8
+#: 4f3013cd6f794fcc95ef32fba518aa59 5de7ab225ece4eb18b6bde6ef8871994
+#: 67fa51becd3e408994d54e91e2067caa 71e2b016db4247519ae82532263a4d4a
+#: 792c6832d5154f298217fec4539b94a6 7ba0416649c744fb8741edc0a1945d11
+#: 830339ec854b486c8d8ba01aeb7f61e0 9bef7adb2bb24d71ac39c21ff21fa46c
+#: 9c0dc00654734cf6a3d8847e00b2b9cb 9e32ecc0d4b64f659d4fff8bde48c88c
+#: a64e810c11174ec5995115e20c331984 b3f52ba0023e4c888a92877a9dbbca9b
+#: b5fee2952def4cdca114fea46b6eefbd ba269353018645d8a43b2c10c19dd92f
+#: bc9e472ccd8145b6a4e4235ebfd06888 c9728ecef5ef47669d5b24a131ac0b7a
+#: d0ed613dd2554265bdddccc64f82d1a4 d32cdf1eb8f34df999aed098c0580797
+#: d5ba8bc715ac4d728eef1cd82272ed6d fbfd14a5282e42a1868ac5983e574d4a
+#: fec64f1a68154f6284cae646316c1193 ff157ea00d844ea296e76a69a7f0263d
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:101
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:242
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:869
+#: 22b944d8a9394d5dbf933c4976e5f1b2 a1906a841858405daf1547bb450cdee4
+#: ef08c420a5584ee0a61529df63e6fdec
+msgid "isSelected: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:243
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:870
+#: 25c69f526bed43b19f6ef1476dbc461d 90a3337ddd53480aaedf024247c385a5
+#: a42563d1d77b4fa282b47c5f2c039b6b
+msgid "whether the button is selected"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:108
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:130
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:257
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:324
+#: 270351020de445d9b83452aa27bb585a 50a56b51147c4225ad947a447f343db7
+#: 610119844c52486ab09bf383e3c41a54 7d0b30658bc340e9aaaa4023d08b79d6
+msgid "Bases: :py:obj:`NavigationWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:145
+#: d83a4eb59ee443a78f77c0dce3619d1e
+msgid "Bases: :py:obj:`NavigationPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:157
+#: a24898922e2149b9ae1a4763b0a36412
+msgid "Bases: :py:obj:`NavigationTreeWidgetBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:167
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:264
+#: 86593818d62346bda0b6d8c9b6285a74 8c5b89aad2e644c4a0e4fad24689de98
+msgid "add child"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:171
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:202
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:268
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:279
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:290
+#: 1a9258dfe5814230b44e7a7d40385acc 6ed1cba823bd44af9d4f4dcca17e2c04
+#: 92196f690c14469f9bd700e4917d1095 ad81715ad0aa4906a194a03b44f6105e
+#: b9e3b08389784d2aad9c0c560be6fc40 f35289c3543649fc8de1b2b4d640c370
+msgid "child: NavigationTreeWidgetBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:172
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:203
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:213
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:269
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:280
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:291
+#: 09ffafff225c4f1fa5e5e692982546f3 162eb1d6e2c74dc3a6a281e7c2e03449
+#: 191e327d764d4331baf1cb47b360a5d3 71e40324b63849a8aad6083c9f2876e4
+#: d065c1b5c1e74e2fa16b4b8bebd0121a d094f0a62be84311ae2bfcc65a465169
+msgid "child item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:198
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:275
+#: 43a155e8403a4bfd8f34c3e720950011 f87e01bf7ca54a7f9d35cbf20c5a764c
+msgid "insert child"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:208
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:286
+#: f7ecc652b4374929bbe764f3a3c60d19 ff17348626f24207aa2e50cc7a05438c
+msgid "remove child"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:218
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:318
+#: ee3180e25eb04aadb6c9756d54058583 fc60acdb818049d7ab536a3111e011b9
+msgid "return child items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:223
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:307
+#: a95bbe2a89664e518b805257514f351f aa0f2f5920cf4091a5da784ba01e19c4
+msgid "set the expanded status"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:228
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:296
+#: 32956a4388084e89b5f5da9a62920222 e0c985afa65a42fba7cf26bff5d97952
+msgid "is root node"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:233
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:301
+#: 5df0276ab54845cb91467bccd44adc12 f3187a47b063447d87e3d33098a745f2
+msgid "is leaf node"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:311
+#: 8fdac55b478f4c8da6adcb6bef2944ed
+msgid "isExpanded: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:312
+#: a8f10ef7ef5d4ef19ba07cdffe2a7d88
+msgid "whether to expand node"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:340
+#: 7d70484941d84bf98884de0e0f5255fd
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:353
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:635
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:883
+#: bc52c51ba5ea47808313f6383c8d19dd e2822ad99c9b4c9fb7f3ff89dd376916
+#: fc18f5f5406d421098195cd9a171f0ef
+msgid "add navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:358
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:389
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:417
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:451
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:498
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:554
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:888
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:916
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:938
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:969
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:987
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:997
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1028
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1047
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1066
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1088
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1103
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1123
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1179
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1222
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1241
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1308
+#: 0325ce3084304706910186e237e45543 0a6ac2ee75ed4b88ac98e5574ce27e81
+#: 0e20079a457c4b109c89a51be4dd6a39 227a3535a3854037ba42481acd58eeeb
+#: 2468cc8d0bb44eaa948c3ec8a1652efc 26e785e410104d30a73b552e5f7b4249
+#: 5a2a8a2bfd3a4c168daed983fe43fc7f 6127cba7ba96474ab3563f454984ad9b
+#: 6e2fdb1d94a044ab8e420bdd196c2c9f 8c13232979654ed1a09cd60db0b54ff5
+#: 90a6d467428a4aa3a4d890d0499c8b28 98d148af84904523ab1a788ea023a0bc
+#: 9c162d6ff63a45a1b56324d86ed921a5 ab72c5b7a09142ca808f5df3f7edbd43
+#: b039e6bcf2554567910365c56832884f b294aae30b7c4cb99cbb1e39ef3acb22
+#: be06f4dafe1e4d8a8a91e578bcafb98d d10f4642355746a282bae6afcce760a9
+#: dba966774338415db859556c6da3aac3 e8e2aefdcf874849924c9dfb1984e476
+#: ee4844a67ff6422c8c9ae4a86f7194c5 ff9ea04a1a32466bb3d17535b3d87b44
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:358
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:389
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:417
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:451
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:499
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:555
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:640
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:671
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:699
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:733
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:781
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:791
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:888
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:916
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:938
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:969
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:988
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:998
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1028
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1047
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1066
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1088
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1104
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1124
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1179
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1222
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1241
+#: 0fc11aff00ab48208fe7066eab97acfa 10704389ab2b43099775f43e8d7a35d1
+#: 1402f43d6c264d37a66d9897e4f31f75 2e65a87f0b744457a6c0fd41b5abf470
+#: 37b4f4073efb4be0b64dfb781232064b 4cb2db80657942858a7f9ce46cc40663
+#: 51e37fe3a1754085b1b4bb1fc7624a1c 539977a70ce1429e888dd2e66f7f0f8b
+#: 5dbcb813f943483f9f2811252b6d8307 69dca022a46942c6a75ef9622a00cc47
+#: 6b96b8de3e794ce396e190fd37be50e0 6f967d6c2c414434919893befdd998d8
+#: 9b67c016f18c48c99bf787f770601a39 9fc00b1e5732438aad8f4d62694c8361
+#: aa8d51ad45284313a73a85db75ad074f adb7e4f2748246168cd469b447059f4c
+#: b8d615c6805a44028b17d762426d93f8 c2438cc01f1f404bbc9591ea24f68fba
+#: c56ffaed45c2422696dcbcbf3352a223 cb84146252a24ca58f2f0aadd75637b3
+#: cd635099a7244fce89c4ada579760aa2 ceabfd7aadde40a6bd0187788f42fe63
+#: d2fc914712fd4d509601cb82adc7fa29 e716a2ea703447e99fb8098128be477b
+#: f1dc17b4456a4abcb7672aff7cfa689d f270dbfc6c3c4827a5cefa03a9488035
+#: fc31385cae5f4ed6875db7fe2cf658ed
+msgid "the unique name of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:361
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:420
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:643
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:702
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:891
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:941
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1225
+#: 1b815decd23b4e6f82763d460ad5d457 2ffebff9eaf54e9181ce5d39d8ffa85a
+#: 6bd2c7ca4fe74804a486ce2b7187104d 7329e56f05204255ac3e7f5064fbf8fa
+#: 779238b20ba743309076f363304fa1a9 bd551cf6e3f84fe4960694fad0b816ea
+#: e98badf531f949de9ea8c237cb6b5d9d
+msgid "icon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:361
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:420
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:643
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:702
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:891
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:941
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1037
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1075
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1188
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1225
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1250
+#: 2e14f355c83c4fc1aaf8823f35aa044f 3d4bc89d645e49f6bcb1d12f5206fece
+#: 8366cd4532c3493a901296538c9f4093 84042ce7510e419c907d37f6cb7a4045
+#: 8a9ca24b456441fd8dccb4e0589a6428 976320b1e31042ef926d254eab6ccaa9
+#: a54fdca6dc44439e8963fa27d9128209 ab12e376a25a48a9a7085995764733d0
+#: b5dc8208d05840d792ea0845de50e3a3 d36fdbcce5ba4de493039dfc1731eb44
+#: f21768fce38a48d1bf7f27e64ab01205
+msgid "the icon of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:364
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:423
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:646
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:705
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:894
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:944
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1031
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1069
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1182
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1244
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1310
+#: 0b634a2757bd491a810138e9f2133f6e 3b51b2ac9b7d47d29ab793d53d3dda51
+#: 4168f969d9894c5f86444bf2b3152f6c 6b0dc5d0e4f443e491c9dd919590265b
+#: 7954e60d108649a59d0be5b515bee1b9 90db59bfbc6a410aba4a03ff32f3d544
+#: 9e20ceb836bc4fa4a616e797457d1b9f abcf1aad2bee461985609fad8aef2ede
+#: b45a7e4b67a64ef0aae15c2e88345577 c228831f4e0e4242be85c2fdfeaab205
+#: dba5a9799d7c450280b4894737743e0e
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:364
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:423
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:646
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:705
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:894
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:944
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1031
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1069
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1182
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1244
+#: 02379d505bcb432f991231400fc64df8 10cbb64215ac4d158b0c1cd9ab7645c6
+#: 54e5ad5bce4e4fc898e450d6da19077d 5a93b39ee5af4c55ba9e2af302b13c8c
+#: 5cd34dd77e6144bda70d4dea7f7e5fab 67291be8d82b470499e57ae1550bb8f9
+#: 6c81065388534378b933428046477e91 99a22f7fa10443629dce09de5f529fa5
+#: a4e10efd7b614905ab60d0d1ba10cd4f e396cad394fd465392f59f057cbea2a1
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:367
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:395
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:426
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:457
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:649
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:677
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:708
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:739
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:897
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:922
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:947
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:975
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1034
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1052
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1072
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1093
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1185
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1227
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1247
+#: 095dc0f42fe84ba4abf07c151a6cc44d 1ed53105b0a04ae6b0b963a40e7892b2
+#: 3199dafcd6464842a2255f7702721821 4f3902ccea994154af7a8ac2b09300f9
+#: 69772d7111814388b541b2e5f48ea6bd 6a204e2f18aa4caeb29d0b1e36967baa
+#: 71577fa2fa0f41f5ac289d6ed4a5e249 8196da4be31b4d7993cf696c6cbb1daf
+#: 84784fdb15534ba48e2e012a1a60e0d3 a445ef210ee4494daed8a8a981375148
+#: b48bfe8dec384a37b12cd952ec790d14 be0dda41c2144352881a0c3394544e42
+#: be84e8c815d7444cafce318200cf160c c449920b0c6c4148b92f2bac1c139ba8
+#: d1c9dd78c1ab48ab980954db237a466d dded8bc23c1242949d4702728fbc87ef
+#: de852db119ce4c52ba6739d9999f5d62 e9a91b6b1b16412198296eca033fb67f
+#: f051b7f6a20f456ca6576400e085f64c
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:367
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:395
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:426
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:457
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:649
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:677
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:708
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:739
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:897
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:922
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:947
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:975
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1034
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1053
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1072
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1094
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1185
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1228
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1247
+#: 025ca0c71bfe46948c564a08047f426d 07affdde01f44ec0a3e9630b8d50e1ff
+#: 15c44f38a3754fe6823a83e2dca6b7e9 1bf0ca5ef25943d88ca45fde99a02a6a
+#: 43e3c22b19ff43f6a2bec1180e5aac82 52ea49a23d284662aa5d45f483058ceb
+#: 5f7fe479da2b4499b995216291965d4a 6046f4ef9dd541f980a66fdb4e9b04f1
+#: 6bed200ab5cc4de2a518872fedbc5b56 795215d705704d529755688cb0516b0e
+#: 7991a2e535e54a28a6f2bc2387a2c212 7a45b7112b544f73be94a95ad8e67fa3
+#: 8583a3a4da8348fd961368f61e3ed690 a27da18b99dc4fe3a09429b7ced54a7c
+#: a51b7444fdca40ebb5a488db30d5e9cf c132cc8bdad14125ab86a9302b8152d1
+#: c4aea5e304384118a2e69bc91499d178 cf8d60fe9def4955b76617dda2abd787
+#: d85876f429b542bcaef8655132321521
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:370
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:398
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:429
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:460
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:655
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:680
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:714
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:742
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:905
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:924
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:955
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:977
+#: 2d65e3e8859140528f19e33bad65bc2d 2fad75f015484c34a7d52b8412db8e88
+#: 56e7f1390a9546d1b9f528ae2a7b43bb 5767a1658dfe4f7b99ecd2c9ad4a5a80
+#: 60086a0265c2404c8938f0cc7d8e233e 6410c1887c42477e9deb73781990c702
+#: 68cd9b0168f54489bcedcb83938a5a2f 6cfaa3e031db4c88bc8d98d29d592fcf
+#: 744206d03d994ddaae010a0193d02945 83e7d85340b5403391bc88c250721d64
+#: f1e7d2d2c3a044f9900244c8bd90f9cd fedc52853e1643d8a8d03212858b5272
+msgid "position: NavigationItemPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:370
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:398
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:429
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:460
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:655
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:906
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:925
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:956
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:978
+#: 0f4a89ee24da439a8880781a4b160bb7 10349f4fbe9a470dac2536735e51793c
+#: 1ee42dc0690c43c2a0db4cf458f7f1fd 6d624fcb74eb4fc9b43d339bd574f210
+#: 6f717cdd22a54c9287f912b79fb7c6e7 7e2079dfb83c4d4cb4f94662c5486fe0
+#: 9bd3aca56c014ed6b9d1268603010622 a3edb6f9817a4afb9c7a0be916b18fdb
+#: c647bcd22f7b425ca21f56b8ab83eb79
+msgid "where the button is added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:373
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:432
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:652
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:711
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:900
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:950
+#: 1c6202d1e95e432a8a8a4f60ea2b8d47 2ef6c4c1deb54325948308b528cc570d
+#: 42de7ad3c0e442329f307b690bb4f275 635445f0b08a47529f69b7928b242dc5
+#: 88933ab69de54db0989436660ff3f40b adf995994bfa47adb822fb278a023d96
+msgid "selectable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:373
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:432
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:652
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:711
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:900
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:950
+#: 22b56950f5234e02a00ee2b4ef4c638c 54e81f764c9d484f8f8ba67f09a30714
+#: 889569738f574b669089d6eb61b2edda 9cfa6b7409ca408489ff52f1c8dac839
+#: c5a7251bd7524dca8eb5dab2bf782168 ee83394c6d644ed7b36304c570f65891
+msgid "whether the item is selectable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:376
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:401
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:435
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:463
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:658
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:683
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:717
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:745
+#: 14e86713aaa141a7854c0796632110d6 257c336446ee42e083fff4d71ecce4bc
+#: 2d46c9d0c1e041ed8ec929521510d0ee 35f1693091ff481387589e9c3d1a3f93
+#: 9bc7b86afa60485db81fc296e36adc45 b10bd53984ed494bbce8347ff0531bb6
+#: bcc5021130454e55a1a04cadc0e6b3af f057791b19af4a0a82e2ec469366c1b6
+msgid "tooltip: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:376
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:435
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:658
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:717
+#: 2fc8576492234af9bd1c0e77aa51c31e 4d6902931eef442cb8001ea251b1b566
+#: c9244e50d5f748f69155846f2034904c df9cb1c6ce1b434898299d8be5819263
+msgid "the tooltip of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:378
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:403
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:437
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:465
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:660
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:685
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:719
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:747
+#: 1bd62c2edfcd4ce787b8417af2f0e1c8 237014866c9547d3b1829c3ed8590547
+#: 296c75e034684c9f9260408550724422 2d1945894b1a425bacf699e6b6d3ece6
+#: 6c01f4dd09aa4227b09ea6cc05b6b052 92c7b2f70c4e4c0889d0c7a99293563a
+#: b3126e25b937432099bd53c4bbc83491 f54ede0e60e843a48aad86f7668ced7f
+msgid "parentRouteKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:379
+#: 1a6dd86e92f64fac874280d86b056978
+msgid ""
+"the route key of parent item, the parent widget should be "
+"`NavigationTreeWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:384
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:666
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:911
+#: 3640bba96d3c48c2899c0b27426d8499 7a46d9902cb444098237f70753e99723
+#: 89a8a86e3abf440abcd06015d57505ec
+msgid "add custom widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:392
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:454
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:674
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:736
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:919
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:972
+#: 2666b174396a477fad31d98eee311605 43bfa3ab77dd47ed9795bca3334a5064
+#: 5994fcaf6e7e4f5e96332237d5851e7f 6abac42bab00414abca3c1b0252892a8
+#: a55f31de7999416eaafc46b7b57584d4 b4bb64256380448984b2493bb4659e7e
+msgid "widget: NavigationWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:392
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:454
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:674
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:736
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:919
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:972
+#: 045db5dd6355437db5386d33e095d40f 30b3c8fdb70a4e599015aa8a79b7e920
+#: 33d37fab707a4fbc94e3b6c4d636d5f5 3983937db34546d89d222fc6d26e4793
+#: 700c229793f645dcbfaacac81cd77e02 a2f65bde7f1c46d992c1c913e895e6cf
+msgid "the custom widget to be added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:401
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:463
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:683
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:745
+#: 265e6cd9bccf43f2ba85632be7b45245 7049247bfc3a4985af7563e1f9ce6b7c
+#: 84e85c40bb6442138a91667ac833e910 abff714f756947dd8cff3de979287754
+msgid "the tooltip of widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:404
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:438
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:466
+#: 35a281dc97b546c19ea24ca2e981af3d 4d74db29c3d84f0cab7bf73da8f5f5ae
+#: bf369954ba5a411388d00b03c43dcb8d
+msgid ""
+"the route key of parent item, the parent item should be "
+"`NavigationTreeWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:409
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:930
+#: b1b031baa41542e4b2719b840acd980c e355c4c559f64e0ab86efd9e68858939
+msgid "insert navigation tree item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:414
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:448
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:486
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:696
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:730
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:768
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:935
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:966
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1063
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1085
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1176
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1238
+#: 010b62f63f524eb29bec4cfa91e9157d 3aba7340ced54b6eadc0c5f9721dec91
+#: 420572406ef640c19c0746ebe65282c7 521ea5fce7704564b13f8d874110ba26
+#: 621b870f5017486e93ffe2622f2cbae4 6859c10bd8c44d6eaadc2b48885b9322
+#: 857dec6870f54f40af9401404e7ba761 9eb6fb0f58354fafb4c9cd8197cce106
+#: a66efedd86af456b9c324f2a7ed59ff1 c778db5abd1f47b48c785a4038f412d6
+#: c81ef0dcfeb64b949dd0dd98c523d30d d86424937a7a430fb5b20a5f82e2712e
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:414
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:935
+#: 30499950e6aa43cda890c6f9a60f01bd fb31b0641be745988d3afa0522535a3b
+msgid "the insert position of parent widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:443
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:725
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:961
+#: 88fe88c482704e04b8386d9246fd9454 eef1e525b75240c283405df748ff7b92
+#: f38a98ec170d49538d0c2940dbba0303
+msgid "insert custom widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:448
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:486
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:696
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:730
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:768
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:966
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1063
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1085
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1176
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1238
+#: 0851676d8fe3435fb9a84cea7c4e47c4 3d9ff317573d40f8983d9b4138024a0a
+#: 5b0151d328ad4e3e831ba8f7332a7317 8895063df62344b695dca243f68b4565
+#: 8989fc5264564775916c3f2364d5557f a5347999fbec41d4a1347e86f5a3a39c
+#: a543455a5f0b4e359a4aeb5dbfc4195b b22c27808ad84982a22844616f43ce07
+#: d3099c23ffb5410fa99dcfbdcd124cf0 f074f13244cf471883a89610faa6f5b0
+msgid "insert position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:471
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:481
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:753
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:763
+#: c8dd1695852443b29fbf4501c279d5f2 d8c7c250b28d43b7ba8231b0eafd9207
+#: e54cc162e49c4df8a8e861e03bd7958d e8dea6fb44834a5993ecb834f64ce2c9
+msgid "add separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:475
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:488
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:757
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:770
+#: 0d983dded5124e9181c3e509a5b91ccc 13c4943e944242e5893fc1692fbc159e
+#: e4cc270885564e5f80d6ba6682735b08 f84b32eead764f2aa39a6bc2fe64fb3d
+msgid "position: NavigationPostion"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:476
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:489
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:758
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:771
+#: 1ab1eb4a08194092b373e5f3b6e5bf89 5a0e5c1cdb674722a6942598e0031652
+#: c5fbb6b2cba442abb5eea3596684f6f8 f37585bed3d04d5cb07750f37819eab0
+msgid "where to add the separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:494
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:776
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:983
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1099
+#: 116508471dcf4a878e417d3cbe2b998a 4bfd0648bc72406e9bf1d95abcb19d72
+#: 6b0de269bcf1445d9cf7aee5ee0858d5 a4e8119a31a5414e8a8f34a290cf84e9
+msgid "remove widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:504
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:816
+#: a08b26219b57431fb8a113126d1a3f68 a7683b2fe6cf40499977292cf62600bb
+msgid "set whether the menu button is visible"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:509
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:821
+#: 19aeff1571f5408c862743e621491d50 79da7f8fbfdc41e8876d94bf366cfd5c
+msgid "set whether the return button is visible"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:517
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:806
+#: 1549cc6f59844428bd0fc0d7040fadd0 4c40cb4eba3346edb98b08231a991e52
+msgid "set the maximum width"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:522
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:811
+#: 184ae4f578b04b7ca00d48019c94587b 5fa4a28a77c346b7ac398c821afd1feb
+msgid "Set the minimum window width that allows panel to be expanded"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:530
+#: 678b60737b3d48c28e6594b68f6e6978
+msgid "whether the acrylic effect is enabled"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:535
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:796
+#: 26cfcc22f36e4d10b48099902c08a5e0 8dcbfa51b5304b728fa3778dd284dd19
+msgid "expand navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:540
+#: 76c655178ddc4732949d51b7a35a0548
+msgid "collapse navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:545
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:801
+#: d30d2cb67a2f40a1b35d9c7613b48405 db59fdcbc32e4d48a4513eadc72f0e90
+msgid "toggle navigation panel"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:550
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:786
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:993
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1119
+#: 3df7faa711dc4fc2aeaca26022380ecc 5e6826cacf1f470ab0a9c9c9295d39ca
+#: 85b8f49735c745539c26ce4053d4468f 9b033703b5da4a8fa1b0222439a97eea
+msgid "set current selected item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:576
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:598
+#: 75482a586076484da17fbb1e81caae01 e1f93cefa6e54fb88c0b06b2a4e12991
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:640
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:671
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:699
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:733
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:780
+#: 60aa0e8a57c6497fa2a42ac46decbd5d 630e83fa752e432d840a4f61fcad7aa8
+#: 86202c3ddb194753977ad7dc5120b1a2 b48e0a8a781d43298f49f94d27262365
+#: ec92d56d2dc74c4ba0f4ef5c75d72735
+msgid "routKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:661
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:686
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:720
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:748
+#: 005a191c85f94be9bfec1745df7497b3 26ea12858cd14842916e13e1f29c0100
+#: 91e14c9c2ad6470fabee64886508e4aa e32b8d8317594ee2864189723cd15d26
+msgid ""
+"the route key of parent item, the parent item should be "
+"`NavigationTreeWidgetBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:680
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:742
+#: 02299539f3b9487e8b64243a788a4da3 7447af8740064a3eb0ac545868bb4253
+msgid "where the widget is added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:691
+#: c4b3fbdd97b94eaeb5263cf5ef186fb4
+msgid "insert navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:714
+#: f49f9442526d4640a6cdd4bb50ae63c8
+msgid "where the item is added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:790
+#: c567c24988644d8fa1e03bbc6e6cd6ba
+msgid "name: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:832
+#: 80eff3b677ad4b40b8a21bcb324b09ef
+msgid "set whether the acrylic background effect is enabled"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:847
+#: 47c8108e97dd4501975f863294d24592
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.navigation.navigation_widget.NavigationPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:903
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:953
+#: b7f21439a54c491fb5dc108c58ccce57 c18616922f2f461e89b3296dcc9a2560
+msgid "selectedIcon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:903
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:953
+#: 5565eed85c10478e92feefeb28e90969 c04aebb8ee90424bb050735ba5a15c70
+msgid "the icon of navigation item in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1003
+#: bcced05d26c1460f9f61c916294ea0cb
+msgid "set the font of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1008
+#: 925b2ff5c7d64c7691cf6bf318d5d140
+msgid "set whether the text is visible when button is selected"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1023
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1217
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1303
+#: 555a8b22223f4fad8b8089410930b3e8 adda991ba7914d2993945681c9b9c0e2
+#: e5f6e883c04b4b7f9bd7529aa7cb6672
+msgid "add item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1036
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1074
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1187
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1249
+#: 400fb35cea0a4d30951c9e09e11a9295 a672cd7c17e04005941bc3d9f18909ce
+#: ca2428fc61a143b497ca94458c1b552a e2028e5b43ea4f5ca49498a053edc6dc
+msgid "icon: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1042
+#: 8c57b20acf7e4c5f8e5db547b639bf84
+msgid "add widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1050
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1091
+#: d1e8d735f2e0485c871ea1ab9f57bb01 e50dbaa39dfb4b56b50c437348a902ea
+msgid "widget: PivotItem"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1050
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1091
+#: 0be09eaae6a8456ba826a4d44128cc5a c7a23d98785247d799bc7ae8aea61781
+msgid "navigation widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1058
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1080
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1171
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1233
+#: 59e99a390bc04f85b8a8670b7beb5363 725bbd34e22449e684ff7b84a742cb6c
+#: 9ae76c0b621842f59c12b5f45c2fcb65 e8557ad275254ef7a5ef7570c3650e2c
+msgid "insert item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1109
+#: fa021685d1a94bc59fbab51c43f506a9
+msgid "clear all navigation items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1114
+#: 12691942176644239966d31fa95f12f7
+msgid "Returns the current selected item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1129
+#: b19168067b9f4cfe9e40fe19fc899f1e
+msgid "set the pixel font size of items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1144
+#: 193453ee9bf64ef4b60ef21f354d36dd
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.PushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1158
+#: 02be0bf9f1b146c19b6f80249ed25f2a
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.PivotItem`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1165
+#: 53faf1e749554b03adccf2af453b704f
+msgid "Bases: :py:obj:`qfluentwidgets.components.navigation.pivot.Pivot`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1197
+#: 499237f68ab147ccbb9248aa5586aad4
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1211
+#: ce02f8d955ea48dda1adc4f5bc06f8b4
+msgid "Bases: :py:obj:`SegmentedWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1256
+#: 8e9b8c41df7341caa75477a4a8acbd45
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1261
+#: 25fb2cb0a5f34c45953b90f3b0cf82c8
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1262
+#: 203e01f43dfe40788ccf4772609c96a4
+msgid "TransparentToolButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1263
+#: ac069b26b2c74ff986be37d960aac32e
+msgid ""
+"TransparentToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: "
+"QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1275
+#: 5a2a7092bbae4acd981a50eed30611c9
+msgid "Bases: :py:obj:`SegmentedToolWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1308
+#: 6bff70d749e04084ac3e16a28b2815ed
+msgid "unique key of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1311
+#: 2064cef1843248569b9f8996ab21be60
+msgid "the text of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1334
+#: e340443d49474eacae2bb953f72801de
+msgid "clear all items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1339
+#: e7d2ef7f97eb42d68f3a117966503d83
+msgid "pop trailing item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/index.rst:1360
+#: e982de038fe8417798cdb85dba992e5d
+msgid "Bases: :py:obj:`BreadcrumbWidget`"
+msgstr ""
+
+#~ msgid "set the routing key to use when the navigation history is empty"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPushButton`"
+#~ msgstr ""
+

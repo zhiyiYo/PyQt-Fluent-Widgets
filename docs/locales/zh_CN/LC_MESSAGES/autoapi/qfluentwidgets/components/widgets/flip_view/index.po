@@ -1,0 +1,183 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:2
+#: 93996af6d61f439b8aaf901ea8299b76
+msgid "flip_view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:8
+#: 3ac038d93e294eb78698c57aca0b5960
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: bdf9d06b5a1047bdb9fe456268296df7
+msgid ""
+":py:obj:`ScrollButton "
+"<qfluentwidgets.components.widgets.flip_view.ScrollButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:27
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 07c51722406c4841aa929ddc8b727ef4 d21a263d0a4e4862b66f5e709cb9b259
+msgid "Scroll button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 4b8bd1599d1144588a8191b0630632ad
+msgid ""
+":py:obj:`FlipImageDelegate "
+"<qfluentwidgets.components.widgets.flip_view.FlipImageDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:49
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 45c7353b7e6c4e9b80d2342dc10f3eaa cfe503fc3621467aa7d3cd55f47937d3
+msgid "Flip view image delegate"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: c85c92222951479db6df8ae24bba45f8
+msgid ""
+":py:obj:`FlipView "
+"<qfluentwidgets.components.widgets.flip_view.FlipView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 2f51f7cd5222411593d88dee5f9184f0 433c4bdaaab3445ab4c2ae05dc37d687
+msgid "Flip view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 4b60130142df4c9a881535dde82eead9
+msgid ""
+":py:obj:`HorizontalFlipView "
+"<qfluentwidgets.components.widgets.flip_view.HorizontalFlipView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:179
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 347747110a174472bb83f331dc56c455 3634ddd7ca9a4df3b2f27ac2ecf435a6
+msgid "Horizontal flip view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 5575737a9b4448b092c671ea5d959238
+msgid ""
+":py:obj:`VerticalFlipView "
+"<qfluentwidgets.components.widgets.flip_view.VerticalFlipView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:186
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:22:<autosummary>:1
+#: 20e9e0d995bc4cb7bc7dc18fe56f647f 3eb8cbf7d24c4c678e5dc60d8cff3a2a
+msgid "Vertical flip view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:25
+#: 79a32c6692514e74b8cb4dbc99b69cb3
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:47
+#: 66c487d7852c4cfa82c5f7ed935ea1e9
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:63
+#: 53cc92ad365e491aaabbd60dbffddabe
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:68
+#: 19adfd26162141d3ad6692351c55dec2
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:69
+#: 8a69dea954a746c49761fe07796fdd7d
+msgid "FlipView(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:70
+#: 65621cda7bfb4173bc9191814d5bebe2
+msgid "FlipView(`orient`: Qt.Orientation, `parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:93
+#: d83218de19114e0a8822b20a940bb530
+msgid "set the size of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:98
+#: d1cb453a0cdf44afa2b7062b6aef4096
+msgid "get the size of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:103
+#: 54c393d9b71b4b7f8ed02f8145c6eac0
+msgid "set the border radius of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:111
+#: 3d8870fdf104472dbe1d340f6e9d732b
+msgid "scroll to previous item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:116
+#: 1fa79f5e137144a3baed61a951f625b0
+msgid "scroll to next item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:121
+#: aea13fb678c24fdbb30fc0e2a7d8bf8d
+msgid "set current index"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:135
+#: e2e4b2178a374ceb94b8528d75c1f2a1
+msgid "add image"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:140
+#: 2cfb39da30454cb9a2d5732e8ff96a99
+msgid "add images"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:145
+#: caff545ddaaa453892d0266665b1e656
+msgid "set the image of specified item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:150
+#: 296daca5770d4f36bf4579fe2c04a320
+msgid "get the image of specified item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:177
+#: ../../source/autoapi/qfluentwidgets/components/widgets/flip_view/index.rst:184
+#: a5bc8e6c33f3418590ef495eb8f18e92 c81965e661d34001b30bf99a24fbd1e4
+msgid "Bases: :py:obj:`FlipView`"
+msgstr ""
+

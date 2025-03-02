@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:2
+#: 5a06a6f9c0ac4f3bbb2b9c82ff3e1a70
+msgid "three_state_button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:8
+#: 8982562c122e4e6ebdf20444b40f92da
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:19:<autosummary>:1
+#: 162163db1d234fa1b9cc906959ce0367
+msgid ""
+":py:obj:`ButtonState "
+"<qfluentwidgets.components.widgets.three_state_button.ButtonState>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:19:<autosummary>:1
+#: 0b35e7a018b043f89bdb033e39c2cffe 1f79c589417d46679c7f9f467b8f4731
+msgid "Button state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:19:<autosummary>:1
+#: 5303dfcd61024493a0c13d53d7f36a02
+msgid ""
+":py:obj:`ThreeStateButton "
+"<qfluentwidgets.components.widgets.three_state_button.ThreeStateButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:46
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:19:<autosummary>:1
+#: 72062bca361447a6b416bb1b7be7fff4 93901e583aec44af82c87468c8e701b6
+msgid "Three state tool button class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:22
+#: 7cc03c186b70499491d521857626e8a6
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:44
+#: 6d33c27f14c84f0f80369394755b92b7
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/three_state_button/index.rst:53
+#: c9c83471920b4213985d6d58ac8e1744
+msgid "set the state of button"
+msgstr ""
+

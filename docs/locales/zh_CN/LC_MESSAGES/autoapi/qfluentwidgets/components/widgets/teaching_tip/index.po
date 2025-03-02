@@ -1,0 +1,519 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:2
+#: 4317733fd87e4a3d92c21e79d22bc979
+msgid "teaching_tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:8
+#: 385e17fc26da44638a0cccd9aac9adf6
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: fb1ed3b853f343fcbe2552c6e624c9ac
+msgid ""
+":py:obj:`TeachingTipTailPosition "
+"<qfluentwidgets.components.widgets.teaching_tip.TeachingTipTailPosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:41
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 70f5d0b52a764eafb8b8e322b27043bd 8270fef5fea4462a9ba8443eb4a1ef91
+msgid "Teaching tip tail position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: dfccc5f30324410792b8e4ae443e7fed
+msgid ""
+":py:obj:`ImagePosition "
+"<qfluentwidgets.components.widgets.teaching_tip.ImagePosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:113
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 083a118a158a497baf3a3793d270b7d8 0a96a52b88364d2e8b38182d8fdfb274
+msgid "Generic enumeration."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 39180a48e0a843b686e68c7b243e84d5
+msgid ""
+":py:obj:`TeachingTipView "
+"<qfluentwidgets.components.widgets.teaching_tip.TeachingTipView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:143
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 79901f5df6b04ddeb4ffa3a82fb486d1 f88ce3020b8f44faa3bd22efb03ff053
+msgid "Teaching tip view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: d19977ff097f4b2783932a47081a73da
+msgid ""
+":py:obj:`TeachTipBubble "
+"<qfluentwidgets.components.widgets.teaching_tip.TeachTipBubble>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:153
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 14c871994a70437bab74f2bd95c0790e 7e2dcf23b6c14042b9ba208a24962490
+msgid "Teaching tip bubble"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: c752a475c35945cf99c6c8b1752c837f
+msgid ""
+":py:obj:`TeachingTip "
+"<qfluentwidgets.components.widgets.teaching_tip.TeachingTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:166
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 6f110b4073174fd1848884b1e020f572 e0f989de811c48da95e737c36db82e7a
+msgid "Teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 4227e0381fb44b1fb764b66ec4126194
+msgid ""
+":py:obj:`PopupTeachingTip "
+"<qfluentwidgets.components.widgets.teaching_tip.PopupTeachingTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:257
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 40968b1f1cae474d8e29a93d54a0055e bffceae8d05f49fea96957007858ca45
+msgid "Pop up teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: e9ff25b8c35f4ac79a47c0ed277fdcc3
+msgid ""
+":py:obj:`TeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.TeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:264
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 8f16b0f483544021b04c17fafbdac883 daedffae4e05433cae5746aab24e4b28
+msgid "Teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 31d558258d844d409cc39298c8c7f210
+msgid ""
+":py:obj:`TopTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.TopTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:293
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: b495d4ede84342c1bf334a4cb3debaf7 c01ade55089d44d6b63da2f981b3d47f
+msgid "Top tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: d50839be4ddf4462885717f268883eac
+msgid ""
+":py:obj:`BottomTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.BottomTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:313
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 6df8d06da87647c6bb3826f526ad04cd 9a3b5dbbe7b44fdeb7c3586772491472
+msgid "Bottom tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 803ce3b04ec34609b520f259fedf44d0
+msgid ""
+":py:obj:`LeftTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.LeftTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:330
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:350
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 4af5d6960f594f29b58c8934247f1ef6 4dd8943b3db640c9a22e694a013cb8c6
+#: 7dcc87ce2fbf49c594d0ab03476663c5 97a9ab98d41a4210b178e41ea626d26e
+msgid "Left tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 208f5269d0e94427b7dd1f6d72010d61
+msgid ""
+":py:obj:`RightTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.RightTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: fddca84838f64223b97e2a9cde83095a
+msgid ""
+":py:obj:`TopLeftTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.TopLeftTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:370
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 5905ae97b8c8490d937b75761ca85ec2 a743f2452efa495cb8aad6804899553c
+msgid "Top left tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: b377da7ecddf4a52978244d57850cab4
+msgid ""
+":py:obj:`TopRightTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.TopRightTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:382
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 705e05c7534945ecb3c20bfa7891ecdc d3dbe30164a047a9bac4e6a38a6b9a7e
+msgid "Top right tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: ae391b531774424cbecb74d6182329b2
+msgid ""
+":py:obj:`BottomLeftTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.BottomLeftTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:394
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 695382e229b94afd932c59e983673170 d5c52c5ab2d04c4fb1b14d1a97e47b44
+msgid "Bottom left tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: d1bfc1ad6e424bceb91b759fa14bcc83
+msgid ""
+":py:obj:`BottomRightTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.BottomRightTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:406
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 0889b86e43a7402bb65b58c8b0ca94bd e4bce582b93a4a0db0d85ee9d1e2079e
+msgid "Bottom right tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 1cd954295a694003b4219709280c0026
+msgid ""
+":py:obj:`LeftTopTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.LeftTopTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:418
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 1a213a79713148c191e016e786613f6b 7ffeed364895475e9f5c767e5e1e3649
+msgid "Left top tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: d4d1107168c34a6ba313f434abbdb32f
+msgid ""
+":py:obj:`LeftBottomTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.LeftBottomTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:433
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 87ae8a921c254fd1a0a5f5da829c6ab8 d71c53041eaf4183900f2af43838857f
+msgid "Left bottom tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 2c09476c688348a19b5c6d30477954e0
+msgid ""
+":py:obj:`RightTopTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.RightTopTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:448
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 8aef107bf63f4c329c08ae0c04441947 95e91d6b1d7e4dd1acfaad6b41da2395
+msgid "Right top tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 9de36cbbac1c4497abec4c3b34786ab8
+msgid ""
+":py:obj:`RightBottomTailTeachingTipManager "
+"<qfluentwidgets.components.widgets.teaching_tip.RightBottomTailTeachingTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:463
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:36:<autosummary>:1
+#: 7406b1da3eda471385721119aa35bebd 8066f2a75fd34b67b574389100639fe8
+msgid "Right bottom tail teaching tip manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:39
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:111
+#: 2b62631f066742b4805ee7b826cc664f c6e06abe034d4ef3880105faad2e4cce
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:115
+#: 3411ddcd84e2450b8cfbc89e1e42098c
+msgid "Derive from this class to define new enumerations."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:141
+#: a6b76963a0654c018f77b3aabbbd0f64
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.flyout.FlyoutView`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:151
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:164
+#: 493cfda6654546869a4d9116d1641cf3 b36e4e6ecf92491ebad58af42f7eacbf
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:173
+#: 2ca039d38e004be78bec8d0a4e44c3c9
+msgid "add shadow to dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:187
+#: 2b1510ad15e84610822488e8e3937a07
+msgid "add widget to teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:197
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:222
+#: 1923a95f9b3a477299340155e12bbefd 696eaa59afba47458c36c81f713ecfac
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:199
+#: 520eaeb26adb4ca19de5d3ec7e2d2330
+msgid "view: FlyoutViewBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:199
+#: 341817d9d7f3419abc2ba1803ace60ac
+msgid "teaching tip view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:202
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:224
+#: 64ea0bc1da2a49d8ba95d2b6f7c16598 6c9aac8496a84ff789d8ccc856d9b496
+msgid "target: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:202
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:224
+#: 370c3536b87f4ac09038f278fefc025c d5090f8473a2498ba6644f4df168f8e2
+msgid "the target widget to show tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:206
+#: 77c65e46ccb24f44bb5c05a191a4aba4
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:205
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:242
+#: 24eb0941522a4e5a9f319df1290698c6 dd4c71bf569043df854031f7ece7628b
+msgid ""
+"the time for teaching tip to display in milliseconds. If duration is less"
+" than zero, teaching tip will never disappear."
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:209
+#: 46745f20f119455aa6890c82da6b2d95
+msgid "tailPosition: TeachingTipTailPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:209
+#: 9394e1acb32b431492df1b4aa8ccbd56
+msgid "the position of bubble tail"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:246
+#: 28c74e29758d4850bc9115a0016b46d4 d2f99fdb37e6414caa63104e64d0ac0c
+msgid "parent: QWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:246
+#: 1ba0bec09f8147178448942091014d82 7d171e65a4fc43259b24d903c1836f4b
+msgid "parent widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:214
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:248
+#: 7ab5411d4cda4125a91417ddcd964716 f61fb7de2f60421e98ee26053c4b27d9
+msgid "isDeleteOnClose: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:215
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:249
+#: 5727e73d620a40b0b30c013bbd3f9d0c 85eaa61992ce42358bc24f6dc772daaf
+msgid "whether delete flyout automatically when flyout is closed"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:227
+#: 9977bb532ad84c7f9d00e1b2bfec08ef
+msgid "title: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:227
+#: 7774931a607d4a159ba83483444e4359
+msgid "the title of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:230
+#: b40c92ebd8054a4da8d2d282b5347d20
+msgid "content: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:230
+#: a82db11393a8455d95764564bfeec7cc
+msgid "the content of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:233
+#: fcfa129861744cd6ad28c237cdff4575
+msgid "icon: InfoBarIcon | FluentIconBase | QIcon | str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:233
+#: 62ef3a64f8d344019d1995e476a14892
+msgid "the icon of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:236
+#: a013537ac5b7493bb027e60d885a2b18
+msgid "image: str | QPixmap | QImage"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:236
+#: 6064386ff09440c9b8887232668ca34a
+msgid "the image of teaching tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:239
+#: d90c4f3309f1423db2b09197094d5a25
+msgid "isClosable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:239
+#: aecf9d057d3b4e0c9e63565d8413cbde
+msgid "whether to show the close button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:243
+#: 79520c3c4e1f4565a90721121616c3a2
+msgid "duraction: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:255
+#: 1bc22b7dd65d4961a6e1e96a43d484b7
+msgid "Bases: :py:obj:`TeachingTip`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:262
+#: 9cc694c3659b434187b344e9c099b481
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:268
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:297
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:317
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:334
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:354
+#: 5ddbc2985fe54dd387b907fcfd52da7e 5fb55958c68a45708586495e43f4fde3
+#: 699b908fb7b54a53a506c321806e8cc0 9615bd26719247b38b448ace9c3e5df3
+#: cb0d7a7106ab4c878560bc9ae1f6f52a
+msgid "manage the layout of tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:279
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:305
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:322
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:342
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:362
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:374
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:386
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:398
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:410
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:425
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:440
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:455
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:470
+#: 1535a28022234316ad4d5207bc14f1e5 3b5892dd2e584d9994256e49c2553886
+#: 4070e09d0dc24a75a9cce935f01aa722 452c13ea7ac04666bfc6d49efcf970a9
+#: 47a9d37db976475b9f6aeaf88f52fb2f 65adda8e627f4475827a18573b8af50d
+#: 6b0fa79c7dc148948a7e986262b0f44d 96b816e2b8724f47a2bfae5903dd246d
+#: 97f5128dfab44e629252c555fbe170a8 9b266dc49a0449a99a85b0c667f2217c
+#: ded05dacef96496c9658d4fe40a44558 dfa934cdd4914cd5b8434b7d3167e8c0
+#: fd6df7a0d950457bb41c094af79f03e6
+msgid "draw the shape of bubble"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:285
+#: 9156554e924f42be84cd56ade9392434
+msgid "mask teaching tip manager according to the display position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:291
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:311
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:328
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:348
+#: 139aac1ef70545d68ea60bb0232ab97d 20bd374e678c4e6490effe1b373758fb
+#: 29cb0519810b451bb9949200d47eafcf 44ea2104cf634a618d663a795e90969f
+msgid "Bases: :py:obj:`TeachingTipManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:368
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:380
+#: 07153d2f4f03482ba29d8176ca6fc161 0a35119b8af44111b88cd41f4f3bd0c7
+msgid "Bases: :py:obj:`TopTailTeachingTipManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:392
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:404
+#: 5a797a2623dc4d1e96faed5f038000d4 62b4989b87b2442e95dc11180c7f8a0c
+msgid "Bases: :py:obj:`BottomTailTeachingTipManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:416
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:431
+#: a7358e2c8df44e43a6413c63a0aad6d5 b54ad56440024a369dbe59022d676f0b
+msgid "Bases: :py:obj:`LeftTailTeachingTipManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:446
+#: ../../source/autoapi/qfluentwidgets/components/widgets/teaching_tip/index.rst:461
+#: 11d40ab5a0f444cba8a944809616a87d 4e91b0ee920c41178daf9e57761a0a7e
+msgid "Bases: :py:obj:`RightTailTeachingTipManager`"
+msgstr ""
+

@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:2
+#: a416af89d6f74c5a9bcd9fecb8d14b28
+msgid "pips_pager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:8
+#: 00f0f4361d9d49e4a2056d295b95e3ba
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 4d66618a4d6942b59ec19cfdf63ffb04
+msgid ""
+":py:obj:`PipsScrollButtonDisplayMode "
+"<qfluentwidgets.components.widgets.pips_pager.PipsScrollButtonDisplayMode>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:28
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: cf7b8d91d548412eade94b89bce3d955 f29eb97f4b7f477699085d0434043da7
+msgid "Pips pager scroll button display mode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 7af649377f904e2a81019f279376dd37
+msgid ""
+":py:obj:`ScrollButton "
+"<qfluentwidgets.components.widgets.pips_pager.ScrollButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:50
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 4c948928192c4e7ab68569c5c10f66b1 8bc669c0f2144939a6a66836b6ddb9b2
+msgid "Scroll button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 4b411f93e489426b8fe4ddd8cd555e7d
+msgid ""
+":py:obj:`PipsDelegate "
+"<qfluentwidgets.components.widgets.pips_pager.PipsDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:60
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 28c529e043b34295ab9c6e1c333b8a7f f454ad47b29c46239cdc4b7094d99c4e
+msgid "Pips delegate"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 24cdc51cfcc94eefa8a650a78f647e06
+msgid ""
+":py:obj:`PipsPager "
+"<qfluentwidgets.components.widgets.pips_pager.PipsPager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:76
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 5a3c81b9e4984fe0998e6db664a7a899 e1b70a63adf74e0aadedce226c198753
+msgid "Pips pager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 90de42249eff4fecbb4001779e256463
+msgid ""
+":py:obj:`HorizontalPipsPager "
+"<qfluentwidgets.components.widgets.pips_pager.HorizontalPipsPager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:178
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 469dabbbc27c4f8687d816ae8b9e4fe5 6df0bdeeb4be4055807baa3ddbeff0f7
+msgid "Horizontal pips pager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: 2a865f656e324145bd9cc0d127f1a239
+msgid ""
+":py:obj:`VerticalPipsPager "
+"<qfluentwidgets.components.widgets.pips_pager.VerticalPipsPager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:185
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:23:<autosummary>:1
+#: cfdfa86a040447088f5e9783fbef8336 f4268923c32748daa85eefc68db62a7a
+msgid "Vertical pips pager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:26
+#: 2ea8aa3b219a45d8bdd4f87cc1d978fa
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:48
+#: 56c625d136c546e9b16df16433cd652a
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:58
+#: c3f03652eede48ef9eafa0a17c9b43f9
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:74
+#: 08c6043f6d1c4743a07d71c1a1082203
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:79
+#: b3bf044cae164a73b9a3c58e3346d84b
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:80
+#: 464a1ebbf76e48388bc1423835781696
+msgid "PipsPager(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:81
+#: ec4afdee5fa74bde84d9c500fb9224d3
+msgid "PipsPager(`orient`: Qt.Orientation, `parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:97
+#: 77e8151c52bd4a68b3408f1e1eeb2809
+msgid "set the number of page"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:102
+#: 07455616fd3a40558cae1641feb81540
+msgid "get the number of page"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:107
+#: 8a0be6aa05b54ed289df3b941e2d1893
+msgid "get the number of visible pips"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:115
+#: b1a24c3bb940484581fac2e319e7dc2a
+msgid "scroll down an item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:120
+#: a46ca0d0acd4488bba2acca7bb5b5706
+msgid "scroll up an item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:125
+#: 471f10c799644d1d85051642c0ecb125
+msgid "scroll to item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:136
+#: 3daee727e90746ce961fea6f0cc703a2
+msgid "set current index"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:150
+#: 0cba522dcb884d989cb232705f605ad8
+msgid "set the display mode of previous button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:155
+#: a3d12b1fe8f64f9dbea1aee252d2f2cd
+msgid "set the display mode of next button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/pips_pager/index.rst:183
+#: 2c596bf9e1d94acab20cee9ed88b98eb 558f9b2cc6ae4056a91314317ba4f373
+msgid "Bases: :py:obj:`PipsPager`"
+msgstr ""
+

@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:2
+#: cb81bca7294c45549d21154abdcac824
+msgid "separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:8
+#: 71953b7c6801419b98666facc849b809
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:19:<autosummary>:1
+#: 89cfa3d38d9f4381b46192d6bca7dcbf
+msgid ""
+":py:obj:`HorizontalSeparator "
+"<qfluentwidgets.components.widgets.separator.HorizontalSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:24
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:19:<autosummary>:1
+#: 065a17d23b2b4be895687e4015f1b147 68fedd2aea6049e598decc0bfa397224
+msgid "Horizontal separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:19:<autosummary>:1
+#: f8688ffba777499c8c6433775cf5b76a
+msgid ""
+":py:obj:`VerticalSeparator "
+"<qfluentwidgets.components.widgets.separator.VerticalSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:19:<autosummary>:1
+#: 276637b794174be3b800b922f93c417f 741cf16afb3f438bbf02866b5611d513
+msgid "Vertical separator"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:22
+#: ../../source/autoapi/qfluentwidgets/components/widgets/separator/index.rst:32
+#: 7c3ba7d7a1dd4c809527e8d21937aee4 c6cf10e58f1b4a13bab0c6477ae86ca8
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+

@@ -1,0 +1,277 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:2
+#: f11ead0854aa4bcb8a0ee40d1045a9e7
+msgid "tool_tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:8
+#: feab92947ccb403a90e7531af48caa93
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`ToolTipPosition "
+"<qfluentwidgets.components.widgets.tool_tip.ToolTipPosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 567edc3c7f1c4bf0a0f6fe35ea1bae1f
+msgid "Info bar position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 16337f22eba24ded8e977f8dc81c6a80
+msgid ":py:obj:`ToolTip <qfluentwidgets.components.widgets.tool_tip.ToolTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:81
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 08fde2e992d94c9f8a96590364b1e8e7
+msgid "Tool tip"
+msgstr "工具提示"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`ToolTipPositionManager "
+"<qfluentwidgets.components.widgets.tool_tip.ToolTipPositionManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:118
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 567edc3c7f1c4bf0a0f6fe35ea1bae1f
+msgid "Tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`TopToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.TopToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:134
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "Top tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`BottomToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.BottomToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:141
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "Bottom tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`LeftToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.LeftToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "Left tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`RightToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.RightToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:155
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "Right tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`TopRightToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.TopRightToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 77e7fc413308447a97369c4e49fbe1ed b3a2454a75fb4c4b90458e9a64c59871
+msgid "Top right tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`TopLeftToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.TopLeftToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:169
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "Top left tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`BottomRightToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.BottomRightToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:176
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 7844c4b8c4cf46a29fd7e617de45219f
+msgid "Bottom right tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`BottomLeftToolTipManager "
+"<qfluentwidgets.components.widgets.tool_tip.BottomLeftToolTipManager>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:183
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 7844c4b8c4cf46a29fd7e617de45219f
+msgid "Bottom left tooltip position manager"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: ca108326b9d1428c8bf60009115cb30e
+msgid ""
+":py:obj:`ToolTipFilter "
+"<qfluentwidgets.components.widgets.tool_tip.ToolTipFilter>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:190
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:29:<autosummary>:1
+#: 8ad3d749e15e4fc98d1e144c5dba9d55
+msgid "Tool tip filter"
+msgstr "工具提示过滤器"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:32
+#: b6e857c28f3540978e2c3fc4d1ca0bec
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:79
+#: b6e857c28f3540978e2c3fc4d1ca0bec
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:88
+#: f66c5a4fb6414827bb0ee1b04a73b5ca
+msgid "set text on tooltip"
+msgstr "设置文本"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:96
+#: 094095f6cadc4a4b8f282cd1d7be1b6b
+msgid "set tooltip duration in milliseconds"
+msgstr "设置显示时长"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:99
+#: f38e6f0e981443b086c4c8da632432b9
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:100
+#: 80262f27b63d4eaeb458ec5ff5fe2a75
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:101
+#: cbcb5a12941148968591ff27fc306c9e
+msgid ""
+"display duration in milliseconds, if `duration <= 0`, tooltip won't "
+"disappear automatically"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:112
+#: 7844c4b8c4cf46a29fd7e617de45219f
+msgid "adjust the position of tooltip relative to widget"
+msgstr "调整工具提示相对小部件的位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:126
+#: 49b0c5af285448e49e4ee664a93cddbc
+msgid "mask info bar manager according to the display position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:132
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:139
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:146
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:153
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:160
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:167
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:174
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:181
+#: b6e857c28f3540978e2c3fc4d1ca0bec
+msgid "Bases: :py:obj:`ToolTipPositionManager`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:188
+#: a9abc5d61b3b4b4389487eb20a879e89
+msgid "Bases: :py:obj:`PyQt5.QtCore.QObject`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:197
+#: 1b1804c7223a48f592e14cca9cebd566
+msgid "hide tool tip"
+msgstr "隐藏工具提示"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:202
+#: 25f03b618e194907a6ef957f6c769b7d
+msgid "show tool tip"
+msgstr "显示工具提示"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/tool_tip/index.rst:207
+#: c1fe90709a674748a68bed5f481054b7
+msgid "set the delay of tool tip"
+msgstr "设置显示工具提示前的延迟"
+
+#~ msgid "pos: QPoint"
+#~ msgstr ""
+
+#~ msgid "global position of widget"
+#~ msgstr "小部件的全局位置"
+
+#~ msgid "size: QSize"
+#~ msgstr ""
+
+#~ msgid "size of widget"
+#~ msgstr "小部件的尺寸"
+

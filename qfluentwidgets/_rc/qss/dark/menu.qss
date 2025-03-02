@@ -1,0 +1,80 @@
+RoundMenu {
+    background-color: transparent;
+    border: none;
+}
+
+
+MenuActionListWidget {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+    background-color: rgb(43, 43, 43);
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+MenuActionListWidget[transparent=true] {
+    background-color: transparent;
+}
+
+MenuActionListWidget::item {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
+    border: none;
+    color: white;
+}
+
+MenuActionListWidget::item:disabled {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+MenuActionListWidget::item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+MenuActionListWidget::item:selected {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+MenuActionListWidget::item:selected:active {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#completerListWidget[dropDown=true],
+#commandListWidget[dropDown=true][long=false] {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+#commandListWidget[dropDown=true][long=true] {
+    border-top-left-radius: 9px;
+    border-top-right-radius: 0px;
+}
+
+#commandListWidget[dropDown=false][long=true] {
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 0px;
+}
+
+#completerListWidget[dropDown=false],
+#commandListWidget[dropDown=false][long=false] {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#completerListWidget::item,
+#comboListWidget::item {
+    margin-top: 4px;
+}
+
+#checkableListWidget::item {
+    padding-left: 36px;
+}

@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/license.md:1 11da607e933e4e1f865cca02812cd23f
+msgid "License"
+msgstr "许可证"
+
+#: ../../source/license.md:2 df1685a476c940cb8892acb23fd1bed0
+#, fuzzy
+msgid ""
+"Non-commercial usage is licensed under GPLv3. For commercial purposes, "
+"please purchase on official website to support the development of this "
+"project."
+msgstr ""
+"Python 组件库非商用的许可证为 [GPLv3](https://github.com/zhiyiYo/PyQt-Fluent-Widgets/blob/master/LICENSE)，如果你的非商用项目使用了组件库，**必须使用 GPLv3 许可证进行软件分发**。Python 组件库商用需购买[商业许可证](https://qfluentwidgets/zh/price) 以获得商用授权，同时商业版也包含更多的组件。"
+
+#: ../../source/license.md:4 5c4bbd2874da4ff685402bb70509e5e0
+msgid "Copyright © 2021 by zhiyiYo."
+msgstr "版权所有 © 2021 zhiyiYo."
+
+

@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:2
+#: e5e298c2358f47248092723257da617a
+msgid "setting_card_group"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:8
+#: 08e3bd3187344d888ca850aa7b97298c
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:18:<autosummary>:1
+#: e149f5848fab4d4681b7765078a4b07f
+msgid ""
+":py:obj:`SettingCardGroup "
+"<qfluentwidgets.components.settings.setting_card_group.SettingCardGroup>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:18:<autosummary>:1
+#: 35a9f7d1e860440f910e34165696ef56 74b5a72bb4a14afea7ccb0c9b6a7245a
+msgid "Setting card group"
+msgstr "设置卡组"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:21
+#: 31a44f4f10a5496092d89bde0eb1ce7c
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:27
+#: d9dd9a64e501435b8046f3bc8a7f7bb3
+msgid "add setting card to group"
+msgstr "添加设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/setting_card_group/index.rst:32
+#: 17676eeab1b34a5ba4b00e40a5f7a923
+msgid "add setting cards to group"
+msgstr "添加多个设置卡"
+

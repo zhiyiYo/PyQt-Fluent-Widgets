@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:2
+#: 9f0a571fc5954820b6db273c39c3e5aa
+msgid "icon_widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:8
+#: 210a7754a902482ab85976c1e3548ee9
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:18:<autosummary>:1
+#: 27378891a4a14a809daa49c66fb429b7
+msgid ""
+":py:obj:`IconWidget "
+"<qfluentwidgets.components.widgets.icon_widget.IconWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:18:<autosummary>:1
+#: 7bdf5445fbb04138afb0027f47514835 e31d3edb612e42d2be751d3332294f85
+msgid "Icon widget"
+msgstr "图标部件"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:21
+#: 7feab8d4c6ba4ef5926f56126d99bea4
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:26
+#: f473efd2643f44ec8e54707248843e87
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:27
+#: 67ebbcb3b2264de3be0fe354ec745fbd
+msgid "IconWidget(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/icon_widget/index.rst:28
+#: f099593338694172a72230b80acd7736
+msgid "IconWidget(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None)"
+msgstr ""
+

@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:2
+#: 8eba898d85b345f284b08093dbc73c68
+msgid "expand_setting_card"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:8
+#: e27a192f02664174bc90e9383ece116a
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 57d876d940da485fa92f0959b283fe85
+msgid ""
+":py:obj:`ExpandButton "
+"<qfluentwidgets.components.settings.expand_setting_card.ExpandButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:29
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 4689e66811e14144becf6ae29aa9a246 523cc9259a2b4bc6bc3a1e9348ce0429
+msgid "Expand button"
+msgstr "拓展按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 8f55c3a9f01e46e3b0633c8af9139ad8
+msgid ""
+":py:obj:`SpaceWidget "
+"<qfluentwidgets.components.settings.expand_setting_card.SpaceWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:67
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 856989f42273401abf942d4124eab242 efcde3f2db834e7ea3eaff5c433865da
+msgid "Spacing widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: a5cddf35bdf7400db1c9ac4117825329
+msgid ""
+":py:obj:`HeaderSettingCard "
+"<qfluentwidgets.components.settings.expand_setting_card.HeaderSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:74
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 3f2d44fea7a94d86a902e907aab0fb28 3f8c6306e8f340ce8425eef2e8404f8b
+#, fuzzy
+msgid "Header setting card"
+msgstr "手风琴设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 500ba3c0e13b483983e3b35cdec74cf7
+msgid ""
+":py:obj:`ExpandBorderWidget "
+"<qfluentwidgets.components.settings.expand_setting_card.ExpandBorderWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:92
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: d2d68037604748058895b34c0925a2a8 e89edde94a864bb78a90b35efe695c72
+#, fuzzy
+msgid "Expand setting card border widget"
+msgstr "手风琴设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: fbb14b1c27f147b18dd42f988e902dda
+msgid ""
+":py:obj:`ExpandSettingCard "
+"<qfluentwidgets.components.settings.expand_setting_card.ExpandSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:105
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 28e6c5f57b7545479c72a7264885d21c f85a252b0e82443d9cbc6ecb4917c6dc
+msgid "Expandable setting card"
+msgstr "手风琴设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 0f50db84a67f4e2fa3be2c75b4c8a5f7
+msgid ""
+":py:obj:`GroupSeparator "
+"<qfluentwidgets.components.settings.expand_setting_card.GroupSeparator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:138
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 198f82c677f441babc031e3c1fbbf318 4d721729f25043708989764d3f137c5f
+msgid "group separator"
+msgstr "组分隔符"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: 50c85427a36f423eb6a26cd585c2f7f0
+msgid ""
+":py:obj:`ExpandGroupSettingCard "
+"<qfluentwidgets.components.settings.expand_setting_card.ExpandGroupSettingCard>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:148
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:24:<autosummary>:1
+#: edaf9218a9484cb7b33ef30e6000a430 fc7aa8e4533c4fa681b08cc212de194a
+msgid "Expand group setting card"
+msgstr "分组手风琴设置卡"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:27
+#: d948590377634d47b401a22151431974
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QAbstractButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:90
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:136
+#: 07410c5df73b45b682e091c1cc9dbf02 bdc881469a05472a80cf1894c66161dd
+#: de96cf3cf3ad40a38d7d930012d71f07
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:72
+#: 8ce833011a4245e780950f60d226921b
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.settings.setting_card.SettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:81
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:109
+#: 97b036a6d6dd44079ad711a79888c0ea f94226f8b04745ea9299d266cc2bf439
+msgid "add widget to tail"
+msgstr "添加小部件到末尾"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:103
+#: 4a4e5ff0cbcf48a2800e22a687d6157d
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QScrollArea`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:117
+#: 1355ce2cbab44c3690a8107a70e88f66
+msgid "set the expand status of card"
+msgstr "设置卡片的展开状态"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:122
+#: adf24a2967b445428319670bbf9210e8
+msgid "toggle expand status"
+msgstr "切换卡片的展开状态"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:130
+#: 80977159f7034646aeffb071608fca94
+msgid "set the value of config item"
+msgstr "设置配置项的值"
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:146
+#: 5b9016a21646461cb46fb5b8882c4257
+msgid "Bases: :py:obj:`ExpandSettingCard`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/settings/expand_setting_card/index.rst:152
+#: 945826a38ad446be8035bc42f3305de8
+msgid "add widget to group"
+msgstr "添加小部件到组中"
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+#~ msgstr ""
+

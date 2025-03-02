@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:2
+#: cbc766157f49459280ba7e0a01202315
+msgid "line_edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:8
+#: f0a5c9794b514c229856a2e60d043123
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: a2b13674dce145beab9bcb23466ef5d4
+msgid ""
+":py:obj:`LineEditButton "
+"<qfluentwidgets.components.widgets.line_edit.LineEditButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 3346cce5cd594211bfac47f97a6634e5 bf85f7c4acb543ddada1aa3b607be65c
+msgid "Line edit button"
+msgstr "单行搜索框按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 254b12ce9d164c128453533bb1fa54cf
+msgid ""
+":py:obj:`LineEdit "
+"<qfluentwidgets.components.widgets.line_edit.LineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:46
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 8961de90fe8a4623a386b5aec441d71e a44cb5d6eea54bf88120044e74585493
+msgid "Line edit"
+msgstr "单行编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 5a7828fe89dc4605a46efda9619fe8d1
+msgid ""
+":py:obj:`CompleterMenu "
+"<qfluentwidgets.components.widgets.line_edit.CompleterMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:87
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 68eae1a9059e4691b3b9aac0c360f89b 95b446bbe8bb4e28945de985d2a4fbb4
+msgid "Completer menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: d9875c3d70b046ae9bcac3a767a0fa41
+msgid ""
+":py:obj:`SearchLineEdit "
+"<qfluentwidgets.components.widgets.line_edit.SearchLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 45d0cbddde994fbba42ca1f8e6e245e6 8c3a521fd5b14a9a88b2b348b29d9c52
+msgid "Search line edit"
+msgstr "单行搜索框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 0a19173393ee497eb9cbe58467cb96f3
+msgid ""
+":py:obj:`EditLayer "
+"<qfluentwidgets.components.widgets.line_edit.EditLayer>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:139
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 7d476838653040e88fa7579da780b709 fe24f86be9a840b0b96e806f6523f799
+msgid "Edit layer"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 6ca5221ddc28411e9512ba75d174bc1e
+msgid ""
+":py:obj:`TextEdit "
+"<qfluentwidgets.components.widgets.line_edit.TextEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:152
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: ecf56f7591c24cccbfb9e4822955528b f636ff2092b647f0b4b6e754d66432e5
+msgid "Text edit"
+msgstr "富文本编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 947f77c14cb54ec68240290ca71e72e1
+msgid ""
+":py:obj:`PlainTextEdit "
+"<qfluentwidgets.components.widgets.line_edit.PlainTextEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 04f843616103479b82ba5e2a43058a11 7b20b960f2e54104bdeeac39d6ed9b53
+msgid "Plain text edit"
+msgstr "文本编辑框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 18b957c51bc64b438ecfac28e81defda
+msgid ""
+":py:obj:`PasswordLineEdit "
+"<qfluentwidgets.components.widgets.line_edit.PasswordLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:172
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:25:<autosummary>:1
+#: 3a41118c824349e0a26ded8db0ec8152 b20b49a3959443b0a49363616cef45b1
+#, fuzzy
+msgid "Password line edit"
+msgstr "单行搜索框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:28
+#: b8081e2fb287482589d60006ddc1881f
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:44
+#: 30da6c2b7ab243ceaeddbc60cb5df4e1
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:68
+#: d3b1faa7970d43ee903e9b47a6fc6d48
+msgid "set completer menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:71
+#: 3148667e2fa243b1961edfd33eb5478a
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:72
+#: b42326886b0a4319b5a62284783aeffb
+msgid "menu: CompleterMenu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:73
+#: dbf6c2de0ab84c269cbf073ffc47d251
+msgid "completer menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:85
+#: 3836de429bb043899511bbc2d4de1619
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:95
+#: 11987c1409be4edaa110dc56af92feec
+msgid "set the completion model"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:100
+#: 96b45fd0ca2f4d2cac9c5beb7547e97a
+msgid "set completion items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:108
+#: ce4f2e35d29c4b75abdb975f6ae7dd00
+msgid "show menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:114
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:170
+#: f23b4979b39b43bb83d2dd45b363fa14 f2c0050e364848a2b13f96d9d75b8429
+msgid "Bases: :py:obj:`LineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:128
+#: de8ca9d11673469fab72078fc6cca419
+msgid "emit search signal"
+msgstr "发送搜索信号"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:137
+#: 883a423796c848efaa5e9d8d08293ac0
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:150
+#: e20848a1625e48188d1d7abfe803307f
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QTextEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:160
+#: b88b6af6a71c499bb1c061da13ae93b4
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QPlainTextEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:180
+#: dbf55248f1a34ae19d9ae22006f57791
+msgid "set the visibility of password"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/line_edit/index.rst:191
+#: d1032d580e894e109b6f53b7df3e3e97
+msgid "set the visibility of view password button"
+msgstr ""
+

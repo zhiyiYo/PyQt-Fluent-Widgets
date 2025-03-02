@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:2
+#: 0d959fe535504189beea848e106259a5
+msgid "switch_button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:8
+#: bb0bf4ae5e9f4a3c889e6bcc125b5c1a
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: 71506fdcea20406cbe3cb5081a9ca899
+msgid ""
+":py:obj:`Indicator "
+"<qfluentwidgets.components.widgets.switch_button.Indicator>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: 3a19f0bd3bc743cdb87acc6250ae954d d57734235f544e1d9a7314bd7fcfa01c
+msgid "Indicator of switch button"
+msgstr "开关按钮指示器"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: 3f0f3d2ed0664fdd9308fa0a0c375b84
+msgid ""
+":py:obj:`IndicatorPosition "
+"<qfluentwidgets.components.widgets.switch_button.IndicatorPosition>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: 53d7877cdef94f929a676a006fa60869 9ba864aca88f43149746de8db1cf7b62
+msgid "Indicator position"
+msgstr "指示器的位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: a78f2ace12e1437889b32a73930bad58
+msgid ""
+":py:obj:`SwitchButton "
+"<qfluentwidgets.components.widgets.switch_button.SwitchButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:82
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:20:<autosummary>:1
+#: 177ae3e40be14f019a9298414b6799db 6a7ba16f058240f09bc90c0f82c5079b
+msgid "Switch button class"
+msgstr "开关按钮"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:23
+#: 6c9d2fff25fb4c12aecb53f9ca9d1f15
+msgid "Bases: :py:obj:`qfluentwidgets.components.widgets.button.ToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:37
+#: 69aea7cbf6e541ffa8d0015a0b048af9
+msgid "toggle checked state when mouse release"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:51
+#: bfdd6559280543e58a77ece9a02ba141
+msgid "paint indicator"
+msgstr "绘制指示器"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:63
+#: e2198eb58c944959b776418766e0a4a2
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:80
+#: bbe943ff535b4b06a9b29fee9858ae82
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:85
+#: 9f14713f82c44cf9a605dafdb1329596
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:86
+#: 2df5263f11bc455b9680177926c47ac1
+msgid "SwitchButton(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:87
+#: 4db7e11337fa4f5585983a38816d7f48
+msgid ""
+"SwitchButton(`text`: str = \"Off\", `parent`: QWidget = None, "
+"`indicatorPos`=IndicatorPosition.LEFT)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:121
+#: 99cb554932954637b99ba9bf2fab4085
+msgid "set checked state"
+msgstr "设置开启状态"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/switch_button/index.rst:126
+#: 7f93c46a3cca41eabcd38b934876a7d9
+msgid "toggle checked state"
+msgstr ""
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+#~ msgstr ""
+

@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:2
+#: a5212053d88a49efa0e13405fe9825b7
+msgid "state_tool_tip"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:8
+#: a30c38a4525548609f34c6848e0c2ae5
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:19:<autosummary>:1
+#: bf1656321c9c4cfba63e6c4fd8e0cf55
+msgid ""
+":py:obj:`StateCloseButton "
+"<qfluentwidgets.components.widgets.state_tool_tip.StateCloseButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:19:<autosummary>:1
+#: 37fe766cdc2e44618f16057f7d94271f
+msgid ""
+":py:obj:`StateToolTip "
+"<qfluentwidgets.components.widgets.state_tool_tip.StateToolTip>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:44
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:19:<autosummary>:1
+#: 207205fdd71543daadad004901153513 4494c2ec717c4f0d8fc3ba7984afa433
+msgid "State tooltip"
+msgstr "状态提示条"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:22
+#: 41f4c5c42d0f4e2d8fff84b7c9dcb44c
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:42
+#: 83f2002e76b340fb8dd13e44c752f768
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:52
+#: c19694cbef9645d28218ea0e8cebaed5
+msgid "set the title of tooltip"
+msgstr "设置标题"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:57
+#: 7d5ad7cab31e4f6c9bc991b9dce29677
+msgid "set the content of tooltip"
+msgstr "设置内容"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:62
+#: a0de60b8446d4e158a83894044812d73
+msgid "set the state of tooltip"
+msgstr "设置状态"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:67
+#: d302f95995874769aedd01e0fa4d4a45
+msgid "get suitable position in main window"
+msgstr "获取主窗口中合适的弹出位置"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/state_tool_tip/index.rst:72
+#: 9630c8b4e56245648efc924ee9812e4c
+msgid "paint state tooltip"
+msgstr "绘制状态提示条"
+

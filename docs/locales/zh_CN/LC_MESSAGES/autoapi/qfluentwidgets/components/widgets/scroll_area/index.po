@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 00:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:2
+#: 8128049cb556441c8860d5d434a5d0ea
+msgid "scroll_area"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:8
+#: 69af16caf22047899cb826fdd8109222
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:20:<autosummary>:1
+#: 2c29e907af394021943752fad97376f2
+msgid ""
+":py:obj:`ScrollArea "
+"<qfluentwidgets.components.widgets.scroll_area.ScrollArea>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:58
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:20:<autosummary>:1
+#: 45853103191e4db68f0b88da9aa86d50 6033faa8039b4911bef5b4b532ca0516
+msgid "Smooth scroll area"
+msgstr "平滑滚动区域"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:20:<autosummary>:1
+#: bced6f7a6ab243859172172cde2f0771
+msgid ""
+":py:obj:`SingleDirectionScrollArea "
+"<qfluentwidgets.components.widgets.scroll_area.SingleDirectionScrollArea>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:20:<autosummary>:1
+#: 2435822825fa42f384a51e7ffc97d66b 499eacda8b1348e29f67a90e2b344bb7
+msgid "Single direction scroll area"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:20:<autosummary>:1
+#: 50422d78b51d4b91859d1f48f828835f
+msgid ""
+":py:obj:`SmoothScrollArea "
+"<qfluentwidgets.components.widgets.scroll_area.SmoothScrollArea>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:30
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:56
+#: 23ed169458604073a9d43b5441869444 f37a76b0f37b4c479d1ff4305b5870ea
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QScrollArea`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:42
+#: da690f8cc29f4814858f25279d9ea8db
+msgid "set smooth mode"
+msgstr "设置平滑滚动模式"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:45
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:65
+#: 1f52ef3368f348a49be39507244a9c6a 540687fc35a343949e0afd6192f2de66
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:46
+#: bbc2218b18be40049c50e721e90c1747
+msgid "mode: SmoothMode"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:47
+#: 969b1757fbcf4adc980a8d73bc24f5ae
+msgid "smooth scroll mode"
+msgstr "平滑滚动模式"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:62
+#: df225ff9b59c486d8fdabf60f9102c71
+msgid "set scroll animation"
+msgstr "设置滚动动画"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:67
+#: ad4bdae39da44a89a5b68909dc1975bd
+msgid "orient: Orient"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:67
+#: bc33d43d6180492087c46eee52504c8d
+msgid "scroll orientation"
+msgstr "滚动方向"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:70
+#: 74f56512531340af90569e83e24c8de5
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:70
+#: 661bab107d46481a99803481cd0fe3f6
+msgid "scroll duration"
+msgstr "滚动时长"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:72
+#: ddad79a80ec741598ea5ec63bcd4702b
+msgid "easing: QEasingCurve"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/scroll_area/index.rst:73
+#: e82b7a0f2f6f4936bd3c3f3d7fadbd0f
+msgid "animation type"
+msgstr "滚动动画插值方式"
+
+#~ msgid "A scroll area which can scroll smoothly"
+#~ msgstr "可以平滑滚动的滚动区域"
+
+#~ msgid ""
+#~ ":py:obj:`SmoothScrollBar "
+#~ "<qfluentwidgets.components.widgets.scroll_area.SmoothScrollBar>`\\"
+#~ msgstr ""
+
+#~ msgid "Smooth scroll bar"
+#~ msgstr "平滑滚动条"
+
+#~ msgid "Bases: :py:obj:`PyQt5.QtWidgets.QScrollBar`"
+#~ msgstr ""
+
+#~ msgid "scroll the specified distance"
+#~ msgstr "滚动指定距离"
+
+#~ msgid "scroll to the specified position"
+#~ msgstr "滚动到指定位置"
+

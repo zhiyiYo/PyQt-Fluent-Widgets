@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:2
+#: 5d19e17628524df48a9cb7f96c0fd00a
+msgid "image_utils"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:8
+#: afef364212c94d1a9c646f0ed0b60aa1
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
+#: 1550453d4a354f27a95b0316ac7ff5ec
+msgid ""
+":py:obj:`DominantColor "
+"<qfluentwidgets.common.image_utils.DominantColor>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:37
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:19:<autosummary>:1
+#: 157d1c22276842a6b95ccb4e28278505 3bf4f372a8554b77a3b74516c39c8fbe
+msgid "Dominant color class"
+msgstr "主题色类"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: 6d7593741b314ddfbdd48932d24ef89a
+msgid ""
+":py:obj:`gaussianBlur <qfluentwidgets.common.image_utils.gaussianBlur>`\\"
+" \\(image\\[\\, blurRadius\\, brightFactor\\, ...\\]\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: ac4c114310ad4ff88c8b75d86e21c6ba
+msgid ""
+":py:obj:`fromqpixmap <qfluentwidgets.common.image_utils.fromqpixmap>`\\ "
+"\\(im\\)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>
+#: bf7a7892f8e54da0ace681e8637475ce
+msgid "param im"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:32
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:26:<autosummary>:1
+#: bcf776b1938c4766bcfd7d5c01f2e56f f19b6977b6664d54bbe9dcbe456fea71
+msgid "QImage or PIL ImageQt object"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:45
+#: 257f6d3d4fec41a995d1ceab57e24f92 3a023afacd9a4f3f8b58eef5c7528c8a
+msgid "Parameters"
+msgstr "参数"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:42
+#: 1f9d160b5eae44a9a23c4d9aeeac4217
+msgid "extract dominant color from image"
+msgstr "提取图片的主题色"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:47
+#: a488bce459a548bf9b011083b099b522
+msgid "imagePath: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:47
+#: 05c6d63007eb4d709f77831220eb7216
+msgid "image path"
+msgstr "图像路径"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:50
+#: 073ce032eb85478882f84f91d633840f
+msgid "Returns"
+msgstr "返回值"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:51
+#: 22dc1f81dda14dcab115dadf8c50a496
+msgid "r, g, b: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:52
+#: 2da734e559db44c0ad272abf4729417a
+msgid "gray value of each color channel"
+msgstr "各个通道的灰度值"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:58
+#: df43537176ab4d6b9adba8c9e5776d03
+msgid "convert rgb to hsv"
+msgstr "将 rgb 转换为 hsv"
+
+#: ../../source/autoapi/qfluentwidgets/common/image_utils/index.rst:64
+#: 5b62c50a04794ea6a8dc953dffc32341
+msgid "convert hsv to rgb"
+msgstr "将 hsv 转换为 rgb"
+
+#~ msgid ""
+#~ ":py:obj:`gaussianBlur "
+#~ "<qfluentwidgets.common.image_utils.gaussianBlur>`\\ "
+#~ "\\(imagePath\\[\\, blurRadius\\, brightFactor\\, "
+#~ "...\\]\\)"
+#~ msgstr ""
+

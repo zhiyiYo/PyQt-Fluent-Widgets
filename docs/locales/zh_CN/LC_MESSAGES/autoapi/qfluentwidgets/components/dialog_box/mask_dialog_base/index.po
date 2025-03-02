@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:2
+#: 7dfc5e362ca642ce941455abe8f1f30e
+msgid "mask_dialog_base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:8
+#: 778aaff3f38a45d3985c36d280b1d388
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:18:<autosummary>:1
+#: c4b63c4442294efca10ea89c3b0cdfbc
+msgid ""
+":py:obj:`MaskDialogBase "
+"<qfluentwidgets.components.dialog_box.mask_dialog_base.MaskDialogBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:18:<autosummary>:1
+#: 7bd08e5b10174f398e27bfeb47188753 8926760f0a8049c8abb35f5ddf403fc6
+msgid "Dialog box base class with a mask"
+msgstr "带遮罩的对话框基类"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:21
+#: 01dc7c672e3c487d8dcc572e829c3fb2
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QDialog`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:27
+#: 62c60051645e47f49afb4b4bb054ee7c
+msgid "add shadow to dialog"
+msgstr "给对话框添加阴影"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:32
+#: fce9ace825124e5eaf349474d083948b
+msgid "set the color of mask"
+msgstr "设置遮罩颜色"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:37
+#: addfbd5f8af94d038541af0c4cd9327e
+msgid "fade in"
+msgstr "淡入"
+
+#: ../../source/autoapi/qfluentwidgets/components/dialog_box/mask_dialog_base/index.rst:42
+#: 14993efa7567493c9e252cba8caf052f
+msgid "fade out"
+msgstr "淡出"
+

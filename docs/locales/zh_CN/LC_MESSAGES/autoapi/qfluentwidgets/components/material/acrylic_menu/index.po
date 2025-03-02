@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:2
+#: 99b928d0cd884c548becb696ece36850
+msgid "acrylic_menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:8
+#: 23eb973a0fa048ebbb73d1660f29d2d8
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 856e6561b7d846ad91697a4dd56ef23e
+msgid ""
+":py:obj:`AcrylicMenuActionListWidget "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicMenuActionListWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:31
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:73
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 1dc2c8e4b1114b3e9832ac35f1a7c3c1 354be05d8e454a4980778b82f8ed01b3
+#: 3f784a31793f4dceb8f67d5ec52e8a89 5873d361dfe8404990f8cb3abc276312
+msgid "Menu action list widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 9da3a829ef484d329c326f0fc4ed4efd
+msgid ""
+":py:obj:`AcrylicMenuBase "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicMenuBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: eb5549e87e49464181e357f03f6ec062
+msgid ""
+":py:obj:`AcrylicMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:66
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 1f9f01315c2940029c46c99bab64713e 90c27543d7a5426cbebd367d61bca937
+msgid "Acrylic menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 3b1d51dd90ad4530b0d0590019abd14c
+msgid ""
+":py:obj:`AcrylicCompleterMenuActionListWidget "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicCompleterMenuActionListWidget>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 673bb9ee7a614d74b3baf70b5f5f4c74
+msgid ""
+":py:obj:`AcrylicCompleterMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicCompleterMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:83
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 6a647557f95843d4b1db0c3f047d023b e48378a777c64eadb8bd037f91b1a98b
+msgid "Acrylic completer menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: bd8d049d57c44fc98a4394e9df5e488e
+msgid ""
+":py:obj:`AcrylicLineEditMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicLineEditMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:95
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 0cf905142bf34af59377a77daf84569a a7499d2e90da4e69bf7053a0bef9f55f
+msgid "Acrylic line edit menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: caf3855693f74b418bdcb16d86e9dec4
+msgid ""
+":py:obj:`AcrylicCheckableMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicCheckableMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 2a910df349cf4472bd70cbb7203eda47 c694ef8fd85f45ea9bd45208a9b479ff
+msgid "Checkable menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: ff24f004da14490f814c666c306a6e93
+msgid ""
+":py:obj:`AcrylicSystemTrayMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicSystemTrayMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 5353d14a60b54fd08790251766aaffe5 d0bb34d89efd47929208740002e710e2
+msgid "System tray menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 116a2bcff18b43dda74462d8f375a900
+msgid ""
+":py:obj:`AcrylicCheckableSystemTrayMenu "
+"<qfluentwidgets.components.material.acrylic_menu.AcrylicCheckableSystemTrayMenu>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:26:<autosummary>:1
+#: 36a235cfc2fc4b268a416f33435eec3f e1870521b7b64d908005aff27cbfcad9
+msgid "Checkable system tray menu"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:29
+#: f723b1c2001d4c51bbde7fb640a41bff
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.menu.MenuActionListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:35
+#: ec23b0b7a1424ee1a1dadee03a764814
+msgid "set the height of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:40
+#: 0fd20cfdcd2d4dfb92728eb125a3de94
+msgid "add menu item at the end"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:64
+#: 383758261c094cb5841c7fe91ad5e9d9
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.RoundMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:71
+#: b14bc594f3754594aa21b63f55d9c5c3
+msgid "Bases: :py:obj:`AcrylicMenuActionListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:81
+#: 4c077f562dff493395db46c9f1ac4794
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.line_edit.CompleterMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:87
+#: fbe8ed45e7b944ca8af81eb5d1db0216
+msgid "set completion items"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:93
+#: 1adabc90bb2948ed80828e20f57a469f
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.LineEditMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:100
+#: fee6ffc530f74cfab60f4a0e3c671cd3
+msgid ""
+"Bases: :py:obj:`AcrylicMenuBase`, "
+":py:obj:`qfluentwidgets.components.widgets.menu.CheckableMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:107
+#: dc1f863cd86e4b268c4ba34ab50c8029
+msgid "Bases: :py:obj:`AcrylicMenu`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_menu/index.rst:117
+#: 4039abe723524afcadd975658331a975
+msgid "Bases: :py:obj:`AcrylicCheckableMenu`"
+msgstr ""
+

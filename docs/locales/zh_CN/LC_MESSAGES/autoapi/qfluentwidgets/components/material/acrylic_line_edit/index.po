@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:2
+#: 78d042f85f4d423d98c1ff288d2c66db
+msgid "acrylic_line_edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:8
+#: 5ffc63fbd4324c8d9352926cfdc239af
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: cb161490f369428dbd2a97bb21b6ec77
+msgid ""
+":py:obj:`AcrylicLineEditBase "
+"<qfluentwidgets.components.material.acrylic_line_edit.AcrylicLineEditBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:23
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: e6b04f42905541138a53a93604c4b21b f701556d4ce846f7aa20b942bd71d477
+msgid "Acrylic line edit base"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: e9999d8aab3a4ecab0e0c9a4d2904cb7
+msgid ""
+":py:obj:`AcrylicLineEdit "
+"<qfluentwidgets.components.material.acrylic_line_edit.AcrylicLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: 0f5a12006eb6486c99ee253a6ab21816 8a26f37b4f374a81ae882b3984ad6f9f
+msgid "Acrylic line edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: e146fcb0f61340e2a48825fd819c639f
+msgid ""
+":py:obj:`AcrylicSearchLineEdit "
+"<qfluentwidgets.components.material.acrylic_line_edit.AcrylicSearchLineEdit>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:43
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:20:<autosummary>:1
+#: 2a58939c19e546079171d46aade18313 362007dfbf534545b60e7386fe2d041c
+msgid "Acrylic search line edit"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:34
+#: 885c5319a0ad4c07bf002547d004fd3d
+msgid ""
+"Bases: :py:obj:`AcrylicLineEditBase`, "
+":py:obj:`qfluentwidgets.components.widgets.line_edit.LineEdit`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/material/acrylic_line_edit/index.rst:41
+#: d1bb3723f3f24b8e8922ee0e449c6270
+msgid ""
+"Bases: :py:obj:`AcrylicLineEditBase`, "
+":py:obj:`qfluentwidgets.components.widgets.line_edit.SearchLineEdit`"
+msgstr ""
+

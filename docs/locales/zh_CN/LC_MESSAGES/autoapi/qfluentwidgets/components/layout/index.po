@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-22 20:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:2
+#: 96e79c9cafa74860a254d8bd3f0ad393
+msgid "layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:19
+#: d569e9782823405a91898f6fd7ae63c5
+msgid "Package Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: b6b2c90cc00d4ca09a002810c1573367
+msgid ":py:obj:`ExpandLayout <qfluentwidgets.components.layout.ExpandLayout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:36
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: d04ca71477294d48b7a3786ccc35f00e e1e96ab1d44d426e83e1a2f52e8c22b9
+msgid "Expand layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: e36a5a8600b246f194559b62dd2dfb7f
+msgid ":py:obj:`FlowLayout <qfluentwidgets.components.layout.FlowLayout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:81
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: 99117f8211444f58991505f08f077eb3 cf138ffb7ae9446daafffe59d0007467
+msgid "Flow layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: cf9d15078c654d0daf262796fdefb03f
+msgid ":py:obj:`VBoxLayout <qfluentwidgets.components.layout.VBoxLayout>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:166
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:31:<autosummary>:1
+#: 0885755835a74963994d39d44c70c0d8 d4a8fa1317db437b952403a64f81db40
+msgid "Vertical box layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:34
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:79
+#: 5ace85f5a95e49108023b2f1dbbc8a7c ade4618b433f4acca364c8c90814487e
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QLayout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:61
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:129
+#: 2c9a48847b7646a580a6a48237a331a6 ab970e23e93248008e724007595d06cd
+msgid "get the minimal height according to width"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:91
+#: 4db80e9b5d92469a9cdd040d79f72a20
+msgid "set the moving animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:94
+#: 8a8d5143807746faa54b3efe60e38d6c
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:96
+#: 7ab4902fc62c49f0a55bbc3f662314db
+msgid "duration: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:96
+#: 56054ef59b6f433ba4e9805d156ba344
+msgid "the duration of animation in milliseconds"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:98
+#: e1a523c0a3804b49a4ad4b4b865c0042
+msgid "ease: QEasingCurve"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:99
+#: a73f1b8409ce480f8c012161826776aa
+msgid "the easing curve of animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:113
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:190
+#: 850eb8c7af7a462dbed6e6227b5e9d9c b18ea7d082b74d7d9927b20818fecd2d
+msgid "remove all widgets from layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:118
+#: 05c79b33505a4c87a8e82cb7b31c5a07
+msgid "remove all widgets from layout and delete them"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:143
+#: 16ce1a4d6d1b4df9be06e377a927199e
+msgid "set vertical spacing between widgets"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:148
+#: 8b90109498dc47d2b7125c0405596472
+msgid "get vertical spacing between widgets"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:153
+#: 9e87dbb6b8d742b6a4bed46004a91d45
+msgid "set horizontal spacing between widgets"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:158
+#: c0cee318b1de492cb3f89e985247251b
+msgid "get horizontal spacing between widgets"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:164
+#: d8725a7b33d14f109695e270081f117a
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QVBoxLayout`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:170
+#: 850cc3cc9c794bfd9ebebce934f26609
+msgid "add widgets to layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:175
+#: e5a96aa7613d47aa9be2b09b8c1f12df
+msgid "add widget to layout"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:180
+#: c38371454466401bb073918edbb0e973
+msgid "remove widget from layout but not delete it"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/layout/index.rst:185
+#: 90fb0d27db7b4894807b3e2e89748329
+msgid "remove widget from layout and delete it"
+msgstr ""
+

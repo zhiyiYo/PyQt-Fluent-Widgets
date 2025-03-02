@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-08 09:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/see-also.md:1 266216d8c8e346e5ab081bd521af9917
+msgid "See also"
+msgstr "另见"
+
+#: ../../source/see-also.md:3 c121d97ac2534484978fa6aa50a7a83e
+msgid "Here are some projects that use PyQt-Fluent-Widgets:"
+msgstr "下面是一些使用了 PyQt-Fluent-Widgets 的项目："
+
+#: ../../source/see-also.md:5 fbafb6641b8b48f68113b28560b9a50b
+msgid ""
+"zhiyiYo/QMaterialWidgets: A material design widgets library based on "
+"PySide"
+msgstr ""
+
+#: ../../source/see-also.md:10 6719d4497e2b4347923e13cdd44335b0
+msgid "zhiyiYo/Groove: A cross-platform music player based on PyQt5"
+msgstr ""
+
+#: ../../source/see-also.md:15 0a5b6db27f5e4cee958e362b70ecc897
+msgid "zhiyiYo/Alpha-Gobang-Zero: A gobang robot based on reinforcement learning"
+msgstr ""
+

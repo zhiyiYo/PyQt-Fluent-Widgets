@@ -1,0 +1,297 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:2
+#: ce5cfff4ae9b43e787f062153982d41c
+msgid "navigation_bar"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:8
+#: 34ef3c77f6184b8193c469cbd0cb360e
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:20:<autosummary>:1
+#: 472bf92f0b694e50838090a9d6198cfd
+msgid ""
+":py:obj:`IconSlideAnimation "
+"<qfluentwidgets.components.navigation.navigation_bar.IconSlideAnimation>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:20:<autosummary>:1
+#: 91ac25e0ce544fe488f0c5ab342e3aa6 f0330667de5948599e5c6a49ac6213f9
+msgid "Icon sliding animation"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:20:<autosummary>:1
+#: 52c30b0f74bb4120ba7b4fee8fdf5d32
+msgid ""
+":py:obj:`NavigationBarPushButton "
+"<qfluentwidgets.components.navigation.navigation_bar.NavigationBarPushButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:52
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:20:<autosummary>:1
+#: 9a1fe06564194b60a5460f5e0cedc17b f37d668c4c9547df8b40174c62b54699
+msgid "Navigation bar push button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:20:<autosummary>:1
+#: 9a545c9d890044598fe79d647d005189
+msgid ""
+":py:obj:`NavigationBar "
+"<qfluentwidgets.components.navigation.navigation_bar.NavigationBar>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:23
+#: 4666c603b0e74d0bab55390b4dd922b7
+msgid "Bases: :py:obj:`PyQt5.QtCore.QPropertyAnimation`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:39
+#: f682614676124117b3b75ce12e355f63
+msgid "slide down"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:44
+#: 4fd44da9aee04de8831e41907af5e240
+msgid "slide up"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:50
+#: a3a49982f1134ebbb2d548b49cb953d6
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.navigation.navigation_widget.NavigationPushButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:68
+#: acc3faa55d734d3b877cdc8dc7f45f7b
+msgid "set whether the button is selected"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:71
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:89
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:117
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:136
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:167
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:189
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:199
+#: 28387652d22647bd990eea5d9ba66c2a 46a7b55b29774814947f2f91843a9c83
+#: 5b8fbc08659343a5b064974c343167d1 72d601f751e44591b206ae601c9a0ceb
+#: 77220a626ac64fc9b0693d4ff5eefec2 aa2ed2c18e6a4371b9220d222eed0c70
+#: e5894d40a797494d8e18f52642799fed
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:72
+#: 2196962cbec44aaa8c88ae937c023e66
+msgid "isSelected: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:73
+#: 06f9a093fe12430986e05df0977292c4
+msgid "whether the button is selected"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:79
+#: 054f5de9ec754ca7b7f0a67c23c8e028
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:86
+#: 17c373d8d09d4c24a3fcea1977ee5ccb
+msgid "add navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:91
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:141
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:172
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:190
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:200
+#: 106cf706042546298bb54dedc8cae1b8 37094fc0d3404c4b868fb0f41009d1f8
+#: 42d5670c41cc48eb85145195fc6df9d2 5582c519aec94334afb30a8676319d21
+#: 60661aa2bde34a379dd82d4787fcbd7a f33d383e108b4026bd2072dfd0664f85
+msgid "routeKey: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:91
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:119
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:141
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:172
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:191
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:201
+#: 1e0b60297e0b43c1ab4b85c8075372a5 36731e84ae774adf9c8f1be593c95b84
+#: c3ccfce691b146c88cd80b615c2d19f2 e1361dffa90543068efd971e8796b4f5
+#: f05826a1a1274eeb984cc9a5f01fdf50 f52718bd8c794abfb70829631550f719
+msgid "the unique name of item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:144
+#: 651b8b56481447da92e9994c8a1bbc73 ffa05bb0ec13455e8ca78007731d7a02
+msgid "icon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:94
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:144
+#: 071eea9fe573460ab26d7afaf2d3d249 56dff639a4044e768df148e639cd7721
+msgid "the icon of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:97
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:147
+#: 326d8699410f46848be9b7260797d4fe b5d81faacd464621adb289559716f29e
+msgid "text: str"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:97
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:147
+#: 485cbd1259054cc4aa624d6fbd45e031 a6ed1df411e84fe1b53afac5ff8aff9d
+msgid "the text of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:125
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:150
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:178
+#: 396493c7736e46c0a02ac3326588d581 3f0c7a31428942abae5ce3aa93be2579
+#: 82ae2cb1ae7842b0bac3ea44a3ac8f72 8b2f5578af034d069f09d71078621ded
+msgid "onClick: callable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:100
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:125
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:150
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:178
+#: 15d0bd1c10524bd6a34cfbe4d3656a24 4a122c067c944cbe96b9ec18cb7c14f3
+#: 50f052f4e0504ba590e38e697417e621 b53725b63cbb4b0d8d00fd934ccd9906
+msgid "the slot connected to item clicked signal"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:103
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:153
+#: 274521aeaac44d34a05f0247d5463c88 f5ea799a4cc6400583875f56ccabc28f
+msgid "selectable: bool"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:103
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:153
+#: 1274c85708fd40f981aaa8fe564389dc 6a5cc08206cf4d1c8971af4b4ad70d63
+msgid "whether the item is selectable"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:156
+#: 538bf64f31a64596875bdeafe25d4461 7fbcf63977c74d45a31c80ca9f55b7fe
+msgid "selectedIcon: str | QIcon | FluentIconBase"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:106
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:156
+#: 4900e26213ef4f3193036a959b3c4c34 f50164d9dcb246299c47000333bf3aaf
+msgid "the icon of navigation item in selected state"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:108
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:127
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:158
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:180
+#: 107921cf0cd545c49e9725372bcc5d32 4ba236166edd4de69ddf8bc72ed7d493
+#: 6028e47b1c2e4fe5a078c22c67277de8 d107e71d19894d12b298e3ab80e929c9
+msgid "position: NavigationItemPosition"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:109
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:128
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:159
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:181
+#: 1067dbd72fc743e99b4061c797b7876e 7827f371995640f89edcee76c957937a
+#: 87d4c384d873460bb6e4834c81e94936 cebe42a6eef5465f898bfdd11c9f3d7f
+msgid "where the button is added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:114
+#: d0d3056143d64290b8f8fa515c6afd66
+msgid "add custom widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:122
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:175
+#: 230a32eca16b44ceb77bbc5975766a00 e14a225079b1474f846ba12b06713378
+msgid "widget: NavigationWidget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:122
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:175
+#: 95ef0f17db844660a062982c1a802859 fd258a91a8dc4eb6a4e2df7a229a5858
+msgid "the custom widget to be added"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:133
+#: 1449266abdb5492dba8f0ca9c0937a99
+msgid "insert navigation tree item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:138
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:169
+#: 13619f682842409789f60c9f900527ce 80cc3cce0c464497b2135703ead3b0fb
+msgid "index: int"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:138
+#: 60da5898c00b4e898cdc07f3bc857865
+msgid "the insert position of parent widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:164
+#: 121bcfc73196415e8aac3806379a49b2
+msgid "insert custom widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:169
+#: c960ec0e8123473ba273a716eb678a5d
+msgid "insert position"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:186
+#: 49122452a2a641bea3a0db9379ce2ff2
+msgid "remove widget"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:196
+#: e716dd3140084c38ab0ae65853192add
+msgid "set current selected item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:206
+#: 09cf2a358b77440cb904b6eb8d06f6a3
+msgid "set the font of navigation item"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/navigation/navigation_bar/index.rst:211
+#: c2a0718451d14a3b9b4bba7813187ea2
+msgid "set whether the text is visible when button is selected"
+msgstr ""
+

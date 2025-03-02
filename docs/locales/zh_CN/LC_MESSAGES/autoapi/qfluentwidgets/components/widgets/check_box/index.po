@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 16:27+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:2
+#: 35343b587f5c4ddf924cec88bfea4dd7
+msgid "check_box"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:8
+#: 8eea5d05955543c98b94637e08888fea
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: b5b1a9c0d0c14bbab2f6b682990ce3aa
+msgid ""
+":py:obj:`CheckBoxIcon "
+"<qfluentwidgets.components.widgets.check_box.CheckBoxIcon>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:25
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: 5aeb50478d1d4ef8abf839b2a4ba8060 b79a24833cc0424db12d6790c6505d94
+msgid "CheckBoxIcon"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: 9a7dc76f98bd4f058f830a0148cc29f6
+msgid ""
+":py:obj:`CheckBoxState "
+"<qfluentwidgets.components.widgets.check_box.CheckBoxState>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:55
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: d5237589c23741cf80f25377f1ed0c49 e3098487eae9460dbe2dbfabb38ebf89
+#, fuzzy
+msgid "Check box state"
+msgstr "复选框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: 953399aa70554afba9c72ba9542349d9
+msgid ""
+":py:obj:`CheckBox "
+"<qfluentwidgets.components.widgets.check_box.CheckBox>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:102
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:20:<autosummary>:1
+#: 97cfc81e5cbe4dc3b2e27be6a72ea205 f47bbf0f00a44938a37f328e65c7ed3e
+msgid "Check box"
+msgstr "复选框"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:23
+#: 1aa0bd31c89e432bac1f97bc480d5582
+msgid ""
+"Bases: :py:obj:`qfluentwidgets.common.icon.FluentIconBase`, "
+":py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:39
+#: 2e2c0007b9d64ddda25ae1fcefc9f9d1
+msgid "get the path of icon"
+msgstr "返回图标路径"
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:42
+#: 92f39495bf724b739cef7046872fa2ce
+msgid "Parameters"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:46
+#: e0d10ce22fd34564a6175a2a8c32e43b
+msgid "theme: Theme"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:44
+#: 2f61ae333f5b4c9f81c9661299d6404c
+msgid ""
+"the theme of icon * `Theme.Light`: black icon * `Theme.DARK`: white icon "
+"* `Theme.AUTO`: icon color depends on `config.theme`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:53
+#: 5a07a16962d44f0a8c67168a17e99455
+msgid "Bases: :py:obj:`enum.Enum`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:100
+#: 39b4f56a47b4467aa6f6ac02d78205b0
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QCheckBox`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:105
+#: 75deec3de0534292aaca728e5523684d
+msgid "Constructors"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:106
+#: 9ad4c3a31ddb407d84a9a1eccdcdedf9
+msgid "CheckBox(`parent`: QWidget = None)"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/widgets/check_box/index.rst:107
+#: 8008b11c9f874e7f9d178726c532b128
+msgid "CheckBox(`text`: str, `parent`: QWidget = None)"
+msgstr ""
+
