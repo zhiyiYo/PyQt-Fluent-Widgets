@@ -1,0 +1,4 @@
+FlipView {
+    background-color: transparent;
+    border: none;
+}

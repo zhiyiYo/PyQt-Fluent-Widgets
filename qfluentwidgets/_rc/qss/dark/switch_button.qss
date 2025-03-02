@@ -1,0 +1,20 @@
+QWidget {
+    background-color: transparent;
+}
+
+SwitchButton {
+    qproperty-spacing: 12;
+    background-color: transparent;
+}
+
+SwitchButton>QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+SwitchButton>QLabel:disabled {
+    color: rgba(255, 255, 255, 0.36);
+}
+

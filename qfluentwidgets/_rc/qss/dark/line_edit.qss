@@ -1,0 +1,53 @@
+LineEdit, TextEdit, PlainTextEdit, TextBrowser {
+    background-color: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5442);
+    border-radius: 5px;
+    /* font: 14px "Segoe UI", "Microsoft YaHei"; */
+    padding: 0px 10px;
+    color: white;
+    selection-background-color: --ThemeColorPrimary;
+    selection-color: black;
+}
+
+TextEdit, PlainTextEdit, TextBrowser  {
+    padding: 2px 3px 2px 8px;
+}
+
+LineEdit:hover, TextEdit:hover, PlainTextEdit:hover, TextBrowser:hover {
+    background: rgba(255, 255, 255, 0.0837);
+}
+
+LineEdit:focus[transparent=true] {
+    background: rgba(30, 30, 30, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+LineEdit[transparent=false]:focus {
+    background: rgb(31, 31, 31);
+}
+
+TextEdit:focus, PlainTextEdit:focus, TextBrowser:focus {
+    border-bottom: 1px solid --ThemeColorPrimary;
+    background-color: rgba(30, 30, 30, 0.7);
+}
+
+LineEdit:disabled, TextEdit:disabled, PlainTextEdit:disabled, TextBrowser:disabled {
+    color: rgba(255, 255, 255, 92);
+    background-color: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.0698);
+}
+
+#lineEditButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+#lineEditButton:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+#lineEditButton:pressed {
+    background-color: rgba(255, 255, 255, 6);
+}

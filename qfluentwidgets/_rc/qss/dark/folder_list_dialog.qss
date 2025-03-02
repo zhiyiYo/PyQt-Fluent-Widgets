@@ -1,0 +1,56 @@
+QWidget {
+    background-color: rgb(23, 23, 23);
+    border: 1px solid rgb(53, 53, 53);
+}
+
+QWidget#windowMask {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+}
+
+QLabel {
+    border: none;
+    color: white;
+    background-color: transparent;
+}
+
+QLabel#titleLabel {
+    font: 25px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+QLabel#contentLabel {
+    font: 18px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+QPushButton#completeButton {
+    background-color: rgb(51, 51, 51);
+    padding: 11px 64px 11px 64px;
+    font: 19px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: none;
+    height: 20px;
+    width: 55px;
+    color: white;
+}
+
+QPushButton#completeButton:pressed:hover {
+    background-color: rgb(102, 102, 102);
+}
+
+QPushButton#completeButton:hover {
+    background-color: rgb(35, 35, 35);
+}
+
+QPushButton#completeButton:disabled {
+    background-color: rgb(51, 51, 51);
+    color: rgb(122, 122, 122);
+}
+
+QScrollArea{
+    border: none;
+    background-color: rgb(23, 23, 23);
+}
+
+
+#scrollWidget{
+    border: none;
+}
