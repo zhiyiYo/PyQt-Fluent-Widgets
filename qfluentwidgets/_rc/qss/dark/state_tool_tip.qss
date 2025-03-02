@@ -1,0 +1,21 @@
+StateToolTip,
+ToastToolTip {
+    background-color: --ThemeColorDark1;
+    border: none;
+    border-radius: 7px;
+}
+
+QLabel {
+    color: black;
+    background-color: transparent;
+    font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: none;
+}
+
+QLabel#titleLabel {
+    font-size: 14px;
+}
+
+QLabel#contentLabel {
+    font-size: 13px ;
+}

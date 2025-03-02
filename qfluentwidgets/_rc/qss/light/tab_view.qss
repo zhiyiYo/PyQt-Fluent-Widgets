@@ -1,0 +1,8 @@
+TabBar {
+    border: none;
+    background-color: transparent;
+}
+
+#view {
+    background-color: transparent;
+}

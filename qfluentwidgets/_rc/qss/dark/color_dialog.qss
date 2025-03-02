@@ -1,0 +1,114 @@
+ColorDialog,
+QScrollArea,
+QWidget {
+    background-color: transparent;
+}
+
+QScrollArea {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+#centerWidget {
+    border: 1px solid rgb(58, 58, 58);
+    border-radius: 10px;
+    background-color: rgb(43, 43, 43);
+}
+
+#buttonGroup {
+    background-color: rgb(32, 32, 32);
+    border-top: 1px solid rgb(29, 29, 29);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+#titleLabel {
+    font-size: 19px;
+}
+
+#editLabel {
+    font-size: 16px;
+}
+
+#prefixLabel, #suffixLabel  {
+    padding: 0;
+    font-size: 14px;
+}
+
+
+QSlider:horizontal {
+    min-width: 332px;
+    min-height: 24px;
+}
+
+QSlider::groove:horizontal {
+    height: 12px;
+    border-radius: 6px;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, x3:2, y3:0,
+            stop:0 hsv(--slider-hue, --slider-saturation, 0),
+            stop:1 hsv(--slider-hue, --slider-saturation, 255));
+
+}
+
+
+QSlider::handle:horizontal {
+    border: 1px solid rgb(55, 55, 55);
+    width: 16px;
+    min-height: 10px;
+    margin: -3px 0;
+    border-radius: 9px;
+    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+            stop:0 rgb(255, 255, 255),
+            stop:0.55 rgb(255, 255, 255),
+            stop:0.6 rgb(69, 69, 69),
+            stop:1 rgb(69, 69, 69));
+}
+
+
+QSlider::groove:horizontal:disabled {
+    background-color: rgba(0, 0, 0, 75);
+}
+
+QSlider::handle:horizontal:disabled {
+    background-color: #808080;
+    border: 6px solid #cccccc;
+}
+
+
+#cancelButton {
+    background: rgb(45, 45, 45);
+    border: 1px solid rgb(48, 48, 48);
+    border-top: 1px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    color: white;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    padding: 5px 9px 6px 9px;
+    outline: none;
+}
+
+#cancelButton:hover {
+    background: rgb(50, 50, 50);
+}
+
+#cancelButton:pressed {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(39, 39, 39);
+    border: 1px solid rgb(48, 48, 48);
+}
+
+#cancelButton:disabled {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(59, 59, 59);
+    border: 1px solid rgb(80, 80, 80);
+}

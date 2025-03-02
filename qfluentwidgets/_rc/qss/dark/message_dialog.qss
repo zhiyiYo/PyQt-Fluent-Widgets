@@ -1,0 +1,44 @@
+QWidget {
+    background-color: rgb(23, 23, 23);
+    border: 1px solid rgb(55, 55, 55);
+}
+
+QWidget#windowMask {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+}
+
+QLabel {
+    background-color: transparent;
+    color: white;
+    font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: none;
+}
+
+QLabel#titleLabel {
+    font-size: 18px;
+}
+
+QLabel#contentLabel {
+    font-size: 14px;
+}
+
+QPushButton {
+    background-color: rgb(51, 51, 51);
+    font: 15px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: transparent;
+    color: white;
+}
+
+QPushButton:pressed:hover {
+    background-color: rgb(102, 102, 102);
+}
+
+QPushButton:hover {
+    background-color: rgb(35, 35, 35);
+}
+
+QPushButton:disabled {
+    background-color: rgb(51, 51, 51);
+    color: rgb(133, 133, 133);
+}

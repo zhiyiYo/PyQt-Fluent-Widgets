@@ -1,0 +1,9 @@
+SettingCardGroup {
+    background-color: transparent;
+}
+
+SettingCardGroup>QLabel {
+    background-color: transparent;
+    color: black;
+    border: none;
+}

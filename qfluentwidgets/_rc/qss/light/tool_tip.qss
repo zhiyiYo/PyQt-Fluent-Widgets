@@ -1,0 +1,21 @@
+ToolTip {
+    border-radius: 4px;
+}
+
+ToolTip>#container {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background-color: rgb(249, 249, 249);
+    border-radius: 4px;
+}
+
+ToolTip>#container[transparent=true] {
+    background-color: transparent;
+}
+
+
+QLabel {
+    background-color: transparent;
+    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: none;
+    color: black;
+}

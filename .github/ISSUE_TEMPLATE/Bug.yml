@@ -1,0 +1,68 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please searched for historical issues and check official documentation before opening this issue.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: input
+    id: OS
+    attributes:
+      label: Operation System
+      description: Which operation system are you using?
+      placeholder: ex. Windows11 23H2
+    validations:
+      required: true
+  - type: input
+    id: Python
+    attributes:
+      label: Python Version
+      description: Which version of python are you using?
+      placeholder: ex. 3.8.6 64-bit
+    validations:
+      required: true
+  - type: input
+    id: PyQt
+    attributes:
+      label: PyQt/PySide Version
+      description: Which version of PyQt/PySide are you using?
+      placeholder: ex. PyQt 5.15.2
+    validations:
+      required: true
+  - type: input
+    id: PyQt-Fluent-Widgets
+    attributes:
+      label: PyQt/PySide-Fluent-Widgets Version
+      description: Which version of PyQt/PySide-Fluent-Widgets are you using? Please ensure that you are using the latest version!
+      placeholder: ex. v1.3.1
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to Reproduce?
+      description: A clear and concise description of what the bug is.
+      placeholder: Steps to reproduce the behavior(you can use gif to demonstrate the problem :)
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Minimum code
+      description: Minimum code to reproduce the error. Please ensure that the code can run after pasting.
+      render: python3
+    validations:
+      required: true
+
+

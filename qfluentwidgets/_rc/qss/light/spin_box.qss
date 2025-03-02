@@ -1,0 +1,109 @@
+SpinBox,
+DoubleSpinBox,
+DateEdit,
+DateTimeEdit,
+TimeEdit,
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+    border-radius: 5px;
+    /* font: 14px "Segoe UI", "Microsoft YaHei"; */
+    padding: 0px 80px 0 10px;
+    selection-background-color: --ThemeColorLight1;
+}
+
+CompactSpinBox,
+CompactDoubleSpinBox,
+CompactDateEdit,
+CompactDateTimeEdit,
+CompactTimeEdit {
+    padding: 0px 26px 0 10px;
+}
+
+SpinBox:read-only,
+DoubleSpinBox:read-only,
+DateEdit:read-only,
+DateTimeEdit:read-only,
+TimeEdit:read-only,
+CompactSpinBox:read-only,
+CompactDoubleSpinBox:read-only,
+CompactDateEdit:read-only,
+CompactDateTimeEdit:read-only,
+CompactTimeEdit:read-only,
+SpinBox[symbolVisible=false],
+DoubleSpinBox[symbolVisible=false],
+DateEdit[symbolVisible=false],
+DateTimeEdit[symbolVisible=false],
+TimeEdit[symbolVisible=false],
+CompactSpinBox[symbolVisible=false],
+CompactDoubleSpinBox[symbolVisible=false],
+CompactDateEdit[symbolVisible=false],
+CompactDateTimeEdit[symbolVisible=false],
+CompactTimeEdit[symbolVisible=false] {
+    padding: 0px 10px 0 10px;
+}
+
+SpinBox:hover,
+DoubleSpinBox:hover,
+DateEdit:hover,
+DateTimeEdit:hover,
+TimeEdit:hover,
+CompactSpinBox:hover,
+CompactDoubleSpinBox:hover,
+CompactDateEdit:hover,
+CompactDateTimeEdit:hover,
+CompactTimeEdit:hover {
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 100);
+}
+
+SpinBox:focus,
+DoubleSpinBox:focus,
+DateEdit:focus,
+DateTimeEdit:focus,
+TimeEdit:focus,
+CompactSpinBox:focus,
+CompactDoubleSpinBox:focus,
+CompactDateEdit:focus,
+CompactDateTimeEdit:focus,
+CompactTimeEdit:focus {
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
+    background-color: white;
+}
+
+SpinBox:disabled,
+DoubleSpinBox:disabled,
+DateEdit:disabled,
+DateTimeEdit:disabled,
+TimeEdit:disabled,
+CompactSpinBox:disabled,
+CompactDoubleSpinBox:disabled,
+CompactDateEdit:disabled,
+CompactDateTimeEdit:disabled,
+CompactTimeEdit:disabled {
+    color: rgba(0, 0, 0, 92);
+    background-color: rgba(249, 249, 249, 0.5);
+    border: 1px solid rgba(0, 0, 0, 13);
+    border-bottom: 1px solid rgba(0, 0, 0, 13);
+}
+
+SpinButton {
+    background-color: transparent;
+    border-radius: 4px;
+    margin: 0;
+}
+
+SpinButton:hover {
+    background-color: rgba(0, 0, 0, 9);
+}
+
+SpinButton:pressed {
+    background-color: rgba(0, 0, 0, 6);
+}

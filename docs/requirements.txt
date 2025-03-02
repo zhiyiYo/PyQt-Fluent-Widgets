@@ -1,0 +1,16 @@
+PyQt6>=6.3.1
+PyQt6-Frameless-Window
+darkdetect
+colorthief
+scipy
+pillow
+sphinx-markdown-tables==0.0.17
+sphinx-intl
+furo
+sphinx-autoapi
+sphinx-copybutton
+sphinx_design
+urllib3<2.0.0
+mock==1.0.1
+commonmark==0.9.1
+recommonmark==0.5.0

@@ -1,0 +1,33 @@
+# 忽略.vscode文件夹
+.vscode/
+.VSCodeCounter
+
+# 忽略工作区文件
+*.code-workspace
+.DS_Store
+
+# 忽略 .idea
+.idea/
+
+# 忽略python缓存文件
+*/__pycache__
+*.py[cod]
+
+# 忽略日志文件
+log/
+*.log
+
+# 忽略测试文件
+test.py
+
+# 忽略配置文件
+config.json
+
+# 忽略下载文件夹
+download/
+
+# 忽略构建文件夹
+build/
+dist/
+PyQt_Fluent_Widgets.egg-info/
+PyQt6_Fluent_Widgets.egg-info/

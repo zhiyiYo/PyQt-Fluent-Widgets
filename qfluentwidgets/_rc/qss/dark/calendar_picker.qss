@@ -1,0 +1,84 @@
+#titleButton {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font-weight: 500;
+    color: white;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding-left: 8px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+#titleButton:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+#titleButton:pressed {
+    background-color: rgba(255, 255, 255, 6);
+}
+
+#titleButton:disabled {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#weekDayLabel {
+    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font-weight: 500;
+    color: white;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+#weekDayGroup {
+    background-color: rgb(32, 32, 32);
+}
+
+CalendarViewBase {
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+ScrollViewBase {
+    border: none;
+    padding: 0px 1px 0px 1px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: 1px solid rgb(52, 52, 52);
+    background-color: transparent;
+}
+
+CalendarPicker {
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.6063);
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    padding: 5px 32px 6px 12px;
+    outline: none;
+    text-align: left;
+}
+
+
+CalendarPicker:hover {
+    background: rgba(255, 255, 255, 0.0837);
+}
+
+CalendarPicker:pressed {
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+CalendarPicker:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+CalendarPicker[hasDate=true] {
+    color: white;
+}

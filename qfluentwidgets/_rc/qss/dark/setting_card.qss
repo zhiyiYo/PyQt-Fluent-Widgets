@@ -1,0 +1,79 @@
+QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+QLabel#contentLabel {
+    font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: rgb(208, 208, 208);
+    padding: 0;
+}
+
+RangeSettingCard > QLabel#valueLabel{
+    color: rgb(159, 159, 159);
+}
+
+QLabel:disabled,
+QLabel#contentLabel:disabled,
+RangeSettingCard>QLabel#valueLabel:disabled {
+    color: rgba(255, 255, 255, 0.36);
+}
+
+
+QPushButton {
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    padding: 5px 36px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+    outline: none;
+}
+
+QPushButton:hover {
+    background: rgba(255, 255, 255, 0.0837);
+}
+
+QPushButton:pressed {
+    color: rgba(255, 255, 255, 0.786);
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+QPushButton:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#primaryButton {
+    color: black;
+    background-color: --ThemeColorPrimary;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+    padding: 5px 12px 5px 12px;
+    outline: none;
+}
+
+#primaryButton:hover {
+    background-color: --ThemeColorDark1;
+    border: 1px solid --ThemeColorLight1;
+    border-bottom: 1px solid --ThemeColorLight2;
+}
+
+#primaryButton:pressed {
+    color: rgba(0, 0, 0, 0.63);
+    background-color: --ThemeColorDark2;
+    border: 1px solid --ThemeColorDark2;
+}
+
+ColorPickerButton {
+    border: 1px solid rgba(255, 255, 255, 10);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 7);
+}

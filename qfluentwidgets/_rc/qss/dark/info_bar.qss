@@ -1,0 +1,47 @@
+InfoBar {
+    border: 1px solid rgb(29, 29, 29);
+    border-radius: 6px;
+    background-color: rgb(39, 39, 39);
+}
+
+#titleLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+}
+
+#contentLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+    background-color: transparent;
+}
+
+InfoBar[type="Info"] {
+    background-color: rgb(39, 39, 39);
+}
+
+InfoBar[type="Success"] {
+    background-color: rgb(57, 61, 27);
+}
+
+InfoBar[type="Warning"] {
+    background-color: rgb(67, 53, 25);
+}
+
+InfoBar[type="Error"] {
+    background-color: rgb(68, 39, 38);
+}
+
+InfoBarCloseButton {
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+InfoBarCloseButton:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+InfoBarCloseButton:pressed {
+    background-color: rgba(255, 255, 255, 6);
+}

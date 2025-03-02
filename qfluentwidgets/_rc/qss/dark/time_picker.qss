@@ -1,0 +1,123 @@
+ScrollButton {
+    background-color: rgb(44, 44, 44);
+    border: none;
+    border-radius: 7px;
+}
+
+CycleListWidget {
+    background-color: transparent;
+    border: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    outline: none;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+CycleListWidget::item {
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    margin: 0 4px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+CycleListWidget::item:hover {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+CycleListWidget::item:selected {
+    background-color: rgba(255, 255, 255, 9);
+}
+
+CycleListWidget::item:selected:active {
+    background-color: rgba(255, 255, 255, 6);
+}
+
+PickerPanel > #view {
+    background-color: rgb(44, 44, 44);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+}
+
+SeparatorWidget {
+    background-color: rgb(61, 61, 61);
+}
+
+ItemMaskWidget {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+PickerBase {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    background: rgba(255, 255, 255, 0.0605);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    outline: none;
+}
+
+PickerBase:hover {
+    background: rgba(255, 255, 255, 0.0837);
+}
+
+PickerBase:pressed {
+    color: rgba(255, 255, 255, 0.786);
+    background: rgba(255, 255, 255, 0.0326);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+PickerBase:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+    background: rgba(255, 255, 255, 0.0419);
+    border: 1px solid rgba(255, 255, 255, 0.053);
+    border-top: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: rgba(255, 255, 255, 0.786);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#pickerButton:disabled {
+    color: rgba(255, 255, 255, 0.3628);
+}
+
+#pickerButton[hasBorder=true] {
+    border-right: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton[hasBorder=true]:disabled {
+    border-right: 1px solid rgba(255, 255, 255, 0.053);
+}
+
+#pickerButton[hasBorder=false] {
+    border-right: transparent;
+}
+
+#pickerButton[enter=true]:enabled,
+#pickerButton[hasValue=true]:enabled {
+    color: rgba(255, 255, 255, 1);
+}
+
+#pickerButton[pressed=true] {
+    color: rgba(255, 255, 255, 0.786);
+}
+
+#pickerButton[align="center"] {
+    text-align: center;
+}
+
+#pickerButton[align="left"] {
+    text-align: left;
+}
+
+#pickerButton[align="right"] {
+    text-align: right;
+}

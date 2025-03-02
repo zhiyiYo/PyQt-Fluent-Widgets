@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="" width="16" height="16" style="width:16px;height:16px;" version="1.1"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" enable-background="new 0 0 2048 2048"
+    xml:space="preserve">
+    <path fill="#000000" transform="translate(150, 250) scale(0.8, 0.8)" d="M2048 960 q0 26 -19 45 q-19 19 -45 19 l-1765 0 l786 787 q19 19 19 45 q0 26 -19 45 q-19 19 -45 19 q-26 0 -45 -19 l-893 -893 q-11 -11 -16.5 -22 q-5.5 -11 -5.5 -26 q0 -15 5.5 -26 q5.5 -11 16.5 -22 l893 -893 q19 -19 45 -19 q26 0 45 19 q19 19 19 45 q0 26 -19 45 l-786 787 l1765 0 q26 0 45 19 q19 19 19 45 Z"/>
+</svg>

@@ -1,0 +1,75 @@
+QDialog {
+    background-color: rgb(43, 43, 43);
+}
+
+#buttonGroup {
+    background-color: rgb(32, 32, 32);
+    border-top: 1px solid rgb(29, 29, 29);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+MessageBoxBase #buttonGroup,
+MessageBox #buttonGroup {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#centerWidget {
+    border: 1px solid rgb(58, 58, 58);
+    border-radius: 10px;
+    background-color: rgb(43, 43, 43);
+}
+
+QLabel {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+QLabel#titleLabel {
+    font: 20px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    padding: 0;
+}
+
+#contentLabel {
+    padding: 0;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    border: none;
+    selection-background-color: --ThemeColorPrimary;
+    selection-color: black;
+}
+
+QLabel#windowTitleLabel {
+    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    padding: 6px 6px;
+    background-color: rgb(32, 32, 32);
+}
+
+#cancelButton {
+    background: rgb(45, 45, 45);
+    border: 1px solid rgb(48, 48, 48);
+    border-top: 1px solid rgb(53, 53, 53);
+    border-radius: 5px;
+    color: white;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    padding: 5px 9px 6px 9px;
+    outline: none;
+}
+
+#cancelButton:hover {
+    background: rgb(50, 50, 50);
+}
+
+#cancelButton:pressed {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(39, 39, 39);
+    border: 1px solid rgb(48, 48, 48);
+}
+
+#cancelButton:disabled {
+    color: rgba(255, 255, 255, 0.63);
+    background: rgb(59, 59, 59);
+    border: 1px solid rgb(80, 80, 80);
+}

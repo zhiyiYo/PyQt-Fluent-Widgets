@@ -1,0 +1,12 @@
+#titleLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font-weight: bold;
+    color: black;
+    background-color: transparent;
+}
+
+#contentLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: black;
+    background-color: transparent;
+}

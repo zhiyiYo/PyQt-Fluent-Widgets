@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, zhiyiYo
+# This file is distributed under the same license as the PyQt-Fluent-Widgets
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyQt-Fluent-Widgets \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-01 17:56+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:2
+#: 2c988020c6f641cf92836e19597b1272
+msgid "calendar_view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:8
+#: b1e547b688a147e6bcb8cdb9b6ebbf29
+msgid "Module Contents"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: bdd754a4d7bd4f36a49c2d226646254a
+msgid ""
+":py:obj:`ScrollButton "
+"<qfluentwidgets.components.date_time.calendar_view.ScrollButton>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:35
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: a2d093ab1b4245b08128b7412b6c7ae1 b0d6cdd4877b4241939a36a126e6803d
+msgid "Scroll button"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 55eeb982b4f845d085eaa50d34a514e2
+msgid ""
+":py:obj:`ScrollItemDelegate "
+"<qfluentwidgets.components.date_time.calendar_view.ScrollItemDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 0e7a0115ef4546eabf7dbd91ce6afb95
+msgid ""
+":py:obj:`YearScrollItemDelegate "
+"<qfluentwidgets.components.date_time.calendar_view.YearScrollItemDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:65
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: d2509d80d136456c9871969bedd049e0 f266246c911744408c5821ec92897cf3
+msgid "Year scroll item delegate"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: e76738aad06546ffa3e41fbc96f750e0
+msgid ""
+":py:obj:`DayScrollItemDelegate "
+"<qfluentwidgets.components.date_time.calendar_view.DayScrollItemDelegate>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:72
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 44f23ec1710e4743b26aabaf8d728d2c cdbc6abca6954d29afa87622c6696187
+msgid "Day scroll item delegate"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: d09859a212e043bf9d314f12cfd5409c
+msgid ""
+":py:obj:`ScrollViewBase "
+"<qfluentwidgets.components.date_time.calendar_view.ScrollViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:79
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 5da98688b4f34612972789c7fcd67b41 d32737ac0bd34920bbe0f13afb1e4da3
+msgid "Scroll view base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 58dea08db4b44a6190efd510d2f0609f
+msgid ""
+":py:obj:`CalendarViewBase "
+"<qfluentwidgets.components.date_time.calendar_view.CalendarViewBase>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:116
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 20f6bbe661d94d29ac72f7a0f0b43941 d9155cc883074a51a6c52e048a5c5020
+msgid "Calendar view base class"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: d7230c4edbfc43208ba89f212702cccf
+msgid ""
+":py:obj:`YearScrollView "
+"<qfluentwidgets.components.date_time.calendar_view.YearScrollView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:144
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 1322c5c3909947f8ab006d1c61a002e6 acd53b1830d64ff5a16063d9ca72aff3
+msgid "Year scroll view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: dfd726d11b5042acb88bd593addf276f
+msgid ""
+":py:obj:`YearCalendarView "
+"<qfluentwidgets.components.date_time.calendar_view.YearCalendarView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:157
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 679c78e45ca14a2cbbd1ad9d7a5c88e7 a2c0afb24b22417ab86f443186ee8af8
+msgid "Year calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 98668e45068e45188a784862e878ffba
+msgid ""
+":py:obj:`MonthScrollView "
+"<qfluentwidgets.components.date_time.calendar_view.MonthScrollView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:164
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 08b7e51e6a8540d0a58d4446cab0865f c1deeb35b77643309bde47d0b2377af5
+msgid "Month scroll view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 116e14b6686b4d65a84e848974987b53
+msgid ""
+":py:obj:`MonthCalendarView "
+"<qfluentwidgets.components.date_time.calendar_view.MonthCalendarView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:177
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: b5ba0d7f3764434d8798be09fb6e2cf2 cddbcdf66ee745d4ad203141f4d1ebe6
+msgid "Month calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: d4c5de70160640f7ae248cbdb71451e5
+msgid ""
+":py:obj:`DayScrollView "
+"<qfluentwidgets.components.date_time.calendar_view.DayScrollView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:187
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 88bef63906e64b5793c2d49efffc6e8c b320d066f1ff465db2f865d3506139e0
+msgid "Day scroll view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 3673635cfc6d4e188c04900e134f0626
+msgid ""
+":py:obj:`DayCalendarView "
+"<qfluentwidgets.components.date_time.calendar_view.DayCalendarView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:212
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 1574d319bf1c49c181d119ae5abfe608 26bcea1b968f4b9e867d0bef87b4dca9
+msgid "Day calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 3c458b4753514a73bc8d3c72d5dc4358
+msgid ""
+":py:obj:`CalendarView "
+"<qfluentwidgets.components.date_time.calendar_view.CalendarView>`\\"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:225
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:30:<autosummary>:1
+#: 72229873b28d4bbba6daf82c32ac2110 e35f8e474e5748b6bca3c8198b17a393
+msgid "Calendar view"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:33
+#: 866f6ea5fea445b9849da45bbbddfcd4
+msgid ""
+"Bases: "
+":py:obj:`qfluentwidgets.components.widgets.button.TransparentToolButton`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:43
+#: aae780aadcb64f04b86a3dd7dbb68305
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QStyledItemDelegate`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:63
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:70
+#: 572f849630224896a8b0b47ec88e09ea efd01b2bf1ff46008c461132eb52d059
+msgid "Bases: :py:obj:`ScrollItemDelegate`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:77
+#: 316cd424f3554e9d80d16f9fbf8be3c1
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QListWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:114
+#: f5a470f5714246b89a580bbae72f71e4
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QFrame`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:142
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:162
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:185
+#: 029bbbe0e3274575a34395cccc15e45f e66a198e5daf4c7ababf9644fd0e0824
+#: e8d7e62817804d93853558edbefb9dd7
+msgid "Bases: :py:obj:`ScrollViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:155
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:175
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:210
+#: 2acbf87d60c44a9db9d35db9f35db55b 8cfee58132b44720bee3ba64d8959b52
+#: f3d094c7231c44c1aa7bf592b633953c
+msgid "Bases: :py:obj:`CalendarViewBase`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:223
+#: fcb82323d5dd467a8e956ea58b486e14
+msgid "Bases: :py:obj:`PyQt5.QtWidgets.QWidget`"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:233
+#: f729fa3364464cdd853c5a9ef6231789
+msgid "add shadow to dialog"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:238
+#: 1b9cacd39a1b4df1a3dbfe4a60f4b47e
+msgid "set the selected date"
+msgstr ""
+
+#: ../../source/autoapi/qfluentwidgets/components/date_time/calendar_view/index.rst:243
+#: b7767d3d96564500af8f9794b7ab51d2
+msgid "show calendar view"
+msgstr ""
+

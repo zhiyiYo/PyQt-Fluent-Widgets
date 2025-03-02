@@ -1,0 +1,77 @@
+ExpandSettingCard {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+#view {
+    background: rgba(255, 255, 255, 0.667);
+    border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#scrollWidget {
+    border: none;
+    background-color: transparent;
+}
+
+
+QLabel#titleLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: black;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+QLabel#contentLabel {
+    font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: rgb(96, 96, 96);
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+QLabel#titleLabel:disabled,
+QLabel#contentLabel:disabled {
+    color: rgba(0, 0, 0, 0.36);
+}
+
+FolderItem>QLabel {
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+}
+
+/* QPushButton */
+QPushButton {
+    border: 1px solid rgba(0, 0, 0, 0.073);
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.183);
+    padding: 5px 36px 5px 36px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: black;
+    background: rgba(255, 255, 255, 0.7);
+    outline: none;
+}
+
+QPushButton:hover {
+    background: rgba(249, 249, 249, 0.5);
+}
+
+QPushButton:pressed {
+    color: rgba(0, 0, 0, 0.63);
+    background: rgba(249, 249, 249, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.073);
+}
+
+QPushButton:disabled {
+    color: rgba(0, 0, 0, 0.36);
+    background: rgba(249, 249, 249, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+#chooseColorButton {
+    padding: 5px 17px 5px 17px;
+}

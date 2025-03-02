@@ -1,0 +1,18 @@
+Widget > QLabel {
+    font: 24px 'Segoe UI', 'Microsoft YaHei';
+}
+
+Widget {
+    border-left: 1px solid rgb(229, 229, 229);
+    background-color: rgb(249, 249, 249);
+}
+
+Window {
+    background-color: rgb(243, 243, 243);
+}
+
+CustomTitleBar > QLabel#titleLabel {
+    background: transparent;
+    font: 13px 'Segoe UI';
+    padding: 0 4px
+}
