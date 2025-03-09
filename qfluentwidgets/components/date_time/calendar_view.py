@@ -238,6 +238,7 @@ class ScrollViewBase(QListWidget):
 class CalendarViewBase(QFrame):
     """ Calendar view base class """
 
+    resetted = Signal()
     titleClicked = Signal()
     itemClicked = Signal(QDate)
 
@@ -245,6 +246,7 @@ class CalendarViewBase(QFrame):
         super().__init__(parent)
 
         self.titleButton = QPushButton(self)
+        self.resetButton = ScrollButton(FIF.CANCEL, self)
         self.upButton = ScrollButton(FIF.CARE_UP_SOLID, self)
         self.downButton = ScrollButton(FIF.CARE_DOWN_SOLID, self)
 
@@ -259,13 +261,16 @@ class CalendarViewBase(QFrame):
         self.setFixedSize(314, 355)
         self.upButton.setFixedSize(32, 34)
         self.downButton.setFixedSize(32, 34)
+        self.resetButton.setFixedSize(32, 34)
         self.titleButton.setFixedHeight(34)
 
         self.hBoxLayout.setContentsMargins(9, 8, 9, 8)
         self.hBoxLayout.setSpacing(7)
         self.hBoxLayout.addWidget(self.titleButton, 1, Qt.AlignVCenter)
+        self.hBoxLayout.addWidget(self.resetButton, 0, Qt.AlignVCenter)
         self.hBoxLayout.addWidget(self.upButton, 0, Qt.AlignVCenter)
         self.hBoxLayout.addWidget(self.downButton, 0, Qt.AlignVCenter)
+        self.setResetEnabled(False)
 
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.setSpacing(0)
@@ -276,6 +281,7 @@ class CalendarViewBase(QFrame):
         FluentStyleSheet.CALENDAR_PICKER.apply(self)
 
         self.titleButton.clicked.connect(self.titleClicked)
+        self.resetButton.clicked.connect(self.resetted)
         self.upButton.clicked.connect(self._onScrollUp)
         self.downButton.clicked.connect(self._onScrollDown)
 
@@ -285,6 +291,12 @@ class CalendarViewBase(QFrame):
         self.vBoxLayout.addWidget(view)
         view.pageChanged.connect(self._updateTitle)
         self._updateTitle()
+
+    def setResetEnabled(self, isEnabled: bool):
+        self.resetButton.setVisible(isEnabled)
+
+    def isResetEnabled(self):
+        return self.resetButton.isVisible()
 
     def setDate(self, date: QDate):
         self.scrollView.setDate(date)
@@ -531,12 +543,14 @@ class DayCalendarView(CalendarViewBase):
 class CalendarView(QWidget):
     """ Calendar view """
 
+    resetted = Signal()
     dateChanged = Signal(QDate)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.hBoxLayout = QHBoxLayout(self)
         self.date = QDate()
+        self._isResetEnabled = False
 
         self.stackedWidget = QStackedWidget(self)
         self.yearView = YearCalendarView(self)
@@ -575,6 +589,10 @@ class CalendarView(QWidget):
         self.yearView.itemClicked.connect(self._onYearItemClicked)
         self.dayView.itemClicked.connect(self._onDayItemClicked)
 
+        self.monthView.resetted.connect(self._onResetted)
+        self.yearView.resetted.connect(self._onResetted)
+        self.dayView.resetted.connect(self._onResetted)
+
     def setShadowEffect(self, blurRadius=30, offset=(0, 8), color=QColor(0, 0, 0, 30)):
         """ add shadow to dialog """
         self.shadowEffect = QGraphicsDropShadowEffect(self.stackedWidget)
@@ -583,6 +601,20 @@ class CalendarView(QWidget):
         self.shadowEffect.setColor(color)
         self.stackedWidget.setGraphicsEffect(None)
         self.stackedWidget.setGraphicsEffect(self.shadowEffect)
+
+    def isRestEnabled(self):
+        return self._isResetEnabled
+
+    def setResetEnabled(self, isEnabled: bool):
+        """ set the visibility of reset button """
+        self._isResetEnabled = isEnabled
+        self.yearView.setResetEnabled(isEnabled)
+        self.monthView.setResetEnabled(isEnabled)
+        self.dayView.setResetEnabled(isEnabled)
+
+    def _onResetted(self):
+        self.resetted.emit()
+        self.close()
 
     def _onDayViewTitleClicked(self):
         self.stackedWidget.setCurrentWidget(self.monthView)
