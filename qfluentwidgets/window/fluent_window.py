@@ -52,6 +52,19 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         """ add sub interface """
         raise NotImplementedError
 
+    def removeInterface(self, interface: QWidget, isDelete=False):
+        """ remove sub interface
+
+        Parameters
+        ----------
+        interface: QWidget
+            sub interface to be removed
+
+        isDelete: bool
+            whether to delete the sub interface
+        """
+        raise NotImplementedError
+
     def switchTo(self, interface: QWidget):
         self.stackedWidget.setCurrentWidget(interface, popOut=False)
 
@@ -256,6 +269,14 @@ class FluentWindow(FluentWindowBase):
 
         return item
 
+    def removeInterface(self, interface, isDelete=False):
+        self.navigationInterface.removeWidget(interface.objectName())
+        self.stackedWidget.removeWidget(interface)
+        interface.hide()
+
+        if isDelete:
+            interface.deleteLater()
+
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
         self.titleBar.resize(self.width()-46, self.titleBar.height())
@@ -333,6 +354,14 @@ class MSFluentWindow(FluentWindowBase):
         self._updateStackedBackground()
 
         return item
+
+    def removeInterface(self, interface, isDelete=False):
+        self.navigationInterface.removeWidget(interface.objectName())
+        self.stackedWidget.removeWidget(interface)
+        interface.hide()
+
+        if isDelete:
+            interface.deleteLater()
 
 
 class SplitTitleBar(TitleBar):

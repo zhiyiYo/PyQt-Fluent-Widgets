@@ -26,6 +26,10 @@ class StackedWidget(QFrame):
         """ add widget to view """
         self.view.addWidget(widget)
 
+    def removeWidget(self, widget):
+        """ remove widget from view """
+        self.view.removeWidget(widget)
+
     def widget(self, index: int):
         return self.view.widget(index)
 
