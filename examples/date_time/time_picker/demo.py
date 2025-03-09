@@ -49,6 +49,13 @@ class Demo(QWidget):
         # self.timePicker1.setTime(QTime(13, 15))
         # self.timePicker2.setTime(QTime(13, 15))
 
+        # enable reset button
+        # self.datePicker1.setResetEnabled(True)
+        # self.datePicker2.setResetEnabled(True)
+        # self.timePicker1.setResetEnabled(True)
+        # self.timePicker2.setResetEnabled(True)
+        # self.timePicker3.setResetEnabled(True)
+
         self.resize(500, 500)
         self.vBoxLayout.addWidget(self.datePicker1, 0, Qt.AlignmentFlag.AlignHCenter)
         self.vBoxLayout.addWidget(self.datePicker2, 0, Qt.AlignmentFlag.AlignHCenter)

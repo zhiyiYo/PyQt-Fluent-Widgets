@@ -397,10 +397,12 @@ class FastDayCalendarView(CalendarViewBase):
 class FastCalendarView(FlyoutViewBase):
 
     dateChanged = pyqtSignal(QDate)
+    resetted = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.date = QDate()
+        self._isResetEnabled = False
 
         self.hBoxLayout = QHBoxLayout(self)
         self.stackedWidget = QStackedWidget(self)
@@ -426,6 +428,24 @@ class FastCalendarView(FlyoutViewBase):
         self.monthView.itemClicked.connect(self._onMonthItemClicked)
         self.yearView.itemClicked.connect(self._onYearItemClicked)
         self.dayView.itemClicked.connect(self._onDayItemClicked)
+
+        self.monthView.resetted.connect(self._onResetted)
+        self.yearView.resetted.connect(self._onResetted)
+        self.dayView.resetted.connect(self._onResetted)
+
+    def isRestEnabled(self):
+        return self._isResetEnabled
+
+    def setResetEnabled(self, isEnabled: bool):
+        """ set the visibility of reset button """
+        self._isResetEnabled = isEnabled
+        self.yearView.setResetEnabled(isEnabled)
+        self.monthView.setResetEnabled(isEnabled)
+        self.dayView.setResetEnabled(isEnabled)
+
+    def _onResetted(self):
+        self.resetted.emit()
+        self.close()
 
     def _onDayViewTitleClicked(self):
         self.stackedWidget.setCurrentWidget(self.monthView)
