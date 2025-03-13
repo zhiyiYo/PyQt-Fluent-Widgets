@@ -63,11 +63,6 @@ PySide6-Fluent-Widgets 使用双许可证。非商业用途使用 [GPLv3](../LIC
 
 Copyright © 2021 by zhiyiYo.
 
-## 支持💖
-如果这个组件库帮助了您，或者是想支持作者继续开发和维护这个组件库，可以在 [爱发电](https://afdian.net/a/zhiyiYo) 或者 [ko-fi](https://ko-fi.com/zhiyiYo) 上请作者喝一杯奶茶。您的支持就是作者开发和维护的动力 🥰。
-
-## 演示视频📽️
-请查收哔哩哔哩上的 [视频合集](https://www.bilibili.com/video/BV12c411L73q)，它展示了 PyQt-Fluent-Widgets 的全部组件和特性 🎉
 
 
 ## Fluent Client🚩
