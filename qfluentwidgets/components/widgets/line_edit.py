@@ -1,6 +1,6 @@
 # coding: utf-8
 from typing import List, Union
-from PySide6.QtCore import QSize, Qt, QRectF, Signal, QPoint, QTimer, QEvent, QAbstractItemModel, Property
+from PySide6.QtCore import QSize, Qt, QRectF, Signal, QPoint, QTimer, QEvent, QAbstractItemModel, Property, QModelIndex
 from PySide6.QtGui import QPainter, QPainterPath, QIcon, QColor, QAction
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QToolButton, QTextEdit,
                                QPlainTextEdit, QCompleter, QStyle, QWidget, QTextBrowser)
@@ -205,6 +205,7 @@ class LineEdit(QLineEdit):
             completer menu
         """
         menu.activated.connect(self._completer.activated)
+        menu.indexActivated.connect(lambda idx: self._completer.activated[QModelIndex].emit(idx))
         self._completerMenu = menu
 
     def _showCompleterMenu(self):
@@ -217,7 +218,7 @@ class LineEdit(QLineEdit):
 
         # add menu items
         self.completer().setCompletionPrefix(self.text())
-        changed = self._completerMenu.setCompletion(self.completer().completionModel())
+        changed = self._completerMenu.setCompletion(self.completer().completionModel(), self.completer().completionColumn())
         self._completerMenu.setMaxVisibleItems(self.completer().maxVisibleItems())
 
         # show menu
@@ -253,10 +254,12 @@ class CompleterMenu(RoundMenu):
     """ Completer menu """
 
     activated = Signal(str)
+    indexActivated = Signal(QModelIndex)
 
     def __init__(self, lineEdit: LineEdit):
         super().__init__()
         self.items = []
+        self.indexes = []
         self.lineEdit = lineEdit
 
         self.view.setViewportMargins(0, 2, 0, 6)
@@ -267,12 +270,13 @@ class CompleterMenu(RoundMenu):
         self.installEventFilter(self)
         self.setItemHeight(33)
 
-    def setCompletion(self, model: QAbstractItemModel):
+    def setCompletion(self, model: QAbstractItemModel, column=0):
         """ set the completion model """
         items = []
+        self.indexes.clear()
         for i in range(model.rowCount()):
-            for j in range(model.columnCount()):
-                items.append(model.data(model.index(i, j)))
+            items.append(model.data(model.index(i, column)))
+            self.indexes.append(model.index(i, column))
 
         if self.items == items and self.isVisible():
             return False
@@ -293,7 +297,7 @@ class CompleterMenu(RoundMenu):
 
     def _onItemClicked(self, item):
         self._hideMenu(False)
-        self.__onItemSelected(item.text())
+        self._onCompletionItemSelected(item.text(), self.view.row(item))
 
     def eventFilter(self, obj, e: QEvent):
         if e.type() != QEvent.KeyPress:
@@ -306,14 +310,17 @@ class CompleterMenu(RoundMenu):
         if e.key() == Qt.Key_Escape:
             self.close()
         if e.key() in [Qt.Key_Enter, Qt.Key_Return] and self.view.currentRow() >= 0:
-            self.__onItemSelected(self.view.currentItem().text())
+            self._onCompletionItemSelected(self.view.currentItem().text(), self.view.currentRow())
             self.close()
 
         return super().eventFilter(obj, e)
 
-    def __onItemSelected(self, text):
+    def _onCompletionItemSelected(self, text, row):
         self.lineEdit.setText(text)
         self.activated.emit(text)
+        
+        if 0 <= row < len(self.indexes):
+            self.indexActivated.emit(self.indexes[row])
 
     def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         return super().exec(pos, ani, aniType)

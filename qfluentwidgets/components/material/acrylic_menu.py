@@ -1,4 +1,5 @@
 # coding:utf-8
+from typing import List
 from PySide6.QtCore import Qt, QRect, QRectF, QSize
 from PySide6.QtGui import QPainter, QColor, QPainterPath, QAction
 from PySide6.QtWidgets import QLineEdit, QListWidgetItem, QListWidget
@@ -139,6 +140,10 @@ class AcrylicCompleterMenu(AcrylicMenuBase, CompleterMenu):
         self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setItemHeight(33)
+
+    def _onItemClicked(self, item):
+        self._hideMenu(False)
+        self._onCompletionItemSelected(item.text(), self.view.row(item)-1)
 
     def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
         return super().exec(pos, ani, aniType)
