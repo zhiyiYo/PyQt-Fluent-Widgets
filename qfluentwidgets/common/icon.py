@@ -352,6 +352,9 @@ class FluentFontIconBase(FluentIconBase):
     def render(self, painter: QPainter, rect, theme=Theme.AUTO, indexes=None, **attributes):
         color = self._getIconColor(theme)
 
+        if "fill" in attributes:
+            color = QColor(attributes["fill"])
+
         font = QFont(self.fontFamily)
         font.setBold(self.isBold)
         font.setPixelSize(round(0.875 * rect.height()))
