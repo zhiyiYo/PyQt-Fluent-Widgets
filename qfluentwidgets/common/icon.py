@@ -1,11 +1,12 @@
 # coding:utf-8
 from enum import Enum
 from typing import Union
+import json
 
 from PyQt5.QtXml import QDomDocument
 from PyQt5.QtCore import QRectF, Qt, QFile, QObject, QRect
-from PyQt5.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter
-from PyQt5.QtWidgets import QAction, qApp
+from PyQt5.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter, QFontDatabase, QFont
+from PyQt5.QtWidgets import QAction, qApp, QApplication
 from PyQt5.QtSvg import QSvgRenderer
 
 from .config import isDarkTheme, Theme
@@ -69,6 +70,38 @@ class SvgIconEngine(QIconEngine):
 
     def clone(self) -> QIconEngine:
         return SvgIconEngine(self.svg)
+
+    def pixmap(self, size, mode, state):
+        image = QImage(size, QImage.Format_ARGB32)
+        image.fill(Qt.transparent)
+        pixmap = QPixmap.fromImage(image, Qt.NoFormatConversion)
+
+        painter = QPainter(pixmap)
+        rect = QRect(0, 0, size.width(), size.height())
+        self.paint(painter, rect, mode, state)
+        return pixmap
+
+
+class FontIconEngine(QIconEngine):
+    """ Font icon engine """
+
+    def __init__(self, fontFamily: str, char: str, color, isBold):
+        super().__init__()
+        self.color = color
+        self.char = char
+        self.fontFamily = fontFamily
+        self.isBold = isBold
+
+    def paint(self, painter, rect, mode, state):
+        font = QFont(self.fontFamily)
+        font.setBold(self.isBold)
+        font.setPixelSize(round(0.875 * rect.height()))
+        painter.setFont(font)
+        painter.setPen(self.color)
+        painter.drawText(rect, Qt.AlignCenter | Qt.AlignVCenter, self.char)
+
+    def clone(self) -> QIconEngine:
+        return FontIconEngine(self.fontFamily, self.char, self.color, self.isBold)
 
     def pixmap(self, size, mode, state):
         image = QImage(size, QImage.Format_ARGB32)
@@ -277,6 +310,96 @@ class FluentIconBase:
             icon = QIcon(icon)
             rect = QRectF(rect).toRect()
             painter.drawPixmap(rect, icon.pixmap(QRectF(rect).toRect().size()))
+
+
+class FluentFontIconBase(FluentIconBase):
+    """ Fluent font icon base class """
+
+    _isFontLoaded = False
+    fontId = None
+    fontFamily = None
+    _iconNames = {}
+
+    def __init__(self, char: str):
+        super().__init__()
+        self.char = char
+        self.lightColor = QColor(0, 0, 0)
+        self.darkColor = QColor(255, 255, 255)
+        self.isBold = False
+        self.loadFont()
+
+    @classmethod
+    def fromName(cls, name: str):
+        icon = cls("")
+        icon.char = cls._iconNames.get(name, "")
+        return icon
+
+    def bold(self):
+        self.isBold = True
+        return self
+
+    def icon(self, theme=Theme.AUTO, color: QColor = None) -> QIcon:
+        if not color:
+            color = self._getIconColor(theme)
+
+        return QIcon(FontIconEngine(self.fontFamily, self.char, color, self.isBold))
+
+    def colored(self, lightColor, darkColor):
+        self.lightColor = QColor(lightColor)
+        self.darkColor = QColor(darkColor)
+        return self
+
+    def render(self, painter: QPainter, rect, theme=Theme.AUTO, indexes=None, **attributes):
+        color = self._getIconColor(theme)
+
+        font = QFont(self.fontFamily)
+        font.setBold(self.isBold)
+        font.setPixelSize(round(0.875 * rect.height()))
+        painter.setFont(font)
+        painter.setPen(color)
+        painter.drawText(rect, Qt.AlignCenter | Qt.AlignVCenter, self.char)
+
+    def iconNameMapPath(self) -> str:
+        return None
+
+    def loadFont(self):
+        """ Load icon font """
+        cls = self.__class__
+        if cls._isFontLoaded or not QApplication.instance():
+            return
+
+        file = QFile(self.path())
+        if not file.open(QFile.ReadOnly):
+            raise FileNotFoundError(f"Cannot open font file: {self.path()}")
+
+        data = file.readAll()
+        file.close()
+
+        cls.fontId = QFontDatabase.addApplicationFontFromData(data)
+        cls.fontFamily = QFontDatabase.applicationFontFamilies(cls.fontId)[0]
+
+        if self.iconNameMapPath():
+            self.loadIconNames()
+
+    def loadIconNames(self):
+        """ Load icon name map """
+        cls = self.__class__
+        cls._iconNames.clear()
+
+        file = QFile(self.iconNameMapPath())
+        if not file.open(QFile.ReadOnly):
+            raise FileNotFoundError(f"Cannot open font file: {self.iconNameMapPath()}")
+
+        cls._iconNames = json.loads(str(file.readAll(), encoding='utf-8'))
+        file.close()
+
+    def _getIconColor(self, theme):
+        if theme == Theme.AUTO:
+            color = self.darkColor if isDarkTheme() else self.lightColor
+        else:
+            color = self.darkColor if theme == Theme.DARK else self.lightColor
+
+        return color
 
 
 class ColoredFluentIcon(FluentIconBase):

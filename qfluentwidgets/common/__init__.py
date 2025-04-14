@@ -1,7 +1,7 @@
 from .config import *
 from .font import setFont, getFont
 from .auto_wrap import TextWrap
-from .icon import Action, Icon, getIconColor, drawSvgIcon, FluentIcon, drawIcon, FluentIconBase, writeSvg
+from .icon import Action, Icon, getIconColor, drawSvgIcon, FluentIcon, drawIcon, FluentIconBase, writeSvg, FluentFontIconBase
 from .style_sheet import (setStyleSheet, getStyleSheet, setTheme, ThemeColor, themeColor,
                           setThemeColor, applyThemeColor, FluentStyleSheet, StyleSheetBase,
                           StyleSheetFile, StyleSheetCompose, CustomStyleSheet, toggleTheme, setCustomStyleSheet)
