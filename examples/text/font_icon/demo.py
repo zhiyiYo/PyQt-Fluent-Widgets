@@ -32,7 +32,7 @@ class Demo(QWidget):
         super().__init__()
         self.themeButton = SwitchButton(self)
 
-        self.button1 = PushButton(PhotoFontIcon("\ue71c"), "Default")
+        self.button1 = PushButton(PhotoFontIcon("\ue77b"), "Default")
         self.button2 = PushButton(PhotoFontIcon.fromName("cloud").colored("#275EFF", Qt.GlobalColor.darkCyan), "Custom")
         self.button3 = TogglePushButton(PhotoFontIcon.fromName("smile"), "Toggle")
         self.button4 = HyperlinkButton(MediaPlayerFontIcon("\uf414"), "http://qfluentwidgets.com", "Hyperlink")

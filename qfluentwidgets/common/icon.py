@@ -360,6 +360,7 @@ class FluentFontIconBase(FluentIconBase):
         font.setPixelSize(round(0.875 * rect.height()))
         painter.setFont(font)
         painter.setPen(color)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
         painter.drawText(rect, Qt.AlignCenter | Qt.AlignVCenter, self.char)
 
     def iconNameMapPath(self) -> str:
