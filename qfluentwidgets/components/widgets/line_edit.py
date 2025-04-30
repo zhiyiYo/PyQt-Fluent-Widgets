@@ -11,6 +11,7 @@ from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
+from ...common.color import FluentSystemColor
 from .tool_tip import ToolTipFilter
 from .menu import LineEditMenu, TextEditMenu, RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .scroll_bar import SmoothScrollDelegate
@@ -143,7 +144,7 @@ class LineEdit(QLineEdit):
 
     def focusedBorderColor(self):
         if self.isError():
-            return QColor("#ff99a4") if isDarkTheme() else QColor("#c42b1c")
+            return FluentSystemColor.CRITICAL_FOREGROUND.color()
 
         color = self.darkFocusedBorderColor if isDarkTheme() else self.lightFocusedBorderColor
         return color if color.isValid() else themeColor()

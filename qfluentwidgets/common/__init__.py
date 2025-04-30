@@ -8,5 +8,5 @@ from .style_sheet import (setStyleSheet, getStyleSheet, setTheme, ThemeColor, th
 from .smooth_scroll import SmoothScroll, SmoothMode
 from .translator import FluentTranslator
 from .router import qrouter, Router
-from .color import FluentThemeColor
+from .color import FluentThemeColor, FluentSystemColor
 from .theme_listener import SystemThemeListener

@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QCheckBox, QStyle, QStyleOptionButton, QWidget
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor
 from ...common.overload import singledispatchmethod
+from ...common.color import fallbackThemeColor, validColor
 
 
 class CheckBoxIcon(FluentIconBase, Enum):
@@ -49,6 +50,8 @@ class CheckBox(QCheckBox):
         FluentStyleSheet.CHECK_BOX.apply(self)
         self.isPressed = False
         self.isHover = False
+        self.lightCheckedColor = QColor()
+        self.darkCheckedColor = QColor()
 
         self._states = {}
 
@@ -73,15 +76,27 @@ class CheckBox(QCheckBox):
         self.isHover = False
         self.update()
 
+    def setCheckedColor(self, light, dark):
+        """ set the color of indicator in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            border color in light/dark theme mode
+        """
+        self.lightCheckedColor = QColor(light)
+        self.darkCheckedColor = QColor(dark)
+        self.update()
+
     def _borderColor(self):
         if isDarkTheme():
             map = {
                 CheckBoxState.NORMAL: QColor(255, 255, 255, 141),
                 CheckBoxState.HOVER: QColor(255, 255, 255, 141),
                 CheckBoxState.PRESSED: QColor(255, 255, 255, 40),
-                CheckBoxState.CHECKED : themeColor(),
-                CheckBoxState.CHECKED_HOVER : ThemeColor.DARK_1.color(),
-                CheckBoxState.CHECKED_PRESSED : ThemeColor.DARK_2.color(),
+                CheckBoxState.CHECKED : fallbackThemeColor(self.darkCheckedColor),
+                CheckBoxState.CHECKED_HOVER: validColor(self.darkCheckedColor, ThemeColor.DARK_1.color()),
+                CheckBoxState.CHECKED_PRESSED : validColor(self.darkCheckedColor, ThemeColor.DARK_2.color()),
                 CheckBoxState.DISABLED : QColor(255, 255, 255, 41),
                 CheckBoxState.CHECKED_DISABLED : QColor(0, 0, 0, 0)
             }
@@ -90,9 +105,9 @@ class CheckBox(QCheckBox):
                 CheckBoxState.NORMAL: QColor(0, 0, 0, 122),
                 CheckBoxState.HOVER: QColor(0, 0, 0, 143),
                 CheckBoxState.PRESSED: QColor(0, 0, 0, 69),
-                CheckBoxState.CHECKED : themeColor(),
-                CheckBoxState.CHECKED_HOVER : ThemeColor.LIGHT_1.color(),
-                CheckBoxState.CHECKED_PRESSED : ThemeColor.LIGHT_2.color(),
+                CheckBoxState.CHECKED : fallbackThemeColor(self.lightCheckedColor),
+                CheckBoxState.CHECKED_HOVER : validColor(self.lightCheckedColor, ThemeColor.LIGHT_1.color()),
+                CheckBoxState.CHECKED_PRESSED : validColor(self.lightCheckedColor, ThemeColor.LIGHT_2.color()),
                 CheckBoxState.DISABLED : QColor(0, 0, 0, 56),
                 CheckBoxState.CHECKED_DISABLED : QColor(0, 0, 0, 0)
             }
@@ -105,9 +120,9 @@ class CheckBox(QCheckBox):
                 CheckBoxState.NORMAL: QColor(0, 0, 0, 26),
                 CheckBoxState.HOVER: QColor(255, 255, 255, 11),
                 CheckBoxState.PRESSED: QColor(255, 255, 255, 18),
-                CheckBoxState.CHECKED: themeColor(),
-                CheckBoxState.CHECKED_HOVER: ThemeColor.DARK_1.color(),
-                CheckBoxState.CHECKED_PRESSED: ThemeColor.DARK_2.color(),
+                CheckBoxState.CHECKED: fallbackThemeColor(self.darkCheckedColor),
+                CheckBoxState.CHECKED_HOVER: validColor(self.darkCheckedColor, ThemeColor.DARK_1.color()),
+                CheckBoxState.CHECKED_PRESSED: validColor(self.darkCheckedColor, ThemeColor.DARK_2.color()),
                 CheckBoxState.DISABLED: QColor(0, 0, 0, 0),
                 CheckBoxState.CHECKED_DISABLED: QColor(255, 255, 255, 41)
             }
@@ -116,9 +131,9 @@ class CheckBox(QCheckBox):
                 CheckBoxState.NORMAL: QColor(0, 0, 0, 6),
                 CheckBoxState.HOVER: QColor(0, 0, 0, 13),
                 CheckBoxState.PRESSED: QColor(0, 0, 0, 31),
-                CheckBoxState.CHECKED: themeColor(),
-                CheckBoxState.CHECKED_HOVER: ThemeColor.LIGHT_1.color(),
-                CheckBoxState.CHECKED_PRESSED: ThemeColor.LIGHT_2.color(),
+                CheckBoxState.CHECKED: fallbackThemeColor(self.lightCheckedColor),
+                CheckBoxState.CHECKED_HOVER: validColor(self.lightCheckedColor, ThemeColor.LIGHT_1.color()),
+                CheckBoxState.CHECKED_PRESSED: validColor(self.lightCheckedColor, ThemeColor.LIGHT_2.color()),
                 CheckBoxState.DISABLED: QColor(0, 0, 0, 0),
                 CheckBoxState.CHECKED_DISABLED: QColor(0, 0, 0, 56)
             }
