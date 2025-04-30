@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QCheckBox, QStyle, QStyleOptionButton, QWidget
 
 from ...common.icon import FluentIconBase, Theme, getIconColor
-from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
 
@@ -52,6 +52,8 @@ class CheckBox(QCheckBox):
         self.isHover = False
         self.lightCheckedColor = QColor()
         self.darkCheckedColor = QColor()
+        self.lightTextColor = QColor(0, 0, 0)
+        self.darkTextColor = QColor(255, 255, 255)
 
         self._states = {}
 
@@ -87,6 +89,23 @@ class CheckBox(QCheckBox):
         self.lightCheckedColor = QColor(light)
         self.darkCheckedColor = QColor(dark)
         self.update()
+
+    def setTextColor(self, light, dark):
+        """ set the color of text
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            text color in light/dark theme mode
+        """
+        self.lightTextColor = QColor(light)
+        self.darkTextColor = QColor(dark)
+        
+        setCustomStyleSheet(
+            self,
+            f"CheckBox{{color:{self.lightTextColor.name(QColor.NameFormat.HexArgb)}}}",
+            f"CheckBox{{color:{self.darkTextColor.name(QColor.NameFormat.HexArgb)}}}"
+        )
 
     def _borderColor(self):
         if isDarkTheme():
