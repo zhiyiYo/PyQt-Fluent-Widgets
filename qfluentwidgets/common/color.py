@@ -3,7 +3,7 @@ from enum import Enum
 
 from PyQt5.QtGui import QColor
 
-from .style_sheet import themeColor, Theme
+from .style_sheet import themeColor, Theme, isDarkTheme
 from .config import isDarkThemeMode
 
 
@@ -88,3 +88,8 @@ def validColor(color: QColor, default: QColor) -> QColor:
 
 def fallbackThemeColor(color: QColor):
     return color if color.isValid() else themeColor()
+
+
+def autoFallbackThemeColor(light: QColor, dark: QColor):
+    color = dark if isDarkTheme() else light
+    return fallbackThemeColor(color)

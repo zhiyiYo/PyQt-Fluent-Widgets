@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
-from ...common.color import fallbackThemeColor
+from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
 
 
@@ -71,8 +71,7 @@ class SliderHandle(QWidget):
         painter.drawEllipse(self.rect().adjusted(1, 1, -1, -1))
 
         # draw innert circle
-        color = self.darkHandleColor if isDark else self.lightHandleColor
-        painter.setBrush(fallbackThemeColor(color))
+        painter.setBrush(autoFallbackThemeColor(self.lightHandleColor, self.darkHandleColor))
         painter.drawEllipse(QPoint(11, 11), self.radius, self.radius)
 
 
@@ -170,8 +169,7 @@ class Slider(QSlider):
         if self.maximum() - self.minimum() == 0:
             return
 
-        color = self.darkGrooveColor if isDarkTheme() else self.lightGrooveColor
-        painter.setBrush(fallbackThemeColor(color))
+        painter.setBrush(autoFallbackThemeColor(self.lightGrooveColor, self.darkGrooveColor))
         aw = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (w - r*2)
         painter.drawRoundedRect(QRectF(r, r-2, aw, 4), 2, 2)
 
@@ -182,8 +180,7 @@ class Slider(QSlider):
         if self.maximum() - self.minimum() == 0:
             return
 
-        color = self.darkGrooveColor if isDarkTheme() else self.lightGrooveColor
-        painter.setBrush(fallbackThemeColor(color))
+        painter.setBrush(autoFallbackThemeColor(self.lightGrooveColor, self.darkGrooveColor))
         ah = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (h - r*2)
         painter.drawRoundedRect(QRectF(r-2, r, 4, ah), 2, 2)
 

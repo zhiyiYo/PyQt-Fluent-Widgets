@@ -10,7 +10,7 @@ from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont, getFont
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
-from ...common.color import fallbackThemeColor
+from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
 from .menu import RoundMenu, MenuAnimationType
 
@@ -299,7 +299,7 @@ class RadioButton(QRadioButton):
     def _drawIndicator(self, painter: QPainter):
         if self.isChecked():
             if self.isEnabled():
-                borderColor = fallbackThemeColor(self.darkIndicatorColor if isDarkTheme() else self.lightIndicatorColor)
+                borderColor = autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor)
             else:
                 borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
 
@@ -377,6 +377,10 @@ class RadioButton(QRadioButton):
         self.lightIndicatorColor = QColor(light)
         self.darkIndicatorColor = QColor(dark)
         self.update()
+
+    def setTextColor(self, light, dark):
+        self.setLightTextColor(light)
+        self.setDarkTextColor(dark)
 
     lightTextColor = pyqtProperty(QColor, getLightTextColor, setLightTextColor)
     darkTextColor = pyqtProperty(QColor, getDarkTextColor, setDarkTextColor)
