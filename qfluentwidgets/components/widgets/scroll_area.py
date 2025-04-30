@@ -15,6 +15,22 @@ class ScrollArea(QScrollArea):
         super().__init__(parent)
         self.scrollDelagate = SmoothScrollDelegate(self)
 
+    def setSmoothMode(self, mode: SmoothMode, orientation: Qt.Orientation):
+        """ set smooth mode
+
+        Parameters
+        ----------
+        mode: SmoothMode
+            smooth scroll mode
+
+        orientation: Qt.Orientation
+            scroll direction
+        """
+        if orientation == Qt.Orientation.Vertical:
+            self.scrollDelagate.verticalSmoothScroll.setSmoothMode(mode)
+        else:
+            self.scrollDelagate.horizonSmoothScroll.setSmoothMode(mode)
+
     def enableTransparentBackground(self):
         self.setStyleSheet("QScrollArea{border: none; background: transparent}")
 
