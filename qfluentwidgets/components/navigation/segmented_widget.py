@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 
 from ...common.font import setFont
 from ...common.icon import FluentIconBase, drawIcon, Theme
+from ...common.color import autoFallbackThemeColor
 from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme
 from ..widgets.button import PushButton, ToolButton, TransparentToolButton
 from .pivot import Pivot, PivotItem
@@ -109,7 +110,7 @@ class SegmentedWidget(Pivot):
 
         # draw indicator
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
 
         x = int(self.currentItem().width() / 2 - 8 + self.slideAni.value())
         painter.drawRoundedRect(QRectF(x, self.height() - 3.5, 16, 3), 1.5, 1.5)
@@ -166,7 +167,7 @@ class SegmentedToggleToolWidget(SegmentedToolWidget):
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
 
         item = self.currentItem()
         painter.drawRoundedRect(
