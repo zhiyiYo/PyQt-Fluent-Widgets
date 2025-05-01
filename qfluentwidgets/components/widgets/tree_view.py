@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView,
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
+from ...common.color import autoFallbackThemeColor
 from .check_box import CheckBoxIcon
 from .scroll_area import SmoothScrollDelegate
 
@@ -14,6 +15,20 @@ class TreeItemDelegate(QStyledItemDelegate):
 
     def __init__(self, parent: QTreeView):
         super().__init__(parent)
+        self.lightCheckedColor = QColor()
+        self.darkCheckedColor = QColor()
+
+    def setCheckedColor(self, light, dark):
+        """ set the color of indicator in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.lightCheckedColor = QColor(light)
+        self.darkCheckedColor = QColor(dark)
+        self.parent().viewport().update()
 
     def paint(self, painter, option, index):
         painter.setRenderHints(
@@ -38,7 +53,7 @@ class TreeItemDelegate(QStyledItemDelegate):
 
         # draw indicator
         if option.state & QStyle.State_Selected and self.parent().horizontalScrollBar().value() == 0:
-            painter.setBrush(themeColor())
+            painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
             painter.drawRoundedRect(4, 9+option.rect.y(), 3, h - 13, 1.5, 1.5)
 
         painter.restore()
@@ -61,8 +76,9 @@ class TreeItemDelegate(QStyledItemDelegate):
                            if isDark else QColor(0, 0, 0, 122))
             painter.drawRoundedRect(rect, r, r)
         else:
-            painter.setPen(themeColor())
-            painter.setBrush(themeColor())
+            color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
+            painter.setPen(color)
+            painter.setBrush(color)
             painter.drawRoundedRect(rect, r, r)
 
             if checkState == Qt.CheckState.Checked:
@@ -102,6 +118,16 @@ class TreeViewBase:
         self.setIconSize(QSize(16, 16))
 
         FluentStyleSheet.TREE_VIEW.apply(self)
+
+    def setCheckedColor(self, light, dark):
+        """ set the color in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.itemDelegate().setCheckedColor(light, dark)
 
     def drawBranches(self, painter, rect, index):
         rect.moveLeft(15)

@@ -84,7 +84,7 @@ class CheckBox(QCheckBox):
         Parameters
         ----------
         light, dark: str | QColor | Qt.GlobalColor
-            border color in light/dark theme mode
+            indicator color in light/dark theme mode
         """
         self.lightCheckedColor = QColor(light)
         self.darkCheckedColor = QColor(dark)
@@ -100,7 +100,7 @@ class CheckBox(QCheckBox):
         """
         self.lightTextColor = QColor(light)
         self.darkTextColor = QColor(dark)
-        
+
         setCustomStyleSheet(
             self,
             f"CheckBox{{color:{self.lightTextColor.name(QColor.NameFormat.HexArgb)}}}",
