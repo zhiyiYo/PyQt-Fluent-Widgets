@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal, QEvent, QPoint, Q
 from PyQt5.QtGui import QColor, QPainter, QHoverEvent
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
 from .button import ToolButton
@@ -163,6 +163,8 @@ class SwitchButton(QWidget):
         self._offText =  self.tr('Off')
         self._onText =  self.tr('On')
         self.__spacing = 12
+        self.lightTextColor = QColor(0, 0, 0)
+        self.darkTextColor = QColor(255, 255, 255)
 
         self.indicatorPos = indicatorPos
         self.hBox = QHBoxLayout(self)
@@ -210,6 +212,7 @@ class SwitchButton(QWidget):
 
         # set default style sheet
         FluentStyleSheet.SWITCH_BUTTON.apply(self)
+        FluentStyleSheet.SWITCH_BUTTON.apply(self.label)
 
         # connect signal to slot
         self.indicator.toggled.connect(self._updateText)
@@ -236,6 +239,23 @@ class SwitchButton(QWidget):
         """ set checked state """
         self._updateText()
         self.indicator.setChecked(isChecked)
+
+    def setTextColor(self, light, dark):
+        """ set the color of text
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            text color in light/dark theme mode
+        """
+        self.lightTextColor = QColor(light)
+        self.darkTextColor = QColor(dark)
+
+        setCustomStyleSheet(
+            self.label,
+            f"SwitchButton>QLabel{{color:{self.lightTextColor.name(QColor.NameFormat.HexArgb)}}}",
+            f"SwitchButton>QLabel{{color:{self.darkTextColor.name(QColor.NameFormat.HexArgb)}}}"
+        )
 
     def setCheckedIndicatorColor(self, light, dark):
         """ set the color of indicator in checked status
