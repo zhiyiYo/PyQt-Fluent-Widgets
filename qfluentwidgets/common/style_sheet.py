@@ -37,7 +37,7 @@ class StyleSheetManager(QObject):
             source = StyleSheetFile(source)
 
         if widget not in self.widgets:
-            widget.destroyed.connect(self.deregister)
+            widget.destroyed.connect(lambda: self.deregister(widget))
             widget.installEventFilter(CustomStyleSheetWatcher(widget))
             widget.installEventFilter(DirtyStyleSheetWatcher(widget))
             self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
