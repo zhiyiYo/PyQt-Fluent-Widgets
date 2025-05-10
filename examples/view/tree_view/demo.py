@@ -8,23 +8,57 @@ from qfluentwidgets import TreeWidget, setTheme, Theme, TreeView
 
 class Demo(QWidget):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None, enableCheck=False):
+        super().__init__(parent)
+
+        self.tree = TreeWidget(self)
         self.hBoxLayout = QHBoxLayout(self)
-        self.setStyleSheet("Demo{background:rgb(255,255,255)}")
-        # setTheme(Theme.DARK)
+        self.hBoxLayout.setContentsMargins(0, 8, 0, 0)
+        self.hBoxLayout.addWidget(self.tree)
 
-        self.view = TreeView(self)
-        model = QFileSystemModel()
-        model.setRootPath('.')
-        self.view.setModel(model)
+        item1 = QTreeWidgetItem([self.tr('JoJo 1 - Phantom Blood')])
+        item1.addChildren([
+            QTreeWidgetItem([self.tr('Jonathan Joestar')]),
+            QTreeWidgetItem([self.tr('Dio Brando')]),
+            QTreeWidgetItem([self.tr('Will A. Zeppeli')]),
+        ])
+        self.tree.addTopLevelItem(item1)
 
-        self.view.setBorderVisible(True)
-        self.view.setBorderRadius(8)
+        item2 = QTreeWidgetItem([self.tr('JoJo 3 - Stardust Crusaders')])
+        item21 = QTreeWidgetItem([self.tr('Jotaro Kujo')])
+        item21.addChildren([
+            QTreeWidgetItem(['空条承太郎']),
+            QTreeWidgetItem(['空条蕉太狼']),
+            QTreeWidgetItem(['阿强']),
+            QTreeWidgetItem(['卖鱼强']),
+            QTreeWidgetItem(['那个无敌的男人']),
+        ]*10)
+        item22 = QTreeWidgetItem([self.tr('Jotaro Kujo')])
+        item22.addChildren([
+            QTreeWidgetItem(['空条承太郎']),
+            QTreeWidgetItem(['空条蕉太狼']),
+            QTreeWidgetItem(['阿强']),
+            QTreeWidgetItem(['卖鱼强']),
+            QTreeWidgetItem(['那个无敌的男人']),
+        ]*10)
+        item23 = QTreeWidgetItem([self.tr('Jotaro Kujo')])
+        item23.addChildren([
+            QTreeWidgetItem(['空条承太郎']),
+            QTreeWidgetItem(['空条蕉太狼']),
+            QTreeWidgetItem(['阿强']),
+            QTreeWidgetItem(['卖鱼强']),
+            QTreeWidgetItem(['那个无敌的男人']),
+        ]*10)
+        item2.addChild(item21)
+        item2.addChild(item22)
+        item2.addChild(item23)
 
-        self.hBoxLayout.addWidget(self.view)
-        self.hBoxLayout.setContentsMargins(50, 30, 50, 30)
-        self.resize(800, 660)
+        self.tree.addTopLevelItem(item2)
+        self.tree.expandAll()
+        self.tree.setHeaderHidden(True)
+
+        self.resize(400, 500)
+
 
 
 if __name__ == '__main__':

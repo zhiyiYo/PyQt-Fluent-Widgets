@@ -1,5 +1,5 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QSize, QRectF, QModelIndex
+from PyQt5.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
 from PyQt5.QtGui import QPainter, QColor, QPalette
 from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
 
@@ -149,6 +149,34 @@ class TreeWidget(QTreeWidget, TreeViewBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+
+    def viewportEvent(self, event):
+        """
+        Catch the click event to override the item "expand/collapse" function which is
+        still called in the place it was before moving the branches in the drawBranches method.
+        """
+        if event.type() != QEvent.Type.MouseButtonPress:
+            return super().viewportEvent(event)
+
+        index = self.indexAt(event.pos())
+        item = self.itemFromIndex(index)
+
+        if item is None:
+            return super().viewportEvent(event)
+
+        level = 0
+        while item.parent() is not None:
+            item = item.parent()
+            level += 1
+
+        indent = level * self.indentation() + 20
+        if event.pos().x() > indent and event.pos().x() < indent + 10:
+            if self.isExpanded(index):
+                self.collapse(index)
+            else:
+                self.expand(index)
+
+        return super().viewportEvent(event)
 
 
 class TreeView(QTreeView, TreeViewBase):
