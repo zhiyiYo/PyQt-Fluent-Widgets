@@ -3,6 +3,9 @@ from enum import Enum
 
 from PySide6.QtGui import QColor
 
+from .style_sheet import themeColor, Theme, isDarkTheme
+from .config import isDarkThemeMode
+
 
 class FluentThemeColor(Enum):
     """ Fluent theme color
@@ -62,3 +65,31 @@ class FluentThemeColor(Enum):
         return QColor(self.value)
 
 
+
+class FluentSystemColor(Enum):
+
+    SUCCESS_FOREGROUND = ("#0f7b0f", "#6ccb5f")
+    CAUTION_FOREGROUND = ("#9d5d00", "#fce100")
+    CRITICAL_FOREGROUND = ("#c42b1c", "#ff99a4")
+
+    SUCCESS_BACKGROUND = ("#dff6dd", "#393d1b")
+    CAUTION_BACKGROUND = ("#fff4ce", "#433519")
+    CRITICAL_BACKGROUND = ("#fde7e9", "#442726")
+
+    def color(self, theme=Theme.AUTO) -> QColor:
+        color = self.value[1] if isDarkThemeMode(theme) else self.value[0]
+        return QColor(color)
+
+
+
+def validColor(color: QColor, default: QColor) -> QColor:
+    return color if color.isValid() else default
+
+
+def fallbackThemeColor(color: QColor):
+    return color if color.isValid() else themeColor()
+
+
+def autoFallbackThemeColor(light: QColor, dark: QColor):
+    color = dark if isDarkTheme() else light
+    return fallbackThemeColor(color)

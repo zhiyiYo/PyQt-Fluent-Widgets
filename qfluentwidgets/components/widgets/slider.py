@@ -4,6 +4,7 @@ from PySide6.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
 from PySide6.QtWidgets import QProxyStyle, QSlider, QStyle, QStyleOptionSlider, QWidget
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
 
 
@@ -18,6 +19,8 @@ class SliderHandle(QWidget):
         super().__init__(parent=parent)
         self.setFixedSize(22, 22)
         self._radius = 5
+        self.lightHandleColor = QColor()
+        self.darkHandleColor = QColor()
         self.radiusAni = QPropertyAnimation(self, b'radius', self)
         self.radiusAni.setDuration(100)
 
@@ -28,6 +31,11 @@ class SliderHandle(QWidget):
     @radius.setter
     def radius(self, r):
         self._radius = r
+        self.update()
+
+    def setHandleColor(self, light, dark):
+        self.lightHandleColor = QColor(light)
+        self.darkHandleColor = QColor(dark)
         self.update()
 
     def enterEvent(self, e):
@@ -62,7 +70,7 @@ class SliderHandle(QWidget):
         painter.drawEllipse(self.rect().adjusted(1, 1, -1, -1))
 
         # draw innert circle
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightHandleColor, self.darkHandleColor))
         painter.drawEllipse(QPoint(11, 11), self.radius, self.radius)
 
 
@@ -91,11 +99,19 @@ class Slider(QSlider):
     def _postInit(self):
         self.handle = SliderHandle(self)
         self._pressedPos = QPoint()
+        self.lightGrooveColor = QColor()
+        self.darkGrooveColor = QColor()
         self.setOrientation(self.orientation())
 
         self.handle.pressed.connect(self.sliderPressed)
         self.handle.released.connect(self.sliderReleased)
         self.valueChanged.connect(self._adjustHandlePos)
+
+    def setThemeColor(self, light, dark):
+        self.lightGrooveColor = QColor(light)
+        self.darkGrooveColor = QColor(dark)
+        self.handle.setHandleColor(light, dark)
+        self.update()
 
     def setOrientation(self, orientation: Qt.Orientation) -> None:
         super().setOrientation(orientation)
@@ -152,7 +168,7 @@ class Slider(QSlider):
         if self.maximum() - self.minimum() == 0:
             return
 
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightGrooveColor, self.darkGrooveColor))
         aw = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (w - r*2)
         painter.drawRoundedRect(QRectF(r, r-2, aw, 4), 2, 2)
 
@@ -163,7 +179,7 @@ class Slider(QSlider):
         if self.maximum() - self.minimum() == 0:
             return
 
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightGrooveColor, self.darkGrooveColor))
         ah = (self.value() - self.minimum()) / (self.maximum() - self.minimum()) * (h - r*2)
         painter.drawRoundedRect(QRectF(r-2, r, 4, ah), 2, 2)
 

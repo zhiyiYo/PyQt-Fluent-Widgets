@@ -3,7 +3,7 @@ from PySide6.QtCore import QEasingCurve, Qt, QPropertyAnimation
 from PySide6.QtGui import QWheelEvent
 from PySide6.QtWidgets import QScrollArea, QScrollBar
 
-from ...common.smooth_scroll import SmoothScroll
+from ...common.smooth_scroll import SmoothScroll, SmoothMode
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
 
 
@@ -13,6 +13,22 @@ class ScrollArea(QScrollArea):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.scrollDelagate = SmoothScrollDelegate(self)
+
+    def setSmoothMode(self, mode: SmoothMode, orientation: Qt.Orientation):
+        """ set smooth mode
+
+        Parameters
+        ----------
+        mode: SmoothMode
+            smooth scroll mode
+
+        orientation: Qt.Orientation
+            scroll direction
+        """
+        if orientation == Qt.Orientation.Vertical:
+            self.scrollDelagate.verticalSmoothScroll.setSmoothMode(mode)
+        else:
+            self.scrollDelagate.horizonSmoothScroll.setSmoothMode(mode)
 
     def enableTransparentBackground(self):
         self.setStyleSheet("QScrollArea{border: none; background: transparent}")

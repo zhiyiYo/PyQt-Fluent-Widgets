@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QStyleOptionViewItem, QListView, QListView, QListW
 from .scroll_bar import SmoothScrollDelegate
 from .table_view import TableItemDelegate
 from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.color import autoFallbackThemeColor
 
 
 class ListItemDelegate(TableItemDelegate):
@@ -22,7 +23,7 @@ class ListItemDelegate(TableItemDelegate):
     def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         y, h = option.rect.y(), option.rect.height()
         ph = round(0.35*h if self.pressedRow == index.row() else 0.257*h)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
         painter.drawRoundedRect(0, ph + y, 3, h - 2*ph, 1.5, 1.5)
 
 
@@ -50,7 +51,7 @@ class ListBase:
         """ set pressed row """
         if self.selectionMode() == QListView.SelectionMode.NoSelection:
             return
-        
+
         self.delegate.setPressedRow(row)
         self.viewport().update()
 
@@ -104,6 +105,16 @@ class ListBase:
 
     def updateSelectedRows(self):
         self._setSelectedRows(self.selectedIndexes())
+
+    def setCheckedColor(self, light, dark):
+        """ set the color in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.delegate.setCheckedColor(light, dark)
 
 
 class ListWidget(ListBase, QListWidget):

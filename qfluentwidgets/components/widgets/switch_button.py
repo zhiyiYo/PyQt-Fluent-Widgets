@@ -5,8 +5,9 @@ from PySide6.QtCore import Qt, QTimer, Property, Signal, QEvent, QPoint, QProper
 from PySide6.QtGui import QColor, QPainter, QHoverEvent
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
+from ...common.color import fallbackThemeColor, validColor
 from .button import ToolButton
 
 
@@ -19,6 +20,8 @@ class Indicator(ToolButton):
         super().__init__(parent=parent)
         self.setCheckable(True)
         self.setFixedSize(42, 22)
+        self.lightCheckedColor = QColor()
+        self.darkCheckedColor = QColor()
 
         self._sliderX = 5
         self.slideAni = QPropertyAnimation(self, b'sliderX', self)
@@ -46,6 +49,11 @@ class Indicator(ToolButton):
         self.isHover = isHover
         self.update()
 
+    def setCheckedColor(self, light, dark):
+        self.lightCheckedColor = QColor(light)
+        self.darkCheckedColor = QColor(dark)
+        self.update()
+
     def paintEvent(self, e):
         """ paint indicator """
         painter = QPainter(self)
@@ -68,14 +76,15 @@ class Indicator(ToolButton):
         isDark = isDarkTheme()
 
         if self.isChecked():
+            color = self.darkCheckedColor if isDark else self.lightCheckedColor
             if not self.isEnabled():
                 return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
             if self.isPressed:
-                return ThemeColor.LIGHT_2.color()
+                return validColor(color, ThemeColor.LIGHT_2.color())
             elif self.isHover:
-                return ThemeColor.LIGHT_1.color()
+                return validColor(color, ThemeColor.LIGHT_1.color())
 
-            return themeColor()
+            return fallbackThemeColor(color)
         else:
             if not self.isEnabled():
                 return QColor(0, 0, 0, 0)
@@ -154,6 +163,8 @@ class SwitchButton(QWidget):
         self._offText =  self.tr('Off')
         self._onText =  self.tr('On')
         self.__spacing = 12
+        self.lightTextColor = QColor(0, 0, 0)
+        self.darkTextColor = QColor(255, 255, 255)
 
         self.indicatorPos = indicatorPos
         self.hBox = QHBoxLayout(self)
@@ -201,6 +212,7 @@ class SwitchButton(QWidget):
 
         # set default style sheet
         FluentStyleSheet.SWITCH_BUTTON.apply(self)
+        FluentStyleSheet.SWITCH_BUTTON.apply(self.label)
 
         # connect signal to slot
         self.indicator.toggled.connect(self._updateText)
@@ -227,6 +239,33 @@ class SwitchButton(QWidget):
         """ set checked state """
         self._updateText()
         self.indicator.setChecked(isChecked)
+
+    def setTextColor(self, light, dark):
+        """ set the color of text
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            text color in light/dark theme mode
+        """
+        self.lightTextColor = QColor(light)
+        self.darkTextColor = QColor(dark)
+
+        setCustomStyleSheet(
+            self.label,
+            f"SwitchButton>QLabel{{color:{self.lightTextColor.name(QColor.NameFormat.HexArgb)}}}",
+            f"SwitchButton>QLabel{{color:{self.darkTextColor.name(QColor.NameFormat.HexArgb)}}}"
+        )
+
+    def setCheckedIndicatorColor(self, light, dark):
+        """ set the color of indicator in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            border color in light/dark theme mode
+        """
+        self.indicator.setCheckedColor(light, dark)
 
     def toggleChecked(self):
         """ toggle checked state """

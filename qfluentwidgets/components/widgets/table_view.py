@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QStyledItemDelegate, QApplicat
 
 from .check_box import CheckBoxIcon
 from ...common.font import getFont
+from ...common.color import autoFallbackThemeColor
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, setCustomStyleSheet
 from .line_edit import LineEdit
 from .scroll_bar import SmoothScrollDelegate
@@ -23,6 +24,8 @@ class TableItemDelegate(QStyledItemDelegate):
         self.hoverRow = -1
         self.pressedRow = -1
         self.selectedRows = set()
+        self.lightCheckedColor = QColor()
+        self.darkCheckedColor = QColor()
 
         if isinstance(parent, QTableView):
             self.tooltipDelegate = ItemViewToolTipDelegate(parent, 100, ItemViewToolTipType.TABLE)
@@ -65,6 +68,18 @@ class TableItemDelegate(QStyledItemDelegate):
 
         editor.setGeometry(x, y, w, rect.height())
 
+    def setCheckedColor(self, light, dark):
+        """ set the color of indicator in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.lightCheckedColor = QColor(light)
+        self.darkCheckedColor = QColor(dark)
+        self.parent().viewport().update()
+
     def _drawBackground(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         """ draw row background """
         r = 5
@@ -82,7 +97,7 @@ class TableItemDelegate(QStyledItemDelegate):
         """ draw indicator """
         y, h = option.rect.y(), option.rect.height()
         ph = round(0.35*h if self.pressedRow == index.row() else 0.257*h)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
         painter.drawRoundedRect(4, ph + y, 3, h - 2*ph, 1.5, 1.5)
 
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
@@ -169,8 +184,9 @@ class TableItemDelegate(QStyledItemDelegate):
             painter.setPen(QColor(255, 255, 255, 142) if isDark else QColor(0, 0, 0, 122))
             painter.drawRoundedRect(rect, r, r)
         else:
-            painter.setPen(themeColor())
-            painter.setBrush(themeColor())
+            color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
+            painter.setPen(color)
+            painter.setBrush(color)
             painter.drawRoundedRect(rect, r, r)
 
             if checkState == Qt.CheckState.Checked:
@@ -219,6 +235,16 @@ class TableBase:
         """ set the radius of border """
         qss = f"QTableView{{border-radius: {radius}px}}"
         setCustomStyleSheet(self, qss, qss)
+
+    def setCheckedColor(self, light, dark):
+        """ set the color in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.delegate.setCheckedColor(light, dark)
 
     def _setHoverRow(self, row: int):
         """ set hovered row """

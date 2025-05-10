@@ -26,6 +26,9 @@ class Demo(QWidget):
         # close the message box when mask is clicked
         w.setClosableOnMaskClicked(True)
 
+        # enable dragging 
+        w.setDraggable(True)
+
         if w.exec():
             print('Yes button is pressed')
         else:
