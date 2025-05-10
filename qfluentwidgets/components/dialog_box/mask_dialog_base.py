@@ -1,5 +1,5 @@
 # coding:utf-8
-from PySide2.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent
+from PySide2.QtCore import QEasingCurve, QPropertyAnimation, Qt, QEvent, QPoint
 from PySide2.QtGui import QColor, QResizeEvent
 from PySide2.QtWidgets import (QDialog, QGraphicsDropShadowEffect,
                              QGraphicsOpacityEffect, QHBoxLayout, QWidget, QFrame)
@@ -13,6 +13,8 @@ class MaskDialogBase(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._isClosableOnMaskClicked = False
+        self._isDraggable = False
+        self._dragPos = QPoint()
         self._hBoxLayout = QHBoxLayout(self)
         self.windowMask = QWidget(self)
 
@@ -30,6 +32,7 @@ class MaskDialogBase(QDialog):
 
         self.window().installEventFilter(self)
         self.windowMask.installEventFilter(self)
+        self.widget.installEventFilter(self)
 
     def setShadowEffect(self, blurRadius=60, offset=(0, 10), color=QColor(0, 0, 0, 100)):
         """ add shadow to dialog """
@@ -81,6 +84,12 @@ class MaskDialogBase(QDialog):
     def setClosableOnMaskClicked(self, isClosable: bool):
         self._isClosableOnMaskClicked = isClosable
 
+    def setDraggable(self, draggable: bool):
+        self._isDraggable = draggable
+
+    def isDraggable(self) -> bool:
+        return self._isDraggable
+
     def resizeEvent(self, e):
         self.windowMask.resize(self.size())
 
@@ -92,5 +101,19 @@ class MaskDialogBase(QDialog):
             if e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton \
                     and self.isClosableOnMaskClicked():
                 self.reject()
+        elif obj is self.widget and self.isDraggable():
+            if e.type() == QEvent.MouseButtonPress and e.button() == Qt.LeftButton:
+                if not self.widget.childrenRegion().contains(e.pos()):
+                    self._dragPos = e.pos()
+                    return True
+            elif e.type() == QEvent.MouseMove and not self._dragPos.isNull():
+                pos = self.widget.pos() + e.pos() - self._dragPos
+                pos.setX(max(0, min(pos.x(), self.width() - self.widget.width())))
+                pos.setY(max(0, min(pos.y(), self.height() - self.widget.height())))
+
+                self.widget.move(pos)
+                return True
+            elif e.type() == QEvent.MouseButtonRelease:
+                self._dragPos = QPoint()
 
         return super().eventFilter(obj, e)

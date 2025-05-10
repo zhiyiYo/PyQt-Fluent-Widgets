@@ -417,3 +417,7 @@ def isDarkTheme():
 def theme():
     """ get theme mode """
     return qconfig.theme
+
+def isDarkThemeMode(theme=Theme.AUTO):
+    """ whether the theme is dark mode """
+    return theme == Theme.DARK if theme != Theme.AUTO else isDarkTheme()

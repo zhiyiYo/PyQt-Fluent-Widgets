@@ -11,6 +11,7 @@ from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
+from ...common.color import FluentSystemColor, autoFallbackThemeColor
 from .tool_tip import ToolTipFilter
 from .menu import LineEditMenu, TextEditMenu, RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .scroll_bar import SmoothScrollDelegate
@@ -91,6 +92,8 @@ class LineEdit(QLineEdit):
         self._completer = None  # type: QCompleter
         self._completerMenu = None  # type: CompleterMenu
         self._isError = False
+        self.lightFocusedBorderColor = QColor()
+        self.darkFocusedBorderColor = QColor()
 
         self.leftButtons = []   # type: List[LineEditButton]
         self.rightButtons = []  # type: List[LineEditButton]
@@ -120,17 +123,30 @@ class LineEdit(QLineEdit):
         return self._isError
 
     def setError(self, isError: bool):
+        """ set the error status """
         if isError == self.isError():
             return
 
         self._isError = isError
         self.update()
 
-    def focusedBorderColor(self):
-        if not self.isError():
-            return themeColor()
+    def setCustomFocusedBorderColor(self, light, dark):
+        """ set the border color in focused status
 
-        return QColor("#ff99a4") if isDarkTheme() else QColor("#c42b1c")
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            border color in light/dark theme mode
+        """
+        self.lightFocusedBorderColor = QColor(light)
+        self.darkFocusedBorderColor = QColor(dark)
+        self.update()
+
+    def focusedBorderColor(self):
+        if self.isError():
+            return FluentSystemColor.CRITICAL_FOREGROUND.color()
+
+        return autoFallbackThemeColor(self.lightFocusedBorderColor, self.darkFocusedBorderColor)
 
     def setClearButtonEnabled(self, enable: bool):
         self._isClearButtonEnabled = enable

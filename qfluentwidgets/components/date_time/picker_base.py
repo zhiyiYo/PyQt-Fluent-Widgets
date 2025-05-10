@@ -11,6 +11,7 @@ from ..widgets.button import TransparentToolButton
 from ...common.icon import FluentIcon
 from ...common.screen import getCurrentScreenGeometry
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.color import autoFallbackThemeColor
 
 
 class SeparatorWidget(QWidget):
@@ -34,7 +35,14 @@ class ItemMaskWidget(QWidget):
         super().__init__(parent=parent)
         self.listWidgets = listWidgets
         self.setFixedHeight(37)
+        self.lightBackgroundColor = QColor()
+        self.darkBackgroundColor = QColor()
         FluentStyleSheet.TIME_PICKER.apply(self)
+
+    def setCustomBackgroundColor(self, light, dark):
+        self.lightBackgroundColor = QColor(light)
+        self.darkBackgroundColor = QColor(dark)
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -43,7 +51,7 @@ class ItemMaskWidget(QWidget):
 
         # draw background
         painter.setPen(Qt.NoPen)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightBackgroundColor, self.darkBackgroundColor))
         painter.drawRoundedRect(self.rect().adjusted(4, 0, -3, 0), 5, 5)
 
         # draw text
@@ -196,6 +204,9 @@ class PickerBase(QPushButton):
         super().__init__(parent=parent)
         self.columns = []   # type: List[PickerColumnButton]
 
+        self.lightSelectedBackgroundColor = QColor()
+        self.darkSelectedBackgroundColor = QColor()
+
         self._isResetEnabled = False
         self.hBoxLayout = QHBoxLayout(self)
 
@@ -205,6 +216,11 @@ class PickerBase(QPushButton):
 
         FluentStyleSheet.TIME_PICKER.apply(self)
         self.clicked.connect(self._showPanel)
+
+    def setSelectedBackgroundColor(self, light, dark):
+        """ set the background color of selected row """
+        self.lightSelectedBackgroundColor = QColor(light)
+        self.darkSelectedBackgroundColor = QColor(dark)
 
     def addColumn(self, name: str, items: Iterable, width: int, align=Qt.AlignCenter,
                   formatter: PickerColumnFormatter = None):
@@ -361,6 +377,8 @@ class PickerBase(QPushButton):
 
         panel.setValue(self.panelInitialValue())
         panel.setResetEnabled(self.isRestEnabled())
+        panel.setSelectedBackgroundColor(
+            self.lightSelectedBackgroundColor, self.darkSelectedBackgroundColor)
 
         panel.confirmed.connect(self._onConfirmed)
         panel.resetted.connect(self.reset)
@@ -486,6 +504,9 @@ class PickerPanel(QWidget):
     def setResetEnabled(self, isEnabled: bool):
         """ set the visibility of reset button """
         self.resetButton.setVisible(isEnabled)
+
+    def setSelectedBackgroundColor(self, light, dark):
+        self.itemMaskWidget.setCustomBackgroundColor(light, dark)
 
     def isResetEnabled(self):
         return self.resetButton.isVisible()
