@@ -1,10 +1,11 @@
 # coding:utf-8
-from PyQt6.QtCore import Qt, QSize, QRectF, QModelIndex
+from PyQt6.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
 from PyQt6.QtGui import QPainter, QColor, QPalette
 from PyQt6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
+from ...common.color import autoFallbackThemeColor
 from .check_box import CheckBoxIcon
 from .scroll_area import SmoothScrollDelegate
 
@@ -14,6 +15,20 @@ class TreeItemDelegate(QStyledItemDelegate):
 
     def __init__(self, parent: QTreeView):
         super().__init__(parent)
+        self.lightCheckedColor = QColor()
+        self.darkCheckedColor = QColor()
+
+    def setCheckedColor(self, light, dark):
+        """ set the color of indicator in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.lightCheckedColor = QColor(light)
+        self.darkCheckedColor = QColor(dark)
+        self.parent().viewport().update()
 
     def paint(self, painter, option, index):
         painter.setRenderHints(
@@ -38,7 +53,7 @@ class TreeItemDelegate(QStyledItemDelegate):
 
         # draw indicator
         if option.state & QStyle.StateFlag.State_Selected and self.parent().horizontalScrollBar().value() == 0:
-            painter.setBrush(themeColor())
+            painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
             painter.drawRoundedRect(4, 9+option.rect.y(), 3, h - 13, 1.5, 1.5)
 
         painter.restore()
@@ -61,8 +76,9 @@ class TreeItemDelegate(QStyledItemDelegate):
                            if isDark else QColor(0, 0, 0, 122))
             painter.drawRoundedRect(rect, r, r)
         else:
-            painter.setPen(themeColor())
-            painter.setBrush(themeColor())
+            color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
+            painter.setPen(color)
+            painter.setBrush(color)
             painter.drawRoundedRect(rect, r, r)
 
             if checkState == Qt.CheckState.Checked:
@@ -103,6 +119,16 @@ class TreeViewBase:
 
         FluentStyleSheet.TREE_VIEW.apply(self)
 
+    def setCheckedColor(self, light, dark):
+        """ set the color in checked status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            color in light/dark theme mode
+        """
+        self.itemDelegate().setCheckedColor(light, dark)
+
     def drawBranches(self, painter, rect, index):
         rect.moveLeft(15)
         return QTreeView.drawBranches(self, painter, rect, index)
@@ -123,6 +149,34 @@ class TreeWidget(QTreeWidget, TreeViewBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+
+    def viewportEvent(self, event):
+        """
+        Catch the click event to override the item "expand/collapse" function which is
+        still called in the place it was before moving the branches in the drawBranches method.
+        """
+        if event.type() != QEvent.Type.MouseButtonPress:
+            return super().viewportEvent(event)
+
+        index = self.indexAt(event.pos())
+        item = self.itemFromIndex(index)
+
+        if item is None:
+            return super().viewportEvent(event)
+
+        level = 0
+        while item.parent() is not None:
+            item = item.parent()
+            level += 1
+
+        indent = level * self.indentation() + 20
+        if event.pos().x() > indent and event.pos().x() < indent + 10:
+            if self.isExpanded(index):
+                self.collapse(index)
+            else:
+                self.expand(index)
+
+        return super().viewportEvent(event)
 
 
 class TreeView(QTreeView, TreeViewBase):

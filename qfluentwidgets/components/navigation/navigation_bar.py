@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout
 from ...common.config import isDarkTheme
 from ...common.font import setFont
 from ...common.style_sheet import themeColor
+from ...common.color import autoFallbackThemeColor
 from ...common.icon import drawIcon, FluentIconBase, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.router import qrouter
@@ -58,9 +59,16 @@ class NavigationBarPushButton(NavigationPushButton):
         self.iconAni = IconSlideAnimation(self)
         self._selectedIcon = selectedIcon
         self._isSelectedTextVisible = True
+        self.lightSelectedColor = QColor()
+        self.darkSelectedColor = QColor()
 
         self.setFixedSize(64, 58)
         setFont(self, 11)
+
+    def setSelectedColor(self, light, dark):
+        self.lightSelectedColor = QColor(light)
+        self.darkSelectedColor = QColor(dark)
+        self.update()
 
     def selectedIcon(self):
         if self._selectedIcon:
@@ -92,7 +100,7 @@ class NavigationBarPushButton(NavigationPushButton):
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
-            painter.setBrush(themeColor())
+            painter.setBrush(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
             if not self.isPressed:
                 painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
             else:
@@ -117,7 +125,8 @@ class NavigationBarPushButton(NavigationPushButton):
         selectedIcon = self._selectedIcon or self._icon
 
         if isinstance(selectedIcon, FluentIconBase) and self.isSelected:
-            selectedIcon.render(painter, rect, fill=themeColor().name())
+            color = autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor)
+            selectedIcon.render(painter, rect, fill=color.name())
         elif self.isSelected:
             drawIcon(selectedIcon, painter, rect)
         else:
@@ -128,7 +137,7 @@ class NavigationBarPushButton(NavigationPushButton):
             return
 
         if self.isSelected:
-            painter.setPen(themeColor())
+            painter.setPen(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
         else:
             painter.setPen(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
 
@@ -152,6 +161,9 @@ class NavigationBar(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+
+        self.lightSelectedColor = QColor()
+        self.darkSelectedColor = QColor()
 
         self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
@@ -289,6 +301,7 @@ class NavigationBar(QWidget):
             return
 
         w = NavigationBarPushButton(icon, text, selectable, selectedIcon, self)
+        w.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
         self.insertWidget(index, routeKey, w, onClick, position)
         return w
 
@@ -386,6 +399,13 @@ class NavigationBar(QWidget):
         """ set whether the text is visible when button is selected """
         for widget in self.buttons():
             widget.setSelectedTextVisible(isVisible)
+
+    def setSelectedColor(self, light, dark):
+        """ set the selected color of all items """
+        self.lightSelectedColor = QColor(light)
+        self.darkSelectedColor = QColor(dark)
+        for button in self.buttons():
+            button.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
 
     def buttons(self):
         return [i for i in self.items.values() if isinstance(i, NavigationPushButton)]

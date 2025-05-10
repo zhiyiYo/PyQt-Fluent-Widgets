@@ -2,12 +2,13 @@
 from typing import Dict
 
 from PyQt6.QtCore import Qt, pyqtSignal, QRectF
-from PyQt6.QtGui import QPainter, QFont
+from PyQt6.QtGui import QPainter, QFont, QColor
 from PyQt6.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout, QSizePolicy
 
 from ...common.font import setFont
 from ...common.router import qrouter
 from ...common.style_sheet import themeColor, FluentStyleSheet
+from ...common.color import autoFallbackThemeColor
 from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty
 from ..widgets.button import PushButton
 from .navigation_panel import RouteKeyError
@@ -46,6 +47,9 @@ class Pivot(QWidget):
         super().__init__(parent)
         self.items = {}  # type: Dict[str, PivotItem]
         self._currentRouteKey = None
+
+        self.lightIndicatorColor = QColor()
+        self.darkIndicatorColor = QColor()
 
         self.hBoxLayout = QHBoxLayout(self)
         self.slideAni = FluentAnimation.create(
@@ -228,6 +232,11 @@ class Pivot(QWidget):
         item = self.widget(routeKey)
         item.setText(text)
 
+    def setIndicatorColor(self, light, dark):
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
+        self.update()
+
     def _onItemClicked(self):
         item = self.sender()  # type: PivotItem
         self.setCurrentItem(item.property('routeKey'))
@@ -257,7 +266,7 @@ class Pivot(QWidget):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.setBrush(themeColor())
+        painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
 
         x = int(self.currentItem().width() / 2 - 8 + self.slideAni.value())
         painter.drawRoundedRect(x, self.height() - 3, 16, 3, 1.5, 1.5)

@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...common.font import setFont
+from ...common.color import FluentSystemColor, autoFallbackThemeColor
 from .button import TransparentToolButton
 from .line_edit import LineEditMenu
 from .flyout import Flyout, FlyoutViewBase, FlyoutAnimationType
@@ -113,6 +114,10 @@ class SpinBoxBase:
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._isError = False
+        self.lightFocusedBorderColor = QColor()
+        self.darkFocusedBorderColor = QColor()
+
         self.hBoxLayout = QHBoxLayout(self)
 
         self.setProperty('transparent', True)
@@ -125,6 +130,17 @@ class SpinBoxBase:
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.customContextMenuRequested.connect(self._showContextMenu)
 
+    def isError(self):
+        return self._isError
+
+    def setError(self, isError: bool):
+        """ set the error status """
+        if isError == self.isError():
+            return
+
+        self._isError = isError
+        self.update()
+
     def setReadOnly(self, isReadOnly: bool):
         super().setReadOnly(isReadOnly)
         self.setSymbolVisible(not isReadOnly)
@@ -133,6 +149,24 @@ class SpinBoxBase:
         """ set whether the spin symbol is visible """
         self.setProperty("symbolVisible", isVisible)
         self.setStyle(QApplication.style())
+
+    def setCustomFocusedBorderColor(self, light, dark):
+        """ set the border color in focused status
+
+        Parameters
+        ----------
+        light, dark: str | QColor | Qt.GlobalColor
+            border color in light/dark theme mode
+        """
+        self.lightFocusedBorderColor = QColor(light)
+        self.darkFocusedBorderColor = QColor(dark)
+        self.update()
+
+    def focusedBorderColor(self):
+        if self.isError():
+            return FluentSystemColor.CRITICAL_FOREGROUND.color()
+
+        return autoFallbackThemeColor(self.lightFocusedBorderColor, self.darkFocusedBorderColor)
 
     def _showContextMenu(self, pos):
         menu = LineEditMenu(self.lineEdit())
@@ -154,7 +188,7 @@ class SpinBoxBase:
         rectPath.addRect(0, h-10, w, 8)
         path = path.subtracted(rectPath)
 
-        painter.fillPath(path, themeColor())
+        painter.fillPath(path, self.focusedBorderColor())
 
     def paintEvent(self, e):
         super().paintEvent(e)

@@ -11,6 +11,7 @@ from ...common.config import isDarkTheme
 from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
+from ...common.color import autoFallbackThemeColor
 from ...common.font import setFont
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.label import AvatarWidget
@@ -127,6 +128,8 @@ class NavigationPushButton(NavigationWidget):
 
         self._icon = icon
         self._text = text
+        self.lightIndicatorColor = QColor()
+        self.darkIndicatorColor = QColor()
 
         setFont(self)
 
@@ -150,6 +153,11 @@ class NavigationPushButton(NavigationWidget):
     def _canDrawIndicator(self):
         return self.isSelected
 
+    def setIndicatorColor(self, light, dark):
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
+        self.update()
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing |
@@ -172,7 +180,7 @@ class NavigationPushButton(NavigationWidget):
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
-            painter.setBrush(themeColor())
+            painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
             painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
         elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
             painter.setBrush(QColor(c, c, c, 10))
@@ -403,7 +411,13 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
     def setTextColor(self, light, dark):
         """ set the text color in light/dark theme mode """
+        self.lightTextColor = QColor(light)
+        self.darkTextColor = QColor(dark)
         self.itemWidget.setTextColor(light, dark)
+
+    def setIndicatorColor(self, light, dark):
+        """ set the indicator color in light/dark theme mode """
+        self.itemWidget.setIndicatorColor(light, dark)
 
     def setFont(self, font: QFont):
         super().setFont(font)
@@ -413,6 +427,8 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         root = NavigationTreeWidget(self._icon, self.text(), self.isSelectable, self.parent())
         root.setSelected(self.isSelected)
         root.setFixedSize(self.size())
+        root.setTextColor(self.lightTextColor, self.darkTextColor)
+        root.setIndicatorColor(self.itemWidget.lightIndicatorColor, self.itemWidget.darkIndicatorColor)
         root.nodeDepth = self.nodeDepth
 
         root.clicked.connect(self.clicked)

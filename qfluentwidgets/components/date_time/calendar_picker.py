@@ -125,4 +125,5 @@ class FastCalendarPicker(CalendarPicker):
         if self.date.isValid():
             view.setDate(self.date)
 
-        Flyout.make(view, self, self.window(), self.flyoutAnimationType)
+        flyout = Flyout.make(view, self, self.window(), self.flyoutAnimationType)
+        view.dateChanged.connect(flyout.close)
