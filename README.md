@@ -77,7 +77,6 @@ Due to the frequent receipt of unfriendly comments, which has significantly impa
 - Steps to reproduce
 
 
-
 ## See Also
 Here are some projects based on PyQt-Fluent-Widgets:
 * [**zhiyiYo/Fluent-M3U8**: A cross-platform m3u8 downloader](https://fluent-m3u8.org)
