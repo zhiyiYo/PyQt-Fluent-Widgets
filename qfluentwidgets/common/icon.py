@@ -5,7 +5,7 @@ import json
 
 from PyQt6.QtXml import QDomDocument
 from PyQt6.QtCore import QRectF, Qt, QFile, QObject, QRect
-from PyQt6.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter, QFontDatabase, QFont, QAction
+from PyQt6.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter, QFontDatabase, QFont, QAction, QPainterPath
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtSvg import QSvgRenderer
 
@@ -95,42 +95,16 @@ class FontIconEngine(QIconEngine):
     def paint(self, painter, rect, mode, state):
         font = QFont(self.fontFamily)
         font.setBold(self.isBold)
-        font.setPixelSize(round(0.875 * rect.height()))
+        font.setPixelSize(round(rect.height()))
         painter.setFont(font)
-        painter.setPen(self.color)
-        painter.drawText(rect, Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter, self.char)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(self.color)
+        painter.setRenderHints(
+            QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
 
-    def clone(self) -> QIconEngine:
-        return FontIconEngine(self.fontFamily, self.char, self.color, self.isBold)
-
-    def pixmap(self, size, mode, state):
-        image = QImage(size, QImage.Format.Format_ARGB32)
-        image.fill(Qt.GlobalColor.transparent)
-        pixmap = QPixmap.fromImage(image, Qt.ImageConversionFlag.NoFormatConversion)
-
-        painter = QPainter(pixmap)
-        rect = QRect(0, 0, size.width(), size.height())
-        self.paint(painter, rect, mode, state)
-        return pixmap
-
-
-class FontIconEngine(QIconEngine):
-    """ Font icon engine """
-
-    def __init__(self, fontFamily: str, char: str, color, isBold):
-        super().__init__()
-        self.color = color
-        self.char = char
-        self.fontFamily = fontFamily
-        self.isBold = isBold
-
-    def paint(self, painter, rect, mode, state):
-        font = QFont(self.fontFamily)
-        font.setBold(self.isBold)
-        font.setPixelSize(round(0.875 * rect.height()))
-        painter.setFont(font)
-        painter.setPen(self.color)
-        painter.drawText(rect, Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter, self.char)
+        path = QPainterPath()
+        path.addText(rect.x(), rect.y() + rect.height(), font, self.char)
+        painter.drawPath(path)
 
     def clone(self) -> QIconEngine:
         return FontIconEngine(self.fontFamily, self.char, self.color, self.isBold)
@@ -389,11 +363,15 @@ class FluentFontIconBase(FluentIconBase):
 
         font = QFont(self.fontFamily)
         font.setBold(self.isBold)
-        font.setPixelSize(round(0.875 * rect.height()))
+        font.setPixelSize(round(rect.height()))
         painter.setFont(font)
-        painter.setPen(color)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(color)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
-        painter.drawText(rect, Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter, self.char)
+
+        path = QPainterPath()
+        path.addText(rect.x(), rect.y() + rect.height(), font, self.char)
+        painter.drawPath(path)
 
     def iconNameMapPath(self) -> str:
         return None
