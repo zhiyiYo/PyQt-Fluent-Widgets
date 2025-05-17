@@ -5,7 +5,7 @@ import json
 
 from PySide6.QtXml import QDomDocument
 from PySide6.QtCore import QRectF, Qt, QFile, QObject, QRect
-from PySide6.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter, QFontDatabase, QFont, QAction
+from PySide6.QtGui import QIcon, QIconEngine, QColor, QPixmap, QImage, QPainter, QFontDatabase, QFont, QAction, QPainterPath
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import QApplication
 
@@ -95,10 +95,17 @@ class FontIconEngine(QIconEngine):
     def paint(self, painter, rect, mode, state):
         font = QFont(self.fontFamily)
         font.setBold(self.isBold)
-        font.setPixelSize(round(0.875 * rect.height()))
+        font.setPixelSize(round(rect.height()))
         painter.setFont(font)
-        painter.setPen(self.color)
-        painter.drawText(rect, Qt.AlignCenter | Qt.AlignVCenter, self.char)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(self.color)
+        painter.setRenderHints(
+            QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
+
+        path = QPainterPath()
+        path.addText(rect.x(), rect.y() + rect.height(), font, self.char)
+        painter.drawPath(path)
+
 
     def clone(self) -> QIconEngine:
         return FontIconEngine(self.fontFamily, self.char, self.color, self.isBold)
@@ -357,11 +364,15 @@ class FluentFontIconBase(FluentIconBase):
 
         font = QFont(self.fontFamily)
         font.setBold(self.isBold)
-        font.setPixelSize(round(0.875 * rect.height()))
+        font.setPixelSize(round(rect.height()))
         painter.setFont(font)
-        painter.setPen(color)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(color)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
-        painter.drawText(rect, Qt.AlignCenter | Qt.AlignVCenter, self.char)
+
+        path = QPainterPath()
+        path.addText(rect.x(), rect.y() + rect.height(), font, self.char)
+        painter.drawPath(path)
 
     def iconNameMapPath(self) -> str:
         return None
