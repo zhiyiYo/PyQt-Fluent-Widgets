@@ -336,17 +336,6 @@ class TableWidget(TableBase, QTableWidget):
 
         self.updateSelectedRows()
 
-    def setCurrentCell(self, row: int, column: int, command=None):
-        self.setCurrentItem(self.item(row, column), command)
-
-    def setCurrentItem(self, item: QTableWidgetItem, command=None):
-        if not command:
-            super().setCurrentItem(item)
-        else:
-            super().setCurrentItem(item, command)
-
-        self.updateSelectedRows()
-
     def isSelectRightClickedRow(self):
         return self._isSelectRightClickedRow
 
