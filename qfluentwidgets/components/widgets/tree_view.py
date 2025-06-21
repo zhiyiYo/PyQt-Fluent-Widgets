@@ -116,6 +116,7 @@ class TreeViewBase:
 
         self.setItemDelegate(TreeItemDelegate(self))
         self.setIconSize(QSize(16, 16))
+        self.setMouseTracking(True)
 
         FluentStyleSheet.TREE_VIEW.apply(self)
 
