@@ -22,6 +22,13 @@ class StackedWidget(QFrame):
         self.view.currentChanged.connect(self.currentChanged)
         self.setAttribute(Qt.WA_StyledBackground)
 
+    def isAnimationEnabled(self) -> bool:
+        return self.view.isAnimationEnabled
+
+    def setAnimationEnabled(self, isEnabled: bool):
+        """set whether the pop animation is enabled"""
+        self.view.setAnimationEnabled(isEnabled)
+
     def addWidget(self, widget):
         """ add widget to view """
         self.view.addWidget(widget)

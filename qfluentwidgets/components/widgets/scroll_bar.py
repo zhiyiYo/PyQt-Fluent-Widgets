@@ -1,4 +1,5 @@
 # coding:utf-8
+from enum import Enum
 from PyQt5.QtCore import (QEvent, QEasingCurve, Qt, pyqtSignal, QPropertyAnimation, pyqtProperty, QRectF,
                           QTimer, QPoint, QObject)
 from PyQt5.QtGui import QPainter, QColor, QMouseEvent
@@ -15,6 +16,8 @@ class ArrowButton(QToolButton):
     def __init__(self, icon: FluentIcon, parent=None):
         super().__init__(parent=parent)
         self.setFixedSize(10, 10)
+        self.lightColor = QColor(0, 0, 0, 114)
+        self.darkColor = QColor(255, 255, 255, 139)
         self._icon = icon
         self.opacity = 1
 
@@ -22,14 +25,24 @@ class ArrowButton(QToolButton):
         self.opacity = opacity
         self.update()
 
+    def setLightColor(self, color):
+        self.lightColor = QColor(color)
+        self.update()
+
+    def setDarkColor(self, color):
+        self.darkColor = QColor(color)
+        self.update()
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
-        painter.setOpacity(self.opacity)
+
+        color = self.darkColor if isDarkTheme() else self.lightColor
+        painter.setOpacity(self.opacity * color.alpha() / 255)
 
         s = 7 if self.isDown() else 8
         x = (self.width() - s) / 2
-        self._icon.render(painter, QRectF(x, x, s, s), fill="#858789")
+        self._icon.render(painter, QRectF(x, x, s, s), fill=color.name())
 
 
 class ScrollBarGroove(QWidget):
@@ -38,6 +51,8 @@ class ScrollBarGroove(QWidget):
     def __init__(self, orient: Qt.Orientation, parent):
         super().__init__(parent=parent)
         self._opacity = 1
+        self.lightBackgroundColor = QColor(252, 252, 252, 217)
+        self.darkBackgroundColor = QColor(44, 44, 44, 245)
 
         if orient == Qt.Vertical:
             self.setFixedWidth(12)
@@ -61,6 +76,14 @@ class ScrollBarGroove(QWidget):
         self.opacityAni = QPropertyAnimation(self, b'opacity', self)
         self.setOpacity(0)
 
+    def setLightBackgroundColor(self, color):
+        self.lightBackgroundColor = QColor(color)
+        self.update()
+
+    def setDarkBackgroundColor(self, color):
+        self.darkBackgroundColor = QColor(color)
+        self.update()
+
     def fadeIn(self):
         self.opacityAni.stop()
         self.opacityAni.setStartValue(self.opacity)
@@ -81,11 +104,7 @@ class ScrollBarGroove(QWidget):
         painter.setOpacity(self.opacity)
         painter.setPen(Qt.NoPen)
 
-        if not isDarkTheme():
-            painter.setBrush(QColor(252, 252, 252, 217))
-        else:
-            painter.setBrush(QColor(44, 44, 44, 245))
-
+        painter.setBrush(self.darkBackgroundColor if isDarkTheme() else self.lightBackgroundColor)
         painter.drawRoundedRect(self.rect(), 6, 6)
 
     def setOpacity(self, opacity: float):
@@ -105,11 +124,23 @@ class ScrollBarHandle(QWidget):
 
     def __init__(self, orient: Qt.Orientation, parent=None):
         super().__init__(parent)
+        self._opacity = 1
+        self.opacityAni = QPropertyAnimation(self, b'opacity', self)
+        self.lightColor = QColor(0, 0, 0, 114)
+        self.darkColor = QColor(255, 255, 255, 139)
         self.orient = orient
         if orient == Qt.Vertical:
             self.setFixedWidth(3)
         else:
             self.setFixedHeight(3)
+
+    def setLightColor(self, color):
+        self.lightColor = QColor(color)
+        self.update()
+
+    def setDarkColor(self, color):
+        self.darkColor = QColor(color)
+        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -117,9 +148,39 @@ class ScrollBarHandle(QWidget):
         painter.setPen(Qt.NoPen)
 
         r = self.width() / 2 if self.orient == Qt.Vertical else self.height() / 2
-        c = QColor(255, 255, 255, 139) if isDarkTheme() else QColor(0, 0, 0, 114)
-        painter.setBrush(c)
+        painter.setOpacity(self.opacity)
+        painter.setBrush(self.darkColor if isDarkTheme() else self.lightColor)
         painter.drawRoundedRect(self.rect(), r, r)
+
+    def fadeIn(self):
+        self.opacityAni.stop()
+        self.opacityAni.setStartValue(self.opacity)
+        self.opacityAni.setEndValue(1)
+        self.opacityAni.setDuration(150)
+        self.opacityAni.start()
+
+    def fadeOut(self):
+        self.opacityAni.stop()
+        self.opacityAni.setStartValue(self.opacity)
+        self.opacityAni.setEndValue(0)
+        self.opacityAni.setDuration(150)
+        self.opacityAni.start()
+
+    def setOpacity(self, opacity: float):
+        self._opacity = opacity
+        self.update()
+
+    def getOpacity(self) -> float:
+        return self._opacity
+
+    opacity = pyqtProperty(float, getOpacity, setOpacity)
+
+
+class ScrollBarHandleDisplayMode(Enum):
+    """Scroll bar handle display mode"""
+
+    ALWAYS = 0
+    ON_HOVER = 1
 
 
 class ScrollBar(QWidget):
@@ -151,6 +212,7 @@ class ScrollBar(QWidget):
         self._isExpanded = False
         self._pressedPos = QPoint()
         self._isForceHidden = False
+        self.handleDisplayMode = ScrollBarHandleDisplayMode.ALWAYS
 
         if orient == Qt.Vertical:
             self.partnerBar = parent.verticalScrollBar()
@@ -267,29 +329,79 @@ class ScrollBar(QWidget):
         else:
             self.sliderReleased.emit()
 
+    def setHandleColor(self, light, dark):
+        """set the color of handle
+
+        Parameters
+        ----------
+        light, dark: QColor | str | Qt.GlobalColor
+            the color in  light/dark theme mode
+        """
+        self.handle.setLightColor(light)
+        self.handle.setDarkColor(dark)
+
+    def setArrowColor(self, light, dark):
+        """set the color of arrow button
+
+        Parameters
+        ----------
+        light, dark: QColor | str | Qt.GlobalColor
+            the color in  light/dark theme mode
+        """
+        self.groove.upButton.setLightColor(light)
+        self.groove.upButton.setDarkColor(dark)
+        self.groove.downButton.setLightColor(light)
+        self.groove.downButton.setDarkColor(dark)
+
+    def setGrooveColor(self, light, dark):
+        """set the color of groove
+
+        Parameters
+        ----------
+        light, dark: QColor | str | Qt.GlobalColor
+            the color in  light/dark theme mode
+        """
+        self.groove.setLightBackgroundColor(light)
+        self.groove.setDarkBackgroundColor(dark)
+
+    def setHandleDisplayMode(self, mode: ScrollBarHandleDisplayMode):
+        """set the display mode of handle"""
+        if mode == self.handleDisplayMode:
+            return
+
+        self.handleDisplayMode = mode
+        if mode == ScrollBarHandleDisplayMode.ON_HOVER and not self._isEnter:
+            self.handle.fadeOut()
+        elif mode == ScrollBarHandleDisplayMode.ALWAYS:
+            self.handle.fadeIn()
+
     def expand(self):
         """ expand scroll bar """
-        if self._isExpanded or not self.isEnter:
+        if self._isExpanded or not self._isEnter:
             return
 
         self._isExpanded = True
         self.groove.fadeIn()
+        self.handle.fadeIn()
 
     def collapse(self):
         """ collapse scroll bar """
-        if not self._isExpanded or self.isEnter:
+        if not self._isExpanded or self._isEnter:
             return
 
         self._isExpanded = False
         self.groove.fadeOut()
 
+        if self.handleDisplayMode == ScrollBarHandleDisplayMode.ON_HOVER:
+            self.handle.fadeOut()
+
     def enterEvent(self, e):
-        self.isEnter = True
+        self._isEnter = True
         self.timer.stop()
         self.timer.singleShot(200, self.expand)
 
     def leaveEvent(self, e):
-        self.isEnter = False
+        self._isEnter = False
         self.timer.stop()
         self.timer.singleShot(200, self.collapse)
 
