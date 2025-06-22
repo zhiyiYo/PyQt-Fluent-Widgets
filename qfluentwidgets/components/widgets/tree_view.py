@@ -116,6 +116,7 @@ class TreeViewBase:
 
         self.setItemDelegate(TreeItemDelegate(self))
         self.setIconSize(QSize(16, 16))
+        self.setMouseTracking(True)
 
         FluentStyleSheet.TREE_VIEW.apply(self)
 
@@ -186,3 +187,30 @@ class TreeView(TreeViewBase, QTreeView):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._initView()
+
+    def viewportEvent(self, event):
+        """
+        Catch the click event to override the item "expand/collapse" function which is
+        still called in the place it was before moving the branches in the drawBranches method.
+        """
+        if event.type() != QEvent.Type.MouseButtonPress:
+            return super().viewportEvent(event)
+
+        index = self.indexAt(event.pos())
+        if not index.isValid():
+            return super().viewportEvent(event)
+
+        level = 0
+        currentIndex = index
+        while currentIndex.parent().isValid():
+            currentIndex = currentIndex.parent()
+            level += 1
+
+        indent = level * self.indentation() + 20
+        if event.pos().x() > indent and event.pos().x() < indent + 10:
+            if self.isExpanded(index):
+                self.collapse(index)
+            else:
+                self.expand(index)
+
+        return super().viewportEvent(event)
