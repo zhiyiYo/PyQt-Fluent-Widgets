@@ -72,6 +72,7 @@ class PopUpAniStackedWidget(QStackedWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.aniInfos = []  # type: List[PopUpAniInfo]
+        self.isAnimationEnabled = True
         self._nextIndex = None
         self._ani = None
 
@@ -106,6 +107,9 @@ class PopUpAniStackedWidget(QStackedWidget):
         self.aniInfos.pop(index)
         super().removeWidget(widget)
 
+    def setAnimationEnabled(self, isEnabled: bool):
+        """set whether the pop animation is enabled"""
+        self.isAnimationEnabled = isEnabled
 
     def setCurrentIndex(self, index: int, needPopOut: bool = False, showNextWidgetDirectly: bool = True,
                         duration: int = 250, easingCurve=QEasingCurve.OutQuad):
@@ -133,6 +137,9 @@ class PopUpAniStackedWidget(QStackedWidget):
 
         if index == self.currentIndex():
             return
+
+        if not self.isAnimationEnabled:
+            return super().setCurrentIndex(index)
 
         if self._ani and self._ani.state() == QAbstractAnimation.Running:
             self._ani.stop()
