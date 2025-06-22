@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtCore import QEasingCurve, Qt
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication
-from qfluentwidgets import SmoothScrollArea, PixmapLabel
+from qfluentwidgets import SmoothScrollArea, PixmapLabel, ScrollBarHandleDisplayMode
 
 
 class Demo(SmoothScrollArea):
@@ -12,6 +12,9 @@ class Demo(SmoothScrollArea):
         super().__init__()
         self.label = PixmapLabel(self)
         self.label.setPixmap(QPixmap("resource/shoko.jpg"))
+
+        # display the handle only when mouse hover the scroll bar region
+        # self.delegate.vScrollBar.setHandleDisplayMode(ScrollBarHandleDisplayMode.ON_HOVER)
 
         # customize scroll animation
         self.setScrollAnimation(Qt.Orientation.Vertical, 500, QEasingCurve.Type.OutQuint)

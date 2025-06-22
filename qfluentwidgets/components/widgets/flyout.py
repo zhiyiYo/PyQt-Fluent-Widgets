@@ -1,9 +1,10 @@
 # coding:utf-8
 from enum import Enum
+import sys
 from typing import Union
 
 from PyQt6.QtCore import (Qt, QPropertyAnimation, QPoint, QParallelAnimationGroup, QEasingCurve, QMargins,
-                          QRectF, QObject, QSize, pyqtSignal)
+                          QRectF, QObject, QSize, pyqtSignal, QEvent)
 from PyQt6.QtGui import QPixmap, QPainter, QColor, QCursor, QIcon, QImage, QPainterPath, QBrush, QMovie, QImageReader
 from PyQt6.QtWidgets import QWidget, QGraphicsDropShadowEffect, QLabel, QHBoxLayout, QVBoxLayout, QApplication
 
@@ -207,21 +208,35 @@ class Flyout(QWidget):
 
     closed = pyqtSignal()
 
-    def __init__(self, view: FlyoutViewBase, parent=None, isDeleteOnClose=True):
+    def __init__(self, view: FlyoutViewBase, parent=None, isDeleteOnClose=True, isMacInputMethodEnabled=False):
         super().__init__(parent=parent)
         self.view = view
         self.hBoxLayout = QHBoxLayout(self)
         self.aniManager = None  # type: FlyoutAnimationManager
         self.isDeleteOnClose = isDeleteOnClose
+        self.isMacInputMethodEnabled = isMacInputMethodEnabled
 
         self.hBoxLayout.setContentsMargins(15, 8, 15, 20)
         self.hBoxLayout.addWidget(self.view)
         self.setShadowEffect()
 
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setWindowFlags(Qt.WindowType.Popup |
-                            Qt.WindowType.FramelessWindowHint |
-                            Qt.WindowType.NoDropShadowWindowHint)
+
+        if sys.platform != "darwin" or not isMacInputMethodEnabled:
+            self.setWindowFlags(Qt.WindowType.Popup |Qt.WindowType.FramelessWindowHint |
+                                Qt.WindowType.NoDropShadowWindowHint)
+        else:
+            self.setWindowFlags(
+                Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint | Qt.WindowType.NoDropShadowWindowHint)
+            QApplication.instance().installEventFilter(self)
+
+    def eventFilter(self, watched, event):
+        if sys.platform == "darwin" and self.isMacInputMethodEnabled:
+            if self.isVisible() and event.type() == QEvent.Type.MouseButtonPress:
+                if not self.rect().contains(self.mapFromGlobal(event.globalPos())):
+                    self.close()
+
+        return super().eventFilter(watched, event)
 
     def setShadowEffect(self, blurRadius=35, offset=(0, 8)):
         """ add shadow to dialog """
@@ -253,7 +268,7 @@ class Flyout(QWidget):
 
     @classmethod
     def make(cls, view: FlyoutViewBase, target: Union[QWidget, QPoint] = None, parent=None,
-             aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True):
+             aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True, isMacInputMethodEnabled=False):
         """ create and show a flyout
 
         Parameters
@@ -273,7 +288,7 @@ class Flyout(QWidget):
         isDeleteOnClose: bool
             whether delete flyout automatically when flyout is closed
         """
-        w = cls(view, parent, isDeleteOnClose)
+        w = cls(view, parent, isDeleteOnClose, isMacInputMethodEnabled)
 
         if target is None:
             return w
@@ -291,7 +306,7 @@ class Flyout(QWidget):
     @classmethod
     def create(cls, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
                image: Union[str, QPixmap, QImage] = None, isClosable=False, target: Union[QWidget, QPoint] = None,
-               parent=None, aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True):
+               parent=None, aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True, isMacInputMethodEnabled=False):
         """ create and show a flyout using the default view
 
         Parameters
@@ -324,7 +339,7 @@ class Flyout(QWidget):
             whether delete flyout automatically when flyout is closed
         """
         view = FlyoutView(title, content, icon, image, isClosable)
-        w = cls.make(view, target, parent, aniType, isDeleteOnClose)
+        w = cls.make(view, target, parent, aniType, isDeleteOnClose, isMacInputMethodEnabled)
         view.closed.connect(w.close)
         return w
 

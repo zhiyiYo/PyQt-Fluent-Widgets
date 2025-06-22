@@ -77,6 +77,9 @@ class Window(FluentWindow):
         # NOTE: enable acrylic effect
         # self.navigationInterface.setAcrylicEnabled(True)
 
+        # disable pop animation
+        # self.stackedWidget.setAnimationEnabled(False)
+
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
