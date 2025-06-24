@@ -144,7 +144,7 @@ class MediaPlayBarBase(QWidget):
 
         self.setGraphicsEffect(self.opacityEffect)
         FluentStyleSheet.MEDIA_PLAYER.apply(self)
-        
+
         self.playButton.clicked.connect(self.togglePlayState)
 
     def setMediaPlayer(self, player: MediaPlayerBase):
@@ -314,6 +314,6 @@ class StandardMediaPlayBar(MediaPlayBarBase):
     def _formatTime(self, time: int):
         time = int(time / 1000)
         s = time % 60
-        m = int(time / 60)
+        m = int(time / 60) % 60
         h = int(time / 3600)
         return f'{h}:{m:02}:{s:02}'
