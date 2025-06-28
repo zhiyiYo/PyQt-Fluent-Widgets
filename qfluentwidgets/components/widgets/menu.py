@@ -4,7 +4,7 @@ from typing import List, Union
 
 from qframelesswindow import WindowEffect
 from PyQt6.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QPointF, QModelIndex,
-                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QObject, QParallelAnimationGroup)
+                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QObject, QParallelAnimationGroup, QRect)
 from PyQt6.QtGui import (QIcon, QAction, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
                          QFontMetrics, QKeySequence)
 from PyQt6.QtWidgets import (QApplication, QMenu, QProxyStyle, QStyle, QStyleFactory,
@@ -634,8 +634,21 @@ class RoundMenu(QMenu):
         if w.menu.parentMenu.isHidden():
             return
 
-        pos = w.mapToGlobal(QPoint(w.width()+5, -5))
-        w.menu.exec(pos)
+        itemRect = QRect(w.mapToGlobal(w.rect().topLeft()), w.size())
+        x = itemRect.right() + 5
+        y = itemRect.y() - 5
+
+        screenRect = getCurrentScreenGeometry()
+        subMenuSize = w.menu.sizeHint()
+        if (x + subMenuSize.width()) > screenRect.right():
+            x = max(itemRect.left() - subMenuSize.width() - 5, screenRect.left())
+
+        if (y + subMenuSize.height()) > screenRect.bottom():
+            y = screenRect.bottom() - subMenuSize.height()
+
+        y = max(y, screenRect.top())
+
+        w.menu.exec(QPoint(x, y))
 
     def addSeparator(self):
         """ add seperator to menu """
