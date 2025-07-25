@@ -254,19 +254,16 @@ class ImageLabel(QLabel):
     def _(self, image: str, parent=None):
         self.__init__(parent)
         self.setImage(image)
-        self._postInit()
 
     @__init__.register
     def _(self, image: QImage, parent=None):
         self.__init__(parent)
         self.setImage(image)
-        self._postInit()
 
     @__init__.register
     def _(self, image: QPixmap, parent=None):
         self.__init__(parent)
         self.setImage(image)
-        self._postInit()
 
     def _postInit(self):
         pass
@@ -450,6 +447,10 @@ class AvatarWidget(ImageLabel):
         setFont(self, radius)
         self.setFixedSize(2*radius, 2*radius)
         self.update()
+
+    def setImage(self, image: Union[str, QPixmap, QImage] = None):
+        super().setImage(image)
+        self.setRadius(self.radius)
 
     def setBackgroundColor(self, light: QColor, dark: QColor):
         self.lightBackgroundColor = QColor(light)
