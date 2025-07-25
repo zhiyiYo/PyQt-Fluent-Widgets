@@ -468,6 +468,17 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.treeChildren.insert(index, child)
         self.vBoxLayout.insertWidget(index, child, 0, Qt.AlignTop)
 
+        # adjust height
+        if self.isExpanded:
+            self.setFixedHeight(self.height() + child.height() + self.vBoxLayout.spacing())
+
+            p = self.treeParent
+            while p:
+                p.setFixedSize(p.sizeHint())
+                p = p.treeParent
+
+        self.update()
+
     def removeChild(self, child):
         self.treeChildren.remove(child)
         self.vBoxLayout.removeWidget(child)

@@ -11,6 +11,7 @@ from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, 
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
+from ..widgets.scroll_bar import ScrollBarHandleDisplayMode
 from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, SlideRightFlyoutAnimationManager
 from ..material.acrylic_flyout import AcrylicFlyout, AcrylicFlyoutViewBase
 from ...common.router import qrouter
@@ -106,10 +107,10 @@ class NavigationPanel(QFrame):
         self.returnButton.setDisabled(True)
 
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.horizontalScrollBar().setEnabled(False)
         self.scrollArea.setWidget(self.scrollWidget)
         self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.scrollDelagate.vScrollBar.setHandleDisplayMode(ScrollBarHandleDisplayMode.ON_HOVER)
 
         self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
         self.expandAni.setDuration(150)
