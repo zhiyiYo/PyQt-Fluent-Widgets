@@ -159,8 +159,16 @@ class Slider(QSlider):
 
         if self.orientation() == Qt.Orientation.Horizontal:
             self._drawHorizonGroove(painter)
+            self._drawHorizonTick(painter)
         else:
             self._drawVerticalGroove(painter)
+            self._drawVerticalTick(painter)
+
+    def _drawHorizonTick(self, painter: QPainter):
+        pass
+
+    def _drawVerticalTick(self, painter: QPainter):
+        pass
 
     def _drawHorizonGroove(self, painter: QPainter):
         w, r = self.width(), self.handle.width() / 2
