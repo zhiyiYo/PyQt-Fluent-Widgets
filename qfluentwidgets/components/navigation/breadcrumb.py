@@ -319,7 +319,7 @@ class BreadcrumbBar(QWidget):
 
         for item in self.hiddenItems:
             menu.addAction(
-                QAction(item.text, menu, triggered=lambda i=item: self.setCurrentItem(i.routeKey)))
+                QAction(item.text, menu, triggered=lambda checked=True, i=item: self.setCurrentItem(i.routeKey)))
 
         # determine the animation type by choosing the maximum height of view
         x = -menu.layout().contentsMargins().left()
