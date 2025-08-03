@@ -8,6 +8,7 @@ from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, 
 from .card_widget import CardWidget, ElevatedCardWidget, SimpleCardWidget, HeaderCardWidget, CardGroupWidget, GroupHeaderCardWidget
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
+from .model_combo_box import ModelComboBox, EditableModelComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
 from .flip_view import FlipView, HorizontalFlipView, VerticalFlipView, FlipImageDelegate
 from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit, PasswordLineEdit, TextBrowser
