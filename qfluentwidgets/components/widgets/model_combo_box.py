@@ -41,7 +41,7 @@ class ModelComboBoxBase(QObject):
 
     def setModel(self, model: QAbstractItemModel):
         if self._model:
-            self._model.disconnect(self)
+            self._model.disconnect()
 
         self._model = model
         model.rowsInserted.connect(self._onModelRowInserted)

@@ -1,6 +1,6 @@
 # 更新日志
 
-## v1.8.5
+## v1.8.6
 ### 新组件
 * 添加支持数据模型的下拉框 `ModelComboBox`
 * 添加支持数据模型的可编辑下拉框 `EditableModelComboBox`
