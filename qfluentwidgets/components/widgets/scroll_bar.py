@@ -196,7 +196,6 @@ class ScrollBar(QWidget):
         super().__init__(parent)
         self.groove = ScrollBarGroove(orient, self)
         self.handle = ScrollBarHandle(orient, self)
-        self.timer = QTimer(self)
 
         self._orientation = orient
         self._singleStep = 1
@@ -397,13 +396,11 @@ class ScrollBar(QWidget):
 
     def enterEvent(self, e):
         self._isEnter = True
-        self.timer.stop()
-        self.timer.singleShot(200, self.expand)
+        QTimer.singleShot(200, self.expand)
 
     def leaveEvent(self, e):
         self._isEnter = False
-        self.timer.stop()
-        self.timer.singleShot(200, self.collapse)
+        QTimer.singleShot(200, self.collapse)
 
     def eventFilter(self, obj, e: QEvent):
         if obj is not self.parent():
