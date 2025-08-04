@@ -508,7 +508,9 @@ class EditableModelComboBox(LineEdit, ModelComboBoxBase):
         self.textChanged.connect(self._onComboTextChanged)
         self.returnPressed.connect(self._onReturnPressed)
 
-        self.clearButton.disconnect()
+        FluentStyleSheet.LINE_EDIT.apply(self)
+
+        self.clearButton.clicked.disconnect()
         self.clearButton.clicked.connect(self._onClearButtonClicked)
 
     def setCompleterMenu(self, menu):
