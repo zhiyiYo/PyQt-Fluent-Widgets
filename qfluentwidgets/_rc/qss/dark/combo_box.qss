@@ -1,4 +1,4 @@
-ComboBox {
+ComboBox, ModelComboBox {
     border: 1px solid rgba(255, 255, 255, 0.053);
     border-radius: 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -10,23 +10,23 @@ ComboBox {
     outline: none;
 }
 
-ComboBox:hover {
+ComboBox:hover, ModelComboBox:hover {
     background-color: rgba(255, 255, 255, 0.0837);
 }
 
-ComboBox:pressed {
+ComboBox:pressed, ModelComboBox:pressed {
     background-color: rgba(255, 255, 255, 0.0326);
     border-top: 1px solid rgba(255, 255, 255, 0.053);
     color: rgba(255, 255, 255, 0.63);
 }
 
-ComboBox:disabled {
+ComboBox:disabled, ModelComboBox:disabled {
     color: rgba(255, 255, 255, 0.3628);
     background: rgba(255, 255, 255, 0.0419);
     border: 1px solid rgba(255, 255, 255, 0.053);
     border-top: 1px solid rgba(255, 255, 255, 0.053);
 }
 
-ComboBox[isPlaceholderText=true] {
+ComboBox[isPlaceholderText=true], ModelComboBox[isPlaceholderText=true] {
     color: rgba(255, 255, 255, 0.6063);
 }

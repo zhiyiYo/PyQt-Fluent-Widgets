@@ -151,7 +151,7 @@ class HeaderSettingCard(SettingCard):
         path.addRoundedRect(QRectF(self.rect().adjusted(1, 1, -1, -1)), 6, 6)
 
         # set the bottom border radius to 0 if parent is expanded
-        if p.isExpand:
+        if hasattr(p, 'isExpand') and p.isExpand:
             path.addRect(1, self.height() - 8, self.width() - 2, 8)
 
         painter.drawPath(path.simplified())
@@ -249,6 +249,7 @@ class ExpandSettingCard(QScrollArea):
     def addWidget(self, widget: QWidget):
         """ add widget to tail """
         self.card.addWidget(widget)
+        self._adjustViewSize()
 
     def wheelEvent(self, e):
         e.ignore()
@@ -257,6 +258,8 @@ class ExpandSettingCard(QScrollArea):
         """ set the expand status of card """
         if self.isExpand == isExpand:
             return
+
+        self._adjustViewSize()
 
         # update style sheet
         self.isExpand = isExpand
