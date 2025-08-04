@@ -57,6 +57,19 @@ class FluentIconEngine(QIconEngine):
         icon.paint(painter, rect, Qt.AlignmentFlag.AlignCenter, QIcon.Mode.Normal, state)
         painter.restore()
 
+    def clone(self) -> QIconEngine:
+        return FluentIconEngine(self.icon, self.isThemeReversed)
+
+    def pixmap(self, size, mode, state):
+        image = QImage(size, QImage.Format.Format_ARGB32)
+        image.fill(Qt.GlobalColor.transparent)
+        pixmap = QPixmap.fromImage(image, Qt.ImageConversionFlag.NoFormatConversion)
+
+        painter = QPainter(pixmap)
+        rect = QRect(0, 0, size.width(), size.height())
+        self.paint(painter, rect, mode, state)
+        return pixmap
+
 
 class SvgIconEngine(QIconEngine):
     """ Svg icon engine """

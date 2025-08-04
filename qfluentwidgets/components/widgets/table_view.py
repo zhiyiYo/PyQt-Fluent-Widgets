@@ -110,7 +110,7 @@ class TableItemDelegate(QStyledItemDelegate):
         textColor = Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black
         textBrush = index.data(Qt.ItemDataRole.ForegroundRole)   # type: QBrush
         if textBrush is not None:
-            textColor = textBrush.color()
+            textColor = QBrush(textBrush).color()
 
         option.palette.setColor(QPalette.ColorRole.Text, textColor)
         option.palette.setColor(QPalette.ColorRole.HighlightedText, textColor)
