@@ -45,18 +45,28 @@ class TreeItemDelegate(QStyledItemDelegate):
         painter.setPen(Qt.NoPen)
 
         # draw background
+        self._drawBackground(painter, option, index)
+
+        # draw indicator
+        self._drawIndicator(painter, option, index)
+
+        painter.restore()
+
+    def _drawBackground(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         h = option.rect.height() - 4
         c = 255 if isDarkTheme() else 0
         painter.setBrush(QColor(c, c, c, 9))
-        painter.drawRoundedRect(
-            4, option.rect.y() + 2, self.parent().width() - 8, h, 4, 4)
 
-        # draw indicator
+        if index.column() == 0:
+            painter.drawRoundedRect(
+                4, option.rect.y() + 2, self.parent().width() - 8, h, 4, 4)
+
+    def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
+        h = option.rect.height() - 4
+
         if option.state & QStyle.State_Selected and self.parent().horizontalScrollBar().value() == 0:
             painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
             painter.drawRoundedRect(4, 9+option.rect.y(), 3, h - 13, 1.5, 1.5)
-
-        painter.restore()
 
     def _drawCheckBox(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         painter.save()
