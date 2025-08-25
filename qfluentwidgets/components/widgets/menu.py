@@ -163,7 +163,7 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
         fm = QFontMetrics(font)
         shortcut = action.shortcut().toString(QKeySequence.NativeText)
 
-        sw = fm.boundingRect(shortcut).width()
+        sw = fm.horizontalAdvance(shortcut)
         painter.translate(option.rect.width()-sw-20, 0)
 
         rect = QRectF(0, option.rect.y(), sw, option.rect.height())
@@ -477,7 +477,7 @@ class RoundMenu(QMenu):
     def _longestShortcutWidth(self):
         """ longest shortcut key """
         fm = QFontMetrics(getFont(12))
-        return max(fm.boundingRect(a.shortcut().toString()).width() for a in self.menuActions())
+        return max(fm.horizontalAdvance(a.shortcut().toString(QKeySequence.NativeText)) for a in self.menuActions())
 
     def _createItemIcon(self, w):
         """ create the icon of menu item """
