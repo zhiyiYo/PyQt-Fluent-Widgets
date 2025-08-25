@@ -1,12 +1,13 @@
 # coding:utf-8
 from enum import Enum
 from typing import List, Union
+import math
 
 from qframelesswindow import WindowEffect
 from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject, QModelIndex,
-                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QParallelAnimationGroup, QRect)
+                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QParallelAnimationGroup, QRect, QPointF)
 from PyQt5.QtGui import (QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
-                         QFontMetrics, QKeySequence)
+                         QFontMetrics, QKeySequence, QTextLayout)
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem, QLabel)
@@ -160,14 +161,19 @@ class ShortcutMenuItemDelegate(MenuItemDelegate):
         painter.setFont(font)
         painter.setPen(QColor(255, 255, 255, 200) if isDarkTheme() else QColor(0, 0, 0, 153))
 
-        fm = QFontMetrics(font)
         shortcut = action.shortcut().toString(QKeySequence.NativeText)
 
-        sw = fm.width(shortcut)
-        painter.translate(option.rect.width()-sw-20, 0)
+        # use text layout to calculate text width
+        layout = QTextLayout(shortcut, font)
+        layout.beginLayout()
+        line = layout.createLine()
+        line.setNumColumns(1)
+        layout.endLayout()
 
-        rect = QRectF(0, option.rect.y(), sw, option.rect.height())
-        painter.drawText(rect, Qt.AlignLeft | Qt.AlignVCenter, shortcut)
+        # draw text
+        y = option.rect.y() + (option.rect.height() - layout.boundingRect().height()) / 2
+        x = option.rect.right() - layout.boundingRect().width() - 20
+        layout.draw(painter, QPointF(x, y))
 
         painter.restore()
 
@@ -472,8 +478,24 @@ class RoundMenu(QMenu):
 
     def _longestShortcutWidth(self):
         """ longest shortcut key """
-        fm = QFontMetrics(getFont(12))
-        return max(fm.width(a.shortcut().toString()) for a in self.menuActions())
+        font = getFont(12)
+        maxWidth = 0
+
+        for action in self.menuActions():
+            shortcut = action.shortcut().toString(QKeySequence.NativeText)
+
+            # use text layout to calculate width
+            layout = QTextLayout(shortcut, font)
+            layout.beginLayout()
+            line = layout.createLine()
+            line.setNumColumns(1)
+            layout.endLayout()
+
+            rect = layout.boundingRect()
+            if rect.width() > maxWidth:
+                maxWidth = rect.width()
+
+        return math.ceil(maxWidth)
 
     def _createItemIcon(self, w):
         """ create the icon of menu item """
