@@ -25,11 +25,11 @@ English | <a href="docs/README_zh.md">简体中文</a> | <a href="https://qfluen
 
 
 ## Install
-To install lite version (`AcrylicLabel` is not available):
+To install lite version for PyQt5:
 ```shell
 pip install PyQt-Fluent-Widgets -i https://pypi.org/simple/
 ```
-Or install full-featured version:
+Or install full-featured version (`AcrylicLabel` is  available):
 ```shell
 pip install "PyQt-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
@@ -66,7 +66,7 @@ Copyright © 2021 by zhiyiYo.
 ## Work with Designer
 [Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600) or [Afdian](https://afdian.com/item/6726fcc4247311ef8c6852540025c377).
 
-![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
+![Fluent Designer](./docs/source/_static/Designer_plugin.jpg)
 
 ## Issue Reporting
 Due to the frequent receipt of unfriendly comments, which has significantly impacted the author's enthusiasm for open-source development, we have decided to permanently close the Issue page. If you encounter any problems while using the library, please first check the official documentation. If the issue is confirmed to be a bug in the library, please send the following information to [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com):

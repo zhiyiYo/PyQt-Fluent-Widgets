@@ -69,7 +69,7 @@ PyQt-Fluent-Widgets 使用 [GPLv3](./LICENSE) 许可证授权非商用项目，�
 ## Fluent Client🚩
 [Fluent Client](https://qfluentwidgets.com/zh/pages/designer) 集成了设计师插件和脚手架功能，支持在 Designer 中直接拖拽使用 QFluentWidgets 的组件，所见即所得，让现代化界面搭建如丝般顺滑！可在 [淘宝](https://item.taobao.com/item.htm?ft=t&id=767961666600) 购买使用 Fluent Client。
 
-![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
+![Fluent Designer](./source/_static/Designer_plugin.jpg)
 
 ## 问题反馈💡
 由于频繁收到不友善的言论，严重影响了作者的开源热情，我们决定永久关闭 Issue 页面。如果在使用过程中遇到问题，请先查阅官网文档。若确认问题为组件库的 bug，请将操作系统信息、组件库版本、最小复现代码和复现步骤发送至 [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com)。
