@@ -3,6 +3,7 @@ from PySide6.QtCore import QThread, Signal
 
 from .config import Theme, qconfig
 import darkdetect
+import sys
 
 
 class SystemThemeListener(QThread):
@@ -14,7 +15,18 @@ class SystemThemeListener(QThread):
         super().__init__(parent=parent)
 
     def run(self):
-        darkdetect.listener(self._onThemeChanged)
+        if sys.platform == "win32":
+            darkdetect.listener(self._onThemeChanged)
+            return
+
+        while not self.isInterruptionRequested():
+            t = darkdetect.theme().lower()
+            theme = Theme.DARK if t == "dark" else Theme.LIGHT
+            if theme != qconfig.theme:
+                self._onThemeChanged(t)
+                self.msleep(2000)   # anti shake
+            else:
+                self.msleep(1000)
 
     def _onThemeChanged(self, theme: str):
         theme = Theme.DARK if theme.lower() == "dark" else Theme.LIGHT

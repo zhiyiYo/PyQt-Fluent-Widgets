@@ -18,7 +18,7 @@ ExpandSettingCard {
 
 
 QLabel#titleLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     color: black;
     padding: 0;
     background: transparent;
@@ -26,7 +26,7 @@ QLabel#titleLabel {
 }
 
 QLabel#contentLabel {
-    font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 11px --FontFamilies;
     color: rgb(96, 96, 96);
     padding: 0;
     background: transparent;
@@ -39,7 +39,7 @@ QLabel#contentLabel:disabled {
 }
 
 FolderItem>QLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
 }
 
 /* QPushButton */
@@ -48,7 +48,7 @@ QPushButton {
     border-radius: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.183);
     padding: 5px 36px 5px 36px;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     color: black;
     background: rgba(255, 255, 255, 0.7);
     outline: none;

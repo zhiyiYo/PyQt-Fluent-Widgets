@@ -1,6 +1,6 @@
 CheckBox {
     color: white;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    /* font: 14px --FontFamilies; */
     spacing: 8px;
     min-width: 28px;
     min-height: 22px;

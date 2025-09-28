@@ -15,7 +15,7 @@ from ...common.icon import FluentIcon as FIF
 from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.screen import getCurrentScreenGeometry
-from ...common.font import getFont
+from ...common.font import getFont, fontStyleSheet
 from ...common.config import isDarkTheme
 from .scroll_bar import SmoothScrollDelegate
 from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
@@ -189,8 +189,7 @@ class MenuActionListWidget(QListWidget):
         self.setItemDelegate(ShortcutMenuItemDelegate(self))
 
         self.scrollDelegate = SmoothScrollDelegate(self)
-        self.setStyleSheet(
-            'MenuActionListWidget{font: 14px "Segoe UI", "Microsoft YaHei", "PingFang SC"}')
+        self.setStyleSheet('MenuActionListWidget{' + fontStyleSheet(getFont()) + '}')
 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)

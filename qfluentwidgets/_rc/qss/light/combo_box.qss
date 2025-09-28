@@ -3,7 +3,7 @@ ComboBox, ModelComboBox {
     border-radius: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.183);
     padding: 5px 31px 6px 11px;
-    /* font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC'; */
+    /* font: 14px --FontFamilies; */
     color: black;
     background-color: rgba(255, 255, 255, 0.7);
     text-align: left;
