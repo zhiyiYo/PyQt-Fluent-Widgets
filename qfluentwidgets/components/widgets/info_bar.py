@@ -189,11 +189,15 @@ class InfoBar(QFrame):
 
     def __fadeOut(self):
         """ fade out """
-        self.opacityAni.setDuration(200)
-        self.opacityAni.setStartValue(1)
-        self.opacityAni.setEndValue(0)
-        self.opacityAni.finished.connect(self.close)
-        self.opacityAni.start()
+        # After compiling to executable file by nuitka, RuntimeError will be thrown if we close the InfoBar manually
+        try:
+            self.opacityAni.setDuration(200)
+            self.opacityAni.setStartValue(1)
+            self.opacityAni.setEndValue(0)
+            self.opacityAni.finished.connect(self.close)
+            self.opacityAni.start()
+        except RuntimeError:
+            pass
 
     def _adjustText(self):
         w = 900 if not self.parent() else (self.parent().width() - 50)
@@ -421,15 +425,19 @@ class InfoBarManager(QObject):
         raise NotImplementedError
 
     def eventFilter(self, obj, e: QEvent):
-        if obj not in self.infoBars:
+        # After compiling to executable file, RuntimeError will be thrown when closing app
+        try:
+            if obj not in self.infoBars:
+                return False
+
+            if e.type() in [QEvent.Resize, QEvent.WindowStateChange]:
+                size = e.size() if e.type() == QEvent.Resize else None
+                for bar in self.infoBars[obj]:
+                    bar.move(self._pos(bar, size))
+
+            return super().eventFilter(obj, e)
+        except:
             return False
-
-        if e.type() in [QEvent.Resize, QEvent.WindowStateChange]:
-            size = e.size() if e.type() == QEvent.Resize else None
-            for bar in self.infoBars[obj]:
-                bar.move(self._pos(bar, size))
-
-        return super().eventFilter(obj, e)
 
     @classmethod
     def register(cls, name):

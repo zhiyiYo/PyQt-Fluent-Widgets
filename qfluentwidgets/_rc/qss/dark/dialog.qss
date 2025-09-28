@@ -29,20 +29,20 @@ QLabel {
 }
 
 QLabel#titleLabel {
-    font: 20px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 20px --FontFamilies;
     padding: 0;
 }
 
 #contentLabel {
     padding: 0;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     border: none;
     selection-background-color: --ThemeColorPrimary;
     selection-color: black;
 }
 
 QLabel#windowTitleLabel {
-    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 12px --FontFamilies;
     padding: 6px 6px;
     background-color: rgb(32, 32, 32);
 }
@@ -53,7 +53,7 @@ QLabel#windowTitleLabel {
     border-top: 1px solid rgb(53, 53, 53);
     border-radius: 5px;
     color: white;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     padding: 5px 9px 6px 9px;
     outline: none;
 }

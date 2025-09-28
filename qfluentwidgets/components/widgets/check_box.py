@@ -9,6 +9,7 @@ from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
+from ...common.font import setFont
 
 
 class CheckBoxIcon(FluentIconBase, Enum):
@@ -47,6 +48,7 @@ class CheckBox(QCheckBox):
     @singledispatchmethod
     def __init__(self, parent: QWidget = None):
         super().__init__(parent)
+        setFont(self)
         FluentStyleSheet.CHECK_BOX.apply(self)
         self.isPressed = False
         self.isHover = False

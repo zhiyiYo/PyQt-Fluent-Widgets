@@ -26,11 +26,11 @@ English | <a href="docs/README_zh.md">简体中文</a>
 
 
 ## Install
-To install lite version (`AcrylicLabel` is not available):
+To install lite version for PyQt5:
 ```shell
 pip install PySide2-Fluent-Widgets -i https://pypi.org/simple/
 ```
-Or install full-featured version:
+Or install full-featured version (`AcrylicLabel` is  available):
 ```shell
 pip install "PySide2-Fluent-Widgets[full]" -i https://pypi.org/simple/
 ```
@@ -66,7 +66,7 @@ Copyright © 2021 by zhiyiYo.
 ## Work with Designer
 [Fluent Client](https://www.youtube.com/watch?v=7UCmcsOlhTk) integrates designer plugins, supporting direct drag-and-drop usage of QFluentWidgets components in Designer. You can purchase the client from [TaoBao](https://item.taobao.com/item.htm?ft=t&id=767961666600) or [Afdian](https://afdian.com/item/6726fcc4247311ef8c6852540025c377).
 
-![Fluent Designer](https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg)
+![Fluent Designer](./docs/source/_static/Designer_plugin.jpg)
 
 
 ## See Also

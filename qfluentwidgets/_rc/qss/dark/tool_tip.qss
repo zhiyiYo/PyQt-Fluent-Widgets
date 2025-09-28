@@ -15,7 +15,7 @@ ToolTip>#container[transparent=true] {
 
 QLabel {
     background-color: transparent;
-    font: 12px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 12px --FontFamilies;
     color: white;
     border: none;
 }

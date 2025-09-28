@@ -9,7 +9,7 @@ SwitchButton {
 
 SwitchButton>QLabel {
     color: black;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     background-color: transparent;
     border: none;
 }
