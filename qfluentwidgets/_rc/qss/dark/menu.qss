@@ -9,7 +9,7 @@ MenuActionListWidget {
     border-radius: 9px;
     background-color: rgb(43, 43, 43);
     outline: none;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
 }
 
 MenuActionListWidget[transparent=true] {

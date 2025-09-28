@@ -85,6 +85,21 @@ def applyThemeColor(qss: str):
     return template.safe_substitute(mappings)
 
 
+def renderQss(qss: str):
+    """ render font and theme color to style sheet
+
+    Parameters
+    ----------
+    qss: str
+        the style sheet string to apply theme color, the substituted variable
+        should be equal to the value of `ThemeColor` and starts width `--`, i.e `--ThemeColorPrimary`
+    """
+    template = QssTemplate(qss)
+    mappings = {c.value: c.name() for c in ThemeColor._member_map_.values()}
+    mappings["FontFamilies"] = ",".join([f"'{i}'" for i in qconfig.get(qconfig.fontFamilies)])
+    return template.safe_substitute(mappings)
+
+
 class StyleSheetBase:
     """ Style sheet base class """
 
@@ -297,7 +312,7 @@ def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     if isinstance(source, str):
         source = StyleSheetFile(source)
 
-    return applyThemeColor(source.content(theme))
+    return renderQss(source.content(theme))
 
 
 def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
