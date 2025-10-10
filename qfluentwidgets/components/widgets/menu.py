@@ -189,7 +189,6 @@ class MenuActionListWidget(QListWidget):
         self.setItemDelegate(ShortcutMenuItemDelegate(self))
 
         self.scrollDelegate = SmoothScrollDelegate(self)
-        self.setStyleSheet('MenuActionListWidget{' + fontStyleSheet(getFont()) + '}')
 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
