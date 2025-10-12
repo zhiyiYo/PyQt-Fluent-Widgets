@@ -17,6 +17,7 @@ QTreeView::item {
     margin-bottom: 2px;
     padding-left: 20px;
     border-radius: 5px;
+    background-color: transparent;
     /* color: black; */
 }
 
