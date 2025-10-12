@@ -40,6 +40,9 @@ class FolderItem(QWidget):
         self.hBoxLayout.addWidget(self.removeButton, 0, Qt.AlignRight)
         self.hBoxLayout.setAlignment(Qt.AlignVCenter)
 
+        # Set object name to apply theme-aware color style
+        self.folderLabel.setObjectName('titleLabel')
+
         self.removeButton.clicked.connect(
             lambda: self.removed.emit(self))
 
