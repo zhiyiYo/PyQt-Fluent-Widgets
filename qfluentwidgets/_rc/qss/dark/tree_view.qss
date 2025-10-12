@@ -7,7 +7,7 @@ QTreeView {
     selection-background-color: transparent;
 }
 
-QTableView[isBorderVisible=true] {
+QTreeView[isBorderVisible=true] {
     border: 1px solid rgba(255, 255, 255, 21);
 }
 
