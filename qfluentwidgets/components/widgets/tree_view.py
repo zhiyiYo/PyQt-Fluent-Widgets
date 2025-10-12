@@ -1,7 +1,7 @@
 # coding:utf-8
 from PyQt6.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
 from PyQt6.QtGui import QPainter, QColor, QPalette
-from PyQt6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
+from PyQt6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem, QStyleFactory
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
@@ -160,6 +160,7 @@ class TreeWidget(QTreeWidget, TreeViewBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.setStyle(QStyleFactory.create("windowsvista"))
 
     def viewportEvent(self, event):
         """
