@@ -397,7 +397,7 @@ def updateStyleSheet(lazy=False):
         whether to update the style sheet lazily, set to `True` will accelerate theme switching
     """
     removes = []
-    for widget, file in styleSheetManager.items():
+    for widget, file in list(styleSheetManager.items()):
         try:
             if not (lazy and widget.visibleRegion().isNull()):
                 setStyleSheet(widget, file, qconfig.theme)

@@ -22,7 +22,7 @@ def setFontFamilies(families: List[str], save=False):
 
 def fontFamilies() -> List[str]:
     """ Returns the font families used by all widgets """
-    return qconfig.get(qconfig.fontFamilies)
+    return qconfig.get(qconfig.fontFamilies).copy()
 
 
 def setFont(widget: QWidget, fontSize=14, weight=QFont.Weight.Normal):
