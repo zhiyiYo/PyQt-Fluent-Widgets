@@ -2,8 +2,8 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint
-from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
+from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint, pyqtProperty
+from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath, QPainter
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
@@ -15,7 +15,7 @@ from ..widgets.scroll_bar import ScrollBarHandleDisplayMode
 from ..widgets.flyout import Flyout, FlyoutAnimationType, FlyoutViewBase, SlideRightFlyoutAnimationManager
 from ..material.acrylic_flyout import AcrylicFlyout, AcrylicFlyoutViewBase
 from ...common.router import qrouter
-from ...common.style_sheet import FluentStyleSheet, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme, themeColor
 from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
 
@@ -57,6 +57,36 @@ class NavigationItem:
         self.widget = widget
 
 
+class NavigationIndicator(QWidget):
+    """ Unified navigation selection indicator """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._y = 0.0
+        self.setFixedSize(3, 16)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.hide()
+
+    def getY(self):
+        return self._y
+
+    def setY(self, y: float):
+        self._y = y
+        self.move(int(self.x()), int(y))
+
+    y = pyqtProperty(float, getY, setY)
+
+    def paintEvent(self, e):
+        if not self.isVisible():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(themeColor())
+        painter.drawRoundedRect(self.rect(), 1.5, 1.5)
+
+
 class NavigationPanel(QFrame):
     """ Navigation panel """
 
@@ -69,6 +99,9 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = False
         self._isCollapsible = True
         self._isAcrylicEnabled = False
+        self._isIndicatorAnimationEnabled = False
+        self._indicatorAnimationDuration = 150
+        self._isFirstSelection = True
 
         self.acrylicBrush = AcrylicBrush(self, 30)
 
@@ -89,6 +122,10 @@ class NavigationPanel(QFrame):
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
         self.minimumExpandWidth = 1008
+
+        # unified selection indicator
+        self.indicator = NavigationIndicator(self)
+        self.indicatorAni = QPropertyAnimation(self.indicator, b'y', self)
 
         self.isMinimalEnabled = isMinimalEnabled
         if isMinimalEnabled:
@@ -114,6 +151,9 @@ class NavigationPanel(QFrame):
 
         self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
         self.expandAni.setDuration(150)
+
+        self.indicatorAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.indicatorAni.setDuration(self._indicatorAnimationDuration)
 
         self.menuButton.clicked.connect(self.toggle)
         self.expandAni.finished.connect(self._onExpandAniFinished)
@@ -431,6 +471,34 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
+    def setIndicatorAnimationEnabled(self, enabled: bool):
+        """ set whether the unified indicator animation is enabled """
+        if self._isIndicatorAnimationEnabled == enabled:
+            return
+
+        self._isIndicatorAnimationEnabled = enabled
+        
+        # update all widgets to skip local indicator drawing
+        for item in self.items.values():
+            item.widget.update()
+
+        # show or hide unified indicator
+        if enabled:
+            self._updateIndicatorPosition(animate=False)
+        else:
+            self.indicator.hide()
+            for item in self.items.values():
+                item.widget.update()
+
+    def isIndicatorAnimationEnabled(self):
+        """ whether the unified indicator animation is enabled """
+        return self._isIndicatorAnimationEnabled
+
+    def setIndicatorAnimationDuration(self, duration: int):
+        """ set the duration of indicator animation in milliseconds """
+        self._indicatorAnimationDuration = max(0, duration)
+        self.indicatorAni.setDuration(self._indicatorAnimationDuration)
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
@@ -510,6 +578,12 @@ class NavigationPanel(QFrame):
         for k, item in self.items.items():
             item.widget.setSelected(k == routeKey)
 
+        # animate unified indicator if enabled
+        if self._isIndicatorAnimationEnabled:
+            animate = not self._isFirstSelection
+            self._updateIndicatorPosition(animate=animate)
+            self._isFirstSelection = False
+
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget
         if not widget.isSelectable:
@@ -553,6 +627,10 @@ class NavigationPanel(QFrame):
         flyout.exec(pos, FlyoutAnimationType.SLIDE_RIGHT)
 
         menu.expanded.connect(lambda: self._adjustFlyoutMenuSize(flyout, widget, menu))
+        
+        # update indicator position after flyout closes
+        if self._isIndicatorAnimationEnabled:
+            self._updateIndicatorPosition(animate=True)
 
     def _adjustFlyoutMenuSize(self, flyout: Flyout, widget: NavigationTreeWidget, menu: NavigationFlyoutMenu):
         flyout.view.setFixedSize(menu.size())
@@ -627,6 +705,54 @@ class NavigationPanel(QFrame):
 
     def _canDrawAcrylic(self):
         return self.acrylicBrush.isAvailable() and self.isAcrylicEnabled()
+
+    def _updateIndicatorPosition(self, animate=True):
+        """ update unified indicator position to selected item """
+        if not self._isIndicatorAnimationEnabled:
+            return
+
+        # find selected widget
+        selectedWidget = None
+        for item in self.items.values():
+            widget = item.widget
+            if isinstance(widget, NavigationTreeWidgetBase):
+                # for tree widget, get actual selected item widget
+                if widget.isSelected:
+                    selectedWidget = widget.itemWidget if hasattr(widget, 'itemWidget') else widget
+                    break
+            else:
+                if widget.isSelected:
+                    selectedWidget = widget
+                    break
+
+        if not selectedWidget or not selectedWidget.isVisible():
+            self.indicator.hide()
+            return
+
+        # calculate target Y position
+        targetY = self._getWidgetGlobalY(selectedWidget) + 10  # center vertically (36/2 - 16/2 = 10)
+        
+        # ensure indicator is at correct X position
+        self.indicator.move(0, int(self.indicator.y))
+        self.indicator.show()
+        self.indicator.raise_()
+
+        # animate or move directly
+        if animate and self._indicatorAnimationDuration > 0:
+            self.indicatorAni.stop()
+            self.indicatorAni.setStartValue(self.indicator.y)
+            self.indicatorAni.setEndValue(targetY)
+            self.indicatorAni.start()
+        else:
+            self.indicator.setY(targetY)
+
+    def _getWidgetGlobalY(self, widget: QWidget) -> int:
+        """ get widget's Y position relative to navigation panel """
+        if not widget:
+            return 0
+        
+        pos = widget.mapTo(self, QPoint(0, 0))
+        return pos.y()
 
     def paintEvent(self, e):
         if not self._canDrawAcrylic() or self.displayMode != NavigationDisplayMode.MENU:

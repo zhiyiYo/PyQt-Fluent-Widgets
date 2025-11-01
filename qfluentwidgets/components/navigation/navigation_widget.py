@@ -169,6 +169,10 @@ class NavigationPushButton(NavigationWidget):
         if not self.isEnabled():
             painter.setOpacity(0.4)
 
+        # check if parent panel has unified indicator enabled
+        panel = self._getNavigationPanel()
+        useUnifiedIndicator = panel and getattr(panel, '_isIndicatorAnimationEnabled', False)
+
         # draw background
         c = 255 if isDarkTheme() else 0
         m = self._margins()
@@ -179,9 +183,10 @@ class NavigationPushButton(NavigationWidget):
             painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-            # draw indicator
-            painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
-            painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
+            # draw local indicator only if unified indicator is disabled
+            if not useUnifiedIndicator:
+                painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
+                painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
         elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
             painter.setBrush(QColor(c, c, c, 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
@@ -197,6 +202,15 @@ class NavigationPushButton(NavigationWidget):
 
         left = 44 + pl if not self.icon().isNull() else pl + 16
         painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignVCenter, self.text())
+
+    def _getNavigationPanel(self):
+        """ get parent NavigationPanel if exists """
+        parent = self.parent()
+        while parent:
+            if parent.__class__.__name__ == 'NavigationPanel':
+                return parent
+            parent = parent.parent()
+        return None
 
 
 class NavigationToolButton(NavigationPushButton):

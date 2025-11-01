@@ -249,6 +249,18 @@ class NavigationInterface(QWidget):
         """ set whether the acrylic background effect is enabled """
         self.panel.setAcrylicEnabled(isEnabled)
 
+    def setIndicatorAnimationEnabled(self, enabled: bool):
+        """ set whether the unified selection indicator animation is enabled """
+        self.panel.setIndicatorAnimationEnabled(enabled)
+
+    def isIndicatorAnimationEnabled(self):
+        """ whether the unified selection indicator animation is enabled """
+        return self.panel.isIndicatorAnimationEnabled()
+
+    def setIndicatorAnimationDuration(self, duration: int):
+        """ set the duration of indicator animation in milliseconds """
+        self.panel.setIndicatorAnimationDuration(duration)
+
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
 

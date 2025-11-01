@@ -56,7 +56,12 @@ class MainWindow(FluentWindow):
 
         # enable acrylic effect
         self.navigationInterface.setAcrylicEnabled(True)
-
+        
+        # enable smooth indicator animation (similar to WinUI NavigationView)
+        # self.navigationInterface.setIndicatorAnimationEnabled(True)
+        # optional: customize animation duration (default: 150ms)
+        # self.navigationInterface.setIndicatorAnimationDuration(200)
+        
         self.connectSignalToSlot()
 
         # add items to navigation interface
