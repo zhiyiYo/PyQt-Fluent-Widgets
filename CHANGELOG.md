@@ -1,5 +1,14 @@
 # 更新日志
 
+## v1.9.2
+
+### 新特性
+* 添加 `ExpandGroupSettingCard` 快捷插入分组的功能
+
+### 修复
+* 修复多列树状组件的背景绘制问题
+* 修复 `FluentWindow` 使用 WebEngine 的背景问题
+
 ## v1.9.1
 
 ### 修复

@@ -112,6 +112,12 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         painter.setBrush(self.backgroundColor)
         painter.drawRect(self.rect())
 
+    def showEvent(self, e):
+        super().showEvent(e)
+        # reapply mica effect after window is fully initialized
+        if self.isMicaEffectEnabled():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+
     def setMicaEffectEnabled(self, isEnabled: bool):
         """ set whether the mica effect is enabled, only available on Win11 """
         if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
