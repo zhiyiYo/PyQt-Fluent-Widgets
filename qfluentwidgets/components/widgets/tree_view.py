@@ -1,6 +1,6 @@
 # coding:utf-8
 from PySide2.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
-from PySide2.QtGui import QPainter, QColor, QPalette
+from PySide2.QtGui import QPainter, QColor, QPalette, QPainterPath
 from PySide2.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
@@ -53,13 +53,44 @@ class TreeItemDelegate(QStyledItemDelegate):
         painter.restore()
 
     def _drawBackground(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
-        h = option.rect.height() - 4
         c = 255 if isDarkTheme() else 0
         painter.setBrush(QColor(c, c, c, 9))
 
-        if index.column() == 0:
-            painter.drawRoundedRect(
-                4, option.rect.y() + 2, self.parent().width() - 8, h, 4, 4)
+        column = index.column()
+        lastColumn = self.parent().header().count() - 1
+
+        radius = 4.0
+        path = QPainterPath()
+
+        rect = QRectF(option.rect)
+        rect.setTop(option.rect.y() + 2)
+        rect.setHeight(option.rect.height() - 4)
+
+        if column == 0:
+            rect.setX(4)
+
+        if column == 0 and column == lastColumn:
+            path.addRoundedRect(rect, radius, radius)
+        elif column == 0:
+            path.moveTo(rect.right(), rect.top())
+            path.lineTo(rect.right(), rect.bottom())
+            path.lineTo(rect.x() + radius, rect.bottom())
+            path.arcTo(rect.x(), rect.bottom() - 2 * radius, 2 * radius, 2 * radius, 270, -90)
+            path.lineTo(rect.x(), rect.top() + radius)
+            path.arcTo(rect.x(), rect.top(), 2 * radius, 2 * radius, 180, -90)
+            path.closeSubpath()
+        elif column == lastColumn:
+            path.moveTo(rect.x(), rect.top())
+            path.lineTo(rect.right() - radius, rect.top())
+            path.arcTo(rect.right() - 2 * radius, rect.top(), 2 * radius, 2 * radius, 90, -90)
+            path.lineTo(rect.right(), rect.bottom() - radius)
+            path.arcTo(rect.right() - 2 * radius, rect.bottom() - 2 * radius, 2 * radius, 2 * radius, 0, -90)
+            path.lineTo(rect.x(), rect.bottom())
+            path.closeSubpath()
+        else:
+            path.addRect(rect)
+
+        painter.drawPath(path)
 
     def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         h = option.rect.height() - 4
