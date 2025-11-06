@@ -729,11 +729,17 @@ class NavigationPanel(QFrame):
             self.indicator.hide()
             return
 
-        # calculate target Y position
+        # calculate target position
         targetY = self._getWidgetGlobalY(selectedWidget) + 10  # center vertically (36/2 - 16/2 = 10)
-        
-        # ensure indicator is at correct X position
-        self.indicator.move(0, int(self.indicator.y))
+
+        marginLeft = 0
+        if hasattr(selectedWidget, '_margins'):
+            marginLeft = selectedWidget._margins().left()
+
+        targetX = self._getWidgetGlobalX(selectedWidget) + marginLeft
+
+        # keep indicator aligned with item inset
+        self.indicator.move(int(targetX), int(self.indicator.y))
         self.indicator.show()
         self.indicator.raise_()
 
@@ -753,6 +759,14 @@ class NavigationPanel(QFrame):
         
         pos = widget.mapTo(self, QPoint(0, 0))
         return pos.y()
+
+    def _getWidgetGlobalX(self, widget: QWidget) -> int:
+        """ get widget's X position relative to navigation panel """
+        if not widget:
+            return 0
+
+        pos = widget.mapTo(self, QPoint(0, 0))
+        return pos.x()
 
     def paintEvent(self, e):
         if not self._canDrawAcrylic() or self.displayMode != NavigationDisplayMode.MENU:
