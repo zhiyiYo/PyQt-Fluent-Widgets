@@ -662,6 +662,11 @@ class NavigationPanel(QFrame):
             elif w >= self.minimumExpandWidth and self.displayMode == NavigationDisplayMode.COMPACT and \
                     not self._isMenuButtonVisible:
                 self.expand()
+            
+            # update indicator position to align with item inset when window resizes
+            # especially important for bottom-positioned items
+            if self._isIndicatorAnimationEnabled:
+                self._updateIndicatorPosition(animate=False)
 
         return super().eventFilter(obj, e)
 
