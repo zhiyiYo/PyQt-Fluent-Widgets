@@ -2,7 +2,8 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint, pyqtProperty
+from PyQt5.QtCore import (Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint,
+                          pyqtProperty, QTimer)
 from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath, QPainter
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
@@ -62,18 +63,27 @@ class NavigationIndicator(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self._x = 0.0
         self._y = 0.0
         self.setFixedSize(3, 16)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.hide()
+
+    def getX(self):
+        return self._x
+
+    def setX(self, x: float):
+        self._x = x
+        self.move(int(x), int(self._y))
 
     def getY(self):
         return self._y
 
     def setY(self, y: float):
         self._y = y
-        self.move(int(self.x()), int(y))
+        self.move(int(self._x), int(y))
 
+    x = pyqtProperty(float, getX, setX)
     y = pyqtProperty(float, getY, setY)
 
     def paintEvent(self, e):
@@ -125,7 +135,8 @@ class NavigationPanel(QFrame):
 
         # unified selection indicator
         self.indicator = NavigationIndicator(self)
-        self.indicatorAni = QPropertyAnimation(self.indicator, b'y', self)
+        self.indicatorXAni = QPropertyAnimation(self.indicator, b'x', self)
+        self.indicatorYAni = QPropertyAnimation(self.indicator, b'y', self)
 
         self.isMinimalEnabled = isMinimalEnabled
         if isMinimalEnabled:
@@ -152,8 +163,10 @@ class NavigationPanel(QFrame):
         self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
         self.expandAni.setDuration(150)
 
-        self.indicatorAni.setEasingCurve(QEasingCurve.OutQuad)
-        self.indicatorAni.setDuration(self._indicatorAnimationDuration)
+        self.indicatorXAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.indicatorXAni.setDuration(self._indicatorAnimationDuration)
+        self.indicatorYAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.indicatorYAni.setDuration(self._indicatorAnimationDuration)
 
         self.menuButton.clicked.connect(self.toggle)
         self.expandAni.finished.connect(self._onExpandAniFinished)
@@ -381,6 +394,10 @@ class NavigationPanel(QFrame):
         widget.setProperty('parentRouteKey', parentRouteKey)
         self.items[routeKey] = NavigationItem(routeKey, parentRouteKey, widget)
 
+        if isinstance(widget, NavigationTreeWidget):
+            # update indicator when tree expand/collapse animation finishes
+            widget.expandAni.finished.connect(self._onTreeExpandFinished)
+
         if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
             widget.setCompacted(False)
 
@@ -484,8 +501,11 @@ class NavigationPanel(QFrame):
 
         # show or hide unified indicator
         if enabled:
-            self._updateIndicatorPosition(animate=False)
+            self._isFirstSelection = True
+            self._scheduleIndicatorUpdate()
         else:
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
             self.indicator.hide()
             for item in self.items.values():
                 item.widget.update()
@@ -497,7 +517,8 @@ class NavigationPanel(QFrame):
     def setIndicatorAnimationDuration(self, duration: int):
         """ set the duration of indicator animation in milliseconds """
         self._indicatorAnimationDuration = max(0, duration)
-        self.indicatorAni.setDuration(self._indicatorAnimationDuration)
+        self.indicatorXAni.setDuration(self._indicatorAnimationDuration)
+        self.indicatorYAni.setDuration(self._indicatorAnimationDuration)
 
     def expand(self, useAni=True):
         """ expand navigation panel """
@@ -581,7 +602,9 @@ class NavigationPanel(QFrame):
         # animate unified indicator if enabled
         if self._isIndicatorAnimationEnabled:
             animate = not self._isFirstSelection
-            self._updateIndicatorPosition(animate=animate)
+            updated = self._updateIndicatorPosition(animate=animate)
+            if not updated:
+                self._scheduleIndicatorUpdate(animate=animate)
             self._isFirstSelection = False
 
     def _onWidgetClicked(self):
@@ -630,7 +653,8 @@ class NavigationPanel(QFrame):
         
         # update indicator position after flyout closes
         if self._isIndicatorAnimationEnabled:
-            self._updateIndicatorPosition(animate=True)
+            if not self._updateIndicatorPosition(animate=True):
+                self._scheduleIndicatorUpdate(animate=True)
 
     def _adjustFlyoutMenuSize(self, flyout: Flyout, widget: NavigationTreeWidget, menu: NavigationFlyoutMenu):
         flyout.view.setFixedSize(menu.size())
@@ -666,9 +690,14 @@ class NavigationPanel(QFrame):
             # update indicator position to align with item inset when window resizes
             # especially important for bottom-positioned items
             if self._isIndicatorAnimationEnabled:
-                self._updateIndicatorPosition(animate=False)
+                self._scheduleIndicatorUpdate()
 
         return super().eventFilter(obj, e)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        if self._isIndicatorAnimationEnabled:
+            self._scheduleIndicatorUpdate()
 
     def _onExpandAniFinished(self):
         if not self.expandAni.property('expand'):
@@ -695,6 +724,9 @@ class NavigationPanel(QFrame):
                 self.move(0, 0)
                 self.show()
 
+        if self._isIndicatorAnimationEnabled:
+            self._scheduleIndicatorUpdate()
+
     def _setWidgetCompacted(self, isCompacted: bool):
         """ set whether the navigation widget is compacted """
         for item in self.findChildren(NavigationWidget):
@@ -712,50 +744,50 @@ class NavigationPanel(QFrame):
         return self.acrylicBrush.isAvailable() and self.isAcrylicEnabled()
 
     def _updateIndicatorPosition(self, animate=True):
-        """ update unified indicator position to selected item """
+        """ update unified indicator position to highlighted item """
         if not self._isIndicatorAnimationEnabled:
-            return
+            return False
 
-        # find selected widget
-        selectedWidget = None
-        for item in self.items.values():
-            widget = item.widget
-            if isinstance(widget, NavigationTreeWidgetBase):
-                # for tree widget, get actual selected item widget
-                if widget.isSelected:
-                    selectedWidget = widget.itemWidget if hasattr(widget, 'itemWidget') else widget
-                    break
-            else:
-                if widget.isSelected:
-                    selectedWidget = widget
-                    break
-
-        if not selectedWidget or not selectedWidget.isVisible():
+        targetWidget = self._getIndicatorTargetWidget()
+        if not targetWidget or not targetWidget.isVisible():
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
             self.indicator.hide()
-            return
+            return False
 
-        # calculate target position
-        targetY = self._getWidgetGlobalY(selectedWidget) + 10  # center vertically (36/2 - 16/2 = 10)
+        margins = getattr(targetWidget, '_margins', None)
+        inset = margins().left() if callable(margins) else 0
 
-        marginLeft = 0
-        if hasattr(selectedWidget, '_margins'):
-            marginLeft = selectedWidget._margins().left()
+        targetX = self._getWidgetGlobalX(targetWidget) + inset
+        offset = max(0, (targetWidget.height() - self.indicator.height()) // 2)
+        targetY = self._getWidgetGlobalY(targetWidget) + offset
 
-        targetX = self._getWidgetGlobalX(selectedWidget) + marginLeft
-
-        # keep indicator aligned with item inset
-        self.indicator.move(int(targetX), int(self.indicator.y))
-        self.indicator.show()
+        currentX = self.indicator.getX()
+        currentY = self.indicator.getY()
+        wasVisible = self.indicator.isVisible()
+        
+        if not wasVisible:
+            self.indicator.show()
         self.indicator.raise_()
 
-        # animate or move directly
-        if animate and self._indicatorAnimationDuration > 0:
-            self.indicatorAni.stop()
-            self.indicatorAni.setStartValue(self.indicator.y)
-            self.indicatorAni.setEndValue(targetY)
-            self.indicatorAni.start()
+        shouldAnimate = animate and wasVisible and self._indicatorAnimationDuration > 0
+        if shouldAnimate:
+            # animate both X and Y simultaneously for smooth diagonal movement
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
+            self.indicatorXAni.setStartValue(currentX)
+            self.indicatorXAni.setEndValue(targetX)
+            self.indicatorYAni.setStartValue(currentY)
+            self.indicatorYAni.setEndValue(targetY)
+            self.indicatorXAni.start()
+            self.indicatorYAni.start()
         else:
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
+            self.indicator.setX(targetX)
             self.indicator.setY(targetY)
+
+        return True
 
     def _getWidgetGlobalY(self, widget: QWidget) -> int:
         """ get widget's Y position relative to navigation panel """
@@ -772,6 +804,44 @@ class NavigationPanel(QFrame):
 
         pos = widget.mapTo(self, QPoint(0, 0))
         return pos.x()
+
+    def _getIndicatorTargetWidget(self):
+        for item in self.items.values():
+            widget = item.widget
+            button = self._resolveIndicatorWidget(widget)
+            if not button:
+                continue
+
+            if self._shouldHighlightWidget(widget):
+                return button
+
+        return None
+
+    def _resolveIndicatorWidget(self, widget: NavigationWidget):
+        if isinstance(widget, NavigationTreeWidgetBase) and hasattr(widget, 'itemWidget'):
+            return widget.itemWidget
+        return widget if isinstance(widget, NavigationWidget) else None
+
+    def _shouldHighlightWidget(self, widget: NavigationWidget) -> bool:
+        if isinstance(widget, NavigationTreeWidgetBase) and hasattr(widget, 'itemWidget'):
+            return widget.itemWidget._canDrawIndicator()
+
+        canDraw = getattr(widget, '_canDrawIndicator', None)
+        if callable(canDraw):
+            return canDraw()
+
+        return getattr(widget, 'isSelected', False)
+
+    def _scheduleIndicatorUpdate(self, animate=False):
+        if not self._isIndicatorAnimationEnabled:
+            return
+
+        QTimer.singleShot(0, lambda: self._updateIndicatorPosition(animate=animate))
+
+    def _onTreeExpandFinished(self):
+        """ handle tree node expand/collapse animation finished """
+        if self._isIndicatorAnimationEnabled:
+            self._scheduleIndicatorUpdate(animate=True)
 
     def paintEvent(self, e):
         if not self._canDrawAcrylic() or self.displayMode != NavigationDisplayMode.MENU:

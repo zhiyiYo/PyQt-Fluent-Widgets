@@ -169,9 +169,10 @@ class NavigationPushButton(NavigationWidget):
         if not self.isEnabled():
             painter.setOpacity(0.4)
 
-        # check if parent panel has unified indicator enabled
-        panel = self._getNavigationPanel()
-        useUnifiedIndicator = panel and getattr(panel, '_isIndicatorAnimationEnabled', False)
+        # check if parent panel has unified indicator enabled or in flyout menu
+        isFlyoutNode = self.property('_isFlyoutMenuNode')
+        panel = self._getNavigationPanel() if not isFlyoutNode else None
+        useUnifiedIndicator = isFlyoutNode or (panel and getattr(panel, '_isIndicatorAnimationEnabled', False))
 
         # draw background
         c = 255 if isDarkTheme() else 0
@@ -204,10 +205,11 @@ class NavigationPushButton(NavigationWidget):
         painter.drawText(QRectF(left, 0, self.width()-13-left-pr, self.height()), Qt.AlignVCenter, self.text())
 
     def _getNavigationPanel(self):
-        """ get parent NavigationPanel if exists """
+        """ get parent NavigationPanel or NavigationFlyoutMenu if exists """
         parent = self.parent()
         while parent:
-            if parent.__class__.__name__ == 'NavigationPanel':
+            className = parent.__class__.__name__
+            if className in ('NavigationPanel', 'NavigationFlyoutMenu'):
                 return parent
             parent = parent.parent()
         return None
@@ -638,6 +640,19 @@ class NavigationFlyoutMenu(ScrollArea):
 
         self.treeWidget = tree
         self.treeChildren = []
+        
+        # unified indicator for flyout menu (faster animation)
+        from .navigation_panel import NavigationIndicator
+        self.indicator = NavigationIndicator(self.view)
+        self.indicatorXAni = QPropertyAnimation(self.indicator, b'x', self)
+        self.indicatorYAni = QPropertyAnimation(self.indicator, b'y', self)
+        self.indicatorXAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.indicatorXAni.setDuration(80)  # faster for flyout
+        self.indicatorYAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.indicatorYAni.setDuration(80)  # faster for flyout
+        
+        # flag to indicate unified indicator is enabled
+        self._isIndicatorAnimationEnabled = True
 
         self.vBoxLayout = QVBoxLayout(self.view)
 
@@ -653,23 +668,47 @@ class NavigationFlyoutMenu(ScrollArea):
         # add nodes to menu
         for child in tree.treeChildren:
             node = child.clone()
-            node.expanded.connect(self._adjustViewSize)
+            node.expanded.connect(self._onExpanded)
+            node.clicked.connect(self._onNodeClicked)
+            
+            # mark as flyout menu node to disable local indicator
+            node.setProperty('_isFlyoutMenuNode', True)
+            node.itemWidget.setProperty('_isFlyoutMenuNode', True)
 
             self.treeChildren.append(node)
             self.vBoxLayout.addWidget(node)
 
         self._initNode(self)
         self._adjustViewSize(False)
+        
+        # show indicator at initial selected position
+        self._updateIndicatorPosition(animate=False)
 
     def _initNode(self, root: NavigationTreeWidget):
         for c in root.treeChildren:
             c.nodeDepth -= 1
             c.setCompacted(False)
+            c.clicked.connect(self._onNodeClicked)
+            
+            # mark as flyout menu node to disable local indicator
+            c.setProperty('_isFlyoutMenuNode', True)
+            c.itemWidget.setProperty('_isFlyoutMenuNode', True)
 
             if c.isLeaf():
                 c.clicked.connect(self.window().fadeOut)
 
             self._initNode(c)
+    
+    def _onNodeClicked(self):
+        """ handle node click to update indicator """
+        self._updateIndicatorPosition(animate=True)
+    
+    def _onExpanded(self):
+        """ handle node expand/collapse """
+        self._adjustViewSize(emit=True)
+        # use QTimer to ensure layout is updated before updating indicator
+        from PyQt5.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self._updateIndicatorPosition(animate=True))
 
     def _adjustViewSize(self, emit=True):
         w = self._suitableWidth()
@@ -709,3 +748,49 @@ class NavigationFlyoutMenu(ScrollArea):
             queue.extend([i for i in node.treeChildren if not i.isHidden()])
 
         return nodes
+    
+    def _updateIndicatorPosition(self, animate=True):
+        """ update indicator position to selected item """
+        selectedWidget = None
+        
+        # find selected node
+        for node in self.visibleTreeNodes():
+            if node.isSelected and node.isVisible():
+                selectedWidget = node.itemWidget
+                break
+        
+        if not selectedWidget:
+            self.indicator.hide()
+            return
+        
+        # calculate target position relative to view widget
+        margins = getattr(selectedWidget, '_margins', None)
+        inset = margins().left() if callable(margins) else 0
+        
+        globalPos = selectedWidget.mapTo(self.view, QPoint(0, 0))
+        targetX = globalPos.x() + inset
+        offset = max(0, (selectedWidget.height() - self.indicator.height()) // 2)
+        targetY = globalPos.y() + offset
+        
+        currentX = self.indicator.getX()
+        currentY = self.indicator.getY()
+        wasVisible = self.indicator.isVisible()
+        
+        if not wasVisible:
+            self.indicator.show()
+        self.indicator.raise_()
+        
+        if animate and wasVisible:
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
+            self.indicatorXAni.setStartValue(currentX)
+            self.indicatorXAni.setEndValue(targetX)
+            self.indicatorYAni.setStartValue(currentY)
+            self.indicatorYAni.setEndValue(targetY)
+            self.indicatorXAni.start()
+            self.indicatorYAni.start()
+        else:
+            self.indicatorXAni.stop()
+            self.indicatorYAni.stop()
+            self.indicator.setX(targetX)
+            self.indicator.setY(targetY)

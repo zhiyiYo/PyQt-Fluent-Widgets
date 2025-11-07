@@ -67,7 +67,10 @@ class Window(FramelessWindow):
     def initNavigation(self):
         # enable acrylic effect
         # self.navigationInterface.setAcrylicEnabled(True)
-
+        
+        # enable unified sliding indicator animation
+        self.navigationInterface.setIndicatorAnimationEnabled(True)
+        
         self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
         self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
         self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
