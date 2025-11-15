@@ -11,6 +11,7 @@ from ..common.icon import FluentIconBase
 from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
+from ..common.window_effect import WindowEffectManager, WindowEffectType
 from ..components.widgets.frameless_window import FramelessWindow
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
                                      NavigationBarPushButton, NavigationTreeWidget)
@@ -24,6 +25,9 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
+        self._isMicaAltEnabled = False
+        self._isAcrylicEnabled = False
+        self._isDwmBlurEnabled = False
         self._lightBackgroundColor = QColor(240, 244, 249)
         self._darkBackgroundColor = QColor(32, 32, 32)
         super().__init__(parent=parent)
@@ -31,6 +35,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self.hBoxLayout = QHBoxLayout(self)
         self.stackedWidget = StackedWidget(self)
         self.navigationInterface = None
+        self.windowEffectManager = WindowEffectManager()
 
         # initialize layout
         self.hBoxLayout.setSpacing(0)
@@ -96,14 +101,33 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self._updateBackgroundColor()
 
     def _normalBackgroundColor(self):
-        if not self.isMicaEffectEnabled():
+        if not self._hasWindowEffect():
             return self._darkBackgroundColor if isDarkTheme() else self._lightBackgroundColor
 
-        return QColor(0, 0, 0, 0)
+        # use semi-transparent background for window effects
+        if isDarkTheme():
+            # dark theme: transparent or semi-transparent dark
+            return QColor(0, 0, 0, 0)
+        else:
+            # light theme: semi-transparent white for better readability
+            return QColor(255, 255, 255, 200)
+    
+    def _hasWindowEffect(self):
+        """ check if any window effect is enabled """
+        return (self._isMicaEnabled or self._isMicaAltEnabled or 
+                self._isAcrylicEnabled or self._isDwmBlurEnabled)
 
     def _onThemeChangedFinished(self):
         if self.isMicaEffectEnabled():
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+            self.windowEffectManager.setMicaEffect(self.winId(), isDarkTheme())
+        elif self.isMicaAltEffectEnabled():
+            self.windowEffectManager.setMicaAltEffect(self.winId(), isDarkTheme())
+        elif self.isAcrylicEffectEnabled():
+            self.windowEffectManager.setAcrylicEffect(self.winId(), isDarkTheme())
+        
+        # update background color for theme change
+        self.setBackgroundColor(self._normalBackgroundColor())
+        self.update()
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -112,28 +136,104 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         painter.setBrush(self.backgroundColor)
         painter.drawRect(self.rect())
 
-    def showEvent(self, e):
-        super().showEvent(e)
-        # reapply mica effect after window is fully initialized
-        if self.isMicaEffectEnabled():
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+    # def showEvent(self, e):
+    #     super().showEvent(e)
+    #     # Note: Removed automatic reapplication of window effects to prevent window position reset during drag
 
     def setMicaEffectEnabled(self, isEnabled: bool):
         """ set whether the mica effect is enabled, only available on Win11 """
         if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
             return
 
+        self._clearAllEffects()
         self._isMicaEnabled = isEnabled
 
         if isEnabled:
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+            # remove all effects first
+            self.windowEffectManager.removeEffect(self.winId())
+            # apply mica effect
+            self.windowEffectManager.setMicaEffect(self.winId(), isDarkTheme())
         else:
-            self.windowEffect.removeBackgroundEffect(self.winId())
+            self.windowEffectManager.removeEffect(self.winId())
 
         self.setBackgroundColor(self._normalBackgroundColor())
+        self.update()
 
     def isMicaEffectEnabled(self):
         return self._isMicaEnabled
+    
+    def setMicaAltEffectEnabled(self, isEnabled: bool):
+        """ set whether the mica alt effect is enabled, only available on Win11 22H2+ """
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 22621:
+            return
+
+        self._clearAllEffects()
+        self._isMicaAltEnabled = isEnabled
+
+        if isEnabled:
+            # remove all effects first
+            self.windowEffectManager.removeEffect(self.winId())
+            # apply new effect
+            self.windowEffectManager.setMicaAltEffect(self.winId(), isDarkTheme())
+        else:
+            self.windowEffectManager.removeEffect(self.winId())
+
+        self.setBackgroundColor(self._normalBackgroundColor())
+        self.update()
+
+    def isMicaAltEffectEnabled(self):
+        return self._isMicaAltEnabled
+    
+    def setAcrylicEffectEnabled(self, isEnabled: bool):
+        """ set whether the acrylic effect is enabled, only available on Win11+ """
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
+            return
+
+        self._clearAllEffects()
+        self._isAcrylicEnabled = isEnabled
+
+        if isEnabled:
+            # remove all effects first
+            self.windowEffectManager.removeEffect(self.winId())
+            # apply new effect
+            self.windowEffectManager.setAcrylicEffect(self.winId(), isDarkTheme())
+        else:
+            self.windowEffectManager.removeEffect(self.winId())
+
+        self.setBackgroundColor(self._normalBackgroundColor())
+        self.update()
+
+    def isAcrylicEffectEnabled(self):
+        return self._isAcrylicEnabled
+    
+    def setDwmBlurEffectEnabled(self, isEnabled: bool):
+        """ set whether the DWM blur effect is enabled, available on Win7+ """
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 7600:
+            return
+
+        self._clearAllEffects()
+        self._isDwmBlurEnabled = isEnabled
+
+        if isEnabled:
+            # remove all effects first
+            self.windowEffectManager.removeEffect(self.winId())
+            # apply new effect
+            self.windowEffectManager.setDwmBlurEffect(self.winId(), True)
+        else:
+            self.windowEffectManager.removeEffect(self.winId())
+
+        self.setBackgroundColor(self._normalBackgroundColor())
+        self.update()
+
+    def isDwmBlurEffectEnabled(self):
+        return self._isDwmBlurEnabled
+    
+    def _clearAllEffects(self):
+        """ clear all effect flags """
+        self._isMicaEnabled = False
+        self._isMicaAltEnabled = False
+        self._isAcrylicEnabled = False
+        self._isDwmBlurEnabled = False
 
     def systemTitleBarRect(self, size: QSize) -> QRect:
         """ Returns the system title bar rect, only works for macOS
