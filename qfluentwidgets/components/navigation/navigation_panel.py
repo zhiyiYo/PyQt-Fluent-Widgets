@@ -7,7 +7,7 @@ from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
-                                NavigationTreeWidget, NavigationFlyoutMenu)
+                                NavigationTreeWidget, NavigationFlyoutMenu, NavigationItemHeader)
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
@@ -330,6 +330,40 @@ class NavigationPanel(QFrame):
         separator = NavigationSeparator(self)
         self._insertWidgetToLayout(index, separator, position)
 
+    def addItemHeader(self, text: str, position=NavigationItemPosition.TOP):
+        """ add item header
+
+        Parameters
+        ----------
+        text: str
+            header text
+
+        position: NavigationItemPosition
+            where to add the header
+        """
+        self.insertItemHeader(-1, text, position)
+
+    def insertItemHeader(self, index: int, text: str, position=NavigationItemPosition.TOP):
+        """ insert item header
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
+        text: str
+            header text
+
+        position: NavigationItemPosition
+            where to add the header
+        """
+        header = NavigationItemHeader(text, self)
+        self._insertWidgetToLayout(index, header, position)
+
+        # set compacted state based on current display mode
+        isCompacted = self.displayMode not in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]
+        header.setCompacted(isCompacted)
+
     def _registerWidget(self, routeKey: str, parentRouteKey: str, widget: NavigationWidget, onClick, tooltip: str):
         """ register widget """
         widget.clicked.connect(self._onWidgetClicked)
@@ -604,8 +638,7 @@ class NavigationPanel(QFrame):
             self.setProperty('menu', False)
             self.setStyle(QApplication.style())
 
-            for item in self.items.values():
-                item.widget.setCompacted(True)
+            self._setWidgetCompacted(True)
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)
