@@ -1,5 +1,5 @@
 from .navigation_widget import (NavigationWidget, NavigationPushButton, NavigationSeparator, NavigationToolButton,
-                                NavigationTreeWidget, NavigationTreeWidgetBase, NavigationAvatarWidget)
+                                NavigationTreeWidget, NavigationTreeWidgetBase, NavigationAvatarWidget, NavigationItemHeader)
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationDisplayMode
 from .navigation_interface import NavigationInterface
 from .navigation_bar import NavigationBarPushButton, NavigationBar

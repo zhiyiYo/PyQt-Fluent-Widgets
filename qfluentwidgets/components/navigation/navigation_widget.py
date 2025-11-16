@@ -233,6 +233,112 @@ class NavigationSeparator(NavigationWidget):
         painter.drawLine(0, 1, self.width(), 1)
 
 
+class NavigationItemHeader(NavigationWidget):
+    """ Navigation item header for grouping items """
+
+    def __init__(self, text: str, parent=None):
+        super().__init__(False, parent=parent)
+        self._text = text
+        self._targetHeight = 30
+        setFont(self, 12)  # smaller font size for header
+        
+        # Override text colors for header style
+        self.lightTextColor = QColor(96, 96, 96)  # gray in light mode
+        self.darkTextColor = QColor(160, 160, 160)  # light gray in dark mode
+        
+        # Animation for smooth height transition
+        self.heightAni = QPropertyAnimation(self, b'maximumHeight', self)
+        self.heightAni.setDuration(150)
+        self.heightAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.heightAni.valueChanged.connect(self._onHeightChanged)
+        
+        self.setCursor(Qt.ArrowCursor)  # normal cursor, not hand cursor
+        
+        # Initialize to hidden state
+        self.setFixedHeight(0)
+    
+    def text(self):
+        return self._text
+    
+    def setText(self, text: str):
+        self._text = text
+        self.update()
+    
+    def setCompacted(self, isCompacted: bool):
+        """ set whether the widget is compacted """
+        self.isCompacted = isCompacted
+        
+        # Stop any running animation
+        self.heightAni.stop()
+        
+        if isCompacted:
+            # in compact mode, animate to height 0
+            self.setFixedWidth(40)
+            self.heightAni.setStartValue(self.height())
+            self.heightAni.setEndValue(0)
+            self.heightAni.finished.connect(self._onCollapseFinished)
+        else:
+            # in expand mode, animate to full height
+            self.setFixedWidth(self.EXPAND_WIDTH)
+            self.setVisible(True)  # ensure visible before expanding
+            self.heightAni.setStartValue(self.height())
+            self.heightAni.setEndValue(self._targetHeight)
+            # Disconnect any previous finished connections
+            try:
+                self.heightAni.finished.disconnect()
+            except:
+                pass
+        
+        self.heightAni.start()
+        self.update()
+    
+    def _onCollapseFinished(self):
+        """ called when collapse animation finishes """
+        self.setVisible(False)
+        try:
+            self.heightAni.finished.disconnect(self._onCollapseFinished)
+        except:
+            pass
+    
+    def _onHeightChanged(self, value):
+        """ called when height animation value changes """
+        self.setFixedHeight(value)
+    
+    def mousePressEvent(self, e):
+        # do not handle mouse press - header is not clickable
+        e.ignore()
+    
+    def mouseReleaseEvent(self, e):
+        # do not handle mouse release - header is not clickable
+        e.ignore()
+    
+    def enterEvent(self, e):
+        # do not show hover effect
+        pass
+    
+    def leaveEvent(self, e):
+        # do not show hover effect
+        pass
+    
+    def paintEvent(self, e):
+        if self.height() == 0 or not self.isVisible():
+            return
+            
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
+        
+        # Calculate opacity based on height for fade effect
+        opacity = min(1.0, self.height() / max(1, self._targetHeight))
+        painter.setOpacity(opacity)
+        
+        if not self.isCompacted:
+            # draw header text in expand mode
+            painter.setFont(self.font())
+            painter.setPen(self.textColor())
+            painter.drawText(QRectF(16, 0, self.width() - 16, self.height()), 
+                           Qt.AlignLeft | Qt.AlignVCenter, self.text())
+
+
 class NavigationTreeItem(NavigationPushButton):
     """ Navigation tree item widget """
 
