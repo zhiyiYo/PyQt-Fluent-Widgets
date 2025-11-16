@@ -1,7 +1,7 @@
 # coding: utf-8
 import sys
-# from pathlib import Path
-# sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+#from pathlib import Path
+#sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QStackedWidget, QFrame

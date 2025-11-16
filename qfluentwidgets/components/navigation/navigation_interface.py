@@ -191,8 +191,13 @@ class NavigationInterface(QWidget):
 
         position: NavigationItemPosition
             where the header is added
+            
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
         """
-        self.panel.addItemHeader(text, position)
+        return self.panel.addItemHeader(text, position)
 
     def insertItemHeader(self, index: int, text: str, position=NavigationItemPosition.TOP):
         """ insert item header for grouping navigation items
@@ -207,8 +212,13 @@ class NavigationInterface(QWidget):
 
         position: NavigationItemPosition
             where the header is added
+            
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
         """
-        self.panel.insertItemHeader(index, text, position)
+        return self.panel.insertItemHeader(index, text, position)
 
     def insertSeparator(self, index: int, position=NavigationItemPosition.TOP):
         """ add separator

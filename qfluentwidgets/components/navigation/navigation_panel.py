@@ -340,8 +340,13 @@ class NavigationPanel(QFrame):
 
         position: NavigationItemPosition
             where to add the header
+            
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
         """
-        self.insertItemHeader(-1, text, position)
+        return self.insertItemHeader(-1, text, position)
 
     def insertItemHeader(self, index: int, text: str, position=NavigationItemPosition.TOP):
         """ insert item header
@@ -356,6 +361,11 @@ class NavigationPanel(QFrame):
 
         position: NavigationItemPosition
             where to add the header
+            
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
         """
         header = NavigationItemHeader(text, self)
         self._insertWidgetToLayout(index, header, position)
@@ -363,6 +373,8 @@ class NavigationPanel(QFrame):
         # set compacted state based on current display mode
         isCompacted = self.displayMode not in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]
         header.setCompacted(isCompacted)
+        
+        return header
 
     def _registerWidget(self, routeKey: str, parentRouteKey: str, widget: NavigationWidget, onClick, tooltip: str):
         """ register widget """
