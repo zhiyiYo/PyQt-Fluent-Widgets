@@ -251,7 +251,6 @@ class NavigationUserCard(NavigationWidget):
         
         # draw text in expanded mode
         if not self.isCompacted and self._textOpacity > 0:
-            painter.setOpacity(self._textOpacity)
             self._drawText(painter)
             
     def _drawAvatar(self, painter: QPainter, x: int, y: int):
@@ -300,33 +299,29 @@ class NavigationUserCard(NavigationWidget):
         textX = 16 + int(self._avatarRadius * 2) + 12
         textWidth = self.width() - textX - 16
         
-        # draw title with full opacity
-        painter.save()
-        painter.setOpacity(1.0)
-        painter.setPen(self.textColor())
+        # draw title
         painter.setFont(getFont(self._titleSize, QFont.Bold))
+        c = self.textColor()
+        c.setAlpha(int(255 * self._textOpacity))
+        painter.setPen(c)
         
         titleY = self.height() // 2 - 2
         painter.drawText(QRectF(textX, 0, textWidth, titleY), 
                         Qt.AlignLeft | Qt.AlignBottom, 
                         self._title)
-        painter.restore()
         
         # draw subtitle with semi-transparent color
         if self._subtitle:
-            painter.save()
-            painter.setOpacity(1.0)
             painter.setFont(getFont(self._subtitleSize))
             
             c = self.textColor()
-            c.setAlpha(150)
+            c.setAlpha(int(150 * self._textOpacity))
             painter.setPen(c)
             
             subtitleY = self.height() // 2 + 2
             painter.drawText(QRectF(textX, subtitleY, textWidth, self.height() - subtitleY),
                            Qt.AlignLeft | Qt.AlignTop,
                            self._subtitle)
-            painter.restore()
     
     # properties
     @pyqtProperty(float)
