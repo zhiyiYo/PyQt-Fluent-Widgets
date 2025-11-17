@@ -2,7 +2,7 @@
 from typing import Union
 
 from PyQt5.QtCore import Qt, QEvent, pyqtSignal
-from PyQt5.QtGui import QResizeEvent, QIcon
+from PyQt5.QtGui import QResizeEvent, QIcon, QPixmap
 from PyQt5.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationWidget, NavigationDisplayMode
@@ -219,6 +219,69 @@ class NavigationInterface(QWidget):
             created header widget
         """
         return self.panel.insertItemHeader(index, text, position)
+
+    def addUserCard(self, routeKey: str, avatar: Union[str, QIcon, FluentIconBase] = None,
+                    title: str = '', subtitle: str = '', onClick=None, 
+                    position=NavigationItemPosition.TOP, aboveMenuButton: bool = False):
+        """ add user card to navigation panel
+        
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of user card
+            
+        avatar: str | QIcon | FluentIconBase
+            avatar image or icon
+            
+        title: str
+            user name or title text
+            
+        subtitle: str
+            subtitle text (e.g., email, status)
+            
+        onClick: callable
+            the slot connected to card clicked signal
+            
+        position: NavigationItemPosition
+            where the card is added
+            
+        aboveMenuButton: bool
+            whether to place the card above the menu button (expand/collapse button)
+            
+        Returns
+        -------
+        NavigationUserCard
+            created user card widget
+        """
+        from .navigation_user_card import NavigationUserCard
+        card = NavigationUserCard(self)
+        
+        if avatar:
+            if isinstance(avatar, FluentIconBase):
+                card.setAvatarIcon(avatar)
+            else:
+                card.setAvatar(avatar)
+        
+        card.setTitle(title)
+        card.setSubtitle(subtitle)
+        
+        # calculate insert index if placing above menu button
+        index = -1
+        if aboveMenuButton and position == NavigationItemPosition.TOP:
+            # find menu button index in top layout
+            layout = self.panel.topLayout
+            for i in range(layout.count()):
+                item = layout.itemAt(i)
+                if item and item.widget() == self.panel.menuButton:
+                    index = i
+                    break
+        
+        if index >= 0:
+            self.panel.insertWidget(index, routeKey, card, onClick, position)
+        else:
+            self.addWidget(routeKey, card, onClick, position)
+        
+        return card
 
     def insertSeparator(self, index: int, position=NavigationItemPosition.TOP):
         """ add separator
