@@ -130,6 +130,7 @@ class NavigationPushButton(NavigationWidget):
         self._text = text
         self.lightIndicatorColor = QColor()
         self.darkIndicatorColor = QColor()
+        self._indicatorAnimator = None  # will be set by panel
 
         setFont(self)
 
@@ -175,16 +176,31 @@ class NavigationPushButton(NavigationWidget):
         pl, pr = m.left(), m.right()
         globalRect = QRect(self.mapToGlobal(QPoint()), self.size())
 
-        if self._canDrawIndicator():
-            painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
-
-            # draw indicator
-            painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
-            painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
+        # check if we should draw indicator through animator
+        if self._indicatorAnimator:
+            # animator handles all indicator drawing
+            if self._canDrawIndicator() or self._indicatorAnimator._lastSelectedWidget == self:
+                painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
+                painter.drawRoundedRect(self.rect(), 5, 5)
+            elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
+                painter.setBrush(QColor(c, c, c, 10))
+                painter.drawRoundedRect(self.rect(), 5, 5)
+                
+            # let animator handle indicator drawing
+            color = autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor)
+            self._indicatorAnimator.drawIndicator(painter, self, self.rect(), color, pl)
+        else:
+            # fallback to original static behavior
+            if self._canDrawIndicator():
+                painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
+                painter.drawRoundedRect(self.rect(), 5, 5)
+                
+                # draw static indicator
+                painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
+                painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
+            elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
+                painter.setBrush(QColor(c, c, c, 10))
+                painter.drawRoundedRect(self.rect(), 5, 5)
 
         drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
 
@@ -730,6 +746,10 @@ class NavigationFlyoutMenu(ScrollArea):
 
         self.treeWidget = tree
         self.treeChildren = []
+        
+        # create indicator animator for flyout menu
+        from .navigation_indicator import NavigationIndicatorAnimator
+        self.indicatorAnimator = NavigationIndicatorAnimator(self)
 
         self.vBoxLayout = QVBoxLayout(self.view)
 
@@ -757,8 +777,14 @@ class NavigationFlyoutMenu(ScrollArea):
         for c in root.treeChildren:
             c.nodeDepth -= 1
             c.setCompacted(False)
+            
+            # use shared indicator animator for flyout menu
+            c.itemWidget._indicatorAnimator = self.indicatorAnimator
 
             if c.isLeaf():
+                # trigger animation and close flyout when leaf is clicked
+                widget = c.itemWidget
+                c.clicked.connect(lambda w=widget: self.indicatorAnimator.animateTo(w))
                 c.clicked.connect(self.window().fadeOut)
 
             self._initNode(c)

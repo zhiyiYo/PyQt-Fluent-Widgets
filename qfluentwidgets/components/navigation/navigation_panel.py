@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLay
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
                                 NavigationTreeWidget, NavigationFlyoutMenu, NavigationItemHeader)
+from .navigation_indicator import NavigationIndicatorAnimator
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
@@ -69,8 +70,11 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = False
         self._isCollapsible = True
         self._isAcrylicEnabled = False
+        self._indicatorAnimationEnabled = True
+        self._indicatorAnimationDuration = 300
 
         self.acrylicBrush = AcrylicBrush(self, 30)
+        self.indicatorAnimator = NavigationIndicatorAnimator(self)
 
         self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
@@ -387,6 +391,15 @@ class NavigationPanel(QFrame):
         widget.setProperty('parentRouteKey', parentRouteKey)
         self.items[routeKey] = NavigationItem(routeKey, parentRouteKey, widget)
 
+        # set indicator animator for selectable widgets
+        if widget.isSelectable:
+            # for NavigationTreeWidget, set animator on its itemWidget
+            if isinstance(widget, NavigationTreeWidget):
+                if hasattr(widget.itemWidget, '_indicatorAnimator'):
+                    widget.itemWidget._indicatorAnimator = self.indicatorAnimator
+            elif hasattr(widget, '_indicatorAnimator'):
+                widget._indicatorAnimator = self.indicatorAnimator
+
         if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
             widget.setCompacted(False)
 
@@ -477,6 +490,37 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
+    def setIndicatorAnimationEnabled(self, isEnabled: bool):
+        """ set whether the indicator animation is enabled 
+        
+        Parameters
+        ----------
+        isEnabled: bool
+            whether to enable indicator animation
+        """
+        self._indicatorAnimationEnabled = isEnabled
+        self.indicatorAnimator.setEnabled(isEnabled)
+        self.update()
+
+    def setIndicatorAnimationDuration(self, duration: int):
+        """ set the duration of indicator animation
+        
+        Parameters
+        ----------
+        duration: int
+            animation duration in milliseconds
+        """
+        self._indicatorAnimationDuration = duration
+        self.indicatorAnimator.setDuration(duration)
+
+    def isIndicatorAnimationEnabled(self):
+        """ whether the indicator animation is enabled """
+        return self._indicatorAnimationEnabled
+
+    def indicatorAnimationDuration(self):
+        """ get the duration of indicator animation """
+        return self._indicatorAnimationDuration
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._setWidgetCompacted(False)
@@ -552,6 +596,15 @@ class NavigationPanel(QFrame):
         """
         if routeKey not in self.items:
             return
+
+        # trigger indicator animation
+        targetWidget = self.items[routeKey].widget
+        if self._indicatorAnimationEnabled and targetWidget.isSelectable:
+            # for NavigationTreeWidget, animate to its itemWidget
+            if isinstance(targetWidget, NavigationTreeWidget):
+                self.indicatorAnimator.animateTo(targetWidget.itemWidget)
+            else:
+                self.indicatorAnimator.animateTo(targetWidget)
 
         for k, item in self.items.items():
             item.widget.setSelected(k == routeKey)
