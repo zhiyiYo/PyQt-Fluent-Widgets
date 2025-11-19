@@ -214,6 +214,8 @@ class PickerBase(QPushButton):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.setSizeConstraint(QHBoxLayout.SetFixedSize)
 
+        self._isScrollButtonRepeatEnabled = True
+
         FluentStyleSheet.TIME_PICKER.apply(self)
         self.clicked.connect(self._showPanel)
 
@@ -368,6 +370,10 @@ class PickerBase(QPushButton):
         """ initial value of panel """
         return self.value()
 
+    def setScrollButtonRepeatEnabled(self, isEnabled: bool):
+        """ set whether to enable scroll button auto repeat """
+        self._isScrollButtonRepeatEnabled = isEnabled
+
     def _showPanel(self):
         """ show panel """
         panel = PickerPanel(self)
@@ -377,6 +383,7 @@ class PickerBase(QPushButton):
 
         panel.setValue(self.panelInitialValue())
         panel.setResetEnabled(self.isRestEnabled())
+        panel.setScrollButtonRepeatEnabled(self._isScrollButtonRepeatEnabled)
         panel.setSelectedBackgroundColor(
             self.lightSelectedBackgroundColor, self.darkSelectedBackgroundColor)
 
@@ -443,6 +450,8 @@ class PickerPanel(QWidget):
         self.buttonLayout = QHBoxLayout()
         self.vBoxLayout = QVBoxLayout(self.view)
 
+        self.scrollButtonRepeatEnabled = True
+
         self.__initWidget()
 
     def __initWidget(self):
@@ -506,6 +515,12 @@ class PickerPanel(QWidget):
         """ set the visibility of reset button """
         self.resetButton.setVisible(isEnabled)
 
+    def setScrollButtonRepeatEnabled(self, isEnabled: bool):
+        """ set whether to enable scroll button auto repeat """
+        self.scrollButtonRepeatEnabled = isEnabled
+        for widget in self.listWidgets:
+            widget.setScrollButtonRepeatEnabled(isEnabled)
+
     def setSelectedBackgroundColor(self, light, dark):
         self.itemMaskWidget.setCustomBackgroundColor(light, dark)
 
@@ -530,6 +545,7 @@ class PickerPanel(QWidget):
             self.listLayout.addWidget(SeparatorWidget(Qt.Vertical))
 
         w = CycleListWidget(items, QSize(width, self.itemHeight), align, self)
+        w.setScrollButtonRepeatEnabled(self.scrollButtonRepeatEnabled)
         w.vScrollBar.valueChanged.connect(self.itemMaskWidget.update)
 
         N = len(self.listWidgets)
