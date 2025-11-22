@@ -207,7 +207,7 @@ class CycleListWidget(QListWidget):
         self.upButton.setAutoRepeat(isEnabled)
         self.downButton.setAutoRepeat(isEnabled)
 
-    def _scrollWithAnimation(self, delta: int):
+    def _scrollWithAnimation(self, index: int):
         """ scroll with adaptive animation """
         t = QTime.currentTime()
         elapsed = self._lastScrollTime.msecsTo(t)
@@ -220,17 +220,16 @@ class CycleListWidget(QListWidget):
             duration, easing = 250, QEasingCurve.OutQuad
 
         self.vScrollBar.setScrollAnimation(duration, easing)
-        index = self.currentIndex() + delta
         self.setCurrentIndex(index)
         self.scrollToItem(self.currentItem())
 
     def scrollDown(self):
         """ scroll down an item """
-        self._scrollWithAnimation(1)
+        self._scrollWithAnimation(self.currentIndex() + 1)
 
     def scrollUp(self):
         """ scroll up an item """
-        self._scrollWithAnimation(-1)
+        self._scrollWithAnimation(self.currentIndex() - 1)
 
     def _setButtonsVisible(self, visible: bool):
         """ set scroll buttons visibility """
