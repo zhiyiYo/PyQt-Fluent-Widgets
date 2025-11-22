@@ -105,6 +105,7 @@ class Window(MSFluentWindow):
         super().__init__()
         self.setTitleBar(CustomTitleBar(self))
         self.tabBar = self.titleBar.tabBar  # type: TabBar
+        self.tabCount = 1  # tab counter for unique routeKey
 
         # create sub interface
         self.homeInterface = QStackedWidget(self, objectName='homeInterface')
@@ -167,8 +168,9 @@ class Window(MSFluentWindow):
         self.stackedWidget.setCurrentWidget(self.homeInterface)
 
     def onTabAddRequested(self):
-        text = f'硝子酱一级棒卡哇伊×{self.tabBar.count()}'
+        text = f'硝子酱一级棒卡哇伊×{self.tabCount}'
         self.addTab(text, text, 'resource/Smiling_with_heart.png')
+        self.tabCount += 1
 
     def addTab(self, routeKey, text, icon):
         self.tabBar.addTab(routeKey, text, icon)
