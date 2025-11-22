@@ -101,7 +101,14 @@ class CycleListWidget(QListWidget):
         self.itemClicked.connect(self._onItemClicked)
         self.installEventFilter(self)
 
-        # enable auto-repeat by default (also connects button signals)
+        # enable auto-repeat by default
+        self.upButton.clicked.connect(self.scrollUp)
+        self.downButton.clicked.connect(self.scrollDown)
+        self.upButton.setAutoRepeatDelay(500)
+        self.upButton.setAutoRepeatInterval(50)
+        self.downButton.setAutoRepeatDelay(500)
+        self.downButton.setAutoRepeatInterval(50)
+
         self.setScrollButtonRepeatEnabled(True)
         self._setButtonsVisible(False)
 
@@ -191,33 +198,14 @@ class CycleListWidget(QListWidget):
         else:
             self.scrollUp()
 
-    def _configButton(self, button, slot, enableRepeat: bool):
-        """ configure button auto-repeat and signal connections """
-        button.setAutoRepeat(enableRepeat)
-        
-        if enableRepeat:
-            button.setAutoRepeatDelay(500)
-            button.setAutoRepeatInterval(50)
-            try:
-                button.clicked.disconnect(slot)
-            except TypeError:
-                pass
-            button.pressed.connect(slot)
-        else:
-            try:
-                button.pressed.disconnect(slot)
-            except TypeError:
-                pass
-            button.clicked.connect(slot)
-
     def setScrollButtonRepeatEnabled(self, isEnabled: bool):
         """ set whether to enable scroll button auto repeat """
         if self._scrollButtonRepeatEnabled == isEnabled:
             return
 
         self._scrollButtonRepeatEnabled = isEnabled
-        self._configButton(self.upButton, self.scrollUp, isEnabled)
-        self._configButton(self.downButton, self.scrollDown, isEnabled)
+        self.upButton.setAutoRepeat(isEnabled)
+        self.downButton.setAutoRepeat(isEnabled)
 
     def _scrollWithAnimation(self, delta: int):
         """ scroll with adaptive animation """
@@ -232,7 +220,8 @@ class CycleListWidget(QListWidget):
             duration, easing = 250, QEasingCurve.OutQuad
 
         self.vScrollBar.setScrollAnimation(duration, easing)
-        self.setCurrentIndex(self.currentIndex() + delta)
+        index = self.currentIndex() + delta
+        self.setCurrentIndex(index)
         self.scrollToItem(self.currentItem())
 
     def scrollDown(self):
