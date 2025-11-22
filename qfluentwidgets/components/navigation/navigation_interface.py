@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationWidget, NavigationDisplayMode
 from .navigation_widget import NavigationTreeWidget
+from .navigation_user_card import NavigationUserCard
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 
@@ -253,7 +254,6 @@ class NavigationInterface(QWidget):
         NavigationUserCard
             created user card widget
         """
-        from .navigation_user_card import NavigationUserCard
         card = NavigationUserCard(self)
         
         if avatar:

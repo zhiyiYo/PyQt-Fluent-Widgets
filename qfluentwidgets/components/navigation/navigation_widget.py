@@ -679,15 +679,19 @@ class NavigationAvatarWidget(NavigationWidget):
             painter.setOpacity(0.7)
 
         # draw background
-        if self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
+        self._drawBackground(painter)
 
         if not self.isCompacted:
             painter.setPen(self.textColor())
             painter.setFont(self.font())
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+
+    def _drawBackground(self, painter):
+        if self.isEnter:
+            c = 255 if isDarkTheme() else 0
+            painter.setBrush(QColor(c, c, c, 10))
+            painter.setPen(Qt.NoPen)
+            painter.drawRoundedRect(self.rect(), 5, 5)
 
 
 @InfoBadgeManager.register(InfoBadgePosition.NAVIGATION_ITEM)
