@@ -1,6 +1,9 @@
 # coding:utf-8
 import sys
 
+#from pathlib import Path
+#sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
+
 from PyQt5.QtCore import QDate, Qt, QTime
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
@@ -29,6 +32,7 @@ class Demo(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
 
+        # create pickers with scroll button repeat enabled by default
         self.datePicker1 = DatePicker(self)
         self.datePicker2 = ZhDatePicker(self)
         self.timePicker1 = AMTimePicker(self)
@@ -38,6 +42,10 @@ class Demo(QWidget):
         # enable reset button
         # self.datePicker1.setResetEnabled(True)
         # self.timePicker1.setResetEnabled(True)
+
+        # disable scroll button repeat if needed
+        # self.datePicker1.setScrollButtonRepeatEnabled(False)
+        # self.timePicker1.setScrollButtonRepeatEnabled(False)
 
         # customize column format
         self.timePicker3.setColumnFormatter(2, SecondsFormatter())
