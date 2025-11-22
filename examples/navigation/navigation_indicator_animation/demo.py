@@ -63,12 +63,6 @@ class Window(FramelessWindow):
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
     def initNavigation(self):
-        # enable smooth indicator animation when switching between items
-        # the animation direction is determined automatically based on item positions
-        self.navigationInterface.setIndicatorAnimationEnabled(True)
-        
-        # you can also customize the animation duration (default: 300ms)
-        # self.navigationInterface.setIndicatorAnimationDuration(300)
 
         # add items to top
         self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')

@@ -13,6 +13,7 @@ from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.color import autoFallbackThemeColor
 from ...common.font import setFont
+from .navigation_indicator import NavigationIndicator
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
@@ -38,6 +39,7 @@ class NavigationWidget(QWidget):
         # text color
         self.lightTextColor = QColor(0, 0, 0)
         self.darkTextColor = QColor(255, 255, 255)
+        self._isIndicatorVisible = True
 
         self.setFixedSize(40, 36)
 
@@ -110,6 +112,19 @@ class NavigationWidget(QWidget):
         self.setLightTextColor(light)
         self.setDarkTextColor(dark)
 
+    def setIndicatorVisible(self, isVisible: bool):
+        """ set whether to show the selection indicator """
+        self._isIndicatorVisible = isVisible
+        self.update()
+
+    def indicatorRect(self):
+        """ get the indicator geometry """
+        m = self._margins()
+        return QRectF(m.left(), 10, 3, 16)
+
+    def _margins(self):
+        return QMargins(0, 0, 0, 0)
+
 
 class NavigationPushButton(NavigationWidget):
     """ Navigation push button """
@@ -130,7 +145,6 @@ class NavigationPushButton(NavigationWidget):
         self._text = text
         self.lightIndicatorColor = QColor()
         self.darkIndicatorColor = QColor()
-        self._indicatorAnimator = None  # will be set by panel
 
         setFont(self)
 
@@ -176,31 +190,17 @@ class NavigationPushButton(NavigationWidget):
         pl, pr = m.left(), m.right()
         globalRect = QRect(self.mapToGlobal(QPoint()), self.size())
 
-        # check if we should draw indicator through animator
-        if self._indicatorAnimator:
-            # animator handles all indicator drawing
-            if self._canDrawIndicator() or self._indicatorAnimator._lastSelectedWidget == self:
-                painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
-                painter.drawRoundedRect(self.rect(), 5, 5)
-            elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
-                painter.setBrush(QColor(c, c, c, 10))
-                painter.drawRoundedRect(self.rect(), 5, 5)
-                
-            # let animator handle indicator drawing
-            color = autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor)
-            self._indicatorAnimator.drawIndicator(painter, self, self.rect(), color, pl)
-        else:
-            # fallback to original static behavior
-            if self._canDrawIndicator():
-                painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
-                painter.drawRoundedRect(self.rect(), 5, 5)
-                
-                # draw static indicator
+        if self._canDrawIndicator():
+            painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
+            painter.drawRoundedRect(self.rect(), 5, 5)
+
+            # draw indicator
+            if self._isIndicatorVisible:
                 painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
                 painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
-            elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
-                painter.setBrush(QColor(c, c, c, 10))
-                painter.drawRoundedRect(self.rect(), 5, 5)
+        elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
+            painter.setBrush(QColor(c, c, c, 10))
+            painter.drawRoundedRect(self.rect(), 5, 5)
 
         drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
 
@@ -505,6 +505,20 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.expandAni.valueChanged.connect(self.expanded)
         self.expandAni.finished.connect(self.parentWidget().layout().invalidate)
 
+    def indicatorRect(self):
+        return self.itemWidget.indicatorRect()
+
+    def setIndicatorVisible(self, isVisible: bool):
+        self.itemWidget.setIndicatorVisible(isVisible)
+
+    @property
+    def lightIndicatorColor(self):
+        return self.itemWidget.lightIndicatorColor
+
+    @property
+    def darkIndicatorColor(self):
+        return self.itemWidget.darkIndicatorColor
+
     def addChild(self, child):
         self.insertChild(-1, child)
 
@@ -746,12 +760,10 @@ class NavigationFlyoutMenu(ScrollArea):
 
         self.treeWidget = tree
         self.treeChildren = []
-        
-        # create indicator animator for flyout menu
-        from .navigation_indicator import NavigationIndicatorAnimator
-        self.indicatorAnimator = NavigationIndicatorAnimator(self)
+        self._selectedItem = None
 
         self.vBoxLayout = QVBoxLayout(self.view)
+        self.indicator = NavigationIndicator(self.view)
 
         self.setWidget(self.view)
         self.setWidgetResizable(True)
@@ -777,24 +789,63 @@ class NavigationFlyoutMenu(ScrollArea):
         for c in root.treeChildren:
             c.nodeDepth -= 1
             c.setCompacted(False)
-            
-            # use shared indicator animator for flyout menu
-            c.itemWidget._indicatorAnimator = self.indicatorAnimator
+
+            # Connect clicked signal for animation
+            c.clicked.connect(self._onItemClicked)
+
+            # Handle initial selection
+            if c.itemWidget.isSelected:
+                self._selectedItem = c
+                c.setIndicatorVisible(False)
+                self.indicator.setIndicatorColor(c.lightIndicatorColor, c.darkIndicatorColor)
+                self.indicator.setGeometry(self._getIndicatorRect(c))
+                self.indicator.setOpacity(1)
+                self.indicator.show()
 
             if c.isLeaf():
-                # trigger animation and close flyout when leaf is clicked
-                widget = c.itemWidget
-                c.clicked.connect(lambda w=widget: self.indicatorAnimator.animateTo(w))
                 c.clicked.connect(self.window().fadeOut)
 
             self._initNode(c)
+
+    def _onItemClicked(self):
+        sender = self.sender()  # type: NavigationTreeWidget
+        if sender == self._selectedItem:
+            return
+            
+        if self._selectedItem:
+            self._selectedItem.setIndicatorVisible(False)
+            self._selectedItem.setSelected(False)
+            
+        self._updateIndicator(self._selectedItem, sender)
+        self._selectedItem = sender
+        sender.setSelected(True)
+        sender.setIndicatorVisible(False)
+
+    def _updateIndicator(self, prev, current):
+        startRect = self._getIndicatorRect(prev) if prev else self._getIndicatorRect(current)
+        endRect = self._getIndicatorRect(current)
+        
+        if not prev:
+            # Initial appear animation
+            self.indicator.setGeometry(endRect)
+            self.indicator.setOpacity(1)
+            self.indicator.show()
+            # Use CrossFade from 0 height
+            self.indicator.animate(startRect, endRect, useCrossFade=True)
+        else:
+            self.indicator.setIndicatorColor(current.lightIndicatorColor, current.darkIndicatorColor)
+            self.indicator.animate(startRect, endRect, useCrossFade=True)
+
+    def _getIndicatorRect(self, widget: NavigationTreeWidget):
+        rect = widget.indicatorRect()
+        pos = widget.mapTo(self.view, QPoint(0, 0))
+        return QRectF(pos.x() + rect.x(), pos.y() + rect.y(), rect.width(), rect.height())
 
     def _adjustViewSize(self, emit=True):
         w = self._suitableWidth()
 
         # adjust the width of node
         for node in self.visibleTreeNodes():
-            node.setFixedWidth(w - 10)
             node.itemWidget.setFixedWidth(w - 10)
 
         self.view.setFixedSize(w, self.view.sizeHint().height())

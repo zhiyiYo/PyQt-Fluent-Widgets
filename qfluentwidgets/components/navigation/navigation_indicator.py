@@ -1,248 +1,221 @@
 # coding:utf-8
-from typing import Optional
-from PyQt5.QtCore import QObject, QPropertyAnimation, QEasingCurve, pyqtProperty, pyqtSignal, QRect, Qt
-from PyQt5.QtGui import QPainter, QColor
+from PyQt5.QtCore import (Qt, QPropertyAnimation, QRectF, QEasingCurve, pyqtProperty, 
+                          QPointF, QTimer, QAbstractAnimation, QParallelAnimationGroup, 
+                          QSequentialAnimationGroup, QSize)
+from PyQt5.QtGui import QColor, QPainter, QBrush
 from PyQt5.QtWidgets import QWidget
 
-from ...common.config import isDarkTheme
-from ...common.style_sheet import themeColor
+from ...common.style_sheet import themeColor, isDarkTheme
+from ...common.color import autoFallbackThemeColor
 
 
-class NavigationIndicatorAnimator(QObject):
-    """ Navigation indicator transition animator """
+class NavigationIndicator(QWidget):
+    """ Navigation indicator """
 
-    animationFinished = pyqtSignal()
-    
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._isEnabled = True
-        self._duration = 300
+        self.resize(3, 16)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.hide()
+
+        self._opacity = 0.0
+        self._geometry = QRectF(0, 0, 3, 16)
+        self.lightColor = themeColor()
+        self.darkColor = themeColor()
+        self.isHorizontal = False
         
-        # animation properties
-        self._lastSelectMarkTop = 10.0
-        self._lastSelectMarkBottom = 10.0
-        self._selectMarkTop = 10.0
-        self._selectMarkBottom = 10.0
+        self.aniGroup = QParallelAnimationGroup(self)
+        self.aniGroup.finished.connect(self.hide)
+
+    def setIndicatorColor(self, light, dark):
+        self.lightColor = QColor(light)
+        self.darkColor = QColor(dark)
+        self.update()
+
+    def getOpacity(self):
+        return self._opacity
+
+    def setOpacity(self, opacity):
+        self._opacity = opacity
+        self.update()
+
+    def getGeometry(self):
+        return QRectF(self.geometry())
         
-        # control flag for display state
-        self._isSelectMarkDisplay = True
+    def setGeometry(self, geometry: QRectF):
+        self._geometry = geometry
+        super().setGeometry(geometry.toRect())
         
-        # tracking widgets
-        self._lastSelectedWidget = None  # type: Optional[QWidget]
-        self._currentWidget = None  # type: Optional[QWidget]
+    def getPos(self):
+        return QPointF(super().pos())
         
-        # animations - moving up
-        self._lastSelectMarkTopAni = QPropertyAnimation(self, b'lastSelectMarkTop', self)
-        self._selectMarkBottomAni = QPropertyAnimation(self, b'selectMarkBottom', self)
+    def setPos(self, pos: QPointF):
+        self._geometry.moveTopLeft(pos)
+        self.move(pos.toPoint())
         
-        # animations - moving down
-        self._lastSelectMarkBottomAni = QPropertyAnimation(self, b'lastSelectMarkBottom', self)
-        self._selectMarkTopAni = QPropertyAnimation(self, b'selectMarkTop', self)
+    def getLength(self):
+        return self.width() if self.isHorizontal else self.height()
         
-        self._initAnimations()
-        
-    def _initAnimations(self):
-        """ initialize animations """
-        # moving up animations
-        self._lastSelectMarkTopAni.setDuration(self._duration)
-        self._lastSelectMarkTopAni.setEasingCurve(QEasingCurve.InOutSine)
-        self._lastSelectMarkTopAni.valueChanged.connect(lambda: self.parent().update() if self.parent() else None)
-        
-        self._selectMarkBottomAni.setDuration(self._duration)
-        self._selectMarkBottomAni.setEasingCurve(QEasingCurve.InOutSine)
-        self._selectMarkBottomAni.valueChanged.connect(lambda: self.parent().update() if self.parent() else None)
-        
-        # moving down animations
-        self._lastSelectMarkBottomAni.setDuration(self._duration)
-        self._lastSelectMarkBottomAni.setEasingCurve(QEasingCurve.InOutSine)
-        self._lastSelectMarkBottomAni.valueChanged.connect(lambda: self.parent().update() if self.parent() else None)
-        
-        self._selectMarkTopAni.setDuration(self._duration)
-        self._selectMarkTopAni.setEasingCurve(QEasingCurve.InOutSine)
-        self._selectMarkTopAni.valueChanged.connect(lambda: self.parent().update() if self.parent() else None)
-        
-        # chain animations
-        self._lastSelectMarkTopAni.finished.connect(self._onLastTopAnimationFinished)
-        self._lastSelectMarkBottomAni.finished.connect(self._onLastBottomAnimationFinished)
-        
-    def _onLastTopAnimationFinished(self):
-        """ handle first phase animation finished, start second phase expansion """
-        self._isSelectMarkDisplay = True
-        self._lastSelectedWidget = None
-        self._selectMarkBottomAni.setStartValue(0)
-        self._selectMarkBottomAni.setEndValue(10)
-        self._selectMarkBottomAni.start()
-        self.animationFinished.emit()
-        
-    def _onLastBottomAnimationFinished(self):
-        """ handle first phase animation finished, start second phase expansion """
-        self._isSelectMarkDisplay = True
-        self._lastSelectedWidget = None
-        self._selectMarkTopAni.setStartValue(0)
-        self._selectMarkTopAni.setEndValue(10)
-        self._selectMarkTopAni.start()
-        self.animationFinished.emit()
-        
-    def isEnabled(self):
-        """ check if animation is enabled """
-        return self._isEnabled
-        
-    def setEnabled(self, enabled: bool):
-        """ set animation enabled state """
-        self._isEnabled = enabled
-        
-    def duration(self):
-        """ get animation duration """
-        return self._duration
-        
-    def setDuration(self, duration: int):
-        """ set animation duration """
-        self._duration = max(0, duration)
-        for ani in [self._lastSelectMarkTopAni, self._lastSelectMarkBottomAni,
-                   self._selectMarkTopAni, self._selectMarkBottomAni]:
-            ani.setDuration(self._duration)
-            
-    def animateTo(self, widget: QWidget):
-        """ animate indicator to target widget """
-        if not self._isEnabled or not widget:
-            self._currentWidget = widget
-            if self.parent():
-                self.parent().update()
-            return
-        
-        # don't animate if clicking the same item
-        if widget == self._currentWidget:
-            return
-            
-        # stop running animations
-        self._stopAnimations()
-        
-        # save last selected widget
-        self._lastSelectedWidget = self._currentWidget
-        
-        # reset animation values
-        self._lastSelectMarkTop = 10
-        self._lastSelectMarkBottom = 10
-        self._selectMarkTop = 10
-        self._selectMarkBottom = 10
-        
-        if not self._lastSelectedWidget:
-            # no previous widget, just show current
-            self._currentWidget = widget
-            if self.parent():
-                self.parent().update()
-            return
-            
-        # update current widget
-        self._currentWidget = widget
-        
-        # determine animation direction
-        if self._isMovingDown():
-            # moving down
-            self._lastSelectMarkBottomAni.setStartValue(10)
-            self._lastSelectMarkBottomAni.setEndValue(0)
-            self._lastSelectMarkBottomAni.start()
-            # stop other animations
-            self._lastSelectMarkTopAni.stop()
-            self._selectMarkTopAni.stop()
-            # hide select mark until animation finishes
-            self._isSelectMarkDisplay = False
+    def setLength(self, length):
+        if self.isHorizontal:
+            self._geometry.setWidth(length)
+            self.resize(int(length), self.height())
         else:
-            # moving up
-            self._lastSelectMarkTopAni.setStartValue(10)
-            self._lastSelectMarkTopAni.setEndValue(0)
-            self._lastSelectMarkTopAni.start()
-            # stop other animations
-            self._lastSelectMarkBottomAni.stop()
-            self._selectMarkBottomAni.stop()
-            # hide select mark until animation finishes
-            self._isSelectMarkDisplay = False
-            
-    def _isMovingDown(self):
-        """ check if indicator is moving down """
-        if not self._lastSelectedWidget or not self._currentWidget:
-            return True
-            
-        # Get global positions to compare
-        prev_pos = self._lastSelectedWidget.mapToGlobal(self._lastSelectedWidget.rect().topLeft())
-        curr_pos = self._currentWidget.mapToGlobal(self._currentWidget.rect().topLeft())
-        
-        return curr_pos.y() > prev_pos.y()
-        
-    def _stopAnimations(self):
-        """ stop all running animations """
-        for ani in [self._lastSelectMarkTopAni, self._lastSelectMarkBottomAni,
-                   self._selectMarkTopAni, self._selectMarkBottomAni]:
-            if ani.state() == QPropertyAnimation.Running:
-                ani.stop()
-                
-    def drawIndicator(self, painter: QPainter, widget: QWidget, rect: QRect, color: QColor, leftMargin: int = 0):
-        """ draw indicator for widget """
-        if not widget:
-            return
-            
+            self._geometry.setHeight(length)
+            self.resize(self.width(), int(length))
+
+    opacity = pyqtProperty(float, getOpacity, setOpacity)
+    geometry = pyqtProperty(QRectF, getGeometry, setGeometry)
+    pos = pyqtProperty(QPointF, getPos, setPos)
+    length = pyqtProperty(float, getLength, setLength)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
+        painter.setOpacity(self._opacity)
+
+        color = autoFallbackThemeColor(self.lightColor, self.darkColor)
         painter.setBrush(color)
         
-        # calculate indicator x position based on left margin
-        indicatorX = rect.x() + leftMargin + 3
+        # Draw filling the widget
+        painter.drawRoundedRect(self.rect(), 1.5, 1.5)
         
-        # draw current selected indicator
-        if self._isSelectMarkDisplay and self._currentWidget == widget:
-            indicatorRect = QRect(indicatorX, 
-                                 rect.y() + int(self._selectMarkTop),
-                                 3, 
-                                 rect.height() - int(self._selectMarkTop) - int(self._selectMarkBottom))
-            painter.drawRoundedRect(indicatorRect, 1.5, 1.5)
+    def stopAnimation(self):
+        self.aniGroup.stop()
+        self.aniGroup.clear()
+
+    def animate(self, startRect: QRectF, endRect: QRectF, isHorizontal=False, useCrossFade=False):
+        self.stopAnimation()
+        self.isHorizontal = isHorizontal
+        
+        # Determine if same level
+        if isHorizontal:
+            sameLevel = abs(startRect.y() - endRect.y()) < 1
+            dim = startRect.width()
+            start = startRect.x()
+            end = endRect.x()
+        else:
+            sameLevel = abs(startRect.x() - endRect.x()) < 1
+            dim = startRect.height()
+            start = startRect.y()
+            end = endRect.y()
             
-        # draw last selected indicator during animation
-        if self._lastSelectedWidget == widget:
-            indicatorRect = QRect(indicatorX,
-                                 rect.y() + int(self._lastSelectMarkTop),
-                                 3,
-                                 rect.height() - int(self._lastSelectMarkTop) - int(self._lastSelectMarkBottom))
-            painter.drawRoundedRect(indicatorRect, 1.5, 1.5)
-    
-    def reset(self):
-        """ reset animator state """
-        self._stopAnimations()
-        self._lastSelectedWidget = None
-        self._currentWidget = None
-        self._lastSelectMarkTop = 10
-        self._lastSelectMarkBottom = 10
-        self._selectMarkTop = 10
-        self._selectMarkBottom = 10
-        self._isSelectMarkDisplay = True
+        if sameLevel and not useCrossFade:
+            self._startSlideAnimation(startRect, endRect, start, end, dim)
+        else:
+            self._startCrossFadeAnimation(startRect, endRect)
+
+    def _startSlideAnimation(self, startRect, endRect, from_, to, dimension):
+        """ Animate the indicator using WinUI 3 squash and stretch logic
+
+        Key algorithm:
+        1. middleScale = abs(to - from) / dimension + (from < to ? endScale : beginScale)
+        2. At 33% progress, the indicator stretches to cover the distance between two items
+        """
+        self.setGeometry(startRect)
+        self.setOpacity(1)
+        self.show()
+
+        dist = abs(to - from_)
+        midLength = dist + dimension
+        isForward = to > from_
+
+        s1 = QSequentialAnimationGroup()
+        s2 = QSequentialAnimationGroup()
+
+        posAni1 = QPropertyAnimation(self, b"pos")
+        posAni1.setDuration(200)
+        posAni2 = QPropertyAnimation(self, b"pos")
+        posAni2.setDuration(400)
+
+        lenAni1 = QPropertyAnimation(self, b"length")
+        lenAni1.setDuration(200)
+        lenAni2 = QPropertyAnimation(self, b"length")
+        lenAni2.setDuration(400)
+
+        startPos = startRect.topLeft()
+        endPos = endRect.topLeft()
+
+        if isForward:
+            # 0->0.33: Head moves to B (len increases), Pos stays at A
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(startPos)
+            lenAni1.setStartValue(dimension)
+            lenAni1.setEndValue(midLength)
+
+            # 0.33->1.0: Tail moves to B (len decreases), Pos moves to B
+            posAni2.setStartValue(startPos)
+            posAni2.setEndValue(endPos)
+            lenAni2.setStartValue(midLength)
+            lenAni2.setEndValue(dimension)
+
+        else:
+            # 0->0.33: Head moves to A (len increases), Pos moves to B
+            # Note: For backward, "Head" is top. Top moves from A to B.
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(endPos)
+            lenAni1.setStartValue(dimension)
+            lenAni1.setEndValue(midLength)
+
+            # 0.33->1.0: Tail moves to B (len decreases), Pos stays at B
+            posAni2.setStartValue(endPos)
+            posAni2.setEndValue(endPos)
+            lenAni2.setStartValue(midLength)
+            lenAni2.setEndValue(dimension)
+
+        # Curves
+        curve1 = QEasingCurve(QEasingCurve.BezierSpline)
+        curve1.addCubicBezierSegment(QPointF(0.9, 0.1), QPointF(1.0, 0.2), QPointF(1.0, 1.0))
+
+        curve2 = QEasingCurve(QEasingCurve.BezierSpline)
+        curve2.addCubicBezierSegment(QPointF(0.1, 0.9), QPointF(0.2, 1.0), QPointF(1.0, 1.0))
+
+        posAni1.setEasingCurve(curve1)
+        lenAni1.setEasingCurve(curve1)
+        posAni2.setEasingCurve(curve2)
+        lenAni2.setEasingCurve(curve2)
+
+        s1.addAnimation(posAni1)
+        s1.addAnimation(posAni2)
+        s2.addAnimation(lenAni1)
+        s2.addAnimation(lenAni2)
+
+        self.aniGroup.addAnimation(s1)
+        self.aniGroup.addAnimation(s2)
+        self.aniGroup.start()
+
+    def _startCrossFadeAnimation(self, startRect, endRect):
+        self.setGeometry(endRect)
+        self.setOpacity(1)
+        self.show()
+
+        # Determine growth direction based on relative position
+        # WinUI 3 logic: Grow from top/bottom edge depending on direction
+        isNextBelow = endRect.y() > startRect.y() if not self.isHorizontal else endRect.x() > startRect.x()
         
-    # properties
-    @pyqtProperty(float)
-    def lastSelectMarkTop(self):
-        return self._lastSelectMarkTop
-        
-    @lastSelectMarkTop.setter
-    def lastSelectMarkTop(self, value):
-        self._lastSelectMarkTop = value
-        
-    @pyqtProperty(float)
-    def lastSelectMarkBottom(self):
-        return self._lastSelectMarkBottom
-        
-    @lastSelectMarkBottom.setter
-    def lastSelectMarkBottom(self, value):
-        self._lastSelectMarkBottom = value
-        
-    @pyqtProperty(float)
-    def selectMarkTop(self):
-        return self._selectMarkTop
-        
-    @selectMarkTop.setter
-    def selectMarkTop(self, value):
-        self._selectMarkTop = value
-        
-    @pyqtProperty(float)
-    def selectMarkBottom(self):
-        return self._selectMarkBottom
-        
-    @selectMarkBottom.setter  
-    def selectMarkBottom(self, value):
-        self._selectMarkBottom = value
+        if self.isHorizontal:
+            dim = endRect.width()
+            startGeo = QRectF(endRect.x() + (0 if isNextBelow else dim), endRect.y(), 0, endRect.height())
+        else:
+            dim = endRect.height()
+            startGeo = QRectF(endRect.x(), endRect.y() + (0 if isNextBelow else dim), endRect.width(), 0)
+
+        self.setGeometry(startGeo)
+
+        lenAni = QPropertyAnimation(self, b"length")
+        lenAni.setDuration(600)
+        lenAni.setStartValue(0)
+        lenAni.setEndValue(dim)
+        lenAni.setEasingCurve(QEasingCurve.OutQuint)
+
+        posAni = QPropertyAnimation(self, b"pos")
+        posAni.setDuration(600)
+        posAni.setStartValue(startGeo.topLeft())
+        posAni.setEndValue(endRect.topLeft())
+        posAni.setEasingCurve(QEasingCurve.OutQuint)
+
+        self.aniGroup.addAnimation(lenAni)
+        self.aniGroup.addAnimation(posAni)
+        self.aniGroup.start()

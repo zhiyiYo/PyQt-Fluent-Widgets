@@ -2,13 +2,13 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint
+from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint, QRectF
 from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
                                 NavigationTreeWidget, NavigationFlyoutMenu, NavigationItemHeader)
-from .navigation_indicator import NavigationIndicatorAnimator
+from .navigation_indicator import NavigationIndicator
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
@@ -70,11 +70,8 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = False
         self._isCollapsible = True
         self._isAcrylicEnabled = False
-        self._indicatorAnimationEnabled = True
-        self._indicatorAnimationDuration = 300
 
         self.acrylicBrush = AcrylicBrush(self, 30)
-        self.indicatorAnimator = NavigationIndicatorAnimator(self)
 
         self.scrollArea = ScrollArea(self)
         self.scrollWidget = QWidget()
@@ -89,6 +86,9 @@ class NavigationPanel(QFrame):
 
         self.items = {}   # type: Dict[str, NavigationItem]
         self.history = qrouter
+
+        self.indicator = NavigationIndicator(self)
+        self._pendingIndicatorWidget = None  # type: NavigationWidget
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
@@ -391,15 +391,6 @@ class NavigationPanel(QFrame):
         widget.setProperty('parentRouteKey', parentRouteKey)
         self.items[routeKey] = NavigationItem(routeKey, parentRouteKey, widget)
 
-        # set indicator animator for selectable widgets
-        if widget.isSelectable:
-            # for NavigationTreeWidget, set animator on its itemWidget
-            if isinstance(widget, NavigationTreeWidget):
-                if hasattr(widget.itemWidget, '_indicatorAnimator'):
-                    widget.itemWidget._indicatorAnimator = self.indicatorAnimator
-            elif hasattr(widget, '_indicatorAnimator'):
-                widget._indicatorAnimator = self.indicatorAnimator
-
         if self.displayMode in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]:
             widget.setCompacted(False)
 
@@ -490,39 +481,9 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
-    def setIndicatorAnimationEnabled(self, isEnabled: bool):
-        """ set whether the indicator animation is enabled 
-        
-        Parameters
-        ----------
-        isEnabled: bool
-            whether to enable indicator animation
-        """
-        self._indicatorAnimationEnabled = isEnabled
-        self.indicatorAnimator.setEnabled(isEnabled)
-        self.update()
-
-    def setIndicatorAnimationDuration(self, duration: int):
-        """ set the duration of indicator animation
-        
-        Parameters
-        ----------
-        duration: int
-            animation duration in milliseconds
-        """
-        self._indicatorAnimationDuration = duration
-        self.indicatorAnimator.setDuration(duration)
-
-    def isIndicatorAnimationEnabled(self):
-        """ whether the indicator animation is enabled """
-        return self._indicatorAnimationEnabled
-
-    def indicatorAnimationDuration(self):
-        """ get the duration of indicator animation """
-        return self._indicatorAnimationDuration
-
     def expand(self, useAni=True):
         """ expand navigation panel """
+        self._stopIndicatorAnimation()
         self._setWidgetCompacted(False)
         self.expandAni.setProperty('expand', True)
         self.menuButton.setToolTip(self.tr('Close Navigation'))
@@ -562,6 +523,11 @@ class NavigationPanel(QFrame):
 
     def collapse(self):
         """ collapse navigation panel """
+        # only stop animation if the target item is a child item
+        target = self._pendingIndicatorWidget
+        if target and target.property('parentRouteKey'):
+            self._stopIndicatorAnimation()
+
         if self.expandAni.state() == QPropertyAnimation.Running:
             return
 
@@ -597,17 +563,102 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             return
 
-        # trigger indicator animation
-        targetWidget = self.items[routeKey].widget
-        if self._indicatorAnimationEnabled and targetWidget.isSelectable:
-            # for NavigationTreeWidget, animate to its itemWidget
-            if isinstance(targetWidget, NavigationTreeWidget):
-                self.indicatorAnimator.animateTo(targetWidget.itemWidget)
-            else:
-                self.indicatorAnimator.animateTo(targetWidget)
+        newItem = self.items[routeKey].widget
 
+        # Find previous selected item
+        prevItem = None
         for k, item in self.items.items():
-            item.widget.setSelected(k == routeKey)
+            if item.widget.isSelected:
+                prevItem = item.widget
+                break
+
+        if newItem == prevItem:
+            return
+
+        # If target is same as pending animation target, do nothing
+        if self._pendingIndicatorWidget == newItem:
+            return
+
+        # Determine start widget for animation (proxy for hidden child)
+        startWidget = prevItem
+        if prevItem and not prevItem.isVisible():
+            p = prevItem
+            while p:
+                if isinstance(p, NavigationWidget) and p.isVisible():
+                    startWidget = p
+                    break
+                p = p.parent()
+
+        if prevItem:
+            prevItem.setSelected(False)
+            prevItem.setIndicatorVisible(False)
+        
+        if startWidget and startWidget != prevItem:
+            startWidget.update()
+            startWidget.isPressed = False
+            startWidget.isEnter = False
+
+        newItem.setSelected(True)
+        newItem.setIndicatorVisible(False)
+
+        if startWidget and startWidget.isVisible() and newItem.isVisible() and self.isVisible():
+            # Check if we need CrossFade (level change, using proxy, or large distance)
+            useCrossFade = False
+            if startWidget != prevItem:
+                useCrossFade = True
+            elif hasattr(prevItem, 'nodeDepth') and hasattr(newItem, 'nodeDepth'):
+                 if prevItem.nodeDepth != newItem.nodeDepth:
+                     useCrossFade = True
+            
+            # Check distance for large gaps
+            if not useCrossFade:
+                startRect = self._getIndicatorRect(startWidget)
+                endRect = self._getIndicatorRect(newItem)
+                
+                dist = abs(startRect.y() - endRect.y())
+                
+                if dist > 200:
+                    useCrossFade = True
+
+            self._startIndicatorAnimation(startWidget, newItem, useCrossFade)
+        else:
+            newItem.setIndicatorVisible(True)
+
+    def _startIndicatorAnimation(self, prevItem: NavigationWidget, newItem: NavigationWidget, useCrossFade=False):
+        startRect = self._getIndicatorRect(prevItem)
+        endRect = self._getIndicatorRect(newItem)
+
+        self.indicator.setIndicatorColor(newItem.lightIndicatorColor, newItem.darkIndicatorColor)
+
+        try:
+            self.indicator.aniGroup.finished.disconnect(self._onIndicatorFinished)
+        except:
+            pass
+
+        self.indicator.aniGroup.finished.connect(self._onIndicatorFinished)
+        self._pendingIndicatorWidget = newItem
+
+        self.indicator.raise_()
+        self.indicator.animate(startRect, endRect, False, useCrossFade)
+
+    def _onIndicatorFinished(self):
+        if self._pendingIndicatorWidget:
+            self._pendingIndicatorWidget.setIndicatorVisible(True)
+            self._pendingIndicatorWidget = None
+
+    def _stopIndicatorAnimation(self):
+        self.indicator.stopAnimation()
+        self.indicator.hide()
+        self._onIndicatorFinished()
+        try:
+            self.indicator.aniGroup.finished.disconnect(self._onIndicatorFinished)
+        except:
+            pass
+
+    def _getIndicatorRect(self, widget: NavigationWidget):
+        pos = widget.mapTo(self, QPoint(0, 0))
+        rect = widget.indicatorRect()
+        return QRectF(pos.x() + rect.x(), pos.y() + rect.y(), rect.width(), rect.height())
 
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget
@@ -703,6 +754,8 @@ class NavigationPanel(QFrame):
             self.setProperty('menu', False)
             self.setStyle(QApplication.style())
 
+            # Stop indicator animation to prevent misalignment when header collapses
+            self._stopIndicatorAnimation()
             self._setWidgetCompacted(True)
 
             if not self._parent.isWindow():

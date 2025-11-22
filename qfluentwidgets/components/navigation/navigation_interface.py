@@ -288,34 +288,6 @@ class NavigationInterface(QWidget):
         """ set whether the acrylic background effect is enabled """
         self.panel.setAcrylicEnabled(isEnabled)
 
-    def setIndicatorAnimationEnabled(self, isEnabled: bool):
-        """ set whether the indicator animation is enabled
-        
-        Parameters
-        ----------
-        isEnabled: bool
-            whether to enable indicator animation
-        """
-        self.panel.setIndicatorAnimationEnabled(isEnabled)
-
-    def setIndicatorAnimationDuration(self, duration: int):
-        """ set the duration of indicator animation
-        
-        Parameters
-        ----------
-        duration: int
-            animation duration in milliseconds (default: 300)
-        """
-        self.panel.setIndicatorAnimationDuration(duration)
-
-    def isIndicatorAnimationEnabled(self):
-        """ whether the indicator animation is enabled """
-        return self.panel.isIndicatorAnimationEnabled()
-
-    def indicatorAnimationDuration(self):
-        """ get the duration of indicator animation """
-        return self.panel.indicatorAnimationDuration()
-
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
 
