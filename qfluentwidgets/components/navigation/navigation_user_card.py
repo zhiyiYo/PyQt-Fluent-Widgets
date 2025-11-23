@@ -1,21 +1,12 @@
 # coding:utf-8
 from typing import Union
 
-from enum import Enum
 from PyQt5.QtCore import Qt, QRectF, QPropertyAnimation, pyqtProperty, QEasingCurve, QParallelAnimationGroup
-from PyQt5.QtGui import QPainter, QColor, QFont, QPixmap, QImage
+from PyQt5.QtGui import QPainter, QColor, QFont
 
-from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF, toQIcon
 from ...common.font import getFont
 from .navigation_widget import NavigationAvatarWidget
-
-
-class NavigationUserCardClickBehavior(Enum):
-    """ Navigation user card click behavior """
-    EXPAND = "expand"  # expand navigation panel in compact mode
-    CALLBACK = "callback"  # trigger onClick callback
-    EXPAND_AND_CALLBACK = "expand_and_callback"  # both expand and callback
 
 
 class NavigationUserCard(NavigationAvatarWidget):
@@ -31,11 +22,7 @@ class NavigationUserCard(NavigationAvatarWidget):
         self._subtitleSize = 12
         self._subtitleColor = None  # type: QColor
 
-        # click behavior
-        self._compactClickBehavior = NavigationUserCardClickBehavior.EXPAND
-
         # animation properties
-        self._isAnimating = False
         self._textOpacity = 0.0
         self._animationDuration = 250
         self._animationGroup = QParallelAnimationGroup(self)
@@ -102,34 +89,12 @@ class NavigationUserCard(NavigationAvatarWidget):
         self._radiusAni.setDuration(duration)
         self._opacityAni.setDuration(int(duration * 0.8))
 
-    def setCompactClickBehavior(self, behavior: NavigationUserCardClickBehavior):
-        """ set click behavior in compact mode
-
-        Parameters
-        ----------
-        behavior: NavigationUserCardClickBehavior
-            EXPAND: expand navigation panel
-            CALLBACK: trigger onClick callback
-            EXPAND_AND_CALLBACK: both expand and trigger callback
-        """
-        self._compactClickBehavior = behavior
-
     def setCompacted(self, isCompacted: bool):
         """ set whether the widget is compacted """
         if isCompacted == self.isCompacted:
             return
 
-        # stop current animation to prevent state conflicts
-        if self._animationGroup.state() == QParallelAnimationGroup.Running:
-            self._animationGroup.stop()
-            # disconnect old finished signal to avoid duplicate calls
-            try:
-                self._animationGroup.finished.disconnect(self._onAnimationFinished)
-            except:
-                pass
-
         self.isCompacted = isCompacted
-        self._isAnimating = True
 
         if isCompacted:
             # compact mode: 24x24 avatar like NavigationAvatarWidget
@@ -146,53 +111,7 @@ class NavigationUserCard(NavigationAvatarWidget):
             self._opacityAni.setStartValue(self._textOpacity)
             self._opacityAni.setEndValue(1.0)
 
-        self._animationGroup.finished.connect(self._onAnimationFinished)
         self._animationGroup.start()
-
-    def _onAnimationFinished(self):
-        """ handle animation finished """
-        self._isAnimating = False
-        # disconnect to avoid signal accumulation
-        try:
-            self._animationGroup.finished.disconnect(self._onAnimationFinished)
-        except:
-            pass
-
-        self.update()
-
-    def mouseReleaseEvent(self, e):
-        """ handle mouse release event """
-        # handle compact mode click behavior
-        if not self.isCompacted:
-            super().mouseReleaseEvent(e)
-            return
-
-        self.isPressed = False
-        self.update()
-
-        shouldExpand = self._compactClickBehavior in [
-            NavigationUserCardClickBehavior.EXPAND,
-            NavigationUserCardClickBehavior.EXPAND_AND_CALLBACK
-        ]
-        shouldCallback = self._compactClickBehavior in [
-            NavigationUserCardClickBehavior.CALLBACK,
-            NavigationUserCardClickBehavior.EXPAND_AND_CALLBACK
-        ]
-
-        # expand navigation panel if needed
-        if shouldExpand:
-            parent = self.parent()
-            while parent:
-                if hasattr(parent, 'expand'):
-                    parent.expand()
-                    break
-                parent = parent.parent()
-
-        # emit clicked signal if needed
-        if shouldCallback:
-            self.clicked.emit(True)
-
-        e.accept()
 
     def paintEvent(self, e):
         painter = QPainter(self)

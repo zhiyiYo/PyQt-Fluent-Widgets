@@ -7,8 +7,7 @@ from pathlib import Path
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
-from qfluentwidgets import (NavigationItemPosition, MessageBox, FluentWindow, SubtitleLabel, setFont,
-                            NavigationUserCardClickBehavior)
+from qfluentwidgets import (NavigationItemPosition, MessageBox, FluentWindow, SubtitleLabel, setFont)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -59,12 +58,6 @@ class Window(FluentWindow):
         # placement: set aboveMenuButton=True to place card above expand/collapse button
         # default: aboveMenuButton=False (card placed below menu button)
         
-        # customize click behavior in compact mode (optional)
-        # NavigationUserCardClickBehavior.EXPAND: expand navigation panel (default)
-        # NavigationUserCardClickBehavior.CALLBACK: trigger onClick callback
-        # NavigationUserCardClickBehavior.EXPAND_AND_CALLBACK: both expand and callback
-        # self.userCard.setCompactClickBehavior(NavigationUserCardClickBehavior.EXPAND_AND_CALLBACK)
-
         # add navigation items
         self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')
         self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
@@ -89,11 +82,7 @@ class Window(FluentWindow):
             'This is a navigation user card that displays avatar, title and subtitle.\n\n'
             'Placement:\n'
             '• aboveMenuButton=True: Place above expand/collapse button\n'
-            '• aboveMenuButton=False: Place below menu button (default)\n\n'
-            'Click behavior:\n'
-            '• EXPAND: Expand navigation panel in compact mode (default)\n'
-            '• CALLBACK: Trigger onClick callback in both modes\n'
-            '• EXPAND_AND_CALLBACK: Both expand and trigger callback',
+            '• aboveMenuButton=False: Place below menu button (default)',
             self
         )
         w.exec_()
