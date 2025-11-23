@@ -63,6 +63,11 @@ class Window(FramelessWindow):
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
     def initNavigation(self):
+        # When vertical distance between items exceeds this threshold, CrossFade animation will be used
+        self.navigationInterface.panel.setCrossFadeDistanceThreshold(200)
+        
+        # Set to False to disable smooth animations and instantly show indicator
+        self.navigationInterface.panel.indicator.setIndicatorAnimationEnabled(True)
 
         # add items to top
         self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')

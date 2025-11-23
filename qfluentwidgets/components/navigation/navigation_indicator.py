@@ -21,6 +21,7 @@ class NavigationIndicator(QWidget):
 
         self._opacity = 0.0
         self._geometry = QRectF(0, 0, 3, 16)
+        self._isIndicatorAnimationEnabled = True
         self.lightColor = themeColor()
         self.darkColor = themeColor()
         self.isHorizontal = False
@@ -32,6 +33,10 @@ class NavigationIndicator(QWidget):
         self.lightColor = QColor(light)
         self.darkColor = QColor(dark)
         self.update()
+
+    def setIndicatorAnimationEnabled(self, enabled: bool):
+        """ set whether indicator animation is enabled """
+        self._isIndicatorAnimationEnabled = enabled
 
     def getOpacity(self):
         return self._opacity
@@ -89,6 +94,13 @@ class NavigationIndicator(QWidget):
     def animate(self, startRect: QRectF, endRect: QRectF, isHorizontal=False, useCrossFade=False):
         self.stopAnimation()
         self.isHorizontal = isHorizontal
+        
+        # If animation is disabled, directly set final state
+        if not self._isIndicatorAnimationEnabled:
+            self.setGeometry(endRect)
+            self.setOpacity(1)
+            self.show()
+            return
         
         # Determine if same level
         if isHorizontal:

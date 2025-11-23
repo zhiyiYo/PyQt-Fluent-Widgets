@@ -382,8 +382,9 @@ class NavigationTreeItem(NavigationPushButton):
         if p.isLeaf() or p.isSelected:
             return p.isSelected
 
+        # Check if any child is selected, regardless of visibility
         for child in p.treeChildren:
-            if child.itemWidget._canDrawIndicator() and not child.isVisible():
+            if child.itemWidget._canDrawIndicator():
                 return True
 
         return False
@@ -809,6 +810,12 @@ class NavigationFlyoutMenu(ScrollArea):
 
     def _onItemClicked(self):
         sender = self.sender()  # type: NavigationTreeWidget
+        
+        # Only handle selection for leaf nodes (nodes without children)
+        # Parent nodes should only expand/collapse without changing selection
+        if not sender.isLeaf():
+            return
+            
         if sender == self._selectedItem:
             return
             

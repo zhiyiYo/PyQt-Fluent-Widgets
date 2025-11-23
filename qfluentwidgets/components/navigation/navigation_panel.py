@@ -89,6 +89,7 @@ class NavigationPanel(QFrame):
 
         self.indicator = NavigationIndicator(self)
         self._pendingIndicatorWidget = None  # type: NavigationWidget
+        self._crossFadeDistanceThreshold = 350
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
@@ -481,6 +482,10 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
+    def setCrossFadeDistanceThreshold(self, threshold: int):
+        """ set the distance threshold for triggering CrossFade animation """
+        self._crossFadeDistanceThreshold = max(0, threshold)
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._stopIndicatorAnimation()
@@ -617,7 +622,7 @@ class NavigationPanel(QFrame):
                 
                 dist = abs(startRect.y() - endRect.y())
                 
-                if dist > 200:
+                if dist > self._crossFadeDistanceThreshold:
                     useCrossFade = True
 
             self._startIndicatorAnimation(startWidget, newItem, useCrossFade)
@@ -757,6 +762,19 @@ class NavigationPanel(QFrame):
             # Stop indicator animation to prevent misalignment when header collapses
             self._stopIndicatorAnimation()
             self._setWidgetCompacted(True)
+            
+            # Ensure parent node shows indicator if child is selected
+            for item in self.items.values():
+                w = item.widget
+                if w.isSelected and not w.isVisible() and item.parentRouteKey:
+                    # Find visible parent (tree root) to show indicator
+                    parent = w.parent()
+                    while parent and isinstance(parent, NavigationWidget):
+                        if parent.isVisible() and isinstance(parent, NavigationTreeWidgetBase):
+                            parent.setIndicatorVisible(True)
+                            parent.update()
+                            break
+                        parent = parent.parent()
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)
