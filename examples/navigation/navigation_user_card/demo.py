@@ -1,13 +1,11 @@
 # coding:utf-8
 import sys
-from pathlib import Path
-
-#sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout
-from qfluentwidgets import (NavigationItemPosition, MessageBox, FluentWindow, SubtitleLabel, setFont)
+from qfluentwidgets import (NavigationItemPosition,
+                            MessageBox, FluentWindow, SubtitleLabel, setFont)
 from qfluentwidgets import FluentIcon as FIF
 
 
@@ -37,7 +35,7 @@ class Window(FluentWindow):
 
         self.initNavigation()
         self.initWindow()
-        
+
     def initNavigation(self):
         # add user card with custom parameters
         self.userCard = self.navigationInterface.addUserCard(
@@ -49,15 +47,15 @@ class Window(FluentWindow):
             position=NavigationItemPosition.TOP,
             aboveMenuButton=False  # place below the expand/collapse button
         )
-        
+
         # customize user card (optional)
         # self.userCard.setTitleFontSize(15)
         # self.userCard.setSubtitleFontSize(11)
         # self.userCard.setAnimationDuration(300)
-        
+
         # placement: set aboveMenuButton=True to place card above expand/collapse button
         # default: aboveMenuButton=False (card placed below menu button)
-        
+
         # add navigation items
         self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')
         self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
@@ -65,11 +63,12 @@ class Window(FluentWindow):
         self.navigationInterface.addSeparator()
 
         self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
-        self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
-        
+        self.addSubInterface(self.settingInterface, FIF.SETTING,
+                             'Settings', NavigationItemPosition.BOTTOM)
+
     def initWindow(self):
         self.resize(900, 700)
-        self.setWindowIcon(QIcon('resource/logo.png'))
+        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
         self.setWindowTitle('Navigation User Card')
 
         desktop = QApplication.desktop().availableGeometry()
@@ -89,7 +88,8 @@ class Window(FluentWindow):
 
 
 if __name__ == '__main__':
-    QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 

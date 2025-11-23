@@ -2,7 +2,7 @@
 from typing import Union, List
 
 from PyQt5.QtCore import (Qt, pyqtSignal, QRect, QRectF, QPropertyAnimation, pyqtProperty, QMargins,
-                          QEasingCurve, QPoint, QEvent)
+                          QEasingCurve, QPoint, QEvent, QParallelAnimationGroup)
 from PyQt5.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from collections import deque
@@ -12,7 +12,7 @@ from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.color import autoFallbackThemeColor
-from ...common.font import setFont
+from ...common.font import setFont, getFont
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
@@ -241,36 +241,36 @@ class NavigationItemHeader(NavigationWidget):
         self._text = text
         self._targetHeight = 30
         setFont(self, 12)  # smaller font size for header
-        
+
         # Override text colors for header style
         self.lightTextColor = QColor(96, 96, 96)  # gray in light mode
         self.darkTextColor = QColor(160, 160, 160)  # light gray in dark mode
-        
+
         # Animation for smooth height transition
         self.heightAni = QPropertyAnimation(self, b'maximumHeight', self)
         self.heightAni.setDuration(150)
         self.heightAni.setEasingCurve(QEasingCurve.OutQuad)
         self.heightAni.valueChanged.connect(self._onHeightChanged)
-        
+
         self.setCursor(Qt.ArrowCursor)  # normal cursor, not hand cursor
-        
+
         # Initialize to hidden state
         self.setFixedHeight(0)
-    
+
     def text(self):
         return self._text
-    
+
     def setText(self, text: str):
         self._text = text
         self.update()
-    
+
     def setCompacted(self, isCompacted: bool):
         """ set whether the widget is compacted """
         self.isCompacted = isCompacted
-        
+
         # Stop any running animation
         self.heightAni.stop()
-        
+
         if isCompacted:
             # in compact mode, animate to height 0
             self.setFixedWidth(40)
@@ -288,10 +288,10 @@ class NavigationItemHeader(NavigationWidget):
                 self.heightAni.finished.disconnect()
             except:
                 pass
-        
+
         self.heightAni.start()
         self.update()
-    
+
     def _onCollapseFinished(self):
         """ called when collapse animation finishes """
         self.setVisible(False)
@@ -299,43 +299,43 @@ class NavigationItemHeader(NavigationWidget):
             self.heightAni.finished.disconnect(self._onCollapseFinished)
         except:
             pass
-    
+
     def _onHeightChanged(self, value):
         """ called when height animation value changes """
         self.setFixedHeight(value)
-    
+
     def mousePressEvent(self, e):
         # do not handle mouse press - header is not clickable
         e.ignore()
-    
+
     def mouseReleaseEvent(self, e):
         # do not handle mouse release - header is not clickable
         e.ignore()
-    
+
     def enterEvent(self, e):
         # do not show hover effect
         pass
-    
+
     def leaveEvent(self, e):
         # do not show hover effect
         pass
-    
+
     def paintEvent(self, e):
         if self.height() == 0 or not self.isVisible():
             return
-            
+
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
-        
+
         # Calculate opacity based on height for fade effect
         opacity = min(1.0, self.height() / max(1, self._targetHeight))
         painter.setOpacity(opacity)
-        
+
         if not self.isCompacted:
             # draw header text in expand mode
             painter.setFont(self.font())
             painter.setPen(self.textColor())
-            painter.drawText(QRectF(16, 0, self.width() - 16, self.height()), 
+            painter.drawText(QRectF(16, 0, self.width() - 16, self.height()),
                            Qt.AlignLeft | Qt.AlignVCenter, self.text())
 
 
@@ -805,3 +805,180 @@ class NavigationFlyoutMenu(ScrollArea):
             queue.extend([i for i in node.treeChildren if not i.isHidden()])
 
         return nodes
+
+
+class NavigationUserCard(NavigationAvatarWidget):
+    """ Navigation user card widget """
+
+    def __init__(self, parent=None):
+        super().__init__(name="", parent=parent)
+
+        # text properties
+        self._title = ""
+        self._subtitle = ""
+        self._titleSize = 14
+        self._subtitleSize = 12
+        self._subtitleColor = None  # type: QColor
+
+        # animation properties
+        self._textOpacity = 0.0
+        self._animationDuration = 250
+        self._animationGroup = QParallelAnimationGroup(self)
+
+        # avatar size animation
+        self._radiusAni = QPropertyAnimation(self.avatar, b"radius", self)
+        self._radiusAni.setDuration(self._animationDuration)
+        self._radiusAni.setEasingCurve(QEasingCurve.OutCubic)
+        self._radiusAni.valueChanged.connect(self._updateAvatarPosition)
+
+        # text opacity animation
+        self._opacityAni = QPropertyAnimation(self, b"textOpacity", self)
+        self._opacityAni.setDuration(int(self._animationDuration * 0.8))
+        self._opacityAni.setEasingCurve(QEasingCurve.InOutQuad)
+
+        self._animationGroup.addAnimation(self._radiusAni)
+        self._animationGroup.addAnimation(self._opacityAni)
+        self._animationGroup.finished.connect(self.update)
+
+        # initial size
+        self.setFixedSize(40, 36)
+
+    def setAvatarIcon(self, icon: FIF):
+        """ set avatar icon when no image is set """
+        self.avatar.setImage(toQIcon(icon).pixmap(64, 64))
+        self.update()
+
+    def setAvatarBackgroundColor(self, light: QColor, dark: QColor):
+        """ set avatar background color in light/dark theme mode """
+        self.avatar.setBackgroundColor(light, dark)
+        self.update()
+
+    def title(self):
+        """ get user card title """
+        return self._title
+
+    def setTitle(self, title: str):
+        """ set user card title """
+        self._title = title
+        self.setName(title)
+        self.update()
+
+    def subtitle(self):
+        """ get user card subtitle """
+        return self._subtitle
+
+    def setSubtitle(self, subtitle: str):
+        """ set user card subtitle """
+        self._subtitle = subtitle
+        self.update()
+
+    def setTitleFontSize(self, size: int):
+        """ set title font size """
+        self._titleSize = size
+        self.update()
+
+    def setSubtitleFontSize(self, size: int):
+        """ set subtitle font size """
+        self._subtitleSize = size
+        self.update()
+
+    def setAnimationDuration(self, duration: int):
+        """ set animation duration in milliseconds """
+        self._animationDuration = duration
+        self._radiusAni.setDuration(duration)
+        self._opacityAni.setDuration(int(duration * 0.8))
+
+    def setCompacted(self, isCompacted: bool):
+        """ set whether the widget is compacted """
+        if isCompacted == self.isCompacted:
+            return
+
+        self.isCompacted = isCompacted
+
+        if isCompacted:
+            # compact mode: 24x24 avatar like NavigationAvatarWidget
+            self.setFixedSize(40, 36)
+            self._radiusAni.setStartValue(self.avatar.radius)
+            self._radiusAni.setEndValue(12)  # 24px diameter
+            self._opacityAni.setStartValue(self._textOpacity)
+            self._opacityAni.setEndValue(0.0)
+        else:
+            # expanded mode: large avatar with text
+            self.setFixedSize(self.EXPAND_WIDTH, 80)
+            self._radiusAni.setStartValue(self.avatar.radius)
+            self._radiusAni.setEndValue(32)  # 64px diameter
+            self._opacityAni.setStartValue(self._textOpacity)
+            self._opacityAni.setEndValue(1.0)
+
+        self._animationGroup.start()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(
+            QPainter.SmoothPixmapTransform | QPainter.Antialiasing | QPainter.TextAntialiasing
+        )
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
+
+        # draw hover background
+        self._drawBackground(painter)
+
+        # draw text in expanded mode
+        if not self.isCompacted and self._textOpacity > 0:
+            self._drawText(painter)
+
+    def _drawText(self, painter: QPainter):
+        """ draw title and subtitle """
+        textX = 16 + int(self.avatar.radius * 2) + 12
+        textWidth = self.width() - textX - 16
+
+        # draw title
+        painter.setFont(getFont(self._titleSize, QFont.Bold))
+        c = self.textColor()
+        c.setAlpha(int(255 * self._textOpacity))
+        painter.setPen(c)
+
+        titleY = self.height() // 2 - 2
+        painter.drawText(QRectF(textX, 0, textWidth, titleY),
+                         Qt.AlignLeft | Qt.AlignBottom,
+                         self._title)
+
+        # draw subtitle with semi-transparent color
+        if self._subtitle:
+            painter.setFont(getFont(self._subtitleSize))
+
+            c = self.subtitleColor or self.textColor()
+            c.setAlpha(int(150 * self._textOpacity))
+            painter.setPen(c)
+
+            subtitleY = self.height() // 2 + 2
+            painter.drawText(QRectF(textX, subtitleY, textWidth, self.height() - subtitleY),
+                             Qt.AlignLeft | Qt.AlignTop,
+                             self._subtitle)
+
+    def _updateAvatarPosition(self):
+        """ update avatar position based on current size """
+        if self.isCompacted:
+            self.avatar.move(8, 6)
+        else:
+            self.avatar.move(16, (self.height() - self.avatar.height()) // 2)
+
+    # properties
+    @pyqtProperty(float)
+    def textOpacity(self):
+        return self._textOpacity
+
+    @textOpacity.setter
+    def textOpacity(self, value: float):
+        self._textOpacity = value
+        self.update()
+
+    @pyqtProperty(QColor)
+    def subtitleColor(self):
+        return self._subtitleColor
+
+    @subtitleColor.setter
+    def subtitleColor(self, color: QColor):
+        self._subtitleColor = color
+        self.update()
