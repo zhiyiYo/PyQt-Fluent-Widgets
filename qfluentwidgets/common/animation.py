@@ -1,6 +1,6 @@
 # coding: utf-8
 from enum import Enum
-from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal, QPoint, QPointF
+from PyQt5.QtCore import QEasingCurve, QEvent, QObject, QPropertyAnimation, pyqtProperty, pyqtSignal, QPoint, QPointF, QRect, QRectF, QParallelAnimationGroup, QSequentialAnimationGroup, Qt
 from PyQt5.QtGui import QMouseEvent, QEnterEvent, QColor
 from PyQt5.QtWidgets import QWidget, QLineEdit, QGraphicsDropShadowEffect
 
@@ -308,7 +308,7 @@ class FluentAnimationProperObject(QObject):
         return wrapper
 
     @classmethod
-    def create(cls, propertyType: FluentAnimationProperty, parent=None):
+    def create(cls, propertyType: FluentAnimationProperty, parent=None) -> 'FluentAnimationProperObject':
         if propertyType not in cls.objects:
             raise ValueError(f"`{propertyType}` has not been registered")
 
@@ -416,7 +416,7 @@ class FluentAnimation(QPropertyAnimation):
 
     def startAnimation(self, endValue, startValue=None):
         self.stop()
-        
+
         if startValue is None:
             self.setStartValue(self.value())
         else:
@@ -528,3 +528,179 @@ class FadeInOutAnimation(FluentAnimation):
 
     def speedToDuration(self, speed: FluentAnimationSpeed):
         return 83
+
+
+
+class ScaleSlideAnimation(QParallelAnimationGroup):
+    """ Scale and slide animation """
+
+    valueChanged = pyqtSignal(QRectF)
+
+    def __init__(self, parent=None, orient=Qt.Orientation.Horizontal):
+        super().__init__(parent)
+        self.orient = orient
+        self._geometry = QRectF(0, 0, 16, 3) if self.isHorizontal() else QRectF(0, 0, 3, 16)
+
+    def startAnimation(self, endRect: QRectF, useCrossFade=False):
+        self.stopAnimation()
+
+        startRect = QRectF(self.geometry)
+
+        # Determine if same level
+        if self.isHorizontal():
+            sameLevel = abs(startRect.y() - endRect.y()) < 1
+            dim = startRect.width()
+            start = startRect.x()
+            end = endRect.x()
+        else:
+            sameLevel = abs(startRect.x() - endRect.x()) < 1
+            dim = startRect.height()
+            start = startRect.y()
+            end = endRect.y()
+
+        if sameLevel and not useCrossFade:
+            self._startSlideAnimation(startRect, endRect, start, end, dim)
+        else:
+            self._startCrossFadeAnimation(startRect, endRect)
+
+    def stopAnimation(self):
+        self.stop()
+        self.clear()
+
+    def _startSlideAnimation(self, startRect, endRect, from_, to, dimension):
+        """ Animate the indicator using WinUI 3 squash and stretch logic
+
+        Key algorithm:
+        1. middleScale = abs(to - from) / dimension + (from < to ? endScale : beginScale)
+        2. At 33% progress, the indicator stretches to cover the distance between two items
+        """
+        posAni1 = QPropertyAnimation(self, b"pos")
+        posAni2 = QPropertyAnimation(self, b"pos")
+        posAni1.setDuration(200)
+        posAni2.setDuration(400)
+        posAni1.setEasingCurve(FluentAnimation.createBezierCurve(0.9, 0.1, 1, 0.2))
+        posAni2.setEasingCurve(FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0))
+
+        lengthAni1 = QPropertyAnimation(self, b"length")
+        lengthAni2 = QPropertyAnimation(self, b"length")
+        lengthAni1.setDuration(200)
+        lengthAni2.setDuration(400)
+        lengthAni1.setEasingCurve(FluentAnimation.createBezierCurve(0.9, 0.1, 1, 0.2))
+        lengthAni2.setEasingCurve(FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0))
+
+        posAniGroup = QSequentialAnimationGroup()
+        lengthAniGroup = QSequentialAnimationGroup()
+        posAniGroup.addAnimation(posAni1)
+        posAniGroup.addAnimation(posAni2)
+        lengthAniGroup.addAnimation(lengthAni1)
+        lengthAniGroup.addAnimation(lengthAni2)
+        self.addAnimation(posAniGroup)
+        self.addAnimation(lengthAniGroup)
+
+        dist = abs(to - from_)
+        midLength = dist + dimension
+        isForward = to > from_
+
+        startPos = startRect.topLeft()
+        endPos = endRect.topLeft()
+
+        if isForward:
+            # A--B   ----M--->    A'--B'
+            # 0->0.33: B moves to M (len increases)
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(startPos)
+            lengthAni1.setStartValue(dimension)
+            lengthAni1.setEndValue(midLength)
+
+            # 0.33->1.0:  A moves to A', B (at M) moves to B'
+            posAni2.setStartValue(startPos)
+            posAni2.setEndValue(endPos)
+            lengthAni2.setStartValue(midLength)
+            lengthAni2.setEndValue(dimension)
+        else:
+            # A'--B'   <----M----    A--B
+            # 0->0.33: A moves to M (len increases)
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(endPos)
+            lengthAni1.setStartValue(dimension)
+            lengthAni1.setEndValue(midLength)
+
+            # 0.33->1.0: A (at M) moves to A', B moves to B'
+            posAni2.setStartValue(endPos)
+            posAni2.setEndValue(endPos)
+            lengthAni2.setStartValue(midLength)
+            lengthAni2.setEndValue(dimension)
+
+        self.start()
+
+    def _startCrossFadeAnimation(self, startRect, endRect):
+        self.setGeometry(endRect)
+
+        # Determine growth direction based on relative position
+        # WinUI 3 logic: Grow from top/bottom edge depending on direction
+        isNextBelow = endRect.y() > startRect.y() if not self.isHorizontal() else endRect.x() > startRect.x()
+
+        if self.isHorizontal():
+            dim = endRect.width()
+            startGeo = QRectF(
+                endRect.x() + (0 if isNextBelow else dim), endRect.y(), 0, endRect.height())
+        else:
+            dim = endRect.height()
+            startGeo = QRectF(endRect.x(), endRect.y() +
+                              (0 if isNextBelow else dim), endRect.width(), 0)
+
+        self.setGeometry(startGeo)
+
+        lenAni = QPropertyAnimation(self, b"length")
+        lenAni.setDuration(600)
+        lenAni.setStartValue(0)
+        lenAni.setEndValue(dim)
+        lenAni.setEasingCurve(QEasingCurve.OutQuint)
+
+        posAni = QPropertyAnimation(self, b"pos")
+        posAni.setDuration(600)
+        posAni.setStartValue(startGeo.topLeft())
+        posAni.setEndValue(endRect.topLeft())
+        posAni.setEasingCurve(QEasingCurve.OutQuint)
+
+        self.addAnimation(lenAni)
+        self.addAnimation(posAni)
+        self.start()
+
+    def isHorizontal(self):
+        return self.orient == Qt.Orientation.Horizontal
+
+    def getPos(self):
+        return QPointF(self.geometry.topLeft())
+
+    def setPos(self, pos: QPointF):
+        self._geometry.moveTopLeft(pos)
+        self.valueChanged.emit(self.geometry)
+
+    def getLength(self):
+        return self.geometry.width() if self.isHorizontal() else self.geometry.height()
+
+    def setLength(self, length):
+        if self.isHorizontal():
+            self._geometry.setWidth(length)
+        else:
+            self._geometry.setHeight(length)
+
+        self.valueChanged.emit(self.geometry)
+
+    def getGeometry(self) -> QRectF:
+        return self._geometry
+
+    def setGeometry(self, rect: QRectF):
+        self._geometry = rect
+
+    def moveLeft(self, x):
+        self._geometry.moveLeft(x)
+        self.valueChanged.emit(self.geometry)
+
+    def setValue(self, rect):
+        self.setGeometry(rect)
+
+    pos = pyqtProperty(QPointF, getPos, setPos)
+    length = pyqtProperty(float, getLength, setLength)
+    geometry = pyqtProperty(QRectF, getGeometry, setGeometry)
