@@ -628,6 +628,9 @@ class NavigationPanel(QFrame):
             self._startIndicatorAnimation(startWidget, newItem, useCrossFade)
         else:
             newItem.setIndicatorVisible(True)
+            # Ensure tree parent shows indicator in compact mode
+            if not newItem.isVisible():
+                self._updateTreeParentIndicators()
 
     def _startIndicatorAnimation(self, prevItem: NavigationWidget, newItem: NavigationWidget, useCrossFade=False):
         startRect = self._getIndicatorRect(prevItem)
@@ -659,6 +662,22 @@ class NavigationPanel(QFrame):
             self.indicator.aniGroup.finished.disconnect(self._onIndicatorFinished)
         except:
             pass
+
+    def _updateTreeParentIndicators(self):
+        """ ensure tree parent shows indicator when child is selected in compact mode """
+        for item in self.items.values():
+            w = item.widget
+            if not (w.isSelected and not w.isVisible() and item.parentRouteKey):
+                continue
+
+            # Use treeParent to traverse tree structure
+            parent = getattr(w, 'treeParent', None)
+            while parent:
+                if parent.isVisible() and isinstance(parent, NavigationTreeWidgetBase):
+                    parent.setIndicatorVisible(True)
+                    parent.update()
+                    break
+                parent = getattr(parent, 'treeParent', None)
 
     def _getIndicatorRect(self, widget: NavigationWidget):
         pos = widget.mapTo(self, QPoint(0, 0))
@@ -762,19 +781,7 @@ class NavigationPanel(QFrame):
             # Stop indicator animation to prevent misalignment when header collapses
             self._stopIndicatorAnimation()
             self._setWidgetCompacted(True)
-            
-            # Ensure parent node shows indicator if child is selected
-            for item in self.items.values():
-                w = item.widget
-                if w.isSelected and not w.isVisible() and item.parentRouteKey:
-                    # Find visible parent (tree root) to show indicator
-                    parent = w.parent()
-                    while parent and isinstance(parent, NavigationWidget):
-                        if parent.isVisible() and isinstance(parent, NavigationTreeWidgetBase):
-                            parent.setIndicatorVisible(True)
-                            parent.update()
-                            break
-                        parent = parent.parent()
+            self._updateTreeParentIndicators()
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)
