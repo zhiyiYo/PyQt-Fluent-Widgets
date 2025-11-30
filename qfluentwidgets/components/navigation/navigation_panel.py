@@ -532,8 +532,7 @@ class NavigationPanel(QFrame):
         """ collapse navigation panel """
         # stop animation if current selected item is not root node
         if self.currentItem() and self.currentItem().property('parentRouteKey'):
-            self.indicator.stopAnimation()
-            self._onIndicatorAniFinished()
+            self._stopIndicatorAnimation()
 
         if self.expandAni.state() == QPropertyAnimation.Running:
             return
@@ -551,6 +550,10 @@ class NavigationPanel(QFrame):
         self.expandAni.start()
 
         self.menuButton.setToolTip(self.tr('Open Navigation'))
+
+    def _stopIndicatorAnimation(self):
+        self.indicator.stopAnimation()
+        self._onIndicatorAniFinished()
 
     def toggle(self):
         """ toggle navigation panel """
@@ -721,6 +724,7 @@ class NavigationPanel(QFrame):
             self.setStyle(QApplication.style())
 
             self._setWidgetCompacted(True)
+            self._stopIndicatorAnimation()
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)
