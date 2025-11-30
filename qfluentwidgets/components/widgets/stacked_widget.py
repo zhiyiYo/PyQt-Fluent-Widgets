@@ -4,7 +4,7 @@ from typing import List
 
 from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QParallelAnimationGroup,
                           QPoint, QPointF, QPropertyAnimation, QRect, QSequentialAnimationGroup,
-                          QSize, pyqtSignal)
+                          QSize, pyqtSignal, Qt)
 from PyQt5.QtGui import QPixmap, QTransform
 from PyQt5.QtWidgets import QGraphicsOpacityEffect, QLabel, QStackedWidget, QWidget
 
@@ -371,18 +371,26 @@ class TransitionStackedWidget(QStackedWidget):
 
     def _onAnimationFinished(self):
         """ animation finished handler """
+        # ensure current widget is visible and opaque before cleaning up snapshots
+        currentWidget = self.currentWidget()
+        if currentWidget:
+            currentWidget.show()
+            effect = currentWidget.graphicsEffect()
+            if effect:
+                effect.setOpacity(1.0)
+            currentWidget.move(0, 0)
+
         self._cleanupSnapshots()
 
         for i in range(self.count()):
-            w = self.widget(i)
-            if w and i != self.currentIndex():
-                w.hide()
-
-            if w:
-                effect = w.graphicsEffect()
-                if effect:
-                    effect.setOpacity(1.0)
-                w.move(0, 0)
+            if i != self.currentIndex():
+                w = self.widget(i)
+                if w:
+                    w.hide()
+                    effect = w.graphicsEffect()
+                    if effect:
+                        effect.setOpacity(1.0)
+                    w.move(0, 0)
 
         self._aniGroup = None
         self.aniFinished.emit()
@@ -499,8 +507,10 @@ class TransitionStackedWidget(QStackedWidget):
 
         if currentWidget:
             currentPixmap = QPixmap(currentWidget.size())
+            currentPixmap.fill(Qt.transparent)
             currentWidget.render(currentPixmap)
             self._currentSnapshot = QLabel(self)
+            self._currentSnapshot.setAttribute(Qt.WA_TranslucentBackground)
             self._currentSnapshot.setPixmap(currentPixmap)
             self._currentSnapshot.setScaledContents(True)
             self._currentSnapshot.setGeometry(rect)
@@ -533,8 +543,10 @@ class TransitionStackedWidget(QStackedWidget):
         nextWidget.move(0, 0)
         nextWidget.resize(self.size())
         nextPixmap = QPixmap(nextWidget.size())
+        nextPixmap.fill(Qt.transparent)
         nextWidget.render(nextPixmap)
         self._nextSnapshot = QLabel(self)
+        self._nextSnapshot.setAttribute(Qt.WA_TranslucentBackground)
         self._nextSnapshot.setPixmap(nextPixmap)
         self._nextSnapshot.setScaledContents(True)
         self._nextSnapshot.show()
@@ -565,12 +577,6 @@ class TransitionStackedWidget(QStackedWidget):
         fadeIn.setEndValue(1.0)
         fadeIn.setEasingCurve(opacityCurve)
         self._aniGroup.addAnimation(fadeIn)
-
-        def showActualWidget():
-            nextWidget.show()
-            nextWidget.raise_()
-
-        self._aniGroup.finished.connect(showActualWidget)
 
     def _createSlideAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
                                duration: int, isBack: bool, fromRight: bool):
