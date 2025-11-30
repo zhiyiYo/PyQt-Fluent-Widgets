@@ -438,6 +438,9 @@ class NavigationPanel(QFrame):
         if routeKey not in self.items:
             return
 
+        if self._currentRouteKey == routeKey:
+            self._currentRouteKey = None
+
         item = self.items.pop(routeKey)
 
         if item.parentRouteKey is not None:
