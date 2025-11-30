@@ -69,7 +69,9 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = False
         self._isCollapsible = True
         self._isAcrylicEnabled = False
+
         self._isIndicatorAnimationEnabled = True
+        self._isUpdateIndicatorPosOnCollapseFinished = False
 
         self.indicator = NavigationIndicator(self)
 
@@ -176,6 +178,12 @@ class NavigationPanel(QFrame):
 
     def setIndicatorAnimationEnabled(self, isEnabled: bool):
         self._isIndicatorAnimationEnabled = isEnabled
+
+    def isUpdateIndicatorPosOnCollapseFinished(self):
+        return self._isUpdateIndicatorPosOnCollapseFinished
+
+    def setUpdateIndicatorPosOnCollapseFinished(self, update: bool):
+        self._isUpdateIndicatorPosOnCollapseFinished = update
 
     def widget(self, routeKey: str):
         if routeKey not in self.items:
@@ -724,7 +732,9 @@ class NavigationPanel(QFrame):
             self.setStyle(QApplication.style())
 
             self._setWidgetCompacted(True)
-            self._stopIndicatorAnimation()
+
+            if self.isUpdateIndicatorPosOnCollapseFinished():
+                self._stopIndicatorAnimation()
 
             if not self._parent.isWindow():
                 self.setParent(self._parent)

@@ -357,6 +357,13 @@ class NavigationInterface(QWidget):
         """ set whether the indicator sliding animation is enabled """
         self.panel.setIndicatorAnimationEnabled(isEnabled)
 
+    def isUpdateIndicatorPosOnCollapseFinished(self):
+        return self.panel.isUpdateIndicatorPosOnCollapseFinished()
+
+    def setUpdateIndicatorPosOnCollapseFinished(self, update: bool):
+        """ set whether to update indicator position when collapese finished """
+        self.panel.setUpdateIndicatorPosOnCollapseFinished(update)
+
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
 

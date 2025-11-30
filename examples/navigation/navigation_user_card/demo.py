@@ -66,6 +66,8 @@ class Window(FluentWindow):
         self.addSubInterface(self.settingInterface, FIF.SETTING,
                              'Settings', NavigationItemPosition.BOTTOM)
 
+        self.navigationInterface.setUpdateIndicatorPosOnCollapseFinished(True)
+
     def initWindow(self):
         self.resize(900, 700)
         self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
