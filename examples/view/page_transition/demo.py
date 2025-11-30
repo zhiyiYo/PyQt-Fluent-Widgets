@@ -1,7 +1,6 @@
 # coding:utf-8
 import os
 import sys
-sys.path.insert(0, 'd:/Github Repos/FORK/PyQt-Fluent-Widgets')
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QIcon

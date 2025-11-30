@@ -544,11 +544,12 @@ class TransitionStackedWidget(QStackedWidget):
         else:
             inScale = 0.94
             outScale = 1.04
-            inDuration = duration or 783
+            # shortened from 783ms to 333ms for better responsiveness
+            inDuration = duration or 333
             outDuration = 100
             inScaleCurve = scaleCurve
 
-        opacityDuration = 333 if isBack else 333
+        opacityDuration = inDuration
 
         if currentWidget:
             self._currentSnapshot = self._renderSnapshot(currentWidget)
