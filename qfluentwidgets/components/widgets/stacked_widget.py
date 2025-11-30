@@ -1,9 +1,22 @@
 # coding:utf-8
+from enum import Enum
 from typing import List
 
-from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QPoint, QPropertyAnimation,
-                          pyqtSignal)
-from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
+from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QParallelAnimationGroup,
+                          QPoint, QPointF, QPropertyAnimation, QRect, QSequentialAnimationGroup,
+                          QSize, pyqtSignal)
+from PyQt5.QtGui import QPixmap, QTransform
+from PyQt5.QtWidgets import QGraphicsOpacityEffect, QLabel, QStackedWidget, QWidget
+
+
+class TransitionType(Enum):
+    """ Page transition type """
+    DEFAULT = 0
+    ENTRANCE = 1
+    DRILL_IN = 2
+    SUPPRESS = 3
+    SLIDE_RIGHT = 4
+    SLIDE_LEFT = 5
 
 
 class OpacityAniStackedWidget(QStackedWidget):
@@ -209,3 +222,452 @@ class PopUpAniStackedWidget(QStackedWidget):
         self._ani.disconnect()
         super().setCurrentIndex(self._nextIndex)
         self.aniFinished.emit()
+
+
+class _BezierEasingCurve(QEasingCurve):
+    """ Custom bezier easing curve """
+
+    def __init__(self, x1: float, y1: float, x2: float, y2: float):
+        super().__init__(QEasingCurve.BezierSpline)
+        self.addCubicBezierSegment(QPointF(x1, y1), QPointF(x2, y2), QPointF(1, 1))
+
+
+class TransitionStackedWidget(QStackedWidget):
+    """ Stacked widget with WinUI 3 style page transitions """
+
+    aniFinished = pyqtSignal()
+    aniStart = pyqtSignal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._aniGroup = None
+        self._currentSnapshot = None
+        self._nextSnapshot = None
+        self._defaultTransition = TransitionType.ENTRANCE
+        self._isAnimationEnabled = True
+
+    def setAnimationEnabled(self, isEnabled: bool):
+        """ set whether the transition animation is enabled """
+        self._isAnimationEnabled = isEnabled
+
+    def isAnimationEnabled(self) -> bool:
+        """ return whether the transition animation is enabled """
+        return self._isAnimationEnabled
+
+    def setDefaultTransition(self, transition: TransitionType):
+        """ set the default transition type
+
+        Parameters
+        ----------
+        transition: TransitionType
+            default transition type for page switching
+        """
+        self._defaultTransition = transition
+
+    def defaultTransition(self) -> TransitionType:
+        """ return the default transition type """
+        return self._defaultTransition
+
+    def setCurrentIndex(self, index: int, transition: TransitionType = None,
+                        duration: int = None, isBack: bool = False):
+        """ set current page index with transition animation
+
+        Parameters
+        ----------
+        index: int
+            page index
+
+        transition: TransitionType
+            transition animation type, None to use default
+
+        duration: int
+            animation duration in milliseconds, None for default
+
+        isBack: bool
+            whether this is a back navigation
+        """
+        if index < 0 or index >= self.count():
+            return
+
+        if index == self.currentIndex():
+            return
+
+        self._stopAnimation()
+
+        # use default transition if not specified
+        if transition is None:
+            transition = self._defaultTransition
+
+        # skip animation if disabled or suppressed
+        if not self._isAnimationEnabled or transition == TransitionType.SUPPRESS:
+            super().setCurrentIndex(index)
+            return
+
+        currentWidget = self.currentWidget()
+        nextWidget = self.widget(index)
+
+        super().setCurrentIndex(index)
+
+        if currentWidget:
+            currentWidget.show()
+            currentWidget.raise_()
+
+        nextWidget.show()
+        nextWidget.raise_()
+
+        if transition in (TransitionType.DEFAULT, TransitionType.ENTRANCE):
+            self._createEntranceAnimation(currentWidget, nextWidget, duration, isBack)
+        elif transition == TransitionType.DRILL_IN:
+            self._createDrillInAnimation(currentWidget, nextWidget, duration, isBack)
+        elif transition == TransitionType.SLIDE_RIGHT:
+            self._createSlideAnimation(currentWidget, nextWidget, duration, isBack, fromRight=True)
+        elif transition == TransitionType.SLIDE_LEFT:
+            self._createSlideAnimation(currentWidget, nextWidget, duration, isBack, fromRight=False)
+
+        if self._aniGroup:
+            self._aniGroup.finished.connect(self._onAnimationFinished)
+            self._aniGroup.start()
+            self.aniStart.emit()
+
+    def setCurrentWidget(self, widget: QWidget, transition: TransitionType = None,
+                         duration: int = None, isBack: bool = False):
+        """ set current page widget with transition animation
+
+        Parameters
+        ----------
+        widget: QWidget
+            target widget to display
+
+        transition: TransitionType
+            transition animation type, None to use default
+
+        duration: int
+            animation duration in milliseconds, None for default
+
+        isBack: bool
+            whether this is a back navigation
+        """
+        self.setCurrentIndex(self.indexOf(widget), transition, duration, isBack)
+
+    def _stopAnimation(self):
+        """ stop running animation """
+        if self._aniGroup and self._aniGroup.state() == QAbstractAnimation.Running:
+            self._aniGroup.stop()
+            self._cleanupSnapshots()
+
+        self._aniGroup = None
+
+    def _cleanupSnapshots(self):
+        """ cleanup snapshot labels """
+        if self._currentSnapshot:
+            self._currentSnapshot.hide()
+            self._currentSnapshot.deleteLater()
+            self._currentSnapshot = None
+
+        if self._nextSnapshot:
+            self._nextSnapshot.hide()
+            self._nextSnapshot.deleteLater()
+            self._nextSnapshot = None
+
+    def _onAnimationFinished(self):
+        """ animation finished handler """
+        self._cleanupSnapshots()
+
+        for i in range(self.count()):
+            w = self.widget(i)
+            if w and i != self.currentIndex():
+                w.hide()
+
+            if w:
+                effect = w.graphicsEffect()
+                if effect:
+                    effect.setOpacity(1.0)
+                w.move(0, 0)
+
+        self._aniGroup = None
+        self.aniFinished.emit()
+
+    def _createEntranceAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
+                                  duration: int, isBack: bool):
+        """ create entrance transition animation
+
+        WinUI 3 Parameters:
+        - translationOffset: 140px
+        - outDuration: 150ms, inDuration: 300ms
+        - inCurve: cubic-bezier(0.1, 0.9, 0.2, 1.0)
+        - outCurve: cubic-bezier(0.7, 0.0, 1.0, 0.5)
+        - opacity: discrete change at outDuration
+        """
+        offset = 140
+        outDuration = 150
+        inDuration = duration or 300
+        inCurve = _BezierEasingCurve(0.1, 0.9, 0.2, 1.0)
+        outCurve = _BezierEasingCurve(0.7, 0.0, 1.0, 0.5)
+
+        self._aniGroup = QParallelAnimationGroup(self)
+
+        if currentWidget:
+            currentEffect = QGraphicsOpacityEffect(currentWidget)
+            currentWidget.setGraphicsEffect(currentEffect)
+
+            fadeOut = QPropertyAnimation(currentEffect, b'opacity', self)
+            fadeOut.setDuration(outDuration)
+            fadeOut.setStartValue(1.0)
+            fadeOut.setEndValue(0.0)
+            fadeOut.setEasingCurve(outCurve)
+            self._aniGroup.addAnimation(fadeOut)
+
+            if isBack:
+                slideOut = QPropertyAnimation(currentWidget, b'pos', self)
+                slideOut.setDuration(outDuration)
+                slideOut.setStartValue(QPoint(0, 0))
+                slideOut.setEndValue(QPoint(0, offset))
+                slideOut.setEasingCurve(outCurve)
+                self._aniGroup.addAnimation(slideOut)
+
+        nextEffect = QGraphicsOpacityEffect(nextWidget)
+        nextWidget.setGraphicsEffect(nextEffect)
+        nextEffect.setOpacity(0.0)
+
+        # discrete opacity: invisible during outDuration, then instantly visible
+        opacitySeq = QSequentialAnimationGroup(self)
+        waitAni = QPropertyAnimation(nextEffect, b'opacity', self)
+        waitAni.setDuration(outDuration)
+        waitAni.setStartValue(0.0)
+        waitAni.setEndValue(0.0)
+        opacitySeq.addAnimation(waitAni)
+
+        showAni = QPropertyAnimation(nextEffect, b'opacity', self)
+        showAni.setDuration(1)
+        showAni.setStartValue(1.0)
+        showAni.setEndValue(1.0)
+        opacitySeq.addAnimation(showAni)
+        self._aniGroup.addAnimation(opacitySeq)
+
+        if not isBack:
+            nextWidget.move(0, offset)
+
+            # position: wait during outDuration, then slide with inCurve
+            posSeq = QSequentialAnimationGroup(self)
+
+            waitPos = QPropertyAnimation(nextWidget, b'pos', self)
+            waitPos.setDuration(outDuration)
+            waitPos.setStartValue(QPoint(0, offset))
+            waitPos.setEndValue(QPoint(0, offset))
+            posSeq.addAnimation(waitPos)
+
+            slideIn = QPropertyAnimation(nextWidget, b'pos', self)
+            slideIn.setDuration(inDuration)
+            slideIn.setStartValue(QPoint(0, offset))
+            slideIn.setEndValue(QPoint(0, 0))
+            slideIn.setEasingCurve(inCurve)
+            posSeq.addAnimation(slideIn)
+
+            self._aniGroup.addAnimation(posSeq)
+
+    def _createDrillInAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
+                                 duration: int, isBack: bool):
+        """ create drill-in transition animation using snapshots
+
+        WinUI 3 Parameters:
+        NavigatingTo: scale 0.94->1.0, 783ms scale, 333ms opacity
+        NavigatingAway: scale 1.0->1.04, 100ms
+        BackNavigatingTo: scale 1.06->1.0, 333ms
+        BackNavigatingAway: scale 1.0->0.96, 100ms
+        """
+        scaleCurve = _BezierEasingCurve(0.1, 0.9, 0.2, 1.0)
+        opacityCurve = _BezierEasingCurve(0.17, 0.17, 0.0, 1.0)
+        backScaleCurve = _BezierEasingCurve(0.12, 0.0, 0.0, 1.0)
+
+        self._aniGroup = QParallelAnimationGroup(self)
+        rect = self.rect()
+
+        if isBack:
+            inScale = 1.06
+            outScale = 0.96
+            inDuration = duration or 333
+            outDuration = 100
+            inScaleCurve = backScaleCurve
+        else:
+            inScale = 0.94
+            outScale = 1.04
+            inDuration = duration or 783
+            outDuration = 100
+            inScaleCurve = scaleCurve
+
+        opacityDuration = 333 if isBack else 333
+
+        if currentWidget:
+            currentPixmap = QPixmap(currentWidget.size())
+            currentWidget.render(currentPixmap)
+            self._currentSnapshot = QLabel(self)
+            self._currentSnapshot.setPixmap(currentPixmap)
+            self._currentSnapshot.setScaledContents(True)
+            self._currentSnapshot.setGeometry(rect)
+            self._currentSnapshot.show()
+            self._currentSnapshot.raise_()
+            currentWidget.hide()
+
+            outW = int(rect.width() * outScale)
+            outH = int(rect.height() * outScale)
+            outX = (rect.width() - outW) // 2
+            outY = (rect.height() - outH) // 2
+            outRect = QRect(outX, outY, outW, outH)
+
+            scaleOut = QPropertyAnimation(self._currentSnapshot, b'geometry', self)
+            scaleOut.setDuration(outDuration)
+            scaleOut.setStartValue(rect)
+            scaleOut.setEndValue(outRect)
+            scaleOut.setEasingCurve(scaleCurve)
+            self._aniGroup.addAnimation(scaleOut)
+
+            outEffect = QGraphicsOpacityEffect(self._currentSnapshot)
+            self._currentSnapshot.setGraphicsEffect(outEffect)
+            fadeOut = QPropertyAnimation(outEffect, b'opacity', self)
+            fadeOut.setDuration(outDuration)
+            fadeOut.setStartValue(1.0)
+            fadeOut.setEndValue(0.0)
+            fadeOut.setEasingCurve(opacityCurve)
+            self._aniGroup.addAnimation(fadeOut)
+
+        nextWidget.move(0, 0)
+        nextWidget.resize(self.size())
+        nextPixmap = QPixmap(nextWidget.size())
+        nextWidget.render(nextPixmap)
+        self._nextSnapshot = QLabel(self)
+        self._nextSnapshot.setPixmap(nextPixmap)
+        self._nextSnapshot.setScaledContents(True)
+        self._nextSnapshot.show()
+        self._nextSnapshot.raise_()
+        nextWidget.hide()
+
+        inW = int(rect.width() * inScale)
+        inH = int(rect.height() * inScale)
+        inX = (rect.width() - inW) // 2
+        inY = (rect.height() - inH) // 2
+        inRect = QRect(inX, inY, inW, inH)
+
+        self._nextSnapshot.setGeometry(inRect)
+
+        scaleIn = QPropertyAnimation(self._nextSnapshot, b'geometry', self)
+        scaleIn.setDuration(inDuration)
+        scaleIn.setStartValue(inRect)
+        scaleIn.setEndValue(rect)
+        scaleIn.setEasingCurve(inScaleCurve)
+        self._aniGroup.addAnimation(scaleIn)
+
+        inEffect = QGraphicsOpacityEffect(self._nextSnapshot)
+        self._nextSnapshot.setGraphicsEffect(inEffect)
+        inEffect.setOpacity(0.0)
+        fadeIn = QPropertyAnimation(inEffect, b'opacity', self)
+        fadeIn.setDuration(opacityDuration)
+        fadeIn.setStartValue(0.0)
+        fadeIn.setEndValue(1.0)
+        fadeIn.setEasingCurve(opacityCurve)
+        self._aniGroup.addAnimation(fadeIn)
+
+        def showActualWidget():
+            nextWidget.show()
+            nextWidget.raise_()
+
+        self._aniGroup.finished.connect(showActualWidget)
+
+    def _createSlideAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
+                               duration: int, isBack: bool, fromRight: bool):
+        """ create slide transition animation
+
+        WinUI 3 Parameters:
+        - exitOffset: 150px, entranceOffset: 200px
+        - outDuration: 150ms, inDuration: 300ms
+        - inCurve: cubic-bezier(0.1, 0.9, 0.2, 1.0)
+        - outCurve: cubic-bezier(0.7, 0.0, 1.0, 0.5)
+        - opacity: discrete change at outDuration
+        """
+        exitOffset = 150
+        entranceOffset = 200
+        outDuration = 150
+        inDuration = duration or 300
+        inCurve = _BezierEasingCurve(0.1, 0.9, 0.2, 1.0)
+        outCurve = _BezierEasingCurve(0.7, 0.0, 1.0, 0.5)
+
+        # direction factor: FromRight=-1, FromLeft=1
+        factor = -1 if fromRight else 1
+
+        self._aniGroup = QParallelAnimationGroup(self)
+
+        # calculate slide positions based on WinUI 3 exact behavior
+        if isBack:
+            # BackNavigatingAway: slide to entranceOffset * factor
+            # BackNavigatingTo: slide from exitOffset * factor
+            slideOutEnd = int(entranceOffset * factor)
+            slideInStart = int(exitOffset * factor)
+        else:
+            # NavigatingAway: slide to exitOffset * factor
+            # NavigatingTo: slide from entranceOffset * factor (negative = opposite side)
+            slideOutEnd = int(exitOffset * factor)
+            slideInStart = int(-entranceOffset * factor)
+
+        if currentWidget:
+            currentEffect = QGraphicsOpacityEffect(currentWidget)
+            currentWidget.setGraphicsEffect(currentEffect)
+
+            # discrete opacity: visible until outDuration, then instantly hidden
+            fadeOutSeq = QSequentialAnimationGroup(self)
+            holdVisible = QPropertyAnimation(currentEffect, b'opacity', self)
+            holdVisible.setDuration(outDuration - 1)
+            holdVisible.setStartValue(1.0)
+            holdVisible.setEndValue(1.0)
+            fadeOutSeq.addAnimation(holdVisible)
+
+            hideAni = QPropertyAnimation(currentEffect, b'opacity', self)
+            hideAni.setDuration(1)
+            hideAni.setStartValue(0.0)
+            hideAni.setEndValue(0.0)
+            fadeOutSeq.addAnimation(hideAni)
+            self._aniGroup.addAnimation(fadeOutSeq)
+
+            slideOut = QPropertyAnimation(currentWidget, b'pos', self)
+            slideOut.setDuration(outDuration)
+            slideOut.setStartValue(QPoint(0, 0))
+            slideOut.setEndValue(QPoint(slideOutEnd, 0))
+            slideOut.setEasingCurve(outCurve)
+            self._aniGroup.addAnimation(slideOut)
+
+        nextEffect = QGraphicsOpacityEffect(nextWidget)
+        nextWidget.setGraphicsEffect(nextEffect)
+        nextEffect.setOpacity(0.0)
+
+        # discrete opacity: invisible during outDuration, then instantly visible
+        opacitySeq = QSequentialAnimationGroup(self)
+        waitAni = QPropertyAnimation(nextEffect, b'opacity', self)
+        waitAni.setDuration(outDuration)
+        waitAni.setStartValue(0.0)
+        waitAni.setEndValue(0.0)
+        opacitySeq.addAnimation(waitAni)
+
+        showAni = QPropertyAnimation(nextEffect, b'opacity', self)
+        showAni.setDuration(1)
+        showAni.setStartValue(1.0)
+        showAni.setEndValue(1.0)
+        opacitySeq.addAnimation(showAni)
+        self._aniGroup.addAnimation(opacitySeq)
+
+        nextWidget.move(slideInStart, 0)
+
+        # position: wait during outDuration, then slide with inCurve
+        posSeq = QSequentialAnimationGroup(self)
+
+        waitPos = QPropertyAnimation(nextWidget, b'pos', self)
+        waitPos.setDuration(outDuration)
+        waitPos.setStartValue(QPoint(slideInStart, 0))
+        waitPos.setEndValue(QPoint(slideInStart, 0))
+        posSeq.addAnimation(waitPos)
+
+        slideIn = QPropertyAnimation(nextWidget, b'pos', self)
+        slideIn.setDuration(inDuration)
+        slideIn.setStartValue(QPoint(slideInStart, 0))
+        slideIn.setEndValue(QPoint(0, 0))
+        slideIn.setEasingCurve(inCurve)
+        posSeq.addAnimation(slideIn)
+
+        self._aniGroup.addAnimation(posSeq)
