@@ -6,7 +6,7 @@ from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QParallelAnimationGr
                           QPoint, QPointF, QPropertyAnimation, QRect, QSequentialAnimationGroup,
                           QSize, pyqtSignal, Qt)
 from PyQt5.QtGui import QPixmap, QTransform
-from PyQt5.QtWidgets import QGraphicsOpacityEffect, QLabel, QStackedWidget, QWidget
+from PyQt5.QtWidgets import QApplication, QGraphicsOpacityEffect, QLabel, QStackedWidget, QWidget
 
 
 class TransitionType(Enum):
@@ -369,6 +369,40 @@ class TransitionStackedWidget(QStackedWidget):
             self._nextSnapshot.deleteLater()
             self._nextSnapshot = None
 
+    def _renderSnapshot(self, widget: QWidget) -> QLabel:
+        """ render widget to a snapshot label
+
+        Parameters
+        ----------
+        widget: QWidget
+            widget to render
+
+        Returns
+        -------
+        QLabel
+            snapshot label with rendered pixmap
+        """
+        # ensure widget has correct size
+        widget.resize(self.size())
+
+        # use grab() which works even when widget is hidden
+        pixmap = widget.grab()
+
+        # if grab failed, fallback to render with transparent fill
+        if pixmap.isNull() or pixmap.size().isEmpty():
+            pixmap = QPixmap(widget.size())
+            pixmap.fill(Qt.transparent)
+            widget.render(pixmap)
+
+        snapshot = QLabel(self)
+        snapshot.setAttribute(Qt.WA_TranslucentBackground)
+        snapshot.setPixmap(pixmap)
+        snapshot.setGeometry(self.rect())
+        snapshot.show()
+        snapshot.raise_()
+
+        return snapshot
+
     def _onAnimationFinished(self):
         """ animation finished handler """
         # ensure current widget is visible and opaque before cleaning up snapshots
@@ -397,7 +431,7 @@ class TransitionStackedWidget(QStackedWidget):
 
     def _createEntranceAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
                                   duration: int, isBack: bool):
-        """ create entrance transition animation
+        """ create entrance transition animation using snapshots
 
         WinUI 3 Parameters:
         - translationOffset: 140px
@@ -411,12 +445,17 @@ class TransitionStackedWidget(QStackedWidget):
         inDuration = duration or 300
         inCurve = _BezierEasingCurve(0.1, 0.9, 0.2, 1.0)
         outCurve = _BezierEasingCurve(0.7, 0.0, 1.0, 0.5)
+        rect = self.rect()
 
         self._aniGroup = QParallelAnimationGroup(self)
 
+        # create snapshot for currentWidget
         if currentWidget:
-            currentEffect = QGraphicsOpacityEffect(currentWidget)
-            currentWidget.setGraphicsEffect(currentEffect)
+            self._currentSnapshot = self._renderSnapshot(currentWidget)
+            currentWidget.hide()
+
+            currentEffect = QGraphicsOpacityEffect(self._currentSnapshot)
+            self._currentSnapshot.setGraphicsEffect(currentEffect)
 
             fadeOut = QPropertyAnimation(currentEffect, b'opacity', self)
             fadeOut.setDuration(outDuration)
@@ -426,15 +465,19 @@ class TransitionStackedWidget(QStackedWidget):
             self._aniGroup.addAnimation(fadeOut)
 
             if isBack:
-                slideOut = QPropertyAnimation(currentWidget, b'pos', self)
+                slideOut = QPropertyAnimation(self._currentSnapshot, b'pos', self)
                 slideOut.setDuration(outDuration)
                 slideOut.setStartValue(QPoint(0, 0))
                 slideOut.setEndValue(QPoint(0, offset))
                 slideOut.setEasingCurve(outCurve)
                 self._aniGroup.addAnimation(slideOut)
 
-        nextEffect = QGraphicsOpacityEffect(nextWidget)
-        nextWidget.setGraphicsEffect(nextEffect)
+        # create snapshot for nextWidget
+        self._nextSnapshot = self._renderSnapshot(nextWidget)
+        nextWidget.hide()
+
+        nextEffect = QGraphicsOpacityEffect(self._nextSnapshot)
+        self._nextSnapshot.setGraphicsEffect(nextEffect)
         nextEffect.setOpacity(0.0)
 
         # discrete opacity: invisible during outDuration, then instantly visible
@@ -453,18 +496,18 @@ class TransitionStackedWidget(QStackedWidget):
         self._aniGroup.addAnimation(opacitySeq)
 
         if not isBack:
-            nextWidget.move(0, offset)
+            self._nextSnapshot.move(0, offset)
 
             # position: wait during outDuration, then slide with inCurve
             posSeq = QSequentialAnimationGroup(self)
 
-            waitPos = QPropertyAnimation(nextWidget, b'pos', self)
+            waitPos = QPropertyAnimation(self._nextSnapshot, b'pos', self)
             waitPos.setDuration(outDuration)
             waitPos.setStartValue(QPoint(0, offset))
             waitPos.setEndValue(QPoint(0, offset))
             posSeq.addAnimation(waitPos)
 
-            slideIn = QPropertyAnimation(nextWidget, b'pos', self)
+            slideIn = QPropertyAnimation(self._nextSnapshot, b'pos', self)
             slideIn.setDuration(inDuration)
             slideIn.setStartValue(QPoint(0, offset))
             slideIn.setEndValue(QPoint(0, 0))
@@ -472,6 +515,8 @@ class TransitionStackedWidget(QStackedWidget):
             posSeq.addAnimation(slideIn)
 
             self._aniGroup.addAnimation(posSeq)
+        else:
+            self._nextSnapshot.setGeometry(rect)
 
     def _createDrillInAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
                                  duration: int, isBack: bool):
@@ -506,16 +551,8 @@ class TransitionStackedWidget(QStackedWidget):
         opacityDuration = 333 if isBack else 333
 
         if currentWidget:
-            currentPixmap = QPixmap(currentWidget.size())
-            currentPixmap.fill(Qt.transparent)
-            currentWidget.render(currentPixmap)
-            self._currentSnapshot = QLabel(self)
-            self._currentSnapshot.setAttribute(Qt.WA_TranslucentBackground)
-            self._currentSnapshot.setPixmap(currentPixmap)
+            self._currentSnapshot = self._renderSnapshot(currentWidget)
             self._currentSnapshot.setScaledContents(True)
-            self._currentSnapshot.setGeometry(rect)
-            self._currentSnapshot.show()
-            self._currentSnapshot.raise_()
             currentWidget.hide()
 
             outW = int(rect.width() * outScale)
@@ -540,17 +577,8 @@ class TransitionStackedWidget(QStackedWidget):
             fadeOut.setEasingCurve(opacityCurve)
             self._aniGroup.addAnimation(fadeOut)
 
-        nextWidget.move(0, 0)
-        nextWidget.resize(self.size())
-        nextPixmap = QPixmap(nextWidget.size())
-        nextPixmap.fill(Qt.transparent)
-        nextWidget.render(nextPixmap)
-        self._nextSnapshot = QLabel(self)
-        self._nextSnapshot.setAttribute(Qt.WA_TranslucentBackground)
-        self._nextSnapshot.setPixmap(nextPixmap)
+        self._nextSnapshot = self._renderSnapshot(nextWidget)
         self._nextSnapshot.setScaledContents(True)
-        self._nextSnapshot.show()
-        self._nextSnapshot.raise_()
         nextWidget.hide()
 
         inW = int(rect.width() * inScale)
@@ -580,7 +608,7 @@ class TransitionStackedWidget(QStackedWidget):
 
     def _createSlideAnimation(self, currentWidget: QWidget, nextWidget: QWidget,
                                duration: int, isBack: bool, fromRight: bool):
-        """ create slide transition animation
+        """ create slide transition animation using snapshots
 
         WinUI 3 Parameters:
         - exitOffset: 150px, entranceOffset: 200px
@@ -595,6 +623,7 @@ class TransitionStackedWidget(QStackedWidget):
         inDuration = duration or 300
         inCurve = _BezierEasingCurve(0.1, 0.9, 0.2, 1.0)
         outCurve = _BezierEasingCurve(0.7, 0.0, 1.0, 0.5)
+        rect = self.rect()
 
         # direction factor: FromRight=-1, FromLeft=1
         factor = -1 if fromRight else 1
@@ -613,9 +642,13 @@ class TransitionStackedWidget(QStackedWidget):
             slideOutEnd = int(exitOffset * factor)
             slideInStart = int(-entranceOffset * factor)
 
+        # create snapshot for currentWidget
         if currentWidget:
-            currentEffect = QGraphicsOpacityEffect(currentWidget)
-            currentWidget.setGraphicsEffect(currentEffect)
+            self._currentSnapshot = self._renderSnapshot(currentWidget)
+            currentWidget.hide()
+
+            currentEffect = QGraphicsOpacityEffect(self._currentSnapshot)
+            self._currentSnapshot.setGraphicsEffect(currentEffect)
 
             # discrete opacity: visible until outDuration, then instantly hidden
             fadeOutSeq = QSequentialAnimationGroup(self)
@@ -632,15 +665,19 @@ class TransitionStackedWidget(QStackedWidget):
             fadeOutSeq.addAnimation(hideAni)
             self._aniGroup.addAnimation(fadeOutSeq)
 
-            slideOut = QPropertyAnimation(currentWidget, b'pos', self)
+            slideOut = QPropertyAnimation(self._currentSnapshot, b'pos', self)
             slideOut.setDuration(outDuration)
             slideOut.setStartValue(QPoint(0, 0))
             slideOut.setEndValue(QPoint(slideOutEnd, 0))
             slideOut.setEasingCurve(outCurve)
             self._aniGroup.addAnimation(slideOut)
 
-        nextEffect = QGraphicsOpacityEffect(nextWidget)
-        nextWidget.setGraphicsEffect(nextEffect)
+        # create snapshot for nextWidget
+        self._nextSnapshot = self._renderSnapshot(nextWidget)
+        nextWidget.hide()
+
+        nextEffect = QGraphicsOpacityEffect(self._nextSnapshot)
+        self._nextSnapshot.setGraphicsEffect(nextEffect)
         nextEffect.setOpacity(0.0)
 
         # discrete opacity: invisible during outDuration, then instantly visible
@@ -658,18 +695,18 @@ class TransitionStackedWidget(QStackedWidget):
         opacitySeq.addAnimation(showAni)
         self._aniGroup.addAnimation(opacitySeq)
 
-        nextWidget.move(slideInStart, 0)
+        self._nextSnapshot.move(slideInStart, 0)
 
         # position: wait during outDuration, then slide with inCurve
         posSeq = QSequentialAnimationGroup(self)
 
-        waitPos = QPropertyAnimation(nextWidget, b'pos', self)
+        waitPos = QPropertyAnimation(self._nextSnapshot, b'pos', self)
         waitPos.setDuration(outDuration)
         waitPos.setStartValue(QPoint(slideInStart, 0))
         waitPos.setEndValue(QPoint(slideInStart, 0))
         posSeq.addAnimation(waitPos)
 
-        slideIn = QPropertyAnimation(nextWidget, b'pos', self)
+        slideIn = QPropertyAnimation(self._nextSnapshot, b'pos', self)
         slideIn.setDuration(inDuration)
         slideIn.setStartValue(QPoint(slideInStart, 0))
         slideIn.setEndValue(QPoint(0, 0))
