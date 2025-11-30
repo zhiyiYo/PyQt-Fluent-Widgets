@@ -2,12 +2,12 @@
 from enum import Enum
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint
+from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint, QRectF
 from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
-                                NavigationTreeWidget, NavigationFlyoutMenu, NavigationItemHeader)
+                                NavigationTreeWidget, NavigationFlyoutMenu, NavigationItemHeader, NavigationIndicator)
 from ..widgets.acrylic_label import AcrylicBrush
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.tool_tip import ToolTipFilter
@@ -69,6 +69,9 @@ class NavigationPanel(QFrame):
         self._isReturnButtonVisible = False
         self._isCollapsible = True
         self._isAcrylicEnabled = False
+        self._isIndicatorAnimationEnabled = True
+
+        self.indicator = NavigationIndicator(self)
 
         self.acrylicBrush = AcrylicBrush(self, 30)
 
@@ -85,6 +88,7 @@ class NavigationPanel(QFrame):
 
         self.items = {}   # type: Dict[str, NavigationItem]
         self.history = qrouter
+        self._currentRouteKey = None
 
         self.expandAni = QPropertyAnimation(self, b'geometry', self)
         self.expandWidth = 322
@@ -119,6 +123,7 @@ class NavigationPanel(QFrame):
         self.expandAni.finished.connect(self._onExpandAniFinished)
         self.history.emptyChanged.connect(self.returnButton.setDisabled)
         self.returnButton.clicked.connect(self.history.pop)
+        self.indicator.aniFinished.connect(self._onIndicatorAniFinished)
 
         # add tool tip
         self.returnButton.installEventFilter(ToolTipFilter(self.returnButton, 1000))
@@ -165,6 +170,12 @@ class NavigationPanel(QFrame):
 
         self.acrylicBrush.tintColor = tintColor
         self.acrylicBrush.luminosityColor = luminosityColor
+
+    def isIndicatorAnimationEnabled(self):
+        return self._isIndicatorAnimationEnabled
+
+    def setIndicatorAnimationEnabled(self, isEnabled: bool):
+        self._isIndicatorAnimationEnabled = isEnabled
 
     def widget(self, routeKey: str):
         if routeKey not in self.items:
@@ -340,7 +351,7 @@ class NavigationPanel(QFrame):
 
         position: NavigationItemPosition
             where to add the header
-            
+
         Returns
         -------
         NavigationItemHeader
@@ -361,7 +372,7 @@ class NavigationPanel(QFrame):
 
         position: NavigationItemPosition
             where to add the header
-            
+
         Returns
         -------
         NavigationItemHeader
@@ -373,7 +384,7 @@ class NavigationPanel(QFrame):
         # set compacted state based on current display mode
         isCompacted = self.displayMode not in [NavigationDisplayMode.EXPAND, NavigationDisplayMode.MENU]
         header.setCompacted(isCompacted)
-        
+
         return header
 
     def _registerWidget(self, routeKey: str, parentRouteKey: str, widget: NavigationWidget, onClick, tooltip: str):
@@ -479,6 +490,7 @@ class NavigationPanel(QFrame):
 
     def expand(self, useAni=True):
         """ expand navigation panel """
+        self.indicator.stopAnimation()
         self._setWidgetCompacted(False)
         self.expandAni.setProperty('expand', True)
         self.menuButton.setToolTip(self.tr('Close Navigation'))
@@ -518,6 +530,11 @@ class NavigationPanel(QFrame):
 
     def collapse(self):
         """ collapse navigation panel """
+        # stop animation if current selected item is not root node
+        if self.currentItem() and self.currentItem().property('parentRouteKey'):
+            self.indicator.stopAnimation()
+            self._onIndicatorAniFinished()
+
         if self.expandAni.state() == QPropertyAnimation.Running:
             return
 
@@ -550,11 +567,64 @@ class NavigationPanel(QFrame):
         routeKey: str
             the unique name of item
         """
-        if routeKey not in self.items:
+        if routeKey not in self.items or routeKey == self._currentRouteKey:
             return
 
-        for k, item in self.items.items():
-            item.widget.setSelected(k == routeKey)
+        prevItem = self.currentItem()
+        self._currentRouteKey = routeKey
+
+        # early return if indicator is not enabled or previous selected item is None
+        if not self.isIndicatorAnimationEnabled() or prevItem is None:
+            for k, item in self.items.items():
+                item.widget.setSelected(k == routeKey)
+
+            return
+
+        # find the items to display indicator animation
+        newItem = self.currentItem()
+        prevIndicatorItem = self._findIndicatorItem(prevItem)
+        newIndicatorItem = self._findIndicatorItem(newItem)
+
+        # calculate the start and final geometry for animation
+        preIndicatorRect = self._getIndicatorRect(prevIndicatorItem)
+        newIndicatorRect = self._getIndicatorRect(newIndicatorItem)
+
+        # start animation
+        prevItem.setSelected(False)
+        prevIndicatorItem.setSelected(False)
+        newIndicatorItem.setAboutSelected(True)
+        self.indicator.setIndicatorColor(newItem.lightIndicatorColor, newItem.darkIndicatorColor)
+        self.indicator.startAnimation(preIndicatorRect, newIndicatorRect)
+
+    def currentItem(self):
+        return self.widget(self._currentRouteKey) if self._currentRouteKey else None
+
+    def _findIndicatorItem(self, item: NavigationWidget):
+        parent = item
+        while parent:
+            if isinstance(parent, NavigationWidget) and parent.isVisible():
+                break
+
+            parent = parent.parent()
+
+        return parent
+
+    def _getIndicatorRect(self, item: NavigationWidget):
+        if not item:
+            return QRect()
+
+        pos = item.mapTo(self, QPoint(0, 0))
+        rect = item.indicatorRect()
+        return rect.translated(pos)
+
+    def _onIndicatorAniFinished(self):
+        item = self.currentItem()
+        if not item:
+            return
+
+        item.setSelected(True)
+        self._findIndicatorItem(item).setAboutSelected(False)
+        self.indicator.hide()
 
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget

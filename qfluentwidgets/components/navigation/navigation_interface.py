@@ -350,6 +350,13 @@ class NavigationInterface(QWidget):
         """ set whether the acrylic background effect is enabled """
         self.panel.setAcrylicEnabled(isEnabled)
 
+    def isIndicatorAnimationEnabled(self):
+        return self.panel.isIndicatorAnimationEnabled()
+
+    def setIndicatorAnimationEnabled(self, isEnabled: bool):
+        """ set whether the indicator sliding animation is enabled """
+        self.panel.setIndicatorAnimationEnabled(isEnabled)
+
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)
 

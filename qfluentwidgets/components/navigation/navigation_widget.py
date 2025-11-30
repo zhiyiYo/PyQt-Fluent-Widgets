@@ -13,6 +13,7 @@ from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.color import autoFallbackThemeColor
 from ...common.font import setFont, getFont
+from ...common.animation import ScaleSlideAnimation
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
@@ -31,6 +32,7 @@ class NavigationWidget(QWidget):
         self.isSelected = False
         self.isPressed = False
         self.isEnter = False
+        self.isAboutSelected = False
         self.isSelectable = isSelectable
         self.treeParent = None
         self.nodeDepth = 0
@@ -38,6 +40,10 @@ class NavigationWidget(QWidget):
         # text color
         self.lightTextColor = QColor(0, 0, 0)
         self.darkTextColor = QColor(255, 255, 255)
+
+        # indicator color
+        self.lightIndicatorColor = QColor()
+        self.darkIndicatorColor = QColor()
 
         self.setFixedSize(40, 36)
 
@@ -89,6 +95,7 @@ class NavigationWidget(QWidget):
             return
 
         self.isSelected = isSelected
+        self.isAboutSelected = False
         self.update()
         self.selectedChanged.emit(isSelected)
 
@@ -110,6 +117,24 @@ class NavigationWidget(QWidget):
         self.setLightTextColor(light)
         self.setDarkTextColor(dark)
 
+    def setAboutSelected(self, selected: bool):
+        self.isAboutSelected = selected
+        self.update()
+
+    def _margins(self):
+        return QMargins(0, 0, 0, 0)
+
+    def indicatorRect(self):
+        """ get the indicator geometry """
+        m = self._margins()
+        return QRectF(m.left(), 10, 3, 16)
+
+    def setIndicatorColor(self, light, dark):
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
+        self.update()
+
+
 
 class NavigationPushButton(NavigationWidget):
     """ Navigation push button """
@@ -128,8 +153,6 @@ class NavigationPushButton(NavigationWidget):
 
         self._icon = icon
         self._text = text
-        self.lightIndicatorColor = QColor()
-        self.darkIndicatorColor = QColor()
 
         setFont(self)
 
@@ -147,16 +170,8 @@ class NavigationPushButton(NavigationWidget):
         self._icon = icon
         self.update()
 
-    def _margins(self):
-        return QMargins(0, 0, 0, 0)
-
     def _canDrawIndicator(self):
         return self.isSelected
-
-    def setIndicatorColor(self, light, dark):
-        self.lightIndicatorColor = QColor(light)
-        self.darkIndicatorColor = QColor(dark)
-        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -181,9 +196,9 @@ class NavigationPushButton(NavigationWidget):
 
             # draw indicator
             painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
-            painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
-            painter.setBrush(QColor(c, c, c, 10))
+            painter.drawRoundedRect(self.indicatorRect(), 1.5, 1.5)
+        elif ((self.isEnter and globalRect.contains(QCursor.pos())) or self.isAboutSelected) and self.isEnabled():
+            painter.setBrush(QColor(c, c, c, 6 if self.isAboutSelected else 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
         drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
@@ -358,11 +373,11 @@ class NavigationTreeItem(NavigationPushButton):
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
         clickArrow = QRectF(self.width()-30, 8, 20, 20).contains(e.pos())
-        self.itemClicked.emit(True, clickArrow and not self.parent().isLeaf())
+        self.itemClicked.emit(True, clickArrow and not self.treeWidget().isLeaf())
         self.update()
 
     def _canDrawIndicator(self):
-        p = self.parent()   # type: NavigationTreeWidget
+        p = self.treeWidget()   # type: NavigationTreeWidget
         if p.isLeaf() or p.isSelected:
             return p.isSelected
 
@@ -373,14 +388,19 @@ class NavigationTreeItem(NavigationPushButton):
         return False
 
     def _margins(self):
-        p = self.parent()   # type: NavigationTreeWidget
+        p = self.treeWidget()   # type: NavigationTreeWidget
         return QMargins(p.nodeDepth*28, 0, 20*bool(p.treeChildren), 0)
 
     def paintEvent(self, e):
         super().paintEvent(e)
-        if self.isCompacted or not self.parent().treeChildren:
+        self._drawDropDownArrow()
+
+    def _drawDropDownArrow(self):
+        # only draw arrow on inner item
+        if self.isCompacted or self.treeWidget().isLeaf():
             return
 
+        # draw drop down arrow
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
@@ -393,6 +413,9 @@ class NavigationTreeItem(NavigationPushButton):
         painter.translate(self.width() - 20, 18)
         painter.rotate(self.arrowAngle)
         FIF.ARROW_DOWN.render(painter, QRectF(-5, -5, 9.6, 9.6))
+
+    def treeWidget(self) -> 'NavigationTreeWidget':
+        return self.parent()
 
     def getArrowAngle(self):
         return self._arrowAngle
@@ -489,6 +512,9 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.expandAni.valueChanged.connect(self.expanded)
         self.expandAni.finished.connect(self.parentWidget().layout().invalidate)
 
+    def _margins(self):
+        return self.itemWidget._margins()
+
     def addChild(self, child):
         self.insertChild(-1, child)
 
@@ -523,6 +549,8 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
     def setIndicatorColor(self, light, dark):
         """ set the indicator color in light/dark theme mode """
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
         self.itemWidget.setIndicatorColor(light, dark)
 
     def setFont(self, font: QFont):
@@ -631,6 +659,10 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         super().setCompacted(isCompacted)
         self.itemWidget.setCompacted(isCompacted)
 
+    def setAboutSelected(self, selected: bool):
+        self.isAboutSelected = selected
+        self.itemWidget.setAboutSelected(selected)
+
     def _onClicked(self, triggerByUser, clickArrow):
         if not self.isCompacted:
             if self.isSelectable and not self.isSelected and not clickArrow:
@@ -673,25 +705,28 @@ class NavigationAvatarWidget(NavigationWidget):
         painter.setRenderHints(
             QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
 
-        painter.setPen(Qt.NoPen)
-
         if self.isPressed:
             painter.setOpacity(0.7)
 
-        # draw background
         self._drawBackground(painter)
+        self._drawText(painter)
 
-        if not self.isCompacted:
-            painter.setPen(self.textColor())
-            painter.setFont(self.font())
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+    def _drawText(self, painter: QPainter):
+        if self.isCompacted:
+            return
+
+        painter.setPen(self.textColor())
+        painter.setFont(self.font())
+        painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
 
     def _drawBackground(self, painter):
-        if self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.setPen(Qt.NoPen)
-            painter.drawRoundedRect(self.rect(), 5, 5)
+        if not self.isEnter:
+            return
+
+        c = 255 if isDarkTheme() else 0
+        painter.setBrush(QColor(c, c, c, 10))
+        painter.setPen(Qt.NoPen)
+        painter.drawRoundedRect(self.rect(), 5, 5)
 
 
 @InfoBadgeManager.register(InfoBadgePosition.NAVIGATION_ITEM)
@@ -740,8 +775,7 @@ class NavigationFlyoutMenu(ScrollArea):
         self.setWidget(self.view)
         self.setWidgetResizable(True)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setStyleSheet("ScrollArea{border:none;background:transparent}")
-        self.view.setStyleSheet("QWidget{border:none;background:transparent}")
+        self.enableTransparentBackground()
 
         self.vBoxLayout.setSpacing(5)
         self.vBoxLayout.setContentsMargins(5, 8, 5, 8)
@@ -982,3 +1016,58 @@ class NavigationUserCard(NavigationAvatarWidget):
     def subtitleColor(self, color: QColor):
         self._subtitleColor = color
         self.update()
+
+
+class NavigationIndicator(QWidget):
+    """ Navigation indicator """
+
+    aniFinished = pyqtSignal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.lightColor = QColor()
+        self.darkColor = QColor()
+
+        self.scaleSlideAni = ScaleSlideAnimation(self, Qt.Orientation.Vertical)
+
+        self.resize(3, 16)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.hide()
+
+        self.scaleSlideAni.valueChanged.connect(lambda g: self.setGeometry(g.toRect()))
+        self.scaleSlideAni.finished.connect(self.aniFinished)
+
+    def startAnimation(self, startRect: QRectF, endRect: QRectF, useCrossFade=False):
+        """ Start indicator animation
+
+        Parameters
+        -----------
+        endRect: QRectF
+            the final geometry of indicator
+
+        useCrossFade: bool
+            whether to use cross fade animation
+        """
+        self.setGeometry(startRect.toRect())
+        self.show()
+
+        self.scaleSlideAni.setGeometry(startRect)
+        self.scaleSlideAni.startAnimation(endRect, useCrossFade)
+
+    def stopAnimation(self):
+        """ Stop animation """
+        self.scaleSlideAni.stopAnimation()
+        self.hide()
+
+    def setIndicatorColor(self, light, dark):
+        self.lightColor = QColor(light)
+        self.darkColor = QColor(dark)
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(autoFallbackThemeColor(self.lightColor, self.darkColor))
+        painter.drawRoundedRect(self.rect(), 1.5, 1.5)
