@@ -1,8 +1,9 @@
 # coding:utf-8
+from enum import Enum
 from typing import List
 
 from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QPoint, QPropertyAnimation,
-                          pyqtSignal, QParallelAnimationGroup, Qt, QSequentialAnimationGroup)
+                          pyqtSignal, QParallelAnimationGroup, Qt, QSequentialAnimationGroup, QRect)
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget, QLabel
 
@@ -344,9 +345,6 @@ class TransitionStackedWidget(QStackedWidget):
 
 class EntranceTransitionStackedWidget(TransitionStackedWidget):
 
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
     def _setUpTransitionAnimation(self, nextIndex, duration, isBack):
         offset = 140
         outDuration = 150
@@ -399,3 +397,85 @@ class EntranceTransitionStackedWidget(TransitionStackedWidget):
             # directly show next widget
             nextWidget.setGeometry(self.rect())
 
+
+class DrillInTransitionStackedWidget(TransitionStackedWidget):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def _setUpTransitionAnimation(self, nextIndex, duration, isBack):
+        scaleCurve = FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0)
+        opacityCurve = FluentAnimation.createBezierCurve(0.17, 0.17, 0.0, 1.0)
+        backScaleCurve = FluentAnimation.createBezierCurve(0.12, 0.0, 0.0, 1.0)
+
+        if isBack:
+            inScale = 1.06
+            outScale = 0.96
+            inDuration = duration or 333
+            outDuration = 100
+            inScaleCurve = backScaleCurve
+        else:
+            inScale = 0.94
+            outScale = 1.04
+            # shortened from 783ms to 333ms for better responsiveness
+            inDuration = duration or 333
+            outDuration = 100
+            inScaleCurve = scaleCurve
+
+        currentWidget = self.currentWidget()
+        nextWidget = self.widget(nextIndex)
+        rect = self.rect()
+
+        if currentWidget:
+            self._renderSnapshot(currentWidget, self._currentSnapshot)
+            self._currentSnapshot.setScaledContents(True)
+            currentWidget.hide()
+
+            # scale out current widget
+            outW = int(rect.width() * outScale)
+            outH = int(rect.height() * outScale)
+            outX = (rect.width() - outW) // 2
+            outY = (rect.height() - outH) // 2
+            outRect = QRect(outX, outY, outW, outH)
+
+            scaleOutAni = QPropertyAnimation(self._currentSnapshot, b'geometry', self)
+            scaleOutAni.setDuration(outDuration)
+            scaleOutAni.setStartValue(rect)
+            scaleOutAni.setEndValue(outRect)
+            scaleOutAni.setEasingCurve(scaleCurve)
+            self._aniGroup.addAnimation(scaleOutAni)
+
+            # fade out current widget
+            fadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b'opacity', self)
+            fadeOutAni.setDuration(outDuration)
+            fadeOutAni.setStartValue(1.0)
+            fadeOutAni.setEndValue(0.0)
+            fadeOutAni.setEasingCurve(opacityCurve)
+            self._aniGroup.addAnimation(fadeOutAni)
+
+        # scale in next widget
+        self._renderSnapshot(nextWidget, self._nextSnapshot)
+        self._nextSnapshot.setScaledContents(True)
+        nextWidget.hide()
+
+        inW = int(rect.width() * inScale)
+        inH = int(rect.height() * inScale)
+        inX = (rect.width() - inW) // 2
+        inY = (rect.height() - inH) // 2
+        inRect = QRect(inX, inY, inW, inH)
+
+        self._nextSnapshot.setGeometry(inRect)
+
+        scaleInAni = QPropertyAnimation(self._nextSnapshot, b'geometry', self)
+        scaleInAni.setDuration(inDuration)
+        scaleInAni.setStartValue(inRect)
+        scaleInAni.setEndValue(rect)
+        scaleInAni.setEasingCurve(inScaleCurve)
+        self._aniGroup.addAnimation(scaleInAni)
+
+        fadeInAni = QPropertyAnimation(self._nextSnapshot.graphicsEffect(), b'opacity', self)
+        fadeInAni.setDuration(inDuration)
+        fadeInAni.setStartValue(0.0)
+        fadeInAni.setEndValue(1.0)
+        fadeInAni.setEasingCurve(opacityCurve)
+        self._aniGroup.addAnimation(fadeInAni)

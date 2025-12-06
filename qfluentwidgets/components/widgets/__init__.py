@@ -25,7 +25,7 @@ from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea
 from .slider import Slider, HollowHandleStyle, ClickableSlider
 from .spin_box import (SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit, CompactSpinBox,
                        CompactDoubleSpinBox, CompactDateEdit, CompactDateTimeEdit, CompactTimeEdit)
-from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget, TransitionStackedWidget, EntranceTransitionStackedWidget
+from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget, TransitionStackedWidget, EntranceTransitionStackedWidget, DrillInTransitionStackedWidget
 from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .table_view import TableView, TableWidget, TableItemDelegate
