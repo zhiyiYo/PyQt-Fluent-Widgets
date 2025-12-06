@@ -2,8 +2,11 @@
 from typing import List
 
 from PyQt5.QtCore import (QAbstractAnimation, QEasingCurve, QPoint, QPropertyAnimation,
-                          pyqtSignal)
-from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget
+                          pyqtSignal, QParallelAnimationGroup, Qt, QSequentialAnimationGroup)
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget, QLabel
+
+from ...common.animation import FluentAnimation
 
 
 class OpacityAniStackedWidget(QStackedWidget):
@@ -209,3 +212,190 @@ class PopUpAniStackedWidget(QStackedWidget):
         self._ani.disconnect()
         super().setCurrentIndex(self._nextIndex)
         self.aniFinished.emit()
+
+
+class TransitionStackedWidget(QStackedWidget):
+
+    aniFinished = pyqtSignal()
+    aniStart = pyqtSignal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._aniGroup = QParallelAnimationGroup(self)
+        self._currentSnapshot = self._createSnapshotLabel()
+        self._nextSnapshot = self._createSnapshotLabel()
+        self._nextIndex = None
+        self._isAnimationEnabled = True
+
+        self._aniGroup.finished.connect(self._onAniFinished)
+
+    def setAnimationEnabled(self, isEnabled: bool):
+        """ set whether the transition animation is enabled """
+        self._isAnimationEnabled = isEnabled
+
+    def isAnimationEnabled(self) -> bool:
+        """ return whether the transition animation is enabled """
+        return self._isAnimationEnabled
+
+    def addWidget(self, w):
+        w.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        return super().addWidget(w)
+
+    def setCurrentWidget(self, widget: QWidget, duration: int = None, isBack: bool = False):
+        """ set current page widget with transition animation
+
+        Parameters
+        ----------
+        widget: QWidget
+            target widget to display
+
+        duration: int
+            animation duration in milliseconds, None for default
+
+        isBack: bool
+            whether this is a back navigation
+        """
+        self.setCurrentIndex(self.indexOf(widget), duration, isBack)
+
+    def setCurrentIndex(self, index: int, duration: int = None, isBack: bool = False):
+        """ set current page index with transition animation
+
+        Parameters
+        ----------
+        index: int
+            page index
+
+        duration: int
+            animation duration in milliseconds, None for default
+
+        isBack: bool
+            whether this is a back navigation
+        """
+        if index < 0 or index >= self.count():
+            return
+
+        if index == self.currentIndex():
+            return
+
+        if not self.isAnimationEnabled():
+            return super().setCurrentIndex(index)
+
+        self._stopAnimation()
+
+        self._nextIndex = index
+
+        # set up animation properties
+        self._setUpTransitionAnimation(index, duration, isBack)
+
+        # start transition animation
+        self._aniGroup.start()
+        self.aniStart.emit()
+
+    def _setUpTransitionAnimation(self, nextIndex: int, duration: int, isBack: bool):
+        """ Set up transition animation """
+        raise NotImplementedError
+
+    def _stopAnimation(self):
+        """ stop running animation """
+        if self._aniGroup.state() != QAbstractAnimation.State.Running:
+            return
+
+        self._aniGroup.stop()
+        self._onAniFinished()
+
+    def _hideSnapshots(self):
+        self._currentSnapshot.hide()
+        self._nextSnapshot.hide()
+
+    def _onAniFinished(self):
+        self._hideSnapshots()
+        self._aniGroup.clear()
+        super().setCurrentIndex(self._nextIndex)
+        self.aniFinished.emit()
+
+    def _createSnapshotLabel(self):
+        label = QLabel(self)
+        label.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+
+        effect = QGraphicsOpacityEffect(label)
+        label.setGraphicsEffect(effect)
+        label.hide()
+
+        return label
+
+    def _renderSnapshot(self, widget: QWidget, label: QLabel):
+        # ensure widget has correct size
+        widget.resize(self.size())
+
+        # use grab() which works even when widget is hidden
+        pixmap = widget.grab()
+
+        # if grab failed, fallback to render with transparent fill
+        if pixmap.isNull() or pixmap.size().isEmpty():
+            pixmap = QPixmap(widget.size())
+            pixmap.fill(Qt.GlobalColor.transparent)
+            widget.render(pixmap)
+
+        label.setPixmap(pixmap)
+        label.setGeometry(self.rect())
+        label.show()
+        label.raise_()
+
+
+class EntranceTransitionStackedWidget(TransitionStackedWidget):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def _setUpTransitionAnimation(self, nextIndex, duration, isBack):
+        offset = 140
+        outDuration = 150
+        inDuration = duration or 300
+        inCurve = FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0)
+        outCurve = FluentAnimation.createBezierCurve(0.7, 0.0, 1.0, 0.5)
+
+        currentWidget = self.currentWidget()
+        nextWidget = self.widget(nextIndex)
+
+        if currentWidget:
+            self._renderSnapshot(currentWidget, self._currentSnapshot)
+            currentWidget.hide()
+
+            # fade out current widget
+            fadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b'opacity', self)
+            fadeOutAni.setDuration(outDuration)
+            fadeOutAni.setStartValue(1.0)
+            fadeOutAni.setEndValue(0.0)
+            fadeOutAni.setEasingCurve(outCurve)
+            self._aniGroup.addAnimation(fadeOutAni)
+
+            # slide out current widget
+            if isBack:
+                slideOutAni = QPropertyAnimation(self._currentSnapshot, b'pos', self)
+                slideOutAni.setDuration(outDuration)
+                slideOutAni.setStartValue(QPoint(0, 0))
+                slideOutAni.setEndValue(QPoint(0, offset))
+                slideOutAni.setEasingCurve(outCurve)
+                self._aniGroup.addAnimation(slideOutAni)
+
+        nextWidget.hide()
+
+        # show next widget after outDuration
+        nextWidgetAniGroup = QSequentialAnimationGroup(self)
+        pauseAni = nextWidgetAniGroup.addPause(outDuration)
+        pauseAni.finished.connect(lambda: nextWidget.show())
+        self._aniGroup.addAnimation(nextWidgetAniGroup)
+
+        if not isBack:
+            # slide in next widget
+            nextWidget.setGeometry(0, offset, self.width(), self.height())
+            slideInAni = QPropertyAnimation(nextWidget, b'pos', self)
+            slideInAni.setDuration(inDuration)
+            slideInAni.setStartValue(QPoint(0, offset))
+            slideInAni.setEndValue(QPoint(0, 0))
+            slideInAni.setEasingCurve(inCurve)
+            nextWidgetAniGroup.addAnimation(slideInAni)
+        else:
+            # directly show next widget
+            nextWidget.setGeometry(self.rect())
+

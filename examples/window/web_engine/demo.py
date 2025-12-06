@@ -3,13 +3,13 @@ import sys
 
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QApplication, QFrame, QHBoxLayout, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 from qfluentwidgets import setTheme, Theme, SubtitleLabel, setFont, SplitFluentWindow
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow.webengine import FramelessWebEngineView
 
 
-class Widget(QFrame):
+class Widget(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
