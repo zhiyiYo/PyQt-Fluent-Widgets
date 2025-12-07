@@ -551,9 +551,8 @@ class NavigationPanel(QFrame):
 
         for item in self.items.values():
             w = item.widget
-            if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
-                if isinstance(w, NavigationTreeWidget):
-                    w.saveExpandState()
+            if isinstance(w, NavigationTreeWidget) and w.isRoot():
+                w.saveExpandState()
                 w.setExpanded(False)
 
         self.expandAni.setStartValue(

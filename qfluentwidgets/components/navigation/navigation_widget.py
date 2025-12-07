@@ -675,18 +675,14 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         if not clickArrow or self.isCompacted:
             self.clicked.emit(triggerByUser)
 
-    def isRememberExpandState(self):
-        return self._rememberExpandState
-
     def setRememberExpandState(self, remember: bool):
         self._rememberExpandState = remember
 
     def saveExpandState(self):
-        if self._rememberExpandState:
-            self._wasExpanded = self.isExpanded
+        self._wasExpanded = self.isExpanded if self._rememberExpandState else False
 
     def restoreExpandState(self, ani=True):
-        if self._rememberExpandState and self._wasExpanded:
+        if self._wasExpanded:
             self.setExpanded(True, ani)
 
 
