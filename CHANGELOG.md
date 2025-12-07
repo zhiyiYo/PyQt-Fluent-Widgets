@@ -2,7 +2,9 @@
 
 ## v1.10.0
 ### 新组件
+* 添加 `TabWidget` 标签页组件
 * 添加 `NavigationUserCard` 组件
+* 添加 `EntranceTransitionStackedWidget` 和 `DrillInTransitionStackedWidget` 组件
 
 ### 新特性
 * 添加侧边导航栏分组标题功能
