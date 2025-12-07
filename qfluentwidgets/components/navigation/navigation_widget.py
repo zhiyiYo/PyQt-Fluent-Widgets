@@ -494,6 +494,8 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.treeChildren = []  # type: List[NavigationTreeWidget]
         self.isExpanded = False
         self._icon = icon
+        self._rememberExpandState = False
+        self._wasExpanded = False
 
         self.itemWidget = NavigationTreeItem(icon, text, isSelectable, self)
         self.vBoxLayout = QVBoxLayout(self)
@@ -672,6 +674,20 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
         if not clickArrow or self.isCompacted:
             self.clicked.emit(triggerByUser)
+
+    def isRememberExpandState(self):
+        return self._rememberExpandState
+
+    def setRememberExpandState(self, remember: bool):
+        self._rememberExpandState = remember
+
+    def saveExpandState(self):
+        if self._rememberExpandState:
+            self._wasExpanded = self.isExpanded
+
+    def restoreExpandState(self, ani=True):
+        if self._rememberExpandState and self._wasExpanded:
+            self.setExpanded(True, ani)
 
 
 class NavigationAvatarWidget(NavigationWidget):
