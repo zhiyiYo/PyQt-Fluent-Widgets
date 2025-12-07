@@ -25,7 +25,7 @@ from .scroll_area import SingleDirectionScrollArea, SmoothMode, SmoothScrollArea
 from .slider import Slider, HollowHandleStyle, ClickableSlider
 from .spin_box import (SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit, CompactSpinBox,
                        CompactDoubleSpinBox, CompactDateEdit, CompactDateTimeEdit, CompactTimeEdit)
-from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget
+from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget, TransitionStackedWidget, EntranceTransitionStackedWidget, DrillInTransitionStackedWidget
 from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .table_view import TableView, TableWidget, TableItemDelegate
@@ -37,6 +37,6 @@ from .progress_ring import ProgressRing, IndeterminateProgressRing
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate, ScrollBarHandleDisplayMode
 from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView, PopupTeachingTip
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
-from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode
+from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode, TabWidget
 from .pips_pager import PipsPager, VerticalPipsPager, HorizontalPipsPager, PipsScrollButtonDisplayMode
 from .separator import HorizontalSeparator, VerticalSeparator

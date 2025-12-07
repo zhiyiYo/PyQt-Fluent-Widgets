@@ -4,7 +4,7 @@ from pathlib import Path
 
 from PyQt6.QtCore import Qt, QSize, QUrl, QPoint
 from PyQt6.QtGui import QIcon, QDesktopServices, QColor
-from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QApplication, QFrame, QStackedWidget
+from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QApplication, QWidget, QStackedWidget
 
 from qfluentwidgets import (NavigationItemPosition, MessageBox, MSFluentTitleBar, MSFluentWindow,
                             TabBar, SubtitleLabel, setFont, TabCloseButtonDisplayMode, IconWidget,
@@ -14,7 +14,7 @@ from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import AcrylicWindow
 
 
-class Widget(QFrame):
+class Widget(QWidget):
 
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)
@@ -27,7 +27,7 @@ class Widget(QFrame):
         self.setObjectName(text.replace(' ', '-'))
 
 
-class TabInterface(QFrame):
+class TabInterface(QWidget):
     """ Tab interface """
 
     def __init__(self, text: str, icon, objectName, parent=None):
@@ -94,6 +94,10 @@ class CustomTitleBar(MSFluentTitleBar):
         self.hBoxLayout.insertWidget(7, self.avatar, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.insertSpacing(8, 20)
 
+        if sys.platform == "darwin":
+            self.hBoxLayout.insertSpacing(8, 52)
+
+
     def canDrag(self, pos: QPoint):
         if not super().canDrag(pos):
             return False
@@ -110,6 +114,7 @@ class Window(MSFluentWindow):
         super().__init__()
         self.setTitleBar(CustomTitleBar(self))
         self.tabBar = self.titleBar.tabBar  # type: TabBar
+        self.tabCount = 1  # tab counter for unique routeKey
 
         # create sub interface
         self.homeInterface = QStackedWidget(self, objectName='homeInterface')
@@ -172,8 +177,9 @@ class Window(MSFluentWindow):
         self.stackedWidget.setCurrentWidget(self.homeInterface)
 
     def onTabAddRequested(self):
-        text = f'硝子酱一级棒卡哇伊×{self.tabBar.count()}'
+        text = f'硝子酱一级棒卡哇伊×{self.tabCount}'
         self.addTab(text, text, 'resource/Smiling_with_heart.png')
+        self.tabCount += 1
 
     def addTab(self, routeKey, text, icon):
         self.tabBar.addTab(routeKey, text, icon)

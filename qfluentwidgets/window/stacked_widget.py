@@ -2,7 +2,7 @@
 from PyQt6.QtCore import Qt, pyqtSignal, QEasingCurve
 from PyQt6.QtWidgets import QFrame, QHBoxLayout, QAbstractScrollArea
 
-from ..components.widgets.stacked_widget import PopUpAniStackedWidget
+from ..components.widgets.stacked_widget import PopUpAniStackedWidget, EntranceTransitionStackedWidget
 
 
 
@@ -14,7 +14,7 @@ class StackedWidget(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.hBoxLayout = QHBoxLayout(self)
-        self.view = PopUpAniStackedWidget(self)
+        self.view = EntranceTransitionStackedWidget(self)
 
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.hBoxLayout.addWidget(self.view)
@@ -44,11 +44,7 @@ class StackedWidget(QFrame):
         if isinstance(widget, QAbstractScrollArea):
             widget.verticalScrollBar().setValue(0)
 
-        if not popOut:
-            self.view.setCurrentWidget(widget, duration=300)
-        else:
-            self.view.setCurrentWidget(
-                widget, True, False, 200, QEasingCurve.Type.InQuad)
+        self.view.setCurrentWidget(widget, isBack=popOut)
 
     def setCurrentIndex(self, index, popOut=True):
         self.setCurrentWidget(self.view.widget(index), popOut)
