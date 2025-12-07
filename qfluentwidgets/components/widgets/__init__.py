@@ -37,6 +37,6 @@ from .progress_ring import ProgressRing, IndeterminateProgressRing
 from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate, ScrollBarHandleDisplayMode
 from .teaching_tip import TeachingTip, TeachingTipTailPosition, TeachingTipView, PopupTeachingTip
 from .flyout import FlyoutView, FlyoutViewBase, Flyout, FlyoutAnimationType, FlyoutAnimationManager
-from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode
+from .tab_view import TabBar, TabItem, TabCloseButtonDisplayMode, TabWidget
 from .pips_pager import PipsPager, VerticalPipsPager, HorizontalPipsPager, PipsScrollButtonDisplayMode
 from .separator import HorizontalSeparator, VerticalSeparator

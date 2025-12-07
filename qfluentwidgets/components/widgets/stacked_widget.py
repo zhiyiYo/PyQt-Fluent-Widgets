@@ -242,6 +242,10 @@ class TransitionStackedWidget(QStackedWidget):
         w.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         return super().addWidget(w)
 
+    def insertWidget(self, index, w):
+        w.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        return super().insertWidget(index, w)
+
     def setCurrentWidget(self, widget: QWidget, duration: int = None, isBack: bool = False):
         """ set current page widget with transition animation
 
