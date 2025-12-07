@@ -2,7 +2,7 @@
 from typing import Union, List
 
 from PySide6.QtCore import (Qt, Signal, QRect, QRectF, QPropertyAnimation, Property, QMargins,
-                          QEasingCurve, QPoint, QEvent)
+                          QEasingCurve, QPoint, QEvent, QParallelAnimationGroup)
 from PySide6.QtGui import QColor, QPainter, QPen, QIcon, QCursor, QFont, QBrush, QPixmap, QImage
 from PySide6.QtWidgets import QWidget, QVBoxLayout
 from collections import deque
@@ -12,7 +12,8 @@ from ...common.style_sheet import themeColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.color import autoFallbackThemeColor
-from ...common.font import setFont
+from ...common.font import setFont, getFont
+from ...common.animation import ScaleSlideAnimation
 from ..widgets.scroll_area import ScrollArea
 from ..widgets.label import AvatarWidget
 from ..widgets.info_badge import InfoBadgeManager, InfoBadgePosition
@@ -31,6 +32,7 @@ class NavigationWidget(QWidget):
         self.isSelected = False
         self.isPressed = False
         self.isEnter = False
+        self.isAboutSelected = False
         self.isSelectable = isSelectable
         self.treeParent = None
         self.nodeDepth = 0
@@ -38,6 +40,10 @@ class NavigationWidget(QWidget):
         # text color
         self.lightTextColor = QColor(0, 0, 0)
         self.darkTextColor = QColor(255, 255, 255)
+
+        # indicator color
+        self.lightIndicatorColor = QColor()
+        self.darkIndicatorColor = QColor()
 
         self.setFixedSize(40, 36)
 
@@ -89,6 +95,7 @@ class NavigationWidget(QWidget):
             return
 
         self.isSelected = isSelected
+        self.isAboutSelected = False
         self.update()
         self.selectedChanged.emit(isSelected)
 
@@ -110,6 +117,24 @@ class NavigationWidget(QWidget):
         self.setLightTextColor(light)
         self.setDarkTextColor(dark)
 
+    def setAboutSelected(self, selected: bool):
+        self.isAboutSelected = selected
+        self.update()
+
+    def _margins(self):
+        return QMargins(0, 0, 0, 0)
+
+    def indicatorRect(self):
+        """ get the indicator geometry """
+        m = self._margins()
+        return QRectF(m.left(), 10, 3, 16)
+
+    def setIndicatorColor(self, light, dark):
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
+        self.update()
+
+
 
 class NavigationPushButton(NavigationWidget):
     """ Navigation push button """
@@ -128,8 +153,6 @@ class NavigationPushButton(NavigationWidget):
 
         self._icon = icon
         self._text = text
-        self.lightIndicatorColor = QColor()
-        self.darkIndicatorColor = QColor()
 
         setFont(self)
 
@@ -147,16 +170,8 @@ class NavigationPushButton(NavigationWidget):
         self._icon = icon
         self.update()
 
-    def _margins(self):
-        return QMargins(0, 0, 0, 0)
-
     def _canDrawIndicator(self):
         return self.isSelected
-
-    def setIndicatorColor(self, light, dark):
-        self.lightIndicatorColor = QColor(light)
-        self.darkIndicatorColor = QColor(dark)
-        self.update()
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -181,9 +196,9 @@ class NavigationPushButton(NavigationWidget):
 
             # draw indicator
             painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
-            painter.drawRoundedRect(pl, 10, 3, 16, 1.5, 1.5)
-        elif self.isEnter and self.isEnabled() and globalRect.contains(QCursor.pos()):
-            painter.setBrush(QColor(c, c, c, 10))
+            painter.drawRoundedRect(self.indicatorRect(), 1.5, 1.5)
+        elif ((self.isEnter and globalRect.contains(QCursor.pos())) or self.isAboutSelected) and self.isEnabled():
+            painter.setBrush(QColor(c, c, c, 6 if self.isAboutSelected else 10))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
         drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
@@ -233,6 +248,103 @@ class NavigationSeparator(NavigationWidget):
         painter.drawLine(0, 1, self.width(), 1)
 
 
+class NavigationItemHeader(NavigationWidget):
+    """ Navigation item header for grouping items """
+
+    def __init__(self, text: str, parent=None):
+        super().__init__(False, parent=parent)
+        self._text = text
+        self._targetHeight = 30
+        setFont(self, 12)  # smaller font size for header
+
+        # Override text colors for header style
+        self.lightTextColor = QColor(96, 96, 96)  # gray in light mode
+        self.darkTextColor = QColor(160, 160, 160)  # light gray in dark mode
+
+        # Animation for smooth height transition
+        self.heightAni = QPropertyAnimation(self, b'maximumHeight', self)
+        self.heightAni.setDuration(150)
+        self.heightAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.heightAni.valueChanged.connect(self._onHeightChanged)
+
+        self.setCursor(Qt.ArrowCursor)  # normal cursor, not hand cursor
+
+        # Initialize to hidden state
+        self.setFixedHeight(0)
+
+    def text(self):
+        return self._text
+
+    def setText(self, text: str):
+        self._text = text
+        self.update()
+
+    def setCompacted(self, isCompacted: bool):
+        """ set whether the widget is compacted """
+        self.isCompacted = isCompacted
+
+        # Stop any running animation
+        self.heightAni.stop()
+
+        if isCompacted:
+            # in compact mode, animate to height 0
+            self.setFixedWidth(40)
+            self.heightAni.setStartValue(self.height())
+            self.heightAni.setEndValue(0)
+        else:
+            # in expand mode, animate to full height
+            self.setFixedWidth(self.EXPAND_WIDTH)
+            self.setVisible(True)  # ensure visible before expanding
+            self.heightAni.setStartValue(self.height())
+            self.heightAni.setEndValue(self._targetHeight)
+
+        self.heightAni.start()
+        self.update()
+
+    def _onCollapseFinished(self):
+        """ called when collapse animation finishes """
+        if not self.isCompacted:
+            self.setVisible(False)
+
+    def _onHeightChanged(self, value):
+        """ called when height animation value changes """
+        self.setFixedHeight(value)
+
+    def mousePressEvent(self, e):
+        # do not handle mouse press - header is not clickable
+        e.ignore()
+
+    def mouseReleaseEvent(self, e):
+        # do not handle mouse release - header is not clickable
+        e.ignore()
+
+    def enterEvent(self, e):
+        # do not show hover effect
+        pass
+
+    def leaveEvent(self, e):
+        # do not show hover effect
+        pass
+
+    def paintEvent(self, e):
+        if self.height() == 0 or not self.isVisible():
+            return
+
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
+
+        # Calculate opacity based on height for fade effect
+        opacity = min(1.0, self.height() / max(1, self._targetHeight))
+        painter.setOpacity(opacity)
+
+        if not self.isCompacted:
+            # draw header text in expand mode
+            painter.setFont(self.font())
+            painter.setPen(self.textColor())
+            painter.drawText(QRectF(16, 0, self.width() - 16, self.height()),
+                           Qt.AlignLeft | Qt.AlignVCenter, self.text())
+
+
 class NavigationTreeItem(NavigationPushButton):
     """ Navigation tree item widget """
 
@@ -252,11 +364,11 @@ class NavigationTreeItem(NavigationPushButton):
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
         clickArrow = QRectF(self.width()-30, 8, 20, 20).contains(e.pos())
-        self.itemClicked.emit(True, clickArrow and not self.parent().isLeaf())
+        self.itemClicked.emit(True, clickArrow and not self.treeWidget().isLeaf())
         self.update()
 
     def _canDrawIndicator(self):
-        p = self.parent()   # type: NavigationTreeWidget
+        p = self.treeWidget()   # type: NavigationTreeWidget
         if p.isLeaf() or p.isSelected:
             return p.isSelected
 
@@ -267,14 +379,19 @@ class NavigationTreeItem(NavigationPushButton):
         return False
 
     def _margins(self):
-        p = self.parent()   # type: NavigationTreeWidget
+        p = self.treeWidget()   # type: NavigationTreeWidget
         return QMargins(p.nodeDepth*28, 0, 20*bool(p.treeChildren), 0)
 
     def paintEvent(self, e):
         super().paintEvent(e)
-        if self.isCompacted or not self.parent().treeChildren:
+        self._drawDropDownArrow()
+
+    def _drawDropDownArrow(self):
+        # only draw arrow on inner item
+        if self.isCompacted or self.treeWidget().isLeaf():
             return
 
+        # draw drop down arrow
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
@@ -287,6 +404,9 @@ class NavigationTreeItem(NavigationPushButton):
         painter.translate(self.width() - 20, 18)
         painter.rotate(self.arrowAngle)
         FIF.ARROW_DOWN.render(painter, QRectF(-5, -5, 9.6, 9.6))
+
+    def treeWidget(self) -> 'NavigationTreeWidget':
+        return self.parent()
 
     def getArrowAngle(self):
         return self._arrowAngle
@@ -383,6 +503,9 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         self.expandAni.valueChanged.connect(self.expanded)
         self.expandAni.finished.connect(self.parentWidget().layout().invalidate)
 
+    def _margins(self):
+        return self.itemWidget._margins()
+
     def addChild(self, child):
         self.insertChild(-1, child)
 
@@ -417,6 +540,8 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
 
     def setIndicatorColor(self, light, dark):
         """ set the indicator color in light/dark theme mode """
+        self.lightIndicatorColor = QColor(light)
+        self.darkIndicatorColor = QColor(dark)
         self.itemWidget.setIndicatorColor(light, dark)
 
     def setFont(self, font: QFont):
@@ -525,6 +650,10 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
         super().setCompacted(isCompacted)
         self.itemWidget.setCompacted(isCompacted)
 
+    def setAboutSelected(self, selected: bool):
+        self.isAboutSelected = selected
+        self.itemWidget.setAboutSelected(selected)
+
     def _onClicked(self, triggerByUser, clickArrow):
         if not self.isCompacted:
             if self.isSelectable and not self.isSelected and not clickArrow:
@@ -567,21 +696,28 @@ class NavigationAvatarWidget(NavigationWidget):
         painter.setRenderHints(
             QPainter.SmoothPixmapTransform | QPainter.Antialiasing)
 
-        painter.setPen(Qt.NoPen)
-
         if self.isPressed:
             painter.setOpacity(0.7)
 
-        # draw background
-        if self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
+        self._drawBackground(painter)
+        self._drawText(painter)
 
-        if not self.isCompacted:
-            painter.setPen(self.textColor())
-            painter.setFont(self.font())
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+    def _drawText(self, painter: QPainter):
+        if self.isCompacted:
+            return
+
+        painter.setPen(self.textColor())
+        painter.setFont(self.font())
+        painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, self.name)
+
+    def _drawBackground(self, painter):
+        if not self.isEnter:
+            return
+
+        c = 255 if isDarkTheme() else 0
+        painter.setBrush(QColor(c, c, c, 10))
+        painter.setPen(Qt.NoPen)
+        painter.drawRoundedRect(self.rect(), 5, 5)
 
 
 @InfoBadgeManager.register(InfoBadgePosition.NAVIGATION_ITEM)
@@ -630,8 +766,7 @@ class NavigationFlyoutMenu(ScrollArea):
         self.setWidget(self.view)
         self.setWidgetResizable(True)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setStyleSheet("ScrollArea{border:none;background:transparent}")
-        self.view.setStyleSheet("QWidget{border:none;background:transparent}")
+        self.enableTransparentBackground()
 
         self.vBoxLayout.setSpacing(5)
         self.vBoxLayout.setContentsMargins(5, 8, 5, 8)
@@ -695,3 +830,235 @@ class NavigationFlyoutMenu(ScrollArea):
             queue.extend([i for i in node.treeChildren if not i.isHidden()])
 
         return nodes
+
+
+class NavigationUserCard(NavigationAvatarWidget):
+    """ Navigation user card widget """
+
+    def __init__(self, parent=None):
+        super().__init__(name="", parent=parent)
+
+        # text properties
+        self._title = ""
+        self._subtitle = ""
+        self._titleSize = 14
+        self._subtitleSize = 12
+        self._subtitleColor = None  # type: QColor
+
+        # animation properties
+        self._textOpacity = 0.0
+        self._animationDuration = 250
+        self._animationGroup = QParallelAnimationGroup(self)
+
+        # avatar size animation
+        self._radiusAni = QPropertyAnimation(self.avatar, b"radius", self)
+        self._radiusAni.setDuration(self._animationDuration)
+        self._radiusAni.setEasingCurve(QEasingCurve.OutCubic)
+        self._radiusAni.valueChanged.connect(self._updateAvatarPosition)
+
+        # text opacity animation
+        self._opacityAni = QPropertyAnimation(self, b"textOpacity", self)
+        self._opacityAni.setDuration(int(self._animationDuration * 0.8))
+        self._opacityAni.setEasingCurve(QEasingCurve.InOutQuad)
+
+        self._animationGroup.addAnimation(self._radiusAni)
+        self._animationGroup.addAnimation(self._opacityAni)
+        self._animationGroup.finished.connect(self.update)
+
+        # initial size
+        self.setFixedSize(40, 36)
+
+    def setAvatarIcon(self, icon: FIF):
+        """ set avatar icon when no image is set """
+        self.avatar.setImage(toQIcon(icon).pixmap(64, 64))
+        self.update()
+
+    def setAvatarBackgroundColor(self, light: QColor, dark: QColor):
+        """ set avatar background color in light/dark theme mode """
+        self.avatar.setBackgroundColor(light, dark)
+        self.update()
+
+    def title(self):
+        """ get user card title """
+        return self._title
+
+    def setTitle(self, title: str):
+        """ set user card title """
+        self._title = title
+        self.setName(title)
+        self.update()
+
+    def subtitle(self):
+        """ get user card subtitle """
+        return self._subtitle
+
+    def setSubtitle(self, subtitle: str):
+        """ set user card subtitle """
+        self._subtitle = subtitle
+        self.update()
+
+    def setTitleFontSize(self, size: int):
+        """ set title font size """
+        self._titleSize = size
+        self.update()
+
+    def setSubtitleFontSize(self, size: int):
+        """ set subtitle font size """
+        self._subtitleSize = size
+        self.update()
+
+    def setAnimationDuration(self, duration: int):
+        """ set animation duration in milliseconds """
+        self._animationDuration = duration
+        self._radiusAni.setDuration(duration)
+        self._opacityAni.setDuration(int(duration * 0.8))
+
+    def setCompacted(self, isCompacted: bool):
+        """ set whether the widget is compacted """
+        if isCompacted == self.isCompacted:
+            return
+
+        self.isCompacted = isCompacted
+
+        if isCompacted:
+            # compact mode: 24x24 avatar like NavigationAvatarWidget
+            self.setFixedSize(40, 36)
+            self._radiusAni.setStartValue(self.avatar.radius)
+            self._radiusAni.setEndValue(12)  # 24px diameter
+            self._opacityAni.setStartValue(self._textOpacity)
+            self._opacityAni.setEndValue(0.0)
+        else:
+            # expanded mode: large avatar with text
+            self.setFixedSize(self.EXPAND_WIDTH, 80)
+            self._radiusAni.setStartValue(self.avatar.radius)
+            self._radiusAni.setEndValue(32)  # 64px diameter
+            self._opacityAni.setStartValue(self._textOpacity)
+            self._opacityAni.setEndValue(1.0)
+
+        self._animationGroup.start()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(
+            QPainter.SmoothPixmapTransform | QPainter.Antialiasing | QPainter.TextAntialiasing
+        )
+
+        if self.isPressed:
+            painter.setOpacity(0.7)
+
+        # draw hover background
+        self._drawBackground(painter)
+
+        # draw text in expanded mode
+        if not self.isCompacted and self._textOpacity > 0:
+            self._drawText(painter)
+
+    def _drawText(self, painter: QPainter):
+        """ draw title and subtitle """
+        textX = 16 + int(self.avatar.radius * 2) + 12
+        textWidth = self.width() - textX - 16
+
+        # draw title
+        painter.setFont(getFont(self._titleSize, QFont.Bold))
+        c = self.textColor()
+        c.setAlpha(int(255 * self._textOpacity))
+        painter.setPen(c)
+
+        titleY = self.height() // 2 - 2
+        painter.drawText(QRectF(textX, 0, textWidth, titleY),
+                         Qt.AlignLeft | Qt.AlignBottom,
+                         self._title)
+
+        # draw subtitle with semi-transparent color
+        if self._subtitle:
+            painter.setFont(getFont(self._subtitleSize))
+
+            c = self.subtitleColor or self.textColor()
+            c.setAlpha(int(150 * self._textOpacity))
+            painter.setPen(c)
+
+            subtitleY = self.height() // 2 + 2
+            painter.drawText(QRectF(textX, subtitleY, textWidth, self.height() - subtitleY),
+                             Qt.AlignLeft | Qt.AlignTop,
+                             self._subtitle)
+
+    def _updateAvatarPosition(self):
+        """ update avatar position based on current size """
+        if self.isCompacted:
+            self.avatar.move(8, 6)
+        else:
+            self.avatar.move(16, (self.height() - self.avatar.height()) // 2)
+
+    # properties
+    @Property(float)
+    def textOpacity(self):
+        return self._textOpacity
+
+    @textOpacity.setter
+    def textOpacity(self, value: float):
+        self._textOpacity = value
+        self.update()
+
+    @Property(QColor)
+    def subtitleColor(self):
+        return self._subtitleColor
+
+    @subtitleColor.setter
+    def subtitleColor(self, color: QColor):
+        self._subtitleColor = color
+        self.update()
+
+
+class NavigationIndicator(QWidget):
+    """ Navigation indicator """
+
+    aniFinished = Signal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.lightColor = QColor()
+        self.darkColor = QColor()
+
+        self.scaleSlideAni = ScaleSlideAnimation(self, Qt.Orientation.Vertical)
+
+        self.resize(3, 16)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.hide()
+
+        self.scaleSlideAni.valueChanged.connect(lambda g: self.setGeometry(g.toRect()))
+        self.scaleSlideAni.finished.connect(self.aniFinished)
+
+    def startAnimation(self, startRect: QRectF, endRect: QRectF, useCrossFade=False):
+        """ Start indicator animation
+
+        Parameters
+        -----------
+        endRect: QRectF
+            the final geometry of indicator
+
+        useCrossFade: bool
+            whether to use cross fade animation
+        """
+        self.setGeometry(startRect.toRect())
+        self.show()
+
+        self.scaleSlideAni.setGeometry(startRect)
+        self.scaleSlideAni.startAnimation(endRect, useCrossFade)
+
+    def stopAnimation(self):
+        """ Stop animation """
+        self.scaleSlideAni.stopAnimation()
+        self.hide()
+
+    def setIndicatorColor(self, light, dark):
+        self.lightColor = QColor(light)
+        self.darkColor = QColor(dark)
+        self.update()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(autoFallbackThemeColor(self.lightColor, self.darkColor))
+        painter.drawRoundedRect(self.rect(), 1.5, 1.5)

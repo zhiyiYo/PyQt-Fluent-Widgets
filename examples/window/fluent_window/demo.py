@@ -3,14 +3,14 @@ import sys
 
 from PySide6.QtCore import Qt, QUrl
 from PySide6.QtGui import QIcon, QDesktopServices
-from PySide6.QtWidgets import QApplication, QFrame, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, FluentWindow,
                             NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, InfoBadge,
                             InfoBadgePosition, FluentBackgroundTheme)
 from qfluentwidgets import FluentIcon as FIF
 
 
-class Widget(QFrame):
+class Widget(QWidget):
 
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)

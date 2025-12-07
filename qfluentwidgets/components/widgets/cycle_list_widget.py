@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Iterable
 
-from PySide6.QtCore import Qt, Signal, QSize, QEvent, QRectF
+from PySide6.QtCore import Qt, Signal, QSize, QEvent, QRectF, QEasingCurve, QTime
 from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import QListWidget, QListWidgetItem, QToolButton
 
@@ -77,6 +77,8 @@ class CycleListWidget(QListWidget):
         self.downButton = ScrollButton(FluentIcon.CARE_DOWN_SOLID, self)
         self.scrollDuration = 250
         self.originItems = list(items)
+        self._lastScrollTime = QTime.currentTime()
+        self._scrollButtonRepeatEnabled = False
 
         self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
         self.visibleNumber = 9
@@ -95,14 +97,20 @@ class CycleListWidget(QListWidget):
         # hide scroll bar
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.upButton.hide()
-        self.downButton.hide()
 
+        self.itemClicked.connect(self._onItemClicked)
+        self.installEventFilter(self)
+
+        # enable auto-repeat by default
         self.upButton.clicked.connect(self.scrollUp)
         self.downButton.clicked.connect(self.scrollDown)
-        self.itemClicked.connect(self._onItemClicked)
+        self.upButton.setAutoRepeatDelay(500)
+        self.upButton.setAutoRepeatInterval(50)
+        self.downButton.setAutoRepeatDelay(500)
+        self.downButton.setAutoRepeatInterval(50)
 
-        self.installEventFilter(self)
+        self.setScrollButtonRepeatEnabled(True)
+        self._setButtonsVisible(False)
 
     def setItems(self, items: list):
         """ set items in the list
@@ -190,28 +198,55 @@ class CycleListWidget(QListWidget):
         else:
             self.scrollUp()
 
+    def setScrollButtonRepeatEnabled(self, isEnabled: bool):
+        """ set whether to enable scroll button auto repeat """
+        if self._scrollButtonRepeatEnabled == isEnabled:
+            return
+
+        self._scrollButtonRepeatEnabled = isEnabled
+        self.upButton.setAutoRepeat(isEnabled)
+        self.downButton.setAutoRepeat(isEnabled)
+
+    def _scrollWithAnimation(self, index: int):
+        """ scroll with adaptive animation """
+        t = QTime.currentTime()
+        elapsed = self._lastScrollTime.msecsTo(t)
+        self._lastScrollTime = t
+
+        # fast linear animation for rapid repeat, smooth for single click
+        if (self.upButton.isDown() or self.downButton.isDown()) and elapsed < 200:
+            duration, easing = 100, QEasingCurve.Linear
+        else:
+            duration, easing = 250, QEasingCurve.OutQuad
+
+        self.vScrollBar.setScrollAnimation(duration, easing)
+        self.setCurrentIndex(index)
+        self.scrollToItem(self.currentItem())
+
     def scrollDown(self):
         """ scroll down an item """
-        self.setCurrentIndex(self.currentIndex() + 1)
-        self.scrollToItem(self.currentItem())
+        self._scrollWithAnimation(self.currentIndex() + 1)
 
     def scrollUp(self):
         """ scroll up an item """
-        self.setCurrentIndex(self.currentIndex() - 1)
-        self.scrollToItem(self.currentItem())
+        self._scrollWithAnimation(self.currentIndex() - 1)
+
+    def _setButtonsVisible(self, visible: bool):
+        """ set scroll buttons visibility """
+        self.upButton.setVisible(visible)
+        self.downButton.setVisible(visible)
 
     def enterEvent(self, e):
-        self.upButton.show()
-        self.downButton.show()
+        self._setButtonsVisible(True)
 
     def leaveEvent(self, e):
-        self.upButton.hide()
-        self.downButton.hide()
+        self._setButtonsVisible(False)
 
     def resizeEvent(self, e):
-        self.upButton.resize(self.width(), 34)
-        self.downButton.resize(self.width(), 34)
-        self.downButton.move(0, self.height() - 34)
+        w, h = self.width(), 34
+        self.upButton.resize(w, h)
+        self.downButton.resize(w, h)
+        self.downButton.move(0, self.height() - h)
 
     def eventFilter(self, obj, e: QEvent):
         if obj is not self or e.type() != QEvent.KeyPress:

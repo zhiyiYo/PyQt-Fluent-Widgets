@@ -29,11 +29,16 @@ class Demo(QWidget):
 
         self.vBoxLayout = QVBoxLayout(self)
 
+        # create pickers with scroll button repeat enabled by default
         self.datePicker1 = DatePicker(self)
         self.datePicker2 = ZhDatePicker(self)
         self.timePicker1 = AMTimePicker(self)
         self.timePicker2 = TimePicker(self)
         self.timePicker3 = TimePicker(self, showSeconds=True)
+
+        # disable scroll button repeat if needed
+        # self.datePicker1.setScrollButtonRepeatEnabled(False)
+        # self.timePicker1.setScrollButtonRepeatEnabled(False)
 
         # customize column format
         self.timePicker3.setColumnFormatter(2, SecondsFormatter())

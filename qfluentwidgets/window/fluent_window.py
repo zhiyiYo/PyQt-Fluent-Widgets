@@ -239,16 +239,21 @@ class FluentWindow(FluentWindowBase):
         position: NavigationItemPosition
             the position of navigation item
 
-        parent: QWidget
-            the parent of navigation item
+        parent: QWidget | str
+            * QWidget: the parent of navigation item
+            * str: the parent route key of navigation item
 
         isTransparent: bool
             whether to use transparent background
         """
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
-        if parent and not parent.objectName():
-            raise ValueError("The object name of `parent` can't be empty string.")
+
+        parentRouteKey = parent
+        if parent and isinstance(parent, QWidget):
+            parentRouteKey = parent.objectName()
+            if not parentRouteKey:
+                raise ValueError("The object name of `parent` can't be empty string.")
 
         interface.setProperty("isStackedTransparent", isTransparent)
         self.stackedWidget.addWidget(interface)
@@ -262,7 +267,7 @@ class FluentWindow(FluentWindowBase):
             onClick=lambda: self.switchTo(interface),
             position=position,
             tooltip=text,
-            parentRouteKey=parent.objectName() if parent else None
+            parentRouteKey=parentRouteKey
         )
 
         # initialize selected item
