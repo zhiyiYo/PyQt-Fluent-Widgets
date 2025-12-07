@@ -8,6 +8,7 @@ from ...common.font import setFont
 from ...common.icon import FluentIconBase, drawIcon, Theme
 from ...common.color import autoFallbackThemeColor
 from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme
+from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty, ScaleSlideAnimation
 from ..widgets.button import PushButton, ToolButton, TransparentToolButton
 from .pivot import Pivot, PivotItem
 
@@ -74,6 +75,8 @@ class SegmentedWidget(Pivot):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.slideAni = FluentAnimation.create(
+            FluentAnimationType.POINT_TO_POINT, FluentAnimationProperty.SCALE, value=0, parent=self)
         self.setAttribute(Qt.WA_StyledBackground)
 
     def insertItem(self, index: int, routeKey: str, text: str, onClick=None, icon=None):
@@ -114,6 +117,9 @@ class SegmentedWidget(Pivot):
 
         x = int(self.currentItem().width() / 2 - 8 + self.slideAni.value())
         painter.drawRoundedRect(QRectF(x, self.height() - 3.5, 16, 3), 1.5, 1.5)
+
+    def currentIndicatorGeometry(self):
+        return self.currentItem().x() if self.currentItem() else 0
 
 
 class SegmentedToolWidget(SegmentedWidget):

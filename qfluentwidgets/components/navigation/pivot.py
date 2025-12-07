@@ -9,7 +9,7 @@ from ...common.font import setFont
 from ...common.router import qrouter
 from ...common.style_sheet import themeColor, FluentStyleSheet
 from ...common.color import autoFallbackThemeColor
-from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty
+from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty, ScaleSlideAnimation
 from ..widgets.button import PushButton
 from .navigation_panel import RouteKeyError
 
@@ -47,13 +47,13 @@ class Pivot(QWidget):
         super().__init__(parent)
         self.items = {}  # type: Dict[str, PivotItem]
         self._currentRouteKey = None
+        self._indicatorLength = 16
 
         self.lightIndicatorColor = QColor()
         self.darkIndicatorColor = QColor()
 
         self.hBoxLayout = QHBoxLayout(self)
-        self.slideAni = FluentAnimation.create(
-            FluentAnimationType.POINT_TO_POINT, FluentAnimationProperty.SCALE, value=0, parent=self)
+        self.slideAni = ScaleSlideAnimation(self)
 
         FluentStyleSheet.PIVOT.apply(self)
 
@@ -63,6 +63,7 @@ class Pivot(QWidget):
         self.hBoxLayout.setSizeConstraint(QHBoxLayout.SetMinimumSize)
 
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.slideAni.valueChanged.connect(lambda: self.update())
 
     def addItem(self, routeKey: str, text: str, onClick=None, icon=None):
         """ add item
@@ -207,8 +208,10 @@ class Pivot(QWidget):
         if routeKey not in self.items or routeKey == self.currentRouteKey():
             return
 
+        self._adjustIndicatorPos()
+
         self._currentRouteKey = routeKey
-        self.slideAni.startAnimation(self.widget(routeKey).x())
+        self.slideAni.startAnimation(self.currentIndicatorGeometry())
 
         for k, item in self.items.items():
             item.setSelected(k == routeKey)
@@ -218,6 +221,13 @@ class Pivot(QWidget):
     def showEvent(self, e):
         super().showEvent(e)
         self._adjustIndicatorPos()
+
+    def setIndicatorLength(self, len: int):
+        self._indicatorLength = len
+        self._adjustIndicatorPos()
+
+    def indicatorLength(self):
+        return self._indicatorLength
 
     def setItemFontSize(self, size: int):
         """ set the pixel font size of items """
@@ -255,7 +265,15 @@ class Pivot(QWidget):
         item = self.currentItem()
         if item:
             self.slideAni.stop()
-            self.slideAni.setValue(item.x())
+            self.slideAni.setValue(self.currentIndicatorGeometry())
+
+    def currentIndicatorGeometry(self):
+        item = self.currentItem()
+        if not item:
+            return QRectF(0, self.height() - 3, self.indicatorLength(), 3)
+
+        rect = item.geometry()
+        return QRectF(rect.x() - 8 + rect.width() // 2, self.height() - 3, self.indicatorLength(), 3)
 
     def paintEvent(self, e):
         super().paintEvent(e)
@@ -267,6 +285,4 @@ class Pivot(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
         painter.setPen(Qt.NoPen)
         painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
-
-        x = int(self.currentItem().width() / 2 - 8 + self.slideAni.value())
-        painter.drawRoundedRect(x, self.height() - 3, 16, 3, 1.5, 1.5)
+        painter.drawRoundedRect(self.slideAni.geometry, 1.5, 1.5)
