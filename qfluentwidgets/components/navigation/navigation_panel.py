@@ -587,17 +587,17 @@ class NavigationPanel(QFrame):
         prevItem = self.currentItem()
         self._currentRouteKey = routeKey
 
+        # find the items to display indicator animation
+        newItem = self.currentItem()
+        newIndicatorItem = self._findIndicatorItem(newItem)
+        prevIndicatorItem = self._findIndicatorItem(prevItem)
+
         # early return if indicator is not enabled or previous selected item is None
-        if not self.isIndicatorAnimationEnabled() or prevItem is None:
+        if not (self.isIndicatorAnimationEnabled() and prevItem and prevIndicatorItem and newIndicatorItem):
             for k, item in self.items.items():
                 item.widget.setSelected(k == routeKey)
 
             return
-
-        # find the items to display indicator animation
-        newItem = self.currentItem()
-        prevIndicatorItem = self._findIndicatorItem(prevItem)
-        newIndicatorItem = self._findIndicatorItem(newItem)
 
         # calculate the start and final geometry for animation
         preIndicatorRect = self._getIndicatorRect(prevIndicatorItem)
