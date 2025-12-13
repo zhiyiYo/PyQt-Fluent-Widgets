@@ -120,6 +120,7 @@ class IconCardView(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._isFirstShow = True
         self.trie = Trie()
         self.iconLibraryLabel = StrongBodyLabel(self.tr('Fluent Icons Library'), self)
         self.searchLineEdit = LineEdit(self)
@@ -218,6 +219,12 @@ class IconCardView(QWidget):
         for card in self.cards:
             card.show()
             self.flowLayout.addWidget(card)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        if self._isFirstShow:
+            self._isFirstShow = False
+            self.scrollWidget.adjustSize()
 
 
 class IconInterface(GalleryInterface):
