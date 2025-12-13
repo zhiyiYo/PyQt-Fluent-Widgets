@@ -503,6 +503,7 @@ class NavigationPanel(QFrame):
         """ expand navigation panel """
         self.indicator.stopAnimation()
         self._setWidgetCompacted(False)
+        self._restoreTreeExpandState(useAni)
         self.expandAni.setProperty('expand', True)
         self.menuButton.setToolTip(self.tr('Close Navigation'))
 
@@ -551,6 +552,7 @@ class NavigationPanel(QFrame):
         for item in self.items.values():
             w = item.widget
             if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
+                w.saveExpandState()
                 w.setExpanded(False)
 
         self.expandAni.setStartValue(
@@ -565,6 +567,12 @@ class NavigationPanel(QFrame):
     def _stopIndicatorAnimation(self):
         self.indicator.stopAnimation()
         self._onIndicatorAniFinished()
+
+    def _restoreTreeExpandState(self, useAni=True):
+        for item in self.items.values():
+            w = item.widget
+            if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
+                w.restoreExpandState(useAni)
 
     def toggle(self):
         """ toggle navigation panel """
