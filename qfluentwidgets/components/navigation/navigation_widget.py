@@ -482,6 +482,18 @@ class NavigationTreeWidgetBase(NavigationWidget):
         """ return child items """
         raise NotImplementedError
 
+    def setRememberExpandState(self, remember: bool):
+        """ set whether to remember expand state """
+        raise NotImplementedError
+
+    def saveExpandState(self):
+        """ save current expand state """
+        raise NotImplementedError
+
+    def restoreExpandState(self, ani=True):
+        """ restore saved expand state """
+        raise NotImplementedError
+
 
 class NavigationTreeWidget(NavigationTreeWidgetBase):
     """ Navigation tree widget """

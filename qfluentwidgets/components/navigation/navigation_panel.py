@@ -551,7 +551,7 @@ class NavigationPanel(QFrame):
 
         for item in self.items.values():
             w = item.widget
-            if isinstance(w, NavigationTreeWidget) and w.isRoot():
+            if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
                 w.saveExpandState()
                 w.setExpanded(False)
 
@@ -571,7 +571,7 @@ class NavigationPanel(QFrame):
     def _restoreTreeExpandState(self, useAni=True):
         for item in self.items.values():
             w = item.widget
-            if isinstance(w, NavigationTreeWidget) and w.isRoot():
+            if isinstance(w, NavigationTreeWidgetBase) and w.isRoot():
                 w.restoreExpandState(useAni)
 
     def toggle(self):
