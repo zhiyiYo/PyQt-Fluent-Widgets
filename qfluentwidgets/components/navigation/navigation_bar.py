@@ -1,7 +1,7 @@
 # coding:utf-8
 from typing import Dict, Union
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRect, QPropertyAnimation, QEasingCurve, pyqtProperty, QRectF
+from PyQt5.QtCore import Qt, pyqtSignal, QRect, QPropertyAnimation, QEasingCurve, pyqtProperty, QRectF, QPoint
 from PyQt5.QtGui import QFont, QPainter, QColor, QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
@@ -14,7 +14,7 @@ from ...common.icon import FluentIcon as FIF
 from ...common.router import qrouter
 from ...common.style_sheet import FluentStyleSheet
 from ..widgets.scroll_area import ScrollArea
-from .navigation_widget import NavigationPushButton, NavigationWidget
+from .navigation_widget import NavigationPushButton, NavigationWidget, NavigationIndicator
 from .navigation_panel import RouteKeyError, NavigationItemPosition
 
 
@@ -84,6 +84,10 @@ class NavigationBarPushButton(NavigationPushButton):
         self._isSelectedTextVisible = isVisible
         self.update()
 
+    def indicatorRect(self):
+        """ get the indicator geometry """
+        return QRectF(0, 16, 4, 24)
+
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing |
@@ -95,7 +99,7 @@ class NavigationBarPushButton(NavigationPushButton):
         self._drawText(painter)
 
     def _drawBackground(self, painter: QPainter):
-        if self.isSelected:
+        if self.isSelected and not self.isAboutSelected:
             painter.setBrush(QColor(255, 255, 255, 42) if isDarkTheme() else Qt.white)
             painter.drawRoundedRect(self.rect(), 5, 5)
 
@@ -105,7 +109,7 @@ class NavigationBarPushButton(NavigationPushButton):
                 painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
             else:
                 painter.drawRoundedRect(0, 19, 4, 18, 2, 2)
-        elif self.isPressed or self.isEnter:
+        elif self.isPressed or self.isEnter or self.isAboutSelected:
             c = 255 if isDarkTheme() else 0
             alpha = 9 if self.isEnter else 6
             painter.setBrush(QColor(c, c, c, alpha))
@@ -150,6 +154,7 @@ class NavigationBarPushButton(NavigationPushButton):
             return
 
         self.isSelected = isSelected
+        self.isAboutSelected = False
 
         if isSelected:
             self.iconAni.slideDown()
@@ -161,6 +166,9 @@ class NavigationBar(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self.indicator = NavigationIndicator(self)
+        self._isIndicatorAnimationEnabled = True
+        self._isSelectedTextVisible = True
 
         self.lightSelectedColor = QColor()
         self.darkSelectedColor = QColor()
@@ -175,6 +183,7 @@ class NavigationBar(QWidget):
 
         self.items = {}   # type: Dict[str, NavigationWidget]
         self.history = qrouter
+        self._currentRouteKey = None
 
         self.__initWidget()
 
@@ -193,6 +202,8 @@ class NavigationBar(QWidget):
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self)
         FluentStyleSheet.NAVIGATION_INTERFACE.apply(self.scrollWidget)
         self.__initLayout()
+
+        self.indicator.aniFinished.connect(self._onIndicatorAniFinished)
 
     def __initLayout(self):
         self.vBoxLayout.setContentsMargins(0, 5, 0, 5)
@@ -302,6 +313,7 @@ class NavigationBar(QWidget):
 
         w = NavigationBarPushButton(icon, text, selectable, selectedIcon, self)
         w.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
+        w.setSelectedTextVisible(self.isSelectedTextVisible())
         self.insertWidget(index, routeKey, w, onClick, position)
         return w
 
@@ -374,6 +386,9 @@ class NavigationBar(QWidget):
         widget.deleteLater()
         self.history.remove(routeKey)
 
+    def currentItem(self):
+        return self.widget(self._currentRouteKey) if self._currentRouteKey else None
+
     def setCurrentItem(self, routeKey: str):
         """ set current selected item
 
@@ -382,11 +397,31 @@ class NavigationBar(QWidget):
         routeKey: str
             the unique name of item
         """
-        if routeKey not in self.items:
+        if routeKey not in self.items or routeKey == self._currentRouteKey:
             return
 
-        for k, widget in self.items.items():
-            widget.setSelected(k == routeKey)
+        self._stopIndicatorAnimation()
+
+        prevItem = self.currentItem()
+        self._currentRouteKey = routeKey
+
+        # early return if indicator is not enabled or previous selected item is None
+        if not self.isIndicatorAnimationEnabled() or prevItem is None:
+            for k, widget in self.items.items():
+                widget.setSelected(k == routeKey)
+
+            return
+
+        # calculate the start and final geometry for animation
+        newItem = self.currentItem()
+        preIndicatorRect = self._getIndicatorRect(prevItem)
+        newIndicatorRect = self._getIndicatorRect(newItem)
+
+        # start animation
+        prevItem.setSelected(False)
+        newItem.setAboutSelected(True)
+        self.indicator.setIndicatorColor(newItem.lightIndicatorColor, newItem.darkIndicatorColor)
+        self.indicator.startAnimation(preIndicatorRect, newIndicatorRect)
 
     def setFont(self, font: QFont):
         """ set the font of navigation item """
@@ -397,8 +432,15 @@ class NavigationBar(QWidget):
 
     def setSelectedTextVisible(self, isVisible: bool):
         """ set whether the text is visible when button is selected """
+        if isVisible == self._isSelectedTextVisible:
+            return
+
+        self._isSelectedTextVisible = isVisible
         for widget in self.buttons():
             widget.setSelectedTextVisible(isVisible)
+
+    def isSelectedTextVisible(self):
+        return self._isSelectedTextVisible
 
     def setSelectedColor(self, light, dark):
         """ set the selected color of all items """
@@ -410,7 +452,37 @@ class NavigationBar(QWidget):
     def buttons(self):
         return [i for i in self.items.values() if isinstance(i, NavigationPushButton)]
 
+    def isIndicatorAnimationEnabled(self):
+        return self._isIndicatorAnimationEnabled
+
+    def setIndicatorAnimationEnabled(self, isEnabled: bool):
+        self._isIndicatorAnimationEnabled = isEnabled
+
     def _onWidgetClicked(self):
         widget = self.sender()  # type: NavigationWidget
         if widget.isSelectable:
             self.setCurrentItem(widget.property('routeKey'))
+
+    def _getIndicatorRect(self, item: NavigationWidget):
+        if not item:
+            return QRect()
+
+        pos = item.mapTo(self, QPoint(0, 0))
+        rect = item.indicatorRect()
+        return rect.translated(pos)
+
+    def _stopIndicatorAnimation(self):
+        if not self.isIndicatorAnimationEnabled():
+            return
+
+        self.indicator.stopAnimation()
+        self._onIndicatorAniFinished()
+
+    def _onIndicatorAniFinished(self):
+        item = self.currentItem()
+        if not item:
+            return
+
+        item.setAboutSelected(False)
+        item.setSelected(True)
+        self.indicator.hide()
