@@ -512,7 +512,7 @@ class NavigationPanel(QFrame):
 
     def expand(self, useAni=True):
         """ expand navigation panel """
-        self.indicator.stopAnimation()
+        self._stopIndicatorAnimation()
         self._setWidgetCompacted(False)
         self._restoreTreeExpandState(useAni)
         self.expandAni.setProperty('expand', True)
