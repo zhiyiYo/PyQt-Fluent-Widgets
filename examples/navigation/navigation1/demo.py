@@ -79,6 +79,10 @@ class Window(FramelessWindow):
         self.addSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', parent=self.albumInterface1)
         self.addSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', parent=self.albumInterface)
 
+        # enable expand state memory for tree menu
+        self.navigationInterface.widget('Album-Interface').setRememberExpandState(True)
+        self.navigationInterface.widget('Album-Interface-1').setRememberExpandState(True)
+
         # add navigation items to scroll area
         self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
         # for i in range(1, 21):
