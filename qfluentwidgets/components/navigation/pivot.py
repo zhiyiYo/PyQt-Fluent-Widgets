@@ -208,6 +208,8 @@ class Pivot(QWidget):
         if routeKey not in self.items or routeKey == self.currentRouteKey():
             return
 
+        self._adjustIndicatorPos()
+
         self._currentRouteKey = routeKey
         self.slideAni.startAnimation(self.currentIndicatorGeometry())
 
