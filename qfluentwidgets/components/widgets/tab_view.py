@@ -969,7 +969,7 @@ class TabWidget(QWidget):
             self.tabBar.hide()
 
         self.tabBar = tabBar
-        self.vBoxLayout.insertItem(0, self.tabBar)
+        self.vBoxLayout.insertWidget(0, self.tabBar)
         self._connectTabBarSignalToSlot()
 
     def isMovable(self):
