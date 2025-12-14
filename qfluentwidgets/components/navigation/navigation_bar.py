@@ -99,24 +99,25 @@ class NavigationBarPushButton(NavigationPushButton):
         self._drawText(painter)
 
     def _drawBackground(self, painter: QPainter):
-        if self.isSelected and not self.isAboutSelected:
+        if self.isSelected or self.isAboutSelected:
             painter.setBrush(QColor(255, 255, 255, 42) if isDarkTheme() else Qt.white)
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
-            painter.setBrush(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
-            if not self.isPressed:
-                painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
-            else:
-                painter.drawRoundedRect(0, 19, 4, 18, 2, 2)
-        elif self.isPressed or self.isEnter or self.isAboutSelected:
+            if not self.isAboutSelected:
+                painter.setBrush(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
+                if not self.isPressed:
+                    painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
+                else:
+                    painter.drawRoundedRect(0, 19, 4, 18, 2, 2)
+        elif self.isPressed or self.isEnter:
             c = 255 if isDarkTheme() else 0
             alpha = 9 if self.isEnter else 6
             painter.setBrush(QColor(c, c, c, alpha))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
     def _drawIcon(self, painter: QPainter):
-        if (self.isPressed or not self.isEnter) and not self.isSelected:
+        if (self.isPressed or not self.isEnter) and not (self.isSelected or self.isAboutSelected):
             painter.setOpacity(0.6)
         if not self.isEnabled():
             painter.setOpacity(0.4)
@@ -128,10 +129,10 @@ class NavigationBarPushButton(NavigationPushButton):
 
         selectedIcon = self._selectedIcon or self._icon
 
-        if isinstance(selectedIcon, FluentIconBase) and self.isSelected:
+        if isinstance(selectedIcon, FluentIconBase) and (self.isSelected or self.isAboutSelected):
             color = autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor)
             selectedIcon.render(painter, rect, fill=color.name())
-        elif self.isSelected:
+        elif self.isSelected or self.isAboutSelected:
             drawIcon(selectedIcon, painter, rect)
         else:
             drawIcon(self._icon, painter, rect)
@@ -140,7 +141,7 @@ class NavigationBarPushButton(NavigationPushButton):
         if self.isSelected and not self._isSelectedTextVisible:
             return
 
-        if self.isSelected:
+        if self.isSelected or self.isAboutSelected:
             painter.setPen(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
         else:
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
@@ -420,6 +421,7 @@ class NavigationBar(QWidget):
         # start animation
         prevItem.setSelected(False)
         newItem.setAboutSelected(True)
+        self.indicator.raise_()
         self.indicator.setIndicatorColor(newItem.lightIndicatorColor, newItem.darkIndicatorColor)
         self.indicator.startAnimation(preIndicatorRect, newIndicatorRect)
 
