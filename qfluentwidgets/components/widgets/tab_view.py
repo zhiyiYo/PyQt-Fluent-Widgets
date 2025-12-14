@@ -964,7 +964,7 @@ class TabWidget(QWidget):
             return
 
         if self.tabBar:
-            self.vBoxLayout.removeItem(self.tabBar)
+            self.vBoxLayout.removeWidget(self.tabBar)
             self.tabBar.deleteLater()
             self.tabBar.hide()
 
