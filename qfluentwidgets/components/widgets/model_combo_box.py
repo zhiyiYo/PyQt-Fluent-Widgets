@@ -85,8 +85,26 @@ class ModelComboBoxBase(QObject):
 
         return super().eventFilter(obj, e)
 
-    def insertItem(self, index: int, text: str, userData=None, icon: QIcon = None):
-        """ Inserts item into the combobox at the given index. """
+    def insertItem(self, index: int, text: str, userData=None, icon: QIcon = None, isEnabled=True):
+        """ Inserts item into the combobox at the given index.
+
+        Parameters
+        ----------
+        index: int
+            the index to insert
+
+        text: str
+            the text of item
+
+        userData: Any
+            user data
+
+        icon: QIcon
+            the icon of item
+
+        isEnabled: bool
+            whether the item is enabled
+        """
         values = {}
         values[Qt.ItemDataRole.EditRole] = text
 
@@ -96,22 +114,35 @@ class ModelComboBoxBase(QObject):
         if userData:
             values[Qt.ItemDataRole.UserRole] = userData
 
-        modelIndex = self._insertItemFromValues(index, values)
+        modelIndex = self._insertItemFromValues(index, values, isEnabled)
 
         if index <= self.currentIndex():
             self.setCurrentIndex(self.currentIndex() + 1)
 
         return modelIndex
 
-    def insertItems(self, index: int, texts: Iterable[str]):
-        """ Inserts items into the combobox, starting at the index specified. """
+    def insertItems(self, index: int, texts: Iterable[str], disabledItems: List[int] = None):
+        """ Inserts items into the combobox, starting at the index specified.
+
+        Parameters
+        ----------
+        index: int
+            the index to insert
+
+        texts: Iterable[str]
+            the text of items
+
+        disabledItems: List[int]
+            the indices of disabled items (relative to the inserted items)
+        """
+        disabledItems = disabledItems or []
         self.blockSignals(True)
 
         row = index
-        for text in texts:
+        for i, text in enumerate(texts):
             values = {}
             values[Qt.ItemDataRole.EditRole] = text
-            self._insertItemFromValues(index, values)
+            self._insertItemFromValues(row, values, isEnabled=(i not in disabledItems))
             row += 1
 
         self.blockSignals(False)
@@ -119,7 +150,7 @@ class ModelComboBoxBase(QObject):
         if index <= self.currentIndex():
             self.setCurrentIndex(self.currentIndex() + row - index)
 
-    def _insertItemFromValues(self, row: int, values: dict) -> QModelIndex:
+    def _insertItemFromValues(self, row: int, values: dict, isEnabled=True) -> QModelIndex:
         ret = QModelIndex()
 
         self.model().blockSignals(True)
@@ -130,6 +161,7 @@ class ModelComboBoxBase(QObject):
             for role, value in values.items():
                 item.setData(value, role)
 
+            item.setEnabled(isEnabled)
             self.model().insertRow(row, item)
             ret = item.index()
         elif self.model().insertRows(row, 1):
@@ -140,7 +172,7 @@ class ModelComboBoxBase(QObject):
         self.model().blockSignals(False)
         return ret
 
-    def addItem(self, text: str, userData=None, icon: QIcon = None):
+    def addItem(self, text: str, userData=None, icon: QIcon = None, isEnabled=True):
         """ add item
 
         Parameters
@@ -148,22 +180,33 @@ class ModelComboBoxBase(QObject):
         text: str
             the text of item
 
-        icon: str | QIcon | FluentIconBase
+        userData: Any
+            user data
+
+        icon: QIcon
+            the icon of item
+
+        isEnabled: bool
+            whether the item is enabled
         """
-        self.insertItem(self.model().rowCount(), text, icon, userData)
+        self.insertItem(self.model().rowCount(), text, userData, icon, isEnabled)
         if self.count() == 1:
             self.setCurrentIndex(0)
 
-    def addItems(self, texts: Iterable[str]):
+    def addItems(self, texts: Iterable[str], disabledItems: List[int] = None):
         """ add items
 
         Parameters
         ----------
-        text: Iterable[str]
-            the text of item
+        texts: Iterable[str]
+            the text of items
+
+        disabledItems: List[int]
+            the indices of disabled items
         """
-        for text in texts:
-            self.addItem(text)
+        disabledItems = disabledItems or []
+        for i, text in enumerate(texts):
+            self.addItem(text, isEnabled=(i not in disabledItems))
 
     def removeItem(self, index: int):
         """ Removes the item at the given index from the combobox.
@@ -280,6 +323,28 @@ class ModelComboBoxBase(QObject):
         """ Sets the data role for the item on the given index """
         self.setItemData(index, icon, Qt.ItemDataRole.DecorationRole)
 
+    def setItemEnabled(self, index: int, isEnabled: bool):
+        """ Sets the enabled status of the item on the given index """
+        if not self._isValidIndex(index):
+            return
+
+        if isinstance(self.model(), QStandardItemModel):
+            item = self.model().item(index)
+            if item:
+                item.setEnabled(isEnabled)
+
+    def isItemEnabled(self, index: int) -> bool:
+        """ Returns the enabled status of the item on the given index """
+        if not self._isValidIndex(index):
+            return False
+
+        if isinstance(self.model(), QStandardItemModel):
+            item = self.model().item(index)
+            if item:
+                return item.isEnabled()
+
+        return True
+
     def _isValidIndex(self, index: int):
         return 0 <= index < self.count()
 
@@ -349,6 +414,7 @@ class ModelComboBoxBase(QObject):
         for i in range(self.count()):
             action = QAction(self.itemIcon(i), self.itemText(i),
                              triggered=lambda c, x=i: self._onItemClicked(x))
+            action.setEnabled(self.isItemEnabled(i))
             menu.addAction(action)
 
         if menu.view.width() < self.width():
