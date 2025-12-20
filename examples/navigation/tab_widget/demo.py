@@ -44,7 +44,7 @@ class Window(QWidget):
         self.hBoxLayout.addWidget(self.tabWidget)
 
         # add tab
-        self.tabWidget.addPage(TabInterface('Heart', 'resource/Heart.png'), 'As long as you love me', icon='resource/Heart.png')
+        self.tabWidget.addTab(TabInterface('Heart', 'resource/Heart.png'), 'As long as you love me', icon='resource/Heart.png')
 
         self.tabWidget.currentChanged.connect(lambda index: print("current index:", index))
         self.tabWidget.tabCloseRequested.connect(self.tabWidget.removeTab)
@@ -61,7 +61,7 @@ class Window(QWidget):
 
     def addNewPage(self):
         text = f'硝子酱一级棒卡哇伊×{self.tabCount}'
-        self.tabWidget.addPage(
+        self.tabWidget.addTab(
             TabInterface(text, 'resource/Smiling_with_heart.png'), text, 'resource/Smiling_with_heart.png')
         self.tabCount += 1
 
