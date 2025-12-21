@@ -12,7 +12,6 @@ class LoginWindow(FluentWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        setTheme(Theme.DARK)
         setThemeColor('#28afe9')
 
         if sys.platform != "darwin":
@@ -39,6 +38,9 @@ class LoginWindow(FluentWidget, Ui_Form):
 
 
 if __name__ == '__main__':
+    # use dark theme mode
+    # setTheme(Theme.DARK)
+
     # enable dpi scale
     QApplication.setHighDpiScaleFactorRoundingPolicy(
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
