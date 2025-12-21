@@ -2,11 +2,11 @@
 from typing import Union
 
 from PyQt5.QtCore import Qt, QEvent, pyqtSignal
-from PyQt5.QtGui import QResizeEvent, QIcon
+from PyQt5.QtGui import QResizeEvent, QIcon, QPixmap
 from PyQt5.QtWidgets import QWidget
 
 from .navigation_panel import NavigationPanel, NavigationItemPosition, NavigationWidget, NavigationDisplayMode
-from .navigation_widget import NavigationTreeWidget
+from .navigation_widget import NavigationTreeWidget, NavigationUserCard
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIconBase
 
@@ -181,6 +181,107 @@ class NavigationInterface(QWidget):
         """
         self.insertSeparator(-1, position)
 
+    def addItemHeader(self, text: str, position=NavigationItemPosition.TOP):
+        """ add item header for grouping navigation items
+
+        Parameters
+        ----------
+        text: str
+            header text to display
+
+        position: NavigationItemPosition
+            where the header is added
+
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
+        """
+        return self.panel.addItemHeader(text, position)
+
+    def insertItemHeader(self, index: int, text: str, position=NavigationItemPosition.TOP):
+        """ insert item header for grouping navigation items
+
+        Parameters
+        ----------
+        index: int
+            insert position
+
+        text: str
+            header text to display
+
+        position: NavigationItemPosition
+            where the header is added
+
+        Returns
+        -------
+        NavigationItemHeader
+            created header widget
+        """
+        return self.panel.insertItemHeader(index, text, position)
+
+    def addUserCard(self, routeKey: str, avatar: Union[str, QIcon, FluentIconBase] = None,
+                    title: str = '', subtitle: str = '', onClick=None,
+                    position=NavigationItemPosition.TOP, aboveMenuButton: bool = False):
+        """ add user card to navigation panel
+
+        Parameters
+        ----------
+        routeKey: str
+            the unique name of user card
+
+        avatar: str | QIcon | FluentIconBase
+            avatar image or icon
+
+        title: str
+            user name or title text
+
+        subtitle: str
+            subtitle text (e.g., email, status)
+
+        onClick: callable
+            the slot connected to card clicked signal
+
+        position: NavigationItemPosition
+            where the card is added
+
+        aboveMenuButton: bool
+            whether to place the card above the menu button (expand/collapse button)
+
+        Returns
+        -------
+        NavigationUserCard
+            created user card widget
+        """
+        card = NavigationUserCard(self)
+
+        if avatar:
+            if isinstance(avatar, FluentIconBase):
+                card.setAvatarIcon(avatar)
+            else:
+                card.setAvatar(avatar)
+
+        card.setTitle(title)
+        card.setSubtitle(subtitle)
+
+        # calculate insert index if placing above menu button
+        index = -1
+        if aboveMenuButton and position == NavigationItemPosition.TOP:
+            # find menu button index in top layout
+            layout = self.panel.topLayout
+            for i in range(layout.count()):
+                item = layout.itemAt(i)
+                if item and item.widget() == self.panel.menuButton:
+                    index = i
+                    break
+
+        if index >= 0:
+            self.panel.insertWidget(index, routeKey, card, onClick, position)
+        else:
+            self.addWidget(routeKey, card, onClick, position)
+
+        return card
+
     def insertSeparator(self, index: int, position=NavigationItemPosition.TOP):
         """ add separator
 
@@ -248,6 +349,20 @@ class NavigationInterface(QWidget):
     def setAcrylicEnabled(self, isEnabled: bool):
         """ set whether the acrylic background effect is enabled """
         self.panel.setAcrylicEnabled(isEnabled)
+
+    def isIndicatorAnimationEnabled(self):
+        return self.panel.isIndicatorAnimationEnabled()
+
+    def setIndicatorAnimationEnabled(self, isEnabled: bool):
+        """ set whether the indicator sliding animation is enabled """
+        self.panel.setIndicatorAnimationEnabled(isEnabled)
+
+    def isUpdateIndicatorPosOnCollapseFinished(self):
+        return self.panel.isUpdateIndicatorPosOnCollapseFinished()
+
+    def setUpdateIndicatorPosOnCollapseFinished(self, update: bool):
+        """ set whether to update indicator position when collapese finished """
+        self.panel.setUpdateIndicatorPosOnCollapseFinished(update)
 
     def widget(self, routeKey: str):
         return self.panel.widget(routeKey)

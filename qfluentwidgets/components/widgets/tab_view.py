@@ -2,9 +2,10 @@
 from copy import deepcopy
 from enum import Enum
 from typing import Dict, List, Union
+from uuid import uuid1
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtProperty, QRectF, QSize, QPoint, QPropertyAnimation, QEasingCurve, QRect
 from PyQt5.QtGui import QPainter, QColor, QIcon, QPainterPath, QLinearGradient, QPen, QBrush, QMouseEvent
-from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect, QHBoxLayout, QSizePolicy, QApplication
+from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect, QHBoxLayout, QVBoxLayout, QApplication, QStackedWidget
 
 from ...common.icon import FluentIcon, FluentIconBase, drawIcon
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet
@@ -67,6 +68,7 @@ class TabItem(PushButton):
     """ Tab item """
 
     closed = pyqtSignal()
+    doubleClicked = pyqtSignal()
 
     def _postInit(self):
         super()._postInit()
@@ -193,6 +195,12 @@ class TabItem(PushButton):
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
         self._forwardMouseEvent(e)
+
+    def mouseDoubleClickEvent(self, e: QMouseEvent):
+        if e.button() == Qt.MouseButton.LeftButton:
+            self.doubleClicked.emit()
+
+        return super().mouseDoubleClickEvent(e)
 
     def _forwardMouseEvent(self, e: QMouseEvent):
         pos = self.mapToParent(e.pos())
@@ -322,8 +330,10 @@ class TabBar(SingleDirectionScrollArea):
 
     currentChanged = pyqtSignal(int)
     tabBarClicked = pyqtSignal(int)
+    tabBarDoubleClicked = pyqtSignal(int)
     tabCloseRequested = pyqtSignal(int)
     tabAddRequested = pyqtSignal()
+    tabMoved = pyqtSignal(int, int)  # (from, to)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent, orient=Qt.Horizontal)
@@ -460,6 +470,7 @@ class TabBar(SingleDirectionScrollArea):
             self.lightSelectedBackgroundColor, self.darkSelectedBackgroundColor)
 
         item.pressed.connect(self._onItemPressed)
+        item.doubleClicked.connect(lambda: self.tabBarDoubleClicked.emit(self.items.index(item)))
         item.closed.connect(lambda: self.tabCloseRequested.emit(self.items.index(item)))
         if onClick:
             item.pressed.connect(onClick)
@@ -572,6 +583,14 @@ class TabBar(SingleDirectionScrollArea):
         rect.moveLeft(x)
         return rect
 
+    @checkIndex()
+    def tabData(self, index: int):
+        return self.tabItem(index).property("data")
+
+    @checkIndex()
+    def setTabData(self, index: int, data):
+        self.tabItem(index).setProperty("data", data)
+
     @checkIndex('')
     def tabText(self, index: int):
         return self.tabItem(index).text()
@@ -583,6 +602,14 @@ class TabBar(SingleDirectionScrollArea):
     @checkIndex('')
     def tabToolTip(self, index: int):
         return self.tabItem(index).toolTip()
+
+    @checkIndex(False)
+    def isTabEnabled(self, index: int):
+        return self.tabItem(index).isEnabled()
+
+    @checkIndex()
+    def setTabEnabled(self, index: int, isEnabled: bool):
+        self.tabItem(index).setEnabled(isEnabled)
 
     def setTabsClosable(self, isClosable: bool):
         """ set whether the tab is closable """
@@ -603,6 +630,10 @@ class TabBar(SingleDirectionScrollArea):
     def setTabText(self, index: int, text: str):
         """ set tab text """
         self.tabItem(index).setText(text)
+
+    @checkIndex(False)
+    def isTabVisible(self, index: int):
+        return self.tabItem(index).isVisible(index)
 
     @checkIndex()
     def setTabVisible(self, index: int, isVisible: bool):
@@ -721,6 +752,11 @@ class TabBar(SingleDirectionScrollArea):
         """ returns the number of tabs """
         return len(self.items)
 
+    def clear(self):
+        """ Remove all tabs """
+        while self.count() > 0:
+            self.removeTab(self.count() - 1)
+
     def mousePressEvent(self, e: QMouseEvent):
         super().mousePressEvent(e)
         if not self.isMovable() or e.button() != Qt.LeftButton or \
@@ -793,12 +829,286 @@ class TabBar(SingleDirectionScrollArea):
         swappedItem = self.tabItem(index)
         x = self.tabRect(self.currentIndex()).x()
 
-        items[self.currentIndex()], items[index] = items[index], items[self.currentIndex()]
+        oldIndex = self.currentIndex()
+        items[oldIndex], items[index] = items[index], items[oldIndex]
         self._currentIndex = index
         swappedItem.slideTo(x)
+
+        self.tabMoved.emit(oldIndex, index)
 
     movable = pyqtProperty(bool, isMovable, setMovable)
     scrollable = pyqtProperty(bool, isScrollable, setScrollable)
     tabMaxWidth = pyqtProperty(int, tabMaximumWidth, setTabMaximumWidth)
     tabMinWidth = pyqtProperty(int, tabMinimumWidth, setTabMinimumWidth)
     tabShadowEnabled = pyqtProperty(bool, isTabShadowEnabled, setTabShadowEnabled)
+
+
+class TabWidget(QWidget):
+
+    currentChanged = pyqtSignal(int)
+    tabBarClicked = pyqtSignal(int)
+    tabCloseRequested = pyqtSignal(int)
+    tabAddRequested = pyqtSignal()
+    tabBarDoubleClicked = pyqtSignal(int)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.tabBar = TabBar(self)
+        self.stackedWidget = QStackedWidget(self)
+        self.vBoxLayout = QVBoxLayout(self)
+
+        self.__initWidget()
+
+    def __initWidget(self):
+        self.vBoxLayout.addWidget(self.tabBar, 0, Qt.AlignmentFlag.AlignTop)
+        self.vBoxLayout.addWidget(self.stackedWidget, 1)
+        self.vBoxLayout.setSpacing(1)
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+
+        self._connectTabBarSignalToSlot()
+
+    def addPage(self, widget: QWidget, label: str, icon: Union[QIcon, str, FluentIconBase] = None, routeKey=None) -> int:
+        """ Adds a tab with the given page, icon, and label to the tab widget, and returns the index of the tab in the tab bar.
+
+        Parameters
+        ----------
+        widget: QWidget
+            the widget in the new tab
+
+        label: str
+            the title of tab
+
+        icon: str | QIcon | FluentIconBase
+            the icon of tab
+
+        routeKey: str
+            the route key of new tab, if not provided, an unique uuid will be generated as route key
+
+        Returns
+        -------
+        index: int
+            the index of the tab
+        """
+        return self.insertTab(-1, widget, label, icon, routeKey)
+
+    def addTab(self, widget: QWidget, label: str, icon: Union[QIcon, str, FluentIconBase] = None, routeKey=None) -> int:
+        """ Adds a tab with the given page, icon, and label to the tab widget, and returns the index of the tab in the tab bar.
+
+        Parameters
+        ----------
+        widget: QWidget
+            the widget in the new tab
+
+        label: str
+            the title of tab
+
+        icon: str | QIcon | FluentIconBase
+            the icon of tab
+
+        routeKey: str
+            the route key of new tab, if not provided, an unique uuid will be generated as route key
+
+        Returns
+        -------
+        index: int
+            the index of the tab
+        """
+        return self.insertTab(-1, widget, label, icon, routeKey)
+
+    def insertTab(self, index: int, widget: QWidget, label: str, icon: Union[QIcon, str, FluentIconBase] = None, routeKey=None) -> int:
+        """ Inserts a tab with the given label and page into the tab widget at the specified index, and returns the index of the inserted tab in the tab bar.
+
+        Parameters
+        ----------
+        index: int
+            the index of new tab to be inserted
+
+        widget: QWidget
+            the widget in the new tab
+
+        label: str
+            the title of tab
+
+        icon: str | QIcon | FluentIconBase
+            the icon of tab
+
+        routeKey: str
+            the route key of new tab, if not provided, an unique uuid will be generated as route key
+
+        Returns
+        -------
+        index: int
+            the index of the tab
+        """
+        if self.stackedWidget.indexOf(widget) >= 0:
+            return -1
+
+        # generate unique route key
+        routeKey = routeKey or uuid1().hex
+        widget.setProperty('routeKey', routeKey)
+
+        # create a new tab
+        self.tabBar.insertTab(index, routeKey, label, icon)
+        self.stackedWidget.insertWidget(index, widget)
+
+        return self.stackedWidget.indexOf(widget)
+
+    def removeTab(self, index: int):
+        """ Removes the tab at position index from this stack of widgets. The page widget itself is not deleted.
+
+        Parameters
+        ----------
+        index: int
+            the index of removed widget
+        """
+        if not 0 <= index < self.stackedWidget.count():
+            return
+
+        self.stackedWidget.removeWidget(self.stackedWidget.widget(index))
+        self.tabBar.removeTab(index)
+
+    def clear(self):
+        """ Removes all the pages, but does not delete them. """
+        while self.stackedWidget.count():
+            self.stackedWidget.removeWidget(self.stackedWidget.widget(0))
+
+        self.tabBar.clear()
+
+    def widget(self, index: int):
+        """ Returns the tab page at index position index or `None` if the index is out of range. """
+        return self.stackedWidget.widget(index)
+
+    def currentWidget(self) -> QWidget:
+        "" "Returns a pointer to the page currently being displayed. """
+        return self.stackedWidget.currentWidget()
+
+    def currentIndex(self):
+        """ Returns the index position of the current tab page, returns -1 if there is no current widget. """
+        return self.stackedWidget.currentIndex()
+
+    def setTabBar(self, tabBar):
+        """ Replaces the original tab bar with new one. Note that this must be called before any tabs have been added, or the behavior is undefined. """
+        if tabBar == self.tabBar:
+            return
+
+        if self.tabBar:
+            self.vBoxLayout.removeWidget(self.tabBar)
+            self.tabBar.deleteLater()
+            self.tabBar.hide()
+
+        self.tabBar = tabBar
+        self.vBoxLayout.insertWidget(0, self.tabBar)
+        self._connectTabBarSignalToSlot()
+
+    def isMovable(self):
+        """ Returns whether the user can move the tabs within the tabbar area. """
+        return self.tabBar.isMovable()
+
+    def setMovable(self, movable: bool):
+        self.tabBar.setMovable(movable)
+
+    def isTabEnabled(self, index: int):
+        return self.tabBar.isTabEnabled(index)
+
+    def setTabEnabled(self, index: int, isEnabled: bool):
+        self.tabBar.setTabEnabled(index, isEnabled)
+
+    def isTabVisible(self, index: int):
+        return self.tabBar.isTabVisible(index)
+
+    def setTabVisible(self, index: int, isVisible: bool):
+        self.tabBar.setTabVisible(index, isVisible)
+
+    def tabText(self, index: int):
+        return self.tabBar.tabText(index)
+
+    def tabIcon(self, index: int):
+        return self.tabBar.tabIcon(index)
+
+    def tabToolTip(self, index: int):
+        return self.tabBar.tabToolTip(index)
+
+    def setTabsClosable(self, closable: bool):
+        self.tabBar.setTabsClosable(closable)
+
+    def tabsClosable(self) -> bool:
+        return self.tabBar.tabsClosable()
+
+    def setTabIcon(self, index: int, icon: Union[QIcon, FluentIconBase, str]):
+        self.tabBar.setTabIcon(index, icon)
+
+    def setTabText(self, index: int, text: str):
+        self.tabBar.setTabText(index, text)
+
+    def setTabToolTip(self, index: int, tip: str):
+        self.tabBar.setTabToolTip(index, tip)
+
+    def setTabTextColor(self, index: int, color):
+        self.tabBar.setTabTextColor(index, color)
+
+    def setTabSelectedBackgroundColor(self, light, dark):
+        self.tabBar.setTabSelectedBackgroundColor(light, dark)
+
+    def setTabShadowEnabled(self, enabled: bool):
+        self.tabBar.setTabShadowEnabled(enabled)
+
+    def setScrollable(self, scrollable: bool):
+        self.tabBar.setScrollable(scrollable)
+
+    def isScrollable(self) -> bool:
+        return self.tabBar.isScrollable()
+
+    def setTabMaximumWidth(self, width: int):
+        self.tabBar.setTabMaximumWidth(width)
+
+    def setTabMinimumWidth(self, width: int):
+        self.tabBar.setTabMinimumWidth(width)
+
+    def tabMaximumWidth(self) -> int:
+        return self.tabBar.tabMaximumWidth()
+
+    def tabMinimumWidth(self) -> int:
+        return self.tabBar.tabMinimumWidth()
+
+    def tabData(self, index: int):
+        return self.tabBar.tabData(index)
+
+    def setTabData(self, index: int, data):
+        self.tabBar.setTabData(index, data)
+
+    def count(self) -> int:
+        """ Returns the number of tabs in the tab bar. """
+        return self.stackedWidget.count()
+
+    def setCurrentIndex(self, index: int):
+        """ the index of the tab bar's visible tab """
+        self.tabBar.setCurrentIndex(index)
+        self.stackedWidget.setCurrentIndex(index)
+
+    def setCurrentWidget(self, widget: QWidget):
+        """ Sets the current tab to the tab which contains the given widget. """
+        index = self.stackedWidget.indexOf(widget)
+        if index != -1:
+            self.setCurrentIndex(index)
+
+    def setCloseButtonDisplayMode(self, mode: TabCloseButtonDisplayMode):
+        self.tabBar.setCloseButtonDisplayMode(mode)
+
+    def _connectTabBarSignalToSlot(self):
+        self.tabBar.tabCloseRequested.connect(self.tabCloseRequested)
+        self.tabBar.tabBarClicked.connect(self.tabBarClicked)
+        self.tabBar.tabBarDoubleClicked.connect(self.tabBarDoubleClicked)
+        self.tabBar.tabAddRequested.connect(self.tabAddRequested)
+        self.tabBar.currentChanged.connect(self._onCurrentTabChanged)
+        self.tabBar.tabMoved.connect(self._onTabMoved)
+
+    def _onTabMoved(self, fromIndex: int, toIndex: int):
+        widget = self.stackedWidget.widget(fromIndex)
+        self.stackedWidget.removeWidget(widget)
+        self.stackedWidget.insertWidget(toIndex, widget)
+        self.stackedWidget.setCurrentIndex(toIndex)
+
+    def _onCurrentTabChanged(self, index: int):
+        self.stackedWidget.setCurrentIndex(index)
+        self.currentChanged.emit(index)
+

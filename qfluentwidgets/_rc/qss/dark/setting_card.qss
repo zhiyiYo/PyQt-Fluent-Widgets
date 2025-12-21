@@ -1,5 +1,5 @@
 QLabel {
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     color: white;
     padding: 0;
     border: none;
@@ -7,7 +7,7 @@ QLabel {
 }
 
 QLabel#contentLabel {
-    font: 11px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 11px --FontFamilies;
     color: rgb(208, 208, 208);
     padding: 0;
 }
@@ -29,7 +29,7 @@ QPushButton {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 5px;
     padding: 5px 36px 5px 36px;
-    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    font: 14px --FontFamilies;
     color: white;
     outline: none;
 }

@@ -2,12 +2,12 @@
 from typing import List, Union
 from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
 from PyQt5.QtGui import QColor, QPainter, QIcon, QPainterPath
-from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout
+from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout, QLabel, QHBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
 from ...common.style_sheet import FluentStyleSheet
-from .setting_card import SettingCard
+from .setting_card import SettingCard, SettingIconWidget
 from ..layout.v_box_layout import VBoxLayout
 
 
@@ -324,6 +324,61 @@ class GroupSeparator(QWidget):
         painter.drawLine(0, 1, self.width(), 1)
 
 
+class GroupWidget(QWidget):
+
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str, widget: QWidget, stretch=0, parent=None):
+        super().__init__(parent=parent)
+        self.iconWidget = SettingIconWidget(icon, self)
+        self.titleLabel = QLabel(title, self)
+        self.contentLabel = QLabel(content, self)
+        self.widget = widget
+
+        self.hBoxLayout = QHBoxLayout(self)
+        self.vBoxLayout = QVBoxLayout()
+
+        if not content:
+            self.contentLabel.hide()
+
+        self.iconWidget.setFixedSize(16, 16)
+        self.setMinimumHeight(60)
+        self.setIcon(icon)
+
+        # initialize layout
+        self.hBoxLayout.setSpacing(16)
+        self.hBoxLayout.setContentsMargins(48, 12, 48, 12)
+        self.hBoxLayout.setAlignment(Qt.AlignVCenter)
+        self.vBoxLayout.setSpacing(0)
+        self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
+        self.vBoxLayout.setAlignment(Qt.AlignVCenter)
+
+        self.hBoxLayout.addWidget(self.iconWidget, 0, Qt.AlignLeft)
+        self.hBoxLayout.addLayout(self.vBoxLayout)
+        self.vBoxLayout.addWidget(self.titleLabel, 0, Qt.AlignLeft)
+        self.vBoxLayout.addWidget(self.contentLabel, 0, Qt.AlignLeft)
+
+        self.hBoxLayout.addStretch(1)
+        self.hBoxLayout.addWidget(widget, stretch)
+
+        self.titleLabel.setObjectName('titleLabel')
+        self.contentLabel.setObjectName('contentLabel')
+
+    def setTitle(self, title: str):
+        self.titleLabel.setText(title)
+
+    def setContent(self, content: str):
+        self.contentLabel.setText(content)
+        self.contentLabel.setVisible(bool(content))
+
+    def setIconSize(self, width: int, height: int):
+        """ set the icon fixed size """
+        self.iconWidget.setFixedSize(width, height)
+
+    def setIcon(self, icon: Union[str, QIcon, FIF]):
+        self.iconWidget.setIcon(icon)
+        self.iconWidget.setHidden(self.iconWidget.icon.isNull())
+
+
+
 class ExpandGroupSettingCard(ExpandSettingCard):
     """ Expand group setting card """
 
@@ -344,6 +399,30 @@ class ExpandGroupSettingCard(ExpandSettingCard):
         self.widgets.append(widget)
         self.viewLayout.addWidget(widget)
         self._adjustViewSize()
+
+    def addGroup(self, icon: Union[str, QIcon, FIF], title: str, content: str, widget: QWidget, stretch=0) -> GroupWidget:
+        """ add group
+
+        Parameters
+        ----------
+        icon: str | QIcon | FluentIconBase
+            the icon of group
+
+        title: str
+            the title of group
+
+        content: str
+            the description of group
+
+        widget: str
+            the widget of group
+
+        stretch: int
+            the stretch of widget
+        """
+        group = GroupWidget(icon, title, content, widget, stretch)
+        self.addGroupWidget(group)
+        return group
 
     def removeGroupWidget(self, widget: QWidget):
         """ remove a group from card """

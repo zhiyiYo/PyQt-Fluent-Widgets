@@ -2,7 +2,7 @@
 from PyQt5.QtCore import Qt, pyqtSignal, QEasingCurve
 from PyQt5.QtWidgets import QFrame, QHBoxLayout, QAbstractScrollArea
 
-from ..components.widgets.stacked_widget import PopUpAniStackedWidget
+from ..components.widgets.stacked_widget import PopUpAniStackedWidget, EntranceTransitionStackedWidget
 
 
 
@@ -48,7 +48,7 @@ class StackedWidget(QFrame):
             self.view.setCurrentWidget(widget, duration=300)
         else:
             self.view.setCurrentWidget(
-                widget, True, False, 200, QEasingCurve.InQuad)
+                widget, True, False, 300, QEasingCurve.Type.InQuad)
 
     def setCurrentIndex(self, index, popOut=True):
         self.setCurrentWidget(self.view.widget(index), popOut)

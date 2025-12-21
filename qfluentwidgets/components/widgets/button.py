@@ -54,7 +54,11 @@ class PushButton(QPushButton):
         pass
 
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
-        self.setProperty('hasIcon', icon is not None)
+        if icon is None or (isinstance(icon, QIcon) and icon.isNull()):
+            self.setProperty('hasIcon', False)
+        else:
+            self.setProperty('hasIcon', True)
+
         self.setStyle(QApplication.style())
         self._icon = icon or QIcon()
         self.update()

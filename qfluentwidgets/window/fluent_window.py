@@ -12,15 +12,16 @@ from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
+from ..components.widgets.label import CaptionLabel
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
                                      NavigationBarPushButton, NavigationTreeWidget)
 from .stacked_widget import StackedWidget
 
-from qframelesswindow import TitleBar, TitleBarBase
+from qframelesswindow import TitleBar, TitleBarBase, TitleBarButton
 
 
-class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
-    """ Fluent window base class """
+class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
+    """ Fluent widget """
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
@@ -28,6 +29,95 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self._darkBackgroundColor = QColor(32, 32, 32)
         super().__init__(parent=parent)
 
+        # enable mica effect on win11
+        self.setMicaEffectEnabled(True)
+
+        # show system title bar buttons on macOS
+        if sys.platform == "darwin":
+            self.setSystemTitleBarButtonVisible(True)
+
+        # set up title bar
+        self.setTitleBar(FluentWidgetTitleBar(self))
+
+        qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
+
+    def setCustomBackgroundColor(self, light, dark):
+        """ set custom background color
+
+        Parameters
+        ----------
+        light, dark: QColor | Qt.GlobalColor | str
+            background color in light/dark theme mode
+        """
+        self._lightBackgroundColor = QColor(light)
+        self._darkBackgroundColor = QColor(dark)
+        self._updateBackgroundColor()
+
+    def _normalBackgroundColor(self):
+        if not self.isMicaEffectEnabled():
+            return self._darkBackgroundColor if isDarkTheme() else self._lightBackgroundColor
+
+        return QColor(0, 0, 0, 0)
+
+    def _onThemeChangedFinished(self):
+        if self.isMicaEffectEnabled():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+
+    def paintEvent(self, e):
+        super().paintEvent(e)
+        painter = QPainter(self)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(self.backgroundColor)
+        painter.drawRect(self.rect())
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        # reapply mica effect after window is fully initialized
+        if self.isMicaEffectEnabled():
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+
+    def setMicaEffectEnabled(self, isEnabled: bool):
+        """ set whether the mica effect is enabled, only available on Win11 """
+        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
+            return
+
+        self._isMicaEnabled = isEnabled
+
+        if isEnabled:
+            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
+        else:
+            self.windowEffect.removeBackgroundEffect(self.winId())
+
+        self.setBackgroundColor(self._normalBackgroundColor())
+
+    def isMicaEffectEnabled(self):
+        return self._isMicaEnabled
+
+    def systemTitleBarRect(self, size: QSize) -> QRect:
+        """ Returns the system title bar rect, only works for macOS
+
+        Parameters
+        ----------
+        size: QSize
+            original system title bar rect
+        """
+        return QRect(0, 0 if self.isFullScreen() else 2, 75, size.height())
+
+    def setTitleBar(self, titleBar):
+        super().setTitleBar(titleBar)
+
+        # hide title bar buttons on macOS
+        if sys.platform == "darwin" and self.isSystemButtonVisible() and isinstance(titleBar, TitleBarBase):
+            titleBar.minBtn.hide()
+            titleBar.maxBtn.hide()
+            titleBar.closeBtn.hide()
+
+
+class FluentWindowBase(FluentWidget):
+    """ Fluent window base class """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
         self.hBoxLayout = QHBoxLayout(self)
         self.stackedWidget = StackedWidget(self)
         self.navigationInterface = None
@@ -37,15 +127,6 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self.stackedWidget)
-
-        # enable mica effect on win11
-        self.setMicaEffectEnabled(True)
-
-        # show system title bar buttons on macOS
-        if sys.platform == "darwin":
-            self.setSystemTitleBarButtonVisible(True)
-
-        qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
 
     def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
                         position=NavigationItemPosition.TOP):
@@ -83,52 +164,6 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         self.stackedWidget.setProperty("isTransparent", isTransparent)
         self.stackedWidget.setStyle(QApplication.style())
 
-    def setCustomBackgroundColor(self, light, dark):
-        """ set custom background color
-
-        Parameters
-        ----------
-        light, dark: QColor | Qt.GlobalColor | str
-            background color in light/dark theme mode
-        """
-        self._lightBackgroundColor = QColor(light)
-        self._darkBackgroundColor = QColor(dark)
-        self._updateBackgroundColor()
-
-    def _normalBackgroundColor(self):
-        if not self.isMicaEffectEnabled():
-            return self._darkBackgroundColor if isDarkTheme() else self._lightBackgroundColor
-
-        return QColor(0, 0, 0, 0)
-
-    def _onThemeChangedFinished(self):
-        if self.isMicaEffectEnabled():
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
-
-    def paintEvent(self, e):
-        super().paintEvent(e)
-        painter = QPainter(self)
-        painter.setPen(Qt.NoPen)
-        painter.setBrush(self.backgroundColor)
-        painter.drawRect(self.rect())
-
-    def setMicaEffectEnabled(self, isEnabled: bool):
-        """ set whether the mica effect is enabled, only available on Win11 """
-        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
-            return
-
-        self._isMicaEnabled = isEnabled
-
-        if isEnabled:
-            self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
-        else:
-            self.windowEffect.removeBackgroundEffect(self.winId())
-
-        self.setBackgroundColor(self._normalBackgroundColor())
-
-    def isMicaEffectEnabled(self):
-        return self._isMicaEnabled
-
     def systemTitleBarRect(self, size: QSize) -> QRect:
         """ Returns the system title bar rect, only works for macOS
 
@@ -137,16 +172,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         size: QSize
             original system title bar rect
         """
-        return QRect(size.width() - 75, 0 if self.isFullScreen() else 9, 75, size.height())
-
-    def setTitleBar(self, titleBar):
-        super().setTitleBar(titleBar)
-
-        # hide title bar buttons on macOS
-        if sys.platform == "darwin" and self.isSystemButtonVisible() and isinstance(titleBar, TitleBarBase):
-            titleBar.minBtn.hide()
-            titleBar.maxBtn.hide()
-            titleBar.closeBtn.hide()
+        return QRect(size.width() - 75, 0 if self.isFullScreen() else 8, 75, size.height())
 
 
 class FluentTitleBar(TitleBar):
@@ -166,7 +192,7 @@ class FluentTitleBar(TitleBar):
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
-        self.titleLabel = QLabel(self)
+        self.titleLabel = CaptionLabel(self)
         self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
@@ -233,16 +259,21 @@ class FluentWindow(FluentWindowBase):
         position: NavigationItemPosition
             the position of navigation item
 
-        parent: QWidget
-            the parent of navigation item
+        parent: QWidget | str
+            * QWidget: the parent of navigation item
+            * str: the parent route key of navigation item
 
         isTransparent: bool
             whether to use transparent background
         """
         if not interface.objectName():
             raise ValueError("The object name of `interface` can't be empty string.")
-        if parent and not parent.objectName():
-            raise ValueError("The object name of `parent` can't be empty string.")
+
+        parentRouteKey = parent
+        if parent and isinstance(parent, QWidget):
+            parentRouteKey = parent.objectName()
+            if not parentRouteKey:
+                raise ValueError("The object name of `parent` can't be empty string.")
 
         interface.setProperty("isStackedTransparent", isTransparent)
         self.stackedWidget.addWidget(interface)
@@ -256,7 +287,7 @@ class FluentWindow(FluentWindowBase):
             onClick=lambda: self.switchTo(interface),
             position=position,
             tooltip=text,
-            parentRouteKey=parent.objectName() if parent else None
+            parentRouteKey=parentRouteKey
         )
 
         # initialize selected item
@@ -288,6 +319,24 @@ class MSFluentTitleBar(FluentTitleBar):
         super().__init__(parent)
         self.hBoxLayout.insertSpacing(0, 20)
         self.hBoxLayout.insertSpacing(2, 2)
+
+
+class FluentWidgetTitleBar(FluentTitleBar):
+
+    def __init__(self, parent):
+        super().__init__(parent)
+
+        if sys.platform == "darwin":
+            self.iconLabel.hide()
+            self.titleLabel.hide()
+            self.setFixedHeight(28)
+        else:
+            self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
+            self.setFixedHeight(self.buttonLayout.sizeHint().height())
+
+        for button in self.findChildren(TitleBarButton):
+            FluentStyleSheet.FLUENT_WINDOW.apply(button)
+
 
 
 class MSFluentWindow(FluentWindowBase):

@@ -268,6 +268,7 @@ class QConfig(QObject):
     themeMode = OptionsConfigItem(
         "QFluentWidgets", "ThemeMode", Theme.LIGHT, OptionsValidator(Theme), EnumSerializer(Theme))
     themeColor = ColorConfigItem("QFluentWidgets", "ThemeColor", '#009faa')
+    fontFamilies = ConfigItem("QFluentWidgets", "FontFamilies", ['Segoe UI', 'Microsoft YaHei', 'PingFang SC'])
 
     def __init__(self):
         super().__init__()
