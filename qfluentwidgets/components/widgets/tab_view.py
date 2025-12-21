@@ -891,6 +891,30 @@ class TabWidget(QWidget):
         """
         return self.insertTab(-1, widget, label, icon, routeKey)
 
+    def addTab(self, widget: QWidget, label: str, icon: Union[QIcon, str, FluentIconBase] = None, routeKey=None) -> int:
+        """ Adds a tab with the given page, icon, and label to the tab widget, and returns the index of the tab in the tab bar.
+
+        Parameters
+        ----------
+        widget: QWidget
+            the widget in the new tab
+
+        label: str
+            the title of tab
+
+        icon: str | QIcon | FluentIconBase
+            the icon of tab
+
+        routeKey: str
+            the route key of new tab, if not provided, an unique uuid will be generated as route key
+
+        Returns
+        -------
+        index: int
+            the index of the tab
+        """
+        return self.insertTab(-1, widget, label, icon, routeKey)
+
     def insertTab(self, index: int, widget: QWidget, label: str, icon: Union[QIcon, str, FluentIconBase] = None, routeKey=None) -> int:
         """ Inserts a tab with the given label and page into the tab widget at the specified index, and returns the index of the inserted tab in the tab bar.
 
@@ -949,6 +973,10 @@ class TabWidget(QWidget):
             self.stackedWidget.removeWidget(self.stackedWidget.widget(0))
 
         self.tabBar.clear()
+
+    def widget(self, index: int):
+        """ Returns the tab page at index position index or `None` if the index is out of range. """
+        return self.stackedWidget.widget(index)
 
     def currentWidget(self) -> QWidget:
         "" "Returns a pointer to the page currently being displayed. """

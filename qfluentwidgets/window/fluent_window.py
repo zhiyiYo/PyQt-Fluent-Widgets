@@ -12,31 +12,22 @@ from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
+from ..components.widgets.label import CaptionLabel
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
                                      NavigationBarPushButton, NavigationTreeWidget)
 from .stacked_widget import StackedWidget
 
-from qframelesswindow import TitleBar, TitleBarBase
+from qframelesswindow import TitleBar, TitleBarBase, TitleBarButton
 
 
-class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
-    """ Fluent window base class """
+class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
+    """ Fluent widget """
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
         self._lightBackgroundColor = QColor(240, 244, 249)
         self._darkBackgroundColor = QColor(32, 32, 32)
         super().__init__(parent=parent)
-
-        self.hBoxLayout = QHBoxLayout(self)
-        self.stackedWidget = StackedWidget(self)
-        self.navigationInterface = None
-
-        # initialize layout
-        self.hBoxLayout.setSpacing(0)
-        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
-
-        FluentStyleSheet.FLUENT_WINDOW.apply(self.stackedWidget)
 
         # enable mica effect on win11
         self.setMicaEffectEnabled(True)
@@ -45,43 +36,10 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         if sys.platform == "darwin":
             self.setSystemTitleBarButtonVisible(True)
 
+        # set up title bar
+        self.setTitleBar(FluentWidgetTitleBar(self))
+
         qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
-
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        position=NavigationItemPosition.TOP):
-        """ add sub interface """
-        raise NotImplementedError
-
-    def removeInterface(self, interface: QWidget, isDelete=False):
-        """ remove sub interface
-
-        Parameters
-        ----------
-        interface: QWidget
-            sub interface to be removed
-
-        isDelete: bool
-            whether to delete the sub interface
-        """
-        raise NotImplementedError
-
-    def switchTo(self, interface: QWidget):
-        self.stackedWidget.setCurrentWidget(interface, popOut=False)
-
-    def _onCurrentInterfaceChanged(self, index: int):
-        widget = self.stackedWidget.widget(index)
-        self.navigationInterface.setCurrentItem(widget.objectName())
-        qrouter.push(self.stackedWidget, widget.objectName())
-
-        self._updateStackedBackground()
-
-    def _updateStackedBackground(self):
-        isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
-        if bool(self.stackedWidget.property("isTransparent")) == isTransparent:
-            return
-
-        self.stackedWidget.setProperty("isTransparent", isTransparent)
-        self.stackedWidget.setStyle(QApplication.style())
 
     def setCustomBackgroundColor(self, light, dark):
         """ set custom background color
@@ -143,7 +101,7 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
         size: QSize
             original system title bar rect
         """
-        return QRect(size.width() - 75, 0 if self.isFullScreen() else 9, 75, size.height())
+        return QRect(0, 0 if self.isFullScreen() else 2, 75, size.height())
 
     def setTitleBar(self, titleBar):
         super().setTitleBar(titleBar)
@@ -153,6 +111,68 @@ class FluentWindowBase(BackgroundAnimationWidget, FramelessWindow):
             titleBar.minBtn.hide()
             titleBar.maxBtn.hide()
             titleBar.closeBtn.hide()
+
+
+class FluentWindowBase(FluentWidget):
+    """ Fluent window base class """
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.hBoxLayout = QHBoxLayout(self)
+        self.stackedWidget = StackedWidget(self)
+        self.navigationInterface = None
+
+        # initialize layout
+        self.hBoxLayout.setSpacing(0)
+        self.hBoxLayout.setContentsMargins(0, 0, 0, 0)
+
+        FluentStyleSheet.FLUENT_WINDOW.apply(self.stackedWidget)
+
+    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
+                        position=NavigationItemPosition.TOP):
+        """ add sub interface """
+        raise NotImplementedError
+
+    def removeInterface(self, interface: QWidget, isDelete=False):
+        """ remove sub interface
+
+        Parameters
+        ----------
+        interface: QWidget
+            sub interface to be removed
+
+        isDelete: bool
+            whether to delete the sub interface
+        """
+        raise NotImplementedError
+
+    def switchTo(self, interface: QWidget):
+        self.stackedWidget.setCurrentWidget(interface, popOut=False)
+
+    def _onCurrentInterfaceChanged(self, index: int):
+        widget = self.stackedWidget.widget(index)
+        self.navigationInterface.setCurrentItem(widget.objectName())
+        qrouter.push(self.stackedWidget, widget.objectName())
+
+        self._updateStackedBackground()
+
+    def _updateStackedBackground(self):
+        isTransparent = self.stackedWidget.currentWidget().property("isStackedTransparent")
+        if bool(self.stackedWidget.property("isTransparent")) == isTransparent:
+            return
+
+        self.stackedWidget.setProperty("isTransparent", isTransparent)
+        self.stackedWidget.setStyle(QApplication.style())
+
+    def systemTitleBarRect(self, size: QSize) -> QRect:
+        """ Returns the system title bar rect, only works for macOS
+
+        Parameters
+        ----------
+        size: QSize
+            original system title bar rect
+        """
+        return QRect(size.width() - 75, 0 if self.isFullScreen() else 8, 75, size.height())
 
 
 class FluentTitleBar(TitleBar):
@@ -172,7 +192,7 @@ class FluentTitleBar(TitleBar):
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
-        self.titleLabel = QLabel(self)
+        self.titleLabel = CaptionLabel(self)
         self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
@@ -299,6 +319,24 @@ class MSFluentTitleBar(FluentTitleBar):
         super().__init__(parent)
         self.hBoxLayout.insertSpacing(0, 20)
         self.hBoxLayout.insertSpacing(2, 2)
+
+
+class FluentWidgetTitleBar(FluentTitleBar):
+
+    def __init__(self, parent):
+        super().__init__(parent)
+
+        if sys.platform == "darwin":
+            self.iconLabel.hide()
+            self.titleLabel.hide()
+            self.setFixedHeight(28)
+        else:
+            self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
+            self.setFixedHeight(self.buttonLayout.sizeHint().height())
+
+        for button in self.findChildren(TitleBarButton):
+            FluentStyleSheet.FLUENT_WINDOW.apply(button)
+
 
 
 class MSFluentWindow(FluentWindowBase):
