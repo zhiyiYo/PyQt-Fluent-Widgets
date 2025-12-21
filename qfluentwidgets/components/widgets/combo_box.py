@@ -89,7 +89,7 @@ class ComboBoxBase(QObject):
 
         return super().eventFilter(obj, e)
 
-    def addItem(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
+    def addItem(self, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None, isEnabled=True):
         """ add item
 
         Parameters
@@ -98,22 +98,33 @@ class ComboBoxBase(QObject):
             the text of item
 
         icon: str | QIcon | FluentIconBase
+            the icon of item
+
+        userData: Any
+            user data
+
+        isEnabled: bool
+            whether the item is enabled
         """
-        item = ComboItem(text, icon, userData)
+        item = ComboItem(text, icon, userData, isEnabled)
         self.items.append(item)
         if len(self.items) == 1:
             self.setCurrentIndex(0)
 
-    def addItems(self, texts: Iterable[str]):
+    def addItems(self, texts: Iterable[str], disabledItems: List[int] = None):
         """ add items
 
         Parameters
         ----------
-        text: Iterable[str]
-            the text of item
+        texts: Iterable[str]
+            the text of items
+
+        disabledItems: List[int]
+            the indices of disabled items
         """
-        for text in texts:
-            self.addItem(text)
+        disabledItems = disabledItems or []
+        for i, text in enumerate(texts):
+            self.addItem(text, isEnabled=(i not in disabledItems))
 
     def removeItem(self, index: int):
         """ Removes the item at the given index from the combobox.
@@ -247,6 +258,13 @@ class ComboBoxBase(QObject):
         if 0 <= index < len(self.items):
             self.items[index].isEnabled = isEnabled
 
+    def isItemEnabled(self, index: int) -> bool:
+        """ Returns the enabled status of the item on the given index """
+        if 0 <= index < len(self.items):
+            return self.items[index].isEnabled
+
+        return False
+
     def findData(self, data):
         """ Returns the index of the item containing the given data, otherwise returns -1 """
         for i, item in enumerate(self.items):
@@ -275,19 +293,51 @@ class ComboBoxBase(QObject):
         """ Returns the number of items in the combobox """
         return len(self.items)
 
-    def insertItem(self, index: int, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None):
-        """ Inserts item into the combobox at the given index. """
-        item = ComboItem(text, icon, userData)
+    def insertItem(self, index: int, text: str, icon: Union[str, QIcon, FluentIconBase] = None, userData=None,
+                   isEnabled=True):
+        """ Inserts item into the combobox at the given index.
+
+        Parameters
+        ----------
+        index: int
+            the index to insert
+
+        text: str
+            the text of item
+
+        icon: str | QIcon | FluentIconBase
+            the icon of item
+
+        userData: Any
+            user data
+
+        isEnabled: bool
+            whether the item is enabled
+        """
+        item = ComboItem(text, icon, userData, isEnabled)
         self.items.insert(index, item)
 
         if index <= self.currentIndex():
             self.setCurrentIndex(self.currentIndex() + 1)
 
-    def insertItems(self, index: int, texts: Iterable[str]):
-        """ Inserts items into the combobox, starting at the index specified. """
+    def insertItems(self, index: int, texts: Iterable[str], disabledItems: List[int] = None):
+        """ Inserts items into the combobox, starting at the index specified.
+
+        Parameters
+        ----------
+        index: int
+            the index to insert
+
+        texts: Iterable[str]
+            the text of items
+
+        disabledItems: List[int]
+            the indices of disabled items (relative to the inserted items)
+        """
+        disabledItems = disabledItems or []
         pos = index
-        for text in texts:
-            item = ComboItem(text)
+        for i, text in enumerate(texts):
+            item = ComboItem(text, isEnabled=(i not in disabledItems))
             self.items.insert(pos, item)
             pos += 1
 
