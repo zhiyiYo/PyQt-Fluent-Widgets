@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Dict, Union
 
 from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QSize, QEvent, QEasingCurve, pyqtSignal, QPoint, QRectF
-from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath
+from PyQt5.QtGui import QResizeEvent, QIcon, QColor, QPainterPath, QPainter, QPen
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QFrame, QApplication, QHBoxLayout
 
 from .navigation_widget import (NavigationTreeWidgetBase, NavigationToolButton, NavigationWidget, NavigationSeparator,
@@ -499,6 +499,13 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
+    def _getTitleBarHeight(self):
+        """ get the height of window title bar """
+        window = self.window()
+        if hasattr(window, 'titleBar') and window.titleBar:
+            return window.titleBar.height()
+        return 0
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._stopIndicatorAnimation()
@@ -513,7 +520,7 @@ class NavigationPanel(QFrame):
         if (self.window().width() >= expandWidth and not self.isMinimalEnabled) or not self._isCollapsible:
             self.displayMode = NavigationDisplayMode.EXPAND
         else:
-            self.setProperty('menu', True)
+            self.setProperty('menu', False)
             self.setStyle(QApplication.style())
             self.displayMode = NavigationDisplayMode.MENU
 
@@ -769,17 +776,56 @@ class NavigationPanel(QFrame):
         return self.acrylicBrush.isAvailable() and self.isAcrylicEnabled()
 
     def paintEvent(self, e):
-        if not self._canDrawAcrylic() or self.displayMode != NavigationDisplayMode.MENU:
+        if self.displayMode != NavigationDisplayMode.MENU:
             return super().paintEvent(e)
 
-        path = QPainterPath()
-        path.setFillRule(Qt.WindingFill)
-        path.addRoundedRect(0, 1, self.width() - 1, self.height() - 1, 7, 7)
-        path.addRect(0, 1, 8, self.height() - 1)
-        self.acrylicBrush.setClipPath(path)
+        titleBarHeight = self._getTitleBarHeight()
+        y = titleBarHeight if titleBarHeight > 0 else 0
+        h = self.height() - y
+        w = self.width()
+        r = 8
 
-        self._updateAcrylicColor()
-        self.acrylicBrush.paint()
+        # fill path with right corners rounded
+        fillPath = QPainterPath()
+        fillPath.setFillRule(Qt.WindingFill)
+        fillPath.addRoundedRect(0, y, w - 1, h, r, r)
+        fillPath.addRect(0, y, r + 1, h)
+
+        # border path without left edge
+        borderPath = QPainterPath()
+        borderPath.moveTo(0, y)
+        borderPath.lineTo(w - r - 1, y)
+        borderPath.arcTo(w - 2 * r - 1, y, 2 * r, 2 * r, 90, -90)
+        borderPath.lineTo(w - 1, y + h - r)
+        borderPath.arcTo(w - 2 * r - 1, y + h - 2 * r, 2 * r, 2 * r, 0, -90)
+        borderPath.lineTo(0, y + h)
+
+        if isDarkTheme():
+            bgColor = QColor(32, 32, 32)
+            borderColor = QColor(57, 57, 57)
+        else:
+            bgColor = QColor(243, 243, 243)
+            borderColor = QColor(229, 229, 229)
+
+        if self._canDrawAcrylic():
+            self.acrylicBrush.setClipPath(fillPath)
+            self._updateAcrylicColor()
+            self.acrylicBrush.paint()
+
+            painter = QPainter(self)
+            painter.setRenderHint(QPainter.Antialiasing)
+            painter.setPen(QPen(borderColor, 1))
+            painter.setBrush(Qt.NoBrush)
+            painter.drawPath(borderPath)
+        else:
+            painter = QPainter(self)
+            painter.setRenderHint(QPainter.Antialiasing)
+            painter.setPen(Qt.NoPen)
+            painter.setBrush(bgColor)
+            painter.drawPath(fillPath)
+            painter.setPen(QPen(borderColor, 1))
+            painter.setBrush(Qt.NoBrush)
+            painter.drawPath(borderPath)
 
         super().paintEvent(e)
 
