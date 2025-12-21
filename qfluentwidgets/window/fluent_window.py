@@ -12,11 +12,12 @@ from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
+from ..components.widgets.label import CaptionLabel
 from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
                                      NavigationBarPushButton, NavigationTreeWidget)
 from .stacked_widget import StackedWidget
 
-from qframelesswindow import TitleBar, TitleBarBase
+from qframelesswindow import TitleBar, TitleBarBase, TitleBarButton
 
 
 class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
@@ -191,7 +192,7 @@ class FluentTitleBar(TitleBar):
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
-        self.titleLabel = QLabel(self)
+        self.titleLabel = CaptionLabel(self)
         self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
         self.titleLabel.setObjectName('titleLabel')
         self.window().windowTitleChanged.connect(self.setTitle)
@@ -332,6 +333,9 @@ class FluentWidgetTitleBar(FluentTitleBar):
         else:
             self.hBoxLayout.setContentsMargins(16, 0, 0, 0)
             self.setFixedHeight(self.buttonLayout.sizeHint().height())
+
+        for button in self.findChildren(TitleBarButton):
+            FluentStyleSheet.FLUENT_WINDOW.apply(button)
 
 
 

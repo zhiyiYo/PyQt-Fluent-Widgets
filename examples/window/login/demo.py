@@ -12,8 +12,11 @@ class LoginWindow(FluentWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # setTheme(Theme.DARK)
+        setTheme(Theme.DARK)
         setThemeColor('#28afe9')
+
+        if sys.platform != "darwin":
+            self.titleBar.titleLabel.setTextColor(Qt.GlobalColor.white, Qt.GlobalColor.white)
 
         # place the title on top layer
         self.titleBar.raise_()
