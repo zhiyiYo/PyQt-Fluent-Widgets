@@ -950,6 +950,10 @@ class TabWidget(QWidget):
 
         self.tabBar.clear()
 
+    def widget(self, index: int):
+        """ Returns the tab page at index position index or `None` if the index is out of range. """
+        return self.stackedWidget.widget(index)
+
     def currentWidget(self) -> QWidget:
         "" "Returns a pointer to the page currently being displayed. """
         return self.stackedWidget.currentWidget()
