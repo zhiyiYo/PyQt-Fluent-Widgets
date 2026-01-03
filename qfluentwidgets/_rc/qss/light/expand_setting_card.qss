@@ -11,6 +11,13 @@ ExpandSettingCard {
     border-bottom-right-radius: 8px;
 }
 
+#viewUp {
+    background: rgba(255, 255, 255, 0.667);
+    border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
 #scrollWidget {
     border: none;
     background-color: transparent;
