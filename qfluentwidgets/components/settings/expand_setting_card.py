@@ -1,6 +1,7 @@
 # coding:utf-8
+from enum import Enum
 from typing import List, Union
-from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
+from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF, QTimer
 from PyQt5.QtGui import QColor, QPainter, QIcon, QPainterPath
 from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout, QLabel, QHBoxLayout
 
@@ -11,13 +12,21 @@ from .setting_card import SettingCard, SettingIconWidget
 from ..layout.v_box_layout import VBoxLayout
 
 
+class ExpandPosition(Enum):
+    """ Expand position """
+    UP = 0
+    DOWN = 1
+
+
 class ExpandButton(QAbstractButton):
     """ Expand button """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, expandPosition=ExpandPosition.DOWN):
         super().__init__(parent)
         self.setFixedSize(30, 30)
-        self.__angle = 0
+        self._expandPosition = expandPosition
+        # initial angle: 0 for DOWN, 180 for UP
+        self.__angle = 0 if expandPosition == ExpandPosition.DOWN else 180
         self.isHover = False
         self.isPressed = False
         self.rotateAni = QPropertyAnimation(self, b'angle', self)
@@ -72,11 +81,18 @@ class ExpandButton(QAbstractButton):
         self.update()
 
     def __onClicked(self):
-        self.setExpand(self.angle < 180)
+        # check expand state based on position
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.setExpand(self.angle < 180)
+        else:
+            self.setExpand(self.angle > 0)
 
     def setExpand(self, isExpand: bool):
         self.rotateAni.stop()
-        self.rotateAni.setEndValue(180 if isExpand else 0)
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.rotateAni.setEndValue(180 if isExpand else 0)
+        else:
+            self.rotateAni.setEndValue(0 if isExpand else 180)
         self.rotateAni.setDuration(200)
         self.rotateAni.start()
 
@@ -102,9 +118,10 @@ class SpaceWidget(QWidget):
 class HeaderSettingCard(SettingCard):
     """ Header setting card """
 
-    def __init__(self, icon, title, content=None, parent=None):
+    def __init__(self, icon, title, content=None, parent=None, expandPosition=ExpandPosition.DOWN):
         super().__init__(icon, title, content, parent)
-        self.expandButton = ExpandButton(self)
+        self._expandPosition = expandPosition
+        self.expandButton = ExpandButton(self, expandPosition)
 
         self.hBoxLayout.addWidget(self.expandButton, 0, Qt.AlignRight)
         self.hBoxLayout.addSpacing(8)
@@ -150,9 +167,14 @@ class HeaderSettingCard(SettingCard):
         path.setFillRule(Qt.WindingFill)
         path.addRoundedRect(QRectF(self.rect().adjusted(1, 1, -1, -1)), 6, 6)
 
-        # set the bottom border radius to 0 if parent is expanded
+        # adjust border radius based on expand state and position
         if hasattr(p, 'isExpand') and p.isExpand:
-            path.addRect(1, self.height() - 8, self.width() - 2, 8)
+            if self._expandPosition == ExpandPosition.DOWN:
+                # expand down: bottom corners should be square
+                path.addRect(1, self.height() - 8, self.width() - 2, 8)
+            else:
+                # expand up: top corners should be square
+                path.addRect(1, 0, self.width() - 2, 8)
 
         painter.drawPath(path.simplified())
 
@@ -160,8 +182,9 @@ class HeaderSettingCard(SettingCard):
 class ExpandBorderWidget(QWidget):
     """ Expand setting card border widget """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, expandPosition=ExpandPosition.DOWN):
         super().__init__(parent=parent)
+        self._expandPosition = expandPosition
         self.setAttribute(Qt.WA_TransparentForMouseEvents)
         parent.installEventFilter(self)
 
@@ -185,30 +208,37 @@ class ExpandBorderWidget(QWidget):
         r, d = 6, 12
         ch, h, w = p.card.height(), self.height(), self.width()
 
-        # only draw rounded rect if parent is not expanded
+        # draw rounded rect border
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
 
-        # draw the seperator line under card widget
+        # draw separator line based on expand position
         if ch < h:
-            painter.drawLine(1, ch, w - 1, ch)
+            if self._expandPosition == ExpandPosition.DOWN:
+                # separator below header
+                painter.drawLine(1, ch, w - 1, ch)
+            else:
+                # separator above header
+                painter.drawLine(1, h - ch, w - 1, h - ch)
 
 
 
 class ExpandSettingCard(QScrollArea):
     """ Expandable setting card """
 
-    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None,
+                 parent=None, expandPosition: ExpandPosition = ExpandPosition.DOWN):
         super().__init__(parent=parent)
         self.isExpand = False
+        self._expandPosition = expandPosition
 
         self.scrollWidget = QFrame(self)
         self.view = QFrame(self.scrollWidget)
-        self.card = HeaderSettingCard(icon, title, content, self)
+        self.card = HeaderSettingCard(icon, title, content, self, expandPosition)
 
         self.scrollLayout = QVBoxLayout(self.scrollWidget)
         self.viewLayout = QVBoxLayout(self.view)
         self.spaceWidget = SpaceWidget(self.scrollWidget)
-        self.borderWidget = ExpandBorderWidget(self)
+        self.borderWidget = ExpandBorderWidget(self, expandPosition)
 
         # expand animation
         self.expandAni = QPropertyAnimation(self.verticalScrollBar(), b'value', self)
@@ -220,24 +250,41 @@ class ExpandSettingCard(QScrollArea):
         self.setWidget(self.scrollWidget)
         self.setWidgetResizable(True)
         self.setFixedHeight(self.card.height())
-        self.setViewportMargins(0, self.card.height(), 0, 0)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        # set viewport margins based on expand position
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.setViewportMargins(0, self.card.height(), 0, 0)
+        else:
+            self.setViewportMargins(0, 0, 0, self.card.height())
 
         # initialize layout
         self.scrollLayout.setContentsMargins(0, 0, 0, 0)
         self.scrollLayout.setSpacing(0)
-        self.scrollLayout.addWidget(self.view)
-        self.scrollLayout.addWidget(self.spaceWidget)
+
+        # layout order depends on expand position
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.scrollLayout.addWidget(self.view)
+            self.scrollLayout.addWidget(self.spaceWidget)
+        else:
+            self.scrollLayout.addWidget(self.spaceWidget)
+            self.scrollLayout.addWidget(self.view)
 
         # initialize expand animation
         self.expandAni.setEasingCurve(QEasingCurve.OutQuad)
         self.expandAni.setDuration(200)
 
         # initialize style sheet
-        self.view.setObjectName('view')
         self.scrollWidget.setObjectName('scrollWidget')
         self.setProperty('isExpand', False)
+
+        # set view object name based on expand position
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.view.setObjectName('view')
+        else:
+            self.view.setObjectName('viewUp')
+
         FluentStyleSheet.EXPAND_SETTING_CARD.apply(self.card)
         FluentStyleSheet.EXPAND_SETTING_CARD.apply(self)
 
@@ -266,14 +313,26 @@ class ExpandSettingCard(QScrollArea):
         self.setStyle(QApplication.style())
 
         # start expand animation
-        if isExpand:
-            h = self.viewLayout.sizeHint().height()
-            self.verticalScrollBar().setValue(h)
-            self.expandAni.setStartValue(h)
-            self.expandAni.setEndValue(0)
+        h = self.viewLayout.sizeHint().height()
+
+        if self._expandPosition == ExpandPosition.DOWN:
+            # expand down: scroll from bottom to top
+            if isExpand:
+                self.verticalScrollBar().setValue(h)
+                self.expandAni.setStartValue(h)
+                self.expandAni.setEndValue(0)
+            else:
+                self.expandAni.setStartValue(0)
+                self.expandAni.setEndValue(self.verticalScrollBar().maximum())
         else:
-            self.expandAni.setStartValue(0)
-            self.expandAni.setEndValue(self.verticalScrollBar().maximum())
+            # expand up: scroll from top to bottom
+            if isExpand:
+                self.verticalScrollBar().setValue(0)
+                self.expandAni.setStartValue(0)
+                self.expandAni.setEndValue(h)
+            else:
+                self.expandAni.setStartValue(self.verticalScrollBar().value())
+                self.expandAni.setEndValue(0)
 
         self.expandAni.start()
         self.card.expandButton.setExpand(isExpand)
@@ -286,10 +345,20 @@ class ExpandSettingCard(QScrollArea):
         self.card.resize(self.width(), self.card.height())
         self.scrollWidget.resize(self.width(), self.scrollWidget.height())
 
+        # update card position based on expand position
+        if self._expandPosition == ExpandPosition.UP:
+            self.card.move(0, self.height() - self.card.height())
+
     def _onExpandValueChanged(self):
         vh = self.viewLayout.sizeHint().height()
-        h = self.viewportMargins().top()
-        self.setFixedHeight(max(h + vh - self.verticalScrollBar().value(), h))
+        h = self.card.height()
+
+        if self._expandPosition == ExpandPosition.DOWN:
+            self.setFixedHeight(max(h + vh - self.verticalScrollBar().value(), h))
+        else:
+            self.setFixedHeight(max(h + self.verticalScrollBar().value(), h))
+            # update card position when expanding up
+            self.card.move(0, self.height() - self.card.height())
 
     def _adjustViewSize(self):
         """ adjust view size """
@@ -297,7 +366,11 @@ class ExpandSettingCard(QScrollArea):
         self.spaceWidget.setFixedHeight(h)
 
         if self.isExpand:
-            self.setFixedHeight(self.card.height()+h)
+            self.setFixedHeight(self.card.height() + h)
+            if self._expandPosition == ExpandPosition.UP:
+                self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
 
     def setValue(self, value):
         """ set the value of config item """
@@ -382,8 +455,9 @@ class GroupWidget(QWidget):
 class ExpandGroupSettingCard(ExpandSettingCard):
     """ Expand group setting card """
 
-    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None, parent=None):
-        super().__init__(icon, title, content, parent)
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None,
+                 parent=None, expandPosition: ExpandPosition = ExpandPosition.DOWN):
+        super().__init__(icon, title, content, parent, expandPosition)
         self.widgets = []   # type: List[QWidget]
 
         self.viewLayout.setContentsMargins(0, 0, 0, 0)
@@ -456,11 +530,19 @@ class ExpandGroupSettingCard(ExpandSettingCard):
         self.spaceWidget.setFixedHeight(h)
 
         if self.isExpand:
-            self.setFixedHeight(self.card.height()+h)
+            self.setFixedHeight(self.card.height() + h)
+            if self._expandPosition == ExpandPosition.UP:
+                self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
 
 
 class SimpleExpandGroupSettingCard(ExpandGroupSettingCard):
     """ Simple expand group setting card """
+
+    def __init__(self, icon: Union[str, QIcon, FIF], title: str, content: str = None,
+                 parent=None, expandPosition: ExpandPosition = ExpandPosition.DOWN):
+        super().__init__(icon, title, content, parent, expandPosition)
 
     def _adjustViewSize(self):
         """ adjust view size """
@@ -468,4 +550,8 @@ class SimpleExpandGroupSettingCard(ExpandGroupSettingCard):
         self.spaceWidget.setFixedHeight(h)
 
         if self.isExpand:
-            self.setFixedHeight(self.card.height()+h)
+            self.setFixedHeight(self.card.height() + h)
+            if self._expandPosition == ExpandPosition.UP:
+                self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
