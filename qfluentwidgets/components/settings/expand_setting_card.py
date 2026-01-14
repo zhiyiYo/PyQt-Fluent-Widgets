@@ -1,7 +1,7 @@
 # coding:utf-8
 from enum import Enum
 from typing import List, Union
-from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF
+from PyQt5.QtCore import QEvent, Qt, QPropertyAnimation, pyqtProperty, QEasingCurve, QRectF, QTimer
 from PyQt5.QtGui import QColor, QPainter, QIcon, QPainterPath
 from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScrollArea, QVBoxLayout, QLabel, QHBoxLayout
 
@@ -369,6 +369,8 @@ class ExpandSettingCard(QScrollArea):
             self.setFixedHeight(self.card.height() + h)
             if self._expandPosition == ExpandPosition.UP:
                 self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
 
     def setValue(self, value):
         """ set the value of config item """
@@ -531,6 +533,8 @@ class ExpandGroupSettingCard(ExpandSettingCard):
             self.setFixedHeight(self.card.height() + h)
             if self._expandPosition == ExpandPosition.UP:
                 self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
 
 
 class SimpleExpandGroupSettingCard(ExpandGroupSettingCard):
@@ -549,3 +553,5 @@ class SimpleExpandGroupSettingCard(ExpandGroupSettingCard):
             self.setFixedHeight(self.card.height() + h)
             if self._expandPosition == ExpandPosition.UP:
                 self.card.move(0, self.height() - self.card.height())
+                # delay scrollbar update to ensure layout is complete
+                QTimer.singleShot(0, lambda: self.verticalScrollBar().setValue(h))
