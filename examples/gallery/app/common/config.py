@@ -54,7 +54,7 @@ class Config(QConfig):
     checkUpdateAtStartUp = ConfigItem("Update", "CheckUpdateAtStartUp", True, BoolValidator())
 
 
-YEAR = 2023
+YEAR = 2026
 AUTHOR = "zhiyiYo"
 VERSION = __version__
 HELP_URL = "https://qfluentwidgets.com"
