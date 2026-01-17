@@ -54,6 +54,10 @@ MaximizeButton {
 CloseButton {
     qproperty-normalColor: white;
     qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgb(232, 17, 35);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgb(241, 112, 122);
 }
 
 StackedWidget {
