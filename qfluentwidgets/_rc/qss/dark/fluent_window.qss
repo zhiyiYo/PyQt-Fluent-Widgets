@@ -23,6 +23,15 @@ SplitTitleBar>QLabel#titleLabel {
     padding: 0 5px
 }
 
+TitleBarButton {
+    qproperty-normalColor: white;
+    qproperty-hoverColor: white;
+    qproperty-pressedColor: white;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverBackgroundColor: rgba(255, 255, 255, 26);
+    qproperty-pressedBackgroundColor: rgba(255, 255, 255, 51);
+}
+
 MinimizeButton {
     qproperty-normalColor: white;
     qproperty-normalBackgroundColor: transparent;
@@ -45,6 +54,10 @@ MaximizeButton {
 CloseButton {
     qproperty-normalColor: white;
     qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: white;
+    qproperty-hoverBackgroundColor: rgb(232, 17, 35);
+    qproperty-pressedColor: white;
+    qproperty-pressedBackgroundColor: rgb(241, 112, 122);
 }
 
 StackedWidget {
