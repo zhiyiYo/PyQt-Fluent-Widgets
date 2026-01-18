@@ -5,12 +5,12 @@ from PyQt6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, pyqtPro
 from PyQt6.QtGui import QHelpEvent, QPainter, QColor, QKeyEvent, QPalette, QBrush
 from PyQt6.QtWidgets import (QAbstractItemView, QStyledItemDelegate, QApplication, QStyleOptionViewItem,
                              QTableView, QTableWidget, QWidget, QTableWidgetItem, QStyle,
-                             QStyleOptionButton)
+                             QStyleOptionButton, QStyleFactory)
 
 from .check_box import CheckBoxIcon
 from ...common.font import getFont
 from ...common.color import autoFallbackThemeColor
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, setCustomStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, updateDynamicStyle, setCustomStyleSheet
 from .line_edit import LineEdit
 from .scroll_bar import SmoothScrollDelegate
 from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
@@ -229,7 +229,7 @@ class TableBase:
     def setBorderVisible(self, isVisible: bool):
         """ set the visibility of border """
         self.setProperty("isBorderVisible", isVisible)
-        self.setStyle(QApplication.style())
+        updateDynamicStyle(self)
 
     def setBorderRadius(self, radius: int):
         """ set the radius of border """
@@ -324,6 +324,7 @@ class TableWidget(TableBase, QTableWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        updateDynamicStyle(self)
 
     def setCurrentCell(self, row: int, column: int, command: QItemSelectionModel.SelectionFlag = None):
         self.setCurrentItem(self.item(row, column), command)

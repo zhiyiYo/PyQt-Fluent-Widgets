@@ -5,7 +5,7 @@ from enum import Enum
 from pathlib import Path
 
 import darkdetect
-from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt6.QtCore import QObject, pyqtSignal, qVersion
 from PyQt6.QtGui import QColor
 
 from .exception_handler import exceptionHandler
@@ -402,6 +402,8 @@ class QConfig(QObject):
 
         self._cfg._theme = t
 
+
+QT_VERSION = tuple([int(v) for v in qVersion().split('.')])
 
 qconfig = QConfig()
 try:

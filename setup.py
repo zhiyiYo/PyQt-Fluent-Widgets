@@ -18,7 +18,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         "PyQt6>=6.3.1",
-        "PyQt6-Frameless-Window>=0.4.0",
+        "PyQt6-Frameless-Window>=0.7.6",
         "darkdetect",
     ],
     extras_require = {

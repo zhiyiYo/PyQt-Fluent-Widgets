@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
 from PyQt6.QtGui import QPainter, QColor, QPalette, QPainterPath
 from PyQt6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem, QStyleFactory
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, updateDynamicStyle, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
 from ...common.color import autoFallbackThemeColor
 from .check_box import CheckBoxIcon
@@ -160,6 +160,7 @@ class TreeViewBase:
         self.setMouseTracking(True)
 
         FluentStyleSheet.TREE_VIEW.apply(self)
+        updateDynamicStyle(self)
 
     def setCheckedColor(self, light, dark):
         """ set the color in checked status
@@ -178,7 +179,7 @@ class TreeViewBase:
     def setBorderVisible(self, isVisible: bool):
         """ set the visibility of border """
         self.setProperty("isBorderVisible", isVisible)
-        self.setStyle(QApplication.style())
+        updateDynamicStyle(self)
 
     def setBorderRadius(self, radius: int):
         """ set the radius of border """
@@ -191,7 +192,6 @@ class TreeWidget(QTreeWidget, TreeViewBase):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.setStyle(QStyleFactory.create("windowsvista"))
 
     def viewportEvent(self, event):
         """

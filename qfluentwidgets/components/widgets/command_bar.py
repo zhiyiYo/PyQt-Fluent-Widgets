@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import QLayoutItem, QWidget, QFrame, QHBoxLayout, QApplicat
 
 from ...common.font import setFont
 from ...common.icon import FluentIcon, Icon, Action
-from ...common.style_sheet import isDarkTheme
+from ...common.style_sheet import isDarkTheme, updateDynamicStyle
 from .menu import RoundMenu, MenuAnimationType
 from .button import TransparentToggleToolButton
 from .tool_tip import ToolTipFilter
@@ -458,7 +458,7 @@ class CommandViewMenu(CommandMenu):
     def setDropDown(self, down: bool, long=False):
         self.view.setProperty('dropDown', down)
         self.view.setProperty('long', long)
-        self.view.setStyle(QApplication.style())
+        updateDynamicStyle(self.view)
         self.view.update()
 
 
