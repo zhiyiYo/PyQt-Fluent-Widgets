@@ -462,6 +462,7 @@
         <file>i18n/qfluentwidgets.ru_RU.qm</file>
         <file>i18n/qfluentwidgets.ar_AR.qm</file>
         <file>i18n/qfluentwidgets.es_ES.qm</file>
+        <file>i18n/qfluentwidgets.pl_PL.qm</file>
 
         <file>images/controls/Acrylic.png</file>
         <file>images/controls/AnimatedIcon.png</file>
