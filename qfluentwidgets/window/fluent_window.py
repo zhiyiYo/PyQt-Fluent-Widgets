@@ -2,12 +2,12 @@
 from typing import Union
 import sys
 
-from PyQt5.QtCore import Qt, QSize, QRect
+from PyQt5.QtCore import Qt, QSize, QRect, QRectF
 from PyQt5.QtGui import QIcon, QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplication
 
 from ..common.config import qconfig
-from ..common.icon import FluentIconBase
+from ..common.icon import FluentIconBase, toQIcon, drawIcon
 from ..common.router import qrouter
 from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
 from ..common.animation import BackgroundAnimationWidget
@@ -173,6 +173,39 @@ class FluentWindowBase(FluentWidget):
             original system title bar rect
         """
         return QRect(size.width() - 75, 0 if self.isFullScreen() else 8, 75, size.height())
+
+
+class FluentTitleBarButton(TitleBarButton):
+    """ Fluent title bar button """
+
+    def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
+        super().__init__(parent)
+        self.setIcon(icon)
+
+    def setIcon(self, icon: Union[str, QIcon, FluentIconBase]):
+        self._icon = icon
+        self.update()
+
+    def icon(self) -> QIcon:
+        return toQIcon(self._icon)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing |
+                               QPainter.SmoothPixmapTransform)
+        _, bgColor = self._getColors()
+
+        # draw background
+        painter.setBrush(bgColor)
+        painter.setPen(Qt.NoPen)
+        painter.drawRect(self.rect())
+
+        # draw icon
+        iw, ih = self.iconSize().width(), self.iconSize().height()
+        x = (self.width() - iw) / 2
+        y = (self.height() - ih) / 2
+        drawIcon(self._icon, painter, QRectF(x, y, iw, ih))
+
 
 
 class FluentTitleBar(TitleBar):
