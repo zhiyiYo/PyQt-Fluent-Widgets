@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import List
 
 import darkdetect
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Signal, qVersion
 from PySide6.QtGui import QColor
 
 from .exception_handler import exceptionHandler
@@ -403,6 +403,8 @@ class QConfig(QObject):
 
         self._cfg._theme = t
 
+
+QT_VERSION = tuple([int(v) for v in qVersion().split('.')])
 
 qconfig = QConfig()
 try:
