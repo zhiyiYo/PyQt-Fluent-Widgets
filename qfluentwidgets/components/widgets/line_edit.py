@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QToolButton, 
                              QPlainTextEdit, QCompleter, QStyle, QWidget, QTextBrowser)
 
 
-from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor, updateDynamicStyle
 from ...common.icon import isDarkTheme, FluentIconBase, drawIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont
@@ -370,7 +370,7 @@ class CompleterMenu(RoundMenu):
 
         # update border style
         self.view.setProperty('dropDown', aniType == MenuAnimationType.FADE_IN_DROP_DOWN)
-        self.view.setStyle(QApplication.style())
+        updateDynamicStyle(self.view)
         self.view.update()
 
         self.adjustSize()
@@ -454,6 +454,7 @@ class TextEdit(QTextEdit):
         self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
+        updateDynamicStyle(self)
         setFont(self)
 
     def contextMenuEvent(self, e):
@@ -469,6 +470,7 @@ class PlainTextEdit(QPlainTextEdit):
         self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
+        updateDynamicStyle(self)
         setFont(self)
 
     def contextMenuEvent(self, e):
@@ -484,6 +486,7 @@ class TextBrowser(QTextBrowser):
         self.layer = EditLayer(self)
         self.scrollDelegate = SmoothScrollDelegate(self)
         FluentStyleSheet.LINE_EDIT.apply(self)
+        updateDynamicStyle(self)
         setFont(self)
 
     def contextMenuEvent(self, e):
