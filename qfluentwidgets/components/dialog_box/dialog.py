@@ -109,6 +109,14 @@ class Ui_MessageBox:
             self.contentLabel.setTextInteractionFlags(
                 Qt.TextInteractionFlag.NoTextInteraction)
 
+    def hideYesButton(self):
+        self.yesButton.hide()
+        self.buttonLayout.insertStretch(0, 1)
+
+    def hideCancelButton(self):
+        self.cancelButton.hide()
+        self.buttonLayout.insertStretch(0, 1)
+
 
 class Dialog(FramelessDialog, Ui_MessageBox):
     """ Dialog box """

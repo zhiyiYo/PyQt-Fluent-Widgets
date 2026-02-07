@@ -1,5 +1,5 @@
-PyQt6>=6.3.1
-PyQt6-Frameless-Window>=0.7.6
+PyQt6
+PyQt6-Frameless-Window>=0.8.0
 darkdetect
 colorthief
 scipy

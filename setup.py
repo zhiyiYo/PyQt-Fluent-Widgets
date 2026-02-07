@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setuptools.setup(
     name="PyQt6-Fluent-Widgets",
-    version="1.11.0",
+    version="1.11.1",
     keywords="pyqt6 fluent widgets",
     author="zhiyiYo",
     author_email="shokokawaii@outlook.com",
@@ -17,8 +17,8 @@ setuptools.setup(
     url="https://qfluentwidgets.com",
     packages=setuptools.find_packages(),
     install_requires=[
-        "PyQt6>=6.3.1",
-        "PyQt6-Frameless-Window>=0.7.6",
+        "PyQt6",
+        "PyQt6-Frameless-Window>=0.8.0",
         "darkdetect",
     ],
     extras_require = {
