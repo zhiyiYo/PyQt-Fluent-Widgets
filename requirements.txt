@@ -1,5 +1,5 @@
 PySide6>=6.4.2
-PySideSix-Frameless-Window>=0.7.6
+PySideSix-Frameless-Window>=0.8.0
 darkdetect
 colorthief
 scipy
