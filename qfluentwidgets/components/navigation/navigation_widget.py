@@ -630,6 +630,7 @@ class NavigationTreeWidget(NavigationTreeWidgetBase):
     def removeChild(self, child):
         self.treeChildren.remove(child)
         self.vBoxLayout.removeWidget(child)
+        self.setFixedHeight(self.sizeHint().height())
 
     def childItems(self) -> list:
         return self.treeChildren

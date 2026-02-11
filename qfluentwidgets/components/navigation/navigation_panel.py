@@ -645,7 +645,11 @@ class NavigationPanel(QFrame):
             return
 
         item.setSelected(True)
-        self._findIndicatorItem(item).setAboutSelected(False)
+        
+        indicatorItem = self._findIndicatorItem(item)
+        if indicatorItem:
+            indicatorItem.setAboutSelected(False)
+
         self.indicator.hide()
 
     def _onWidgetClicked(self):

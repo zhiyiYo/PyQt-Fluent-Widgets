@@ -4,6 +4,19 @@ Designer
 
 In Qt Designer, there are two ways to use PyQt-Fluent-Widgets.
 
+
+Using Client (Recommend)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Fluent Client integrates designer plugins, visual Nuitka packaging, and skeleton functionality, supporting direct drag-and-drop usage of QFluentWidgets components in Designer.
+
+What you see is what you get, making the construction of modern interfaces silky smooth! You can purchase from `TaoBao <https://item.taobao.com/item.htm?ft=t&id=767961666600>`_ or `Afdian <https://afdian.com/item/6726fcc4247311ef8c6852540025c377>`_.
+
+.. image:: https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg
+   :target: https://img.fastmirror.net/s/2024/02/18/65d22363d4a73.jpg
+   :alt:
+
+
 Promoting widget
 ^^^^^^^^^^^^^^^^
 
@@ -34,8 +47,6 @@ Well, the widget is now promoted to fluent push button. But you won't be able to
    </div>
 
 
-Using plugin
-^^^^^^^^^^^^
 
 
 
