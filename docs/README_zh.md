@@ -70,6 +70,9 @@ Copyright © 2021 by zhiyiYo.
 
 ![Fluent Designer](./source/_static/Designer_plugin.jpg)
 
+## 问题反馈💡
+如果在使用过程中遇到问题，请先查阅官网文档。若确认问题为组件库的 bug，请将操作系统信息、组件库版本、最小复现代码和复现步骤发送至 [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com)。
+
 
 ## 另见👀
 下面是一些基于 PyQt-Fluent-Widgets 的项目：
