@@ -66,6 +66,14 @@ Copyright © 2021 by zhiyiYo.
 
 ![Fluent Designer](./docs/source/_static/Designer_plugin.jpg)
 
+## Issue Reporting
+If you encounter any problems while using the library, please first check the official documentation. If the issue is confirmed to be a bug in the library, please send the following information to [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com):
+
+- Operating system information
+- QFluentWidgets Library version
+- Minimal reproducible code
+- Steps to reproduce
+
 
 ## See Also
 Here are some projects based on PyQt-Fluent-Widgets:

@@ -27,7 +27,7 @@ def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
         w_, h_ = w * ratio, h * ratio
 
         if w_ < w:
-            image = image.resize((int(w_), int(h_)), Image.ANTIALIAS)
+            image = image.resize((int(w_), int(h_)))
 
     image = np.array(image)
 
