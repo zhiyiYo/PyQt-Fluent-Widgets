@@ -2,7 +2,7 @@
 import warnings
 from  typing import Union
 
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QRect
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QRect, QSize
 from PyQt5.QtGui import QBrush, QColor, QImage, QPainter, QPixmap, QPainterPath
 from PyQt5.QtWidgets import QLabel, QApplication, QWidget
 
@@ -167,6 +167,7 @@ class AcrylicBrush:
                  luminosityColor=QColor(255, 255, 255, 10), noiseOpacity=0.03):
         self.device = device
         self.blurRadius = blurRadius
+        self.blurPicSize = None
         self.tintColor = QColor(tintColor)
         self.luminosityColor = QColor(luminosityColor)
         self.noiseOpacity = noiseOpacity
@@ -222,13 +223,16 @@ class AcrylicBrush:
         if not image.isNull():
             checkAcrylicAvailability()
 
-            self.image = gaussianBlur(image, self.blurRadius)
+            self.image = gaussianBlur(image, self.blurRadius, blurPicSize=self.blurPicSize)
 
         self.device.update()
 
     def setClipPath(self, path: QPainterPath):
         self.clipPath = path
         self.device.update()
+
+    def setBlurPicSize(self, size: QSize):
+        self.blurPicSize = (size.width(), size.height())
 
     def textureImage(self):
         texture = QImage(64, 64, QImage.Format_ARGB32_Premultiplied)

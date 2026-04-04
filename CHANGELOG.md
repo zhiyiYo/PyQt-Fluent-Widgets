@@ -1,5 +1,15 @@
 # 更新日志
 
+# v1.11.2
+### 新组件
+* 添加自适应流失布局 `AdaptiveFlowLayout`
+
+### 新特性
+* 添加设置 AcrylicBrush 最大图片分辨率的功能
+
+### 修复
+* 修复 `FastCalendarPicker` 无法选择部分日期的问题
+
 ## v1.11.0
 ### 新组件
 * 添加 `FluentTitleBarButton`

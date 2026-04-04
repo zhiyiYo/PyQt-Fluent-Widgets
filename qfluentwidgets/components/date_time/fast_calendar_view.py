@@ -330,6 +330,7 @@ class FastDayScrollView(FastScrollViewBase):
             if item:
                 item.setText(str(currentDate.day()))
                 item.setData(Qt.ItemDataRole.UserRole, currentDate)
+                item.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
                 currentDate = currentDate.addDays(1)
 
     def mouseReleaseEvent(self, e):

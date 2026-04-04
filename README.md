@@ -69,7 +69,7 @@ Copyright © 2021 by zhiyiYo.
 ![Fluent Designer](./docs/source/_static/Designer_plugin.jpg)
 
 ## Issue Reporting
-Due to the frequent receipt of unfriendly comments, which has significantly impacted the author's enthusiasm for open-source development, we have decided to permanently close the Issue page. If you encounter any problems while using the library, please first check the official documentation. If the issue is confirmed to be a bug in the library, please send the following information to [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com):
+If you encounter any problems while using the library, please first check the official documentation. If the issue is confirmed to be a bug in the library, please send the following information to [shokokawaii@outlook.com](mailto:shokokawaii@outlook.com):
 
 - Operating system information
 - QFluentWidgets Library version
