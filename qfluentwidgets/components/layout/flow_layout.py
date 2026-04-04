@@ -234,3 +234,99 @@ class FlowLayout(QLayout):
             self._aniGroup.start()
 
         return y + rowHeight + margin.bottom() - rect.y()
+
+
+class AdaptiveFlowLayout(FlowLayout):
+
+    def __init__(self, parent=None, needAni=False, isTight=False):
+        """
+        Parameters
+        ----------
+        useMinimumSizeHint: bool
+            * If `True`, use the widget's minimumSizeHint to calculate the layout,
+            maintaining the relative size of widgets but scaling proportionally to fill rows.
+            * If `False`, use a uniform minCardWidth as the base width
+        """
+        super().__init__(parent, needAni, isTight)
+        self._widgetMinimumWidth = 200
+        self._widgetMaximumWidth = None
+
+    def setWidgetMinimumWidth(self, width: int):
+        self._widgetMinimumWidth = width
+
+    def widgetMinimumWidth(self):
+        return self._widgetMinimumWidth
+
+    def setWidgetMaximumWidth(self, width):
+        self._widgetMaximumWidth = width
+
+    def widgetMaximumWidth(self):
+        return self._widgetMaximumWidth
+
+    def _doLayout(self, rect: QRect, move: bool):
+        aniRestart = False
+        margin = self.contentsMargins()
+        spaceX = self.horizontalSpacing()
+        spaceY = self.verticalSpacing()
+
+        # Calculate available width
+        availableWidth = rect.width() - margin.left() - margin.right()
+
+        # Calculate the number of cards that fit per row
+        if self._widgetMinimumWidth + spaceX > 0:
+            cardsPerRow = max(1, (availableWidth + spaceX) // (self._widgetMinimumWidth + spaceX))
+        else:
+            cardsPerRow = 1
+
+        # Calculate card width to fill each row
+        if cardsPerRow > 1:
+            cardWidth = (availableWidth - (cardsPerRow - 1) * spaceX) // cardsPerRow
+        else:
+            cardWidth = availableWidth
+
+        # Apply maximum width limit
+        if self._widgetMaximumWidth is not None and cardWidth > self._widgetMaximumWidth:
+            cardWidth = self._widgetMaximumWidth
+
+        # Perform layout
+        x = rect.x() + margin.left()
+        y = rect.y() + margin.top()
+        rowHeight = 0
+        colIndex = 0
+
+        for i, item in enumerate(self._items):
+            if item.widget() and not item.widget().isVisible() and self.isTight:
+                continue
+
+            # Calculate next position
+            nextX = x + cardWidth + spaceX
+
+            # Need to wrap to new line
+            if colIndex >= cardsPerRow and cardsPerRow > 0:
+                x = rect.x() + margin.left()
+                y = y + rowHeight + spaceY
+                nextX = x + cardWidth + spaceX
+                rowHeight = 0
+                colIndex = 0
+
+            if move:
+                # Set widget size to calculated card width, maintaining original height
+                targetSize = QSize(cardWidth, item.sizeHint().height())
+                target = QRect(QPoint(x, y), targetSize)
+
+                if not self.needAni:
+                    item.setGeometry(target)
+                elif i < len(self._anis) and target != self._anis[i].endValue():
+                    self._anis[i].stop()
+                    self._anis[i].setEndValue(target)
+                    aniRestart = True
+
+            x = nextX
+            rowHeight = max(rowHeight, item.sizeHint().height())
+            colIndex += 1
+
+        if self.needAni and aniRestart:
+            self._aniGroup.stop()
+            self._aniGroup.start()
+
+        return y + rowHeight + margin.bottom() - rect.y()
