@@ -451,6 +451,20 @@ class NavigationBar(QWidget):
         for button in self.buttons():
             button.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollArea.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollArea.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollArea.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollArea.dragScrollButtons()
+
     def buttons(self):
         return [i for i in self.items.values() if isinstance(i, NavigationPushButton)]
 

@@ -116,6 +116,20 @@ class ListBase:
         """
         self.delegate.setCheckedColor(light, dark)
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollDelegate.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollDelegate.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollDelegate.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollDelegate.dragScrollButtons()
+
 
 class ListWidget(ListBase, QListWidget):
     """ List widget """

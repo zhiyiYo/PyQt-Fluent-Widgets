@@ -185,6 +185,20 @@ class TreeViewBase:
         qss = f"QTreeView{{border-radius: {radius}px}}"
         setCustomStyleSheet(self, qss, qss)
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollDelagate.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollDelagate.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollDelagate.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollDelagate.dragScrollButtons()
+
 
 class TreeWidget(QTreeWidget, TreeViewBase):
     """ Tree widget """

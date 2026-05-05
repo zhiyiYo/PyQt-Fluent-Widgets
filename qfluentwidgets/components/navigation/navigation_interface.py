@@ -350,6 +350,20 @@ class NavigationInterface(QWidget):
         """ set whether the acrylic background effect is enabled """
         self.panel.setAcrylicEnabled(isEnabled)
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.panel.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.panel.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.panel.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.panel.dragScrollButtons()
+
     def isIndicatorAnimationEnabled(self):
         return self.panel.isIndicatorAnimationEnabled()
 

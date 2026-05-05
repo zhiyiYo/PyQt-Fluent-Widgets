@@ -5,7 +5,7 @@ from PyQt5.QtGui import QWheelEvent
 from PyQt5.QtWidgets import QScrollArea, QWidget
 
 from ...common.smooth_scroll import SmoothScroll, SmoothMode
-from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
+from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate, DragScrollDelegate
 
 
 class ScrollArea(QScrollArea):
@@ -37,6 +37,20 @@ class ScrollArea(QScrollArea):
         if self.widget():
             self.widget().setStyleSheet("QWidget{background: transparent}")
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollDelagate.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollDelagate.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollDelagate.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollDelagate.dragScrollButtons()
+
 
 class SingleDirectionScrollArea(QScrollArea):
     """ Single direction scroll area"""
@@ -56,6 +70,7 @@ class SingleDirectionScrollArea(QScrollArea):
         self.smoothScroll = SmoothScroll(self, orient)
         self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
         self.hScrollBar = SmoothScrollBar(Qt.Horizontal, self)
+        self.dragScrollDelegate = DragScrollDelegate(self, self.hScrollBar, self.vScrollBar)
 
     def setVerticalScrollBarPolicy(self, policy):
         super().setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -94,6 +109,20 @@ class SingleDirectionScrollArea(QScrollArea):
         if self.widget():
             self.widget().setStyleSheet("QWidget{background: transparent}")
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.dragScrollDelegate.setEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.dragScrollDelegate.isEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.dragScrollDelegate.setButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.dragScrollDelegate.buttons()
+
 
 class SmoothScrollArea(QScrollArea):
     """ Smooth scroll area """
@@ -124,3 +153,17 @@ class SmoothScrollArea(QScrollArea):
 
         if self.widget():
             self.widget().setStyleSheet("QWidget{background: transparent}")
+
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.delegate.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.delegate.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.delegate.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.delegate.dragScrollButtons()

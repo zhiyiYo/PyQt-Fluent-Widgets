@@ -246,6 +246,20 @@ class TableBase:
         """
         self.delegate.setCheckedColor(light, dark)
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollDelagate.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollDelagate.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollDelagate.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollDelagate.dragScrollButtons()
+
     def _setHoverRow(self, row: int):
         """ set hovered row """
         self.delegate.setHoverRow(row)

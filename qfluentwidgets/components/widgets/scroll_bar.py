@@ -1,10 +1,11 @@
 # coding:utf-8
 from enum import Enum
 from PyQt5.QtCore import (QEvent, QEasingCurve, Qt, pyqtSignal, QPropertyAnimation, pyqtProperty, QRectF,
-                          QTimer, QPoint, QObject)
+                          QTimer, QPoint, QObject, QItemSelection, QItemSelectionModel)
 from PyQt5.QtGui import QPainter, QColor, QMouseEvent
 from PyQt5.QtWidgets import (QWidget, QToolButton, QAbstractScrollArea, QGraphicsOpacityEffect,
-                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView, QListView)
+                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView, QListView,
+                             QAbstractButton)
 
 from ...common.icon import FluentIcon
 from ...common.style_sheet import isDarkTheme
@@ -600,6 +601,247 @@ class SmoothScrollBar(ScrollBar):
         self.ani.setEasingCurve(easing)
 
 
+class DragScrollDelegate(QObject):
+    """ Drag scroll delegate """
+
+    def __init__(self, parent: QAbstractScrollArea, hScrollBar=None, vScrollBar=None):
+        super().__init__(parent)
+        self.scrollArea = parent
+        self.hScrollBar = hScrollBar or parent.horizontalScrollBar()
+        self.vScrollBar = vScrollBar or parent.verticalScrollBar()
+
+        self._isEnabled = False
+        self._buttons = Qt.LeftButton
+        self._pressButton = Qt.NoButton
+        self._pressObj = None
+        self._pressPos = QPoint()
+        self._lastPos = QPoint()
+        self._isDragging = False
+        self._ignoreContextMenu = False
+        self._itemViewState = None
+        self._targets = []
+
+    def setEnabled(self, isEnabled: bool):
+        if isEnabled == self._isEnabled:
+            return
+
+        self._isEnabled = isEnabled
+        if isEnabled:
+            self.refresh()
+        else:
+            self._reset()
+            self._uninstall()
+
+    def isEnabled(self):
+        return self._isEnabled
+
+    def setButtons(self, buttons):
+        self._buttons = buttons
+        if self._pressButton != Qt.NoButton and not self._hasButton(self._pressButton):
+            self._reset()
+
+    def buttons(self):
+        return self._buttons
+
+    def refresh(self):
+        if not self._isEnabled:
+            return
+
+        self._install(self.scrollArea)
+        self._install(self.scrollArea.viewport())
+        self._installChildren(self.scrollArea.viewport())
+
+    def eventFilter(self, obj, e: QEvent):
+        if not self._isEnabled:
+            return super().eventFilter(obj, e)
+
+        if e.type() == QEvent.ChildAdded:
+            child = e.child()
+            if isinstance(child, QWidget):
+                self._installChildren(child)
+            return super().eventFilter(obj, e)
+
+        if e.type() == QEvent.ContextMenu and self._ignoreContextMenu:
+            self._ignoreContextMenu = False
+            return True
+
+        if e.type() == QEvent.MouseButtonPress:
+            self._ignoreContextMenu = False
+            return self._handleMousePress(obj, e)
+        if e.type() == QEvent.MouseMove:
+            return self._handleMouseMove(obj, e)
+        if e.type() == QEvent.MouseButtonRelease:
+            return self._handleMouseRelease(e)
+
+        return super().eventFilter(obj, e)
+
+    def _handleMousePress(self, obj, e: QMouseEvent):
+        if not self._hasButton(e.button()) or not self._canScroll():
+            return False
+
+        self._pressButton = e.button()
+        self._pressObj = obj
+        self._pressPos = self._mapToViewport(obj, e)
+        self._lastPos = QPoint(self._pressPos)
+        self._isDragging = False
+        self._saveItemViewState()
+        return False
+
+    def _handleMouseMove(self, obj, e: QMouseEvent):
+        if self._pressButton == Qt.NoButton or not (e.buttons() & self._pressButton):
+            self._reset()
+            return False
+
+        pos = self._mapToViewport(obj, e)
+        if not self._isDragging:
+            delta = pos - self._pressPos
+            if delta.manhattanLength() < QApplication.startDragDistance():
+                return False
+
+            self._isDragging = True
+            self._cancelPressedWidget()
+            self._restoreItemViewState()
+
+        dx = pos.x() - self._lastPos.x()
+        dy = pos.y() - self._lastPos.y()
+        self._lastPos = pos
+
+        if dx or dy:
+            self._scrollBy(dx, dy)
+
+        e.accept()
+        return True
+
+    def _handleMouseRelease(self, e: QMouseEvent):
+        if e.button() != self._pressButton:
+            return False
+
+        wasDragging = self._isDragging
+        wasRightButton = self._pressButton == Qt.RightButton
+        self._reset()
+
+        if not wasDragging:
+            return False
+
+        self._ignoreContextMenu = wasRightButton
+        e.accept()
+        return True
+
+    def _scrollBy(self, dx: int, dy: int):
+        if dy:
+            self._setBarValue(self.vScrollBar, self.vScrollBar.value() - dy)
+        if dx:
+            self._setBarValue(self.hScrollBar, self.hScrollBar.value() - dx)
+
+    def _setBarValue(self, bar, value: int):
+        value = max(bar.minimum(), min(value, bar.maximum()))
+        if value == bar.value():
+            return
+
+        if hasattr(bar, "ani"):
+            bar.ani.stop()
+        if hasattr(bar, "scrollTo"):
+            bar.scrollTo(value, False)
+        else:
+            bar.setValue(value)
+
+    def _cancelPressedWidget(self):
+        obj = self._pressObj
+        if not isinstance(obj, QWidget):
+            return
+
+        if isinstance(obj, QAbstractButton):
+            obj.setDown(False)
+        if hasattr(obj, "isPressed"):
+            obj.isPressed = False
+
+        obj.update()
+
+    def _saveItemViewState(self):
+        parent = self.scrollArea
+        self._itemViewState = None
+        if not isinstance(parent, QAbstractItemView):
+            return
+
+        selectionModel = parent.selectionModel()
+        if selectionModel is None:
+            return
+
+        self._itemViewState = (
+            selectionModel,
+            list(selectionModel.selectedIndexes()),
+            selectionModel.currentIndex(),
+        )
+
+    def _restoreItemViewState(self):
+        if self._itemViewState is None:
+            return
+
+        parent = self.scrollArea
+        selectionModel, indexes, currentIndex = self._itemViewState
+        selection = QItemSelection()
+        for index in indexes:
+            if index.isValid():
+                selection.select(index, index)
+
+        selectionModel.select(selection, QItemSelectionModel.ClearAndSelect)
+        if currentIndex.isValid():
+            selectionModel.setCurrentIndex(currentIndex, QItemSelectionModel.NoUpdate)
+        else:
+            selectionModel.clearCurrentIndex()
+
+        if hasattr(parent, "_setPressedRow"):
+            parent._setPressedRow(-1)
+        if hasattr(parent, "updateSelectedRows"):
+            parent.updateSelectedRows()
+
+    def _mapToViewport(self, obj, e: QMouseEvent):
+        viewport = self.scrollArea.viewport()
+        if obj == viewport:
+            return e.pos()
+
+        return viewport.mapFromGlobal(e.globalPos())
+
+    def _canScroll(self):
+        return self.vScrollBar.maximum() > self.vScrollBar.minimum() or \
+            self.hScrollBar.maximum() > self.hScrollBar.minimum()
+
+    def _hasButton(self, button):
+        return bool(button & self._buttons)
+
+    def _installChildren(self, widget: QWidget):
+        if isinstance(widget, QAbstractScrollArea):
+            return
+
+        self._install(widget)
+        for child in widget.findChildren(QWidget, options=Qt.FindDirectChildrenOnly):
+            self._installChildren(child)
+
+    def _install(self, obj):
+        if obj in self._targets:
+            return
+
+        obj.installEventFilter(self)
+        self._targets.append(obj)
+
+    def _uninstall(self):
+        for obj in self._targets:
+            try:
+                obj.removeEventFilter(self)
+            except RuntimeError:
+                pass
+
+        self._targets.clear()
+
+    def _reset(self):
+        self._pressButton = Qt.NoButton
+        self._pressObj = None
+        self._pressPos = QPoint()
+        self._lastPos = QPoint()
+        self._isDragging = False
+        self._itemViewState = None
+
+
 class SmoothScrollDelegate(QObject):
     """ Smooth scroll delegate """
 
@@ -619,6 +861,7 @@ class SmoothScrollDelegate(QObject):
         self.hScrollBar = SmoothScrollBar(Qt.Horizontal, parent)
         self.verticalSmoothScroll = SmoothScroll(parent, Qt.Vertical)
         self.horizonSmoothScroll = SmoothScroll(parent, Qt.Horizontal)
+        self.dragScrollDelegate = DragScrollDelegate(parent, self.hScrollBar, self.vScrollBar)
 
         if isinstance(parent, QAbstractItemView):
             parent.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
@@ -667,4 +910,18 @@ class SmoothScrollDelegate(QObject):
     def setHorizontalScrollBarPolicy(self, policy):
         QAbstractScrollArea.setHorizontalScrollBarPolicy(self.parent(), Qt.ScrollBarAlwaysOff)
         self.hScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
+
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.dragScrollDelegate.setEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.dragScrollDelegate.isEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.dragScrollDelegate.setButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.dragScrollDelegate.buttons()
 

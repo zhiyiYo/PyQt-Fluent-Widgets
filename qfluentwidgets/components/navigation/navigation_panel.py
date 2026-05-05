@@ -499,6 +499,20 @@ class NavigationPanel(QFrame):
         """ whether the acrylic effect is enabled """
         return self._isAcrylicEnabled
 
+    def setDragScrollEnabled(self, isEnabled: bool):
+        """ set whether drag scroll is enabled """
+        self.scrollArea.setDragScrollEnabled(isEnabled)
+
+    def isDragScrollEnabled(self):
+        return self.scrollArea.isDragScrollEnabled()
+
+    def setDragScrollButtons(self, buttons):
+        """ set drag scroll mouse buttons """
+        self.scrollArea.setDragScrollButtons(buttons)
+
+    def dragScrollButtons(self):
+        return self.scrollArea.dragScrollButtons()
+
     def expand(self, useAni=True):
         """ expand navigation panel """
         self._stopIndicatorAnimation()

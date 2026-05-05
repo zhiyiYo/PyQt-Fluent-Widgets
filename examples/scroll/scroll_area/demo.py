@@ -1,5 +1,7 @@
 # coding:utf-8
 import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 from PyQt5.QtCore import QEasingCurve, Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication
@@ -19,6 +21,10 @@ class Demo(SmoothScrollArea):
         # customize scroll animation
         self.setScrollAnimation(Qt.Vertical, 400, QEasingCurve.OutQuint)
         self.setScrollAnimation(Qt.Horizontal, 400, QEasingCurve.OutQuint)
+
+        # drag content to scroll with left or right mouse button
+        self.setDragScrollEnabled(True)
+        self.setDragScrollButtons(Qt.LeftButton | Qt.RightButton)
 
         self.horizontalScrollBar().setValue(1900)
         self.setWidget(self.label)
