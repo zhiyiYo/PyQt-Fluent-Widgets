@@ -166,8 +166,11 @@ class Window(FramelessWindow):
         self.stackWidget.currentChanged.connect(self.onCurrentInterfaceChanged)
         self.navigationBar.setCurrentItem(self.homeInterface.objectName())
 
-        # hide the text of button when selected
-        # self.navigationBar.setSelectedTextVisible(False)
+        # show the text of button when selected
+        # self.navigationBar.setSelectedTextVisible(True)
+
+        # disable item animation
+        # self.navigationBar.setItemAnimationEnabled(False)
 
         # adjust the font size of button
         # self.navigationBar.setFont(getFont(12))
