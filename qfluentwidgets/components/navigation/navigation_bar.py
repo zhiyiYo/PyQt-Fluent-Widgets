@@ -70,7 +70,7 @@ class NavigationBarPushButton(NavigationPushButton):
     def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, selectedIcon=None, parent=None):
         super().__init__(icon, text, isSelectable, parent)
         self._selectedIcon = selectedIcon
-        self._isSelectedTextVisible = False
+        self._isSelectedTextVisible = True
         self._isItemAnimationEnabled = True
         self._selectedIconOpacity = 0
         self._backgroundColor = QColor(0, 0, 0, 0)
@@ -298,7 +298,7 @@ class NavigationBar(QWidget):
         super().__init__(parent=parent)
         self.indicator = NavigationIndicator(self)
         self._isIndicatorAnimationEnabled = True
-        self._isSelectedTextVisible = False
+        self._isSelectedTextVisible = True
         self._isItemAnimationEnabled = True
 
         self.lightSelectedColor = QColor()
