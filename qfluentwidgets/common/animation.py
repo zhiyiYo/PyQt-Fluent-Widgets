@@ -540,39 +540,13 @@ class ScaleSlideAnimation(QParallelAnimationGroup):
         super().__init__(parent)
         self.orient = orient
         self._geometry = QRectF(0, 0, 16, 3) if self.isHorizontal() else QRectF(0, 0, 3, 16)
-        self._initAnimations()
-
-    def _initAnimations(self):
-        stretchCurve = FluentAnimation.createBezierCurve(0.9, 0.1, 1, 0.2)
-        settleCurve = FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0)
-
-        self._slidePosAni1 = self._createAnimation(b"pos", 200, stretchCurve)
-        self._slidePosAni2 = self._createAnimation(b"pos", 400, settleCurve)
-        self._slideLengthAni1 = self._createAnimation(b"length", 200, stretchCurve)
-        self._slideLengthAni2 = self._createAnimation(b"length", 400, settleCurve)
-
-        self._slidePosAniGroup = QSequentialAnimationGroup()
-        self._slideLengthAniGroup = QSequentialAnimationGroup()
-        self._slidePosAniGroup.addAnimation(self._slidePosAni1)
-        self._slidePosAniGroup.addAnimation(self._slidePosAni2)
-        self._slideLengthAniGroup.addAnimation(self._slideLengthAni1)
-        self._slideLengthAniGroup.addAnimation(self._slideLengthAni2)
-
-        self._fadeLengthAni = self._createAnimation(b"length", 600, QEasingCurve.OutQuint)
-        self._fadePosAni = self._createAnimation(b"pos", 600, QEasingCurve.OutQuint)
-
-    def _createAnimation(self, propertyName: bytes, duration: int, curve):
-        ani = QPropertyAnimation(self, propertyName)
-        ani.setDuration(duration)
-        ani.setEasingCurve(curve)
-        return ani
 
     def startAnimation(self, endRect: QRectF, useCrossFade=False):
         self.stopAnimation()
 
         startRect = QRectF(self.geometry)
 
-        # reuse slide when the indicator stays on the same axis
+        # Determine if same level
         if self.isHorizontal():
             sameLevel = abs(startRect.y() - endRect.y()) < 1
             dim = startRect.width()
@@ -591,20 +565,37 @@ class ScaleSlideAnimation(QParallelAnimationGroup):
 
     def stopAnimation(self):
         self.stop()
-        self._removeAnimations()
-
-    def _removeAnimations(self):
-        while self.animationCount():
-            self.removeAnimation(self.animationAt(0))
-
-    def _setActiveAnimations(self, *animations):
-        self._removeAnimations()
-        for ani in animations:
-            self.addAnimation(ani)
+        self.clear()
 
     def _startSlideAnimation(self, startRect, endRect, from_, to, dimension):
-        """ Animate the indicator using WinUI squash and stretch logic """
-        self._setActiveAnimations(self._slidePosAniGroup, self._slideLengthAniGroup)
+        """ Animate the indicator using WinUI 3 squash and stretch logic
+
+        Key algorithm:
+        1. middleScale = abs(to - from) / dimension + (from < to ? endScale : beginScale)
+        2. At 33% progress, the indicator stretches to cover the distance between two items
+        """
+        posAni1 = QPropertyAnimation(self, b"pos")
+        posAni2 = QPropertyAnimation(self, b"pos")
+        posAni1.setDuration(200)
+        posAni2.setDuration(400)
+        posAni1.setEasingCurve(FluentAnimation.createBezierCurve(0.9, 0.1, 1, 0.2))
+        posAni2.setEasingCurve(FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0))
+
+        lengthAni1 = QPropertyAnimation(self, b"length")
+        lengthAni2 = QPropertyAnimation(self, b"length")
+        lengthAni1.setDuration(200)
+        lengthAni2.setDuration(400)
+        lengthAni1.setEasingCurve(FluentAnimation.createBezierCurve(0.9, 0.1, 1, 0.2))
+        lengthAni2.setEasingCurve(FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0))
+
+        posAniGroup = QSequentialAnimationGroup()
+        lengthAniGroup = QSequentialAnimationGroup()
+        posAniGroup.addAnimation(posAni1)
+        posAniGroup.addAnimation(posAni2)
+        lengthAniGroup.addAnimation(lengthAni1)
+        lengthAniGroup.addAnimation(lengthAni2)
+        self.addAnimation(posAniGroup)
+        self.addAnimation(lengthAniGroup)
 
         dist = abs(to - from_)
         midLength = dist + dimension
@@ -614,33 +605,39 @@ class ScaleSlideAnimation(QParallelAnimationGroup):
         endPos = endRect.topLeft()
 
         if isForward:
-            self._slidePosAni1.setStartValue(startPos)
-            self._slidePosAni1.setEndValue(startPos)
-            self._slideLengthAni1.setStartValue(dimension)
-            self._slideLengthAni1.setEndValue(midLength)
+            # A--B   ----M--->    A'--B'
+            # 0->0.33: B moves to M (len increases)
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(startPos)
+            lengthAni1.setStartValue(dimension)
+            lengthAni1.setEndValue(midLength)
 
-            self._slidePosAni2.setStartValue(startPos)
-            self._slidePosAni2.setEndValue(endPos)
-            self._slideLengthAni2.setStartValue(midLength)
-            self._slideLengthAni2.setEndValue(dimension)
+            # 0.33->1.0:  A moves to A', B (at M) moves to B'
+            posAni2.setStartValue(startPos)
+            posAni2.setEndValue(endPos)
+            lengthAni2.setStartValue(midLength)
+            lengthAni2.setEndValue(dimension)
         else:
-            self._slidePosAni1.setStartValue(startPos)
-            self._slidePosAni1.setEndValue(endPos)
-            self._slideLengthAni1.setStartValue(dimension)
-            self._slideLengthAni1.setEndValue(midLength)
+            # A'--B'   <----M----    A--B
+            # 0->0.33: A moves to M (len increases)
+            posAni1.setStartValue(startPos)
+            posAni1.setEndValue(endPos)
+            lengthAni1.setStartValue(dimension)
+            lengthAni1.setEndValue(midLength)
 
-            self._slidePosAni2.setStartValue(endPos)
-            self._slidePosAni2.setEndValue(endPos)
-            self._slideLengthAni2.setStartValue(midLength)
-            self._slideLengthAni2.setEndValue(dimension)
+            # 0.33->1.0: A (at M) moves to A', B moves to B'
+            posAni2.setStartValue(endPos)
+            posAni2.setEndValue(endPos)
+            lengthAni2.setStartValue(midLength)
+            lengthAni2.setEndValue(dimension)
 
         self.start()
 
     def _startCrossFadeAnimation(self, startRect, endRect):
-        self._setActiveAnimations(self._fadeLengthAni, self._fadePosAni)
         self.setGeometry(endRect)
 
-        # grow from the edge closest to the previous item
+        # Determine growth direction based on relative position
+        # WinUI 3 logic: Grow from top/bottom edge depending on direction
         isNextBelow = endRect.y() > startRect.y() if not self.isHorizontal() else endRect.x() > startRect.x()
 
         if self.isHorizontal():
@@ -654,11 +651,20 @@ class ScaleSlideAnimation(QParallelAnimationGroup):
 
         self.setGeometry(startGeo)
 
-        self._fadeLengthAni.setStartValue(0)
-        self._fadeLengthAni.setEndValue(dim)
+        lenAni = QPropertyAnimation(self, b"length")
+        lenAni.setDuration(600)
+        lenAni.setStartValue(0)
+        lenAni.setEndValue(dim)
+        lenAni.setEasingCurve(QEasingCurve.OutQuint)
 
-        self._fadePosAni.setStartValue(startGeo.topLeft())
-        self._fadePosAni.setEndValue(endRect.topLeft())
+        posAni = QPropertyAnimation(self, b"pos")
+        posAni.setDuration(600)
+        posAni.setStartValue(startGeo.topLeft())
+        posAni.setEndValue(endRect.topLeft())
+        posAni.setEasingCurve(QEasingCurve.OutQuint)
+
+        self.addAnimation(lenAni)
+        self.addAnimation(posAni)
         self.start()
 
     def isHorizontal(self):
