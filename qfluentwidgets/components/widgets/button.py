@@ -598,13 +598,16 @@ class DropDownButtonBase:
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
-        if self.isHover:
+
+        if not self.isEnabled():
+            painter.setOpacity(0.43 if isDarkTheme() else 0.6)
+        elif self.isHover:
             painter.setOpacity(0.8)
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        rect = QRectF(self.width()-22, self.height() /
-                      2-5+self.arrowAni.y, 10, 10)
+        arrowY = self.height() / 2 - 5 + (self.arrowAni.y if self.isEnabled() else 0)
+        rect = QRectF(self.width()-22, arrowY, 10, 10)
         self._drawDropDownIcon(painter, rect)
 
 
@@ -676,7 +679,7 @@ class PrimaryDropDownButtonBase(DropDownButtonBase):
     """ Primary color drop down button base class """
 
     def _drawDropDownIcon(self, painter, rect):
-        theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
+        theme = Theme.DARK if not (self.isEnabled() and isDarkTheme()) else Theme.LIGHT
         FIF.ARROW_DOWN.render(painter, rect, theme)
 
 
@@ -731,9 +734,11 @@ class SplitDropButton(ToolButton):
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
 
     def _drawIcon(self, icon, painter, rect):
-        rect.translate(0, self.arrowAni.y)
+        rect.translate(0, self.arrowAni.y if self.isEnabled() else 0)
 
-        if self.isPressed:
+        if not self.isEnabled():
+            painter.setOpacity(0.43 if isDarkTheme() else 0.36)
+        elif self.isPressed:
             painter.setOpacity(0.5)
         elif self.isHover:
             painter.setOpacity(1)
@@ -752,7 +757,7 @@ class PrimarySplitDropButton(PrimaryToolButton):
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
 
     def _drawIcon(self, icon, painter, rect):
-        rect.translate(0, self.arrowAni.y)
+        rect.translate(0, self.arrowAni.y if self.isEnabled() else 0)
 
         if self.isPressed:
             painter.setOpacity(0.7)
@@ -762,7 +767,10 @@ class PrimarySplitDropButton(PrimaryToolButton):
             painter.setOpacity(1)
 
         if isinstance(icon, FluentIconBase):
-            icon = icon.icon(Theme.DARK if not isDarkTheme() else Theme.LIGHT)
+            if self.isEnabled():
+                icon = icon.icon(Theme.DARK if not isDarkTheme() else Theme.LIGHT)
+            else:
+                icon = icon.icon(Theme.DARK)
 
         super()._drawIcon(icon, painter, rect)
 
