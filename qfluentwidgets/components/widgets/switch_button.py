@@ -1,9 +1,9 @@
 # coding: utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt, QTimer, pyqtProperty, pyqtSignal, QEvent, QPoint, QPropertyAnimation, QEasingCurve
-from PyQt5.QtGui import QColor, QPainter, QHoverEvent
-from PyQt5.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
+from PyQt5.QtCore import Qt, pyqtProperty, pyqtSignal, QEvent, QPropertyAnimation, QEasingCurve, QPointF, QRectF
+from PyQt5.QtGui import QColor, QPainter
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
@@ -15,6 +15,11 @@ class Indicator(ToolButton):
     """ Indicator of switch button """
 
     checkedChanged = pyqtSignal(bool)
+    normalKnobSize, hoverKnobSize = 12, 14
+    pressedKnobWidth, pressedKnobHeight = 17, 14
+    knobSlotWidth, trackLeft = 20, 1
+    controlFastDuration, controlFasterDuration = 167, 83
+    stateEvents = (QEvent.EnabledChange, QEvent.MouseButtonPress, QEvent.Enter, QEvent.Leave)
 
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -24,19 +29,47 @@ class Indicator(ToolButton):
         self.darkCheckedColor = QColor()
 
         self._sliderX = 5
+        self._knobWidth = self._knobHeight = self.normalKnobSize
+        self._checkedProgress = 0
+        curve = self._fastOutSlowInCurve()
         self.slideAni = QPropertyAnimation(self, b'sliderX', self)
-        self.slideAni.setDuration(120)
+        self.checkedAni = QPropertyAnimation(self, b'checkedProgress', self)
+        self.knobWidthAni = QPropertyAnimation(self, b'knobWidth', self)
+        self.knobHeightAni = QPropertyAnimation(self, b'knobHeight', self)
+
+        for ani, duration, easing in [
+            (self.slideAni, self.controlFastDuration, curve),
+            (self.checkedAni, self.controlFasterDuration, QEasingCurve.Linear),
+            (self.knobWidthAni, self.controlFasterDuration, curve),
+            (self.knobHeightAni, self.controlFasterDuration, curve),
+        ]:
+            ani.setDuration(duration)
+            ani.setEasingCurve(easing)
 
         self.toggled.connect(self._toggleSlider)
+
+    @staticmethod
+    def _fastOutSlowInCurve():
+        curve = QEasingCurve(QEasingCurve.BezierSpline)
+        curve.addCubicBezierSegment(QPointF(0, 0), QPointF(0, 1), QPointF(1, 1))
+        return curve
+
+    def event(self, e: QEvent):
+        result = super().event(e)
+        if e.type() in self.stateEvents:
+            self._updateKnobSize()
+
+        return result
 
     def mouseReleaseEvent(self, e):
         """ toggle checked state when mouse release"""
         super().mouseReleaseEvent(e)
+        self._updateKnobSize()
         self.checkedChanged.emit(self.isChecked())
 
     def _toggleSlider(self):
-        self.slideAni.setEndValue(25 if self.isChecked() else 5)
-        self.slideAni.start()
+        self._startAnimation(self.slideAni, 25 if self.isChecked() else 5, self.sliderX)
+        self._startAnimation(self.checkedAni, 1 if self.isChecked() else 0, self.checkedProgress)
 
     def toggle(self):
         self.setChecked(not self.isChecked())
@@ -44,10 +77,11 @@ class Indicator(ToolButton):
     def setDown(self, isDown: bool):
         self.isPressed = isDown
         super().setDown(isDown)
+        self._updateKnobSize()
 
     def setHover(self, isHover: bool):
         self.isHover = isHover
-        self.update()
+        self._updateKnobSize()
 
     def setCheckedColor(self, light, dark):
         self.lightCheckedColor = QColor(light)
@@ -70,55 +104,118 @@ class Indicator(ToolButton):
     def _drawCircle(self, painter: QPainter):
         painter.setPen(Qt.NoPen)
         painter.setBrush(self._sliderColor())
-        painter.drawEllipse(int(self.sliderX), 5, 12, 12)
+        painter.drawEllipse(self._knobRect())
+
+    def _knobRect(self):
+        w = self.knobWidth
+        h = self.knobHeight
+        y = (self.height() - h) / 2
+
+        if self.isPressed and self.isEnabled():
+            if self.isChecked():
+                x = self.trackLeft + self.knobSlotWidth + self.knobSlotWidth - w - 3
+            else:
+                x = self.trackLeft + 3
+        else:
+            x = self.sliderX + (self.normalKnobSize - w) / 2
+
+        return QRectF(x, y, w, h)
+
+    def _updateKnobSize(self):
+        if not self.isEnabled():
+            size = (self.normalKnobSize, self.normalKnobSize)
+        elif self.isPressed:
+            size = (self.pressedKnobWidth, self.pressedKnobHeight)
+        elif self.isHover:
+            size = (self.hoverKnobSize, self.hoverKnobSize)
+        else:
+            size = (self.normalKnobSize, self.normalKnobSize)
+
+        self._startKnobAnimation(*size)
+
+    def _startKnobAnimation(self, width, height):
+        if self.knobWidth == width and self.knobHeight == height:
+            return
+
+        self._startAnimation(self.knobWidthAni, width, self.knobWidth)
+        self._startAnimation(self.knobHeightAni, height, self.knobHeight)
+
+    @staticmethod
+    def _startAnimation(ani: QPropertyAnimation, endValue, startValue):
+        ani.stop()
+        ani.setStartValue(startValue)
+        ani.setEndValue(endValue)
+        ani.start()
 
     def _backgroundColor(self):
-        isDark = isDarkTheme()
+        return self._transitionColor(self._offBackgroundColor, self._onBackgroundColor)
 
-        if self.isChecked():
-            color = self.darkCheckedColor if isDark else self.lightCheckedColor
-            if not self.isEnabled():
-                return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
-            if self.isPressed:
-                return validColor(color, ThemeColor.LIGHT_2.color())
-            elif self.isHover:
-                return validColor(color, ThemeColor.LIGHT_1.color())
+    def _onBackgroundColor(self, isDark: bool):
+        color = self.darkCheckedColor if isDark else self.lightCheckedColor
 
-            return fallbackThemeColor(color)
-        else:
-            if not self.isEnabled():
-                return QColor(0, 0, 0, 0)
-            if self.isPressed:
-                return QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 23)
-            elif self.isHover:
-                return QColor(255, 255, 255, 10) if isDark else QColor(0, 0, 0, 15)
+        if not self.isEnabled():
+            return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+        if self.isPressed:
+            return validColor(color, ThemeColor.LIGHT_2.color())
+        elif self.isHover:
+            return validColor(color, ThemeColor.LIGHT_1.color())
 
+        return fallbackThemeColor(color)
+
+    def _offBackgroundColor(self, isDark: bool):
+        if not self.isEnabled():
             return QColor(0, 0, 0, 0)
+        if self.isPressed:
+            return QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 23)
+        elif self.isHover:
+            return QColor(255, 255, 255, 10) if isDark else QColor(0, 0, 0, 15)
+
+        return QColor(0, 0, 0, 0)
 
     def _borderColor(self):
-        isDark = isDarkTheme()
+        return self._transitionColor(self._offBorderColor, self._onBorderColor)
 
-        if self.isChecked():
-            return self._backgroundColor() if self.isEnabled() else QColor(0, 0, 0, 0)
-        else:
-            if self.isEnabled():
-                return QColor(255, 255, 255, 153) if isDark else QColor(0, 0, 0, 133)
+    def _onBorderColor(self, isDark: bool):
+        if self.isEnabled():
+            return self._onBackgroundColor(isDark)
 
-            return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+        return QColor(0, 0, 0, 0)
+
+    def _offBorderColor(self, isDark: bool):
+        if self.isEnabled():
+            return QColor(255, 255, 255, 153) if isDark else QColor(0, 0, 0, 133)
+
+        return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
 
     def _sliderColor(self):
+        return self._transitionColor(self._offSliderColor, self._onSliderColor)
+
+    def _onSliderColor(self, isDark: bool):
+        if self.isEnabled():
+            return QColor(Qt.black if isDark else Qt.white)
+
+        return QColor(255, 255, 255, 77) if isDark else QColor(255, 255, 255)
+
+    def _offSliderColor(self, isDark: bool):
+        if self.isEnabled():
+            return QColor(255, 255, 255, 201) if isDark else QColor(0, 0, 0, 156)
+
+        return QColor(255, 255, 255, 96) if isDark else QColor(0, 0, 0, 91)
+
+    def _transitionColor(self, offColor, onColor):
         isDark = isDarkTheme()
+        return self._mixColor(offColor(isDark), onColor(isDark), self.checkedProgress)
 
-        if self.isChecked():
-            if self.isEnabled():
-                return QColor(Qt.black if isDark else Qt.white)
+    @staticmethod
+    def _mixColor(start: QColor, end: QColor, progress: float):
+        progress = max(0, min(1, progress))
 
-            return QColor(255, 255, 255, 77) if isDark else QColor(255, 255, 255)
-        else:
-            if self.isEnabled():
-                return QColor(255, 255, 255, 201) if isDark else QColor(0, 0, 0, 156)
-
-            return QColor(255, 255, 255, 96) if isDark else QColor(0, 0, 0, 91)
+        return QColor(
+            round(start.red() + (end.red() - start.red()) * progress),
+            round(start.green() + (end.green() - start.green()) * progress),
+            round(start.blue() + (end.blue() - start.blue()) * progress),
+            round(start.alpha() + (end.alpha() - start.alpha()) * progress)
+        )
 
     def getSliderX(self):
         return self._sliderX
@@ -127,7 +224,31 @@ class Indicator(ToolButton):
         self._sliderX = max(x, 5)
         self.update()
 
+    def getKnobWidth(self):
+        return self._knobWidth
+
+    def setKnobWidth(self, width):
+        self._knobWidth = width
+        self.update()
+
+    def getKnobHeight(self):
+        return self._knobHeight
+
+    def setKnobHeight(self, height):
+        self._knobHeight = height
+        self.update()
+
+    def getCheckedProgress(self):
+        return self._checkedProgress
+
+    def setCheckedProgress(self, progress):
+        self._checkedProgress = max(0, min(1, progress))
+        self.update()
+
     sliderX = pyqtProperty(float, getSliderX, setSliderX)
+    knobWidth = pyqtProperty(float, getKnobWidth, setKnobWidth)
+    knobHeight = pyqtProperty(float, getKnobHeight, setKnobHeight)
+    checkedProgress = pyqtProperty(float, getCheckedProgress, setCheckedProgress)
 
 
 class IndicatorPosition(Enum):
