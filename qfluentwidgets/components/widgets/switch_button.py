@@ -18,6 +18,7 @@ class Indicator(ToolButton):
     normalKnobSize, hoverKnobSize = 12, 14
     pressedKnobWidth, pressedKnobHeight = 17, 14
     knobSlotWidth, trackLeft = 20, 1
+    offSliderX, onSliderX, dragThreshold = 5, 25, 2
     controlFastDuration, controlFasterDuration = 167, 83
     stateEvents = (QEvent.EnabledChange, QEvent.MouseButtonPress, QEvent.Enter, QEvent.Leave)
 
@@ -28,9 +29,10 @@ class Indicator(ToolButton):
         self.lightCheckedColor = QColor()
         self.darkCheckedColor = QColor()
 
-        self._sliderX = 5
+        self._sliderX = self.offSliderX
         self._knobWidth = self._knobHeight = self.normalKnobSize
         self._checkedProgress = 0
+        self._isDragging, self._pressX, self._pressSliderX = False, None, self.offSliderX
         curve = self._fastOutSlowInCurve()
         self.slideAni = QPropertyAnimation(self, b'sliderX', self)
         self.checkedAni = QPropertyAnimation(self, b'checkedProgress', self)
@@ -61,15 +63,73 @@ class Indicator(ToolButton):
 
         return result
 
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton:
+            self._startDrag(e.pos().x())
+
+        super().mousePressEvent(e)
+
+    def mouseMoveEvent(self, e):
+        if e.buttons() & Qt.LeftButton and self._moveDrag(e.pos().x()):
+            e.accept()
+            return
+
+        super().mouseMoveEvent(e)
+
     def mouseReleaseEvent(self, e):
         """ toggle checked state when mouse release"""
+        if e.button() == Qt.LeftButton and self._endDrag():
+            self.checkedChanged.emit(self.isChecked())
+            e.accept()
+            return
+
         super().mouseReleaseEvent(e)
         self._updateKnobSize()
         self.checkedChanged.emit(self.isChecked())
 
     def _toggleSlider(self):
-        self._startAnimation(self.slideAni, 25 if self.isChecked() else 5, self.sliderX)
+        self._startAnimation(self.slideAni, self.onSliderX if self.isChecked() else self.offSliderX, self.sliderX)
         self._startAnimation(self.checkedAni, 1 if self.isChecked() else 0, self.checkedProgress)
+
+    def _startDrag(self, x, updateDown=False):
+        self._isDragging, self._pressX, self._pressSliderX = False, x, self.sliderX
+
+        if updateDown:
+            self.setDown(True)
+
+    def _moveDrag(self, x):
+        if self._pressX is None or not self.isEnabled():
+            return False
+
+        dx = x - self._pressX
+
+        if not self._isDragging:
+            if abs(dx) < self.dragThreshold:
+                return False
+
+            self._isDragging = True
+            self.slideAni.stop()
+            self.checkedAni.stop()
+
+        self.setSliderX(self._pressSliderX + dx)
+        self.setCheckedProgress((self.sliderX - self.offSliderX) / self.knobSlotWidth)
+        return True
+
+    def _endDrag(self):
+        isDragging = self._isDragging
+        self._pressX = None
+        self._isDragging = False
+
+        if not isDragging:
+            return False
+
+        self.setDown(False)
+        if self.sliderX <= 15 if self.isChecked() else self.sliderX >= 15:
+            self.toggle()
+        else:
+            self._toggleSlider()
+
+        return True
 
     def toggle(self):
         self.setChecked(not self.isChecked())
@@ -112,10 +172,8 @@ class Indicator(ToolButton):
         y = (self.height() - h) / 2
 
         if self.isPressed and self.isEnabled():
-            if self.isChecked():
-                x = self.trackLeft + self.knobSlotWidth + self.knobSlotWidth - w - 3
-            else:
-                x = self.trackLeft + 3
+            progress = self.checkedProgress if self._isDragging else int(self.isChecked())
+            x = self.trackLeft + 3 + (self.knobSlotWidth * 2 - w - 6) * progress
         else:
             x = self.sliderX + (self.normalKnobSize - w) / 2
 
@@ -221,7 +279,7 @@ class Indicator(ToolButton):
         return self._sliderX
 
     def setSliderX(self, x):
-        self._sliderX = max(x, 5)
+        self._sliderX = max(self.offSliderX, min(self.onSliderX, x))
         self.update()
 
     def getKnobWidth(self):
@@ -316,6 +374,7 @@ class SwitchButton(QWidget):
         """ initialize widgets """
         self.setAttribute(Qt.WA_StyledBackground)
         self.installEventFilter(self)
+        self.label.installEventFilter(self)
         self.setFixedHeight(22)
 
         # set layout
@@ -340,12 +399,19 @@ class SwitchButton(QWidget):
         self.indicator.toggled.connect(self.checkedChanged)
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is self and self.isEnabled():
-            if e.type() == QEvent.MouseButtonPress:
-                self.indicator.setDown(True)
-            elif e.type() == QEvent.MouseButtonRelease:
-                self.indicator.setDown(False)
-                self.indicator.toggle()
+        if obj in (self, self.label) and self.isEnabled():
+            pos = self.indicator.mapFromGlobal(e.globalPos()).x() if hasattr(e, 'globalPos') else 0
+
+            if e.type() == QEvent.MouseButtonPress and e.button() == Qt.LeftButton:
+                self.indicator._startDrag(pos, True)
+            elif e.type() == QEvent.MouseMove and e.buttons() & Qt.LeftButton and self.indicator._moveDrag(pos):
+                return True
+            elif e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton:
+                if not self.indicator._endDrag():
+                    self.indicator.setDown(False)
+                    self.indicator.toggle()
+
+                return True
             elif e.type() == QEvent.Enter:
                 self.indicator.setHover(True)
             elif e.type() == QEvent.Leave:
