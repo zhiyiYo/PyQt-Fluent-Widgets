@@ -273,7 +273,7 @@ class Pivot(QWidget):
             return QRectF(0, self.height() - 3, self.indicatorLength(), 3)
 
         rect = item.geometry()
-        return QRectF(rect.x() - 8 + rect.width() // 2, self.height() - 3, self.indicatorLength(), 3)
+        return QRectF(rect.x() - self.indicatorLength() // 2 + rect.width() // 2, self.height() - 3, self.indicatorLength(), 3)
 
     def paintEvent(self, e):
         super().paintEvent(e)
