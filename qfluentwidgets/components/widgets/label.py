@@ -64,13 +64,16 @@ class FluentLabelBase(QLabel):
         FluentStyleSheet.LABEL.apply(self)
         self.setFont(self.getFont())
         self.setTextColor()
-        qconfig.themeChanged.connect(lambda: self.setTextColor(self.lightColor, self.darkColor))
+        qconfig.themeChanged.connect(self._applyThemeColor)
 
         self.customContextMenuRequested.connect(self._onContextMenuRequested)
         return self
 
     def getFont(self):
         raise NotImplementedError
+
+    def _applyThemeColor(self):
+        self.setTextColor(self.lightColor, self.darkColor)
 
     @exceptionHandler()
     def setTextColor(self, light=QColor(0, 0, 0), dark=QColor(255, 255, 255)):
