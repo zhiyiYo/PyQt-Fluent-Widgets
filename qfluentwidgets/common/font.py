@@ -12,7 +12,7 @@ def setFontFamilies(families: List[str], save=False):
     Parameters
     ----------
     families: List[str]
-        font family names, the default value is `['Segoe UI', 'Microsoft YaHei', 'PingFang SC']`
+        font family names, the default value is `['Segoe UI Variable', 'Microsoft YaHei', 'PingFang SC']`
 
     save: bool
         whether to save the change to config file
