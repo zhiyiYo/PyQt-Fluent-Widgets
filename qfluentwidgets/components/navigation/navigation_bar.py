@@ -27,6 +27,7 @@ class IconSlideAnimation(QPropertyAnimation):
         self.maxOffset = 6
         self.setTargetObject(self)
         self.setPropertyName(b"offset")
+        self.setEasingCurve(QEasingCurve.OutCubic)
 
     def getOffset(self):
         return self._offset
@@ -35,16 +36,28 @@ class IconSlideAnimation(QPropertyAnimation):
         self._offset = value
         self.parent().update()
 
-    def slideDown(self):
+    def slideDown(self, useAni=True):
         """ slide down """
+        self.stop()
+        if not useAni:
+            self.setOffset(self.maxOffset)
+            return
+
+        self.setStartValue(self.offset)
         self.setEndValue(self.maxOffset)
-        self.setDuration(100)
+        self.setDuration(400)
         self.start()
 
-    def slideUp(self):
+    def slideUp(self, useAni=True):
         """ slide up """
+        self.stop()
+        if not useAni:
+            self.setOffset(0)
+            return
+
+        self.setStartValue(self.offset)
         self.setEndValue(0)
-        self.setDuration(100)
+        self.setDuration(400)
         self.start()
 
     offset = pyqtProperty(float, getOffset, setOffset)
@@ -56,11 +69,21 @@ class NavigationBarPushButton(NavigationPushButton):
 
     def __init__(self, icon: Union[str, QIcon, FIF], text: str, isSelectable: bool, selectedIcon=None, parent=None):
         super().__init__(icon, text, isSelectable, parent)
-        self.iconAni = IconSlideAnimation(self)
         self._selectedIcon = selectedIcon
         self._isSelectedTextVisible = True
+        self._isItemAnimationEnabled = True
+        self._selectedIconOpacity = 0
+        self._backgroundColor = QColor(0, 0, 0, 0)
         self.lightSelectedColor = QColor()
         self.darkSelectedColor = QColor()
+
+        self.iconAni = IconSlideAnimation(self)
+        self.opacityAni = QPropertyAnimation(self, b"selectedIconOpacity", self)
+        self.backgroundColorAni = QPropertyAnimation(self, b"backgroundColor", self)
+        self.opacityAni.setDuration(200)
+        self.opacityAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.backgroundColorAni.setDuration(150)
+        self.backgroundColorAni.setEasingCurve(QEasingCurve.Linear)
 
         self.setFixedSize(64, 58)
         setFont(self, 11)
@@ -82,11 +105,55 @@ class NavigationBarPushButton(NavigationPushButton):
 
     def setSelectedTextVisible(self, isVisible):
         self._isSelectedTextVisible = isVisible
+        self._syncIconState(False)
+        self.update()
+
+    def isItemAnimationEnabled(self):
+        return self._isItemAnimationEnabled
+
+    def setItemAnimationEnabled(self, isEnabled: bool):
+        if isEnabled == self._isItemAnimationEnabled:
+            return
+
+        self._isItemAnimationEnabled = isEnabled
+        self._syncIconState(False)
+        self._syncBackgroundState(False)
+        self.update()
+
+    def getSelectedIconOpacity(self):
+        return self._selectedIconOpacity
+
+    def setSelectedIconOpacity(self, opacity: float):
+        self._selectedIconOpacity = opacity
+        self.update()
+
+    def getBackgroundColor(self):
+        return self._backgroundColor
+
+    def setBackgroundColor(self, color: QColor):
+        self._backgroundColor = QColor(color)
         self.update()
 
     def indicatorRect(self):
         """ get the indicator geometry """
         return QRectF(0, 16, 4, 24)
+
+    def enterEvent(self, e):
+        self.isEnter = True
+        self._syncBackgroundState(self._isItemAnimationEnabled)
+
+    def leaveEvent(self, e):
+        self.isEnter = False
+        self.isPressed = False
+        self._syncBackgroundState(self._isItemAnimationEnabled)
+
+    def mousePressEvent(self, e):
+        super().mousePressEvent(e)
+        self._syncBackgroundState(self._isItemAnimationEnabled)
+
+    def mouseReleaseEvent(self, e):
+        super().mouseReleaseEvent(e)
+        self._syncBackgroundState(self._isItemAnimationEnabled)
 
     def paintEvent(self, e):
         painter = QPainter(self)
@@ -99,46 +166,54 @@ class NavigationBarPushButton(NavigationPushButton):
         self._drawText(painter)
 
     def _drawBackground(self, painter: QPainter):
-        if self.isSelected or self.isAboutSelected:
-            painter.setBrush(QColor(255, 255, 255, 42) if isDarkTheme() else Qt.white)
+        if self.backgroundColor.alpha() > 0:
+            painter.setBrush(self.backgroundColor)
             painter.drawRoundedRect(self.rect(), 5, 5)
 
-            # draw indicator
-            if not self.isAboutSelected:
-                painter.setBrush(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
-                if not self.isPressed:
-                    painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
-                else:
-                    painter.drawRoundedRect(0, 19, 4, 18, 2, 2)
-        elif self.isPressed or self.isEnter:
-            c = 255 if isDarkTheme() else 0
-            alpha = 9 if self.isEnter else 6
-            painter.setBrush(QColor(c, c, c, alpha))
-            painter.drawRoundedRect(self.rect(), 5, 5)
+        if self.isSelected and not self.isAboutSelected:
+            painter.setBrush(autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor))
+            if not self.isPressed:
+                painter.drawRoundedRect(0, 16, 4, 24, 2, 2)
+            else:
+                painter.drawRoundedRect(0, 19, 4, 18, 2, 2)
 
     def _drawIcon(self, painter: QPainter):
-        if (self.isPressed or not self.isEnter) and not (self.isSelected or self.isAboutSelected):
-            painter.setOpacity(0.6)
-        if not self.isEnabled():
-            painter.setOpacity(0.4)
+        painter.save()
 
-        if self._isSelectedTextVisible:
-            rect = QRectF(22, 13, 20, 20)
-        else:
-            rect = QRectF(22, 13 + self.iconAni.offset, 20, 20)
+        opacity = self._iconOpacity()
+        selectedOpacity = self._selectedIconOpacity
+        normalOpacity = 1 - selectedOpacity
+        rect = QRectF(22, 13 + self.iconAni.offset, 20, 20)
 
-        selectedIcon = self._selectedIcon or self._icon
-
-        if isinstance(selectedIcon, FluentIconBase) and (self.isSelected or self.isAboutSelected):
-            color = autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor)
-            selectedIcon.render(painter, rect, fill=color.name())
-        elif self.isSelected or self.isAboutSelected:
-            drawIcon(selectedIcon, painter, rect)
-        else:
+        if normalOpacity > 0:
+            painter.setOpacity(opacity * normalOpacity)
             drawIcon(self._icon, painter, rect)
 
+        if selectedOpacity > 0:
+            painter.setOpacity(opacity * selectedOpacity)
+            self._drawSelectedIcon(painter, rect)
+
+        painter.restore()
+
+    def _drawSelectedIcon(self, painter: QPainter, rect: QRectF):
+        selectedIcon = self._selectedIcon or self._icon
+        if isinstance(selectedIcon, FluentIconBase):
+            color = autoFallbackThemeColor(self.lightSelectedColor, self.darkSelectedColor)
+            selectedIcon.render(painter, rect, fill=color.name())
+        else:
+            drawIcon(selectedIcon, painter, rect)
+
+    def _iconOpacity(self):
+        if not self.isEnabled():
+            return 0.4
+
+        if (self.isPressed or not self.isEnter) and not (self.isSelected or self.isAboutSelected):
+            return 0.6
+
+        return 1
+
     def _drawText(self, painter: QPainter):
-        if self.isSelected and not self._isSelectedTextVisible:
+        if (self.isSelected or self.isAboutSelected) and not self._isSelectedTextVisible:
             return
 
         if self.isSelected or self.isAboutSelected:
@@ -156,11 +231,65 @@ class NavigationBarPushButton(NavigationPushButton):
 
         self.isSelected = isSelected
         self.isAboutSelected = False
+        self._syncIconState(self._isItemAnimationEnabled)
+        self._syncBackgroundState(self._isItemAnimationEnabled)
 
-        if isSelected:
-            self.iconAni.slideDown()
+    def setAboutSelected(self, selected: bool):
+        if selected == self.isAboutSelected:
+            return
+
+        self.isAboutSelected = selected
+        self._syncIconState(self._isItemAnimationEnabled)
+        self._syncBackgroundState(self._isItemAnimationEnabled)
+
+    def _targetBackgroundColor(self):
+        if self.isSelected or self.isAboutSelected:
+            return QColor(255, 255, 255, 42) if isDarkTheme() else QColor(Qt.white)
+
+        c = 255 if isDarkTheme() else 0
+        if self.isPressed:
+            return QColor(c, c, c, 12 if isDarkTheme() else 16)
+
+        if self.isEnter:
+            return QColor(c, c, c, 32 if isDarkTheme() else 24)
+
+        return QColor(0, 0, 0, 0)
+
+    def _syncBackgroundState(self, useAni=True):
+        targetColor = self._targetBackgroundColor()
+
+        self.backgroundColorAni.stop()
+        if useAni:
+            duration = 220 if targetColor.alpha() < self.backgroundColor.alpha() else 150
+            self.backgroundColorAni.setDuration(duration)
+            self.backgroundColorAni.setStartValue(self.backgroundColor)
+            self.backgroundColorAni.setEndValue(targetColor)
+            self.backgroundColorAni.start()
         else:
-            self.iconAni.slideUp()
+            self.setBackgroundColor(targetColor)
+
+    def _syncIconState(self, useAni=True):
+        isSelected = self.isSelected or self.isAboutSelected
+        offset = self.iconAni.maxOffset if isSelected and not self._isSelectedTextVisible else 0
+        opacity = 1 if isSelected else 0
+
+        self.opacityAni.stop()
+        if useAni:
+            self.opacityAni.setStartValue(self.selectedIconOpacity)
+            self.opacityAni.setEndValue(opacity)
+            self.opacityAni.start()
+        else:
+            self.setSelectedIconOpacity(opacity)
+
+        if offset:
+            self.iconAni.slideDown(useAni)
+        else:
+            self.iconAni.slideUp(useAni)
+
+        self.update()
+
+    backgroundColor = pyqtProperty(QColor, getBackgroundColor, setBackgroundColor)
+    selectedIconOpacity = pyqtProperty(float, getSelectedIconOpacity, setSelectedIconOpacity)
 
 
 class NavigationBar(QWidget):
@@ -170,6 +299,7 @@ class NavigationBar(QWidget):
         self.indicator = NavigationIndicator(self)
         self._isIndicatorAnimationEnabled = True
         self._isSelectedTextVisible = True
+        self._isItemAnimationEnabled = True
 
         self.lightSelectedColor = QColor()
         self.darkSelectedColor = QColor()
@@ -315,6 +445,7 @@ class NavigationBar(QWidget):
         w = NavigationBarPushButton(icon, text, selectable, selectedIcon, self)
         w.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
         w.setSelectedTextVisible(self.isSelectedTextVisible())
+        w.setItemAnimationEnabled(self.isItemAnimationEnabled())
         self.insertWidget(index, routeKey, w, onClick, position)
         return w
 
@@ -439,17 +570,32 @@ class NavigationBar(QWidget):
 
         self._isSelectedTextVisible = isVisible
         for widget in self.buttons():
-            widget.setSelectedTextVisible(isVisible)
+            if hasattr(widget, 'setSelectedTextVisible'):
+                widget.setSelectedTextVisible(isVisible)
 
     def isSelectedTextVisible(self):
         return self._isSelectedTextVisible
+
+    def setItemAnimationEnabled(self, isEnabled: bool):
+        """ set whether item animations are enabled """
+        if isEnabled == self._isItemAnimationEnabled:
+            return
+
+        self._isItemAnimationEnabled = isEnabled
+        for widget in self.buttons():
+            if hasattr(widget, 'setItemAnimationEnabled'):
+                widget.setItemAnimationEnabled(isEnabled)
+
+    def isItemAnimationEnabled(self):
+        return self._isItemAnimationEnabled
 
     def setSelectedColor(self, light, dark):
         """ set the selected color of all items """
         self.lightSelectedColor = QColor(light)
         self.darkSelectedColor = QColor(dark)
         for button in self.buttons():
-            button.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
+            if hasattr(button, 'setSelectedColor'):
+                button.setSelectedColor(self.lightSelectedColor, self.darkSelectedColor)
 
     def buttons(self):
         return [i for i in self.items.values() if isinstance(i, NavigationPushButton)]
@@ -485,6 +631,6 @@ class NavigationBar(QWidget):
         if not item:
             return
 
-        item.setAboutSelected(False)
         item.setSelected(True)
+        item.setAboutSelected(False)
         self.indicator.hide()
