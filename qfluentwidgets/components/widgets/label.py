@@ -179,6 +179,32 @@ class StrongBodyLabel(FluentLabelBase):
         return getFont(14, QFont.DemiBold)
 
 
+class LargeBodyLabel(FluentLabelBase):
+    """ Large body text label
+
+    Constructors
+    ------------
+    * LargeBodyLabel(`parent`: QWidget = None)
+    * LargeBodyLabel(`text`: str, `parent`: QWidget = None)
+    """
+
+    def getFont(self):
+        return getFont(18)
+
+
+class LargeStrongBodyLabel(FluentLabelBase):
+    """ Large strong body text label
+
+    Constructors
+    ------------
+    * LargeStrongBodyLabel(`parent`: QWidget = None)
+    * LargeStrongBodyLabel(`text`: str, `parent`: QWidget = None)
+    """
+
+    def getFont(self):
+        return getFont(18, QFont.DemiBold)
+
+
 class SubtitleLabel(FluentLabelBase):
     """ Subtitle text label
 
