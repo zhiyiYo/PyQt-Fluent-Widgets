@@ -67,7 +67,7 @@ class Window(FluentWindow):
 
         # add badge to navigation item
         item = self.navigationInterface.widget(self.videoInterface.objectName())
-        InfoBadge.attension(
+        InfoBadge.attention(
             text=9,
             parent=item.parent(),
             target=item,
