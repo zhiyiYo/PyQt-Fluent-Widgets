@@ -1,11 +1,9 @@
-# coding:utf-8
 from PySide6.QtCore import QSize, QPoint, Qt, QEvent, QRect
-from PySide6.QtGui import QResizeEvent
 from PySide6.QtWidgets import QLayout, QWidget
 
 
 class ExpandLayout(QLayout):
-    """ Expand layout """
+    """Expand layout"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -39,13 +37,13 @@ class ExpandLayout(QLayout):
         return None
 
     def expandingDirections(self):
-        return Qt.Vertical
+        return Qt.Orientation.Vertical
 
     def hasHeightForWidth(self):
         return True
 
     def heightForWidth(self, width):
-        """ get the minimal height according to width """
+        """get the minimal height according to width"""
         return self.__doLayout(QRect(0, 0, width, 0), False)
 
     def setGeometry(self, rect):
@@ -62,12 +60,12 @@ class ExpandLayout(QLayout):
             size = size.expandedTo(w.minimumSize())
 
         m = self.contentsMargins()
-        size += QSize(m.left()+m.right(), m.top()+m.bottom())
+        size += QSize(m.left() + m.right(), m.top() + m.bottom())
 
         return size
 
     def __doLayout(self, rect, move):
-        """ adjust widgets position according to the window size """
+        """adjust widgets position according to the window size"""
         margin = self.contentsMargins()
         x = rect.x() + margin.left()
         y = rect.y() + margin.top()
@@ -77,7 +75,7 @@ class ExpandLayout(QLayout):
             if w.isHidden():
                 continue
 
-            y += (i>0)*self.spacing()
+            y += (i > 0) * self.spacing()
             if move:
                 w.setGeometry(QRect(QPoint(x, y), QSize(width, w.height())))
 
@@ -86,11 +84,10 @@ class ExpandLayout(QLayout):
         return y - rect.y()
 
     def eventFilter(self, obj, e):
-        if obj in self.__widgets:
-            if e.type() == QEvent.Resize:
-                ds = e.size() - e.oldSize()  # type:QSize
-                if ds.height() != 0 and ds.width() == 0:
-                    w = self.parentWidget()
-                    w.resize(w.width(), w.height() + ds.height())
+        if obj in self.__widgets and e.type() == QEvent.Type.Resize:
+            ds: QSize = e.size() - e.oldSize()
+            if ds.height() != 0 and ds.width() == 0:
+                w = self.parentWidget()
+                w.resize(w.width(), w.height() + ds.height())
 
         return super().eventFilter(obj, e)
