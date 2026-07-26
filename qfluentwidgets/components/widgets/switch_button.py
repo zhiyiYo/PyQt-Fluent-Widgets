@@ -1,18 +1,18 @@
-# coding: utf-8
 from enum import Enum
+from typing import Optional
 
-from PySide6.QtCore import Qt, QTimer, Property, Signal, QEvent, QPoint, QPropertyAnimation, QEasingCurve
-from PySide6.QtGui import QColor, QPainter, QHoverEvent
-from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QToolButton, QWidget
+from PySide6.QtCore import Qt, Property, Signal, QEvent, QPropertyAnimation
+from PySide6.QtGui import QColor, QPainter
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QWidget
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, ThemeColor, isDarkTheme, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
 from .button import ToolButton
 
 
 class Indicator(ToolButton):
-    """ Indicator of switch button """
+    """Indicator of switch button"""
 
     checkedChanged = Signal(bool)
 
@@ -24,13 +24,13 @@ class Indicator(ToolButton):
         self.darkCheckedColor = QColor()
 
         self._sliderX = 5
-        self.slideAni = QPropertyAnimation(self, b'sliderX', self)
+        self.slideAni = QPropertyAnimation(self, b"sliderX", self)
         self.slideAni.setDuration(120)
 
         self.toggled.connect(self._toggleSlider)
 
     def mouseReleaseEvent(self, e):
-        """ toggle checked state when mouse release"""
+        """toggle checked state when mouse release"""
         super().mouseReleaseEvent(e)
         self.checkedChanged.emit(self.isChecked())
 
@@ -55,9 +55,9 @@ class Indicator(ToolButton):
         self.update()
 
     def paintEvent(self, e):
-        """ paint indicator """
+        """paint indicator"""
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         self._drawBackground(painter)
         self._drawCircle(painter)
 
@@ -68,7 +68,7 @@ class Indicator(ToolButton):
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
 
     def _drawCircle(self, painter: QPainter):
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.setBrush(self._sliderColor())
         painter.drawEllipse(int(self.sliderX), 5, 12, 12)
 
@@ -111,7 +111,7 @@ class Indicator(ToolButton):
 
         if self.isChecked():
             if self.isEnabled():
-                return QColor(Qt.black if isDark else Qt.white)
+                return QColor(Qt.GlobalColor.black if isDark else Qt.GlobalColor.white)
 
             return QColor(255, 255, 255, 77) if isDark else QColor(255, 255, 255)
         else:
@@ -131,13 +131,14 @@ class Indicator(ToolButton):
 
 
 class IndicatorPosition(Enum):
-    """ Indicator position """
+    """Indicator position"""
+
     LEFT = 0
     RIGHT = 1
 
 
 class SwitchButton(QWidget):
-    """ Switch button class
+    """Switch button class
 
     Constructors
     ------------
@@ -148,20 +149,20 @@ class SwitchButton(QWidget):
     checkedChanged = Signal(bool)
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None, indicatorPos=IndicatorPosition.LEFT):
+    def __init__(self, parent: Optional[QWidget] = None, indicatorPos=IndicatorPosition.LEFT):
         """
         Parameters
         ----------
         parent: QWidget
             parent widget
 
-        indicatorPosition: IndicatorPosition
+        indicatorPos: IndicatorPosition
             the position of indicator
         """
         super().__init__(parent=parent)
-        self._text = self.tr('Off')
-        self._offText =  self.tr('Off')
-        self._onText =  self.tr('On')
+        self._text = self.tr("Off")
+        self._offText = self.tr("Off")
+        self._onText = self.tr("On")
         self.__spacing = 12
         self.lightTextColor = QColor(0, 0, 0)
         self.darkTextColor = QColor(255, 255, 255)
@@ -174,7 +175,7 @@ class SwitchButton(QWidget):
         self.__initWidget()
 
     @__init__.register
-    def _(self, text: str = 'Off', parent: QWidget = None, indicatorPos=IndicatorPosition.LEFT):
+    def _(self, text: str = "Off", parent: Optional[QWidget] = None, indicatorPos=IndicatorPosition.LEFT):
         """
         Parameters
         ----------
@@ -184,7 +185,7 @@ class SwitchButton(QWidget):
         parent: QWidget
             parent widget
 
-        indicatorPosition: IndicatorPosition
+        indicatorPos: IndicatorPosition
             the position of indicator
         """
         self.__init__(parent, indicatorPos)
@@ -192,8 +193,8 @@ class SwitchButton(QWidget):
         self.setText(text)
 
     def __initWidget(self):
-        """ initialize widgets """
-        self.setAttribute(Qt.WA_StyledBackground)
+        """initialize widgets"""
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.installEventFilter(self)
         self.setFixedHeight(22)
 
@@ -204,11 +205,15 @@ class SwitchButton(QWidget):
         if self.indicatorPos == IndicatorPosition.LEFT:
             self.hBox.addWidget(self.indicator)
             self.hBox.addWidget(self.label)
-            self.hBox.setAlignment(Qt.AlignLeft)
+            self.hBox.setAlignment(Qt.AlignmentFlag.AlignLeft)
         else:
-            self.hBox.addWidget(self.label, 0, Qt.AlignRight)
-            self.hBox.addWidget(self.indicator, 0, Qt.AlignRight)
-            self.hBox.setAlignment(Qt.AlignRight)
+            self.hBox.addWidget(
+                self.label, 0, Qt.AlignmentFlag.AlignRight
+            )
+            self.hBox.addWidget(
+                self.indicator, 0, Qt.AlignmentFlag.AlignRight
+            )
+            self.hBox.setAlignment(Qt.AlignmentFlag.AlignRight)
 
         # set default style sheet
         FluentStyleSheet.SWITCH_BUTTON.apply(self)
@@ -220,14 +225,14 @@ class SwitchButton(QWidget):
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self and self.isEnabled():
-            if e.type() == QEvent.MouseButtonPress:
+            if e.type() == QEvent.Type.MouseButtonPress:
                 self.indicator.setDown(True)
-            elif e.type() == QEvent.MouseButtonRelease:
+            elif e.type() == QEvent.Type.MouseButtonRelease:
                 self.indicator.setDown(False)
                 self.indicator.toggle()
-            elif e.type() == QEvent.Enter:
+            elif e.type() == QEvent.Type.Enter:
                 self.indicator.setHover(True)
-            elif e.type() == QEvent.Leave:
+            elif e.type() == QEvent.Type.Leave:
                 self.indicator.setHover(False)
 
         return super().eventFilter(obj, e)
@@ -236,12 +241,12 @@ class SwitchButton(QWidget):
         return self.indicator.isChecked()
 
     def setChecked(self, isChecked):
-        """ set checked state """
+        """set checked state"""
         self._updateText()
         self.indicator.setChecked(isChecked)
 
     def setTextColor(self, light, dark):
-        """ set the color of text
+        """set the color of text
 
         Parameters
         ----------
@@ -254,11 +259,11 @@ class SwitchButton(QWidget):
         setCustomStyleSheet(
             self.label,
             f"SwitchButton>QLabel{{color:{self.lightTextColor.name(QColor.NameFormat.HexArgb)}}}",
-            f"SwitchButton>QLabel{{color:{self.darkTextColor.name(QColor.NameFormat.HexArgb)}}}"
+            f"SwitchButton>QLabel{{color:{self.darkTextColor.name(QColor.NameFormat.HexArgb)}}}",
         )
 
     def setCheckedIndicatorColor(self, light, dark):
-        """ set the color of indicator in checked status
+        """set the color of indicator in checked status
 
         Parameters
         ----------
@@ -268,7 +273,7 @@ class SwitchButton(QWidget):
         self.indicator.setCheckedColor(light, dark)
 
     def toggleChecked(self):
-        """ toggle checked state """
+        """toggle checked state"""
         self.indicator.setChecked(not self.indicator.isChecked())
 
     def _updateText(self):

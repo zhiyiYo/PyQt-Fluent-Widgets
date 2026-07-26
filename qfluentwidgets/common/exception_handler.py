@@ -1,4 +1,3 @@
-# coding:utf-8
 from copy import deepcopy
 
 
@@ -17,7 +16,7 @@ def exceptionHandler(*default):
         def inner(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            except BaseException as e:
+            except BaseException:
                 value = deepcopy(default)
                 if len(value) == 0:
                     return None

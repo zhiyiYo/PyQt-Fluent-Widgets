@@ -70,24 +70,24 @@ class StackedHistory:
 
 
 class Router(QObject):
-    """ Router """
+    """Router"""
 
     emptyChanged = Signal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.history = []   # type: List[RouteItem]
-        self.stackHistories = {}  # type: Dict[QStackedWidget, StackedHistory]
+        self.history: List[RouteItem] = []
+        self.stackHistories: Dict[QStackedWidget, StackedHistory] = {}
 
     def setDefaultRouteKey(self, stacked: QStackedWidget, routeKey: str):
-        """ set the default route key of stacked widget """
+        """set the default route key of stacked widget"""
         if stacked not in self.stackHistories:
             self.stackHistories[stacked] = StackedHistory(stacked)
 
         self.stackHistories[stacked].setDefaultRouteKey(routeKey)
 
     def push(self, stacked: QStackedWidget, routeKey: str):
-        """ push history
+        """push history
 
         Parameters
         ----------
@@ -95,7 +95,7 @@ class Router(QObject):
             stacked widget
 
         routeKey: str
-            route key of sub insterface, it should be the object name of sub interface
+            route key of sub interface, it should be the object name of sub interface
         """
         item = RouteItem(stacked, routeKey)
 
@@ -110,7 +110,7 @@ class Router(QObject):
         self.emptyChanged.emit(not bool(self.history))
 
     def pop(self):
-        """ pop history """
+        """pop history"""
         if not self.history:
             return
 
@@ -119,7 +119,7 @@ class Router(QObject):
         self.stackHistories[item.stacked].pop()
 
     def remove(self, routeKey: str):
-        """ remove history """
+        """remove history"""
         self.history = [i for i in self.history if i.routeKey != routeKey]
         self.history = [list(g)[0] for k, g in groupby(self.history, lambda i: i.routeKey)]
         self.emptyChanged.emit(not bool(self.history))
@@ -128,6 +128,7 @@ class Router(QObject):
             w = stacked.findChild(QWidget, routeKey)
             if w:
                 return history.remove(routeKey)
+        return None
 
 
 qrouter = Router()

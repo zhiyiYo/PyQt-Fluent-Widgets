@@ -1,4 +1,3 @@
-# coding: utf-8
 from typing import List
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QWidget
@@ -7,7 +6,7 @@ from .config import qconfig
 
 
 def setFontFamilies(families: List[str], save=False):
-    """ set the font families used by all widgets
+    """set the font families used by all widgets
 
     Parameters
     ----------
@@ -21,12 +20,12 @@ def setFontFamilies(families: List[str], save=False):
 
 
 def fontFamilies() -> List[str]:
-    """ Returns the font families used by all widgets """
+    """Returns the font families used by all widgets"""
     return qconfig.get(qconfig.fontFamilies).copy()
 
 
-def setFont(widget: QWidget, fontSize=14, weight=QFont.Normal):
-    """ set the font of widget
+def setFont(widget: QWidget, fontSize=14, weight=QFont.Weight.Normal):
+    """set the font of widget
 
     Parameters
     ----------
@@ -42,8 +41,8 @@ def setFont(widget: QWidget, fontSize=14, weight=QFont.Normal):
     widget.setFont(getFont(fontSize, weight))
 
 
-def getFont(fontSize=14, weight=QFont.Normal):
-    """ create font
+def getFont(fontSize=14, weight=QFont.Weight.Normal):
+    """create font
 
     Parameters
     ----------
@@ -61,10 +60,7 @@ def getFont(fontSize=14, weight=QFont.Normal):
 
 
 def fontStyleSheet(font: QFont):
-    """ Returns the style sheet of font """
-    families = []
-    for family in font.families():
-        families.append(f"'{family}'")
-
+    """Returns the style sheet of font"""
+    families = [f"'{family}'" for family in font.families()]
     qss = f"font: {font.pixelSize()}px {','.join(families)}"
     return qss

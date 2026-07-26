@@ -125,7 +125,6 @@ class FontIconEngine(QIconEngine):
         path.addText(rect.x(), rect.y() + rect.height(), font, self.char)
         painter.drawPath(path)
 
-
     def clone(self) -> QIconEngine:
         return FontIconEngine(self.fontFamily, self.char, self.color, self.isBold)
 

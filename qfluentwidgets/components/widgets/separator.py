@@ -1,12 +1,11 @@
-# coding:utf-8
-from PySide6.QtGui import QPixmap, QPainter, QColor
+from PySide6.QtGui import QPainter, QColor
 from PySide6.QtWidgets import QWidget
 
 from ...common.style_sheet import isDarkTheme
 
 
 class HorizontalSeparator(QWidget):
-    """ Horizontal separator """
+    """Horizontal separator"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -14,7 +13,7 @@ class HorizontalSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if isDarkTheme():
             painter.setPen(QColor(255, 255, 255, 51))
@@ -25,7 +24,7 @@ class HorizontalSeparator(QWidget):
 
 
 class VerticalSeparator(QWidget):
-    """ Vertical separator """
+    """Vertical separator"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -33,7 +32,7 @@ class VerticalSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if isDarkTheme():
             painter.setPen(QColor(255, 255, 255, 51))

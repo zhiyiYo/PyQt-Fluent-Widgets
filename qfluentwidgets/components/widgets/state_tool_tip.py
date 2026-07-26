@@ -1,15 +1,12 @@
-# coding:utf-8
-from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal, QSize, QPoint, QRectF
+from PySide6.QtCore import QPropertyAnimation, Qt, QTimer, Signal, QPoint, QRectF
 from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import QLabel, QWidget, QToolButton, QGraphicsOpacityEffect
-from PySide6.QtSvgWidgets import QSvgWidget
 
 from ...common import FluentStyleSheet, isDarkTheme, Theme
 from ...common.icon import FluentIcon as FIF
 
 
 class StateCloseButton(QToolButton):
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setFixedSize(12, 12)
@@ -37,7 +34,7 @@ class StateCloseButton(QToolButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         if self.isPressed:
             painter.setOpacity(0.6)
         elif self.isEnter:
@@ -48,7 +45,7 @@ class StateCloseButton(QToolButton):
 
 
 class StateToolTip(QWidget):
-    """ State tooltip """
+    """State tooltip"""
 
     closedSignal = Signal()
 
@@ -84,8 +81,8 @@ class StateToolTip(QWidget):
         self.__initWidget()
 
     def __initWidget(self):
-        """ initialize widgets """
-        self.setAttribute(Qt.WA_StyledBackground)
+        """initialize widgets"""
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.setGraphicsEffect(self.opacityEffect)
         self.opacityEffect.setOpacity(1)
         self.rotateTimer.setInterval(50)
@@ -101,15 +98,14 @@ class StateToolTip(QWidget):
         self.rotateTimer.start()
 
     def __initLayout(self):
-        """ initialize layout """
-        self.setFixedSize(max(self.titleLabel.width(),
-                          self.contentLabel.width()) + 56, 51)
+        """initialize layout"""
+        self.setFixedSize(max(self.titleLabel.width(), self.contentLabel.width()) + 56, 51)
         self.titleLabel.move(32, 9)
         self.contentLabel.move(12, 27)
         self.closeButton.move(self.width() - 24, 19)
 
     def __setQss(self):
-        """ set style sheet """
+        """set style sheet"""
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
 
@@ -119,13 +115,13 @@ class StateToolTip(QWidget):
         self.contentLabel.adjustSize()
 
     def setTitle(self, title: str):
-        """ set the title of tooltip """
+        """set the title of tooltip"""
         self.title = title
         self.titleLabel.setText(title)
         self.titleLabel.adjustSize()
 
     def setContent(self, content: str):
-        """ set the content of tooltip """
+        """set the content of tooltip"""
         self.content = content
         self.contentLabel.setText(content)
 
@@ -133,19 +129,19 @@ class StateToolTip(QWidget):
         self.contentLabel.adjustSize()
 
     def setState(self, isDone=False):
-        """ set the state of tooltip """
+        """set the state of tooltip"""
         self.isDone = isDone
         self.update()
         if isDone:
             QTimer.singleShot(1000, self.__fadeOut)
 
     def __onCloseButtonClicked(self):
-        """ close button clicked slot """
+        """close button clicked slot"""
         self.closedSignal.emit()
         self.hide()
 
     def __fadeOut(self):
-        """ fade out """
+        """fade out"""
         self.rotateTimer.stop()
         self.animation.setDuration(200)
         self.animation.setStartValue(1)
@@ -154,15 +150,15 @@ class StateToolTip(QWidget):
         self.animation.start()
 
     def __rotateTimerFlowSlot(self):
-        """ rotate timer time out slot """
+        """rotate timer time out slot"""
         self.rotateAngle = (self.rotateAngle + self.deltaAngle) % 360
         self.update()
 
     def getSuitablePos(self):
-        """ get suitable position in main window """
+        """get suitable position in main window"""
         for i in range(10):
-            dy = i*(self.height() + 16)
-            pos = QPoint(self.parent().width() - self.width() - 24, 50+dy)
+            dy = i * (self.height() + 16)
+            pos = QPoint(self.parent().width() - self.width() - 24, 50 + dy)
             widget = self.parent().childAt(pos + QPoint(2, 2))
             if isinstance(widget, StateToolTip):
                 pos += QPoint(0, self.height() + 16)
@@ -172,11 +168,11 @@ class StateToolTip(QWidget):
         return pos
 
     def paintEvent(self, e):
-        """ paint state tooltip """
+        """paint state tooltip"""
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
         theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
 
         if not self.isDone:
@@ -185,4 +181,3 @@ class StateToolTip(QWidget):
             FIF.SYNC.render(painter, QRectF(-8, -8, 16, 16), theme)
         else:
             FIF.COMPLETED.render(painter, QRectF(11, 10, 16, 16), theme)
-
