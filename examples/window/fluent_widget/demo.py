@@ -14,7 +14,7 @@ class Window(FluentWidget):
 
     def __init__(self):
         super().__init__()
-        self.button = PushButton(FIF.CONSTRACT, 'Toggle theme', self)
+        self.button = PushButton(FIF.CONTRAST, 'Toggle theme', self)
         self.vBoxLayout = QVBoxLayout(self)
 
         # disable mica effect in Win11

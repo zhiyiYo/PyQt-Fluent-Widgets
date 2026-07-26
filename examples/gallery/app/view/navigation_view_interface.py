@@ -69,7 +69,7 @@ class NavigationViewInterface(GalleryInterface):
         w = SegmentedToggleToolWidget(self)
         w.addItem('k1', FluentIcon.TRANSPARENT)
         w.addItem('k2', FluentIcon.CHECKBOX)
-        w.addItem('k3', FluentIcon.CONSTRACT)
+        w.addItem('k3', FluentIcon.CONTRAST)
         w.setCurrentItem('k1')
         return w
 
