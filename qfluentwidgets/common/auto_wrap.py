@@ -1,7 +1,7 @@
 from enum import Enum, auto
 from functools import lru_cache
 from re import sub
-from typing import List, Optional, Tuple
+from typing import ClassVar, List, Optional, Tuple
 from unicodedata import east_asian_width
 
 
@@ -14,7 +14,7 @@ class CharType(Enum):
 class TextWrap:
     """Text wrap"""
 
-    EAST_ASAIN_WIDTH_TABLE = {
+    EAST_ASIAN_WIDTH_TABLE: ClassVar = {
         "F": 2,
         "H": 1,
         "W": 2,
@@ -27,7 +27,7 @@ class TextWrap:
     @lru_cache(maxsize=128)
     def get_width(cls, char: str) -> int:
         """Returns the width of the char"""
-        return cls.EAST_ASAIN_WIDTH_TABLE.get(east_asian_width(char), 1)
+        return cls.EAST_ASIAN_WIDTH_TABLE.get(east_asian_width(char), 1)
 
     @classmethod
     @lru_cache(maxsize=32)
@@ -107,8 +107,8 @@ class TextWrap:
         is_wrapped = False
         wrapped_lines = []
 
-        for line in lines:
-            line = cls.process_text_whitespace(line)
+        for raw_line in lines:
+            line = cls.process_text_whitespace(raw_line)
 
             if cls.get_text_width(line) > width:
                 wrapped_line, is_wrapped = cls._wrap_line(line, width, once)
@@ -126,7 +126,7 @@ class TextWrap:
     @classmethod
     def _wrap_line(cls, text: str, width: int, once: bool = True) -> Tuple[str, bool]:
         line_buffer = ""
-        wrapped_lines = []
+        wrapped_lines: List = []
         current_width = 0
 
         for token in cls.tokenizer(text):
@@ -149,8 +149,7 @@ class TextWrap:
 
                 chunks = cls.split_long_token(token, width)
 
-                for chunk in chunks[:-1]:
-                    wrapped_lines.append(chunk.rstrip())
+                wrapped_lines.extend(chunk.rstrip() for chunk in chunks[:-1])
 
                 line_buffer = chunks[-1]
                 current_width = cls.get_text_width(chunks[-1])
