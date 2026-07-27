@@ -1,4 +1,3 @@
-# coding:utf-8
 from typing import Union
 from PySide6.QtCore import Qt, Signal, QRectF
 from PySide6.QtGui import QPainter, QIcon, QColor
@@ -7,14 +6,14 @@ from PySide6.QtWidgets import QApplication, QWidget
 from ...common.font import setFont
 from ...common.icon import FluentIconBase, drawIcon, Theme
 from ...common.color import autoFallbackThemeColor
-from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme
-from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty, ScaleSlideAnimation
-from ..widgets.button import PushButton, ToolButton, TransparentToolButton
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme
+from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty
+from ..widgets.button import ToolButton, TransparentToolButton
 from .pivot import Pivot, PivotItem
 
 
 class SegmentedItem(PivotItem):
-    """ Segmented item """
+    """Segmented item"""
 
     def _postInit(self):
         super()._postInit()
@@ -22,13 +21,13 @@ class SegmentedItem(PivotItem):
 
 
 class SegmentedToolItem(ToolButton):
-    """ Pivot item """
+    """Pivot item"""
 
     itemClicked = Signal(bool)
 
     def _postInit(self):
         self.isSelected = False
-        self.setProperty('isSelected', False)
+        self.setProperty("isSelected", False)
         self.clicked.connect(lambda: self.itemClicked.emit(True))
 
         self.setFixedSize(38, 33)
@@ -39,13 +38,12 @@ class SegmentedToolItem(ToolButton):
             return
 
         self.isSelected = isSelected
-        self.setProperty('isSelected', isSelected)
+        self.setProperty("isSelected", isSelected)
         self.setStyle(QApplication.style())
         self.update()
 
 
 class SegmentedToggleToolItem(TransparentToolButton):
-
     itemClicked = Signal(bool)
 
     def _postInit(self):
@@ -71,17 +69,18 @@ class SegmentedToggleToolItem(TransparentToolButton):
 
 
 class SegmentedWidget(Pivot):
-    """ Segmented widget """
+    """Segmented widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.slideAni = FluentAnimation.create(
-            FluentAnimationType.POINT_TO_POINT, FluentAnimationProperty.SCALE, value=0, parent=self)
-        self.setAttribute(Qt.WA_StyledBackground)
+            FluentAnimationType.POINT_TO_POINT, FluentAnimationProperty.SCALE, value=0, parent=self
+        )
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
 
     def insertItem(self, index: int, routeKey: str, text: str, onClick=None, icon=None):
         if routeKey in self.items:
-            return
+            return None
 
         item = SegmentedItem(text, self)
         if icon:
@@ -97,7 +96,7 @@ class SegmentedWidget(Pivot):
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         # draw background
         if isDarkTheme():
@@ -123,14 +122,14 @@ class SegmentedWidget(Pivot):
 
 
 class SegmentedToolWidget(SegmentedWidget):
-    """ Segmented tool widget """
+    """Segmented tool widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setAttribute(Qt.WA_StyledBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
 
     def addItem(self, routeKey: str, icon: Union[str, QIcon, FluentIconBase], onClick=None):
-        """ add item
+        """add item
 
         Parameters
         ----------
@@ -147,7 +146,7 @@ class SegmentedToolWidget(SegmentedWidget):
 
     def insertItem(self, index: int, routeKey: str, icon: Union[str, QIcon, FluentIconBase], onClick=None):
         if routeKey in self.items:
-            return
+            return None
 
         item = self._createItem(icon)
         self.insertWidget(index, routeKey, item, onClick)
@@ -158,7 +157,7 @@ class SegmentedToolWidget(SegmentedWidget):
 
 
 class SegmentedToggleToolWidget(SegmentedToolWidget):
-    """ Segmented toggle tool widget """
+    """Segmented toggle tool widget"""
 
     def _createItem(self, icon):
         return SegmentedToggleToolItem(icon)
@@ -176,5 +175,4 @@ class SegmentedToggleToolWidget(SegmentedToolWidget):
         painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
 
         item = self.currentItem()
-        painter.drawRoundedRect(
-            QRectF(self.slideAni.value(), 0, item.width(), item.height()), 4, 4)
+        painter.drawRoundedRect(QRectF(self.slideAni.value(), 0, item.width(), item.height()), 4, 4)
