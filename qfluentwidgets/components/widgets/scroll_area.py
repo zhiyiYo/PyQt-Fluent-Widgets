@@ -1,21 +1,20 @@
-# coding:utf-8
-from PySide6.QtCore import QEasingCurve, Qt, QPropertyAnimation
+from PySide6.QtCore import QEasingCurve, Qt
 from PySide6.QtGui import QWheelEvent
-from PySide6.QtWidgets import QScrollArea, QScrollBar
+from PySide6.QtWidgets import QScrollArea
 
 from ...common.smooth_scroll import SmoothScroll, SmoothMode
-from .scroll_bar import ScrollBar, SmoothScrollBar, SmoothScrollDelegate
+from .scroll_bar import SmoothScrollBar, SmoothScrollDelegate
 
 
 class ScrollArea(QScrollArea):
-    """ Smooth scroll area """
+    """Smooth scroll area"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.scrollDelagate = SmoothScrollDelegate(self)
+        self.scrollDelegate = SmoothScrollDelegate(self)
 
     def setSmoothMode(self, mode: SmoothMode, orientation: Qt.Orientation):
-        """ set smooth mode
+        """set smooth mode
 
         Parameters
         ----------
@@ -26,9 +25,9 @@ class ScrollArea(QScrollArea):
             scroll direction
         """
         if orientation == Qt.Orientation.Vertical:
-            self.scrollDelagate.verticalSmoothScroll.setSmoothMode(mode)
+            self.scrollDelegate.verticalSmoothScroll.setSmoothMode(mode)
         else:
-            self.scrollDelagate.horizonSmoothScroll.setSmoothMode(mode)
+            self.scrollDelegate.horizonSmoothScroll.setSmoothMode(mode)
 
     def enableTransparentBackground(self):
         self.setStyleSheet("QScrollArea{border: none; background: transparent}")
@@ -38,34 +37,34 @@ class ScrollArea(QScrollArea):
 
 
 class SingleDirectionScrollArea(QScrollArea):
-    """ Single direction scroll area"""
+    """Single direction scroll area"""
 
-    def __init__(self, parent=None, orient=Qt.Vertical):
+    def __init__(self, parent=None, orient=Qt.Orientation.Vertical):
         """
         Parameters
         ----------
         parent: QWidget
             parent widget
 
-        orient: Orientation
+        orient: Qt.Orientation
             scroll orientation
         """
         super().__init__(parent)
         self.orient = orient
         self.smoothScroll = SmoothScroll(self, orient)
-        self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
-        self.hScrollBar = SmoothScrollBar(Qt.Horizontal, self)
+        self.vScrollBar = SmoothScrollBar(Qt.Orientation.Vertical, self)
+        self.hScrollBar = SmoothScrollBar(Qt.Orientation.Horizontal, self)
 
     def setVerticalScrollBarPolicy(self, policy):
-        super().setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.vScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
+        super().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.vScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def setHorizontalScrollBarPolicy(self, policy):
-        super().setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.hScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
+        super().setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.hScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def setSmoothMode(self, mode):
-        """ set smooth mode
+        """set smooth mode
 
         Parameters
         ----------
@@ -75,8 +74,8 @@ class SingleDirectionScrollArea(QScrollArea):
         self.smoothScroll.setSmoothMode(mode)
 
     def keyPressEvent(self, e):
-        if e.key() in [Qt.Key_Left, Qt.Key_Right]:
-            return
+        if e.key() in [Qt.Key.Key_Left, Qt.Key.Key_Right]:
+            return None
 
         return super().keyPressEvent(e)
 
@@ -95,14 +94,14 @@ class SingleDirectionScrollArea(QScrollArea):
 
 
 class SmoothScrollArea(QScrollArea):
-    """ Smooth scroll area """
+    """Smooth scroll area"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.delegate = SmoothScrollDelegate(self, True)
 
-    def setScrollAnimation(self, orient, duration, easing=QEasingCurve.OutCubic):
-        """ set scroll animation
+    def setScrollAnimation(self, orient, duration: int, easing: QEasingCurve.Type = QEasingCurve.Type.OutCubic):
+        """set scroll animation
 
         Parameters
         ----------
@@ -112,10 +111,10 @@ class SmoothScrollArea(QScrollArea):
         duration: int
             scroll duration
 
-        easing: QEasingCurve
+        easing: QEasingCurve.Type
             animation type
         """
-        bar = self.delegate.hScrollBar if orient == Qt.Horizontal else self.delegate.vScrollBar
+        bar = self.delegate.hScrollBar if orient == Qt.Orientation.Horizontal else self.delegate.vScrollBar
         bar.setScrollAnimation(duration, easing)
 
     def enableTransparentBackground(self):
