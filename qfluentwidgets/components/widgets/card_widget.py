@@ -1,7 +1,6 @@
-# coding:utf-8
 from typing import List, Union
-from PySide6.QtCore import Qt, Signal, QRectF, Property, QPropertyAnimation, QPoint, QSize
-from PySide6.QtGui import QPixmap, QPainter, QColor, QPainterPath, QFont, QIcon
+from PySide6.QtCore import Qt, Signal, Property, QPropertyAnimation, QPoint, QSize
+from PySide6.QtGui import QPainter, QColor, QPainterPath, QFont, QIcon
 from PySide6.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLabel
 
 from ...common.overload import singledispatchmethod
@@ -14,7 +13,7 @@ from .icon_widget import IconWidget
 
 
 class CardWidget(BackgroundAnimationWidget, QFrame):
-    """ Card widget """
+    """Card widget"""
 
     clicked = Signal()
 
@@ -52,7 +51,7 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         w, h = self.width(), self.height()
         r = self.borderRadius
@@ -97,7 +96,7 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
         painter.strokePath(path, bottomBorderColor)
 
         # draw background
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.setBrush(self.backgroundColor)
         painter.drawRoundedRect(rect, r, r)
@@ -105,9 +104,8 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
     borderRadius = Property(int, getBorderRadius, setBorderRadius)
 
 
-
 class SimpleCardWidget(CardWidget):
-    """ Simple card widget """
+    """Simple card widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -123,7 +121,7 @@ class SimpleCardWidget(CardWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setBrush(self.backgroundColor)
 
         if isDarkTheme():
@@ -135,9 +133,8 @@ class SimpleCardWidget(CardWidget):
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), r, r)
 
 
-
 class ElevatedCardWidget(SimpleCardWidget):
-    """ Card widget with shadow effect """
+    """Card widget with shadow effect"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -145,7 +142,7 @@ class ElevatedCardWidget(SimpleCardWidget):
         self.shadowAni.setOffset(0, 5)
         self.shadowAni.setBlurRadius(38)
 
-        self.elevatedAni = QPropertyAnimation(self, b'pos', self)
+        self.elevatedAni = QPropertyAnimation(self, b"pos", self)
         self.elevatedAni.setDuration(100)
 
         self._originalPos = self.pos()
@@ -154,7 +151,7 @@ class ElevatedCardWidget(SimpleCardWidget):
     def enterEvent(self, e):
         super().enterEvent(e)
 
-        if self.elevatedAni.state() != QPropertyAnimation.Running:
+        if self.elevatedAni.state() != QPropertyAnimation.State.Running:
             self._originalPos = self.pos()
 
         self._startElevateAni(self.pos(), self.pos() - QPoint(0, 3))
@@ -179,9 +176,8 @@ class ElevatedCardWidget(SimpleCardWidget):
         return QColor(255, 255, 255, 6 if isDarkTheme() else 118)
 
 
-
 class CardSeparator(QWidget):
-    """ Card separator """
+    """Card separator"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -189,7 +185,7 @@ class CardSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if isDarkTheme():
             painter.setPen(QColor(255, 255, 255, 46))
@@ -200,7 +196,7 @@ class CardSeparator(QWidget):
 
 
 class HeaderCardWidget(SimpleCardWidget):
-    """ Header card widget """
+    """Header card widget"""
 
     @singledispatchmethod
     def __init__(self, parent=None):
@@ -225,11 +221,11 @@ class HeaderCardWidget(SimpleCardWidget):
         self.vBoxLayout.addWidget(self.view)
 
         self.viewLayout.setContentsMargins(24, 24, 24, 24)
-        setFont(self.headerLabel, 15, QFont.DemiBold)
+        setFont(self.headerLabel, 15, QFont.Weight.DemiBold)
 
-        self.view.setObjectName('view')
-        self.headerView.setObjectName('headerView')
-        self.headerLabel.setObjectName('headerLabel')
+        self.view.setObjectName("view")
+        self.headerView.setObjectName("headerView")
+        self.headerLabel.setObjectName("headerLabel")
         FluentStyleSheet.CARD_WIDGET.apply(self)
 
         self._postInit()
@@ -251,9 +247,7 @@ class HeaderCardWidget(SimpleCardWidget):
     title = Property(str, getTitle, setTitle)
 
 
-
 class CardGroupWidget(QWidget):
-
     def __init__(self, icon: Union[str, FluentIconBase, QIcon], title: str, content: str, parent=None):
         super().__init__(parent=parent)
         self.vBoxLayout = QVBoxLayout(self)
@@ -323,11 +317,11 @@ class CardGroupWidget(QWidget):
 
 
 class GroupHeaderCardWidget(HeaderCardWidget):
-    """ Group header card widget """
+    """Group header card widget"""
 
     def _postInit(self):
         super()._postInit()
-        self.groupWidgets = []  # type: List[CardGroupWidget]
+        self.groupWidgets: List[CardGroupWidget] = []
         self.groupLayout = QVBoxLayout()
 
         self.groupLayout.setSpacing(0)
@@ -335,8 +329,15 @@ class GroupHeaderCardWidget(HeaderCardWidget):
         self.groupLayout.setContentsMargins(0, 0, 0, 0)
         self.viewLayout.addLayout(self.groupLayout)
 
-    def addGroup(self, icon: Union[str, FluentIconBase, QIcon], title: str, content: str, widget: QWidget, stretch=0) -> CardGroupWidget:
-        """ add widget to a new group
+    def addGroup(
+        self,
+        icon: Union[str, FluentIconBase, QIcon],
+        title: str,
+        content: str,
+        widget: QWidget,
+        stretch=0,
+    ) -> CardGroupWidget:
+        """add widget to a new group
 
         Parameters
         ----------
