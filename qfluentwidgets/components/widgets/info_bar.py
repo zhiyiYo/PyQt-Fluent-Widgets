@@ -83,7 +83,7 @@ class InfoBar(QFrame):
     """Information bar"""
 
     closedSignal = Signal()
-    _desktopView: DesktopInfoBarView = None
+    _desktopView: "DesktopInfoBarView" = None
 
     def __init__(
         self,
