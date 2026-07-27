@@ -21,7 +21,8 @@ except ImportError:
 def checkAcrylicAvailability():
     if not isAcrylicAvailable:
         warnings.warn(
-            "Acrylic is not supported in current qfluentwidgets, use `pip install PySide6-Fluent-Widgets[full]` to enable it."
+            "Acrylic is not supported in current qfluentwidgets, "
+            "use `pip install PySide6-Fluent-Widgets[full]` to enable it."
         )
 
     return isAcrylicAvailable

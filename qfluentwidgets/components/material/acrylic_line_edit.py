@@ -1,10 +1,9 @@
-# coding:utf-8
 from .acrylic_menu import AcrylicCompleterMenu, AcrylicLineEditMenu
 from ..widgets.line_edit import LineEdit, SearchLineEdit
 
 
 class AcrylicLineEditBase:
-    """ Acrylic line edit base """
+    """Acrylic line edit base"""
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -18,10 +17,9 @@ class AcrylicLineEditBase:
         menu.exec(e.globalPos())
 
 
-
 class AcrylicLineEdit(AcrylicLineEditBase, LineEdit):
-    """ Acrylic line edit """
+    """Acrylic line edit"""
 
 
 class AcrylicSearchLineEdit(AcrylicLineEditBase, SearchLineEdit):
-    """ Acrylic search line edit """
+    """Acrylic search line edit"""

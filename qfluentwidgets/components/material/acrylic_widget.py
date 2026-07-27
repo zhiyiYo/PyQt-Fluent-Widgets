@@ -1,4 +1,3 @@
-# coding:utf-8
 from PySide6.QtGui import QPainterPath, QPainter, QColor
 
 from ..widgets.acrylic_label import AcrylicBrush
@@ -6,7 +5,7 @@ from ...common.style_sheet import isDarkTheme
 
 
 class AcrylicWidget:
-    """ Acrylic widget """
+    """Acrylic widget"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,7 +35,7 @@ class AcrylicWidget:
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing | QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         self._drawAcrylic(painter)
         super().paintEvent(e)
