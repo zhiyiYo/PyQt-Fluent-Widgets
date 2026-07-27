@@ -1,12 +1,36 @@
-# coding:utf-8
 from enum import Enum
 import sys
-from typing import Union
+from typing import Union, Optional
 
-from PySide6.QtCore import (Qt, QPropertyAnimation, QPoint, QParallelAnimationGroup, QEasingCurve, QMargins,
-                          QRectF, QObject, QSize, Signal, QEvent)
-from PySide6.QtGui import QPixmap, QPainter, QColor, QCursor, QIcon, QImage, QPainterPath, QBrush, QMovie, QImageReader
-from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect, QLabel, QHBoxLayout, QVBoxLayout, QApplication
+from PySide6.QtCore import (
+    Qt,
+    QPropertyAnimation,
+    QPoint,
+    QParallelAnimationGroup,
+    QEasingCurve,
+    QMargins,
+    QRectF,
+    QObject,
+    QSize,
+    Signal,
+    QEvent,
+)
+from PySide6.QtGui import (
+    QPixmap,
+    QPainter,
+    QColor,
+    QCursor,
+    QIcon,
+    QImage,
+)
+from PySide6.QtWidgets import (
+    QWidget,
+    QGraphicsDropShadowEffect,
+    QLabel,
+    QHBoxLayout,
+    QVBoxLayout,
+    QApplication,
+)
 
 from ...common.auto_wrap import TextWrap
 from ...common.style_sheet import isDarkTheme, FluentStyleSheet
@@ -17,7 +41,8 @@ from .label import ImageLabel
 
 
 class FlyoutAnimationType(Enum):
-    """ Flyout animation type """
+    """Flyout animation type"""
+
     PULL_UP = 0
     DROP_DOWN = 1
     SLIDE_LEFT = 2
@@ -27,7 +52,6 @@ class FlyoutAnimationType(Enum):
 
 
 class IconWidget(QWidget):
-
     def __init__(self, icon, parent=None):
         super().__init__(parent=parent)
         self.setFixedSize(36, 54)
@@ -38,20 +62,19 @@ class IconWidget(QWidget):
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
-        rect = QRectF(8, (self.height()-20)/2, 20, 20)
+        rect = QRectF(8, (self.height() - 20) / 2, 20, 20)
         drawIcon(self.icon, painter, rect)
 
 
 class FlyoutViewBase(QWidget):
-    """ Flyout view base class """
+    """Flyout view base class"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
 
-    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
+    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignmentFlag.AlignLeft):
         raise NotImplementedError
 
     def backgroundColor(self):
@@ -62,7 +85,7 @@ class FlyoutViewBase(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         painter.setBrush(self.backgroundColor())
         painter.setPen(self.borderColor())
@@ -72,12 +95,19 @@ class FlyoutViewBase(QWidget):
 
 
 class FlyoutView(FlyoutViewBase):
-    """ Flyout view """
+    """Flyout view"""
 
     closed = Signal()
 
-    def __init__(self, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
-                 image: Union[str, QPixmap, QImage] = None, isClosable=False, parent=None):
+    def __init__(
+        self,
+        title: str,
+        content: str,
+        icon: Union[FluentIconBase, QIcon, str] = None,
+        image: Union[str, QPixmap, QImage] = None,
+        isClosable=False,
+        parent=None,
+    ):
         super().__init__(parent=parent)
         """
         Parameters
@@ -130,8 +160,8 @@ class FlyoutView(FlyoutViewBase):
 
         self.closeButton.clicked.connect(self.closed)
 
-        self.titleLabel.setObjectName('titleLabel')
-        self.contentLabel.setObjectName('contentLabel')
+        self.titleLabel.setObjectName("titleLabel")
+        self.contentLabel.setObjectName("contentLabel")
         FluentStyleSheet.TEACHING_TIP.apply(self)
 
         self.__initLayout()
@@ -148,7 +178,11 @@ class FlyoutView(FlyoutViewBase):
             self.iconWidget.setFixedHeight(36)
 
         self.vBoxLayout.addLayout(self.viewLayout)
-        self.viewLayout.addWidget(self.iconWidget, 0, Qt.AlignTop)
+        self.viewLayout.addWidget(
+            self.iconWidget,
+            0,
+            Qt.AlignmentFlag.AlignTop,
+        )
 
         # add text
         self._adjustText()
@@ -159,7 +193,10 @@ class FlyoutView(FlyoutViewBase):
         # add close button
         self.closeButton.setVisible(self.isClosable)
         self.viewLayout.addWidget(
-            self.closeButton, 0, Qt.AlignRight | Qt.AlignTop)
+            self.closeButton,
+            0,
+            Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignTop,
+        )
 
         # adjust content margins
         margins = QMargins(6, 5, 6, 5)
@@ -171,8 +208,13 @@ class FlyoutView(FlyoutViewBase):
         self._adjustImage()
         self._addImageToLayout()
 
-    def addWidget(self, widget: QWidget, stretch=0, align=Qt.AlignLeft):
-        """ add widget to view """
+    def addWidget(
+        self,
+        widget: QWidget,
+        stretch=0,
+        align=Qt.AlignmentFlag.AlignLeft,
+    ):
+        """add widget to view"""
         self.widgetLayout.addSpacing(8)
         self.widgetLayout.addWidget(widget, stretch, align)
 
@@ -182,15 +224,14 @@ class FlyoutView(FlyoutViewBase):
         self.vBoxLayout.insertWidget(0, self.imageLabel)
 
     def _adjustText(self):
-        w = min(900, QApplication.screenAt(
-            QCursor.pos()).geometry().width() - 200)
+        w = min(900, QApplication.screenAt(QCursor.pos()).geometry().width() - 200)
 
         # adjust title
-        chars = max(min(w / 10, 120), 30)
+        chars = int(max(min(w / 10, 120), 30))
         self.titleLabel.setText(TextWrap.wrap(self.title, chars, False)[0])
 
         # adjust content
-        chars = max(min(w / 9, 120), 30)
+        chars = int(max(min(w / 9, 120), 30))
         self.contentLabel.setText(TextWrap.wrap(self.content, chars, False)[0])
 
     def _adjustImage(self):
@@ -204,7 +245,7 @@ class FlyoutView(FlyoutViewBase):
 
 
 class Flyout(QWidget):
-    """ Flyout """
+    """Flyout"""
 
     closed = Signal()
 
@@ -212,7 +253,7 @@ class Flyout(QWidget):
         super().__init__(parent=parent)
         self.view = view
         self.hBoxLayout = QHBoxLayout(self)
-        self.aniManager = None  # type: FlyoutAnimationManager
+        self.aniManager: FlyoutAnimationManager = None
         self.isDeleteOnClose = isDeleteOnClose
         self.isMacInputMethodEnabled = isMacInputMethodEnabled
 
@@ -220,13 +261,16 @@ class Flyout(QWidget):
         self.hBoxLayout.addWidget(self.view)
         self.setShadowEffect()
 
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         if sys.platform != "darwin" or not isMacInputMethodEnabled:
-            self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint |
-                                Qt.NoDropShadowWindowHint)
+            self.setWindowFlags(
+                Qt.WindowType.Popup | Qt.WindowType.FramelessWindowHint | Qt.WindowType.NoDropShadowWindowHint
+            )
         else:
-            self.setWindowFlags(Qt.Dialog | Qt.FramelessWindowHint | Qt.NoDropShadowWindowHint)
+            self.setWindowFlags(
+                Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint | Qt.WindowType.NoDropShadowWindowHint
+            )
             QApplication.instance().installEventFilter(self)
 
     def eventFilter(self, watched, event):
@@ -238,7 +282,7 @@ class Flyout(QWidget):
         return super().eventFilter(watched, event)
 
     def setShadowEffect(self, blurRadius=35, offset=(0, 8)):
-        """ add shadow to dialog """
+        """add shadow to dialog"""
         color = QColor(0, 0, 0, 80 if isDarkTheme() else 30)
         self.shadowEffect = QGraphicsDropShadowEffect(self.view)
         self.shadowEffect.setBlurRadius(blurRadius)
@@ -260,15 +304,22 @@ class Flyout(QWidget):
         super().showEvent(e)
 
     def exec(self, pos: QPoint, aniType=FlyoutAnimationType.PULL_UP):
-        """ show calendar view """
+        """show calendar view"""
         self.aniManager = FlyoutAnimationManager.make(aniType, self)
         self.show()
         self.aniManager.exec(pos)
 
     @classmethod
-    def make(cls, view: FlyoutViewBase, target: Union[QWidget, QPoint] = None, parent=None,
-             aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True, isMacInputMethodEnabled=False):
-        """ create and show a flyout
+    def make(
+        cls,
+        view: FlyoutViewBase,
+        target: Optional[Union[QWidget, QPoint]] = None,
+        parent=None,
+        aniType=FlyoutAnimationType.PULL_UP,
+        isDeleteOnClose=True,
+        isMacInputMethodEnabled=False,
+    ):
+        """create and show a flyout
 
         Parameters
         ----------
@@ -303,10 +354,20 @@ class Flyout(QWidget):
         return w
 
     @classmethod
-    def create(cls, title: str, content: str, icon: Union[FluentIconBase, QIcon, str] = None,
-               image: Union[str, QPixmap, QImage] = None, isClosable=False, target: Union[QWidget, QPoint] = None,
-               parent=None, aniType=FlyoutAnimationType.PULL_UP, isDeleteOnClose=True, isMacInputMethodEnabled=False):
-        """ create and show a flyout using the default view
+    def create(
+        cls,
+        title: str,
+        content: str,
+        icon: Union[FluentIconBase, QIcon, str] = None,
+        image: Union[str, QPixmap, QImage] = None,
+        isClosable=False,
+        target: Union[QWidget, QPoint] = None,
+        parent=None,
+        aniType=FlyoutAnimationType.PULL_UP,
+        isDeleteOnClose=True,
+        isMacInputMethodEnabled=False,
+    ):
+        """create and show a flyout using the default view
 
         Parameters
         ----------
@@ -338,12 +399,19 @@ class Flyout(QWidget):
             whether delete flyout automatically when flyout is closed
         """
         view = FlyoutView(title, content, icon, image, isClosable)
-        w = cls.make(view, target, parent, aniType, isDeleteOnClose, isMacInputMethodEnabled)
+        w = cls.make(
+            view,
+            target,
+            parent,
+            aniType,
+            isDeleteOnClose,
+            isMacInputMethodEnabled,
+        )
         view.closed.connect(w.close)
         return w
 
     def fadeOut(self):
-        self.fadeOutAni = QPropertyAnimation(self, b'windowOpacity', self)
+        self.fadeOutAni = QPropertyAnimation(self, b"windowOpacity", self)
         self.fadeOutAni.finished.connect(self.close)
         self.fadeOutAni.setStartValue(1)
         self.fadeOutAni.setEndValue(0)
@@ -352,7 +420,7 @@ class Flyout(QWidget):
 
 
 class FlyoutAnimationManager(QObject):
-    """ Flyout animation manager """
+    """Flyout animation manager"""
 
     managers = {}
 
@@ -360,8 +428,8 @@ class FlyoutAnimationManager(QObject):
         super().__init__()
         self.flyout = flyout
         self.aniGroup = QParallelAnimationGroup(self)
-        self.slideAni = QPropertyAnimation(flyout, b'pos', self)
-        self.opacityAni = QPropertyAnimation(flyout, b'windowOpacity', self)
+        self.slideAni = QPropertyAnimation(flyout, b"pos", self)
+        self.opacityAni = QPropertyAnimation(flyout, b"windowOpacity", self)
 
         self.slideAni.setDuration(187)
         self.opacityAni.setDuration(187)
@@ -369,20 +437,21 @@ class FlyoutAnimationManager(QObject):
         self.opacityAni.setStartValue(0)
         self.opacityAni.setEndValue(1)
 
-        self.slideAni.setEasingCurve(QEasingCurve.OutQuad)
-        self.opacityAni.setEasingCurve(QEasingCurve.OutQuad)
+        self.slideAni.setEasingCurve(QEasingCurve.Type.OutQuad)
+        self.opacityAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.aniGroup.addAnimation(self.slideAni)
         self.aniGroup.addAnimation(self.opacityAni)
 
     @classmethod
     def register(cls, name):
-        """ register menu animation manager
+        """register menu animation manager
 
         Parameters
         ----------
         name: Any
             the name of manager, it should be unique
         """
+
         def wrapper(Manager):
             if name not in cls.managers:
                 cls.managers[name] = Manager
@@ -392,7 +461,7 @@ class FlyoutAnimationManager(QObject):
         return wrapper
 
     def exec(self, pos: QPoint):
-        """ start animation """
+        """start animation"""
         raise NotImplementedError
 
     def _adjustPosition(self, pos):
@@ -403,100 +472,98 @@ class FlyoutAnimationManager(QObject):
         return QPoint(x, y)
 
     def position(self, target: QWidget):
-        """ return the top left position relative to the target """
+        """return the top left position relative to the target"""
         raise NotImplementedError
 
     @classmethod
     def make(cls, aniType: FlyoutAnimationType, flyout: Flyout) -> "FlyoutAnimationManager":
-        """ mask animation manager """
+        """mask animation manager"""
         if aniType not in cls.managers:
-            raise ValueError(f'`{aniType}` is an invalid animation type.')
+            raise ValueError(f"`{aniType}` is an invalid animation type.")
 
         return cls.managers[aniType](flyout)
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.PULL_UP)
 class PullUpFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Pull up flyout animation manager """
+    """Pull up flyout animation manager"""
 
     def position(self, target: QWidget):
         w = self.flyout
         pos = target.mapToGlobal(QPoint())
-        x = pos.x() + target.width()//2 - w.sizeHint().width()//2
+        x = pos.x() + target.width() // 2 - w.sizeHint().width() // 2
         y = pos.y() - w.sizeHint().height() + w.layout().contentsMargins().bottom()
         return QPoint(x, y)
 
     def exec(self, pos: QPoint):
         pos = self._adjustPosition(pos)
-        self.slideAni.setStartValue(pos+QPoint(0, 8))
+        self.slideAni.setStartValue(pos + QPoint(0, 8))
         self.slideAni.setEndValue(pos)
         self.aniGroup.start()
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.DROP_DOWN)
 class DropDownFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Drop down flyout animation manager """
+    """Drop down flyout animation manager"""
 
     def position(self, target: QWidget):
         w = self.flyout
         pos = target.mapToGlobal(QPoint(0, target.height()))
-        x = pos.x() + target.width()//2 - w.sizeHint().width()//2
+        x = pos.x() + target.width() // 2 - w.sizeHint().width() // 2
         y = pos.y() - w.layout().contentsMargins().top() + 8
         return QPoint(x, y)
 
     def exec(self, pos: QPoint):
         pos = self._adjustPosition(pos)
-        self.slideAni.setStartValue(pos-QPoint(0, 8))
+        self.slideAni.setStartValue(pos - QPoint(0, 8))
         self.slideAni.setEndValue(pos)
         self.aniGroup.start()
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.SLIDE_LEFT)
 class SlideLeftFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Slide left flyout animation manager """
+    """Slide left flyout animation manager"""
 
     def position(self, target: QWidget):
         w = self.flyout
         pos = target.mapToGlobal(QPoint(0, 0))
         x = pos.x() - w.sizeHint().width() + 8
-        y = pos.y() - w.sizeHint().height()//2 + target.height()//2 + \
-            w.layout().contentsMargins().top()
+        y = pos.y() - w.sizeHint().height() // 2 + target.height() // 2 + w.layout().contentsMargins().top()
         return QPoint(x, y)
 
     def exec(self, pos: QPoint):
         pos = self._adjustPosition(pos)
-        self.slideAni.setStartValue(pos+QPoint(8, 0))
+        self.slideAni.setStartValue(pos + QPoint(8, 0))
         self.slideAni.setEndValue(pos)
         self.aniGroup.start()
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.SLIDE_RIGHT)
 class SlideRightFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Slide right flyout animation manager """
+    """Slide right flyout animation manager"""
 
     def position(self, target: QWidget):
         w = self.flyout
         pos = target.mapToGlobal(QPoint(0, 0))
         x = pos.x() + target.width() - 8
-        y = pos.y() - w.sizeHint().height()//2 + target.height()//2 + \
-            w.layout().contentsMargins().top()
+        y = pos.y() - w.sizeHint().height() // 2 + target.height() // 2 + w.layout().contentsMargins().top()
         return QPoint(x, y)
 
     def exec(self, pos: QPoint):
         pos = self._adjustPosition(pos)
-        self.slideAni.setStartValue(pos-QPoint(8, 0))
+        self.slideAni.setStartValue(pos - QPoint(8, 0))
         self.slideAni.setEndValue(pos)
         self.aniGroup.start()
 
 
 @FlyoutAnimationManager.register(FlyoutAnimationType.FADE_IN)
 class FadeInFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Fade in flyout animation manager """
+    """Fade in flyout animation manager"""
 
     def position(self, target: QWidget):
         w = self.flyout
         pos = target.mapToGlobal(QPoint())
-        x = pos.x() + target.width()//2 - w.sizeHint().width()//2
+        x = pos.x() + target.width() // 2 - w.sizeHint().width() // 2
         y = pos.y() - w.sizeHint().height() + w.layout().contentsMargins().bottom()
         return QPoint(x, y)
 
@@ -506,16 +573,17 @@ class FadeInFlyoutAnimationManager(FlyoutAnimationManager):
         self.aniGroup.start()
 
 
-
 @FlyoutAnimationManager.register(FlyoutAnimationType.NONE)
 class DummyFlyoutAnimationManager(FlyoutAnimationManager):
-    """ Dummy flyout animation manager """
+    """Dummy flyout animation manager"""
 
     def exec(self, pos: QPoint):
-        """ start animation """
+        """start animation"""
         self.flyout.move(self._adjustPosition(pos))
 
     def position(self, target: QWidget):
-        """ return the top left position relative to the target """
+        """return the top left position relative to the target"""
         m = self.flyout.hBoxLayout.contentsMargins()
-        return target.mapToGlobal(QPoint(-m.left(), -self.flyout.sizeHint().height()+m.bottom()-8))
+        return target.mapToGlobal(
+            QPoint(-m.left(), -self.flyout.sizeHint().height() + m.bottom() - 8),
+        )
