@@ -1,4 +1,3 @@
-# coding:utf-8
 from typing import Union
 import sys
 
@@ -9,19 +8,24 @@ from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QApplic
 from ..common.config import qconfig
 from ..common.icon import FluentIconBase, toQIcon, drawIcon
 from ..common.router import qrouter
-from ..common.style_sheet import FluentStyleSheet, isDarkTheme, setTheme, Theme
+from ..common.style_sheet import FluentStyleSheet, isDarkTheme
 from ..common.animation import BackgroundAnimationWidget
 from ..components.widgets.frameless_window import FramelessWindow
 from ..components.widgets.label import CaptionLabel
-from ..components.navigation import (NavigationInterface, NavigationBar, NavigationItemPosition,
-                                     NavigationBarPushButton, NavigationTreeWidget)
+from ..components.navigation import (
+    NavigationInterface,
+    NavigationBar,
+    NavigationItemPosition,
+    NavigationBarPushButton,
+    NavigationTreeWidget,
+)
 from .stacked_widget import StackedWidget
 
 from qframelesswindow import TitleBar, TitleBarBase, TitleBarButton
 
 
 class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
-    """ Fluent widget """
+    """Fluent widget"""
 
     def __init__(self, parent=None):
         self._isMicaEnabled = False
@@ -42,7 +46,7 @@ class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
         qconfig.themeChangedFinished.connect(self._onThemeChangedFinished)
 
     def setCustomBackgroundColor(self, light, dark):
-        """ set custom background color
+        """set custom background color
 
         Parameters
         ----------
@@ -66,7 +70,7 @@ class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.setBrush(self.backgroundColor)
         painter.drawRect(self.rect())
 
@@ -77,8 +81,8 @@ class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
             self.windowEffect.setMicaEffect(self.winId(), isDarkTheme())
 
     def setMicaEffectEnabled(self, isEnabled: bool):
-        """ set whether the mica effect is enabled, only available on Win11 """
-        if sys.platform != 'win32' or sys.getwindowsversion().build < 22000:
+        """set whether the mica effect is enabled, only available on Win11"""
+        if sys.platform != "win32" or sys.getwindowsversion().build < 22000:
             return
 
         self._isMicaEnabled = isEnabled
@@ -94,7 +98,7 @@ class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
         return self._isMicaEnabled
 
     def systemTitleBarRect(self, size: QSize) -> QRect:
-        """ Returns the system title bar rect, only works for macOS
+        """Returns the system title bar rect, only works for macOS
 
         Parameters
         ----------
@@ -114,7 +118,7 @@ class FluentWidget(BackgroundAnimationWidget, FramelessWindow):
 
 
 class FluentWindowBase(FluentWidget):
-    """ Fluent window base class """
+    """Fluent window base class"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -128,13 +132,18 @@ class FluentWindowBase(FluentWidget):
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self.stackedWidget)
 
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        position=NavigationItemPosition.TOP):
-        """ add sub interface """
+    def addSubInterface(
+        self,
+        interface: QWidget,
+        icon: Union[FluentIconBase, QIcon, str],
+        text: str,
+        position=NavigationItemPosition.TOP,
+    ):
+        """add sub interface"""
         raise NotImplementedError
 
     def removeInterface(self, interface: QWidget, isDelete=False):
-        """ remove sub interface
+        """remove sub interface
 
         Parameters
         ----------
@@ -165,7 +174,7 @@ class FluentWindowBase(FluentWidget):
         self.stackedWidget.setStyle(QApplication.style())
 
     def systemTitleBarRect(self, size: QSize) -> QRect:
-        """ Returns the system title bar rect, only works for macOS
+        """Returns the system title bar rect, only works for macOS
 
         Parameters
         ----------
@@ -176,7 +185,7 @@ class FluentWindowBase(FluentWidget):
 
 
 class FluentTitleBarButton(TitleBarButton):
-    """ Fluent title bar button """
+    """Fluent title bar button"""
 
     def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None):
         super().__init__(parent)
@@ -191,13 +200,12 @@ class FluentTitleBarButton(TitleBarButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
         _, bgColor = self._getColors()
 
         # draw background
         painter.setBrush(bgColor)
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.drawRect(self.rect())
 
         # draw icon
@@ -207,9 +215,8 @@ class FluentTitleBarButton(TitleBarButton):
         drawIcon(self._icon, painter, QRectF(x, y, iw, ih))
 
 
-
 class FluentTitleBar(TitleBar):
-    """ Fluent title bar"""
+    """Fluent title bar"""
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -221,20 +228,30 @@ class FluentTitleBar(TitleBar):
         # add window icon
         self.iconLabel = QLabel(self)
         self.iconLabel.setFixedSize(18, 18)
-        self.hBoxLayout.insertWidget(0, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
+        self.hBoxLayout.insertWidget(
+            0,
+            self.iconLabel,
+            0,
+            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
+        )
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
         self.titleLabel = CaptionLabel(self)
-        self.hBoxLayout.insertWidget(1, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignVCenter)
-        self.titleLabel.setObjectName('titleLabel')
+        self.hBoxLayout.insertWidget(
+            1,
+            self.titleLabel,
+            0,
+            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
+        )
+        self.titleLabel.setObjectName("titleLabel")
         self.window().windowTitleChanged.connect(self.setTitle)
 
         self.vBoxLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
         self.buttonLayout.setSpacing(0)
         self.buttonLayout.setContentsMargins(0, 0, 0, 0)
-        self.buttonLayout.setAlignment(Qt.AlignTop)
+        self.buttonLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.buttonLayout.addWidget(self.minBtn)
         self.buttonLayout.addWidget(self.maxBtn)
         self.buttonLayout.addWidget(self.closeBtn)
@@ -253,7 +270,7 @@ class FluentTitleBar(TitleBar):
 
 
 class FluentWindow(FluentWindowBase):
-    """ Fluent window """
+    """Fluent window"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -273,9 +290,16 @@ class FluentWindow(FluentWindowBase):
         self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
         self.titleBar.raise_()
 
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        position=NavigationItemPosition.TOP, parent=None, isTransparent=False) -> NavigationTreeWidget:
-        """ add sub interface, the object name of `interface` should be set already
+    def addSubInterface(
+        self,
+        interface: QWidget,
+        icon: Union[FluentIconBase, QIcon, str],
+        text: str,
+        position=NavigationItemPosition.TOP,
+        parent=None,
+        isTransparent=False,
+    ) -> NavigationTreeWidget:
+        """add sub interface, the object name of `interface` should be set already
         before calling this method
 
         Parameters
@@ -320,7 +344,7 @@ class FluentWindow(FluentWindowBase):
             onClick=lambda: self.switchTo(interface),
             position=position,
             tooltip=text,
-            parentRouteKey=parentRouteKey
+            parentRouteKey=parentRouteKey,
         )
 
         # initialize selected item
@@ -343,11 +367,10 @@ class FluentWindow(FluentWindowBase):
 
     def resizeEvent(self, e):
         self.titleBar.move(46, 0)
-        self.titleBar.resize(self.width()-46, self.titleBar.height())
+        self.titleBar.resize(self.width() - 46, self.titleBar.height())
 
 
 class MSFluentTitleBar(FluentTitleBar):
-
     def __init__(self, parent):
         super().__init__(parent)
         self.hBoxLayout.insertSpacing(0, 20)
@@ -355,7 +378,6 @@ class MSFluentTitleBar(FluentTitleBar):
 
 
 class FluentWidgetTitleBar(FluentTitleBar):
-
     def __init__(self, parent):
         super().__init__(parent)
 
@@ -371,9 +393,8 @@ class FluentWidgetTitleBar(FluentTitleBar):
             FluentStyleSheet.FLUENT_WINDOW.apply(button)
 
 
-
 class MSFluentWindow(FluentWindowBase):
-    """ Fluent window in Microsoft Store style """
+    """Fluent window in Microsoft Store style"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -389,9 +410,16 @@ class MSFluentWindow(FluentWindowBase):
         self.titleBar.raise_()
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
-    def addSubInterface(self, interface: QWidget, icon: Union[FluentIconBase, QIcon, str], text: str,
-                        selectedIcon=None, position=NavigationItemPosition.TOP, isTransparent=False) -> NavigationBarPushButton:
-        """ add sub interface, the object name of `interface` should be set already
+    def addSubInterface(
+        self,
+        interface: QWidget,
+        icon: Union[FluentIconBase, QIcon, str],
+        text: str,
+        selectedIcon=None,
+        position=NavigationItemPosition.TOP,
+        isTransparent=False,
+    ) -> NavigationBarPushButton:
+        """add sub interface, the object name of `interface` should be set already
         before calling this method
 
         Parameters
@@ -425,7 +453,7 @@ class MSFluentWindow(FluentWindowBase):
             text=text,
             onClick=lambda: self.switchTo(interface),
             selectedIcon=selectedIcon,
-            position=position
+            position=position,
         )
 
         if self.stackedWidget.count() == 1:
@@ -447,20 +475,29 @@ class MSFluentWindow(FluentWindowBase):
 
 
 class SplitTitleBar(TitleBar):
-
     def __init__(self, parent):
         super().__init__(parent)
         # add window icon
         self.iconLabel = QLabel(self)
         self.iconLabel.setFixedSize(18, 18)
         self.hBoxLayout.insertSpacing(0, 12)
-        self.hBoxLayout.insertWidget(1, self.iconLabel, 0, Qt.AlignLeft | Qt.AlignBottom)
+        self.hBoxLayout.insertWidget(
+            1,
+            self.iconLabel,
+            0,
+            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom,
+        )
         self.window().windowIconChanged.connect(self.setIcon)
 
         # add title label
         self.titleLabel = QLabel(self)
-        self.hBoxLayout.insertWidget(2, self.titleLabel, 0, Qt.AlignLeft | Qt.AlignBottom)
-        self.titleLabel.setObjectName('titleLabel')
+        self.hBoxLayout.insertWidget(
+            2,
+            self.titleLabel,
+            0,
+            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignBottom,
+        )
+        self.titleLabel.setObjectName("titleLabel")
         self.window().windowTitleChanged.connect(self.setTitle)
 
         FluentStyleSheet.FLUENT_WINDOW.apply(self)
@@ -474,7 +511,7 @@ class SplitTitleBar(TitleBar):
 
 
 class SplitFluentWindow(FluentWindow):
-    """ Fluent window with split style """
+    """Fluent window with split style"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -490,6 +527,7 @@ class SplitFluentWindow(FluentWindow):
 
 
 class FluentBackgroundTheme:
-    """ Fluent background theme """
-    DEFAULT = (QColor(243, 243, 243), QColor(32, 32, 32))   # light, dark
+    """Fluent background theme"""
+
+    DEFAULT = (QColor(243, 243, 243), QColor(32, 32, 32))  # light, dark
     DEFAULT_BLUE = (QColor(240, 244, 249), QColor(25, 33, 42))
