@@ -1,21 +1,20 @@
-# coding:utf-8
-from typing import Iterable, List, Tuple, Union
+from typing import Iterable, List
 
-from PySide6.QtCore import Qt, QSize, QRectF, QRect, QPoint, QEvent
+from PySide6.QtCore import Qt, QSize, QRectF, QPoint, QEvent
 from PySide6.QtGui import QAction, QPainter, QColor, QFont, QHoverEvent, QPainterPath
-from PySide6.QtWidgets import QLayoutItem, QWidget, QFrame, QHBoxLayout, QApplication
+from PySide6.QtWidgets import QWidget, QFrame, QHBoxLayout, QApplication
 
 from ...common.font import setFont
-from ...common.icon import FluentIcon, Icon, Action
+from ...common.icon import FluentIcon
 from ...common.style_sheet import isDarkTheme, updateDynamicStyle
 from .menu import RoundMenu, MenuAnimationType
 from .button import TransparentToggleToolButton
 from .tool_tip import ToolTipFilter
-from .flyout import FlyoutViewBase, Flyout
+from .flyout import FlyoutViewBase
 
 
 class CommandButton(TransparentToggleToolButton):
-    """ Command button
+    """Command button
 
     Constructors
     ------------
@@ -26,10 +25,10 @@ class CommandButton(TransparentToggleToolButton):
     def _postInit(self):
         super()._postInit()
         self.setCheckable(False)
-        self.setToolButtonStyle(Qt.ToolButtonIconOnly)
+        self.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
         setFont(self, 12)
 
-        self._text = ''
+        self._text = ""
         self._action = None
         self._isTight = False
 
@@ -48,9 +47,9 @@ class CommandButton(TransparentToggleToolButton):
         tw = self.fontMetrics().boundingRect(self.text()).width()
 
         style = self.toolButtonStyle()
-        if style == Qt.ToolButtonTextBesideIcon:
+        if style == Qt.ToolButtonStyle.ToolButtonTextBesideIcon:
             return QSize(tw + 47, 34)
-        if style == Qt.ToolButtonTextOnly:
+        if style == Qt.ToolButtonStyle.ToolButtonTextOnly:
             return QSize(tw + 32, 34)
 
         return QSize(tw + 32, 50)
@@ -59,7 +58,10 @@ class CommandButton(TransparentToggleToolButton):
         if not self.text():
             return True
 
-        return self.toolButtonStyle() in [Qt.ToolButtonIconOnly, Qt.ToolButtonFollowStyle]
+        return self.toolButtonStyle() in [
+            Qt.ToolButtonStyle.ToolButtonIconOnly,
+            Qt.ToolButtonStyle.ToolButtonFollowStyle,
+        ]
 
     def _drawIcon(self, icon, painter, rect):
         pass
@@ -97,13 +99,12 @@ class CommandButton(TransparentToggleToolButton):
         super().paintEvent(e)
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         if not self.isChecked():
-            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
+            painter.setPen(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
         else:
-            painter.setPen(Qt.black if isDarkTheme() else Qt.white)
+            painter.setPen(Qt.GlobalColor.black if isDarkTheme() else Qt.GlobalColor.white)
 
         if not self.isEnabled():
             painter.setOpacity(0.43)
@@ -118,31 +119,31 @@ class CommandButton(TransparentToggleToolButton):
             y = (self.height() - ih) / 2
             x = (self.width() - iw) / 2
             super()._drawIcon(self._icon, painter, QRectF(x, y, iw, ih))
-        elif style == Qt.ToolButtonTextOnly:
-            painter.drawText(self.rect(), Qt.AlignCenter, self.text())
-        elif style == Qt.ToolButtonTextBesideIcon:
+        elif style == Qt.ToolButtonStyle.ToolButtonTextOnly:
+            painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, self.text())
+        elif style == Qt.ToolButtonStyle.ToolButtonTextBesideIcon:
             y = (self.height() - ih) / 2
             super()._drawIcon(self._icon, painter, QRectF(11, y, iw, ih))
 
             rect = QRectF(26, 0, self.width() - 26, self.height())
-            painter.drawText(rect, Qt.AlignCenter, self.text())
-        elif style == Qt.ToolButtonTextUnderIcon:
+            painter.drawText(rect, Qt.AlignmentFlag.AlignCenter, self.text())
+        elif style == Qt.ToolButtonStyle.ToolButtonTextUnderIcon:
             x = (self.width() - iw) / 2
             super()._drawIcon(self._icon, painter, QRectF(x, 9, iw, ih))
 
             rect = QRectF(0, ih + 13, self.width(), self.height() - ih - 13)
-            painter.drawText(rect, Qt.AlignHCenter | Qt.AlignTop, self.text())
+            painter.drawText(rect, Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop, self.text())
 
 
 class CommandToolTipFilter(ToolTipFilter):
-    """ Command tool tip filter """
+    """Command tool tip filter"""
 
     def _canShowToolTip(self) -> bool:
         return super()._canShowToolTip() and self.parent().isIconOnly()
 
 
 class MoreActionsButton(CommandButton):
-    """ More action button """
+    """More action button"""
 
     def _postInit(self):
         super()._postInit()
@@ -152,13 +153,13 @@ class MoreActionsButton(CommandButton):
         return QSize(40, 34)
 
     def clearState(self):
-        self.setAttribute(Qt.WA_UnderMouse, False)
-        e = QHoverEvent(QEvent.HoverLeave, QPoint(-1, -1), QPoint())
+        self.setAttribute(Qt.WidgetAttribute.WA_UnderMouse, False)
+        e = QHoverEvent(QEvent.Type.HoverLeave, QPoint(-1, -1), QPoint())
         QApplication.sendEvent(self, e)
 
 
 class CommandSeparator(QWidget):
-    """ Command separator """
+    """Command separator"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -166,13 +167,12 @@ class CommandSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setPen(QColor(255, 255, 255, 21)
-                       if isDarkTheme() else QColor(0, 0, 0, 15))
+        painter.setPen(QColor(255, 255, 255, 21) if isDarkTheme() else QColor(0, 0, 0, 15))
         painter.drawLine(5, 2, 5, self.height() - 2)
 
 
 class CommandMenu(RoundMenu):
-    """ Command menu """
+    """Command menu"""
 
     def __init__(self, parent=None):
         super().__init__("", parent)
@@ -184,16 +184,16 @@ class CommandMenu(RoundMenu):
 
 
 class CommandBar(QFrame):
-    """ Command bar """
+    """Command bar"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self._widgets = []  # type: List[QWidget]
-        self._hiddenWidgets = []  # type: List[QWidget]
-        self._hiddenActions = []  # type: List[QAction]
+        self._widgets: List[QWidget] = []
+        self._hiddenWidgets: List[QWidget] = []
+        self._hiddenActions: List[QAction] = []
 
         self._menuAnimation = MenuAnimationType.DROP_DOWN
-        self._toolButtonStyle = Qt.ToolButtonIconOnly
+        self._toolButtonStyle = Qt.ToolButtonStyle.ToolButtonIconOnly
         self._iconSize = QSize(16, 16)
         self._isButtonTight = False
         self._spacing = 4
@@ -203,9 +203,9 @@ class CommandBar(QFrame):
         self.moreButton.hide()
 
         setFont(self, 12)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-    def setSpaing(self, spacing: int):
+    def setSpacing(self, spacing: int):
         if spacing == self._spacing:
             return
 
@@ -216,7 +216,7 @@ class CommandBar(QFrame):
         return self._spacing
 
     def addAction(self, action: QAction):
-        """ add action
+        """add action
 
         Parameters
         ----------
@@ -224,7 +224,7 @@ class CommandBar(QFrame):
             the action to add
         """
         if action in self.actions():
-            return
+            return None
 
         button = self._createButton(action)
         self._insertWidgetToLayout(-1, button)
@@ -236,7 +236,7 @@ class CommandBar(QFrame):
             self.addAction(action)
 
     def addHiddenAction(self, action: QAction):
-        """ add hidden action """
+        """add hidden action"""
         if action in self.actions():
             return
 
@@ -245,7 +245,7 @@ class CommandBar(QFrame):
         super().addAction(action)
 
     def addHiddenActions(self, actions: List[QAction]):
-        """ add hidden action """
+        """add hidden action"""
         for action in actions:
             self.addHiddenAction(action)
 
@@ -266,7 +266,7 @@ class CommandBar(QFrame):
         self._insertWidgetToLayout(index, CommandSeparator(self))
 
     def addWidget(self, widget: QWidget):
-        """ add widget to command bar """
+        """add widget to command bar"""
         self._insertWidgetToLayout(-1, widget)
 
     def removeAction(self, action: QAction):
@@ -294,7 +294,7 @@ class CommandBar(QFrame):
             self._hiddenActions.remove(action)
 
     def setToolButtonStyle(self, style: Qt.ToolButtonStyle):
-        """ set the style of tool button """
+        """set the style of tool button"""
         if self.toolButtonStyle() == style:
             return
 
@@ -334,7 +334,7 @@ class CommandBar(QFrame):
         self.updateGeometry()
 
     def _createButton(self, action: QAction):
-        """ create command button """
+        """create command button"""
         button = CommandButton(self)
         button.setAction(action)
         button.setToolButtonStyle(self.toolButtonStyle())
@@ -344,7 +344,7 @@ class CommandBar(QFrame):
         return button
 
     def _insertWidgetToLayout(self, index: int, widget: QWidget):
-        """ add widget to layout """
+        """add widget to layout"""
         widget.setParent(self)
         widget.show()
 
@@ -370,19 +370,19 @@ class CommandBar(QFrame):
         for widget in visibles:
             widget.show()
             widget.move(x, (h - widget.height()) // 2)
-            x += (widget.width() + self.spacing())
+            x += widget.width() + self.spacing()
 
         # show more actions button
         if self._hiddenActions or len(visibles) < len(self._widgets):
             self.moreButton.show()
             self.moreButton.move(x, (h - self.moreButton.height()) // 2)
 
-        for widget in self._widgets[len(visibles):]:
+        for widget in self._widgets[len(visibles) :]:
             widget.hide()
             self._hiddenWidgets.append(widget)
 
     def _visibleWidgets(self) -> List[QWidget]:
-        """ return the visible widgets in layout """
+        """return the visible widgets in layout"""
         # have enough spacing to show all widgets
         if self.suitableWidth() <= self.width():
             return self._widgets
@@ -418,7 +418,7 @@ class CommandBar(QFrame):
         return [w for w in self._widgets if isinstance(w, CommandButton)]
 
     def setMenuDropDown(self, down: bool):
-        """ set the animation direction of more actions menu """
+        """set the animation direction of more actions menu"""
         if down:
             self._menuAnimation = MenuAnimationType.DROP_DOWN
         else:
@@ -428,7 +428,7 @@ class CommandBar(QFrame):
         return self._menuAnimation == MenuAnimationType.DROP_DOWN
 
     def _showMoreActionsMenu(self):
-        """ show more actions menu """
+        """show more actions menu"""
         self.moreButton.clearState()
 
         actions = self._hiddenActions.copy()
@@ -440,27 +440,25 @@ class CommandBar(QFrame):
         menu = CommandMenu(self)
         menu.addActions(actions)
 
-        x = -menu.width() + menu.layout().contentsMargins().right() + \
-            self.moreButton.width() + 18
+        x = -menu.width() + menu.layout().contentsMargins().right() + self.moreButton.width() + 18
+        y = -5
         if self._menuAnimation == MenuAnimationType.DROP_DOWN:
             y = self.moreButton.height()
-        else:
-            y = -5
 
         pos = self.moreButton.mapToGlobal(QPoint(x, y))
         menu.exec(pos, aniType=self._menuAnimation)
 
 
 class CommandViewMenu(CommandMenu):
-    """ Command view menu """
+    """Command view menu"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.view.setObjectName('commandListWidget')
+        self.view.setObjectName("commandListWidget")
 
     def setDropDown(self, down: bool, long=False):
-        self.view.setProperty('dropDown', down)
-        self.view.setProperty('long', long)
+        self.view.setProperty("dropDown", down)
+        self.view.setProperty("long", long)
         updateDynamicStyle(self.view)
 
     def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
@@ -468,14 +466,14 @@ class CommandViewMenu(CommandMenu):
 
 
 class CommandViewBar(CommandBar):
-    """ Command view bar """
+    """Command view bar"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setMenuDropDown(True)
 
     def setMenuDropDown(self, down: bool):
-        """ set the animation direction of more actions menu """
+        """set the animation direction of more actions menu"""
         if down:
             self._menuAnimation = MenuAnimationType.FADE_IN_DROP_DOWN
         else:
@@ -497,20 +495,19 @@ class CommandViewBar(CommandBar):
         menu.addActions(actions)
 
         # adjust the shape of view
-        view = self.parent()  # type: CommandBarView
+        view: CommandBarView = self.parent()
         view.setMenuVisible(True)
 
         # adjust the shape of menu
         menu.closedSignal.connect(lambda: view.setMenuVisible(False))
-        menu.setDropDown(self.isMenuDropDown(), menu.view.width() > view.width()+5)
+        menu.setDropDown(self.isMenuDropDown(), menu.view.width() > view.width() + 5)
 
         # adjust menu size
         if menu.view.width() < view.width():
             menu.view.setFixedWidth(view.width())
             menu.adjustSize()
 
-        x = -menu.width() + menu.layout().contentsMargins().right() + \
-            self.moreButton.width() + 18
+        x = -menu.width() + menu.layout().contentsMargins().right() + self.moreButton.width() + 18
         if self.isMenuDropDown():
             y = self.moreButton.height()
         else:
@@ -523,7 +520,7 @@ class CommandViewBar(CommandBar):
 
 
 class CommandBarView(FlyoutViewBase):
-    """ Command bar view """
+    """Command bar view"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -532,7 +529,7 @@ class CommandBarView(FlyoutViewBase):
 
         self.hBoxLayout.setContentsMargins(6, 6, 6, 6)
         self.hBoxLayout.addWidget(self.bar)
-        self.hBoxLayout.setSizeConstraint(QHBoxLayout.SetMinAndMaxSize)
+        self.hBoxLayout.setSizeConstraint(QHBoxLayout.SizeConstraint.SetMinAndMaxSize)
 
         self.setButtonTight(True)
         self.setIconSize(QSize(14, 14))
@@ -546,8 +543,8 @@ class CommandBarView(FlyoutViewBase):
     def addWidget(self, widget: QWidget):
         self.bar.addWidget(widget)
 
-    def setSpaing(self, spacing: int):
-        self.bar.setSpaing(spacing)
+    def setSpacing(self, spacing: int):
+        self.bar.setSpacing(spacing)
 
     def spacing(self):
         return self.bar.spacing()
@@ -619,18 +616,16 @@ class CommandBarView(FlyoutViewBase):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         path = QPainterPath()
-        path.setFillRule(Qt.WindingFill)
+        path.setFillRule(Qt.FillRule.WindingFill)
         path.addRoundedRect(QRectF(self.rect().adjusted(1, 1, -1, -1)), 8, 8)
 
         if self._isMenuVisible:
             y = self.height() - 10 if self.bar.isMenuDropDown() else 1
             path.addRect(1, y, self.width() - 2, 9)
 
-        painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
-        painter.setPen(
-            QColor(56, 56, 56) if isDarkTheme() else QColor(233, 233, 233))
+        painter.setBrush(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
+        painter.setPen(QColor(56, 56, 56) if isDarkTheme() else QColor(233, 233, 233))
         painter.drawPath(path.simplified())
