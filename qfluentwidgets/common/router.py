@@ -119,7 +119,7 @@ class Router(QObject):
     def remove(self, routeKey: str):
         """remove history"""
         self.history = [i for i in self.history if i.routeKey != routeKey]
-        self.history = [list(g)[0] for k, g in groupby(self.history, lambda i: i.routeKey)]
+        self.history = [next(iter(g)) for k, g in groupby(self.history, lambda i: i.routeKey)]
         self.emptyChanged.emit(not bool(self.history))
 
         for stacked, history in self.stackHistories.items():
