@@ -1,5 +1,4 @@
-# coding:utf-8
-from typing import Iterable
+from typing import Sequence, Optional
 
 from PySide6.QtCore import Qt, Signal, QSize, QEvent, QRectF, QEasingCurve, QTime
 from PySide6.QtGui import QPainter
@@ -10,7 +9,7 @@ from ...common.icon import FluentIcon, isDarkTheme
 
 
 class ScrollButton(QToolButton):
-    """ Scroll button """
+    """Scroll button"""
 
     def __init__(self, icon: FluentIcon, parent=None):
         super().__init__(parent=parent)
@@ -20,10 +19,10 @@ class ScrollButton(QToolButton):
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self:
-            if e.type() == QEvent.MouseButtonPress:
+            if e.type() == QEvent.Type.MouseButtonPress:
                 self.isPressed = True
                 self.update()
-            elif e.type() == QEvent.MouseButtonRelease:
+            elif e.type() == QEvent.Type.MouseButtonRelease:
                 self.isPressed = False
                 self.update()
 
@@ -32,7 +31,7 @@ class ScrollButton(QToolButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if not self.isPressed:
             w, h = 10, 10
@@ -49,15 +48,15 @@ class ScrollButton(QToolButton):
 
 
 class CycleListWidget(QListWidget):
-    """ Cycle list widget """
+    """Cycle list widget"""
 
     currentItemChanged = Signal(QListWidgetItem)
 
-    def __init__(self, items: Iterable, itemSize: QSize, align=Qt.AlignCenter, parent=None):
+    def __init__(self, items: Sequence, itemSize: QSize, align=Qt.AlignmentFlag.AlignCenter, parent=None):
         """
         Parameters
         ----------
-        items: Iterable[Any]
+        items: Sequence[Any]
             the items to be added
 
         itemSize: QSize
@@ -80,7 +79,7 @@ class CycleListWidget(QListWidget):
         self._lastScrollTime = QTime.currentTime()
         self._scrollButtonRepeatEnabled = False
 
-        self.vScrollBar = SmoothScrollBar(Qt.Vertical, self)
+        self.vScrollBar = SmoothScrollBar(Qt.Orientation.Vertical, self)
         self.visibleNumber = 9
 
         # repeat adding items to achieve circular scrolling
@@ -91,12 +90,11 @@ class CycleListWidget(QListWidget):
         self.vScrollBar.setForceHidden(True)
 
         self.setViewportMargins(0, 0, 0, 0)
-        self.setFixedSize(itemSize.width()+8,
-                          itemSize.height()*self.visibleNumber)
+        self.setFixedSize(itemSize.width() + 8, itemSize.height() * self.visibleNumber)
 
         # hide scroll bar
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.itemClicked.connect(self._onItemClicked)
         self.installEventFilter(self)
@@ -112,24 +110,18 @@ class CycleListWidget(QListWidget):
         self.setScrollButtonRepeatEnabled(True)
         self._setButtonsVisible(False)
 
-    def setItems(self, items: list):
-        """ set items in the list
+    def setItems(self, items: Sequence):
+        """set items in the list
 
         Parameters
         ----------
-        items: Iterable[Any]
+        items: Sequence[Any]
             the items to be added
-
-        itemSize: QSize
-            the size of item
-
-        align: Qt.AlignmentFlag
-            the text alignment of item
         """
         self.clear()
         self._createItems(items)
 
-    def _createItems(self, items: list):
+    def _createItems(self, items: Sequence):
         N = len(items)
         self.isCycle = N > self.visibleNumber
 
@@ -139,23 +131,24 @@ class CycleListWidget(QListWidget):
 
             self._currentIndex = len(items)
             super().scrollToItem(
-                self.item(self.currentIndex()-self.visibleNumber//2), QListWidget.PositionAtTop)
+                self.item(self.currentIndex() - self.visibleNumber // 2), QListWidget.ScrollHint.PositionAtTop
+            )
         else:
             n = self.visibleNumber // 2  # add empty items to enable scrolling
 
-            self._addColumnItems(['']*n, True)
+            self._addColumnItems([""] * n, True)
             self._addColumnItems(items)
-            self._addColumnItems(['']*n, True)
+            self._addColumnItems([""] * n, True)
 
             self._currentIndex = n
 
-    def _addColumnItems(self, items, disabled=False):
+    def _addColumnItems(self, items: Sequence, disabled=False):
         for i in items:
             item = QListWidgetItem(str(i), self)
             item.setSizeHint(self.itemSize)
-            item.setTextAlignment(self.align | Qt.AlignVCenter)
+            item.setTextAlignment(self.align | Qt.AlignmentFlag.AlignVCenter)
             if disabled:
-                item.setFlags(Qt.NoItemFlags)
+                item.setFlags(Qt.ItemFlag.NoItemFlags)
 
             self.addItem(item)
 
@@ -163,12 +156,12 @@ class CycleListWidget(QListWidget):
         self.setCurrentIndex(self.row(item))
         self.scrollToItem(self.currentItem())
 
-    def setSelectedItem(self, text: str):
-        """ set the selected item """
+    def setSelectedItem(self, text: Optional[str]):
+        """set the selected item"""
         if text is None:
             return
 
-        items = self.findItems(str(text), Qt.MatchExactly)
+        items = self.findItems(str(text), Qt.MatchFlag.MatchExactly)
         if not items:
             return
 
@@ -180,7 +173,7 @@ class CycleListWidget(QListWidget):
         super().scrollToItem(self.currentItem(), QListWidget.ScrollHint.PositionAtCenter)
 
     def scrollToItem(self, item: QListWidgetItem, hint=QListWidget.ScrollHint.PositionAtCenter):
-        """ scroll to item """
+        """scroll to item"""
         # scroll to center position
         index = self.row(item)
         y = item.sizeHint().height() * (index - self.visibleNumber // 2)
@@ -199,7 +192,7 @@ class CycleListWidget(QListWidget):
             self.scrollUp()
 
     def setScrollButtonRepeatEnabled(self, isEnabled: bool):
-        """ set whether to enable scroll button auto repeat """
+        """set whether to enable scroll button auto-repeat"""
         if self._scrollButtonRepeatEnabled == isEnabled:
             return
 
@@ -208,31 +201,31 @@ class CycleListWidget(QListWidget):
         self.downButton.setAutoRepeat(isEnabled)
 
     def _scrollWithAnimation(self, index: int):
-        """ scroll with adaptive animation """
+        """scroll with adaptive animation"""
         t = QTime.currentTime()
         elapsed = self._lastScrollTime.msecsTo(t)
         self._lastScrollTime = t
 
         # fast linear animation for rapid repeat, smooth for single click
         if (self.upButton.isDown() or self.downButton.isDown()) and elapsed < 200:
-            duration, easing = 100, QEasingCurve.Linear
+            duration, easing = 100, QEasingCurve.Type.Linear
         else:
-            duration, easing = 250, QEasingCurve.OutQuad
+            duration, easing = 250, QEasingCurve.Type.OutQuad
 
         self.vScrollBar.setScrollAnimation(duration, easing)
         self.setCurrentIndex(index)
         self.scrollToItem(self.currentItem())
 
     def scrollDown(self):
-        """ scroll down an item """
+        """scroll down an item"""
         self._scrollWithAnimation(self.currentIndex() + 1)
 
     def scrollUp(self):
-        """ scroll up an item """
+        """scroll up an item"""
         self._scrollWithAnimation(self.currentIndex() - 1)
 
     def _setButtonsVisible(self, visible: bool):
-        """ set scroll buttons visibility """
+        """set scroll buttons visibility"""
         self.upButton.setVisible(visible)
         self.downButton.setVisible(visible)
 
@@ -249,13 +242,13 @@ class CycleListWidget(QListWidget):
         self.downButton.move(0, self.height() - h)
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is not self or e.type() != QEvent.KeyPress:
+        if obj is not self or e.type() != QEvent.Type.KeyPress:
             return super().eventFilter(obj, e)
 
-        if e.key() == Qt.Key_Down:
+        if e.key() == Qt.Key.Key_Down:
             self.scrollDown()
             return True
-        elif e.key() == Qt.Key_Up:
+        elif e.key() == Qt.Key.Key_Up:
             self.scrollUp()
             return True
 
@@ -264,14 +257,13 @@ class CycleListWidget(QListWidget):
     def currentItem(self):
         return self.item(self.currentIndex())
 
-    def currentIndex(self):
+    def currentIndex(self) -> int:
         return self._currentIndex
 
     def setCurrentIndex(self, index: int):
         if not self.isCycle:
             n = self.visibleNumber // 2
-            self._currentIndex = max(
-                n, min(n + len(self.originItems) - 1, index))
+            self._currentIndex = max(n, min(n + len(self.originItems) - 1, index))
         else:
             N = self.count() // 2
             m = (self.visibleNumber + 1) // 2
