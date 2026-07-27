@@ -108,7 +108,7 @@ class DominantColor:
                     break
 
         palette = palette[:5]
-        palette.sort(key=lambda rgb: cls.colorfulness(*rgb), reverse=True)
+        palette.sort(key=lambda _rgb: cls.colorfulness(*_rgb), reverse=True)
 
         return palette[0]
 
@@ -132,12 +132,12 @@ class DominantColor:
         return newPalette
 
     @staticmethod
-    def rgb2hsv(rgb):
-        """ convert rgb to hsv """
+    def rgb2hsv(rgb: Tuple[int, int, int]) -> Tuple[float, float, float]:
+        """convert rgb to hsv"""
         r, g, b = [i / 255 for i in rgb]
-        mx = max(r, g, b)
-        mn = min(r, g, b)
-        df = mx - mn
+        mx: float = max(r, g, b)
+        mn: float = min(r, g, b)
+        df: float = mx - mn
         if mx == mn:
             return 0, 0, mx
         elif mx == r:
