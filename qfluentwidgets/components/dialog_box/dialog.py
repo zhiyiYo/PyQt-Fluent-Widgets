@@ -1,5 +1,4 @@
-# coding:utf-8
-from PySide6.QtCore import Qt, Signal, QObject, QEvent
+from PySide6.QtCore import Qt, Signal, QEvent
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QLabel, QFrame, QVBoxLayout, QHBoxLayout, QPushButton
 from qframelesswindow import FramelessDialog
@@ -13,7 +12,7 @@ from .mask_dialog_base import MaskDialogBase
 
 
 class Ui_MessageBox:
-    """ Ui of message box """
+    """Ui of message box"""
 
     yesSignal = Signal()
     cancelSignal = Signal()
@@ -27,8 +26,8 @@ class Ui_MessageBox:
         self.contentLabel = BodyLabel(content, parent)
 
         self.buttonGroup = QFrame(parent)
-        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.yesButton = PrimaryPushButton(self.tr("OK"), self.buttonGroup)
+        self.cancelButton = QPushButton(self.tr("Cancel"), self.buttonGroup)
 
         self.vBoxLayout = QVBoxLayout(parent)
         self.textLayout = QVBoxLayout()
@@ -41,8 +40,8 @@ class Ui_MessageBox:
         self.__initLayout()
 
         # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
-        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.yesButton.setAttribute(Qt.WidgetAttribute.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WidgetAttribute.WA_LayoutUsesWidgetRect)
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
@@ -70,18 +69,18 @@ class Ui_MessageBox:
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.addLayout(self.textLayout, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
-        self.vBoxLayout.setSizeConstraint(QVBoxLayout.SetMinimumSize)
+        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignmentFlag.AlignBottom)
+        self.vBoxLayout.setSizeConstraint(QVBoxLayout.SizeConstraint.SetMinimumSize)
 
         self.textLayout.setSpacing(12)
         self.textLayout.setContentsMargins(24, 24, 24, 24)
-        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignTop)
-        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignTop)
+        self.textLayout.addWidget(self.titleLabel, 0, Qt.AlignmentFlag.AlignTop)
+        self.textLayout.addWidget(self.contentLabel, 0, Qt.AlignmentFlag.AlignTop)
 
         self.buttonLayout.setSpacing(12)
         self.buttonLayout.setContentsMargins(24, 24, 24, 24)
-        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
-        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
+        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignmentFlag.AlignVCenter)
+        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignmentFlag.AlignVCenter)
 
     def __onCancelButtonClicked(self):
         self.reject()
@@ -94,8 +93,8 @@ class Ui_MessageBox:
     def __setQss(self):
         self.titleLabel.setObjectName("titleLabel")
         self.contentLabel.setObjectName("contentLabel")
-        self.buttonGroup.setObjectName('buttonGroup')
-        self.cancelButton.setObjectName('cancelButton')
+        self.buttonGroup.setObjectName("buttonGroup")
+        self.cancelButton.setObjectName("cancelButton")
 
         FluentStyleSheet.DIALOG.apply(self)
         FluentStyleSheet.DIALOG.apply(self.contentLabel)
@@ -104,13 +103,15 @@ class Ui_MessageBox:
         self.cancelButton.adjustSize()
 
     def setContentCopyable(self, isCopyable: bool):
-        """ set whether the content is copyable """
+        """set whether the content is copyable"""
         if isCopyable:
             self.contentLabel.setTextInteractionFlags(
-                Qt.TextInteractionFlag.TextSelectableByMouse)
+                Qt.TextInteractionFlag.TextSelectableByMouse,
+            )
         else:
             self.contentLabel.setTextInteractionFlags(
-                Qt.TextInteractionFlag.NoTextInteraction)
+                Qt.TextInteractionFlag.NoTextInteraction,
+            )
 
     def hideYesButton(self):
         self.yesButton.hide()
@@ -122,7 +123,7 @@ class Ui_MessageBox:
 
 
 class Dialog(FramelessDialog, Ui_MessageBox):
-    """ Dialog box """
+    """Dialog box"""
 
     yesSignal = Signal()
     cancelSignal = Signal()
@@ -137,8 +138,8 @@ class Dialog(FramelessDialog, Ui_MessageBox):
         self.resize(240, 192)
         self.titleBar.hide()
 
-        self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignTop)
-        self.windowTitleLabel.setObjectName('windowTitleLabel')
+        self.vBoxLayout.insertWidget(0, self.windowTitleLabel, 0, Qt.AlignmentFlag.AlignTop)
+        self.windowTitleLabel.setObjectName("windowTitleLabel")
         FluentStyleSheet.DIALOG.apply(self)
         self.setFixedSize(self.size())
 
@@ -147,7 +148,7 @@ class Dialog(FramelessDialog, Ui_MessageBox):
 
 
 class MessageBox(MaskDialogBase, Ui_MessageBox):
-    """ Message box """
+    """Message box"""
 
     yesSignal = Signal()
     cancelSignal = Signal()
@@ -159,17 +160,16 @@ class MessageBox(MaskDialogBase, Ui_MessageBox):
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 50))
         self.setMaskColor(QColor(0, 0, 0, 76))
         self._hBoxLayout.removeWidget(self.widget)
-        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
+        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignmentFlag.AlignCenter)
 
         self.buttonGroup.setMinimumWidth(280)
         self.widget.setFixedSize(
             max(self.contentLabel.width(), self.titleLabel.width()) + 48,
-            self.contentLabel.y() + self.contentLabel.height() + 105
+            self.contentLabel.y() + self.contentLabel.height() + 105,
         )
 
     def eventFilter(self, obj, e: QEvent):
-        if obj is self.window():
-            if e.type() == QEvent.Resize:
-                self._adjustText()
+        if obj is self.window() and e.type() == QEvent.Type.Resize:
+            self._adjustText()
 
         return super().eventFilter(obj, e)
