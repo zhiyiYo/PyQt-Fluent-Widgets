@@ -125,7 +125,7 @@ class NavigationPanel(QFrame):
         self.scrollArea.horizontalScrollBar().setEnabled(False)
         self.scrollArea.setWidget(self.scrollWidget)
         self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.scrollDelagate.vScrollBar.setHandleDisplayMode(ScrollBarHandleDisplayMode.ON_HOVER)
+        self.scrollArea.scrollDelegate.vScrollBar.setHandleDisplayMode(ScrollBarHandleDisplayMode.ON_HOVER)
 
         self.expandAni.setEasingCurve(QEasingCurve.Type.OutQuad)
         self.expandAni.setDuration(150)
