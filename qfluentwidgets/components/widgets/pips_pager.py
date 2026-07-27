@@ -1,9 +1,13 @@
-# coding:utf-8
 from enum import Enum
-from PySide6.QtCore import Qt, Signal, QModelIndex, QPoint, Property, QSize, QRectF
-from PySide6.QtGui import QPixmap, QPainter, QColor
-from PySide6.QtWidgets import (QStyleOptionViewItem, QStyle, QListWidget, QListWidgetItem, QStyledItemDelegate,
-                             QToolButton)
+from PySide6.QtCore import Qt, Signal, QModelIndex, Property, QSize, QRectF
+from PySide6.QtGui import QPainter, QColor
+from PySide6.QtWidgets import (
+    QStyleOptionViewItem,
+    QStyle,
+    QListWidget,
+    QListWidgetItem,
+    QStyledItemDelegate,
+)
 
 from ...common.overload import singledispatchmethod
 from ...common.icon import FluentIcon, drawIcon
@@ -14,22 +18,23 @@ from .scroll_bar import SmoothScrollBar
 
 
 class PipsScrollButtonDisplayMode(Enum):
-    """ Pips pager scroll button display mode """
+    """Pips pager scroll button display mode"""
+
     ALWAYS = 0
     ON_HOVER = 1
     NEVER = 2
 
 
 class ScrollButton(ToolButton):
-    """ Scroll button """
+    """Scroll button"""
 
     def _postInit(self):
         self.setFixedSize(12, 12)
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         if isDarkTheme():
             color = QColor(255, 255, 255)
@@ -38,16 +43,13 @@ class ScrollButton(ToolButton):
             color = QColor(0, 0, 0)
             painter.setOpacity(0.616 if self.isHover or self.isPressed else 0.45)
 
-        if self.isPressed:
-            rect = QRectF(3, 3, 6, 6)
-        else:
-            rect = QRectF(2, 2, 8, 8)
+        rect = QRectF(3, 3, 6, 6) if self.isPressed else QRectF(2, 2, 8, 8)
 
         drawIcon(self._icon, painter, rect, fill=color.name())
 
 
 class PipsDelegate(QStyledItemDelegate):
-    """ Pips delegate """
+    """Pips delegate"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -56,34 +58,25 @@ class PipsDelegate(QStyledItemDelegate):
 
     def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex) -> None:
         painter.save()
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         isHover = index.row() == self.hoveredRow
         isPressed = index.row() == self.pressedRow
 
         # draw pip
         if isDarkTheme():
-            if isHover or isPressed:
-                color = QColor(255, 255, 255, 197)
-            else:
-                color = QColor(255, 255, 255, 138)
+            color = QColor(255, 255, 255, 197) if isHover or isPressed else QColor(255, 255, 255, 138)
         else:
-            if isHover or isPressed:
-                color = QColor(0, 0, 0, 157)
-            else:
-                color = QColor(0, 0, 0, 114)
+            color = QColor(0, 0, 0, 157) if isHover or isPressed else QColor(0, 0, 0, 114)
 
         painter.setBrush(color)
 
-        if option.state & QStyle.State_Selected or (isHover and not isPressed):
-            r = 3
-        else:
-            r = 2
+        r = 3 if option.state & QStyle.StateFlag.State_Selected or (isHover and not isPressed) else 2
 
         x = option.rect.x() + 6 - r
         y = option.rect.y() + 6 - r
-        painter.drawEllipse(QRectF(x, y, 2*r, 2*r))
+        painter.drawEllipse(QRectF(x, y, 2 * r, 2 * r))
 
         painter.restore()
 
@@ -97,7 +90,7 @@ class PipsDelegate(QStyledItemDelegate):
 
 
 class PipsPager(QListWidget):
-    """ Pips pager
+    """Pips pager
 
     Constructors
     ------------
@@ -110,7 +103,7 @@ class PipsPager(QListWidget):
     @singledispatchmethod
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.orientation = Qt.Horizontal
+        self.orientation = Qt.Orientation.Horizontal
         self._postInit()
 
     @__init__.register
@@ -133,23 +126,35 @@ class PipsPager(QListWidget):
         self.setUniformItemSizes(True)
         self.setGridSize(QSize(12, 12))
         self.setItemDelegate(self.delegate)
-        self.setMovement(QListWidget.Static)
+        self.setMovement(QListWidget.Movement.Static)
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
         self.setHorizontalScrollMode(self.ScrollMode.ScrollPerPixel)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         FluentStyleSheet.PIPS_PAGER.apply(self)
 
         if self.isHorizontal():
-            self.setFlow(QListWidget.LeftToRight)
+            self.setFlow(QListWidget.Flow.LeftToRight)
             self.setViewportMargins(15, 0, 15, 0)
             self.preButton = ScrollButton(FluentIcon.CARE_LEFT_SOLID, self)
             self.nextButton = ScrollButton(FluentIcon.CARE_RIGHT_SOLID, self)
             self.setFixedHeight(12)
 
-            self.preButton.installEventFilter(ToolTipFilter(self.preButton, 1000, ToolTipPosition.LEFT))
-            self.nextButton.installEventFilter(ToolTipFilter(self.nextButton, 1000, ToolTipPosition.RIGHT))
+            self.preButton.installEventFilter(
+                ToolTipFilter(
+                    self.preButton,
+                    1000,
+                    ToolTipPosition.LEFT,
+                ),
+            )
+            self.nextButton.installEventFilter(
+                ToolTipFilter(
+                    self.nextButton,
+                    1000,
+                    ToolTipPosition.RIGHT,
+                ),
+            )
 
         else:
             self.setViewportMargins(0, 15, 0, 15)
@@ -157,13 +162,25 @@ class PipsPager(QListWidget):
             self.nextButton = ScrollButton(FluentIcon.CARE_DOWN_SOLID, self)
             self.setFixedWidth(12)
 
-            self.preButton.installEventFilter(ToolTipFilter(self.preButton, 1000, ToolTipPosition.TOP))
-            self.nextButton.installEventFilter(ToolTipFilter(self.nextButton, 1000, ToolTipPosition.BOTTOM))
+            self.preButton.installEventFilter(
+                ToolTipFilter(
+                    self.preButton,
+                    1000,
+                    ToolTipPosition.TOP,
+                ),
+            )
+            self.nextButton.installEventFilter(
+                ToolTipFilter(
+                    self.nextButton,
+                    1000,
+                    ToolTipPosition.BOTTOM,
+                ),
+            )
 
         self.setPreviousButtonDisplayMode(PipsScrollButtonDisplayMode.NEVER)
         self.setNextButtonDisplayMode(PipsScrollButtonDisplayMode.NEVER)
-        self.preButton.setToolTip(self.tr('Previous Page'))
-        self.nextButton.setToolTip(self.tr('Next Page'))
+        self.preButton.setToolTip(self.tr("Previous Page"))
+        self.nextButton.setToolTip(self.tr("Next Page"))
 
         # connect signal to slot
         self.preButton.clicked.connect(self.scrollPrevious)
@@ -179,24 +196,24 @@ class PipsPager(QListWidget):
         self.delegate.setHoveredRow(self.row(item))
 
     def setPageNumber(self, n: int):
-        """ set the number of page """
+        """set the number of page"""
         self.clear()
-        self.addItems(['15555'] * n)
+        self.addItems(["15555"] * n)
 
         for i in range(n):
             item = self.item(i)
-            item.setData(Qt.UserRole, i + 1)
+            item.setData(Qt.ItemDataRole.UserRole, i + 1)
             item.setSizeHint(self.gridSize())
 
         self.setCurrentIndex(0)
         self.adjustSize()
 
     def getPageNumber(self):
-        """ get the number of page """
+        """get the number of page"""
         return self.count()
 
     def getVisibleNumber(self):
-        """ get the number of visible pips """
+        """get the number of visible pips"""
         return self._visibleNumber
 
     def setVisibleNumber(self, n: int):
@@ -204,15 +221,15 @@ class PipsPager(QListWidget):
         self.adjustSize()
 
     def scrollNext(self):
-        """ scroll down an item """
+        """scroll down an item"""
         self.setCurrentIndex(self.currentIndex() + 1)
 
     def scrollPrevious(self):
-        """ scroll up an item """
+        """scroll up an item"""
         self.setCurrentIndex(self.currentIndex() - 1)
 
-    def scrollToItem(self, item: QListWidgetItem, hint=QListWidget.PositionAtCenter):
-        """ scroll to item """
+    def scrollToItem(self, item: QListWidgetItem, hint=QListWidget.ScrollHint.PositionAtCenter):
+        """scroll to item"""
         # scroll to center position
         index = self.row(item)
         size = item.sizeHint()
@@ -236,10 +253,10 @@ class PipsPager(QListWidget):
             self.setFixedHeight(h)
 
     def isHorizontal(self):
-        return self.orientation == Qt.Horizontal
+        return self.orientation == Qt.Orientation.Horizontal
 
     def setCurrentIndex(self, index: int):
-        """ set current index """
+        """set current index"""
         if not 0 <= index < self.count():
             return
 
@@ -271,12 +288,12 @@ class PipsPager(QListWidget):
         return super().currentIndex().row()
 
     def setPreviousButtonDisplayMode(self, mode: PipsScrollButtonDisplayMode):
-        """ set the display mode of previous button """
+        """set the display mode of previous button"""
         self.previousButtonDisplayMode = mode
         self.preButton.setVisible(self.isPreviousButtonVisible())
 
     def setNextButtonDisplayMode(self, mode: PipsScrollButtonDisplayMode):
-        """ set the display mode of next button """
+        """set the display mode of next button"""
         self.nextButtonDisplayMode = mode
         self.nextButton.setVisible(self.isNextButtonVisible())
 
@@ -307,25 +324,25 @@ class PipsPager(QListWidget):
         bw, bh = self.preButton.width(), self.preButton.height()
 
         if self.isHorizontal():
-            self.preButton.move(0, int(h/2 - bh/2))
-            self.nextButton.move(w - bw, int(h/2 - bh/2))
+            self.preButton.move(0, int(h / 2 - bh / 2))
+            self.nextButton.move(w - bw, int(h / 2 - bh / 2))
         else:
-            self.preButton.move(int(w/2-bw/2), 0)
-            self.nextButton.move(int(w/2-bw/2), h-bh)
+            self.preButton.move(int(w / 2 - bw / 2), 0)
+            self.nextButton.move(int(w / 2 - bw / 2), h - bh)
 
     visibleNumber = Property(int, getVisibleNumber, setVisibleNumber)
     pageNumber = Property(int, getPageNumber, setPageNumber)
 
 
 class HorizontalPipsPager(PipsPager):
-    """ Horizontal pips pager """
+    """Horizontal pips pager"""
 
     def __init__(self, parent=None):
-        super().__init__(Qt.Horizontal, parent)
+        super().__init__(Qt.Orientation.Horizontal, parent)
 
 
 class VerticalPipsPager(PipsPager):
-    """ Vertical pips pager """
+    """Vertical pips pager"""
 
     def __init__(self, parent=None):
-        super().__init__(Qt.Vertical, parent)
+        super().__init__(Qt.Orientation.Vertical, parent)
