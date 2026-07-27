@@ -1,7 +1,6 @@
-# coding:utf-8
 from PySide6.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
-from PySide6.QtGui import QPainter, QColor, QPalette, QPainterPath, QPainterPath
-from PySide6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem, QStyleFactory
+from PySide6.QtGui import QPainter, QColor, QPalette, QPainterPath
+from PySide6.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QStyleOptionViewItem
 
 from ...common.style_sheet import FluentStyleSheet, updateDynamicStyle, isDarkTheme, setCustomStyleSheet
 from ...common.font import getFont
@@ -11,7 +10,7 @@ from .scroll_area import SmoothScrollDelegate
 
 
 class TreeItemDelegate(QStyledItemDelegate):
-    """ Tree item delegate """
+    """Tree item delegate"""
 
     def __init__(self, parent: QTreeView):
         super().__init__(parent)
@@ -19,7 +18,7 @@ class TreeItemDelegate(QStyledItemDelegate):
         self.darkCheckedColor = QColor()
 
     def setCheckedColor(self, light, dark):
-        """ set the color of indicator in checked status
+        """set the color of indicator in checked status
 
         Parameters
         ----------
@@ -31,18 +30,17 @@ class TreeItemDelegate(QStyledItemDelegate):
         self.parent().viewport().update()
 
     def paint(self, painter, option, index):
-        painter.setRenderHints(
-            QPainter.Antialiasing | QPainter.TextAntialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
         super().paint(painter, option, index)
 
-        if index.data(Qt.CheckStateRole) is not None:
+        if index.data(Qt.ItemDataRole.CheckStateRole) is not None:
             self._drawCheckBox(painter, option, index)
 
-        if not (option.state & (QStyle.State_Selected | QStyle.State_MouseOver)):
+        if not (option.state & (QStyle.StateFlag.State_Selected | QStyle.StateFlag.State_MouseOver)):
             return
 
         painter.save()
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         # draw background
         self._drawBackground(painter, option, index)
@@ -95,9 +93,9 @@ class TreeItemDelegate(QStyledItemDelegate):
     def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         h = option.rect.height() - 4
 
-        if option.state & QStyle.State_Selected and self.parent().horizontalScrollBar().value() == 0:
+        if option.state & QStyle.StateFlag.State_Selected and self.parent().horizontalScrollBar().value() == 0:
             painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
-            painter.drawRoundedRect(4, 9+option.rect.y(), 3, h - 13, 1.5, 1.5)
+            painter.drawRoundedRect(4, 9 + option.rect.y(), 3, h - 13, 1.5, 1.5)
 
     def _drawCheckBox(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         painter.save()
@@ -111,10 +109,8 @@ class TreeItemDelegate(QStyledItemDelegate):
         rect = QRectF(x, y, 19, 19)
 
         if checkState == Qt.CheckState.Unchecked:
-            painter.setBrush(QColor(0, 0, 0, 26)
-                             if isDark else QColor(0, 0, 0, 6))
-            painter.setPen(QColor(255, 255, 255, 142)
-                           if isDark else QColor(0, 0, 0, 122))
+            painter.setBrush(QColor(0, 0, 0, 26) if isDark else QColor(0, 0, 0, 6))
+            painter.setPen(QColor(255, 255, 255, 142) if isDark else QColor(0, 0, 0, 122))
             painter.drawRoundedRect(rect, r, r)
         else:
             color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
@@ -129,31 +125,30 @@ class TreeItemDelegate(QStyledItemDelegate):
 
         painter.restore()
 
-
     def initStyleOption(self, option, index):
         super().initStyleOption(option, index)
 
         # font
-        option.font = index.data(Qt.FontRole) or getFont(13)
+        option.font = index.data(Qt.ItemDataRole.FontRole) or getFont(13)
 
         # text color
-        textColor = Qt.white if isDarkTheme() else Qt.black
-        textBrush = index.data(Qt.ForegroundRole)
+        textColor = Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black
+        textBrush = index.data(Qt.ItemDataRole.ForegroundRole)
         if textBrush is not None:
             textColor = textBrush.color()
 
-        option.palette.setColor(QPalette.Text, textColor)
-        option.palette.setColor(QPalette.HighlightedText, textColor)
+        option.palette.setColor(QPalette.ColorRole.Text, textColor)
+        option.palette.setColor(QPalette.ColorRole.HighlightedText, textColor)
 
 
 class TreeViewBase:
-    """ Tree view base class """
+    """Tree view base class"""
 
     def _initView(self):
-        self.scrollDelagate = SmoothScrollDelegate(self)
+        self.scrollDelegate = SmoothScrollDelegate(self)
 
         self.header().setHighlightSections(False)
-        self.header().setDefaultAlignment(Qt.AlignCenter)
+        self.header().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.setItemDelegate(TreeItemDelegate(self))
         self.setIconSize(QSize(16, 16))
@@ -163,7 +158,7 @@ class TreeViewBase:
         updateDynamicStyle(self)
 
     def setCheckedColor(self, light, dark):
-        """ set the color in checked status
+        """set the color in checked status
 
         Parameters
         ----------
@@ -177,18 +172,18 @@ class TreeViewBase:
         return QTreeView.drawBranches(self, painter, rect, index)
 
     def setBorderVisible(self, isVisible: bool):
-        """ set the visibility of border """
+        """set the visibility of border"""
         self.setProperty("isBorderVisible", isVisible)
         updateDynamicStyle(self)
 
     def setBorderRadius(self, radius: int):
-        """ set the radius of border """
+        """set the radius of border"""
         qss = f"QTreeView{{border-radius: {radius}px}}"
         setCustomStyleSheet(self, qss, qss)
 
 
 class TreeWidget(TreeViewBase, QTreeWidget):
-    """ Tree widget """
+    """Tree widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -214,7 +209,7 @@ class TreeWidget(TreeViewBase, QTreeWidget):
             level += 1
 
         indent = level * self.indentation() + 20
-        if event.pos().x() > indent and event.pos().x() < indent + 10:
+        if indent < event.pos().x() < indent + 10:
             if self.isExpanded(index):
                 self.collapse(index)
             else:
@@ -224,7 +219,7 @@ class TreeWidget(TreeViewBase, QTreeWidget):
 
 
 class TreeView(TreeViewBase, QTreeView):
-    """ Tree view """
+    """Tree view"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -249,7 +244,7 @@ class TreeView(TreeViewBase, QTreeView):
             level += 1
 
         indent = level * self.indentation() + 20
-        if event.pos().x() > indent and event.pos().x() < indent + 10:
+        if indent < event.pos().x() < indent + 10:
             if self.isExpanded(index):
                 self.collapse(index)
             else:
