@@ -1,13 +1,12 @@
-# coding:utf-8
-from typing import Dict, List
 from itertools import groupby
+from typing import List, Dict
 
-from PySide6.QtCore import Qt, QObject, Signal
+from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QWidget, QStackedWidget
 
 
 class RouteItem:
-    """ Route item """
+    """Route item"""
 
     def __init__(self, stacked: QStackedWidget, routeKey: str):
         self.stacked = stacked
@@ -16,17 +15,16 @@ class RouteItem:
     def __eq__(self, other):
         if other is None:
             return False
-
         return other.stacked is self.stacked and self.routeKey == other.routeKey
 
 
 class StackedHistory:
-    """ Stacked history """
+    """Stacked history"""
 
     def __init__(self, stacked: QStackedWidget):
         self.stacked = stacked
-        self.defaultRouteKey = None  # type: str
-        self.history = [self.defaultRouteKey]   # type: List[str]
+        self.defaultRouteKey: str = None
+        self.history: List[str] = [self.defaultRouteKey]
 
     def __len__(self):
         return len(self.history)
