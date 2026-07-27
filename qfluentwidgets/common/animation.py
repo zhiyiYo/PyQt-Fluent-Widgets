@@ -235,22 +235,22 @@ class DropShadowAnimation(QPropertyAnimation):
         return self.shadowEffect
 
     def eventFilter(self, obj, e):
-        if not (obj is self.parent() and self.parent().isEnabled()):
-            return None
-        if e.type() == QEvent.Type.Enter:
-            self.isHover = True
+        p = self.parent()
+        if obj is p and p.isEnabled():
+            if e.type() == QEvent.Type.Enter:
+                self.isHover = True
 
-            if self.state() != QPropertyAnimation.State.Running:
-                self.parent().setGraphicsEffect(self._createShadowEffect())
+                if self.state() != QPropertyAnimation.State.Running:
+                    p.setGraphicsEffect(self._createShadowEffect())
 
-            self.setEndValue(self.hoverColor)
-            self.start()
-        elif e.type() in [QEvent.Type.Leave, QEvent.Type.MouseButtonPress]:
-            self.isHover = False
-            if self.parent().graphicsEffect():
-                self.finished.connect(self._onAniFinished)
-                self.setEndValue(self.normalColor)
+                self.setEndValue(self.hoverColor)
                 self.start()
+            elif e.type() in [QEvent.Type.Leave, QEvent.Type.MouseButtonPress]:
+                self.isHover = False
+                if p.graphicsEffect():
+                    self.finished.connect(self._onAniFinished)
+                    self.setEndValue(self.normalColor)
+                    self.start()
 
         return super().eventFilter(obj, e)
 
@@ -295,9 +295,10 @@ class FluentAnimationProperObject(QObject):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        self._value = 0
 
     def getValue(self):
-        return 0
+        return self._value
 
     def setValue(self, value):
         pass
@@ -337,7 +338,7 @@ class PositionObject(FluentAnimationProperObject):
         self._value = QPoint()
 
     def getValue(self):
-        super().getValue()
+        return self._value
 
     def setValue(self, value: QPoint):
         self._value = value
@@ -355,7 +356,7 @@ class ScaleObject(FluentAnimationProperObject):
         self._value = 1
 
     def getValue(self):
-        super().getValue()
+        return self._value
 
     def setValue(self, value: float):
         self._value = value
@@ -373,7 +374,7 @@ class AngleObject(FluentAnimationProperObject):
         self._value = 0
 
     def getValue(self):
-        super().getValue()
+        return self._value
 
     def setValue(self, value: float):
         self._value = value
@@ -391,7 +392,7 @@ class OpacityObject(FluentAnimationProperObject):
         self._value = 0
 
     def getValue(self):
-        super().getValue()
+        return self._value
 
     def setValue(self, value: float):
         self._value = value
