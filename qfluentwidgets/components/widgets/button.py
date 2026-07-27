@@ -1,5 +1,4 @@
-# coding:utf-8
-from typing import Union
+from typing import Union, Optional
 
 from PySide6.QtCore import Signal, QUrl, Qt, QRectF, QSize, QPoint, Property, QRect
 from PySide6.QtGui import QDesktopServices, QIcon, QPainter, QColor, QPainterPath
@@ -8,7 +7,7 @@ from PySide6.QtWidgets import QHBoxLayout, QPushButton, QRadioButton, QToolButto
 from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon, Icon
 from ...common.icon import FluentIcon as FIF
-from ...common.font import setFont, getFont
+from ...common.font import setFont
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
 from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
@@ -16,7 +15,7 @@ from .menu import RoundMenu, MenuAnimationType
 
 
 class PushButton(QPushButton):
-    """ Push button
+    """Push button
 
     Constructors
     ------------
@@ -26,7 +25,7 @@ class PushButton(QPushButton):
     """
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
         self.isPressed = False
@@ -37,17 +36,17 @@ class PushButton(QPushButton):
         self._postInit()
 
     @__init__.register
-    def _(self, text: str, parent: QWidget = None, icon: Union[QIcon, str, FluentIconBase] = None):
+    def _(self, text: str, parent: Optional[QWidget] = None, icon: Union[QIcon, str, FluentIconBase] = None):
         self.__init__(parent=parent)
         self.setText(text)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, text: str, parent: QWidget = None):
+    def _(self, icon: QIcon, text: str, parent: Optional[QWidget] = None):
         self.__init__(text, parent, icon)
 
     @__init__.register
-    def _(self, icon: FluentIconBase, text: str, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, text: str, parent: Optional[QWidget] = None):
         self.__init__(text, parent, icon)
 
     def _postInit(self):
@@ -55,9 +54,9 @@ class PushButton(QPushButton):
 
     def setIcon(self, icon: Union[QIcon, str, FluentIconBase]):
         if icon is None or (isinstance(icon, QIcon) and icon.isNull()):
-            self.setProperty('hasIcon', False)
+            self.setProperty("hasIcon", False)
         else:
-            self.setProperty('hasIcon', True)
+            self.setProperty("hasIcon", True)
 
         self.setStyle(QApplication.style())
         self._icon = icon or QIcon()
@@ -67,7 +66,7 @@ class PushButton(QPushButton):
         return toQIcon(self._icon)
 
     def setProperty(self, name: str, value) -> bool:
-        if name != 'icon':
+        if name != "icon":
             return super().setProperty(name, value)
 
         self.setIcon(value)
@@ -89,8 +88,8 @@ class PushButton(QPushButton):
         self.isHover = False
         self.update()
 
-    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
-        """ draw icon """
+    def _drawIcon(self, icon, painter, rect, state=QIcon.State.Off):
+        """draw icon"""
         drawIcon(icon, painter, rect, state)
 
     def paintEvent(self, e):
@@ -99,8 +98,7 @@ class PushButton(QPushButton):
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         if not self.isEnabled():
             painter.setOpacity(0.3628)
@@ -110,10 +108,9 @@ class PushButton(QPushButton):
         w, h = self.iconSize().width(), self.iconSize().height()
         y = (self.height() - h) / 2
         mw = self.minimumSizeHint().width()
+        x = 12
         if mw > 0:
-            x = 12 + (self.width() - mw) // 2
-        else:
-            x = 12
+            x += (self.width() - mw) // 2
 
         if self.isRightToLeft():
             x = self.width() - w - x
@@ -122,7 +119,7 @@ class PushButton(QPushButton):
 
 
 class PrimaryPushButton(PushButton):
-    """ Primary color push button
+    """Primary color push button
 
     Constructors
     ------------
@@ -131,7 +128,7 @@ class PrimaryPushButton(PushButton):
     * PrimaryPushButton(`icon`: QIcon | FluentIcon, `text`: str, `parent`: QWidget = None)
     """
 
-    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
+    def _drawIcon(self, icon, painter, rect, state=QIcon.State.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             # reverse icon color
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
@@ -145,7 +142,7 @@ class PrimaryPushButton(PushButton):
 
 
 class TransparentPushButton(PushButton):
-    """ Transparent push button
+    """Transparent push button
 
     Constructors
     ------------
@@ -156,7 +153,7 @@ class TransparentPushButton(PushButton):
 
 
 class ToggleButton(PushButton):
-    """ Toggle push button
+    """Toggle push button
 
     Constructors
     ------------
@@ -173,14 +170,14 @@ class ToggleButton(PushButton):
         if not self.isChecked():
             return PushButton._drawIcon(self, icon, painter, rect)
 
-        PrimaryPushButton._drawIcon(self, icon, painter, rect, QIcon.On)
+        PrimaryPushButton._drawIcon(self, icon, painter, rect, QIcon.State.On)
 
 
 TogglePushButton = ToggleButton
 
 
 class TransparentTogglePushButton(TogglePushButton):
-    """ Transparent toggle push button
+    """Transparent toggle push button
 
     Constructors
     ------------
@@ -192,7 +189,7 @@ class TransparentTogglePushButton(TogglePushButton):
 
 
 class HyperlinkButton(PushButton):
-    """ Hyperlink button
+    """Hyperlink button
 
     Constructors
     ------------
@@ -202,27 +199,27 @@ class HyperlinkButton(PushButton):
     """
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self._url = QUrl()
         FluentStyleSheet.BUTTON.apply(self)
-        self.setCursor(Qt.PointingHandCursor)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         setFont(self)
         self.clicked.connect(self._onClicked)
 
     @__init__.register
-    def _(self, url: str, text: str, parent: QWidget = None, icon: Union[QIcon, FluentIconBase, str] = None):
+    def _(self, url: str, text: str, parent: Optional[QWidget] = None, icon: Union[QIcon, FluentIconBase, str] = None):
         self.__init__(parent)
         self.setText(text)
         self.url.setUrl(url)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, url: str, text: str, parent: QWidget = None):
+    def _(self, icon: QIcon, url: str, text: str, parent: Optional[QWidget] = None):
         self.__init__(url, text, parent, icon)
 
     @__init__.register
-    def _(self, icon: FluentIconBase, url: str, text: str, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, url: str, text: str, parent: Optional[QWidget] = None):
         self.__init__(url, text, parent, icon)
 
     def getUrl(self):
@@ -235,7 +232,7 @@ class HyperlinkButton(PushButton):
         if self.getUrl().isValid():
             QDesktopServices.openUrl(self.getUrl())
 
-    def _drawIcon(self, icon, painter, rect, state=QIcon.Off):
+    def _drawIcon(self, icon, painter, rect, state=QIcon.State.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             icon = icon.icon(color=themeColor())
         elif not self.isEnabled():
@@ -247,7 +244,7 @@ class HyperlinkButton(PushButton):
 
 
 class RadioButton(QRadioButton):
-    """ Radio button
+    """Radio button
 
     Constructors
     ------------
@@ -257,7 +254,7 @@ class RadioButton(QRadioButton):
     """
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self._lightTextColor = QColor(0, 0, 0)
         self._darkTextColor = QColor(255, 255, 255)
@@ -267,11 +264,11 @@ class RadioButton(QRadioButton):
         self.isHover = False
 
         FluentStyleSheet.BUTTON.apply(self)
-        self.setAttribute(Qt.WA_MacShowFocusRect, False)
+        self.setAttribute(Qt.WidgetAttribute.WA_MacShowFocusRect, False)
         self._postInit()
 
     @__init__.register
-    def _(self, text: str, parent: QWidget = None):
+    def _(self, text: str, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setText(text)
 
@@ -288,7 +285,7 @@ class RadioButton(QRadioButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.TextAntialiasing)
         self._drawIndicator(painter)
         self._drawText(painter)
 
@@ -298,7 +295,7 @@ class RadioButton(QRadioButton):
 
         painter.setFont(self.font())
         painter.setPen(self.textColor())
-        painter.drawText(QRect(29, 0, self.width(), self.height()), Qt.AlignVCenter, self.text())
+        painter.drawText(QRect(29, 0, self.width(), self.height()), Qt.AlignmentFlag.AlignVCenter, self.text())
 
     def _drawIndicator(self, painter: QPainter):
         if self.isChecked():
@@ -307,7 +304,7 @@ class RadioButton(QRadioButton):
             else:
                 borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
 
-            filledColor = Qt.black if isDarkTheme() else Qt.white
+            filledColor = Qt.GlobalColor.black if isDarkTheme() else Qt.GlobalColor.white
 
             if self.isHover and not self.isDown():
                 self._drawCircle(painter, self.indicatorPos, 10, 4, borderColor, filledColor)
@@ -322,13 +319,13 @@ class RadioButton(QRadioButton):
                     borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
 
                 if self.isDown():
-                    filledColor = Qt.black if isDarkTheme() else Qt.white
+                    filledColor = Qt.GlobalColor.black if isDarkTheme() else Qt.GlobalColor.white
                 elif self.isHover:
                     filledColor = QColor(255, 255, 255, 11) if isDarkTheme() else QColor(0, 0, 0, 15)
                 else:
                     filledColor = QColor(0, 0, 0, 26) if isDarkTheme() else QColor(0, 0, 0, 6)
             else:
-                filledColor = Qt.transparent
+                filledColor = Qt.GlobalColor.transparent
                 borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
 
             self._drawCircle(painter, self.indicatorPos, 10, 1, borderColor, filledColor)
@@ -354,7 +351,7 @@ class RadioButton(QRadioButton):
         path = path.subtracted(innerPath)
 
         # draw outer ring
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.fillPath(path, borderColor)
 
         # fill inner circle
@@ -391,7 +388,7 @@ class RadioButton(QRadioButton):
 
 
 class ToolButton(QToolButton):
-    """ Tool button
+    """Tool button
 
     Constructors
     ------------
@@ -400,7 +397,7 @@ class ToolButton(QToolButton):
     """
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         FluentStyleSheet.BUTTON.apply(self)
         self.isPressed = False
@@ -411,17 +408,17 @@ class ToolButton(QToolButton):
         self._postInit()
 
     @__init__.register
-    def _(self, icon: FluentIconBase, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, parent: QWidget = None):
+    def _(self, icon: QIcon, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: str, parent: QWidget = None):
+    def _(self, icon: str, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
@@ -436,7 +433,7 @@ class ToolButton(QToolButton):
         return toQIcon(self._icon)
 
     def setProperty(self, name: str, value) -> bool:
-        if name != 'icon':
+        if name != "icon":
             return super().setProperty(name, value)
 
         self.setIcon(value)
@@ -458,8 +455,8 @@ class ToolButton(QToolButton):
         self.isHover = False
         self.update()
 
-    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.Off):
-        """ draw icon """
+    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.State.Off):
+        """draw icon"""
         drawIcon(icon, painter, rect, state)
 
     def paintEvent(self, e):
@@ -468,8 +465,7 @@ class ToolButton(QToolButton):
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         if not self.isEnabled():
             painter.setOpacity(0.43)
@@ -483,7 +479,7 @@ class ToolButton(QToolButton):
 
 
 class TransparentToolButton(ToolButton):
-    """ Transparent background tool button
+    """Transparent background tool button
 
     Constructors
     ------------
@@ -493,7 +489,7 @@ class TransparentToolButton(ToolButton):
 
 
 class PrimaryToolButton(ToolButton):
-    """ Primary color tool button
+    """Primary color tool button
 
     Constructors
     ------------
@@ -501,7 +497,7 @@ class PrimaryToolButton(ToolButton):
     * PrimaryToolButton(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None)
     """
 
-    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.Off):
+    def _drawIcon(self, icon, painter: QPainter, rect: QRectF, state=QIcon.State.Off):
         if isinstance(icon, FluentIconBase) and self.isEnabled():
             # reverse icon color
             theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
@@ -518,7 +514,7 @@ class PrimaryToolButton(ToolButton):
 
 
 class ToggleToolButton(ToolButton):
-    """ Toggle tool button
+    """Toggle tool button
 
     Constructors
     ------------
@@ -534,11 +530,12 @@ class ToggleToolButton(ToolButton):
         if not self.isChecked():
             return ToolButton._drawIcon(self, icon, painter, rect)
 
-        PrimaryToolButton._drawIcon(self, icon, painter, rect, QIcon.On)
+        PrimaryToolButton._drawIcon(self, icon, painter, rect, QIcon.State.On)
+        return None
 
 
 class TransparentToggleToolButton(ToggleToolButton):
-    """ Transparent toggle tool button
+    """Transparent toggle tool button
 
     Constructors
     ------------
@@ -548,11 +545,11 @@ class TransparentToggleToolButton(ToggleToolButton):
 
 
 class DropDownButtonBase:
-    """ Drop down button base class """
+    """Drop down button base class"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._menu = None
+        self._menu: RoundMenu = None
         self.arrowAni = TranslateYAnimation(self)
 
     def setMenu(self, menu: RoundMenu):
@@ -565,13 +562,13 @@ class DropDownButtonBase:
         if not self.menu():
             return
 
-        menu = self.menu()
+        menu: RoundMenu = self.menu()
         menu.view.setMinimumWidth(self.width())
         menu.view.adjustSize()
         menu.adjustSize()
 
         # determine the animation type by choosing the maximum height of view
-        x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
+        x = -menu.width() // 2 + menu.layout().contentsMargins().left() + self.width() // 2
         pd = self.mapToGlobal(QPoint(x, self.height()))
         hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
@@ -597,19 +594,18 @@ class DropDownButtonBase:
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         if self.isHover:
             painter.setOpacity(0.8)
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        rect = QRectF(self.width()-22, self.height() /
-                      2-5+self.arrowAni.y, 10, 10)
+        rect = QRectF(self.width() - 22, self.height() / 2 - 5 + self.arrowAni.y, 10, 10)
         self._drawDropDownIcon(painter, rect)
 
 
 class DropDownPushButton(DropDownButtonBase, PushButton):
-    """ Drop down push button
+    """Drop down push button
 
     Constructors
     ------------
@@ -629,7 +625,7 @@ class DropDownPushButton(DropDownButtonBase, PushButton):
 
 
 class TransparentDropDownPushButton(DropDownPushButton):
-    """ Transparent drop down push button
+    """Transparent drop down push button
 
     Constructors
     ------------
@@ -641,7 +637,7 @@ class TransparentDropDownPushButton(DropDownPushButton):
 
 
 class DropDownToolButton(DropDownButtonBase, ToolButton):
-    """ Drop down tool button
+    """Drop down tool button
 
     Constructors
     ------------
@@ -663,7 +659,7 @@ class DropDownToolButton(DropDownButtonBase, ToolButton):
 
 
 class TransparentDropDownToolButton(DropDownToolButton):
-    """ Transparent drop down tool button
+    """Transparent drop down tool button
 
     Constructors
     ------------
@@ -673,7 +669,7 @@ class TransparentDropDownToolButton(DropDownToolButton):
 
 
 class PrimaryDropDownButtonBase(DropDownButtonBase):
-    """ Primary color drop down button base class """
+    """Primary color drop down button base class"""
 
     def _drawDropDownIcon(self, painter, rect):
         theme = Theme.DARK if not isDarkTheme() else Theme.LIGHT
@@ -681,7 +677,7 @@ class PrimaryDropDownButtonBase(DropDownButtonBase):
 
 
 class PrimaryDropDownPushButton(PrimaryDropDownButtonBase, PrimaryPushButton):
-    """ Primary color drop down push button
+    """Primary color drop down push button
 
     Constructors
     ------------
@@ -701,7 +697,7 @@ class PrimaryDropDownPushButton(PrimaryDropDownButtonBase, PrimaryPushButton):
 
 
 class PrimaryDropDownToolButton(PrimaryDropDownButtonBase, PrimaryToolButton):
-    """ Primary drop down tool button
+    """Primary drop down tool button
 
     Constructors
     ------------
@@ -723,12 +719,11 @@ class PrimaryDropDownToolButton(PrimaryDropDownButtonBase, PrimaryToolButton):
 
 
 class SplitDropButton(ToolButton):
-
     def _postInit(self):
         self.arrowAni = TranslateYAnimation(self)
         self.setIcon(FIF.ARROW_DOWN)
         self.setIconSize(QSize(10, 10))
-        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
     def _drawIcon(self, icon, painter, rect):
         rect.translate(0, self.arrowAni.y)
@@ -744,12 +739,11 @@ class SplitDropButton(ToolButton):
 
 
 class PrimarySplitDropButton(PrimaryToolButton):
-
     def _postInit(self):
         self.arrowAni = TranslateYAnimation(self)
         self.setIcon(FIF.ARROW_DOWN)
         self.setIconSize(QSize(10, 10))
-        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
     def _drawIcon(self, icon, painter, rect):
         rect.translate(0, self.arrowAni.y)
@@ -768,13 +762,13 @@ class PrimarySplitDropButton(PrimaryToolButton):
 
 
 class SplitWidgetBase(QWidget):
-    """ Split widget base class """
+    """Split widget base class"""
 
     dropDownClicked = Signal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent=parent)
-        self.flyout = None  # type: QWidget
+        self.flyout: QWidget = None
         self.dropButton = SplitDropButton(self)
 
         self.hBoxLayout = QHBoxLayout(self)
@@ -785,15 +779,15 @@ class SplitWidgetBase(QWidget):
         self.dropButton.clicked.connect(self.dropDownClicked)
         self.dropButton.clicked.connect(self.showFlyout)
 
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
 
     def setWidget(self, widget: QWidget):
-        """ set the widget on left side """
-        self.hBoxLayout.insertWidget(0, widget, 1, Qt.AlignLeft)
+        """set the widget on left side"""
+        self.hBoxLayout.insertWidget(0, widget, 1, Qt.AlignmentFlag.AlignLeft)
 
     def setDropButton(self, button):
-        """ set drop dow button """
+        """set drop dow button"""
         self.hBoxLayout.removeWidget(self.dropButton)
         self.dropButton.deleteLater()
 
@@ -803,16 +797,16 @@ class SplitWidgetBase(QWidget):
         self.hBoxLayout.addWidget(button)
 
     def setDropIcon(self, icon: Union[str, QIcon, FluentIconBase]):
-        """ set the icon of drop down button """
+        """set the icon of drop down button"""
         self.dropButton.setIcon(icon)
         self.dropButton.removeEventFilter(self.dropButton.arrowAni)
 
     def setDropIconSize(self, size: QSize):
-        """ set the icon size of drop down button """
+        """set the icon size of drop down button"""
         self.dropButton.setIconSize(size)
 
     def setFlyout(self, flyout):
-        """ set the widget pops up when drop down button is clicked
+        """set the widget pops up when drop down button is clicked
 
         Parameters
         ----------
@@ -823,7 +817,7 @@ class SplitWidgetBase(QWidget):
         self.flyout = flyout
 
     def showFlyout(self):
-        """ show flyout """
+        """show flyout"""
         if not self.flyout:
             return
 
@@ -835,13 +829,13 @@ class SplitWidgetBase(QWidget):
             w.adjustSize()
 
         dx = w.layout().contentsMargins().left() if isinstance(w, RoundMenu) else 0
-        x = -w.width()//2 + dx + self.width()//2
+        x = -w.width() // 2 + dx + self.width() // 2
         y = self.height()
         w.exec(self.mapToGlobal(QPoint(x, y)))
 
 
 class SplitPushButton(SplitWidgetBase):
-    """ Split push button
+    """Split push button
 
     Constructors
     ------------
@@ -852,26 +846,26 @@ class SplitPushButton(SplitWidgetBase):
     clicked = Signal()
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent=parent)
         self.button = PushButton(self)
-        self.button.setObjectName('splitPushButton')
+        self.button.setObjectName("splitPushButton")
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
         self._postInit()
 
     @__init__.register
-    def _(self, text: str, parent: QWidget = None, icon: Union[QIcon, str, FluentIconBase] = None):
+    def _(self, text: str, parent: Optional[QWidget] = None, icon: Union[QIcon, str, FluentIconBase] = None):
         self.__init__(parent)
         self.setText(text)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, text: str, parent: QWidget = None):
+    def _(self, icon: QIcon, text: str, parent: Optional[QWidget] = None):
         self.__init__(text, parent, icon)
 
     @__init__.register
-    def _(self, icon: FluentIconBase, text: str, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, text: str, parent: Optional[QWidget] = None):
         self.__init__(text, parent, icon)
 
     def _postInit(self):
@@ -898,7 +892,7 @@ class SplitPushButton(SplitWidgetBase):
 
 
 class PrimarySplitPushButton(SplitPushButton):
-    """ Primary split push button
+    """Primary split push button
 
     Constructors
     ------------
@@ -915,13 +909,13 @@ class PrimarySplitPushButton(SplitPushButton):
         self.button.deleteLater()
 
         self.button = PrimaryPushButton(self)
-        self.button.setObjectName('primarySplitPushButton')
+        self.button.setObjectName("primarySplitPushButton")
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
 
 
 class SplitToolButton(SplitWidgetBase):
-    """ Split tool button
+    """Split tool button
 
     Constructors
     ------------
@@ -932,26 +926,26 @@ class SplitToolButton(SplitWidgetBase):
     clicked = Signal()
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent=parent)
         self.button = ToolButton(self)
-        self.button.setObjectName('splitToolButton')
+        self.button.setObjectName("splitToolButton")
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
         self._postInit()
 
     @__init__.register
-    def _(self, icon: FluentIconBase, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, parent: QWidget = None):
+    def _(self, icon: QIcon, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: str, parent: QWidget = None):
+    def _(self, icon: str, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
@@ -971,7 +965,7 @@ class SplitToolButton(SplitWidgetBase):
 
 
 class PrimarySplitToolButton(SplitToolButton):
-    """ Primary split push button
+    """Primary split push button
 
     Constructors
     ------------
@@ -986,20 +980,20 @@ class PrimarySplitToolButton(SplitToolButton):
         self.button.deleteLater()
 
         self.button = PrimaryToolButton(self)
-        self.button.setObjectName('primarySplitToolButton')
+        self.button.setObjectName("primarySplitToolButton")
         self.button.clicked.connect(self.clicked)
         self.setWidget(self.button)
 
 
 class PillButtonBase:
-    """ Pill button base class """
+    """Pill button base class"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         isDark = isDarkTheme()
 
         if not self.isChecked():
@@ -1023,7 +1017,7 @@ class PillButtonBase:
             else:
                 bgColor = themeColor()
 
-            borderColor = Qt.transparent
+            borderColor = Qt.GlobalColor.transparent
             rect = self.rect()
 
         painter.setPen(borderColor)
@@ -1034,7 +1028,7 @@ class PillButtonBase:
 
 
 class PillPushButton(TogglePushButton, PillButtonBase):
-    """ Pill push button
+    """Pill push button
 
     Constructors
     ------------
@@ -1050,7 +1044,7 @@ class PillPushButton(TogglePushButton, PillButtonBase):
 
 
 class PillToolButton(ToggleToolButton, PillButtonBase):
-    """ Pill push button
+    """Pill push button
 
     Constructors
     ------------
