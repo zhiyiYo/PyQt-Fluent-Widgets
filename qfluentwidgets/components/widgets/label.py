@@ -1,22 +1,29 @@
-# coding:utf-8
+from typing import Union, Optional
 
-from typing import List, Union
-
-from PySide6.QtCore import Qt, Property, QPoint, Signal, QSize, QRectF, QUrl
-from PySide6.QtGui import (QPainter, QPixmap, QPalette, QColor, QFont, QImage, QPainterPath,
-                         QImageReader, QBrush, QMovie, QDesktopServices)
+from PySide6.QtCore import Qt, Property, Signal, QSize, QRectF, QUrl
+from PySide6.QtGui import (
+    QPainter,
+    QPixmap,
+    QColor,
+    QFont,
+    QImage,
+    QPainterPath,
+    QImageReader,
+    QMovie,
+    QDesktopServices,
+)
 from PySide6.QtWidgets import QLabel, QWidget, QPushButton, QApplication
 
 from ...common.exception_handler import exceptionHandler
 from ...common.overload import singledispatchmethod
 from ...common.font import setFont, getFont
-from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, setCustomStyleSheet
 from ...common.config import qconfig, isDarkTheme
 from .menu import LabelContextMenu
 
 
 class PixmapLabel(QLabel):
-    """ Label for high dpi pixmap """
+    """Label for high dpi pixmap"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -35,14 +42,14 @@ class PixmapLabel(QLabel):
             return super().paintEvent(e)
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.drawPixmap(self.rect(), self.__pixmap)
+        return None
 
 
 class FluentLabelBase(QLabel):
-    """ Fluent label base class
+    """Fluent label base class
 
     Constructors
     ------------
@@ -51,12 +58,12 @@ class FluentLabelBase(QLabel):
     """
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self._init()
 
     @__init__.register
-    def _(self, text: str, parent: QWidget = None):
+    def _(self, text: str, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setText(text)
 
@@ -77,7 +84,7 @@ class FluentLabelBase(QLabel):
 
     @exceptionHandler()
     def setTextColor(self, light=QColor(0, 0, 0), dark=QColor(255, 255, 255)):
-        """ set the text color of label
+        """set the text color of label
 
         Parameters
         ----------
@@ -90,7 +97,7 @@ class FluentLabelBase(QLabel):
         setCustomStyleSheet(
             self,
             f"FluentLabelBase{{color:{self.lightColor.name(QColor.NameFormat.HexArgb)}}}",
-            f"FluentLabelBase{{color:{self.darkColor.name(QColor.NameFormat.HexArgb)}}}"
+            f"FluentLabelBase{{color:{self.darkColor.name(QColor.NameFormat.HexArgb)}}}",
         )
 
     @Property(QColor)
@@ -146,7 +153,7 @@ class FluentLabelBase(QLabel):
 
 
 class CaptionLabel(FluentLabelBase):
-    """ Caption text label
+    """Caption text label
 
     Constructors
     ------------
@@ -159,7 +166,7 @@ class CaptionLabel(FluentLabelBase):
 
 
 class BodyLabel(FluentLabelBase):
-    """ Body text label
+    """Body text label
 
     Constructors
     ------------
@@ -172,7 +179,7 @@ class BodyLabel(FluentLabelBase):
 
 
 class StrongBodyLabel(FluentLabelBase):
-    """ Strong body text label
+    """Strong body text label
 
     Constructors
     ------------
@@ -181,11 +188,11 @@ class StrongBodyLabel(FluentLabelBase):
     """
 
     def getFont(self):
-        return getFont(14, QFont.DemiBold)
+        return getFont(14, QFont.Weight.DemiBold)
 
 
 class SubtitleLabel(FluentLabelBase):
-    """ Subtitle text label
+    """Subtitle text label
 
     Constructors
     ------------
@@ -194,11 +201,11 @@ class SubtitleLabel(FluentLabelBase):
     """
 
     def getFont(self):
-        return getFont(20, QFont.DemiBold)
+        return getFont(20, QFont.Weight.DemiBold)
 
 
 class TitleLabel(FluentLabelBase):
-    """ Sub title text label
+    """Sub title text label
 
     Constructors
     ------------
@@ -207,11 +214,11 @@ class TitleLabel(FluentLabelBase):
     """
 
     def getFont(self):
-        return getFont(28, QFont.DemiBold)
+        return getFont(28, QFont.Weight.DemiBold)
 
 
 class LargeTitleLabel(FluentLabelBase):
-    """ Large title text label
+    """Large title text label
 
     Constructors
     ------------
@@ -220,11 +227,11 @@ class LargeTitleLabel(FluentLabelBase):
     """
 
     def getFont(self):
-        return getFont(40, QFont.DemiBold)
+        return getFont(40, QFont.Weight.DemiBold)
 
 
 class DisplayLabel(FluentLabelBase):
-    """ Display text label
+    """Display text label
 
     Constructors
     ------------
@@ -233,11 +240,11 @@ class DisplayLabel(FluentLabelBase):
     """
 
     def getFont(self):
-        return getFont(68, QFont.DemiBold)
+        return getFont(68, QFont.Weight.DemiBold)
 
 
 class ImageLabel(QLabel):
-    """ Image label
+    """Image label
 
     Constructors
     ------------
@@ -248,9 +255,9 @@ class ImageLabel(QLabel):
     clicked = Signal()
 
     @singledispatchmethod
-    def __init__(self, parent: QWidget = None):
+    def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
-        self.image = QImage()
+        self.image: QImage = QImage()
         self.setBorderRadius(0, 0, 0, 0)
         self._postInit()
 
@@ -277,16 +284,16 @@ class ImageLabel(QLabel):
         self.update()
 
     def setBorderRadius(self, topLeft: int, topRight: int, bottomLeft: int, bottomRight: int):
-        """ set the border radius of image """
+        """set the border radius of image"""
         self._topLeftRadius = topLeft
         self._topRightRadius = topRight
         self._bottomLeftRadius = bottomLeft
         self._bottomRightRadius = bottomRight
         self.update()
 
-    def setImage(self, image: Union[str, QPixmap, QImage] = None):
-        """ set the image of label """
-        self.image = image or QImage()
+    def setImage(self, image: Optional[Union[str, QPixmap, QImage]] = None):
+        """set the image of label"""
+        image = image or QImage()
 
         if isinstance(image, str):
             reader = QImageReader(image)
@@ -353,7 +360,7 @@ class ImageLabel(QLabel):
             return
 
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         path = QPainterPath()
         w, h = self.width(), self.height()
@@ -389,9 +396,12 @@ class ImageLabel(QLabel):
 
         # draw image
         image = self.image.scaled(
-            self.size()*self.devicePixelRatioF(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+            self.size() * self.devicePixelRatioF(),
+            Qt.AspectRatioMode.IgnoreAspectRatio,
+            Qt.TransformationMode.SmoothTransformation,
+        )
 
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.setClipPath(path)
         painter.drawImage(self.rect(), image)
 
@@ -401,7 +411,12 @@ class ImageLabel(QLabel):
 
     @topLeftRadius.setter
     def topLeftRadius(self, radius: int):
-        self.setBorderRadius(radius, self.topRightRadius, self.bottomLeftRadius, self.bottomRightRadius)
+        self.setBorderRadius(
+            radius,
+            self.topRightRadius,
+            self.bottomLeftRadius,
+            self.bottomRightRadius,
+        )
 
     @Property(int)
     def topRightRadius(self):
@@ -409,7 +424,12 @@ class ImageLabel(QLabel):
 
     @topRightRadius.setter
     def topRightRadius(self, radius: int):
-        self.setBorderRadius(self.topLeftRadius, radius, self.bottomLeftRadius, self.bottomRightRadius)
+        self.setBorderRadius(
+            self.topLeftRadius,
+            radius,
+            self.bottomLeftRadius,
+            self.bottomRightRadius,
+        )
 
     @Property(int)
     def bottomLeftRadius(self):
@@ -417,7 +437,12 @@ class ImageLabel(QLabel):
 
     @bottomLeftRadius.setter
     def bottomLeftRadius(self, radius: int):
-        self.setBorderRadius(self.topLeftRadius, self.topRightRadius, radius, self.bottomRightRadius)
+        self.setBorderRadius(
+            self.topLeftRadius,
+            self.topRightRadius,
+            radius,
+            self.bottomRightRadius,
+        )
 
     @Property(int)
     def bottomRightRadius(self):
@@ -426,11 +451,15 @@ class ImageLabel(QLabel):
     @bottomRightRadius.setter
     def bottomRightRadius(self, radius: int):
         self.setBorderRadius(
-            self.topLeftRadius, self.topRightRadius, self.bottomLeftRadius, radius)
+            self.topLeftRadius,
+            self.topRightRadius,
+            self.bottomLeftRadius,
+            radius,
+        )
 
 
 class AvatarWidget(ImageLabel):
-    """ Avatar widget
+    """Avatar widget
 
     Constructors
     ------------
@@ -449,10 +478,10 @@ class AvatarWidget(ImageLabel):
     def setRadius(self, radius: int):
         self._radius = radius
         setFont(self, radius)
-        self.setFixedSize(2*radius, 2*radius)
+        self.setFixedSize(2 * radius, 2 * radius)
         self.update()
 
-    def setImage(self, image: Union[str, QPixmap, QImage] = None):
+    def setImage(self, image: Optional[Union[str, QPixmap, QImage]] = None):
         super().setImage(image)
         self.setRadius(self.radius)
 
@@ -463,7 +492,7 @@ class AvatarWidget(ImageLabel):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if not self.isNull():
             self._drawImageAvatar(painter)
@@ -472,8 +501,11 @@ class AvatarWidget(ImageLabel):
 
     def _drawImageAvatar(self, painter: QPainter):
         # center crop image
-        image = self.image.scaled(
-            self.size()*self.devicePixelRatioF(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)  # type: QImage
+        image: QImage = self.image.scaled(
+            self.size() * self.devicePixelRatioF(),
+            Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+            Qt.TransformationMode.SmoothTransformation,
+        )
 
         iw, ih = image.width(), image.height()
         d = self.getRadius() * 2 * self.devicePixelRatioF()
@@ -484,7 +516,7 @@ class AvatarWidget(ImageLabel):
         path = QPainterPath()
         path.addEllipse(QRectF(self.rect()))
 
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.setClipPath(path)
         painter.drawImage(self.rect(), image)
 
@@ -493,18 +525,18 @@ class AvatarWidget(ImageLabel):
             return
 
         painter.setBrush(self.darkBackgroundColor if isDarkTheme() else self.lightBackgroundColor)
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.drawEllipse(QRectF(self.rect()))
 
         painter.setFont(self.font())
-        painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-        painter.drawText(self.rect(), Qt.AlignCenter, self.text()[0].upper())
+        painter.setPen(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
+        painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, self.text()[0].upper())
 
     radius = Property(int, getRadius, setRadius)
 
 
 class HyperlinkLabel(QPushButton):
-    """ Hyperlink label
+    """Hyperlink label
 
     Constructors
     ------------
@@ -521,7 +553,7 @@ class HyperlinkLabel(QPushButton):
         setFont(self, 14)
         self.setUnderlineVisible(False)
         FluentStyleSheet.LABEL.apply(self)
-        self.setCursor(Qt.PointingHandCursor)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.clicked.connect(self._onClicked)
 
     @__init__.register
@@ -546,7 +578,7 @@ class HyperlinkLabel(QPushButton):
 
     def setUnderlineVisible(self, isVisible: bool):
         self._isUnderlineVisible = isVisible
-        self.setProperty('underline', isVisible)
+        self.setProperty("underline", isVisible)
         self.setStyle(QApplication.style())
 
     def _onClicked(self):
