@@ -408,7 +408,7 @@ class MSFluentWindow(FluentWindowBase):
         self.hBoxLayout.addWidget(self.stackedWidget, 1)
 
         self.titleBar.raise_()
-        self.titleBar.setAttribute(Qt.WA_StyledBackground)
+        self.titleBar.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
 
     def addSubInterface(
         self,
