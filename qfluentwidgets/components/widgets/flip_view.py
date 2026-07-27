@@ -1,5 +1,4 @@
-# coding:utf-8
-from typing import List, Union
+from typing import List, Union, Optional
 
 from PySide6.QtCore import Qt, Signal, QModelIndex, QSize, Property, QRectF, QPropertyAnimation, QSizeF
 from PySide6.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainterPath, QImageReader
@@ -13,11 +12,11 @@ from .button import ToolButton
 
 
 class ScrollButton(ToolButton):
-    """ Scroll button """
+    """Scroll button"""
 
     def _postInit(self):
         self._opacity = 0
-        self.opacityAni = QPropertyAnimation(self, b'opacity', self)
+        self.opacityAni = QPropertyAnimation(self, b"opacity", self)
         self.opacityAni.setDuration(150)
 
     def getOpacity(self):
@@ -42,8 +41,8 @@ class ScrollButton(ToolButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
         painter.setOpacity(self.opacity)
 
         # draw background
@@ -73,14 +72,14 @@ class ScrollButton(ToolButton):
 
 
 class FlipImageDelegate(QStyledItemDelegate):
-    """ Flip view image delegate """
+    """Flip view image delegate"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.borderRadius = 0
 
     def itemSize(self, index: int):
-        p = self.parent() # type: FlipView
+        p: FlipView = self.parent()
         return p.item(index).sizeHint()
 
     def setBorderRadius(self, radius: int):
@@ -89,17 +88,18 @@ class FlipImageDelegate(QStyledItemDelegate):
 
     def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         painter.save()
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
-        size = self.itemSize(index.row())  # type: QSize
-        p = self.parent()  # type: FlipView
+        size: QSize = self.itemSize(index.row())
+        p: FlipView = self.parent()
 
         # draw image
         r = p.devicePixelRatioF()
-        image = index.data(Qt.UserRole)  # type: QImage
+        image: Optional[QImage] = index.data(Qt.ItemDataRole.UserRole)
         if image is None:
-            return painter.restore()
+            painter.restore()
+            return None
 
         # lazy load image
         if image.isNull() and index.data(Qt.ItemDataRole.DisplayRole):
@@ -117,7 +117,11 @@ class FlipImageDelegate(QStyledItemDelegate):
         subPath.addRoundedRect(QRectF(p.rect()), self.borderRadius, self.borderRadius)
         path = path.intersected(subPath)
 
-        image = image.scaled(size * r, p.aspectRatioMode, Qt.SmoothTransformation)
+        image = image.scaled(
+            size * r,
+            p.aspectRatioMode,
+            Qt.TransformationMode.SmoothTransformation,
+        )
         painter.setClipPath(path)
 
         # center crop image
@@ -132,7 +136,7 @@ class FlipImageDelegate(QStyledItemDelegate):
 
 
 class FlipView(QListWidget):
-    """ Flip view
+    """Flip view
 
     Constructors
     ------------
@@ -145,7 +149,7 @@ class FlipView(QListWidget):
     @singledispatchmethod
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.orientation = Qt.Horizontal
+        self.orientation = Qt.Orientation.Horizontal
         self._postInit()
 
     @__init__.register
@@ -169,15 +173,15 @@ class FlipView(QListWidget):
         # self.setUniformItemSizes(True)
         self.setMinimumSize(self.itemSize)
         self.setItemDelegate(self.delegate)
-        self.setMovement(QListWidget.Static)
+        self.setMovement(QListWidget.Movement.Static)
         self.setVerticalScrollMode(self.ScrollMode.ScrollPerPixel)
         self.setHorizontalScrollMode(self.ScrollMode.ScrollPerPixel)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         FluentStyleSheet.FLIP_VIEW.apply(self)
 
         if self.isHorizontal():
-            self.setFlow(QListWidget.LeftToRight)
+            self.setFlow(QListWidget.Flow.LeftToRight)
             self.preButton = ScrollButton(FluentIcon.CARE_LEFT_SOLID, self)
             self.nextButton = ScrollButton(FluentIcon.CARE_RIGHT_SOLID, self)
             self.preButton.setFixedSize(16, 38)
@@ -193,10 +197,10 @@ class FlipView(QListWidget):
         self.nextButton.clicked.connect(self.scrollNext)
 
     def isHorizontal(self):
-        return self.orientation == Qt.Horizontal
+        return self.orientation == Qt.Orientation.Horizontal
 
     def setItemSize(self, size: QSize):
-        """ set the size of item """
+        """set the size of item"""
         if size == self.itemSize:
             return
 
@@ -208,26 +212,26 @@ class FlipView(QListWidget):
         self.viewport().update()
 
     def getItemSize(self):
-        """ get the size of item """
+        """get the size of item"""
         return self._itemSize
 
     def setBorderRadius(self, radius: int):
-        """ set the border radius of item """
+        """set the border radius of item"""
         self.delegate.setBorderRadius(radius)
 
     def getBorderRadius(self):
         return self.delegate.borderRadius
 
     def scrollPrevious(self):
-        """ scroll to previous item """
+        """scroll to previous item"""
         self.setCurrentIndex(self.currentIndex() - 1)
 
     def scrollNext(self):
-        """ scroll to next item """
+        """scroll to next item"""
         self.setCurrentIndex(self.currentIndex() + 1)
 
     def setCurrentIndex(self, index: int):
-        """ set current index """
+        """set current index"""
         if not 0 <= index < self.count() or index == self.currentIndex():
             return
 
@@ -268,19 +272,19 @@ class FlipView(QListWidget):
         if not 0 <= index < self.count():
             return QImage()
 
-        return self.item(index).data(Qt.UserRole)
+        return self.item(index).data(Qt.ItemDataRole.UserRole)
 
     def addImage(self, image: Union[QImage, QPixmap, str]):
-        """ add image """
+        """add image"""
         self.addImages([image])
 
-    def addImages(self, images: List[Union[QImage, QPixmap, str]], targetSize: QSize = None):
-        """ add images """
+    def addImages(self, images: List[Union[QImage, QPixmap, str]], targetSize: Optional[QSize] = None):
+        """add images"""
         if not images:
             return
 
         N = self.count()
-        self.addItems([''] * len(images))
+        self.addItems([""] * len(images))
 
         for i in range(N, self.count()):
             self.setItemImage(i, images[i - N], targetSize=targetSize)
@@ -288,8 +292,8 @@ class FlipView(QListWidget):
         if self.currentIndex() < 0:
             self._currentIndex = 0
 
-    def setItemImage(self, index: int, image: Union[QImage, QPixmap, str], targetSize: QSize = None):
-        """ set the image of specified item """
+    def setItemImage(self, index: int, image: Union[QImage, QPixmap, str], targetSize: Optional[QSize] = None):
+        """set the image of specified item"""
         if not 0 <= index < self.count():
             return
 
@@ -309,9 +313,9 @@ class FlipView(QListWidget):
         self._adjustItemSize(item)
 
     def _adjustItemSize(self, item: QListWidgetItem):
-        image = self.itemImage(self.row(item), load=False)
+        image: Optional[QImage] = self.itemImage(self.row(item), load=False)
 
-        if not image.isNull():
+        if image is not None and not image.isNull():
             size = image.size()
         else:
             imagePath = item.data(Qt.ItemDataRole.DisplayRole) or ""
@@ -329,8 +333,8 @@ class FlipView(QListWidget):
 
         item.setSizeHint(QSize(w, h))
 
-    def itemImage(self, index: int, load=True) -> QImage:
-        """ get the image of specified item
+    def itemImage(self, index: int, load=True) -> Optional[QImage]:
+        """get the image of specified item
 
         Parameters
         ----------
@@ -341,10 +345,10 @@ class FlipView(QListWidget):
             whether to load image data
         """
         if not 0 <= index < self.count():
-            return
+            return None
 
         item = self.item(index)
-        image = item.data(Qt.ItemDataRole.UserRole)  # type: QImage
+        image: Optional[QImage] = item.data(Qt.ItemDataRole.UserRole)
 
         if image is None:
             return QImage()
@@ -389,7 +393,7 @@ class FlipView(QListWidget):
 
     def wheelEvent(self, e: QWheelEvent):
         e.setAccepted(True)
-        if self.scrollBar.ani.state() == QPropertyAnimation.Running:
+        if self.scrollBar.ani.state() == QPropertyAnimation.State.Running:
             return
 
         if e.angleDelta().y() < 0:
@@ -417,14 +421,14 @@ class FlipView(QListWidget):
 
 
 class HorizontalFlipView(FlipView):
-    """ Horizontal flip view """
+    """Horizontal flip view"""
 
     def __init__(self, parent=None):
-        super().__init__(Qt.Horizontal, parent)
+        super().__init__(Qt.Orientation.Horizontal, parent)
 
 
 class VerticalFlipView(FlipView):
-    """ Vertical flip view """
+    """Vertical flip view"""
 
     def __init__(self, parent=None):
-        super().__init__(Qt.Vertical, parent)
+        super().__init__(Qt.Orientation.Vertical, parent)
