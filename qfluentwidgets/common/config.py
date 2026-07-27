@@ -25,12 +25,12 @@ class Theme(Enum):
 class ConfigValidator:
     """Config validator"""
 
-    def validate(self, value):
-        """ Verify whether the value is legal """
+    def validate(self, value) -> bool:
+        """Verify whether the value is legal"""
         return True
 
     def correct(self, value):
-        """ correct illegal value """
+        """correct illegal value"""
         return value
 
 
@@ -109,9 +109,9 @@ class ColorValidator(ConfigValidator):
     def __init__(self, default):
         self.default = QColor(default)
 
-    def validate(self, color):
+    def validate(self, value) -> bool:
         try:
-            return QColor(color).isValid()
+            return QColor(value).isValid()
         except:
             return False
 
@@ -350,7 +350,7 @@ class QConfig(QObject):
     def save(self):
         """save config"""
         self._cfg.file.parent.mkdir(parents=True, exist_ok=True)
-        with open(self._cfg.file, "w", encoding="utf-8") as f:
+        with self._cfg.file.open("w", encoding="utf-8") as f:
             json.dump(self._cfg.toDict(), f, ensure_ascii=False, indent=4)
 
     @exceptionHandler()
@@ -373,7 +373,7 @@ class QConfig(QObject):
             self._cfg.file = Path(file)
 
         try:
-            with open(self._cfg.file, encoding="utf-8") as f:
+            with self._cfg.file.open(encoding="utf-8") as f:
                 cfg = json.load(f)
         except:
             cfg = {}
