@@ -1,31 +1,106 @@
-from .button import (DropDownPushButton, DropDownToolButton, PrimaryPushButton, PushButton, RadioButton,
-                     HyperlinkButton, ToolButton, TransparentToolButton, ToggleButton, SplitWidgetBase,
-                     SplitPushButton, SplitToolButton, PrimaryToolButton, PrimarySplitPushButton,
-                     PrimarySplitToolButton, PrimaryDropDownPushButton, PrimaryDropDownToolButton,
-                     TogglePushButton, ToggleToolButton, TransparentPushButton, TransparentTogglePushButton,
-                     TransparentToggleToolButton, TransparentDropDownPushButton, TransparentDropDownToolButton,
-                     PillPushButton, PillToolButton)
-from .card_widget import CardWidget, ElevatedCardWidget, SimpleCardWidget, HeaderCardWidget, CardGroupWidget, GroupHeaderCardWidget
+from .button import (
+    DropDownPushButton,
+    DropDownToolButton,
+    PrimaryPushButton,
+    PushButton,
+    RadioButton,
+    HyperlinkButton,
+    ToolButton,
+    TransparentToolButton,
+    ToggleButton,
+    SplitWidgetBase,
+    SplitPushButton,
+    SplitToolButton,
+    PrimaryToolButton,
+    PrimarySplitPushButton,
+    PrimarySplitToolButton,
+    PrimaryDropDownPushButton,
+    PrimaryDropDownToolButton,
+    TogglePushButton,
+    ToggleToolButton,
+    TransparentPushButton,
+    TransparentTogglePushButton,
+    TransparentToggleToolButton,
+    TransparentDropDownPushButton,
+    TransparentDropDownToolButton,
+    PillPushButton,
+    PillToolButton,
+)
+from .card_widget import (
+    CardWidget,
+    ElevatedCardWidget,
+    SimpleCardWidget,
+    HeaderCardWidget,
+    CardGroupWidget,
+    GroupHeaderCardWidget,
+)
 from .check_box import CheckBox
 from .combo_box import ComboBox, EditableComboBox
 from .model_combo_box import ModelComboBox, EditableModelComboBox
 from .command_bar import CommandBar, CommandButton, CommandBarView
 from .flip_view import FlipView, HorizontalFlipView, VerticalFlipView, FlipImageDelegate
-from .line_edit import LineEdit, TextEdit, PlainTextEdit, LineEditButton, SearchLineEdit, PasswordLineEdit, TextBrowser
+from .line_edit import (
+    LineEdit,
+    TextEdit,
+    PlainTextEdit,
+    LineEditButton,
+    SearchLineEdit,
+    PasswordLineEdit,
+    TextBrowser,
+)
 from .icon_widget import IconWidget
-from .label import (PixmapLabel, CaptionLabel, StrongBodyLabel, BodyLabel, SubtitleLabel, TitleLabel,
-                    LargeTitleLabel, DisplayLabel, FluentLabelBase, ImageLabel, AvatarWidget, HyperlinkLabel)
+from .label import (
+    PixmapLabel,
+    CaptionLabel,
+    StrongBodyLabel,
+    BodyLabel,
+    SubtitleLabel,
+    TitleLabel,
+    LargeTitleLabel,
+    DisplayLabel,
+    FluentLabelBase,
+    ImageLabel,
+    AvatarWidget,
+    HyperlinkLabel,
+)
 from .list_view import ListWidget, ListView, ListItemDelegate
-from .menu import (DWMMenu, LineEditMenu, RoundMenu, MenuAnimationManager, MenuAnimationType, IndicatorMenuItemDelegate,
-                   MenuItemDelegate, ShortcutMenuItemDelegate, CheckableMenu, MenuIndicatorType, SystemTrayMenu,
-                   CheckableSystemTrayMenu)
+from .menu import (
+    DWMMenu,
+    LineEditMenu,
+    RoundMenu,
+    MenuAnimationManager,
+    MenuAnimationType,
+    IndicatorMenuItemDelegate,
+    MenuItemDelegate,
+    ShortcutMenuItemDelegate,
+    CheckableMenu,
+    MenuIndicatorType,
+    SystemTrayMenu,
+    CheckableSystemTrayMenu,
+)
 from .info_bar import InfoBar, InfoBarIcon, InfoBarPosition, InfoBarManager
 from .info_badge import InfoBadge, InfoLevel, DotInfoBadge, IconInfoBadge, InfoBadgePosition, InfoBadgeManager
 from .scroll_area import SingleDirectionScrollArea, SmoothScrollArea, ScrollArea
 from .slider import Slider, HollowHandleStyle, ClickableSlider
-from .spin_box import (SpinBox, DoubleSpinBox, DateEdit, DateTimeEdit, TimeEdit, CompactSpinBox,
-                       CompactDoubleSpinBox, CompactDateEdit, CompactDateTimeEdit, CompactTimeEdit)
-from .stacked_widget import PopUpAniStackedWidget, OpacityAniStackedWidget, TransitionStackedWidget, EntranceTransitionStackedWidget, DrillInTransitionStackedWidget
+from .spin_box import (
+    SpinBox,
+    DoubleSpinBox,
+    DateEdit,
+    DateTimeEdit,
+    TimeEdit,
+    CompactSpinBox,
+    CompactDoubleSpinBox,
+    CompactDateEdit,
+    CompactDateTimeEdit,
+    CompactTimeEdit,
+)
+from .stacked_widget import (
+    PopUpAniStackedWidget,
+    OpacityAniStackedWidget,
+    TransitionStackedWidget,
+    EntranceTransitionStackedWidget,
+    DrillInTransitionStackedWidget,
+)
 from .state_tool_tip import StateToolTip
 from .switch_button import SwitchButton, IndicatorPosition
 from .table_view import TableView, TableWidget, TableItemDelegate

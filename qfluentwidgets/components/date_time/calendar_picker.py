@@ -1,9 +1,8 @@
-# coding:utf-8
 from typing import Union
 
-from PySide6.QtCore import Qt, Signal, QRectF, QDate, QPoint, Property
+from PySide6.QtCore import Property, Qt, Signal, QRectF, QDate, QPoint
 from PySide6.QtGui import QPainter
-from PySide6.QtWidgets import QWidget, QPushButton, QApplication
+from PySide6.QtWidgets import QPushButton, QApplication
 
 from ...common.style_sheet import FluentStyleSheet
 from ...common.icon import FluentIcon as FIF
@@ -13,7 +12,7 @@ from .fast_calendar_view import FastCalendarView
 
 
 class CalendarPicker(QPushButton):
-    """ Calendar picker """
+    """Calendar picker"""
 
     dateChanged = Signal(QDate)
 
@@ -23,31 +22,31 @@ class CalendarPicker(QPushButton):
         self._dateFormat = Qt.DateFormat.ISODate
         self._isResetEnabled = False
 
-        self.setText(self.tr('Pick a date'))
+        self.setText(self.tr("Pick a date"))
         FluentStyleSheet.CALENDAR_PICKER.apply(self)
 
         self.clicked.connect(self._showCalendarView)
 
-    def getDate(self):
+    def getDate(self) -> QDate:
         return self._date
 
     def setDate(self, date: QDate):
-        """ set the selected date """
+        """set the selected date"""
         self._onDateChanged(date)
 
     def reset(self):
-        """ reset date """
+        """reset date"""
         self._date = QDate()
-        self.setText(self.tr('Pick a date'))
-        self.setProperty('hasDate', False)
+        self.setText(self.tr("Pick a date"))
+        self.setProperty("hasDate", False)
         self.setStyle(QApplication.style())
         self.update()
 
     def getDateFormat(self):
         return self._dateFormat
 
-    def setDateFormat(self, format: Union[Qt.DateFormat, str]):
-        self._dateFormat = format
+    def setDateFormat(self, date_format: Union[Qt.DateFormat, str]):
+        self._dateFormat = date_format
         if self.date.isValid():
             self.setText(self.date.toString(self.dateFormat))
 
@@ -55,27 +54,27 @@ class CalendarPicker(QPushButton):
         return self._isResetEnabled
 
     def setResetEnabled(self, isEnabled: bool):
-        """ set the visibility of reset button """
+        """set the visibility of reset button"""
         self._isResetEnabled = isEnabled
 
     def _showCalendarView(self):
         view = CalendarView(self.window())
         view.setResetEnabled(self.isRestEnabled())
 
-        view.resetted.connect(self.reset)
+        view.reset.connect(self.reset)
         view.dateChanged.connect(self._onDateChanged)
 
         if self.date.isValid():
             view.setDate(self.date)
 
-        x = int(self.width()/2 - view.sizeHint().width()/2)
+        x = int(self.width() / 2 - view.sizeHint().width() / 2)
         y = self.height()
         view.exec(self.mapToGlobal(QPoint(x, y)))
 
     def _onDateChanged(self, date: QDate):
         self._date = QDate(date)
         self.setText(date.toString(self.dateFormat))
-        self.setProperty('hasDate', True)
+        self.setProperty("hasDate", True)
         self.setStyle(QApplication.style())
         self.update()
 
@@ -84,13 +83,13 @@ class CalendarPicker(QPushButton):
     def paintEvent(self, e):
         super().paintEvent(e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
-        if not self.property('hasDate'):
+        if not self.property("hasDate"):
             painter.setOpacity(0.6)
 
         w = 12
-        rect = QRectF(self.width() - 23, self.height()/2 - w/2, w, w)
+        rect = QRectF(self.width() - 23, self.height() / 2 - w / 2, w, w)
         FIF.CALENDAR.render(painter, rect)
 
     date = Property(QDate, getDate, setDate)
@@ -98,7 +97,7 @@ class CalendarPicker(QPushButton):
 
 
 class FastCalendarPicker(CalendarPicker):
-    """ Pro calendar picker """
+    """Pro calendar picker"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -111,7 +110,7 @@ class FastCalendarPicker(CalendarPicker):
         view = FastCalendarView(self.window())
         view.setResetEnabled(self.isRestEnabled())
 
-        view.resetted.connect(self.reset)
+        view.reset.connect(self.reset)
         view.dateChanged.connect(self._onDateChanged)
 
         if self.date.isValid():

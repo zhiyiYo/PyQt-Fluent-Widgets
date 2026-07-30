@@ -1,23 +1,22 @@
-# coding:utf-8
-from PySide6.QtCore import Qt, Signal, QUrl, QSizeF, QTimer
+from PySide6.QtCore import Qt, QUrl, QSizeF, QTimer
 from PySide6.QtGui import QPainter
 from PySide6.QtMultimediaWidgets import QGraphicsVideoItem
-from PySide6.QtWidgets import QWidget, QGraphicsView, QVBoxLayout, QGraphicsScene
+from PySide6.QtWidgets import QGraphicsView, QVBoxLayout, QGraphicsScene
 
 from ..common.style_sheet import FluentStyleSheet
 from .media_play_bar import StandardMediaPlayBar
 
 
 class GraphicsVideoItem(QGraphicsVideoItem):
-    """ Graphics video item """
+    """Graphics video item"""
 
     def paint(self, painter: QPainter, option, widget):
-        painter.setCompositionMode(QPainter.CompositionMode_Difference)
+        painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Difference)
         super().paint(painter, option, widget)
 
 
 class VideoWidget(QGraphicsView):
-    """ Video widget """
+    """Video widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -32,9 +31,9 @@ class VideoWidget(QGraphicsView):
         self.setMouseTracking(True)
         self.setScene(self.graphicsScene)
         self.graphicsScene.addItem(self.videoItem)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setRenderHints(QPainter.Antialiasing | QPainter.SmoothPixmapTransform)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
 
         self.player.setVideoOutput(self.videoItem)
         FluentStyleSheet.MEDIA_PLAYER.apply(self)
@@ -42,9 +41,9 @@ class VideoWidget(QGraphicsView):
         self.timer.timeout.connect(self._onHideTimeOut)
 
     def setVideo(self, url: QUrl):
-        """ set the video to play """
+        """set the video to play"""
         self.player.setSource(url)
-        self.fitInView(self.videoItem, Qt.KeepAspectRatio)
+        self.fitInView(self.videoItem, Qt.AspectRatioMode.KeepAspectRatio)
 
     def hideEvent(self, e):
         self.pause()
@@ -75,7 +74,7 @@ class VideoWidget(QGraphicsView):
         self.playBar.stop()
 
     def togglePlayState(self):
-        """ toggle play state """
+        """toggle play state"""
         if self.player.isPlaying():
             self.pause()
         else:
@@ -84,7 +83,7 @@ class VideoWidget(QGraphicsView):
     def resizeEvent(self, e):
         super().resizeEvent(e)
         self.videoItem.setSize(QSizeF(self.size()))
-        self.fitInView(self.videoItem, Qt.KeepAspectRatio)
+        self.fitInView(self.videoItem, Qt.AspectRatioMode.KeepAspectRatio)
         self.playBar.move(11, self.height() - self.playBar.height() - 11)
         self.playBar.setFixedSize(self.width() - 22, self.playBar.height())
 

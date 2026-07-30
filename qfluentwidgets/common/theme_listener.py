@@ -1,20 +1,21 @@
-# coding:utf-8
-from PySide6.QtCore import QThread, Signal
+import sys
+from typing import Optional
+
+import darkdetect
+from PySide6.QtCore import QObject, QThread, Signal
 
 from .config import Theme, qconfig
-import darkdetect
-import sys
 
 
 class SystemThemeListener(QThread):
-    """ System theme listener """
+    """System theme listener"""
 
     systemThemeChanged = Signal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: Optional[QObject] = None) -> None:
         super().__init__(parent=parent)
 
-    def run(self):
+    def run(self) -> None:
         if sys.platform == "win32":
             darkdetect.listener(self._onThemeChanged)
             return
@@ -24,12 +25,12 @@ class SystemThemeListener(QThread):
             theme = Theme.DARK if t == "dark" else Theme.LIGHT
             if theme != qconfig.theme:
                 self._onThemeChanged(t)
-                self.msleep(2000)   # anti shake
+                self.msleep(2000)  # anti shake
             else:
                 self.msleep(1000)
 
-    def _onThemeChanged(self, theme: str):
-        theme = Theme.DARK if theme.lower() == "dark" else Theme.LIGHT
+    def _onThemeChanged(self, theme_name: str) -> None:
+        theme: Theme = Theme.DARK if theme_name.lower() == "dark" else Theme.LIGHT
 
         if qconfig.themeMode.value != Theme.AUTO or theme == qconfig.theme:
             return

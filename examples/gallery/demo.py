@@ -1,9 +1,7 @@
-# coding:utf-8
 import os
 import sys
 
 from PySide6.QtCore import Qt, QTranslator
-from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QApplication
 from qfluentwidgets import FluentTranslator
 
@@ -18,7 +16,7 @@ if cfg.get(cfg.dpiScale) != "Auto":
 
 # create application
 app = QApplication(sys.argv)
-app.setAttribute(Qt.AA_DontCreateNativeWidgetSiblings)
+app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
 
 # internationalization

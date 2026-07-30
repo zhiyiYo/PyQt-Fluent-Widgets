@@ -1,17 +1,35 @@
-# coding:utf-8
 from enum import Enum
-from PySide6.QtCore import (QEvent, QEasingCurve, Qt, Signal, QPropertyAnimation, Property, QRectF,
-                          QTimer, QPoint, QObject)
+from PySide6.QtCore import (
+    QEvent,
+    QEasingCurve,
+    Qt,
+    Signal,
+    QPropertyAnimation,
+    Property,
+    QRectF,
+    QTimer,
+    QPoint,
+    QObject,
+)
 from PySide6.QtGui import QPainter, QColor, QMouseEvent
-from PySide6.QtWidgets import (QWidget, QToolButton, QAbstractScrollArea, QGraphicsOpacityEffect,
-                             QHBoxLayout, QVBoxLayout, QApplication, QAbstractItemView, QListView)
+from PySide6.QtWidgets import (
+    QWidget,
+    QToolButton,
+    QAbstractScrollArea,
+    QHBoxLayout,
+    QVBoxLayout,
+    QApplication,
+    QAbstractItemView,
+    QListView,
+)
 
 from ...common.icon import FluentIcon
 from ...common.style_sheet import isDarkTheme
 from ...common.smooth_scroll import SmoothScroll
 
+
 class ArrowButton(QToolButton):
-    """ Arrow button """
+    """Arrow button"""
 
     def __init__(self, icon: FluentIcon, parent=None):
         super().__init__(parent=parent)
@@ -35,7 +53,7 @@ class ArrowButton(QToolButton):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         color = self.darkColor if isDarkTheme() else self.lightColor
         painter.setOpacity(self.opacity * color.alpha() / 255)
@@ -46,7 +64,7 @@ class ArrowButton(QToolButton):
 
 
 class ScrollBarGroove(QWidget):
-    """ Scroll bar groove """
+    """Scroll bar groove"""
 
     def __init__(self, orient: Qt.Orientation, parent):
         super().__init__(parent=parent)
@@ -54,26 +72,26 @@ class ScrollBarGroove(QWidget):
         self.lightBackgroundColor = QColor(252, 252, 252, 217)
         self.darkBackgroundColor = QColor(44, 44, 44, 245)
 
-        if orient == Qt.Vertical:
+        if orient == Qt.Orientation.Vertical:
             self.setFixedWidth(12)
             self.upButton = ArrowButton(FluentIcon.CARE_UP_SOLID, self)
             self.downButton = ArrowButton(FluentIcon.CARE_DOWN_SOLID, self)
             self.setLayout(QVBoxLayout(self))
-            self.layout().addWidget(self.upButton, 0, Qt.AlignHCenter)
+            self.layout().addWidget(self.upButton, 0, Qt.AlignmentFlag.AlignHCenter)
             self.layout().addStretch(1)
-            self.layout().addWidget(self.downButton, 0, Qt.AlignHCenter)
+            self.layout().addWidget(self.downButton, 0, Qt.AlignmentFlag.AlignHCenter)
             self.layout().setContentsMargins(0, 3, 0, 3)
         else:
             self.setFixedHeight(12)
             self.upButton = ArrowButton(FluentIcon.CARE_LEFT_SOLID, self)
             self.downButton = ArrowButton(FluentIcon.CARE_RIGHT_SOLID, self)
             self.setLayout(QHBoxLayout(self))
-            self.layout().addWidget(self.upButton, 0, Qt.AlignVCenter)
+            self.layout().addWidget(self.upButton, 0, Qt.AlignmentFlag.AlignVCenter)
             self.layout().addStretch(1)
-            self.layout().addWidget(self.downButton, 0, Qt.AlignVCenter)
+            self.layout().addWidget(self.downButton, 0, Qt.AlignmentFlag.AlignVCenter)
             self.layout().setContentsMargins(3, 0, 3, 0)
 
-        self.opacityAni = QPropertyAnimation(self, b'opacity', self)
+        self.opacityAni = QPropertyAnimation(self, b"opacity", self)
         self.setOpacity(0)
 
     def setLightBackgroundColor(self, color):
@@ -100,9 +118,9 @@ class ScrollBarGroove(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         painter.setOpacity(self.opacity)
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         painter.setBrush(self.darkBackgroundColor if isDarkTheme() else self.lightBackgroundColor)
         painter.drawRoundedRect(self.rect(), 6, 6)
@@ -120,16 +138,16 @@ class ScrollBarGroove(QWidget):
 
 
 class ScrollBarHandle(QWidget):
-    """ Scroll bar handle """
+    """Scroll bar handle"""
 
     def __init__(self, orient: Qt.Orientation, parent=None):
         super().__init__(parent)
         self._opacity = 1
-        self.opacityAni = QPropertyAnimation(self, b'opacity', self)
+        self.opacityAni = QPropertyAnimation(self, b"opacity", self)
         self.lightColor = QColor(0, 0, 0, 114)
         self.darkColor = QColor(255, 255, 255, 139)
         self.orient = orient
-        if orient == Qt.Vertical:
+        if orient == Qt.Orientation.Vertical:
             self.setFixedWidth(3)
         else:
             self.setFixedHeight(3)
@@ -144,10 +162,10 @@ class ScrollBarHandle(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
 
-        r = self.width() / 2 if self.orient == Qt.Vertical else self.height() / 2
+        r = self.width() / 2 if self.orient == Qt.Orientation.Vertical else self.height() / 2
         painter.setOpacity(self.opacity)
         painter.setBrush(self.darkColor if isDarkTheme() else self.lightColor)
         painter.drawRoundedRect(self.rect(), r, r)
@@ -184,7 +202,7 @@ class ScrollBarHandleDisplayMode(Enum):
 
 
 class ScrollBar(QWidget):
-    """ Fluent scroll bar """
+    """Fluent scroll bar"""
 
     rangeChanged = Signal(tuple)
     valueChanged = Signal(int)
@@ -213,12 +231,18 @@ class ScrollBar(QWidget):
         self._isForceHidden = False
         self.handleDisplayMode = ScrollBarHandleDisplayMode.ALWAYS
 
-        if orient == Qt.Vertical:
+        if orient == Qt.Orientation.Vertical:
             self.partnerBar = parent.verticalScrollBar()
-            QAbstractScrollArea.setVerticalScrollBarPolicy(parent, Qt.ScrollBarAlwaysOff)
+            QAbstractScrollArea.setVerticalScrollBarPolicy(
+                parent,
+                Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+            )
         else:
             self.partnerBar = parent.horizontalScrollBar()
-            QAbstractScrollArea.setHorizontalScrollBarPolicy(parent, Qt.ScrollBarAlwaysOff)
+            QAbstractScrollArea.setHorizontalScrollBarPolicy(
+                parent,
+                Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+            )
 
         self.__initWidget(parent)
 
@@ -286,32 +310,32 @@ class ScrollBar(QWidget):
     def setValue(self, value: int):
         self.val = value
 
-    def setMinimum(self, min: int):
-        if min == self.minimum():
+    def setMinimum(self, minValue: int):
+        if minValue == self.minimum():
             return
 
-        self._minimum = min
-        self.rangeChanged.emit((min, self.maximum()))
+        self._minimum = minValue
+        self.rangeChanged.emit((minValue, self.maximum()))
 
-    def setMaximum(self, max: int):
-        if max == self.maximum():
+    def setMaximum(self, maxValue: int):
+        if maxValue == self.maximum():
             return
 
-        self._maximum = max
-        self.rangeChanged.emit((self.minimum(), max))
+        self._maximum = maxValue
+        self.rangeChanged.emit((self.minimum(), maxValue))
 
-    def setRange(self, min: int, max: int):
-        if min > max or (min == self.minimum() and max == self.maximum()):
+    def setRange(self, minValue: int, maxValue: int):
+        if minValue > maxValue or (minValue == self.minimum() and maxValue == self.maximum()):
             return
 
-        self.setMinimum(min)
-        self.setMaximum(max)
+        self.setMinimum(minValue)
+        self.setMaximum(maxValue)
 
         self._adjustHandleSize()
         self._adjustHandlePos()
-        self.setVisible(max > 0 and not self._isForceHidden)
+        self.setVisible(maxValue > 0 and not self._isForceHidden)
 
-        self.rangeChanged.emit((min, max))
+        self.rangeChanged.emit((minValue, maxValue))
 
     def setPageStep(self, step: int):
         if step >= 1:
@@ -375,7 +399,7 @@ class ScrollBar(QWidget):
             self.handle.fadeIn()
 
     def expand(self):
-        """ expand scroll bar """
+        """expand scroll bar"""
         if self._isExpanded or not self._isEnter:
             return
 
@@ -384,7 +408,7 @@ class ScrollBar(QWidget):
         self.handle.fadeIn()
 
     def collapse(self):
-        """ collapse scroll bar """
+        """collapse scroll bar"""
         if not self._isExpanded or self._isEnter:
             return
 
@@ -407,7 +431,7 @@ class ScrollBar(QWidget):
             return super().eventFilter(obj, e)
 
         # adjust the position of slider
-        if e.type() == QEvent.Resize:
+        if e.type() == QEvent.Type.Resize:
             self._adjustPos(e.size())
 
         return super().eventFilter(obj, e)
@@ -423,7 +447,7 @@ class ScrollBar(QWidget):
         if self.childAt(e.pos()) is self.handle or not self._isSlideResion(e.pos()):
             return
 
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             if e.pos().y() > self.handle.geometry().bottom():
                 value = e.pos().y() - self.handle.height() - self._padding
             else:
@@ -443,7 +467,7 @@ class ScrollBar(QWidget):
         self.sliderReleased.emit()
 
     def mouseMoveEvent(self, e: QMouseEvent):
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             dv = e.pos().y() - self._pressedPos.y()
         else:
             dv = e.pos().x() - self._pressedPos.x()
@@ -456,7 +480,7 @@ class ScrollBar(QWidget):
         self.sliderMoved.emit()
 
     def _adjustPos(self, size):
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             self.resize(12, size.height() - 2)
             self.move(size.width() - 13, 1)
         else:
@@ -465,20 +489,21 @@ class ScrollBar(QWidget):
 
     def _adjustHandleSize(self):
         p = self.parent()
-        if self.orientation() == Qt.Vertical:
-            total = self.maximum() - self.minimum() + p.height()
-            s = int(self._grooveLength() * p.height() / max(total, 1))
+        w, h = p.width(), p.height()
+        if self.orientation() == Qt.Orientation.Vertical:
+            total = self.maximum() - self.minimum() + h
+            s = int(self._grooveLength() * h / max(total, 1))
             self.handle.setFixedHeight(max(30, s))
         else:
-            total = self.maximum() - self.minimum() + p.width()
-            s = int(self._grooveLength() * p.width() / max(total, 1))
+            total = self.maximum() - self.minimum() + w
+            s = int(self._grooveLength() * w / max(total, 1))
             self.handle.setFixedWidth(max(30, s))
 
     def _adjustHandlePos(self):
         total = max(self.maximum() - self.minimum(), 1)
         delta = int(self.value() / total * self._slideLength())
 
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             x = self.width() - self.handle.width() - 3
             self.handle.move(x, self._padding + delta)
         else:
@@ -486,26 +511,26 @@ class ScrollBar(QWidget):
             self.handle.move(self._padding + delta, y)
 
     def _grooveLength(self):
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             return self.height() - 2 * self._padding
 
         return self.width() - 2 * self._padding
 
     def _slideLength(self):
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             return self._grooveLength() - self.handle.height()
 
         return self._grooveLength() - self.handle.width()
 
     def _isSlideResion(self, pos: QPoint):
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             return self._padding <= pos.y() <= self.height() - self._padding
 
         return self._padding <= pos.x() <= self.width() - self._padding
 
     def _onOpacityAniValueChanged(self):
         opacity = self.groove.opacity
-        if self.orientation() == Qt.Vertical:
+        if self.orientation() == Qt.Orientation.Vertical:
             self.handle.setFixedWidth(int(3 + opacity * 3))
         else:
             self.handle.setFixedHeight(int(3 + opacity * 3))
@@ -513,7 +538,7 @@ class ScrollBar(QWidget):
         self._adjustHandlePos()
 
     def setForceHidden(self, isHidden: bool):
-        """ whether to force the scrollbar to be hidden """
+        """whether to force the scrollbar to be hidden"""
         self._isForceHidden = isHidden
         self.setVisible(self.maximum() > 0 and not isHidden)
 
@@ -522,7 +547,7 @@ class ScrollBar(QWidget):
 
 
 class SmoothScrollBar(ScrollBar):
-    """ Smooth scroll bar """
+    """Smooth scroll bar"""
 
     def __init__(self, orient: Qt.Orientation, parent):
         super().__init__(orient, parent)
@@ -530,7 +555,7 @@ class SmoothScrollBar(ScrollBar):
         self.ani = QPropertyAnimation()
         self.ani.setTargetObject(self)
         self.ani.setPropertyName(b"val")
-        self.ani.setEasingCurve(QEasingCurve.OutCubic)
+        self.ani.setEasingCurve(QEasingCurve.Type.OutCubic)
         self.ani.setDuration(self.duration)
 
         self.__value = self.value()
@@ -558,14 +583,14 @@ class SmoothScrollBar(ScrollBar):
         self.ani.start()
 
     def scrollValue(self, value, useAni=True):
-        """ scroll the specified distance """
+        """scroll the specified distance"""
         self.__value += value
         self.__value = max(self.minimum(), self.__value)
         self.__value = min(self.maximum(), self.__value)
         self.setValue(self.__value, useAni)
 
     def scrollTo(self, value, useAni=True):
-        """ scroll to the specified position """
+        """scroll to the specified position"""
         self.__value = value
         self.__value = max(self.minimum(), self.__value)
         self.__value = min(self.maximum(), self.__value)
@@ -584,15 +609,15 @@ class SmoothScrollBar(ScrollBar):
         super().mouseMoveEvent(e)
         self.__value = self.value()
 
-    def setScrollAnimation(self, duration, easing=QEasingCurve.OutCubic):
-        """ set scroll animation
+    def setScrollAnimation(self, duration, easing: QEasingCurve.Type = QEasingCurve.Type.OutCubic):
+        """set scroll animation
 
         Parameters
         ----------
         duration: int
             scroll duration
 
-        easing: QEasingCurve
+        easing: QEasingCurve.Type
             animation type
         """
         self.duration = duration
@@ -601,7 +626,7 @@ class SmoothScrollBar(ScrollBar):
 
 
 class SmoothScrollDelegate(QObject):
-    """ Smooth scroll delegate """
+    """Smooth scroll delegate"""
 
     def __init__(self, parent: QAbstractScrollArea, useAni=False):
         """
@@ -615,16 +640,16 @@ class SmoothScrollDelegate(QObject):
         """
         super().__init__(parent)
         self.useAni = useAni
-        self.vScrollBar = SmoothScrollBar(Qt.Vertical, parent)
-        self.hScrollBar = SmoothScrollBar(Qt.Horizontal, parent)
-        self.verticalSmoothScroll = SmoothScroll(parent, Qt.Vertical)
-        self.horizonSmoothScroll = SmoothScroll(parent, Qt.Horizontal)
+        self.vScrollBar = SmoothScrollBar(Qt.Orientation.Vertical, parent)
+        self.hScrollBar = SmoothScrollBar(Qt.Orientation.Horizontal, parent)
+        self.verticalSmoothScroll = SmoothScroll(parent, Qt.Orientation.Vertical)
+        self.horizonSmoothScroll = SmoothScroll(parent, Qt.Orientation.Horizontal)
 
         if isinstance(parent, QAbstractItemView):
-            parent.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
-            parent.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+            parent.setVerticalScrollMode(QAbstractItemView.ScrollMode.ScrollPerPixel)
+            parent.setHorizontalScrollMode(QAbstractItemView.ScrollMode.ScrollPerPixel)
         if isinstance(parent, QListView):
-            parent.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+            parent.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
             parent.horizontalScrollBar().setStyleSheet("QScrollBar:horizontal{height: 0px}")
 
         parent.viewport().installEventFilter(self)
@@ -634,12 +659,14 @@ class SmoothScrollDelegate(QObject):
     def eventFilter(self, obj, e: QEvent):
         if e.type() == QEvent.Type.Wheel:
             # Check if the vertical scroll is at its limit
-            verticalAtEnd = (e.angleDelta().y() < 0 and self.vScrollBar.value() == self.vScrollBar.maximum()) or \
-                            (e.angleDelta().y() > 0 and self.vScrollBar.value() == self.vScrollBar.minimum())
+            verticalAtEnd = (e.angleDelta().y() < 0 and self.vScrollBar.value() == self.vScrollBar.maximum()) or (
+                e.angleDelta().y() > 0 and self.vScrollBar.value() == self.vScrollBar.minimum()
+            )
 
             # Check if the horizontal scroll is at its limit
-            horizontalAtEnd = (e.angleDelta().x() < 0 and self.hScrollBar.value() == self.hScrollBar.maximum()) or \
-                              (e.angleDelta().x() > 0 and self.hScrollBar.value() == self.hScrollBar.minimum())
+            horizontalAtEnd = (e.angleDelta().x() < 0 and self.hScrollBar.value() == self.hScrollBar.maximum()) or (
+                e.angleDelta().x() > 0 and self.hScrollBar.value() == self.hScrollBar.minimum()
+            )
 
             if verticalAtEnd or horizontalAtEnd:
                 return False
@@ -661,10 +688,15 @@ class SmoothScrollDelegate(QObject):
         return super().eventFilter(obj, e)
 
     def setVerticalScrollBarPolicy(self, policy):
-        QAbstractScrollArea.setVerticalScrollBarPolicy(self.parent(), Qt.ScrollBarAlwaysOff)
-        self.vScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
+        QAbstractScrollArea.setVerticalScrollBarPolicy(
+            self.parent(),
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+        )
+        self.vScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def setHorizontalScrollBarPolicy(self, policy):
-        QAbstractScrollArea.setHorizontalScrollBarPolicy(self.parent(), Qt.ScrollBarAlwaysOff)
-        self.hScrollBar.setForceHidden(policy == Qt.ScrollBarAlwaysOff)
-
+        QAbstractScrollArea.setHorizontalScrollBarPolicy(
+            self.parent(),
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff,
+        )
+        self.hScrollBar.setForceHidden(policy == Qt.ScrollBarPolicy.ScrollBarAlwaysOff)

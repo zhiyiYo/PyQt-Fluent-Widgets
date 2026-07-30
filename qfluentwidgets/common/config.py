@@ -1,9 +1,8 @@
-# coding:utf-8
 import json
 from copy import deepcopy
 from enum import Enum
 from pathlib import Path
-from typing import List
+from typing import Any, Optional, Sequence, Union
 
 import darkdetect
 from PySide6.QtCore import QObject, Signal, qVersion
@@ -11,12 +10,11 @@ from PySide6.QtGui import QColor
 
 from .exception_handler import exceptionHandler
 
-
 ALERT = "\n\033[1;33m📢 Tips:\033[0m QFluentWidgets Pro is now released. Click \033[1;96mhttps://qfluentwidgets.com/pages/pro\033[0m to learn more about it.\n"
 
 
 class Theme(Enum):
-    """ Theme enumeration """
+    """Theme enumeration"""
 
     LIGHT = "Light"
     DARK = "Dark"
@@ -24,36 +22,36 @@ class Theme(Enum):
 
 
 class ConfigValidator:
-    """ Config validator """
+    """Config validator"""
 
-    def validate(self, value):
-        """ Verify whether the value is legal """
+    def validate(self, value: Any) -> bool:
+        """Verify whether the value is legal"""
         return True
 
-    def correct(self, value):
-        """ correct illegal value """
+    def correct(self, value: Any) -> Any:
+        """correct illegal value"""
         return value
 
 
 class RangeValidator(ConfigValidator):
-    """ Range validator """
+    """Range validator"""
 
-    def __init__(self, min, max):
-        self.min = min
-        self.max = max
-        self.range = (min, max)
+    def __init__(self, min_value: float, max_value: float) -> None:
+        self.min = min_value
+        self.max = max_value
+        self.range = (min_value, max_value)
 
-    def validate(self, value):
+    def validate(self, value: float) -> bool:
         return self.min <= value <= self.max
 
-    def correct(self, value):
+    def correct(self, value: float) -> float:
         return min(max(self.min, value), self.max)
 
 
 class OptionsValidator(ConfigValidator):
-    """ Options validator """
+    """Options validator"""
 
-    def __init__(self, options):
+    def __init__(self, options) -> None:
         if not options:
             raise ValueError("The `options` can't be empty.")
 
@@ -62,7 +60,7 @@ class OptionsValidator(ConfigValidator):
 
         self.options = list(options)
 
-    def validate(self, value):
+    def validate(self, value) -> bool:
         return value in self.options
 
     def correct(self, value):
@@ -70,31 +68,31 @@ class OptionsValidator(ConfigValidator):
 
 
 class BoolValidator(OptionsValidator):
-    """ Boolean validator """
+    """Boolean validator"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__([True, False])
 
 
 class FolderValidator(ConfigValidator):
-    """ Folder validator """
+    """Folder validator"""
 
-    def validate(self, value):
+    def validate(self, value: Union[str, Path]) -> bool:
         return Path(value).exists()
 
-    def correct(self, value):
+    def correct(self, value: Union[str, Path]) -> str:
         path = Path(value)
         path.mkdir(exist_ok=True, parents=True)
         return str(path.absolute()).replace("\\", "/")
 
 
 class FolderListValidator(ConfigValidator):
-    """ Folder list validator """
+    """Folder list validator"""
 
-    def validate(self, value):
+    def validate(self, value: Sequence[Union[str, Path]]) -> bool:
         return all(Path(i).exists() for i in value)
 
-    def correct(self, value: List[str]):
+    def correct(self, value: Sequence[Union[str, Path]]) -> list[str]:
         folders = []
         for folder in value:
             path = Path(folder)
@@ -105,37 +103,37 @@ class FolderListValidator(ConfigValidator):
 
 
 class ColorValidator(ConfigValidator):
-    """ RGB color validator """
+    """RGB color validator"""
 
-    def __init__(self, default):
+    def __init__(self, default: Union[QColor, str]) -> None:
         self.default = QColor(default)
 
-    def validate(self, color):
+    def validate(self, value: Union[QColor, str]) -> bool:
         try:
-            return QColor(color).isValid()
+            return QColor(value).isValid()
         except:
             return False
 
-    def correct(self, value):
+    def correct(self, value: Union[QColor, str]) -> QColor:
         return QColor(value) if self.validate(value) else self.default
 
 
 class ConfigSerializer:
-    """ Config serializer """
+    """Config serializer"""
 
     def serialize(self, value):
-        """ serialize config value """
+        """serialize config value"""
         return value
 
     def deserialize(self, value):
-        """ deserialize config from config file's value """
+        """deserialize config from config file's value"""
         return value
 
 
 class EnumSerializer(ConfigSerializer):
-    """ enumeration class serializer """
+    """enumeration class serializer"""
 
-    def __init__(self, enumClass):
+    def __init__(self, enumClass) -> None:
         self.enumClass = enumClass
 
     def serialize(self, value):
@@ -146,12 +144,12 @@ class EnumSerializer(ConfigSerializer):
 
 
 class ColorSerializer(ConfigSerializer):
-    """ QColor serializer """
+    """QColor serializer"""
 
-    def serialize(self, value: QColor):
-        return value.name(QColor.HexArgb)
+    def serialize(self, value: QColor) -> str:
+        return value.name(QColor.NameFormat.HexArgb)
 
-    def deserialize(self, value):
+    def deserialize(self, value: Union[str, list, QColor]) -> QColor:
         if isinstance(value, list):
             return QColor(*value)
 
@@ -159,11 +157,19 @@ class ColorSerializer(ConfigSerializer):
 
 
 class ConfigItem(QObject):
-    """ Config item """
+    """Config item"""
 
     valueChanged = Signal(object)
 
-    def __init__(self, group, name, default, validator=None, serializer=None, restart=False):
+    def __init__(
+        self,
+        group: str,
+        name: str,
+        default: Any,
+        validator: Optional[ConfigValidator] = None,
+        serializer: Optional[ConfigSerializer] = None,
+        restart: bool = False,
+    ) -> None:
         """
         Parameters
         ----------
@@ -173,11 +179,11 @@ class ConfigItem(QObject):
         name: str
             config item name, can be empty
 
-        default:
+        default: Any
             default value
 
-        options: list
-            options value
+        validator: ConfigValidator
+            config validator object
 
         serializer: ConfigSerializer
             config serializer
@@ -196,69 +202,75 @@ class ConfigItem(QObject):
         self.defaultValue = self.validator.correct(default)
 
     @property
-    def value(self):
-        """ get the value of config item """
+    def value(self) -> Any:
+        """get the value of config item"""
         return self.__value
 
     @value.setter
-    def value(self, v):
-        v = self.validator.correct(v)
+    def value(self, value: Any) -> None:
+        v = self.validator.correct(value)
         ov = self.__value
         self.__value = v
         if ov != v:
             self.valueChanged.emit(v)
 
     @property
-    def key(self):
-        """ get the config key separated by `.` """
-        return self.group+"."+self.name if self.name else self.group
+    def key(self) -> str:
+        """get the config key separated by `.`"""
+        return self.group + "." + self.name if self.name else self.group
 
-    def __str__(self):
-        return f'{self.__class__.__name__}[value={self.value}]'
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}[value={self.value}]"
 
     def serialize(self):
         return self.serializer.serialize(self.value)
 
-    def deserializeFrom(self, value):
+    def deserializeFrom(self, value) -> None:
         self.value = self.serializer.deserialize(value)
 
 
 class RangeConfigItem(ConfigItem):
-    """ Config item of range """
+    """Config item of range"""
 
     @property
     def range(self):
-        """ get the available range of config """
+        """get the available range of config"""
         return self.validator.range
 
-    def __str__(self):
-        return f'{self.__class__.__name__}[range={self.range}, value={self.value}]'
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}[range={self.range}, value={self.value}]"
 
 
 class OptionsConfigItem(ConfigItem):
-    """ Config item with options """
+    """Config item with options"""
 
     @property
     def options(self):
         return self.validator.options
 
-    def __str__(self):
-        return f'{self.__class__.__name__}[options={self.options}, value={self.value}]'
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}[options={self.options}, value={self.value}]"
 
 
 class ColorConfigItem(ConfigItem):
-    """ Color config item """
+    """Color config item"""
 
-    def __init__(self, group, name, default, restart=False):
-        super().__init__(group, name, QColor(default), ColorValidator(default),
-                         ColorSerializer(), restart)
+    def __init__(self, group: str, name: str, default: Union[str, QColor], restart: bool = False) -> None:
+        super().__init__(
+            group,
+            name,
+            QColor(default),
+            ColorValidator(default),
+            ColorSerializer(),
+            restart,
+        )
 
-    def __str__(self):
-        return f'{self.__class__.__name__}[value={self.value.name()}]'
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}[value={self.value.name()}]"
 
 
 class QConfig(QObject):
-    """ Config of app """
+    """Config of app"""
 
     appRestartSig = Signal()
     themeChanged = Signal(Theme)
@@ -266,29 +278,48 @@ class QConfig(QObject):
     themeColorChanged = Signal(QColor)
 
     themeMode = OptionsConfigItem(
-        "QFluentWidgets", "ThemeMode", Theme.LIGHT, OptionsValidator(Theme), EnumSerializer(Theme))
-    themeColor = ColorConfigItem("QFluentWidgets", "ThemeColor", '#009faa')
-    fontFamilies = ConfigItem("QFluentWidgets", "FontFamilies", ['Segoe UI', 'Microsoft YaHei', 'PingFang SC'])
+        "QFluentWidgets",
+        "ThemeMode",
+        Theme.LIGHT,
+        OptionsValidator(Theme),
+        EnumSerializer(Theme),
+    )
+    themeColor = ColorConfigItem(
+        "QFluentWidgets",
+        "ThemeColor",
+        "#009faa",
+    )
+    fontFamilies = ConfigItem(
+        "QFluentWidgets",
+        "FontFamilies",
+        ["Segoe UI", "Microsoft YaHei", "PingFang SC"],
+    )
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.file = Path("config/config.json")
-        self._theme = Theme.LIGHT
+        self._theme: Theme = Theme.LIGHT
         self._cfg = self
 
-    def get(self, item):
-        """ get the value of config item """
+    def get(self, item: ConfigItem) -> Any:
+        """get the value of config item"""
         return item.value
 
-    def set(self, item, value, save=True, copy=True):
-        """ set the value of config item
+    def set(
+        self,
+        item: ConfigItem,
+        value: Any,
+        save: bool = True,
+        copy: bool = True,
+    ) -> None:
+        """set the value of config item
 
         Parameters
         ----------
         item: ConfigItem
             config item
 
-        value:
+        value: Any
             the new value of config item
 
         save: bool
@@ -319,8 +350,8 @@ class QConfig(QObject):
         if item is self._cfg.themeColor:
             self._cfg.themeColorChanged.emit(value)
 
-    def toDict(self, serialize=True):
-        """ convert config items to `dict` """
+    def toDict(self, serialize: bool = True) -> dict:
+        """convert config items to `dict`"""
         items = {}
         for name in dir(self._cfg.__class__):
             item = getattr(self._cfg.__class__, name)
@@ -339,22 +370,22 @@ class QConfig(QObject):
 
         return items
 
-    def save(self):
-        """ save config """
+    def save(self) -> None:
+        """save config"""
         self._cfg.file.parent.mkdir(parents=True, exist_ok=True)
-        with open(self._cfg.file, "w", encoding="utf-8") as f:
+        with self._cfg.file.open("w", encoding="utf-8") as f:
             json.dump(self._cfg.toDict(), f, ensure_ascii=False, indent=4)
 
     @exceptionHandler()
-    def load(self, file=None, config=None):
-        """ load config
+    def load(self, file: Optional[Union[str, Path]] = None, config: Optional["QConfig"] = None) -> None:
+        """load config
 
         Parameters
         ----------
         file: str or Path
-            the path of json config file
+            the path of JSON config file
 
-        config: Config
+        config: QConfig
             config object to be initialized
         """
         if isinstance(config, QConfig):
@@ -365,12 +396,12 @@ class QConfig(QObject):
             self._cfg.file = Path(file)
 
         try:
-            with open(self._cfg.file, encoding="utf-8") as f:
+            with self._cfg.file.open(encoding="utf-8") as f:
                 cfg = json.load(f)
         except:
             cfg = {}
 
-        # map config items'key to item
+        # map config item key to item
         items = {}
         for name in dir(self._cfg.__class__):
             item = getattr(self._cfg.__class__, name)
@@ -390,13 +421,13 @@ class QConfig(QObject):
         self.theme = self.get(self._cfg.themeMode)
 
     @property
-    def theme(self):
-        """ get theme mode, can be `Theme.Light` or `Theme.Dark` """
+    def theme(self) -> Theme:
+        """get theme mode, can be `Theme.Light` or `Theme.Dark`"""
         return self._cfg._theme
 
     @theme.setter
-    def theme(self, t):
-        """ chaneg the theme without modifying the config file """
+    def theme(self, t: Theme) -> None:
+        """change the theme without modifying the config file"""
         if t == Theme.AUTO:
             t = darkdetect.theme()
             t = Theme(t) if t else Theme.LIGHT
@@ -404,7 +435,7 @@ class QConfig(QObject):
         self._cfg._theme = t
 
 
-QT_VERSION = tuple([int(v) for v in qVersion().split('.')])
+QT_VERSION = tuple([int(v) for v in qVersion().split(".")])
 
 qconfig = QConfig()
 try:
@@ -413,14 +444,16 @@ except UnicodeEncodeError:
     print(ALERT.replace("📢", ""))
 
 
-def isDarkTheme():
-    """ whether the theme is dark mode """
+def isDarkTheme() -> bool:
+    """whether the theme is dark mode"""
     return qconfig.theme == Theme.DARK
 
-def theme():
-    """ get theme mode """
+
+def theme() -> Theme:
+    """get theme mode"""
     return qconfig.theme
 
-def isDarkThemeMode(theme=Theme.AUTO):
-    """ whether the theme is dark mode """
+
+def isDarkThemeMode(theme: Theme = Theme.AUTO) -> bool:
+    """whether the theme is dark mode"""
     return theme == Theme.DARK if theme != Theme.AUTO else isDarkTheme()

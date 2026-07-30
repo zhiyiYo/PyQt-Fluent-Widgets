@@ -1,5 +1,4 @@
-# coding:utf-8
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QPushButton
 
@@ -10,13 +9,13 @@ from .mask_dialog_base import MaskDialogBase
 
 
 class MessageBoxBase(MaskDialogBase):
-    """ Message box base """
+    """Message box base"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.buttonGroup = QFrame(self.widget)
-        self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
-        self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
+        self.yesButton = PrimaryPushButton(self.tr("OK"), self.buttonGroup)
+        self.cancelButton = QPushButton(self.tr("Cancel"), self.buttonGroup)
 
         self.vBoxLayout = QVBoxLayout(self.widget)
         self.viewLayout = QVBoxLayout()
@@ -32,10 +31,10 @@ class MessageBoxBase(MaskDialogBase):
         self.setMaskColor(QColor(0, 0, 0, 76))
 
         # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
-        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
-        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
-        
-        self.yesButton.setAttribute(Qt.WA_MacShowFocusRect, False)
+        self.yesButton.setAttribute(Qt.WidgetAttribute.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WidgetAttribute.WA_LayoutUsesWidgetRect)
+
+        self.yesButton.setAttribute(Qt.WidgetAttribute.WA_MacShowFocusRect, False)
 
         self.yesButton.setFocus()
         self.buttonGroup.setFixedHeight(81)
@@ -45,23 +44,39 @@ class MessageBoxBase(MaskDialogBase):
 
     def __initLayout(self):
         self._hBoxLayout.removeWidget(self.widget)
-        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
+        self._hBoxLayout.addWidget(
+            self.widget,
+            1,
+            Qt.AlignmentFlag.AlignCenter,
+        )
 
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.vBoxLayout.addLayout(self.viewLayout, 1)
-        self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(
+            self.buttonGroup,
+            0,
+            Qt.AlignmentFlag.AlignBottom,
+        )
 
         self.viewLayout.setSpacing(12)
         self.viewLayout.setContentsMargins(24, 24, 24, 24)
 
         self.buttonLayout.setSpacing(12)
         self.buttonLayout.setContentsMargins(24, 24, 24, 24)
-        self.buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
-        self.buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
+        self.buttonLayout.addWidget(
+            self.yesButton,
+            1,
+            Qt.AlignmentFlag.AlignVCenter,
+        )
+        self.buttonLayout.addWidget(
+            self.cancelButton,
+            1,
+            Qt.AlignmentFlag.AlignVCenter,
+        )
 
     def validate(self) -> bool:
-        """ validate the data of form before closing dialog
+        """validate the data of form before closing dialog
 
         Returns
         -------
@@ -78,8 +93,8 @@ class MessageBoxBase(MaskDialogBase):
             self.accept()
 
     def __setQss(self):
-        self.buttonGroup.setObjectName('buttonGroup')
-        self.cancelButton.setObjectName('cancelButton')
+        self.buttonGroup.setObjectName("buttonGroup")
+        self.cancelButton.setObjectName("cancelButton")
         FluentStyleSheet.DIALOG.apply(self)
 
     def hideYesButton(self):
@@ -89,4 +104,3 @@ class MessageBoxBase(MaskDialogBase):
     def hideCancelButton(self):
         self.cancelButton.hide()
         self.buttonLayout.insertStretch(0, 1)
-

@@ -1,18 +1,17 @@
-# coding:utf-8
-from typing import List, Union
+from typing import List
 
 from PySide6.QtCore import Qt, QModelIndex, Property
 from PySide6.QtGui import QPainter
-from PySide6.QtWidgets import QStyleOptionViewItem, QListView, QListView, QListWidget, QWidget
+from PySide6.QtWidgets import QStyleOptionViewItem, QListWidget, QWidget, QListView
 
 from .scroll_bar import SmoothScrollDelegate
 from .table_view import TableItemDelegate
-from ...common.style_sheet import FluentStyleSheet, themeColor
+from ...common.style_sheet import FluentStyleSheet
 from ...common.color import autoFallbackThemeColor
 
 
 class ListItemDelegate(TableItemDelegate):
-    """ List item delegate """
+    """List item delegate"""
 
     def __init__(self, parent: QListView):
         super().__init__(parent)
@@ -22,13 +21,12 @@ class ListItemDelegate(TableItemDelegate):
 
     def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
         y, h = option.rect.y(), option.rect.height()
-        ph = round(0.35*h if self.pressedRow == index.row() else 0.257*h)
+        ph = round(0.35 * h if self.pressedRow == index.row() else 0.257 * h)
         painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
-        painter.drawRoundedRect(0, ph + y, 3, h - 2*ph, 1.5, 1.5)
+        painter.drawRoundedRect(0, ph + y, 3, h - 2 * ph, 1.5, 1.5)
 
 
 class ListBase:
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.delegate = ListItemDelegate(self)
@@ -43,12 +41,12 @@ class ListBase:
         self.pressed.connect(lambda i: self._setPressedRow(i.row()))
 
     def _setHoverRow(self, row: int):
-        """ set hovered row """
+        """set hovered row"""
         self.delegate.setHoverRow(row)
         self.viewport().update()
 
     def _setPressedRow(self, row: int):
-        """ set pressed row """
+        """set pressed row"""
         if self.selectionMode() == QListView.SelectionMode.NoSelection:
             return
 
@@ -56,7 +54,7 @@ class ListBase:
         self.viewport().update()
 
     def _setSelectedRows(self, indexes: List[QModelIndex]):
-        if self.selectionMode() ==  QListView.SelectionMode.NoSelection:
+        if self.selectionMode() == QListView.SelectionMode.NoSelection:
             return
 
         self.delegate.setSelectedRows(indexes)
@@ -75,7 +73,7 @@ class ListBase:
         self.updateSelectedRows()
 
     def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton or self._isSelectRightClickedRow:
+        if e.button() == Qt.MouseButton.LeftButton or self._isSelectRightClickedRow:
             return QListView.mousePressEvent(self, e)
 
         index = self.indexAt(e.pos())
@@ -88,7 +86,7 @@ class ListBase:
         QListView.mouseReleaseEvent(self, e)
         self.updateSelectedRows()
 
-        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.RightButton:
+        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.MouseButton.RightButton:
             self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: ListItemDelegate):
@@ -107,7 +105,7 @@ class ListBase:
         self._setSelectedRows(self.selectedIndexes())
 
     def setCheckedColor(self, light, dark):
-        """ set the color in checked status
+        """set the color in checked status
 
         Parameters
         ----------
@@ -118,7 +116,7 @@ class ListBase:
 
 
 class ListWidget(ListBase, QListWidget):
-    """ List widget """
+    """List widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -144,7 +142,7 @@ class ListWidget(ListBase, QListWidget):
 
 
 class ListView(ListBase, QListView):
-    """ List view """
+    """List view"""
 
     def __init__(self, parent=None):
         super().__init__(parent)

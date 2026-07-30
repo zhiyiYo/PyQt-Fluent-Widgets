@@ -1,20 +1,18 @@
-# coding:utf-8
 from typing import Union
 import sys
 
-from PySide6.QtCore import Qt, QSize, QRectF, QEvent
-from PySide6.QtGui import QPixmap, QPainter, QColor, QIcon
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QGraphicsDropShadowEffect
+from PySide6.QtCore import Qt, QSize, QEvent
+from PySide6.QtGui import QPainter, QColor, QIcon
+from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
-from ..common.icon import FluentIconBase, drawIcon, toQIcon
+from ..common.icon import FluentIconBase, toQIcon
 from ..common.style_sheet import isDarkTheme, FluentStyleSheet
 from ..components.widgets import IconWidget
 from qframelesswindow import TitleBar
 
 
-
 class SplashScreen(QWidget):
-    """ Splash screen """
+    """Splash screen"""
 
     def __init__(self, icon: Union[str, QIcon, FluentIconBase], parent=None, enableShadow=True):
         super().__init__(parent=parent)
@@ -57,7 +55,7 @@ class SplashScreen(QWidget):
         return self._iconSize
 
     def setTitleBar(self, titleBar: QWidget):
-        """ set title bar """
+        """set title bar"""
         self.titleBar.deleteLater()
         self.titleBar = titleBar
         titleBar.setParent(self)
@@ -66,25 +64,25 @@ class SplashScreen(QWidget):
 
     def eventFilter(self, obj, e: QEvent):
         if obj is self.parent():
-            if e.type() == QEvent.Resize:
+            if e.type() == QEvent.Type.Resize:
                 self.resize(e.size())
-            elif e.type() == QEvent.ChildAdded:
+            elif e.type() == QEvent.Type.ChildAdded:
                 self.raise_()
 
         return super().eventFilter(obj, e)
 
     def resizeEvent(self, e):
         iw, ih = self.iconSize().width(), self.iconSize().height()
-        self.iconWidget.move(self.width()//2 - iw//2, self.height()//2 - ih//2)
+        self.iconWidget.move(self.width() // 2 - iw // 2, self.height() // 2 - ih // 2)
         self.titleBar.resize(self.width(), self.titleBar.height())
 
     def finish(self):
-        """ close splash screen """
+        """close splash screen"""
         self.close()
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setPen(Qt.NoPen)
+        painter.setPen(Qt.PenStyle.NoPen)
 
         # draw background
         c = 32 if isDarkTheme() else 255

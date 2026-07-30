@@ -1,9 +1,16 @@
-# coding:utf-8
-from enum import Enum
-from typing import List
+from typing import List, Optional
 
-from PySide6.QtCore import (QAbstractAnimation, QEasingCurve, QPoint, QPropertyAnimation,
-                          Signal, QParallelAnimationGroup, Qt, QSequentialAnimationGroup, QRect)
+from PySide6.QtCore import (
+    QAbstractAnimation,
+    QEasingCurve,
+    QPoint,
+    QPropertyAnimation,
+    Signal,
+    QParallelAnimationGroup,
+    Qt,
+    QSequentialAnimationGroup,
+    QRect,
+)
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QGraphicsOpacityEffect, QStackedWidget, QWidget, QLabel
 
@@ -11,20 +18,20 @@ from ...common.animation import FluentAnimation
 
 
 class OpacityAniStackedWidget(QStackedWidget):
-    """ Stacked widget with fade in and fade out animation """
+    """Stacked widget with fade in and fade out animation"""
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.__nextIndex = 0
-        self.__effects = []  # type:List[QPropertyAnimation]
-        self.__anis = []     # type:List[QPropertyAnimation]
+        self.__effects: List[QPropertyAnimation] = []
+        self.__anis: List[QPropertyAnimation] = []
 
     def addWidget(self, w: QWidget):
         super().addWidget(w)
 
         effect = QGraphicsOpacityEffect(self)
         effect.setOpacity(1)
-        ani = QPropertyAnimation(effect, b'opacity', self)
+        ani = QPropertyAnimation(effect, b"opacity", self)
         ani.setDuration(220)
         ani.finished.connect(self.__onAniFinished)
         self.__anis.append(ani)
@@ -58,7 +65,7 @@ class OpacityAniStackedWidget(QStackedWidget):
 
 
 class PopUpAniInfo:
-    """ Pop up ani info """
+    """Pop up ani info"""
 
     def __init__(self, widget: QWidget, deltaX: int, deltaY, ani: QPropertyAnimation):
         self.widget = widget
@@ -68,20 +75,20 @@ class PopUpAniInfo:
 
 
 class PopUpAniStackedWidget(QStackedWidget):
-    """ Stacked widget with pop up animation """
+    """Stacked widget with pop up animation"""
 
     aniFinished = Signal()
     aniStart = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.aniInfos = []  # type: List[PopUpAniInfo]
+        self.aniInfos: List[PopUpAniInfo] = []
         self.isAnimationEnabled = True
         self._nextIndex = None
         self._ani = None
 
     def addWidget(self, widget, deltaX=0, deltaY=76):
-        """ add widget to window
+        """add widget to window
 
         Parameters
         -----------
@@ -96,12 +103,14 @@ class PopUpAniStackedWidget(QStackedWidget):
         """
         super().addWidget(widget)
 
-        self.aniInfos.append(PopUpAniInfo(
-            widget=widget,
-            deltaX=deltaX,
-            deltaY=deltaY,
-            ani=QPropertyAnimation(widget, b'pos'),
-        ))
+        self.aniInfos.append(
+            PopUpAniInfo(
+                widget=widget,
+                deltaX=deltaX,
+                deltaY=deltaY,
+                ani=QPropertyAnimation(widget, b"pos"),
+            )
+        )
 
     def removeWidget(self, widget: QWidget):
         index = self.indexOf(widget)
@@ -115,16 +124,22 @@ class PopUpAniStackedWidget(QStackedWidget):
         """set whether the pop animation is enabled"""
         self.isAnimationEnabled = isEnabled
 
-    def setCurrentIndex(self, index: int, needPopOut: bool = False, showNextWidgetDirectly: bool = True,
-                        duration: int = 250, easingCurve=QEasingCurve.OutQuad):
-        """ set current window to display
+    def setCurrentIndex(
+        self,
+        index: int,
+        needPopOut: bool = False,
+        showNextWidgetDirectly: bool = True,
+        duration: int = 250,
+        easingCurve=QEasingCurve.Type.OutQuad,
+    ):
+        """set current window to display
 
         Parameters
         ----------
         index: int
             the index of widget to display
 
-        isNeedPopOut: bool
+        needPopOut: bool
             need pop up animation or not
 
         showNextWidgetDirectly: bool
@@ -133,19 +148,19 @@ class PopUpAniStackedWidget(QStackedWidget):
         duration: int
             animation duration
 
-        easingCurve: QEasingCurve
+        easingCurve: QEasingCurve.Type
             the interpolation mode of animation
         """
         if index < 0 or index >= self.count():
-            raise Exception(f'The index `{index}` is illegal')
+            raise Exception(f"The index `{index}` is illegal")
 
         if index == self.currentIndex():
-            return
+            return None
 
         if not self.isAnimationEnabled:
             return super().setCurrentIndex(index)
 
-        if self._ani and self._ani.state() == QAbstractAnimation.Running:
+        if self._ani and self._ani.state() == QAbstractAnimation.State.Running:
             self._ani.stop()
             self.__onAniFinished()
 
@@ -164,12 +179,24 @@ class PopUpAniStackedWidget(QStackedWidget):
         if needPopOut:
             deltaX, deltaY = currentAniInfo.deltaX, currentAniInfo.deltaY
             pos = currentWidget.pos() + QPoint(deltaX, deltaY)
-            self.__setAnimation(ani, currentWidget.pos(), pos, duration, easingCurve)
+            self.__setAnimation(
+                ani,
+                currentWidget.pos(),
+                pos,
+                duration,
+                easingCurve,
+            )
             nextWidget.setVisible(showNextWidgetDirectly)
         else:
             deltaX, deltaY = nextAniInfo.deltaX, nextAniInfo.deltaY
             pos = nextWidget.pos() + QPoint(deltaX, deltaY)
-            self.__setAnimation(ani, pos, QPoint(nextWidget.x(), 0), duration, easingCurve)
+            self.__setAnimation(
+                ani,
+                pos,
+                QPoint(nextWidget.x(), 0),
+                duration,
+                easingCurve,
+            )
             super().setCurrentIndex(index)
 
         # start animation
@@ -177,16 +204,22 @@ class PopUpAniStackedWidget(QStackedWidget):
         ani.start()
         self.aniStart.emit()
 
-    def setCurrentWidget(self, widget, needPopOut: bool = False, showNextWidgetDirectly: bool = True,
-                         duration: int = 250, easingCurve=QEasingCurve.OutQuad):
-        """ set currect widget
+    def setCurrentWidget(
+        self,
+        widget,
+        needPopOut: bool = False,
+        showNextWidgetDirectly: bool = True,
+        duration: int = 250,
+        easingCurve=QEasingCurve.Type.OutQuad,
+    ):
+        """set current widget
 
         Parameters
         ----------
         widget:
             the widget to be displayed
 
-        isNeedPopOut: bool
+        needPopOut: bool
             need pop up animation or not
 
         showNextWidgetDirectly: bool
@@ -195,28 +228,39 @@ class PopUpAniStackedWidget(QStackedWidget):
         duration: int
             animation duration
 
-        easingCurve: QEasingCurve
+        easingCurve: QEasingCurve.Type
             the interpolation mode of animation
         """
         self.setCurrentIndex(
-            self.indexOf(widget), needPopOut, showNextWidgetDirectly, duration, easingCurve)
+            self.indexOf(widget),
+            needPopOut,
+            showNextWidgetDirectly,
+            duration,
+            easingCurve,
+        )
 
-    def __setAnimation(self, ani, startValue, endValue, duration, easingCurve=QEasingCurve.Linear):
-        """ set the config of animation """
+    def __setAnimation(
+        self,
+        ani,
+        startValue,
+        endValue,
+        duration,
+        easingCurve: QEasingCurve.Type = QEasingCurve.Type.Linear,
+    ):
+        """set the config of animation"""
         ani.setEasingCurve(easingCurve)
         ani.setStartValue(startValue)
         ani.setEndValue(endValue)
         ani.setDuration(duration)
 
     def __onAniFinished(self):
-        """ animation finished slot """
+        """animation finished slot"""
         self._ani.finished.disconnect()
         super().setCurrentIndex(self._nextIndex)
         self.aniFinished.emit()
 
 
 class TransitionStackedWidget(QStackedWidget):
-
     aniFinished = Signal()
     aniStart = Signal()
 
@@ -231,11 +275,11 @@ class TransitionStackedWidget(QStackedWidget):
         self._aniGroup.finished.connect(self._onAniFinished)
 
     def setAnimationEnabled(self, isEnabled: bool):
-        """ set whether the transition animation is enabled """
+        """set whether the transition animation is enabled"""
         self._isAnimationEnabled = isEnabled
 
     def isAnimationEnabled(self) -> bool:
-        """ return whether the transition animation is enabled """
+        """return whether the transition animation is enabled"""
         return self._isAnimationEnabled
 
     def addWidget(self, w):
@@ -246,8 +290,8 @@ class TransitionStackedWidget(QStackedWidget):
         w.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         return super().insertWidget(index, w)
 
-    def setCurrentWidget(self, widget: QWidget, duration: int = None, isBack: bool = False):
-        """ set current page widget with transition animation
+    def setCurrentWidget(self, widget: QWidget, duration: Optional[int] = None, isBack: bool = False):
+        """set current page widget with transition animation
 
         Parameters
         ----------
@@ -262,8 +306,8 @@ class TransitionStackedWidget(QStackedWidget):
         """
         self.setCurrentIndex(self.indexOf(widget), duration, isBack)
 
-    def setCurrentIndex(self, index: int, duration: int = None, isBack: bool = False):
-        """ set current page index with transition animation
+    def setCurrentIndex(self, index: int, duration: Optional[int] = None, isBack: bool = False):
+        """set current page index with transition animation
 
         Parameters
         ----------
@@ -277,10 +321,10 @@ class TransitionStackedWidget(QStackedWidget):
             whether this is a back navigation
         """
         if index < 0 or index >= self.count():
-            return
+            return None
 
         if index == self.currentIndex():
-            return
+            return None
 
         if not self.isAnimationEnabled():
             return super().setCurrentIndex(index)
@@ -296,12 +340,12 @@ class TransitionStackedWidget(QStackedWidget):
         self._aniGroup.start()
         self.aniStart.emit()
 
-    def _setUpTransitionAnimation(self, nextIndex: int, duration: int, isBack: bool):
-        """ Set up transition animation """
+    def _setUpTransitionAnimation(self, nextIndex: int, duration: Optional[int], isBack: bool):
+        """Set up transition animation"""
         raise NotImplementedError
 
     def _stopAnimation(self):
-        """ stop running animation """
+        """stop running animation"""
         if self._aniGroup.state() != QAbstractAnimation.State.Running:
             return
 
@@ -347,21 +391,20 @@ class TransitionStackedWidget(QStackedWidget):
 
 
 class EntranceTransitionStackedWidget(TransitionStackedWidget):
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.outDuration = 150
         self.offset = 140
 
-        self.currentFadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b'opacity', self)
-        self.currentSlideOutAni = QPropertyAnimation(self._currentSnapshot, b'pos', self)
-        self.nextSlideInAni = QPropertyAnimation(self, b'pos', self)
+        self.currentFadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b"opacity", self)
+        self.currentSlideOutAni = QPropertyAnimation(self._currentSnapshot, b"pos", self)
+        self.nextSlideInAni = QPropertyAnimation(self, b"pos", self)
 
         self.nextWidgetAniGroup = QSequentialAnimationGroup(self)
 
         self._aniGroup.addAnimation(self.nextWidgetAniGroup)
 
-    def _setUpTransitionAnimation(self, nextIndex, duration, isBack):
+    def _setUpTransitionAnimation(self, nextIndex, duration: Optional[int], isBack):
         inDuration = duration or 300
         inCurve = FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0)
         outCurve = FluentAnimation.createBezierCurve(0.7, 0.0, 1.0, 0.5)
@@ -398,7 +441,7 @@ class EntranceTransitionStackedWidget(TransitionStackedWidget):
             self.nextWidgetAniGroup.removeAnimation(self.nextSlideInAni)
 
         pauseAni = self.nextWidgetAniGroup.addPause(self.outDuration)
-        pauseAni.finished.connect(lambda: nextWidget.show())
+        pauseAni.finished.connect(nextWidget.show)
 
         if not isBack:
             # slide in next widget
@@ -415,15 +458,16 @@ class EntranceTransitionStackedWidget(TransitionStackedWidget):
 
 
 class DrillInTransitionStackedWidget(TransitionStackedWidget):
-
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.currentScaleOutAni = QPropertyAnimation(self._currentSnapshot, b'geometry', self)
-        self.currentFadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b'opacity', self)
-        self.nextScaleInAni = QPropertyAnimation(self._nextSnapshot, b'geometry', self)
-        self.nextFadeInAni = QPropertyAnimation(self._nextSnapshot.graphicsEffect(), b'opacity', self)
+        self.currentScaleOutAni = QPropertyAnimation(self._currentSnapshot, b"geometry", self)
+        self.currentFadeOutAni = QPropertyAnimation(self._currentSnapshot.graphicsEffect(), b"opacity", self)
+        self.nextScaleInAni = QPropertyAnimation(self._nextSnapshot, b"geometry", self)
+        self.nextFadeInAni = QPropertyAnimation(self._nextSnapshot.graphicsEffect(), b"opacity", self)
 
-    def _setUpTransitionAnimation(self, nextIndex, duration, isBack):
+    def _setUpTransitionAnimation(self, nextIndex, duration: Optional[int], isBack):
+        inDuration = duration or 333
+        outDuration = 100
         scaleCurve = FluentAnimation.createBezierCurve(0.1, 0.9, 0.2, 1.0)
         opacityCurve = FluentAnimation.createBezierCurve(0.17, 0.17, 0.0, 1.0)
         backScaleCurve = FluentAnimation.createBezierCurve(0.12, 0.0, 0.0, 1.0)
@@ -431,15 +475,10 @@ class DrillInTransitionStackedWidget(TransitionStackedWidget):
         if isBack:
             inScale = 1.06
             outScale = 0.96
-            inDuration = duration or 333
-            outDuration = 100
             inScaleCurve = backScaleCurve
         else:
             inScale = 0.94
             outScale = 1.04
-            # shortened from 783ms to 333ms for better responsiveness
-            inDuration = duration or 333
-            outDuration = 100
             inScaleCurve = scaleCurve
 
         currentWidget = self.currentWidget()

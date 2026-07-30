@@ -1,17 +1,17 @@
-# coding: utf-8
 from enum import Enum
 
 from PySide6.QtGui import QColor
 
-from .style_sheet import themeColor, Theme, isDarkTheme
 from .config import isDarkThemeMode
+from .style_sheet import Theme, isDarkTheme, themeColor
 
 
 class FluentThemeColor(Enum):
-    """ Fluent theme color
+    """Fluent theme color
 
     Refer to: https://www.figma.com/file/iM7EPX8Jn37zjeSezb43cF
     """
+
     YELLOW_GOLD = "#FFB900"
     GOLD = "#FF8C00"
     ORANGE_BRIGHT = "#F7630C"
@@ -26,7 +26,7 @@ class FluentThemeColor(Enum):
     ROSE = "#C30052"
     PLUM_LIGHT = "#E3008C"
     PLUM = "#BF0077"
-    ORCHID_LIGHT = "#BF0077"
+    ORCHID_LIGHT = "#C239B3"
     ORCHID = "#9A0089"
     DEFAULT_BLUE = "#0078D7"
     NAVY_BLUE = "#0063B1"
@@ -61,13 +61,11 @@ class FluentThemeColor(Enum):
     CAMOUFLAGE_DESERT = "#847545"
     CAMOUFLAGE = "#7E735F"
 
-    def color(self):
+    def color(self) -> QColor:
         return QColor(self.value)
 
 
-
 class FluentSystemColor(Enum):
-
     SUCCESS_FOREGROUND = ("#0f7b0f", "#6ccb5f")
     CAUTION_FOREGROUND = ("#9d5d00", "#fce100")
     CRITICAL_FOREGROUND = ("#c42b1c", "#ff99a4")
@@ -76,20 +74,19 @@ class FluentSystemColor(Enum):
     CAUTION_BACKGROUND = ("#fff4ce", "#433519")
     CRITICAL_BACKGROUND = ("#fde7e9", "#442726")
 
-    def color(self, theme=Theme.AUTO) -> QColor:
+    def color(self, theme: Theme = Theme.AUTO) -> QColor:
         color = self.value[1] if isDarkThemeMode(theme) else self.value[0]
         return QColor(color)
-
 
 
 def validColor(color: QColor, default: QColor) -> QColor:
     return color if color.isValid() else default
 
 
-def fallbackThemeColor(color: QColor):
+def fallbackThemeColor(color: QColor) -> QColor:
     return color if color.isValid() else themeColor()
 
 
-def autoFallbackThemeColor(light: QColor, dark: QColor):
+def autoFallbackThemeColor(light: QColor, dark: QColor) -> QColor:
     color = dark if isDarkTheme() else light
     return fallbackThemeColor(color)

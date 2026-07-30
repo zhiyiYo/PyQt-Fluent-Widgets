@@ -1,5 +1,4 @@
-# coding:utf-8
-from typing import Union
+from typing import Union, Optional
 
 from PySide6.QtCore import Property
 from PySide6.QtGui import QIcon, QPainter
@@ -10,12 +9,12 @@ from ...common.overload import singledispatchmethod
 
 
 class IconWidget(QWidget):
-    """ Icon widget
+    """Icon widget
 
     Constructors
     ------------
-    * IconWidget(`parent`: QWidget = None)
-    * IconWidget(`icon`: QIcon | str | FluentIconBase, `parent`: QWidget = None)
+    * IconWidget(`parent`: Optional[QWidget] = None)
+    * IconWidget(`icon`: QIcon | str | FluentIconBase, `parent`: Optional[QWidget] = None)
     """
 
     @singledispatchmethod
@@ -24,17 +23,17 @@ class IconWidget(QWidget):
         self.setIcon(QIcon())
 
     @__init__.register
-    def _(self, icon: FluentIconBase, parent: QWidget = None):
+    def _(self, icon: FluentIconBase, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: QIcon, parent: QWidget = None):
+    def _(self, icon: QIcon, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
     @__init__.register
-    def _(self, icon: str, parent: QWidget = None):
+    def _(self, icon: str, parent: Optional[QWidget] = None):
         self.__init__(parent)
         self.setIcon(icon)
 
@@ -47,7 +46,7 @@ class IconWidget(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing | QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
         drawIcon(self._icon, painter, self.rect())
 
     icon = Property(QIcon, getIcon, setIcon)

@@ -1,24 +1,19 @@
-# coding:utf-8
-from math import floor
 from io import BytesIO
-from typing import Union
+from math import floor
+from typing import Tuple, Union
 
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
+from PySide6.QtCore import QBuffer, QIODevice
 from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtCore import QIODevice, QBuffer
 from scipy.ndimage.filters import gaussian_filter
 
 from .exception_handler import exceptionHandler
 
 
-
-def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
-    if isinstance(image, str) and not image.startswith(':'):
-        image = Image.open(image)
-    else:
-        image = fromqpixmap(QPixmap(image))
+def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize=None):
+    image = Image.open(image) if isinstance(image, str) and not image.startswith(":") else fromqpixmap(QPixmap(image))
 
     if blurPicSize:
         # adjust image size to reduce computation
@@ -37,17 +32,15 @@ def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize= None):
 
     # blur each channel
     for i in range(3):
-        image[:, :, i] = gaussian_filter(
-            image[:, :, i], blurRadius) * brightFactor
+        image[:, :, i] = gaussian_filter(image[:, :, i], blurRadius) * brightFactor
 
     # convert ndarray to QPixmap
     h, w, c = image.shape
+    image_format = QImage.Format.Format_RGBA8888
     if c == 3:
-        format = QImage.Format_RGB888
-    else:
-        format = QImage.Format_RGBA8888
+        image_format = QImage.Format.Format_RGB888
 
-    return QPixmap.fromImage(QImage(image.data, w, h, c*w, format))
+    return QPixmap.fromImage(QImage(image.data, w, h, c * w, image_format))
 
 
 # https://github.com/python-pillow/Pillow/blob/main/src/PIL/ImageQt.py
@@ -74,12 +67,12 @@ def fromqpixmap(im: Union[QImage, QPixmap]):
 
 
 class DominantColor:
-    """ Dominant color class """
+    """Dominant color class"""
 
     @classmethod
     @exceptionHandler((24, 24, 24))
     def getDominantColor(cls, imagePath):
-        """ extract dominant color from image
+        """extract dominant color from image
 
         Parameters
         ----------
@@ -91,8 +84,8 @@ class DominantColor:
         r, g, b: int
             gray value of each color channel
         """
-        if imagePath.startswith(':'):
-            return (24, 24, 24)
+        if imagePath.startswith(":"):
+            return 24, 24, 24
 
         colorThief = ColorThief(imagePath)
 
@@ -105,20 +98,20 @@ class DominantColor:
         # adjust the brightness of palette
         palette = cls.__adjustPaletteValue(palette)
         for rgb in palette[:]:
-            h, s, v = cls.rgb2hsv(rgb)
+            h, _, _ = cls.rgb2hsv(rgb)
             if h < 0.02:
                 palette.remove(rgb)
                 if len(palette) <= 2:
                     break
 
         palette = palette[:5]
-        palette.sort(key=lambda rgb: cls.colorfulness(*rgb), reverse=True)
+        palette.sort(key=lambda _rgb: cls.colorfulness(*_rgb), reverse=True)
 
         return palette[0]
 
     @classmethod
     def __adjustPaletteValue(cls, palette):
-        """ adjust the brightness of palette """
+        """adjust the brightness of palette"""
         newPalette = []
         for rgb in palette:
             h, s, v = cls.rgb2hsv(rgb)
@@ -136,14 +129,14 @@ class DominantColor:
         return newPalette
 
     @staticmethod
-    def rgb2hsv(rgb):
-        """ convert rgb to hsv """
+    def rgb2hsv(rgb: Tuple[int, int, int]) -> Tuple[float, float, float]:
+        """convert rgb to hsv"""
         r, g, b = [i / 255 for i in rgb]
-        mx = max(r, g, b)
-        mn = min(r, g, b)
-        df = mx - mn
+        mx: float = max(r, g, b)
+        mn: float = min(r, g, b)
+        df: float = mx - mn
         if mx == mn:
-            h = 0
+            return 0, 0, mx
         elif mx == r:
             h = (60 * ((g - b) / df) + 360) % 360
         elif mx == g:
@@ -152,11 +145,11 @@ class DominantColor:
             h = (60 * ((r - g) / df) + 240) % 360
         s = 0 if mx == 0 else df / mx
         v = mx
-        return (h, s, v)
+        return h, s, v
 
     @staticmethod
-    def hsv2rgb(h, s, v):
-        """ convert hsv to rgb """
+    def hsv2rgb(h, s, v) -> Tuple[int, int, int]:
+        """convert hsv to rgb"""
         h60 = h / 60.0
         h60f = floor(h60)
         hi = int(h60f) % 6
@@ -178,7 +171,7 @@ class DominantColor:
         elif hi == 5:
             r, g, b = v, p, q
         r, g, b = int(r * 255), int(g * 255), int(b * 255)
-        return (r, g, b)
+        return r, g, b
 
     @staticmethod
     def colorfulness(r: int, g: int, b: int):
@@ -190,9 +183,7 @@ class DominantColor:
         yb_mean, yb_std = (np.mean(yb), np.std(yb))
 
         # Combine the mean and standard deviations.
-        std_root = np.sqrt((rg_std ** 2) + (yb_std ** 2))
-        mean_root = np.sqrt((rg_mean ** 2) + (yb_mean ** 2))
+        std_root = np.sqrt((rg_std**2) + (yb_std**2))
+        mean_root = np.sqrt((rg_mean**2) + (yb_mean**2))
 
         return std_root + (0.3 * mean_root)
-
-

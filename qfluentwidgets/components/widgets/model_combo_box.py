@@ -1,12 +1,12 @@
-# coding:utf-8
+import contextlib
 import sys
-from typing import Union, List, Iterable
+from typing import Union, Iterable, Optional
 
-from PySide6.QtCore import Qt, Signal, QRectF, QPoint, QObject, QEvent, QModelIndex, QAbstractItemModel
+from PySide6.QtCore import Qt, Signal, QRectF, QPoint, QEvent, QModelIndex, QAbstractItemModel
 from PySide6.QtGui import QPainter, QCursor, QIcon, QStandardItemModel, QStandardItem, QAction
 from PySide6.QtWidgets import QPushButton, QApplication
 
-from .menu import RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
+from .menu import MenuAnimationType
 from .line_edit import LineEdit, LineEditButton
 from .combo_box import ComboBoxMenu
 from ...common.animation import TranslateYAnimation
@@ -17,7 +17,7 @@ from ...common.style_sheet import FluentStyleSheet
 
 
 class ModelComboBoxBase:
-    """ Abstract combo box build in data model """
+    """Abstract combo box build in data model"""
 
     currentIndexChanged = Signal(int)
     currentTextChanged = Signal(str)
@@ -34,7 +34,7 @@ class ModelComboBoxBase:
         self._maxVisibleItems = -1
         self.dropMenu = None
         self._placeholderText = ""
-        self._model = None  # type: QAbstractItemModel
+        self._model: QAbstractItemModel = None
 
         self.setModel(QStandardItemModel(self))
 
@@ -87,10 +87,9 @@ class ModelComboBoxBase:
 
         return super().eventFilter(obj, e)
 
-    def insertItem(self, index: int, text: str, userData=None, icon: QIcon = None):
-        """ Inserts item into the combobox at the given index. """
-        values = {}
-        values[Qt.ItemDataRole.EditRole] = text
+    def insertItem(self, index: int, text: str, userData=None, icon: Optional[QIcon] = None):
+        """Inserts item into the combobox at the given index."""
+        values = {Qt.ItemDataRole.EditRole: text}
 
         if icon:
             values[Qt.ItemDataRole.DecorationRole] = icon
@@ -106,13 +105,12 @@ class ModelComboBoxBase:
         return modelIndex
 
     def insertItems(self, index: int, texts: Iterable[str]):
-        """ Inserts items into the combobox, starting at the index specified. """
+        """Inserts items into the combobox, starting at the index specified."""
         self.blockSignals(True)
 
         row = index
         for text in texts:
-            values = {}
-            values[Qt.ItemDataRole.EditRole] = text
+            values = {Qt.ItemDataRole.EditRole: text}
             self._insertItemFromValues(index, values)
             row += 1
 
@@ -142,8 +140,8 @@ class ModelComboBoxBase:
         self.model().blockSignals(False)
         return ret
 
-    def addItem(self, text: str, userData=None, icon: QIcon = None):
-        """ add item
+    def addItem(self, text: str, userData=None, icon: Optional[QIcon] = None):
+        """add item
 
         Parameters
         ----------
@@ -157,18 +155,18 @@ class ModelComboBoxBase:
             self.setCurrentIndex(0)
 
     def addItems(self, texts: Iterable[str]):
-        """ add items
+        """add items
 
         Parameters
         ----------
-        text: Iterable[str]
+        texts: Iterable[str]
             the text of item
         """
         for text in texts:
             self.addItem(text)
 
     def removeItem(self, index: int):
-        """ Removes the item at the given index from the combobox.
+        """Removes the item at the given index from the combobox.
         This will update the current index if the index is removed.
         """
         if not self._isValidIndex(index):
@@ -195,7 +193,7 @@ class ModelComboBoxBase:
         return self._currentIndex
 
     def setCurrentIndex(self, index: int):
-        """ set current index
+        """set current index
 
         Parameters
         ----------
@@ -226,7 +224,7 @@ class ModelComboBoxBase:
         return self.itemData(self.currentIndex())
 
     def setCurrentText(self, text):
-        """ set the current text displayed in combo box,
+        """set the current text displayed in combo box,
         text should be in the item list
 
         Parameters
@@ -242,7 +240,7 @@ class ModelComboBoxBase:
             self.setCurrentIndex(index)
 
     def setItemText(self, index: int, text: str):
-        """ set the text of item
+        """set the text of item
 
         Parameters
         ----------
@@ -263,15 +261,15 @@ class ModelComboBoxBase:
                 self.currentTextChanged.emit(text)
 
     def itemData(self, index: int):
-        """ Returns the data in the given index """
+        """Returns the data in the given index"""
         return self.model().data(self.model().index(index, 0), Qt.ItemDataRole.UserRole)
 
-    def itemText(self, index: int):
-        """ Returns the text in the given index """
+    def itemText(self, index: int) -> str:
+        """Returns the text in the given index"""
         return self.model().data(self.model().index(index, 0), Qt.ItemDataRole.EditRole) or ""
 
     def itemIcon(self, index: int):
-        """ Returns the icon in the given index """
+        """Returns the icon in the given index"""
         return self.model().data(self.model().index(index, 0), Qt.ItemDataRole.DecorationRole) or QIcon()
 
     def setItemData(self, index: int, value, role=Qt.ItemDataRole.UserRole):
@@ -279,14 +277,14 @@ class ModelComboBoxBase:
             self.model().setData(self.model().index(index, 0), value, role)
 
     def setItemIcon(self, index: int, icon: Union[str, QIcon, FluentIconBase]):
-        """ Sets the data role for the item on the given index """
+        """Sets the data role for the item on the given index"""
         self.setItemData(index, icon, Qt.ItemDataRole.DecorationRole)
 
     def _isValidIndex(self, index: int):
         return 0 <= index < self.count()
 
     def findData(self, data, role=Qt.ItemDataRole.UserRole, flags=Qt.MatchFlag.MatchExactly) -> int:
-        """ Returns the index of the item containing the given data for the given role; otherwise returns -1. """
+        """Returns the index of the item containing the given data for the given role; otherwise returns -1."""
         mi = self.model().index(0, 0)
         result = self.model().match(mi, role, data, -1, flags | Qt.MatchFlag.MatchRecursive)
         for i in result:
@@ -295,13 +293,13 @@ class ModelComboBoxBase:
         return -1
 
     def findText(self, text: str, flags=Qt.MatchFlag.MatchExactly):
-        """ Returns the index of the item containing the given text; otherwise returns -1. """
+        """Returns the index of the item containing the given text; otherwise returns -1."""
         return self.findData(text, Qt.ItemDataRole.EditRole, flags)
 
     def clear(self):
-        """ Clears the combobox, removing all items. """
+        """Clears the combobox, removing all items."""
         if self.currentIndex() >= 0:
-            self.setText('')
+            self.setText("")
 
         self.model().blockSignals(True)
         self.model().clear()
@@ -309,15 +307,15 @@ class ModelComboBoxBase:
         self.model().blockSignals(False)
 
     def count(self):
-        """ Returns the number of items in the combobox """
+        """Returns the number of items in the combobox"""
         return self.model().rowCount()
 
     def setMaxVisibleItems(self, num: int):
-        """ Set the maximum allowed size on screen of the combo box, measured in items, set to -1 indicates no restriction """
+        """Set the maximum allowed size on screen of the combo box, measured in items, set to -1 indicates no restriction"""
         self._maxVisibleItems = num
 
     def maxVisibleItems(self):
-        """ Returns the maximum allowed size on screen of the combo box, measured in items """
+        """Returns the maximum allowed size on screen of the combo box, measured in items"""
         return self._maxVisibleItems
 
     def _closeComboMenu(self):
@@ -325,10 +323,8 @@ class ModelComboBoxBase:
             return
 
         # drop menu could be deleted before this method
-        try:
+        with contextlib.suppress(BaseException):
             self.dropMenu.close()
-        except:
-            pass
 
         self.dropMenu = None
 
@@ -349,8 +345,11 @@ class ModelComboBoxBase:
 
         menu = self._createComboMenu()
         for i in range(self.count()):
-            action = QAction(self.itemIcon(i), self.itemText(i),
-                             triggered=lambda c=True, x=i: self._onItemClicked(x))
+            action = QAction(
+                self.itemIcon(i),
+                self.itemText(i),
+            )
+            action.triggered.connect(lambda: self._onItemClicked(i))
             menu.addAction(action)
 
         if menu.view.width() < self.width():
@@ -367,7 +366,7 @@ class ModelComboBoxBase:
             menu.setDefaultAction(menu.actions()[self.currentIndex()])
 
         # determine the animation type by choosing the maximum height of view
-        x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
+        x = -menu.width() // 2 + menu.layout().contentsMargins().left() + self.width() // 2
         pd = self.mapToGlobal(QPoint(x, self.height()))
         hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
@@ -396,7 +395,7 @@ class ModelComboBoxBase:
 
 
 class ModelComboBox(QPushButton, ModelComboBoxBase):
-    """ Combo box build in data model """
+    """Combo box build in data model"""
 
     currentIndexChanged = Signal(int)
     currentTextChanged = Signal(str)
@@ -474,13 +473,13 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
     def paintEvent(self, e):
         QPushButton.paintEvent(self, e)
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
         if self.isHover:
             painter.setOpacity(0.8)
         elif self.isPressed:
             painter.setOpacity(0.7)
 
-        rect = QRectF(self.width()-22, self.height()/2-5+self.arrowAni.y, 10, 10)
+        rect = QRectF(self.width() - 22, self.height() / 2 - 5 + self.arrowAni.y, 10, 10)
         if isDarkTheme():
             FIF.ARROW_DOWN.render(painter, rect)
         else:
@@ -488,7 +487,7 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
 
 
 class EditableModelComboBox(LineEdit, ModelComboBoxBase):
-    """ Editable combo box build in data model """
+    """Editable combo box build in data model"""
 
     currentIndexChanged = Signal(int)
     currentTextChanged = Signal(str)

@@ -1,10 +1,8 @@
-# coding:utf-8
 from copy import deepcopy
 
 
-
 def exceptionHandler(*default):
-    """ decorator for exception handling
+    """decorator for exception handling
 
     Parameters
     ----------
@@ -17,11 +15,11 @@ def exceptionHandler(*default):
         def inner(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            except BaseException as e:
+            except BaseException:
                 value = deepcopy(default)
                 if len(value) == 0:
                     return None
-                elif len(value) == 1:
+                if len(value) == 1:
                     return value[0]
 
                 return value

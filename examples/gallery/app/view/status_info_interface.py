@@ -60,7 +60,7 @@ class StatusInfoInterface(GalleryInterface):
         w.setLayout(QHBoxLayout())
         w.layout().addWidget(InfoBadge.info(1))
         w.layout().addWidget(InfoBadge.success(10))
-        w.layout().addWidget(InfoBadge.attension(100))
+        w.layout().addWidget(InfoBadge.attention(100))
         w.layout().addWidget(InfoBadge.warning(1000))
         w.layout().addWidget(InfoBadge.error(10000))
         w.layout().addWidget(InfoBadge.custom('1w+', '#005fb8', '#60cdff'))

@@ -1,25 +1,24 @@
-# coding: utf-8
 from math import ceil
-from collections import defaultdict, Counter
 from typing import Type
 
-from PySide6.QtCore import Qt, Signal, QSize, QDate, QCalendar, QLocale
+from PySide6.QtCore import Qt, Signal, QSize, QDate, QCalendar
 from PySide6.QtGui import QPainter, QColor
 from PySide6.QtWidgets import QHBoxLayout, QListWidgetItem, QLabel, QWidget, QStackedWidget, QStyle
 
+from .calendar_view import (
+    ScrollItemDelegate,
+    ScrollViewBase,
+    CalendarViewBase,
+)
 from ..widgets.flyout import FlyoutViewBase
 from ...common.style_sheet import isDarkTheme, themeColor, ThemeColor
 
 
-from .calendar_view import (ScrollItemDelegate, ScrollViewBase,
-                            CalendarViewBase)
-
-
 class FastScrollItemDelegate(ScrollItemDelegate):
-    """ Fast scroll item delegate """
+    """Fast scroll item delegate"""
 
-    def __init__(self, min, max):
-        super().__init__(min, max)
+    def __init__(self, minValue, maxValue):
+        super().__init__(minValue, maxValue)
         self.selectedDate = None
         self.currentDate = QDate.currentDate()
 
@@ -30,7 +29,7 @@ class FastScrollItemDelegate(ScrollItemDelegate):
         self.currentDate = date
 
     def _drawBackground(self, painter, option, index):
-        date = index.data(Qt.UserRole)
+        date = index.data(Qt.ItemDataRole.UserRole)
         if not date:
             return
 
@@ -63,7 +62,7 @@ class FastScrollItemDelegate(ScrollItemDelegate):
         painter.restore()
 
     def _drawText(self, painter, option, index):
-        date = index.data(Qt.UserRole)
+        date = index.data(Qt.ItemDataRole.UserRole)
         if not date:
             return
 
@@ -74,33 +73,34 @@ class FastScrollItemDelegate(ScrollItemDelegate):
             c = 0 if isDarkTheme() else 255
             painter.setPen(QColor(c, c, c))
         else:
-            painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-            if not (self.min <= date <= self.max or option.state & QStyle.State_MouseOver) or \
-                    index == self.pressedIndex:
+            painter.setPen(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
+            if (
+                not (self.min <= date <= self.max or option.state & QStyle.StateFlag.State_MouseOver)
+                or index == self.pressedIndex
+            ):
                 painter.setOpacity(0.6)
 
-        text = index.data(Qt.DisplayRole)
-        painter.drawText(option.rect, Qt.AlignCenter, text)
+        text = index.data(Qt.ItemDataRole.DisplayRole)
+        painter.drawText(option.rect, Qt.AlignmentFlag.AlignCenter, text)
         painter.restore()
 
 
 class FastYearScrollItemDelegate(FastScrollItemDelegate):
-    """ Year scroll item delegate """
+    """Year scroll item delegate"""
 
     def _itemMargin(self):
         return 8
 
 
 class FastDayScrollItemDelegate(FastScrollItemDelegate):
-    """ Fast day scroll item delegate """
+    """Fast day scroll item delegate"""
 
     def _itemMargin(self):
         return 3
 
 
-
 class FastScrollViewBase(ScrollViewBase):
-    """ Scroll view base class """
+    """Scroll view base class"""
 
     pageChanged = Signal(int)
 
@@ -122,8 +122,7 @@ class FastScrollViewBase(ScrollViewBase):
         pass
 
     def _updateItems(self):
-        """ update the items of current page """
-        pass
+        """update the items of current page"""
 
     def pageCount(self):
         return ceil((self.maxYear - self.minYear + 1) / (self.pageRows * self.cols))
@@ -137,14 +136,14 @@ class FastScrollViewBase(ScrollViewBase):
 
 
 class FastYearScrollView(FastScrollViewBase):
-    """ Year scroll view """
+    """Year scroll view"""
 
     def __init__(self, parent=None):
         super().__init__(FastYearScrollItemDelegate, parent)
         self.delegate.setCurrentDate(QDate(self.currentDate.year(), 1, 1))
 
     def _initItems(self):
-        self.years = list(range(self.minYear, self.maxYear+1))
+        self.years = list(range(self.minYear, self.maxYear + 1))
         count = self.cols * self.cols
         years = self.years[:count]
         self.addItems([str(i) for i in years])
@@ -180,9 +179,8 @@ class FastYearScrollView(FastScrollViewBase):
             item.setData(Qt.ItemDataRole.UserRole, QDate(year, 1, 1))
 
 
-
 class FastMonthScrollView(FastScrollViewBase):
-    """ Month scroll view """
+    """Month scroll view"""
 
     def __init__(self, parent=None):
         super().__init__(FastYearScrollItemDelegate, parent)
@@ -190,10 +188,22 @@ class FastMonthScrollView(FastScrollViewBase):
 
     def _initItems(self):
         self.months = [
-            self.tr('Jan'), self.tr('Feb'), self.tr('Mar'), self.tr('Apr'),
-            self.tr('May'), self.tr('Jun'), self.tr('Jul'), self.tr('Aug'),
-            self.tr('Sep'), self.tr('Oct'), self.tr('Nov'), self.tr('Dec'),
-            self.tr('Jan'), self.tr('Feb'), self.tr('Mar'), self.tr('Apr'),
+            self.tr("Jan"),
+            self.tr("Feb"),
+            self.tr("Mar"),
+            self.tr("Apr"),
+            self.tr("May"),
+            self.tr("Jun"),
+            self.tr("Jul"),
+            self.tr("Aug"),
+            self.tr("Sep"),
+            self.tr("Oct"),
+            self.tr("Nov"),
+            self.tr("Dec"),
+            self.tr("Jan"),
+            self.tr("Feb"),
+            self.tr("Mar"),
+            self.tr("Apr"),
         ]
         self.addItems(self.months)
 
@@ -229,7 +239,7 @@ class FastMonthScrollView(FastScrollViewBase):
 
 
 class FastDayScrollView(FastScrollViewBase):
-    """ Day scroll view """
+    """Day scroll view"""
 
     def __init__(self, parent=None):
         super().__init__(FastDayScrollItemDelegate, parent)
@@ -237,19 +247,24 @@ class FastDayScrollView(FastScrollViewBase):
 
         # add week day labels
         self.weekDays = [
-            self.tr('Mo'), self.tr('Tu'), self.tr('We'),
-            self.tr('Th'), self.tr('Fr'), self.tr('Sa'), self.tr('Su')
+            self.tr("Mo"),
+            self.tr("Tu"),
+            self.tr("We"),
+            self.tr("Th"),
+            self.tr("Fr"),
+            self.tr("Sa"),
+            self.tr("Su"),
         ]
         self.weekDayGroup = QWidget(self)
         self.weekDayLayout = QHBoxLayout(self.weekDayGroup)
-        self.weekDayGroup.setObjectName('weekDayGroup')
+        self.weekDayGroup.setObjectName("weekDayGroup")
         for day in self.weekDays:
             label = QLabel(day)
-            label.setObjectName('weekDayLabel')
-            self.weekDayLayout.addWidget(label, 1, Qt.AlignHCenter)
+            label.setObjectName("weekDayLabel")
+            self.weekDayLayout.addWidget(label, 1, Qt.AlignmentFlag.AlignHCenter)
 
         self.setViewportMargins(0, 38, 0, 0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
+        self.vBoxLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.weekDayLayout.setSpacing(0)
         self.weekDayLayout.setContentsMargins(3, 12, 3, 12)
@@ -283,11 +298,10 @@ class FastDayScrollView(FastScrollViewBase):
         self.addItems(items)
         for i in range(bias, self.count()):
             item = self.item(i)
-            item.setData(Qt.ItemDataRole.UserRole, dates[i-bias])
+            item.setData(Qt.ItemDataRole.UserRole, dates[i - bias])
             item.setSizeHint(self.gridSize())
 
-        self.delegate.setCurrentIndex(
-            self.model().index(self._dateToRow(self.currentDate)))
+        self.delegate.setCurrentIndex(self.model().index(self._dateToRow(self.currentDate)))
 
     def setDate(self, date: QDate):
         self.scrollToDate(date)
@@ -344,7 +358,7 @@ class FastDayScrollView(FastScrollViewBase):
 
 
 class FastYearCalendarView(CalendarViewBase):
-    """ Year calendar view """
+    """Year calendar view"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -353,11 +367,11 @@ class FastYearCalendarView(CalendarViewBase):
 
     def _updateTitle(self):
         left, right = self.scrollView.currentPageRange()
-        self.setTitle(f'{left.year()} - {right.year()}')
+        self.setTitle(f"{left.year()} - {right.year()}")
 
 
 class FastMonthCalendarView(CalendarViewBase):
-    """ Month calendar view """
+    """Month calendar view"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -370,12 +384,12 @@ class FastMonthCalendarView(CalendarViewBase):
     def currentPageDate(self) -> QDate:
         date, _ = self.scrollView.currentPageRange()
         item = self.scrollView.currentItem()
-        month = item.data(Qt.UserRole).month() if item else 1
+        month = item.data(Qt.ItemDataRole.UserRole).month() if item else 1
         return QDate(date.year(), month, 1)
 
 
 class FastDayCalendarView(CalendarViewBase):
-    """ Day calendar view """
+    """Day calendar view"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -384,7 +398,7 @@ class FastDayCalendarView(CalendarViewBase):
     def _updateTitle(self):
         date = self.currentPageDate()
         name = QCalendar().monthName(self.locale(), date.month(), date.year())
-        self.setTitle(f'{name} {date.year()}')
+        self.setTitle(f"{name} {date.year()}")
 
     def currentPageDate(self) -> QDate:
         date, _ = self.scrollView.currentPageRange()
@@ -396,9 +410,8 @@ class FastDayCalendarView(CalendarViewBase):
 
 
 class FastCalendarView(FlyoutViewBase):
-
     dateChanged = Signal(QDate)
-    resetted = Signal()
+    reset = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -430,22 +443,22 @@ class FastCalendarView(FlyoutViewBase):
         self.yearView.itemClicked.connect(self._onYearItemClicked)
         self.dayView.itemClicked.connect(self._onDayItemClicked)
 
-        self.monthView.resetted.connect(self._onResetted)
-        self.yearView.resetted.connect(self._onResetted)
-        self.dayView.resetted.connect(self._onResetted)
+        self.monthView.reset.connect(self._onReset)
+        self.yearView.reset.connect(self._onReset)
+        self.dayView.reset.connect(self._onReset)
 
     def isRestEnabled(self):
         return self._isResetEnabled
 
     def setResetEnabled(self, isEnabled: bool):
-        """ set the visibility of reset button """
+        """set the visibility of reset button"""
         self._isResetEnabled = isEnabled
         self.yearView.setResetEnabled(isEnabled)
         self.monthView.setResetEnabled(isEnabled)
         self.dayView.setResetEnabled(isEnabled)
 
-    def _onResetted(self):
-        self.resetted.emit()
+    def _onReset(self):
+        self.reset.emit()
         self.close()
 
     def _onDayViewTitleClicked(self):
@@ -471,7 +484,7 @@ class FastCalendarView(FlyoutViewBase):
             self.dateChanged.emit(date)
 
     def setDate(self, date: QDate):
-        """ set the selected date """
+        """set the selected date"""
         self.dayView.setDate(date)
         self.date = date
 
@@ -479,10 +492,8 @@ class FastCalendarView(FlyoutViewBase):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
-        painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
-        painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(234, 234, 234))
+        painter.setBrush(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
+        painter.setPen(QColor(23, 23, 23) if isDarkTheme() else QColor(234, 234, 234))
 
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)

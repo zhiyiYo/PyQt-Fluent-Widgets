@@ -1,6 +1,5 @@
-# coding:utf-8
 import warnings
-from  typing import Union
+from typing import Union, Optional
 
 from PySide6.QtCore import Qt, QThread, Signal, QRect, QSize
 from PySide6.QtGui import QBrush, QColor, QImage, QPainter, QPixmap, QPainterPath
@@ -12,7 +11,7 @@ try:
     from ...common.image_utils import gaussianBlur
 
     isAcrylicAvailable = True
-except ImportError as e:
+except ImportError:
     isAcrylicAvailable = False
 
     def gaussianBlur(imagePath, blurRadius=18, brightFactor=1, blurPicSize=None):
@@ -22,13 +21,15 @@ except ImportError as e:
 def checkAcrylicAvailability():
     if not isAcrylicAvailable:
         warnings.warn(
-            'Acrylic is not supported in current qfluentwidgets, use `pip install PySide6-Fluent-Widgets[full]` to enable it.')
+            "Acrylic is not supported in current qfluentwidgets, "
+            "use `pip install PySide6-Fluent-Widgets[full]` to enable it."
+        )
 
     return isAcrylicAvailable
 
 
 class BlurCoverThread(QThread):
-    """ Blur album cover thread """
+    """Blur album cover thread"""
 
     blurFinished = Signal(QPixmap)
 
@@ -42,11 +43,10 @@ class BlurCoverThread(QThread):
         if not self.imagePath:
             return
 
-        pixmap = gaussianBlur(
-            self.imagePath, self.blurRadius, 0.85, self.maxSize)
+        pixmap = gaussianBlur(self.imagePath, self.blurRadius, 0.85, self.maxSize)
         self.blurFinished.emit(pixmap)
 
-    def blur(self, imagePath: str, blurRadius=6, maxSize: tuple = (450, 450)):
+    def blur(self, imagePath: str, blurRadius: int = 6, maxSize: tuple = (450, 450)):
         self.imagePath = imagePath
         self.blurRadius = blurRadius
         self.maxSize = maxSize or self.maxSize
@@ -54,7 +54,7 @@ class BlurCoverThread(QThread):
 
 
 class AcrylicTextureLabel(QLabel):
-    """ Acrylic texture label """
+    """Acrylic texture label"""
 
     def __init__(self, tintColor: QColor, luminosityColor: QColor, noiseOpacity=0.03, parent=None):
         """
@@ -76,15 +76,15 @@ class AcrylicTextureLabel(QLabel):
         self.tintColor = QColor(tintColor)
         self.luminosityColor = QColor(luminosityColor)
         self.noiseOpacity = noiseOpacity
-        self.noiseImage = QImage(':/qfluentwidgets/images/acrylic/noise.png')
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.noiseImage = QImage(":/qfluentwidgets/images/acrylic/noise.png")
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
     def setTintColor(self, color: QColor):
         self.tintColor = color
         self.update()
 
     def paintEvent(self, e):
-        acrylicTexture = QImage(64, 64, QImage.Format_ARGB32_Premultiplied)
+        acrylicTexture = QImage(64, 64, QImage.Format.Format_ARGB32_Premultiplied)
 
         # paint luminosity layer
         acrylicTexture.fill(self.luminosityColor)
@@ -103,10 +103,16 @@ class AcrylicTextureLabel(QLabel):
 
 
 class AcrylicLabel(QLabel):
-    """ Acrylic label """
+    """Acrylic label"""
 
-    def __init__(self, blurRadius: int, tintColor: QColor, luminosityColor=QColor(255, 255, 255, 0),
-                 maxBlurSize: tuple = None, parent=None):
+    def __init__(
+        self,
+        blurRadius: int,
+        tintColor: QColor,
+        luminosityColor=QColor(255, 255, 255, 0),
+        maxBlurSize: Optional[tuple] = None,
+        parent=None,
+    ):
         """
         Parameters
         ----------
@@ -128,23 +134,22 @@ class AcrylicLabel(QLabel):
         super().__init__(parent=parent)
         checkAcrylicAvailability()
 
-        self.imagePath = ''
+        self.imagePath = ""
         self.blurPixmap = QPixmap()
         self.blurRadius = blurRadius
         self.maxBlurSize = maxBlurSize
-        self.acrylicTextureLabel = AcrylicTextureLabel(
-            tintColor, luminosityColor, parent=self)
+        self.acrylicTextureLabel = AcrylicTextureLabel(tintColor, luminosityColor, parent=self)
         self.blurThread = BlurCoverThread(self)
         self.blurThread.blurFinished.connect(self.__onBlurFinished)
 
     def __onBlurFinished(self, blurPixmap: QPixmap):
-        """ blur finished slot """
+        """blur finished slot"""
         self.blurPixmap = blurPixmap
         self.setPixmap(self.blurPixmap)
         self.adjustSize()
 
     def setImage(self, imagePath: str):
-        """ set the image to be blurred """
+        """set the image to be blurred"""
         self.imagePath = imagePath
         self.blurThread.blur(imagePath, self.blurRadius, self.maxBlurSize)
 
@@ -156,22 +161,33 @@ class AcrylicLabel(QLabel):
         self.acrylicTextureLabel.resize(self.size())
 
         if not self.blurPixmap.isNull() and self.blurPixmap.size() != self.size():
-            self.setPixmap(self.blurPixmap.scaled(
-                self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation))
+            self.setPixmap(
+                self.blurPixmap.scaled(
+                    self.size(),
+                    Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+                    Qt.TransformationMode.SmoothTransformation,
+                ),
+            )
 
 
 class AcrylicBrush:
-    """ Acrylic brush """
+    """Acrylic brush"""
 
-    def __init__(self, device: QWidget, blurRadius: int, tintColor=QColor(242, 242, 242, 150),
-                 luminosityColor=QColor(255, 255, 255, 10), noiseOpacity=0.03):
+    def __init__(
+        self,
+        device: QWidget,
+        blurRadius: int,
+        tintColor=QColor(242, 242, 242, 150),
+        luminosityColor=QColor(255, 255, 255, 10),
+        noiseOpacity=0.03,
+    ):
         self.device = device
         self.blurRadius = blurRadius
         self.blurPicSize = None
         self.tintColor = QColor(tintColor)
         self.luminosityColor = QColor(luminosityColor)
         self.noiseOpacity = noiseOpacity
-        self.noiseImage = QImage(':/qfluentwidgets/images/acrylic/noise.png')
+        self.noiseImage = QImage(":/qfluentwidgets/images/acrylic/noise.png")
         self.originalImage = QPixmap()
         self.image = QPixmap()
 
@@ -196,7 +212,7 @@ class AcrylicBrush:
         return isAcrylicAvailable
 
     def grabImage(self, rect: QRect):
-        """ grab image from screen
+        """grab image from screen
 
         Parameters
         ----------
@@ -213,7 +229,7 @@ class AcrylicBrush:
         self.setImage(screen.grabWindow(0, x, y, w, h))
 
     def setImage(self, image: Union[str, QImage, QPixmap]):
-        """ set blurred image """
+        """set blurred image"""
         if isinstance(image, str):
             image = QPixmap(image)
         elif isinstance(image, QImage):
@@ -235,7 +251,7 @@ class AcrylicBrush:
         self.blurPicSize = (size.width(), size.height())
 
     def textureImage(self):
-        texture = QImage(64, 64, QImage.Format_ARGB32_Premultiplied)
+        texture = QImage(64, 64, QImage.Format.Format_ARGB32_Premultiplied)
         texture.fill(self.luminosityColor)
 
         # paint tint color
@@ -252,13 +268,17 @@ class AcrylicBrush:
         device = self.device
 
         painter = QPainter(device)
-        painter.setRenderHints(QPainter.Antialiasing)
+        painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         if not self.clipPath.isEmpty():
             painter.setClipPath(self.clipPath)
 
         # paint image
-        image = self.image.scaled(device.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        image = self.image.scaled(
+            device.size(),
+            Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+            Qt.TransformationMode.SmoothTransformation,
+        )
         painter.drawPixmap(0, 0, image)
 
         # paint acrylic texture

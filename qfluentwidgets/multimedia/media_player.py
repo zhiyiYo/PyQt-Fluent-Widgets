@@ -1,10 +1,9 @@
-# coding:utf-8
-from PySide6.QtCore import Qt, Signal, QObject, QUrl
+from PySide6.QtCore import Signal, QObject, QUrl
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 
 class MediaPlayerBase(QObject):
-    """ Media player base class """
+    """Media player base class"""
 
     mediaStatusChanged = Signal(QMediaPlayer.MediaStatus)
     playbackRateChanged = Signal(float)
@@ -18,79 +17,79 @@ class MediaPlayerBase(QObject):
         super().__init__(parent=parent)
 
     def isPlaying(self):
-        """ Whether the media is playing """
+        """Whether the media is playing"""
         raise NotImplementedError
 
     def mediaStatus(self) -> QMediaPlayer.MediaStatus:
-        """ Return the status of the current media stream """
+        """Return the status of the current media stream"""
         raise NotImplementedError
 
     def playbackState(self) -> QMediaPlayer.PlaybackState:
-        """ Return the playback status of the current media stream """
+        """Return the playback status of the current media stream"""
         raise NotImplementedError
 
     def duration(self):
-        """ Returns the duration of the current media in ms """
+        """Returns the duration of the current media in ms"""
         raise NotImplementedError
 
     def position(self):
-        """ Returns the current position inside the media being played back in ms """
+        """Returns the current position inside the media being played back in ms"""
         raise NotImplementedError
 
     def volume(self):
-        """ Return the volume of player """
+        """Return the volume of player"""
         raise NotImplementedError
 
     def source(self) -> QUrl:
-        """ Return the active media source being used """
+        """Return the active media source being used"""
         raise NotImplementedError
 
     def pause(self):
-        """ Pause playing the current source """
+        """Pause playing the current source"""
         raise NotImplementedError
 
     def play(self):
-        """ Start or resume playing the current source """
+        """Start or resume playing the current source"""
         raise NotImplementedError
 
     def stop(self):
-        """ Stop playing, and reset the play position to the beginning """
+        """Stop playing, and reset the play position to the beginning"""
         raise NotImplementedError
 
     def playbackRate(self) -> float:
-        """ Return the playback rate of the current media """
+        """Return the playback rate of the current media"""
         raise NotImplementedError
 
     def setPosition(self, position: int):
-        """ Sets the position of media in ms """
+        """Sets the position of media in ms"""
         raise NotImplementedError
 
     def setSource(self, media: QUrl):
-        """ Sets the current source """
+        """Sets the current source"""
         raise NotImplementedError
 
     def setPlaybackRate(self, rate: float):
-        """ Sets the playback rate of player """
+        """Sets the playback rate of player"""
         raise NotImplementedError
 
     def setVolume(self, volume: int):
-        """ Sets the volume of player """
+        """Sets the volume of player"""
         raise NotImplementedError
 
     def setMuted(self, isMuted: bool):
         raise NotImplementedError
 
     def videoOutput(self) -> QObject:
-        """ Return the video output to be used by the media player """
+        """Return the video output to be used by the media player"""
         raise NotImplementedError
 
     def setVideoOutput(self, output: QObject) -> None:
-        """ Sets the video output to be used by the media player """
+        """Sets the video output to be used by the media player"""
         raise NotImplementedError
 
 
 class MediaPlayer(QMediaPlayer):
-    """ Media player """
+    """Media player"""
 
     sourceChanged = Signal(QUrl)
     mutedChanged = Signal(bool)
@@ -102,14 +101,14 @@ class MediaPlayer(QMediaPlayer):
         self.setAudioOutput(self._audioOutput)
 
     def isPlaying(self):
-        return self.playbackState() == QMediaPlayer.PlayingState
+        return self.playbackState() == QMediaPlayer.PlaybackState.PlayingState
 
     def volume(self):
-        """ Return the volume of player """
+        """Return the volume of player"""
         return int(self.audioOutput().volume() * 100)
 
     def setVolume(self, volume: int):
-        """ Sets the volume of player """
+        """Sets the volume of player"""
         if volume == self.volume():
             return
 

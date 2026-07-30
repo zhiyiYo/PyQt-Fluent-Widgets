@@ -1,24 +1,23 @@
-# coding:utf-8
-from PySide6.QtCore import Qt, Signal, QTime, Property
+from PySide6.QtCore import Signal, QTime, Property
 
 from .picker_base import PickerBase, PickerColumnFormatter, DigitFormatter
 
 
 class TimePickerBase(PickerBase):
-    """ Time picker base class """
+    """Time picker base class"""
 
     timeChanged = Signal(QTime)
 
-    def __init__(self, parent=None, showSeconds=False):
+    def __init__(self, parent=None, showSeconds: bool = False):
         super().__init__(parent=parent)
-        self._isSecondVisible = showSeconds
+        self._isSecondVisible: bool = showSeconds
         self._time = QTime()
 
     def getTime(self):
         return self._time
 
     def setTime(self, time: QTime):
-        """ set current time
+        """set current time
 
         Parameters
         ----------
@@ -31,22 +30,22 @@ class TimePickerBase(PickerBase):
         return self._isSecondVisible
 
     def setSecondVisible(self, isVisible: bool):
-        """ set the visibility of seconds column """
+        """set the visibility of seconds column"""
         raise NotImplementedError
 
 
-class MiniuteFormatter(DigitFormatter):
-    """ Minute formatter """
+class MinuteFormatter(DigitFormatter):
+    """Minute formatter"""
 
-    def encode(self, minute):
-        return str(minute).zfill(2)
+    def encode(self, value) -> str:
+        return str(value).zfill(2)
 
 
 class AMHourFormatter(DigitFormatter):
-    """ AM/PM Hour formatter """
+    """AM/PM Hour formatter"""
 
-    def encode(self, hour):
-        hour = int(hour)
+    def encode(self, value) -> str:
+        hour = int(value)
         if hour in [0, 12]:
             return "12"
 
@@ -54,38 +53,50 @@ class AMHourFormatter(DigitFormatter):
 
 
 class AMPMFormatter(PickerColumnFormatter):
-    """ AM/PM formatter """
+    """AM/PM formatter"""
 
     def __init__(self):
         super().__init__()
-        self.AM = self.tr('AM')
-        self.PM = self.tr('PM')
+        self.AM = self.tr("AM")
+        self.PM = self.tr("PM")
 
-    def encode(self, hour):
-        if not str(hour).isdigit():
-            return str(hour)
+    def encode(self, value):
+        if not str(value).isdigit():
+            return str(value)
 
-        hour = int(hour)
+        hour = int(value)
         return self.AM if hour < 12 else self.PM
 
 
 class TimePicker(TimePickerBase):
-    """ 24 hours time picker """
+    """24 hours time picker"""
 
     def __init__(self, parent=None, showSeconds=False):
         super().__init__(parent, showSeconds)
         # add hour column
         w = 80 if showSeconds else 120
-        self.addColumn(self.tr('hour'), range(0, 24),
-                       w, formatter=DigitFormatter())
+        self.addColumn(
+            self.tr("hour"),
+            range(24),
+            w,
+            formatter=DigitFormatter(),
+        )
 
         # add minute column
-        self.addColumn(self.tr('minute'), range(0, 60),
-                       w, formatter=MiniuteFormatter())
+        self.addColumn(
+            self.tr("minute"),
+            range(60),
+            w,
+            formatter=MinuteFormatter(),
+        )
 
         # add seconds column
-        self.addColumn(self.tr('second'), range(0, 60),
-                       w, formatter=MiniuteFormatter())
+        self.addColumn(
+            self.tr("second"),
+            range(60),
+            w,
+            formatter=MinuteFormatter(),
+        )
         self.setColumnVisible(2, showSeconds)
 
     def setTime(self, time):
@@ -139,29 +150,41 @@ class TimePicker(TimePickerBase):
 
 
 class AMTimePicker(TimePickerBase):
-    """ AM/PM time picker """
+    """AM/PM time picker"""
 
     def __init__(self, parent=None, showSeconds=False):
         super().__init__(parent, showSeconds)
-        self.AM = self.tr('AM')
-        self.PM = self.tr('PM')
+        self.AM = self.tr("AM")
+        self.PM = self.tr("PM")
 
-        # add hour column
-        self.addColumn(self.tr('hour'), range(1, 13),
-                       80, formatter=AMHourFormatter())
+        self.addColumn(
+            self.tr("hour"),
+            range(1, 13),
+            80,
+            formatter=AMHourFormatter(),
+        )
 
-        # add minute column
-        self.addColumn(self.tr('minute'), range(0, 60),
-                       80, formatter=MiniuteFormatter())
+        self.addColumn(
+            self.tr("minute"),
+            range(60),
+            80,
+            formatter=MinuteFormatter(),
+        )
 
-        # add second column
-        self.addColumn(self.tr('second'), range(0, 60),
-                       80, formatter=MiniuteFormatter())
+        self.addColumn(
+            self.tr("second"),
+            range(60),
+            80,
+            formatter=MinuteFormatter(),
+        )
         self.setColumnVisible(2, showSeconds)
 
-        # add AM/PM column
-        self.addColumn(self.AM, [self.AM, self.PM],
-                       80, formatter=AMPMFormatter())
+        self.addColumn(
+            self.AM,
+            [self.AM, self.PM],
+            80,
+            formatter=AMPMFormatter(),
+        )
 
     def setSecondVisible(self, isVisible: bool):
         self._isSecondVisible = isVisible

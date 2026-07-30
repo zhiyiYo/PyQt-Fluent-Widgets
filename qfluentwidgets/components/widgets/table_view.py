@@ -1,11 +1,17 @@
-# coding: utf-8
-from typing import List, Union
+from typing import List, Optional
 
-from PySide6.QtCore import Qt, QMargins, QModelIndex, QItemSelectionModel, Property, QRectF, QEvent
+from PySide6.QtCore import Qt, QMargins, QModelIndex, Property, QRectF
 from PySide6.QtGui import QHelpEvent, QPainter, QColor, QKeyEvent, QPalette, QBrush
-from PySide6.QtWidgets import (QAbstractItemView, QStyledItemDelegate, QApplication, QStyleOptionViewItem,
-                             QTableView, QTableWidget, QWidget, QTableWidgetItem, QStyle,
-                             QStyleOptionButton, QStyleFactory)
+from PySide6.QtWidgets import (
+    QAbstractItemView,
+    QStyledItemDelegate,
+    QApplication,
+    QStyleOptionViewItem,
+    QTableView,
+    QTableWidget,
+    QWidget,
+    QTableWidgetItem,
+)
 
 from .check_box import CheckBoxIcon
 from ...common.font import getFont
@@ -17,7 +23,6 @@ from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
 
 
 class TableItemDelegate(QStyledItemDelegate):
-
     def __init__(self, parent: QTableView):
         super().__init__(parent)
         self.margin = 2
@@ -28,9 +33,17 @@ class TableItemDelegate(QStyledItemDelegate):
         self.darkCheckedColor = QColor()
 
         if isinstance(parent, QTableView):
-            self.tooltipDelegate = ItemViewToolTipDelegate(parent, 100, ItemViewToolTipType.TABLE)
+            self.tooltipDelegate = ItemViewToolTipDelegate(
+                parent,
+                100,
+                ItemViewToolTipType.TABLE,
+            )
         else:
-            self.tooltipDelegate = ItemViewToolTipDelegate(parent, 100, ItemViewToolTipType.LIST)
+            self.tooltipDelegate = ItemViewToolTipDelegate(
+                parent,
+                100,
+                ItemViewToolTipType.LIST,
+            )
 
     def setHoverRow(self, row: int):
         self.hoverRow = row
@@ -69,7 +82,7 @@ class TableItemDelegate(QStyledItemDelegate):
         editor.setGeometry(x, y, w, rect.height())
 
     def setCheckedColor(self, light, dark):
-        """ set the color of indicator in checked status
+        """set the color of indicator in checked status
 
         Parameters
         ----------
@@ -81,7 +94,7 @@ class TableItemDelegate(QStyledItemDelegate):
         self.parent().viewport().update()
 
     def _drawBackground(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
-        """ draw row background """
+        """draw row background"""
         r = 5
         if index.column() == 0:
             rect = option.rect.adjusted(4, 0, r + 1, 0)
@@ -94,31 +107,31 @@ class TableItemDelegate(QStyledItemDelegate):
             painter.drawRect(rect)
 
     def _drawIndicator(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
-        """ draw indicator """
+        """draw indicator"""
         y, h = option.rect.y(), option.rect.height()
-        ph = round(0.35*h if self.pressedRow == index.row() else 0.257*h)
+        ph = round(0.35 * h if self.pressedRow == index.row() else 0.257 * h)
         painter.setBrush(autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor))
-        painter.drawRoundedRect(4, ph + y, 3, h - 2*ph, 1.5, 1.5)
+        painter.drawRoundedRect(4, ph + y, 3, h - 2 * ph, 1.5, 1.5)
 
     def initStyleOption(self, option: QStyleOptionViewItem, index: QModelIndex):
         super().initStyleOption(option, index)
 
         # font
-        option.font = index.data(Qt.FontRole) or getFont(13)
+        option.font = index.data(Qt.ItemDataRole.FontRole) or getFont(13)
 
         # text color
-        textColor = Qt.white if isDarkTheme() else Qt.black
-        textBrush = index.data(Qt.ForegroundRole)   # type: QBrush
+        textColor = Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black
+        textBrush: Optional[QBrush] = index.data(Qt.ItemDataRole.ForegroundRole)
         if textBrush is not None:
             textColor = QBrush(textBrush).color()
 
-        option.palette.setColor(QPalette.Text, textColor)
-        option.palette.setColor(QPalette.HighlightedText, textColor)
+        option.palette.setColor(QPalette.ColorRole.Text, textColor)
+        option.palette.setColor(QPalette.ColorRole.HighlightedText, textColor)
 
     def paint(self, painter, option, index):
         painter.save()
-        painter.setPen(Qt.NoPen)
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         # set clipping rect of painter to avoid painting outside the borders
         painter.setClipping(True)
@@ -159,10 +172,14 @@ class TableItemDelegate(QStyledItemDelegate):
         self._drawBackground(painter, option, index)
 
         # draw indicator
-        if index.row() in self.selectedRows and index.column() == 0 and self.parent().horizontalScrollBar().value() == 0:
+        if (
+            index.row() in self.selectedRows
+            and index.column() == 0
+            and self.parent().horizontalScrollBar().value() == 0
+        ):
             self._drawIndicator(painter, option, index)
 
-        if index.data(Qt.CheckStateRole) is not None:
+        if index.data(Qt.ItemDataRole.CheckStateRole) is not None:
             self._drawCheckBox(painter, option, index)
 
         painter.restore()
@@ -184,7 +201,10 @@ class TableItemDelegate(QStyledItemDelegate):
             painter.setPen(QColor(255, 255, 255, 142) if isDark else QColor(0, 0, 0, 122))
             painter.drawRoundedRect(rect, r, r)
         else:
-            color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
+            color = autoFallbackThemeColor(
+                self.lightCheckedColor,
+                self.darkCheckedColor,
+            )
             painter.setPen(color)
             painter.setBrush(color)
             painter.drawRoundedRect(rect, r, r)
@@ -196,18 +216,23 @@ class TableItemDelegate(QStyledItemDelegate):
 
         painter.restore()
 
-    def helpEvent(self, event: QHelpEvent, view: QAbstractItemView, option: QStyleOptionViewItem, index: QModelIndex) -> bool:
+    def helpEvent(
+        self,
+        event: QHelpEvent,
+        view: QAbstractItemView,
+        option: QStyleOptionViewItem,
+        index: QModelIndex,
+    ) -> bool:
         return self.tooltipDelegate.helpEvent(event, view, option, index)
 
 
-
 class TableBase:
-    """ Table base class """
+    """Table base class"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.delegate = TableItemDelegate(self)
-        self.scrollDelagate = SmoothScrollDelegate(self)
+        self.scrollDelegate = SmoothScrollDelegate(self)
         self._isSelectRightClickedRow = False
 
         # set style sheet
@@ -217,7 +242,7 @@ class TableBase:
         self.setMouseTracking(True)
         self.setAlternatingRowColors(True)
         self.setItemDelegate(self.delegate)
-        self.setSelectionBehavior(TableWidget.SelectRows)
+        self.setSelectionBehavior(TableWidget.SelectionBehavior.SelectRows)
         self.horizontalHeader().setHighlightSections(False)
         self.verticalHeader().setHighlightSections(False)
         self.verticalHeader().setDefaultSectionSize(38)
@@ -227,17 +252,17 @@ class TableBase:
         self.verticalHeader().sectionClicked.connect(self.selectRow)
 
     def setBorderVisible(self, isVisible: bool):
-        """ set the visibility of border """
+        """set the visibility of border"""
         self.setProperty("isBorderVisible", isVisible)
         updateDynamicStyle(self)
 
     def setBorderRadius(self, radius: int):
-        """ set the radius of border """
+        """set the radius of border"""
         qss = f"QTableView{{border-radius: {radius}px}}"
         setCustomStyleSheet(self, qss, qss)
 
     def setCheckedColor(self, light, dark):
-        """ set the color in checked status
+        """set the color in checked status
 
         Parameters
         ----------
@@ -247,12 +272,12 @@ class TableBase:
         self.delegate.setCheckedColor(light, dark)
 
     def _setHoverRow(self, row: int):
-        """ set hovered row """
+        """set hovered row"""
         self.delegate.setHoverRow(row)
         self.viewport().update()
 
     def _setPressedRow(self, row: int):
-        """ set pressed row """
+        """set pressed row"""
         if self.selectionMode() == QTableView.SelectionMode.NoSelection:
             return
 
@@ -279,7 +304,7 @@ class TableBase:
         self.updateSelectedRows()
 
     def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton or self._isSelectRightClickedRow:
+        if e.button() == Qt.MouseButton.LeftButton or self._isSelectRightClickedRow:
             return QTableView.mousePressEvent(self, e)
 
         index = self.indexAt(e.pos())
@@ -287,12 +312,13 @@ class TableBase:
             self._setPressedRow(index.row())
 
         QWidget.mousePressEvent(self, e)
+        return None
 
     def mouseReleaseEvent(self, e):
         QTableView.mouseReleaseEvent(self, e)
         self.updateSelectedRows()
 
-        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.RightButton:
+        if self.indexAt(e.pos()).row() < 0 or e.button() == Qt.MouseButton.RightButton:
             self._setPressedRow(-1)
 
     def setItemDelegate(self, delegate: TableItemDelegate):
@@ -320,14 +346,17 @@ class TableBase:
 
 
 class TableWidget(TableBase, QTableWidget):
-    """ Table widget """
+    """Table widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
         updateDynamicStyle(self)
 
     def setCurrentCell(self, row: int, column: int, command=None):
-        self.setCurrentItem(self.item(row, column), command)
+        item = self.item(row, column)
+        if item is None:
+            raise ValueError("item not found")
+        self.setCurrentItem(item, command)
 
     def setCurrentItem(self, item: QTableWidgetItem, command=None):
         if not command:
@@ -347,7 +376,7 @@ class TableWidget(TableBase, QTableWidget):
 
 
 class TableView(TableBase, QTableView):
-    """ Table view """
+    """Table view"""
 
     def __init__(self, parent=None):
         super().__init__(parent)
