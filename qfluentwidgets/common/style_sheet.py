@@ -1,23 +1,23 @@
+import sys
+import weakref
 from enum import Enum
 from string import Template
-import sys
 from typing import List, Union
-import weakref
 
-from PySide6.QtCore import QFile, QObject, QEvent, QDynamicPropertyChangeEvent
-from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QWidget, QApplication, QStyleFactory
+from PySide6.QtCore import QDynamicPropertyChangeEvent, QEvent, QFile, QObject
+from PySide6.QtGui import QColor, Qt
+from PySide6.QtWidgets import QApplication, QStyleFactory, QWidget
 
-from .config import qconfig, Theme, isDarkTheme, QT_VERSION
+from .config import QT_VERSION, Theme, isDarkTheme, qconfig
 
 
 class StyleSheetManager(QObject):
     """Style sheet manager"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.widgets = weakref.WeakKeyDictionary()
 
-    def register(self, source, widget: QWidget, reset=True):
+    def register(self, source, widget: QWidget, reset: bool = True) -> None:
         """register widget to manager
 
         Parameters
@@ -47,7 +47,7 @@ class StyleSheetManager(QObject):
         else:
             self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
 
-    def deregister(self, widget: QWidget):
+    def deregister(self, widget: QWidget) -> None:
         """deregister widget from manager"""
         if widget not in self.widgets:
             return
@@ -71,7 +71,7 @@ class QssTemplate(Template):
     delimiter = "--"
 
 
-def applyThemeColor(qss: str):
+def applyThemeColor(qss: str) -> str:
     """apply theme color to style sheet
 
     Parameters
@@ -85,7 +85,7 @@ def applyThemeColor(qss: str):
     return template.safe_substitute(mappings)
 
 
-def renderQss(qss: str):
+def renderQss(qss: str) -> str:
     """render font and theme color to style sheet
 
     Parameters
@@ -103,15 +103,15 @@ def renderQss(qss: str):
 class StyleSheetBase:
     """Style sheet base class"""
 
-    def path(self, theme=Theme.AUTO) -> str:
+    def path(self, theme: Theme = Theme.AUTO) -> str:
         """get the path of style sheet"""
         raise NotImplementedError
 
-    def content(self, theme=Theme.AUTO):
+    def content(self, theme: Theme = Theme.AUTO) -> str:
         """get the content of style sheet"""
         return getStyleSheetFromFile(self.path(theme))
 
-    def apply(self, widget: QWidget, theme=Theme.AUTO):
+    def apply(self, widget: QWidget, theme: Theme = Theme.AUTO) -> None:
         """apply style sheet to widget"""
         setStyleSheet(widget, self, theme)
 
@@ -154,7 +154,7 @@ class FluentStyleSheet(StyleSheetBase, Enum):
     EXPAND_SETTING_CARD = "expand_setting_card"
     NAVIGATION_INTERFACE = "navigation_interface"
 
-    def path(self, theme=Theme.AUTO):
+    def path(self, theme: Theme = Theme.AUTO) -> str:
         theme = qconfig.theme if theme == Theme.AUTO else theme
         return f":/qfluentwidgets/qss/{theme.value.lower()}/{self.value}.qss"
 
@@ -162,11 +162,11 @@ class FluentStyleSheet(StyleSheetBase, Enum):
 class StyleSheetFile(StyleSheetBase):
     """Style sheet file"""
 
-    def __init__(self, path: str):
+    def __init__(self, path: str) -> None:
         super().__init__()
         self.filePath = path
 
-    def path(self, theme=Theme.AUTO) -> str:
+    def path(self, theme: Theme = Theme.AUTO) -> str:
         return self.filePath
 
 
@@ -180,7 +180,7 @@ class CustomStyleSheet(StyleSheetBase):
         super().__init__()
         self._widget = weakref.ref(widget)
 
-    def path(self, theme=Theme.AUTO) -> str:
+    def path(self, theme: Theme = Theme.AUTO) -> str:
         return ""
 
     @property
@@ -225,7 +225,7 @@ class CustomStyleSheet(StyleSheetBase):
 
         return self.widget.property(self.DARK_QSS_KEY) or ""
 
-    def content(self, theme=Theme.AUTO) -> str:
+    def content(self, theme: Theme = Theme.AUTO) -> str:
         theme = qconfig.theme if theme == Theme.AUTO else theme
 
         if theme == Theme.LIGHT:
@@ -237,7 +237,7 @@ class CustomStyleSheet(StyleSheetBase):
 class CustomStyleSheetWatcher(QObject):
     """Custom style sheet watcher"""
 
-    def eventFilter(self, obj: QWidget, e: QEvent):
+    def eventFilter(self, obj: QWidget, e: QEvent) -> bool:
         if e.type() != QEvent.Type.DynamicPropertyChange:
             return super().eventFilter(obj, e)
 
@@ -251,7 +251,7 @@ class CustomStyleSheetWatcher(QObject):
 class DirtyStyleSheetWatcher(QObject):
     """Dirty style sheet watcher"""
 
-    def eventFilter(self, obj: QWidget, e: QEvent):
+    def eventFilter(self, obj: QWidget, e: QEvent) -> bool:
         if e.type() != QEvent.Type.Paint or not obj.property("dirty-qss"):
             return super().eventFilter(obj, e)
 
@@ -265,21 +265,21 @@ class DirtyStyleSheetWatcher(QObject):
 class StyleSheetCompose(StyleSheetBase):
     """Style sheet compose"""
 
-    def __init__(self, sources: List[StyleSheetBase]):
+    def __init__(self, sources: List[StyleSheetBase]) -> None:
         super().__init__()
         self.sources = sources
 
-    def content(self, theme=Theme.AUTO):
+    def content(self, theme: Theme = Theme.AUTO) -> str:
         return "\n".join([i.content(theme) for i in self.sources])
 
-    def add(self, source: StyleSheetBase):
+    def add(self, source: StyleSheetBase) -> None:
         """add style sheet source"""
         if source is self or source in self.sources:
             return
 
         self.sources.append(source)
 
-    def remove(self, source: StyleSheetBase):
+    def remove(self, source: StyleSheetBase) -> None:
         """remove style sheet source"""
         if source not in self.sources:
             return
@@ -296,7 +296,7 @@ def getStyleSheetFromFile(file: str) -> str:
     return qss
 
 
-def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
+def getStyleSheet(source: Union[str, StyleSheetBase], theme: Theme = Theme.AUTO) -> str:
     """get style sheet
 
     Parameters
@@ -315,7 +315,12 @@ def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     return renderQss(source.content(theme))
 
 
-def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
+def setStyleSheet(
+    widget: QWidget,
+    source: Union[str, StyleSheetBase],
+    theme: Theme = Theme.AUTO,
+    register: bool = True,
+) -> None:
     """set the style sheet of widget
 
     Parameters
@@ -341,7 +346,7 @@ def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=The
     widget.setStyleSheet(getStyleSheet(source, theme))
 
 
-def setCustomStyleSheet(widget: QWidget, lightQss: str, darkQss: str):
+def setCustomStyleSheet(widget: QWidget, lightQss: str, darkQss: str) -> None:
     """set custom style sheet
 
     Parameters
@@ -358,7 +363,12 @@ def setCustomStyleSheet(widget: QWidget, lightQss: str, darkQss: str):
     CustomStyleSheet(widget).setCustomStyleSheet(lightQss, darkQss)
 
 
-def addStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
+def addStyleSheet(
+    widget: QWidget,
+    source: Union[str, StyleSheetBase],
+    theme: Theme = Theme.AUTO,
+    register: bool = True,
+) -> None:
     """add style sheet to widget
 
     Parameters
@@ -388,7 +398,7 @@ def addStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=The
         widget.setStyleSheet(qss)
 
 
-def updateStyleSheet(lazy=False):
+def updateStyleSheet(lazy: bool = False) -> None:
     """update the style sheet of all fluent widgets
 
     Parameters
@@ -411,7 +421,7 @@ def updateStyleSheet(lazy=False):
         styleSheetManager.deregister(widget)
 
 
-def setTheme(theme: Theme, save=False, lazy=False):
+def setTheme(theme: Theme, save: bool = False, lazy: bool = False) -> None:
     """set the theme of application
 
     Parameters
@@ -430,7 +440,7 @@ def setTheme(theme: Theme, save=False, lazy=False):
     qconfig.themeChangedFinished.emit()
 
 
-def toggleTheme(save=False, lazy=False):
+def toggleTheme(save: bool = False, lazy: bool = False) -> None:
     """toggle the theme of application
 
     Parameters
@@ -456,7 +466,7 @@ class ThemeColor(Enum):
     LIGHT_2 = "ThemeColorLight2"
     LIGHT_3 = "ThemeColorLight3"
 
-    def name(self):
+    def name(self) -> str:
         return self.color().name()
 
     def color(self) -> QColor:
@@ -503,12 +513,16 @@ class ThemeColor(Enum):
         return QColor.fromHsvF(h, min(s, 1), min(v, 1))
 
 
-def themeColor():
+def themeColor() -> QColor:
     """get theme color"""
     return ThemeColor.PRIMARY.color()
 
 
-def setThemeColor(color, save=False, lazy=False):
+def setThemeColor(
+    color: Union[QColor, Qt.GlobalColor, str],
+    save: bool = False,
+    lazy: bool = False,
+) -> None:
     """set theme color
 
     Parameters
@@ -527,7 +541,7 @@ def setThemeColor(color, save=False, lazy=False):
     updateStyleSheet(lazy)
 
 
-def updateDynamicStyle(widget: QWidget):
+def updateDynamicStyle(widget: QWidget) -> None:
     """update the dynamic style of widget"""
     if sys.platform != "win32" or QT_VERSION < (6, 8, 0):
         widget.setStyle(QApplication.style())

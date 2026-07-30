@@ -2,22 +2,27 @@ from collections import deque
 from enum import Enum
 from math import cos, pi
 
-from PySide6.QtCore import QDateTime, Qt, QTimer, QPoint, QObject, QElapsedTimer, QPointF
+from PySide6.QtCore import QDateTime, QElapsedTimer, QObject, QPoint, QPointF, Qt, QTimer
 from PySide6.QtGui import QWheelEvent
-from PySide6.QtWidgets import QApplication, QScrollArea, QAbstractScrollArea
+from PySide6.QtWidgets import QAbstractScrollArea, QApplication, QScrollArea
 
 
 class SmoothScroll:
     """Scroll smoothly"""
 
-    def __init__(self, widget: QScrollArea, orient=Qt.Orientation.Vertical, dynamicEngineEnabled=True):
+    def __init__(
+        self,
+        widget: QScrollArea,
+        orient: Qt.Orientation = Qt.Orientation.Vertical,
+        dynamicEngineEnabled: bool = True,
+    ) -> None:
         """
         Parameters
         ----------
         widget: QScrollArea
             scroll area to scroll smoothly
 
-        orient: Orientation
+        orient: Qt.Orientation
             scroll orientation
 
         dynamicEngineEnabled: bool
@@ -33,17 +38,17 @@ class SmoothScroll:
         self.fixedStepScrollEngine = FixedStepSmoothScrollEngine(widget, orient)
         self.adaptiveScrollEngine = AdaptiveSmoothScrollEngine(widget, orient)
 
-    def setDynamicEngineEnabled(self, isEnabled: bool):
+    def setDynamicEngineEnabled(self, isEnabled: bool) -> None:
         """set whether to use dynamic engine"""
         self.dynamicEngineEnabled = isEnabled
 
-    def setSmoothMode(self, smoothMode):
+    def setSmoothMode(self, smoothMode) -> None:
         """set smooth mode"""
         self.smoothMode = smoothMode
         self.fixedStepScrollEngine.setSmoothMode(smoothMode)
         self.adaptiveScrollEngine.setSmoothMode(smoothMode)
 
-    def wheelEvent(self, e):
+    def wheelEvent(self, e: QWheelEvent) -> None:
         # only process the wheel events triggered by mouse, fixes issue #75
         delta = e.angleDelta().y() if e.angleDelta().y() != 0 else e.angleDelta().x()
         if self.smoothMode == SmoothMode.NO_SMOOTH or abs(delta) % 120 != 0:
@@ -73,7 +78,7 @@ class SmoothMode(Enum):
 
 
 class SmoothScrollEngineBase(QObject):
-    def __init__(self, widget: QScrollArea, orient=Qt.Orientation.Vertical):
+    def __init__(self, widget: QScrollArea, orient: Qt.Orientation = Qt.Orientation.Vertical) -> None:
         super().__init__(widget)
         self.widget = widget
         self.orient = orient
@@ -91,14 +96,14 @@ class SmoothScrollEngineBase(QObject):
         self.smoothMode = SmoothMode(SmoothMode.LINEAR)
         self.smoothMoveTimer.timeout.connect(self._smoothMove)
 
-    def setSmoothMode(self, smoothMode):
+    def setSmoothMode(self, smoothMode) -> None:
         """set smooth mode"""
         self.smoothMode = smoothMode
 
-    def wheelEvent(self, e: QWheelEvent, delta: int):
+    def wheelEvent(self, e: QWheelEvent, delta: int) -> None:
         raise NotImplementedError
 
-    def _smoothMove(self):
+    def _smoothMove(self) -> None:
         if not self.stepsLeftQueue:
             return
 
@@ -113,7 +118,7 @@ class SmoothScrollEngineBase(QObject):
     def _getTotalDelta(self) -> float:
         raise NotImplementedError
 
-    def sendScrollEventToScrollBar(self, totalDelta):
+    def sendScrollEventToScrollBar(self, totalDelta) -> None:
         # construct wheel event
         if self.orient == Qt.Orientation.Vertical:
             pixelDelta = QPoint(round(totalDelta), 0)
@@ -140,7 +145,7 @@ class SmoothScrollEngineBase(QObject):
 class FixedStepSmoothScrollEngine(SmoothScrollEngineBase):
     """Scroll smoothly (fixed step)"""
 
-    def wheelEvent(self, e: QWheelEvent, delta: int):
+    def wheelEvent(self, e: QWheelEvent, delta: int) -> None:
         # push current time to queue
         now = QDateTime.currentDateTime().toMSecsSinceEpoch()
         self.scrollStamps.append(now)
@@ -166,7 +171,7 @@ class FixedStepSmoothScrollEngine(SmoothScrollEngineBase):
         # overflow time of timer: 1000ms/frames
         self.smoothMoveTimer.start(int(1000 / self.fps))
 
-    def _getTotalDelta(self):
+    def _getTotalDelta(self) -> float:
         """scroll smoothly when timer time out"""
         totalDelta = 0
 
@@ -205,17 +210,17 @@ class FixedStepSmoothScrollEngine(SmoothScrollEngineBase):
 class AdaptiveSmoothScrollEngine(SmoothScrollEngineBase):
     """Scroll smoothly (time-based, adaptive, HiDPI friendly)"""
 
-    def __init__(self, widget: QScrollArea, orient=Qt.Orientation.Vertical):
+    def __init__(self, widget: QScrollArea, orient: Qt.Orientation = Qt.Orientation.Vertical) -> None:
         super().__init__(widget, orient)
         self.elapsedTimer = QElapsedTimer()
         self.maxQueueSize = 3
         self.minDuration = 120
 
-    def setSmoothMode(self, smoothMode):
+    def setSmoothMode(self, smoothMode) -> None:
         """set smooth mode"""
         self.smoothMode = smoothMode
 
-    def wheelEvent(self, e, delta: int):
+    def wheelEvent(self, e: QWheelEvent, delta: int) -> None:
         now = QDateTime.currentDateTime().toMSecsSinceEpoch()
         self.scrollStamps.append(now)
         while self.scrollStamps and now - self.scrollStamps[0] > 500:
@@ -254,7 +259,7 @@ class AdaptiveSmoothScrollEngine(SmoothScrollEngineBase):
         # Start timer with adaptive fps
         self.smoothMoveTimer.start(int(1000 / self.fps))
 
-    def _getTotalDelta(self):
+    def _getTotalDelta(self) -> float:
         dt = self.elapsedTimer.restart()  # elapsed time in ms
         totalDelta = 0.0
 

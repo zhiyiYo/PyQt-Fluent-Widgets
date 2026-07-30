@@ -1,22 +1,19 @@
-from math import floor
 from io import BytesIO
-from typing import Union, Tuple
+from math import floor
+from typing import Tuple, Union
 
 import numpy as np
 from colorthief import ColorThief
 from PIL import Image
+from PySide6.QtCore import QBuffer, QIODevice
 from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtCore import QIODevice, QBuffer
 from scipy.ndimage.filters import gaussian_filter
 
 from .exception_handler import exceptionHandler
 
 
 def gaussianBlur(image, blurRadius=18, brightFactor=1, blurPicSize=None):
-    if isinstance(image, str) and not image.startswith(":"):
-        image = Image.open(image)
-    else:
-        image = fromqpixmap(QPixmap(image))
+    image = Image.open(image) if isinstance(image, str) and not image.startswith(":") else fromqpixmap(QPixmap(image))
 
     if blurPicSize:
         # adjust image size to reduce computation

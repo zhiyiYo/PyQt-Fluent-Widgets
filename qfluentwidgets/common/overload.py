@@ -8,9 +8,10 @@ class singledispatchmethod:
     callables as instance methods.
     """
 
-    def __init__(self, func):
+    def __init__(self, func) -> None:
         if not callable(func) and not hasattr(func, "__get__"):
-            raise TypeError(f"{func!r} is not callable or a descriptor")
+            msg = f"{func!r} is not callable or a descriptor"
+            raise TypeError(msg)
 
         self.dispatcher = singledispatch(func)
         self.func = func
@@ -43,4 +44,4 @@ class singledispatchmethod:
 
     @property
     def __isabstractmethod__(self):
-        return getattr(self.func, '__isabstractmethod__', False)
+        return getattr(self.func, "__isabstractmethod__", False)

@@ -1,7 +1,7 @@
 from enum import Enum, auto
 from functools import lru_cache
 from re import sub
-from typing import ClassVar, List, Optional, Tuple
+from typing import ClassVar, Generator, List, Optional, Tuple
 from unicodedata import east_asian_width
 
 
@@ -60,7 +60,7 @@ class TextWrap:
         return [token[i : i + width] for i in range(0, len(token), width)]
 
     @classmethod
-    def tokenizer(cls, text: str):
+    def tokenizer(cls, text: str) -> Generator[str]:
         """tokenize line"""
 
         buffer = ""
