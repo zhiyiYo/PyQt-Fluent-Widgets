@@ -127,6 +127,11 @@ PrimarySplitDropButton {
     border-right: 1px solid --ThemeColorLight2;
 }
 
+#primarySplitPushButton:disabled,
+#primarySplitToolButton:disabled {
+    border-right: 1px solid rgb(70, 70, 70);
+}
+
 HyperlinkButton {
     /* font: 14px --FontFamilies; */
     padding: 5px 12px 6px 12px;
