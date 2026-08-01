@@ -44,7 +44,7 @@ class AvatarWidget(NavigationWidget):
 
         if not self.isCompacted:
             painter.setPen(Qt.white if isDarkTheme() else Qt.black)
-            font = QFont('Segoe UI')
+            font = QFont('Segoe UI Variable')
             font.setPixelSize(14)
             painter.setFont(font)
             painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
