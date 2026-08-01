@@ -169,6 +169,9 @@ class Window(FramelessWindow):
         # hide the text of button when selected
         # self.navigationBar.setSelectedTextVisible(False)
 
+        # disable item animation
+        # self.navigationBar.setItemAnimationEnabled(False)
+
         # adjust the font size of button
         # self.navigationBar.setFont(getFont(12))
 
