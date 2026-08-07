@@ -396,7 +396,7 @@ class QConfig(QObject):
 
     @theme.setter
     def theme(self, t):
-        """ chaneg the theme without modifying the config file """
+        """ change the theme mode without modifying the config file """
         if t == Theme.AUTO:
             t = darkdetect.theme()
             t = Theme(t) if t else Theme.LIGHT
