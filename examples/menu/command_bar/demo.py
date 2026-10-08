@@ -7,11 +7,12 @@ from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (FluentIcon, TransparentDropDownPushButton, RoundMenu, CommandBar, Action,
                             setTheme, Theme, setFont, CommandBarView, Flyout, FlyoutAnimationType,
-                            ImageLabel, PushButton, CheckBox)
+                            ImageLabel, PushButton, CheckBox, CaptionLabel)
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
 
 class Demo1(QWidget):
+    """ Command bar with collapsible custom widget """
 
     def __init__(self):
         super().__init__()
@@ -37,14 +38,15 @@ class Demo1(QWidget):
         self.addButton(FluentIcon.COPY, 'Copy')
         self.addButton(FluentIcon.SHARE, 'Share')
 
-        # add custom widget
-        self.commandBar.addWidget(self.dropDownButton)
+        # the custom widget will be collapsed into the more actions menu
+        # when the window is not wide enough
+        self.commandBar.addCollapsibleWidget(self.dropDownButton, self.createDropDownMenu)
 
         # add hidden actions
         self.commandBar.addHiddenAction(Action(FluentIcon.SCROLL, 'Sort', triggered=lambda: print('排序')))
         self.commandBar.addHiddenAction(Action(FluentIcon.SETTING, 'Settings', shortcut='Ctrl+S'))
 
-        self.resize(240, 40)
+        self.resize(240, self.sizeHint().height())
         self.setWindowTitle('Drag window')
 
     def addButton(self, icon, text):
@@ -59,8 +61,11 @@ class Demo1(QWidget):
         button = TransparentDropDownPushButton('Menu', self, FluentIcon.MENU)
         button.setFixedHeight(34)
         setFont(button, 12)
+        button.setMenu(self.createDropDownMenu())
+        return button
 
-        menu = RoundMenu(parent=self)
+    def createDropDownMenu(self):
+        menu = RoundMenu('Menu', parent=self)
         menu.addActions([
             Action(FluentIcon.COPY, 'Copy'),
             Action(FluentIcon.CUT, 'Cut'),
@@ -68,8 +73,7 @@ class Demo1(QWidget):
             Action(FluentIcon.CANCEL, 'Cancel'),
             Action('Select all'),
         ])
-        button.setMenu(menu)
-        return button
+        return menu
 
 
 class Demo2(FramelessWindow):
@@ -104,13 +108,15 @@ class Demo2(FramelessWindow):
 
 
 class Demo3(QWidget):
-    """ Command bar with alignment and widget visibility control """
+    """ Command bar with alignment, inserted action and collapsible widget """
 
     def __init__(self):
         super().__init__()
         self.commandBar = CommandBar(self)
         self.alignButton = self.createAlignButton()
         self.checkBox = CheckBox('Show widget', self)
+        self.hintLabel = CaptionLabel(
+            'Drag the right edge of window to collapse the menu button')
 
         self.vBoxLayout = QVBoxLayout(self)
         self.vBoxLayout.setContentsMargins(16, 16, 16, 16)
@@ -124,6 +130,11 @@ class Demo3(QWidget):
         self.hBoxLayout.addStretch(1)
         self.vBoxLayout.addLayout(self.hBoxLayout)
 
+        # the wrapped label won't prevent the window from being resized smaller
+        self.hintLabel.setWordWrap(True)
+        self.hintLabel.setAlignment(Qt.AlignHCenter)
+        self.vBoxLayout.addWidget(self.hintLabel)
+
         # change the alignment of commands
         self.commandBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
         self.commandBar.setLayoutAlignment(Qt.AlignHCenter)
@@ -133,9 +144,21 @@ class Demo3(QWidget):
             self.commandBar.addAction(
                 Action(icon, text, triggered=lambda c=text: print(c)))
 
-        # hide or show the custom widget from the command bar
+        # insert a command at the specified position
+        self.commandBar.insertActionAt(
+            1, Action(FluentIcon.EDIT, 'Edit', triggered=lambda: print('Edit')))
+
+        # the menu button becomes a submenu of the more actions menu
+        # after it is collapsed
+        self.menuButton = self.createMenuButton()
+        self.commandBar.addCollapsibleWidget(self.menuButton, self.createMenu)
+
+        # the widget disappears from the more actions menu after it is
+        # collapsed because it is not registered as a collapsible widget
         self.pushButton = PushButton('Widget', self)
         self.commandBar.addWidget(self.pushButton)
+
+        # hide or show the widget from the command bar
         self.checkBox.setChecked(True)
         self.checkBox.toggled.connect(
             lambda: self.commandBar.setCommandWidgetVisible(
@@ -157,6 +180,20 @@ class Demo3(QWidget):
         button.setMenu(menu)
         return button
 
+    def createMenuButton(self):
+        button = TransparentDropDownPushButton('Menu', self, FluentIcon.MENU)
+        button.setFixedHeight(34)
+        setFont(button, 12)
+        button.setMenu(self.createMenu())
+        return button
+
+    def createMenu(self):
+        menu = RoundMenu('Menu', parent=self)
+        menu.addActions([Action(FluentIcon.COPY, f'Copy {i}') for i in range(8)])
+        menu.addAction(Action(FluentIcon.CUT, 'Cut'))
+        menu.addAction(Action(FluentIcon.PASTE, 'Paste'))
+        return menu
+
 
 if __name__ == '__main__':
     # enable dpi scale
@@ -167,15 +204,13 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     w1 = Demo1()
-    w2 = Demo2()
     w3 = Demo3()
 
     # arrange windows to avoid overlapping
     w1.move(60, 60)
     w3.move(60, 60 + w1.height() + 28)
-    w2.move(60 + w3.width() + 28, 60)
 
-    for w in (w1, w2, w3):
+    for w in (w1, w3):
         w.show()
 
-    app.exec_()
+    sys.exit(app.exec_())
