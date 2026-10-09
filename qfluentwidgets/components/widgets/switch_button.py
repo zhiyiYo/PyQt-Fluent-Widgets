@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, pyqtProperty, pyqtSignal, QEvent, QPropertyAnimatio
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet, tintColor
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
 from ...common.animation import FluentAnimation
@@ -204,7 +204,7 @@ class Indicator(ToolButton):
         color = self.darkCheckedColor if isDark else self.lightCheckedColor
 
         if not self.isEnabled():
-            return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+            return tintColor(QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56))
         if self.isPressed:
             return validColor(color, ThemeColor.LIGHT_2.color())
         elif self.isHover:
@@ -216,9 +216,9 @@ class Indicator(ToolButton):
         if not self.isEnabled():
             return QColor(0, 0, 0, 0)
         if self.isPressed:
-            return QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 23)
+            return tintColor(QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 23))
         elif self.isHover:
-            return QColor(255, 255, 255, 10) if isDark else QColor(0, 0, 0, 15)
+            return tintColor(QColor(255, 255, 255, 10) if isDark else QColor(0, 0, 0, 15))
 
         return QColor(0, 0, 0, 0)
 
@@ -233,9 +233,9 @@ class Indicator(ToolButton):
 
     def _offBorderColor(self, isDark: bool):
         if self.isEnabled():
-            return QColor(255, 255, 255, 153) if isDark else QColor(0, 0, 0, 133)
+            return tintColor(QColor(255, 255, 255, 153) if isDark else QColor(0, 0, 0, 133))
 
-        return QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56)
+        return tintColor(QColor(255, 255, 255, 41) if isDark else QColor(0, 0, 0, 56))
 
     def _sliderColor(self):
         return self._transitionColor(self._offSliderColor, self._onSliderColor)

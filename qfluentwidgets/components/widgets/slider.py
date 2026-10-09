@@ -4,7 +4,7 @@ from PyQt5.QtGui import QColor, QMouseEvent, QPainter, QPainterPath
 from PyQt5.QtWidgets import (QProxyStyle, QSlider, QStyle, QStyleOptionSlider,
                              QWidget)
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, tintColor
 from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
 
@@ -66,8 +66,8 @@ class SliderHandle(QWidget):
 
         # draw outer circle
         isDark = isDarkTheme()
-        painter.setPen(QColor(0, 0, 0, 90 if isDark else 25))
-        painter.setBrush(QColor(69, 69, 69) if isDark else Qt.GlobalColor.white)
+        painter.setPen(tintColor(QColor(0, 0, 0, 90 if isDark else 25)))
+        painter.setBrush(tintColor(QColor(69, 69, 69) if isDark else QColor(255, 255, 255)))
         painter.drawEllipse(self.rect().adjusted(1, 1, -1, -1))
 
         # draw innert circle

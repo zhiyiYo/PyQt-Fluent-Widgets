@@ -44,7 +44,7 @@ class StyleSheetManager(QObject):
 
         if not reset:
             self.source(widget).add(source)
-        else:
+        elif source is not self.widgets[widget]:
             self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
 
     def deregister(self, widget: QWidget):
@@ -312,7 +312,12 @@ def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     if isinstance(source, str):
         source = StyleSheetFile(source)
 
-    return renderQss(source.content(theme))
+    qss = renderQss(source.content(theme))
+
+    if isSurfaceTintEnabled():
+        qss = applySurfaceTint(qss)
+
+    return qss
 
 
 def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
@@ -525,3 +530,95 @@ def setThemeColor(color, save=False, lazy=False):
     color = QColor(color)
     qconfig.set(qconfig.themeColor, color, save=save)
     updateStyleSheet(lazy)
+    qconfig.themeChangedFinished.emit()
+
+
+def isSurfaceTintEnabled():
+    """ whether the surface tint is enabled, the tint is disabled when the
+    strength is 0 or the tint color is invalid """
+    return (qconfig.get(qconfig.surfaceTint).isValid()
+            and qconfig.get(qconfig.surfaceTintStrength) > 0)
+
+
+def setSurfaceTint(color, strength=0.28, lazy=False, save=False):
+    """ set the surface tint of application
+
+    The surface tint blends the near-neutral colors of backgrounds and
+    borders in style sheets towards the tint color, which enables
+    customizing the color of light and dark surfaces without modifying
+    any qss file.
+
+    Parameters
+    ----------
+    color: QColor | Qt.GlobalColor | str
+        surface tint color, an invalid color will disable the tint
+
+    strength: float
+        the blend strength of tint color, ranging from 0 to 1
+
+    lazy: bool
+        whether to update the style sheet lazily, set to `True` will accelerate tint switching
+
+    save: bool
+        whether to save the change to config file
+    """
+    color = QColor() if color is None else QColor(color)
+    strength = max(0, min(strength, 1))
+
+    if color.isValid():
+        qconfig.set(qconfig.surfaceTint, color, save=False)
+        qconfig.set(qconfig.surfaceTintStrength, strength, save=save)
+    else:
+        # an invalid color disables the tint
+        qconfig.set(qconfig.surfaceTintStrength, 0, save=save)
+
+    updateStyleSheet(lazy)
+    qconfig.themeChangedFinished.emit()
+
+
+def surfaceTint():
+    """ get the surface tint color, it's an invalid color when the tint is disabled """
+    if qconfig.get(qconfig.surfaceTintStrength) <= 0:
+        return QColor()
+
+    return QColor(qconfig.get(qconfig.surfaceTint))
+
+
+def surfaceTintStrength():
+    """ get the blend strength of surface tint """
+    return qconfig.get(qconfig.surfaceTintStrength)
+
+
+def applySurfaceTint(qss: str):
+    """ apply surface tint to style sheet
+
+    Only the near-neutral colors of surface properties (backgrounds and
+    borders) are tinted, text colors, the theme color and other saturated
+    colors are left untouched.
+
+    Parameters
+    ----------
+    qss: str
+        the style sheet string to apply surface tint
+    """
+    if not isSurfaceTintEnabled():
+        return qss
+
+    return _colorTinter().blendStyleSheet(qss)
+
+
+def tintColor(color: QColor):
+    """ tint the color with surface tint, the alpha channel is preserved """
+    if not isSurfaceTintEnabled():
+        return QColor(color)
+
+    return _colorTinter().blend(color)
+
+
+def _colorTinter():
+    """ create a color tinter from the config """
+    # import here to avoid a circular import
+    from .color import ColorTinter
+
+    return ColorTinter(qconfig.get(qconfig.surfaceTint),
+                       qconfig.get(qconfig.surfaceTintStrength))
