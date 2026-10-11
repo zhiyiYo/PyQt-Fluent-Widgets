@@ -3,11 +3,11 @@ import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 
 from qfluentwidgets import (FluentIcon, TransparentDropDownPushButton, RoundMenu, CommandBar, Action,
                             setTheme, Theme, setFont, CommandBarView, Flyout, FlyoutAnimationType,
-                            ImageLabel, ToolButton, PushButton)
+                            ImageLabel, PushButton, CheckBox)
 from qframelesswindow import FramelessWindow, StandardTitleBar
 
 
@@ -103,6 +103,61 @@ class Demo2(FramelessWindow):
         Flyout.make(view, self.imageLabel, self, FlyoutAnimationType.FADE_IN)
 
 
+class Demo3(QWidget):
+    """ Command bar with alignment and widget visibility control """
+
+    def __init__(self):
+        super().__init__()
+        self.commandBar = CommandBar(self)
+        self.alignButton = self.createAlignButton()
+        self.checkBox = CheckBox('Show widget', self)
+
+        self.vBoxLayout = QVBoxLayout(self)
+        self.vBoxLayout.setContentsMargins(16, 16, 16, 16)
+        self.vBoxLayout.setSpacing(12)
+
+        self.vBoxLayout.addWidget(self.commandBar)
+
+        self.hBoxLayout = QHBoxLayout()
+        self.hBoxLayout.addWidget(self.alignButton)
+        self.hBoxLayout.addWidget(self.checkBox)
+        self.hBoxLayout.addStretch(1)
+        self.vBoxLayout.addLayout(self.hBoxLayout)
+
+        # change the alignment of commands
+        self.commandBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.commandBar.setLayoutAlignment(Qt.AlignHCenter)
+
+        for icon, text in [(FluentIcon.ADD, 'Add'), (FluentIcon.DELETE, 'Delete'),
+                           (FluentIcon.SHARE, 'Share'), (FluentIcon.SAVE, 'Save')]:
+            self.commandBar.addAction(
+                Action(icon, text, triggered=lambda c=text: print(c)))
+
+        # hide or show the custom widget from the command bar
+        self.pushButton = PushButton('Widget', self)
+        self.commandBar.addWidget(self.pushButton)
+        self.checkBox.setChecked(True)
+        self.checkBox.toggled.connect(
+            lambda: self.commandBar.setCommandWidgetVisible(
+                self.pushButton, self.checkBox.isChecked()))
+
+        self.resize(620, self.sizeHint().height())
+        self.setWindowTitle('Alignment & visibility')
+
+    def createAlignButton(self):
+        button = TransparentDropDownPushButton('Alignment', self)
+
+        menu = RoundMenu(parent=self)
+        menu.addAction(
+            Action('Left', triggered=lambda: self.commandBar.setLayoutAlignment(Qt.AlignLeft)))
+        menu.addAction(
+            Action('Center', triggered=lambda: self.commandBar.setLayoutAlignment(Qt.AlignHCenter)))
+        menu.addAction(
+            Action('Right', triggered=lambda: self.commandBar.setLayoutAlignment(Qt.AlignRight)))
+        button.setMenu(menu)
+        return button
+
+
 if __name__ == '__main__':
     # enable dpi scale
     QApplication.setHighDpiScaleFactorRoundingPolicy(
@@ -112,7 +167,15 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     w1 = Demo1()
-    w1.show()
     w2 = Demo2()
-    w2.show()
+    w3 = Demo3()
+
+    # arrange windows to avoid overlapping
+    w1.move(60, 60)
+    w3.move(60, 60 + w1.height() + 28)
+    w2.move(60 + w3.width() + 28, 60)
+
+    for w in (w1, w2, w3):
+        w.show()
+
     app.exec_()

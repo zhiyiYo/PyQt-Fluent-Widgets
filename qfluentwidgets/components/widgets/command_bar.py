@@ -194,6 +194,8 @@ class CommandBar(QFrame):
         self._iconSize = QSize(16, 16)
         self._isButtonTight = False
         self._spacing = 4
+        self._commandHiddenWidgets = set()
+        self._layoutAlignment = Qt.AlignLeft
 
         self.moreButton = MoreActionsButton(self)
         self.moreButton.clicked.connect(self._showMoreActionsMenu)
@@ -266,6 +268,33 @@ class CommandBar(QFrame):
         """ add widget to command bar """
         self._insertWidgetToLayout(-1, widget)
 
+    def setCommandWidgetVisible(self, widget: QWidget, isVisible: bool):
+        """ set whether the widget is visible in command bar
+
+        Parameters
+        ----------
+        widget: QWidget
+            custom widget
+
+        isVisible: bool
+            whether the widget is visible in command bar. The invisible
+            widget will be excluded from the layout and more actions menu
+        """
+        if widget not in self._widgets:
+            return
+
+        if isVisible:
+            self._commandHiddenWidgets.discard(widget)
+        else:
+            self._commandHiddenWidgets.add(widget)
+            widget.hide()
+
+        self.updateGeometry()
+
+    def isCommandWidgetVisible(self, widget: QWidget):
+        """ return whether the widget is visible in command bar """
+        return widget in self._widgets and widget not in self._commandHiddenWidgets
+
     def removeAction(self, action: QAction):
         if action not in self.actions():
             return
@@ -284,6 +313,7 @@ class CommandBar(QFrame):
             return
 
         self._widgets.remove(widget)
+        self._commandHiddenWidgets.discard(widget)
         self.updateGeometry()
 
     def removeHiddenAction(self, action: QAction):
@@ -327,6 +357,24 @@ class CommandBar(QFrame):
     def iconSize(self):
         return self._iconSize
 
+    def setLayoutAlignment(self, alignment: Qt.Alignment):
+        """ set the alignment of widgets in command bar
+
+        Parameters
+        ----------
+        alignment: Qt.Alignment
+            the alignment of widgets, which can be `Qt.AlignLeft`,
+            `Qt.AlignRight` or `Qt.AlignHCenter`
+        """
+        if alignment == self._layoutAlignment:
+            return
+
+        self._layoutAlignment = alignment
+        self.updateGeometry()
+
+    def layoutAlignment(self) -> Qt.Alignment:
+        return self._layoutAlignment
+
     def resizeEvent(self, e):
         self.updateGeometry()
 
@@ -361,7 +409,9 @@ class CommandBar(QFrame):
         self.moreButton.hide()
 
         visibles = self._visibleWidgets()
-        x = self.contentsMargins().left()
+        hiddenWidgets = [w for w in self._managedWidgets() if w not in visibles]
+
+        x = self._layoutOriginX(visibles)
         h = self.height()
 
         for widget in visibles:
@@ -370,33 +420,59 @@ class CommandBar(QFrame):
             x += (widget.width() + self.spacing())
 
         # show more actions button
-        if self._hiddenActions or len(visibles) < len(self._widgets):
+        if self._hiddenActions or hiddenWidgets:
             self.moreButton.show()
             self.moreButton.move(x, (h - self.moreButton.height()) // 2)
 
-        for widget in self._widgets[len(visibles):]:
+        for widget in hiddenWidgets:
             widget.hide()
             self._hiddenWidgets.append(widget)
 
+    def _managedWidgets(self) -> List[QWidget]:
+        """ return the widgets managed by command bar """
+        return [w for w in self._widgets if w not in self._commandHiddenWidgets]
+
+    def _layoutOriginX(self, visibles: List[QWidget]) -> int:
+        """ return the x coordinate of the first visible widget """
+        m = self.contentsMargins()
+        if self._layoutAlignment & Qt.AlignLeft:
+            return m.left()
+
+        widths = [w.width() for w in visibles]
+        if self._hiddenActions or len(visibles) < len(self._managedWidgets()):
+            widths.append(self.moreButton.width())
+
+        w = sum(widths) + self.spacing() * max(len(widths) - 1, 0)
+
+        if self._layoutAlignment & Qt.AlignRight:
+            return m.left() + max(0, self.width() - m.right() - w)
+
+        return m.left() + max(0, (self.width() - m.left() - m.right() - w) // 2)
+
     def _visibleWidgets(self) -> List[QWidget]:
         """ return the visible widgets in layout """
+        widgets = self._managedWidgets()
+
         # have enough spacing to show all widgets
         if self.suitableWidth() <= self.width():
-            return self._widgets
+            return widgets
 
-        w = self.moreButton.width()
-        for index, widget in enumerate(self._widgets):
-            w += widget.width()
+        w = self.moreButton.width() + self.spacing()
+        for index, widget in enumerate(widgets):
             if index > 0:
                 w += self.spacing()
 
-            if w > self.width():
+            # the layout width when widgets[:index + 1] are visible
+            if w + widget.width() > self.width():
                 break
+            w += widget.width()
+        else:
+            index = len(widgets)
 
-        return self._widgets[:index]
+        return widgets[:index]
 
     def suitableWidth(self):
-        widths = [w.width() for w in self._widgets]
+        widths = [w.width() for w in self._managedWidgets()]
         if self._hiddenActions:
             widths.append(self.moreButton.width())
 
