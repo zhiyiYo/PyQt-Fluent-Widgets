@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QFrame, QWidget, QAbstractButton, QApplication, QScr
 
 from ...common.config import isDarkTheme
 from ...common.icon import FluentIcon as FIF
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, tintColor
 from .setting_card import SettingCard, SettingIconWidget
 from ..layout.v_box_layout import VBoxLayout
 
@@ -141,9 +141,9 @@ class HeaderSettingCard(SettingCard):
         painter.setPen(Qt.NoPen)
 
         if isDarkTheme():
-            painter.setBrush(QColor(255, 255, 255, 13))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 13)))
         else:
-            painter.setBrush(QColor(255, 255, 255, 170))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 170)))
 
         p = self.parent()  # type: ExpandSettingCard
         path = QPainterPath()

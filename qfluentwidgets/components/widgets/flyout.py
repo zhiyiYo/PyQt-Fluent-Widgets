@@ -9,7 +9,7 @@ from PyQt5.QtGui import QPixmap, QPainter, QColor, QCursor, QIcon, QImage, QPain
 from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect, QLabel, QHBoxLayout, QVBoxLayout, QApplication
 
 from ...common.auto_wrap import TextWrap
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ...common.icon import FluentIconBase, drawIcon, FluentIcon
 from ...common.screen import getCurrentScreenGeometry
 from .button import TransparentToolButton
@@ -55,10 +55,10 @@ class FlyoutViewBase(QWidget):
         raise NotImplementedError
 
     def backgroundColor(self):
-        return QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)
+        return tintColor(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
 
     def borderColor(self):
-        return QColor(0, 0, 0, 45) if isDarkTheme() else QColor(0, 0, 0, 17)
+        return tintColor(QColor(0, 0, 0, 45) if isDarkTheme() else QColor(0, 0, 0, 17))
 
     def paintEvent(self, e):
         painter = QPainter(self)

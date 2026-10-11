@@ -2,6 +2,7 @@
 from enum import Enum
 from string import Template
 from typing import List, Union
+import re
 import weakref
 
 from PyQt5.QtCore import QFile, QObject, QEvent
@@ -44,7 +45,7 @@ class StyleSheetManager(QObject):
 
         if not reset:
             self.source(widget).add(source)
-        else:
+        elif source is not self.widgets[widget]:
             self.widgets[widget] = StyleSheetCompose([source, CustomStyleSheet(widget)])
 
     def deregister(self, widget: QWidget):
@@ -312,7 +313,12 @@ def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     if isinstance(source, str):
         source = StyleSheetFile(source)
 
-    return renderQss(source.content(theme))
+    qss = renderQss(source.content(theme))
+
+    if _surfaceTintEnabled():
+        qss = applySurfaceTint(qss)
+
+    return qss
 
 
 def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
@@ -525,3 +531,156 @@ def setThemeColor(color, save=False, lazy=False):
     color = QColor(color)
     qconfig.set(qconfig.themeColor, color, save=save)
     updateStyleSheet(lazy)
+    qconfig.themeChangedFinished.emit()
+
+
+def _surfaceTintEnabled():
+    """ whether the surface tint is enabled, the tint is disabled when the
+    strength is 0 or the tint color is invalid """
+    return (qconfig.get(qconfig.surfaceTint).isValid()
+            and qconfig.get(qconfig.surfaceTintStrength) > 0)
+
+
+_colorPattern = re.compile(r"#[0-9a-fA-F]{3,8}\b|rgba?\([^()]*\)")
+_rgbPattern = re.compile(r"^rgba?\(([^()]*)\)$")
+_maxSaturation = 0.18
+
+
+def setSurfaceTint(color, strength=0.28, lazy=False, save=False):
+    """ set the surface tint of application
+
+    The surface tint blends all near-neutral colors in style sheets towards
+    the tint color, which enables customizing the color of light and dark
+    surfaces without modifying any qss file.
+
+    Parameters
+    ----------
+    color: QColor | Qt.GlobalColor | str
+        surface tint color, an invalid color will disable the tint
+
+    strength: float
+        the blend strength of tint color, ranging from 0 to 1
+
+    lazy: bool
+        whether to update the style sheet lazily, set to `True` will accelerate tint switching
+
+    save: bool
+        whether to save the change to config file
+    """
+    color = QColor() if color is None else QColor(color)
+    strength = max(0, min(strength, 1))
+
+    if color.isValid():
+        qconfig.set(qconfig.surfaceTint, color, save=False)
+        qconfig.set(qconfig.surfaceTintStrength, strength, save=save)
+    else:
+        # an invalid color disables the tint
+        qconfig.set(qconfig.surfaceTintStrength, 0, save=save)
+
+    updateStyleSheet(lazy)
+    qconfig.themeChangedFinished.emit()
+
+
+def surfaceTint():
+    """ get the surface tint color, it's an invalid color when the tint is disabled """
+    if qconfig.get(qconfig.surfaceTintStrength) <= 0:
+        return QColor()
+
+    return QColor(qconfig.get(qconfig.surfaceTint))
+
+
+def surfaceTintStrength():
+    """ get the blend strength of surface tint """
+    return qconfig.get(qconfig.surfaceTintStrength)
+
+
+def applySurfaceTint(qss: str):
+    """ apply surface tint to style sheet
+
+    Only near-neutral colors are tinted, so the theme color and other
+    saturated colors are left untouched.
+
+    Parameters
+    ----------
+    qss: str
+        the style sheet string to apply surface tint
+    """
+    if not _surfaceTintEnabled():
+        return qss
+
+    tint = qconfig.get(qconfig.surfaceTint)
+    strength = qconfig.get(qconfig.surfaceTintStrength)
+    return _colorPattern.sub(
+        lambda m: _tintColorText(m.group(0), tint, strength),
+        qss,
+    )
+
+
+def tintColor(color: QColor):
+    """ tint the color with surface tint, the alpha channel is preserved """
+    if not _surfaceTintEnabled():
+        return QColor(color)
+
+    return _blendColor(QColor(color), qconfig.get(qconfig.surfaceTint),
+                       qconfig.get(qconfig.surfaceTintStrength))
+
+
+def _tintColorText(colorText: str, tint: QColor, strength: float):
+    """ tint the near-neutral color text, saturated colors are skipped """
+    parsed = _parseColorText(colorText)
+    if parsed is None:
+        return colorText
+
+    color, alphaText = parsed
+    if color.saturationF() > _maxSaturation:
+        return colorText
+
+    tinted = _blendColor(color, tint, strength)
+
+    if colorText.startswith("#"):
+        if len(colorText) == 9:
+            return tinted.name(QColor.NameFormat.HexArgb)
+        return tinted.name(QColor.NameFormat.HexRgb)
+
+    if alphaText is not None:
+        return f"rgba({tinted.red()}, {tinted.green()}, {tinted.blue()}, {alphaText})"
+    return f"rgb({tinted.red()}, {tinted.green()}, {tinted.blue()})"
+
+
+def _parseColorText(colorText: str):
+    """ parse `#rgb` or `rgb(a)` color text """
+    if colorText.startswith("#"):
+        color = QColor(colorText)
+        return (color, None) if color.isValid() else None
+
+    match = _rgbPattern.fullmatch(colorText)
+    if match is None:
+        return None
+
+    parts = [p.strip() for p in match.group(1).split(",")]
+    if len(parts) not in (3, 4):
+        return None
+
+    try:
+        red, green, blue = (int(p) for p in parts[:3])
+        rawAlpha = None if len(parts) == 3 else parts[3]
+        alpha = 255 if rawAlpha is None else (
+            int(rawAlpha) if "." not in rawAlpha else round(float(rawAlpha) * 255))
+    except (TypeError, ValueError):
+        return None
+
+    if any(v < 0 or v > 255 for v in (red, green, blue, alpha)):
+        return None
+
+    return QColor.fromRgb(red, green, blue, alpha), rawAlpha
+
+
+def _blendColor(base: QColor, tint: QColor, strength: float):
+    """ blend two colors, the alpha channel of base color is preserved """
+    strength = max(0, min(strength, 1))
+    return QColor.fromRgb(
+        round(base.red() * (1 - strength) + tint.red() * strength),
+        round(base.green() * (1 - strength) + tint.green() * strength),
+        round(base.blue() * (1 - strength) + tint.blue() * strength),
+        base.alpha(),
+    )

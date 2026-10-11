@@ -89,6 +89,7 @@ class BackgroundAnimationWidget:
         self.installEventFilter(self)
 
         qconfig.themeChanged.connect(self._updateBackgroundColor)
+        qconfig.themeChangedFinished.connect(self._updateBackgroundColor)
 
     def eventFilter(self, obj, e):
         if obj is self:
