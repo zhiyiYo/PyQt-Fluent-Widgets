@@ -75,7 +75,8 @@ class ItemMaskWidget(QWidget):
 
             # draw second item's text
             item2 = p.itemAt(self.pos() + QPoint(x, h - 6))
-            self._drawText(item2, painter, h)
+            if item2:
+                self._drawText(item2, painter, h)
 
             painter.restore()
             w += (iw + 8)  # margin: 0 4px;
