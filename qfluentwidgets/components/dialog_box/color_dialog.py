@@ -1,11 +1,12 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, pyqtSignal, QPoint, QRegExp, QSize
-from PyQt5.QtGui import (QBrush, QColor, QPixmap,
-                         QPainter, QPen, QIntValidator, QRegExpValidator, QIcon)
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QPushButton, QFrame, QVBoxLayout
+from PyQt5.QtCore import Qt, pyqtSignal, QRegExp, QRectF
+from PyQt5.QtGui import (QBrush, QColor, QLinearGradient, QPainter, QPainterPath,
+                         QPen, QPixmap, QIntValidator, QRegExpValidator)
+from PyQt5.QtWidgets import (QLabel, QWidget, QPushButton, QFrame, QVBoxLayout,
+                             QHBoxLayout, QSizePolicy)
 
 from ...common.style_sheet import FluentStyleSheet, isDarkTheme
-from ..widgets import ClickableSlider, SingleDirectionScrollArea, PushButton, PrimaryPushButton
+from ..widgets import PrimaryPushButton, SpinBox, CompactSpinBox
 from ..widgets.line_edit import LineEdit
 from .mask_dialog_base import MaskDialogBase
 
@@ -18,7 +19,9 @@ class HuePanel(QWidget):
     def __init__(self, color=QColor(255, 0, 0), parent=None):
         super().__init__(parent=parent)
         self.setFixedSize(256, 256)
-        self.huePixmap = QPixmap(":/qfluentwidgets/images/color_dialog/HuePanel.png")
+        self.setCursor(Qt.CrossCursor)
+        self.hue = 0
+        self.saturation = 255
         self.setColor(color)
 
     def mousePressEvent(self, e):
@@ -28,82 +31,148 @@ class HuePanel(QWidget):
         self.setPickerPosition(e.pos())
 
     def setPickerPosition(self, pos):
-        """ set the position of  """
-        self.pickerPos = pos
-        self.color.setHsv(
-            int(max(0, min(1, pos.x() / self.width())) * 359),
-            int(max(0, min(1, (self.height() - pos.y()) / self.height())) * 255),
-            255
-        )
+        """ set the position of color picker """
+        self.hue = max(0, min(1, pos.x() / self.width())) * 359
+        self.saturation = max(0, min(1, (self.height() - pos.y()) / self.height())) * 255
         self.update()
-        self.colorChanged.emit(self.color)
+        self.colorChanged.emit(
+            QColor.fromHsv(int(self.hue), int(self.saturation), 255))
 
     def setColor(self, color):
         """ set color """
-        self.color = QColor(color)
-        self.color.setHsv(self.color.hue(), self.color.saturation(), 255)
-        self.pickerPos = QPoint(
-            int(self.hue/359*self.width()),
-            int((255 - self.saturation)/255*self.height())
-        )
+        color = QColor(color)
+        if color.hue() >= 0:
+            self.hue = color.hue()
+        self.saturation = color.saturation()
         self.update()
-
-    @property
-    def hue(self):
-        return self.color.hue()
-
-    @property
-    def saturation(self):
-        return self.color.saturation()
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing |
-                               QPainter.SmoothPixmapTransform)
+        painter.setRenderHints(QPainter.Antialiasing)
+        rect = QRectF(self.rect().adjusted(1, 1, -1, -1))
 
         # draw hue panel
-        painter.setBrush(QBrush(self.huePixmap))
-        painter.setPen(QPen(QColor(0, 0, 0, 15), 2.4))
-        painter.drawRoundedRect(self.rect(), 5.6, 5.6)
+        path = QPainterPath()
+        path.addRoundedRect(rect, 8, 8)
+        painter.save()
+        painter.setClipPath(path)
 
-        # draw picker
-        if self.saturation > 153 or 40 < self.hue < 180:
-            color = Qt.black
-        else:
-            color = QColor(255, 253, 254)
+        gradient = QLinearGradient(rect.topLeft(), rect.topRight())
+        for i in range(7):
+            gradient.setColorAt(i / 6, QColor.fromHsvF(i / 6, 1, 1))
+        painter.fillRect(rect, QBrush(gradient))
 
-        painter.setPen(QPen(color, 3))
+        white = QLinearGradient(rect.topLeft(), rect.bottomLeft())
+        white.setColorAt(0, QColor(255, 255, 255, 0))
+        white.setColorAt(1, QColor(255, 255, 255, 255))
+        painter.fillRect(rect, QBrush(white))
+
+        black = QLinearGradient(rect.topLeft(), rect.bottomLeft())
+        black.setColorAt(0, QColor(0, 0, 0, 0))
+        black.setColorAt(1, QColor(0, 0, 0, 255))
+        painter.fillRect(rect, QBrush(black))
+        painter.restore()
+
+        painter.setPen(QPen(QColor(0, 0, 0, 32), 1))
         painter.setBrush(Qt.NoBrush)
-        painter.drawEllipse(self.pickerPos.x() - 8,
-                            self.pickerPos.y() - 8, 16, 16)
+        painter.drawRoundedRect(rect, 8, 8)
+
+        # draw color picker
+        x = rect.left() + self.hue / 359 * rect.width()
+        y = rect.top() + (255 - self.saturation) / 255 * rect.height()
+        painter.setPen(QPen(QColor(0, 0, 0, 140), 1))
+        painter.setBrush(QColor(255, 255, 255))
+        painter.drawEllipse(int(x) - 7, int(y) - 7, 14, 14)
 
 
-class BrightnessSlider(ClickableSlider):
+class BrightnessSlider(QWidget):
     """ Brightness slider """
 
     colorChanged = pyqtSignal(QColor)
 
     def __init__(self, color, parent=None):
-        super().__init__(Qt.Horizontal, parent)
-        self.setRange(0, 255)
-        self.setSingleStep(1)
-        self.setColor(color)
-        self.valueChanged.connect(self.__onValueChanged)
+        super().__init__(parent=parent)
+        self.color = QColor(color)
+        self.setFixedHeight(28)
+        self.setCursor(Qt.SizeHorCursor)
+        self.setFocusPolicy(Qt.StrongFocus)
+        self._wheelDelta = 0
+
+    def mousePressEvent(self, e):
+        self.__setValue(e.pos().x())
+
+    def mouseMoveEvent(self, e):
+        self.__setValue(e.pos().x())
+
+    def keyPressEvent(self, e):
+        value = self.color.value()
+        if e.key() in (Qt.Key_Left, Qt.Key_Down):
+            value -= 1
+        elif e.key() in (Qt.Key_Right, Qt.Key_Up):
+            value += 1
+        elif e.key() == Qt.Key_PageDown:
+            value -= 10
+        elif e.key() == Qt.Key_PageUp:
+            value += 10
+        elif e.key() == Qt.Key_Home:
+            value = 0
+        elif e.key() == Qt.Key_End:
+            value = 255
+        else:
+            super().keyPressEvent(e)
+            return
+        self._setValue(value)
+
+    def wheelEvent(self, e):
+        e.accept()
+        self._wheelDelta += e.angleDelta().y()
+        steps = int(self._wheelDelta / 120)
+        self._wheelDelta -= steps * 120
+        if steps:
+            self._setValue(self.color.value() + steps)
 
     def setColor(self, color):
         """ set color """
         self.color = QColor(color)
-        self.setValue(self.color.value())
-        qss = FluentStyleSheet.COLOR_DIALOG.content()
-        qss = qss.replace('--slider-hue', str(self.color.hue()))
-        qss = qss.replace('--slider-saturation', str(self.color.saturation()))
-        self.setStyleSheet(qss)
+        self.update()
 
-    def __onValueChanged(self, value):
-        """ slider value changed slot """
-        self.color.setHsv(self.color.hue(), self.color.saturation(), value, self.color.alpha())
-        self.setColor(self.color)
+    def __setValue(self, x):
+        rect = self.rect().adjusted(7, 8, -7, -8)
+        value = max(0, min(255, round((x - rect.left()) / max(1, rect.width()) * 255)))
+        self._setValue(value)
+
+    def _setValue(self, value):
+        value = max(0, min(255, value))
+        if value == self.color.value():
+            return
+
+        self.color.setHsv(self.color.hue(), self.color.saturation(),
+                          value, self.color.alpha())
+        self.update()
         self.colorChanged.emit(self.color)
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setRenderHints(QPainter.Antialiasing)
+        rect = self.rect().adjusted(7, 8, -7, -8)
+
+        # draw brightness gradient
+        gradient = QLinearGradient(rect.topLeft(), rect.topRight())
+        gradient.setColorAt(0, Qt.black)
+        gradient.setColorAt(1, QColor.fromHsv(self.color.hue(), self.color.saturation(), 255))
+        painter.setPen(QPen(QColor(0, 0, 0, 32), 1))
+        painter.setBrush(QBrush(gradient))
+        painter.drawRoundedRect(rect, 5, 5)
+
+        # draw color picker
+        x = rect.left() + self.color.value() / 255 * rect.width()
+        y = rect.center().y()
+        painter.setPen(QPen(QColor(0, 0, 0, 110), 1))
+        painter.setBrush(QColor(255, 255, 255, 236))
+        painter.drawEllipse(int(x) - 7, int(y) - 7, 14, 14)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(self.color)
+        painter.drawEllipse(int(x) - 3, int(y) - 3, 6, 6)
 
 
 class ColorCard(QWidget):
@@ -111,7 +180,8 @@ class ColorCard(QWidget):
 
     def __init__(self, color, parent=None, enableAlpha=False):
         super().__init__(parent)
-        self.setFixedSize(44, 128)
+        self.setFixedHeight(36)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.setColor(color)
         self.enableAlpha = enableAlpha
         self.titledPixmap = self._createTitledBackground()
@@ -136,17 +206,18 @@ class ColorCard(QWidget):
     def paintEvent(self, e):
         painter = QPainter(self)
         painter.setRenderHints(QPainter.Antialiasing)
+        rect = self.rect().adjusted(1, 1, -1, -1)
 
         # draw tiled background
         if self.enableAlpha:
             painter.setBrush(QBrush(self.titledPixmap))
             painter.setPen(QColor(0, 0, 0, 13))
-            painter.drawRoundedRect(self.rect(), 4, 4)
+            painter.drawRoundedRect(rect, 6, 6)
 
         # draw color
         painter.setBrush(self.color)
         painter.setPen(QColor(0, 0, 0, 13))
-        painter.drawRoundedRect(self.rect(), 4, 4)
+        painter.drawRoundedRect(rect, 6, 6)
 
 
 class ColorLineEdit(LineEdit):
@@ -157,7 +228,8 @@ class ColorLineEdit(LineEdit):
     def __init__(self, value, parent=None):
         super().__init__(parent)
         self.setText(str(value))
-        self.setFixedSize(136, 33)
+        self.setMinimumWidth(136)
+        self.setFixedHeight(33)
         self.setClearButtonEnabled(True)
         self.setValidator(QIntValidator(0, 255, self))
 
@@ -192,26 +264,6 @@ class HexColorLineEdit(ColorLineEdit):
         self.setText(color.name(self.colorFormat)[1:])
 
 
-class OpacityLineEdit(ColorLineEdit):
-    """ Opacity line edit """
-
-    def __init__(self, value, parent=None, enableAlpha=False):
-        super().__init__(int(value/255*100), parent)
-        self.setValidator(QRegExpValidator(QRegExp(r'[0-9][0-9]{0,1}|100')))
-        self.setTextMargins(4, 0, 33, 0)
-        self.suffixLabel = QLabel('%', self)
-        self.suffixLabel.setObjectName('suffixLabel')
-        self.textChanged.connect(self._adjustSuffixPos)
-
-    def showEvent(self, e):
-        super().showEvent(e)
-        self._adjustSuffixPos()
-
-    def _adjustSuffixPos(self):
-        x = self.fontMetrics().width(self.text()) + 18
-        self.suffixLabel.move(x, 2)
-
-
 class ColorDialog(MaskDialogBase):
     """ Color dialog """
 
@@ -242,142 +294,189 @@ class ColorDialog(MaskDialogBase):
         self.oldColor = QColor(color)
         self.color = QColor(color)
 
-        self.scrollArea = SingleDirectionScrollArea(self.widget)
-        self.scrollWidget = QWidget(self.scrollArea)
-
         self.buttonGroup = QFrame(self.widget)
         self.yesButton = PrimaryPushButton(self.tr('OK'), self.buttonGroup)
         self.cancelButton = QPushButton(self.tr('Cancel'), self.buttonGroup)
 
-        self.titleLabel = QLabel(title, self.scrollWidget)
-        self.huePanel = HuePanel(color, self.scrollWidget)
-        self.newColorCard = ColorCard(color, self.scrollWidget, enableAlpha)
-        self.oldColorCard = ColorCard(color, self.scrollWidget, enableAlpha)
-        self.brightSlider = BrightnessSlider(color, self.scrollWidget)
-
-        self.editLabel = QLabel(self.tr('Edit Color'), self.scrollWidget)
-        self.redLabel = QLabel(self.tr('Red'), self.scrollWidget)
-        self.blueLabel = QLabel(self.tr('Blue'), self.scrollWidget)
-        self.greenLabel = QLabel(self.tr('Green'), self.scrollWidget)
-        self.opacityLabel = QLabel(self.tr('Opacity'), self.scrollWidget)
-        self.hexLineEdit = HexColorLineEdit(color, self.scrollWidget, enableAlpha)
-        self.redLineEdit = ColorLineEdit(self.color.red(), self.scrollWidget)
-        self.greenLineEdit = ColorLineEdit(self.color.green(), self.scrollWidget)
-        self.blueLineEdit = ColorLineEdit(self.color.blue(), self.scrollWidget)
-        self.opacityLineEdit = OpacityLineEdit(self.color.alpha(), self.scrollWidget)
+        self.titleLabel = QLabel(title, self.widget)
+        self.oldColorLabel = QLabel(self.tr('Original'), self.widget)
+        self.newColorLabel = QLabel(self.tr('Current'), self.widget)
+        self.huePanel = HuePanel(color, self.widget)
+        self.newColorCard = ColorCard(color, self.widget, enableAlpha)
+        self.oldColorCard = ColorCard(color, self.widget, enableAlpha)
+        self.brightSlider = BrightnessSlider(color, self.widget)
+        self.brightLabel = QLabel(self.tr('Brightness'), self.widget)
+        self.hexLabel = QLabel(self.tr('Hex'), self.widget)
+        self.opacityLabel = QLabel(self.tr('Opacity'), self.widget)
+        self.hexLineEdit = HexColorLineEdit(color, self.widget, enableAlpha)
+        self.redLabel = QLabel(self.tr('Red'), self.widget)
+        self.greenLabel = QLabel(self.tr('Green'), self.widget)
+        self.blueLabel = QLabel(self.tr('Blue'), self.widget)
+        self.redSpinBox = CompactSpinBox(self.widget)
+        self.greenSpinBox = CompactSpinBox(self.widget)
+        self.blueSpinBox = CompactSpinBox(self.widget)
+        for spin in (self.redSpinBox, self.greenSpinBox, self.blueSpinBox):
+            spin.setRange(0, 255)
+        self.redSpinBox.setValue(self.color.red())
+        self.greenSpinBox.setValue(self.color.green())
+        self.blueSpinBox.setValue(self.color.blue())
+        self.opacitySpinBox = SpinBox(self.widget)
+        self.opacitySpinBox.setRange(0, 100)
+        self.opacitySpinBox.setSuffix('%')
+        self.opacitySpinBox.setValue(int(self.color.alpha() / 255 * 100))
 
         self.vBoxLayout = QVBoxLayout(self.widget)
 
         self.__initWidget()
 
     def __initWidget(self):
-        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea.setViewportMargins(48, 24, 0, 24)
-        self.scrollArea.setWidget(self.scrollWidget)
-
-        self.widget.setMaximumSize(488, 696+40*self.enableAlpha)
-        self.widget.resize(488, 696+40*self.enableAlpha)
-        self.scrollWidget.resize(440, 560+40*self.enableAlpha)
-        self.buttonGroup.setFixedSize(486, 81)
-        self.yesButton.setFixedWidth(216)
-        self.cancelButton.setFixedWidth(216)
+        self.widget.setFixedWidth(488)
+        self.buttonGroup.setFixedHeight(81)
 
         self.setShadowEffect(60, (0, 10), QColor(0, 0, 0, 80))
         self.setMaskColor(QColor(0, 0, 0, 76))
+
+        # fixes https://github.com/zhiyiYo/PyQt-Fluent-Widgets/issues/19
+        self.yesButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.cancelButton.setAttribute(Qt.WA_LayoutUsesWidgetRect)
+        self.yesButton.setAttribute(Qt.WA_MacShowFocusRect, False)
+        self.yesButton.setFocus()
 
         self.__setQss()
         self.__initLayout()
         self.__connectSignalToSlot()
 
     def __initLayout(self):
-        self.huePanel.move(0, 46)
-        self.newColorCard.move(288, 46)
-        self.oldColorCard.move(288, self.newColorCard.geometry().bottom()+1)
-        self.brightSlider.move(0, 324)
+        self._hBoxLayout.removeWidget(self.widget)
+        self._hBoxLayout.addWidget(self.widget, 1, Qt.AlignCenter)
 
-        self.editLabel.move(0, 385)
-        self.redLineEdit.move(0, 426)
-        self.greenLineEdit.move(0, 470)
-        self.blueLineEdit.move(0, 515)
-        self.redLabel.move(144, 434)
-        self.greenLabel.move(144, 478)
-        self.blueLabel.move(144, 524)
-        self.hexLineEdit.move(196, 381)
+        # picker area
+        pickerLayout = QHBoxLayout()
+        pickerLayout.setSpacing(16)
+        pickerLayout.addWidget(self.huePanel, 0, Qt.AlignTop)
+
+        previewLayout = QVBoxLayout()
+        previewLayout.setSpacing(8)
+        previewLayout.addWidget(self.oldColorLabel)
+        previewLayout.addWidget(self.oldColorCard)
+        previewLayout.addSpacing(8)
+        previewLayout.addWidget(self.newColorLabel)
+        previewLayout.addWidget(self.newColorCard)
+        previewLayout.addStretch(1)
+        pickerLayout.addLayout(previewLayout, 1)
+
+        # edit area
+        editLayout = QHBoxLayout()
+        editLayout.setSpacing(12)
+        editLayout.addWidget(self.hexLabel, 0, Qt.AlignVCenter)
+        editLayout.addWidget(self.hexLineEdit, 1)
 
         if self.enableAlpha:
-            self.opacityLineEdit.move(0, 560)
-            self.opacityLabel.move(144, 567)
+            editLayout.addWidget(self.opacityLabel, 0, Qt.AlignVCenter)
+            editLayout.addWidget(self.opacitySpinBox, 1)
         else:
-            self.opacityLineEdit.hide()
             self.opacityLabel.hide()
+            self.opacitySpinBox.hide()
+
+        rgbLayout = QHBoxLayout()
+        rgbLayout.setSpacing(12)
+        rgbLayout.addWidget(self.redLabel, 0, Qt.AlignVCenter)
+        rgbLayout.addWidget(self.redSpinBox, 1)
+        rgbLayout.addWidget(self.greenLabel, 0, Qt.AlignVCenter)
+        rgbLayout.addWidget(self.greenSpinBox, 1)
+        rgbLayout.addWidget(self.blueLabel, 0, Qt.AlignVCenter)
+        rgbLayout.addWidget(self.blueSpinBox, 1)
+
+        self.viewLayout = QVBoxLayout()
+        self.viewLayout.setSpacing(12)
+        self.viewLayout.setContentsMargins(24, 24, 24, 24)
+        self.viewLayout.addWidget(self.titleLabel)
+        self.viewLayout.addLayout(pickerLayout)
+        self.viewLayout.addWidget(self.brightLabel)
+        self.viewLayout.addWidget(self.brightSlider)
+        self.viewLayout.addLayout(editLayout)
+        self.viewLayout.addLayout(rgbLayout)
+
+        buttonLayout = QHBoxLayout(self.buttonGroup)
+        buttonLayout.setSpacing(12)
+        buttonLayout.setContentsMargins(24, 24, 24, 24)
+        buttonLayout.addWidget(self.yesButton, 1, Qt.AlignVCenter)
+        buttonLayout.addWidget(self.cancelButton, 1, Qt.AlignVCenter)
 
         self.vBoxLayout.setSpacing(0)
-        self.vBoxLayout.setAlignment(Qt.AlignTop)
         self.vBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.vBoxLayout.addWidget(self.scrollArea, 1)
+        self.vBoxLayout.addLayout(self.viewLayout, 1)
         self.vBoxLayout.addWidget(self.buttonGroup, 0, Qt.AlignBottom)
 
-        self.yesButton.move(24, 25)
-        self.cancelButton.move(250, 25)
+        self.widget.adjustSize()
 
     def __setQss(self):
-        self.editLabel.setObjectName('editLabel')
         self.titleLabel.setObjectName('titleLabel')
         self.yesButton.setObjectName('yesButton')
         self.cancelButton.setObjectName('cancelButton')
         self.buttonGroup.setObjectName('buttonGroup')
         FluentStyleSheet.COLOR_DIALOG.apply(self)
-        self.titleLabel.adjustSize()
-        self.editLabel.adjustSize()
 
     def setColor(self, color, movePicker=True):
         """ set color """
         self.color = QColor(color)
-        self.brightSlider.setColor(color)
-        self.newColorCard.setColor(color)
-        self.hexLineEdit.setColor(color)
-        self.redLineEdit.setText(str(color.red()))
-        self.blueLineEdit.setText(str(color.blue()))
-        self.greenLineEdit.setText(str(color.green()))
+        self.__syncWidgets(movePicker)
+
+    def __syncWidgets(self, movePicker=True, updateOpacity=True):
+        self.brightSlider.setColor(self.color)
+        self.newColorCard.setColor(self.color)
+        self.hexLineEdit.setColor(self.color)
+
+        channels = zip((self.redSpinBox, self.greenSpinBox, self.blueSpinBox),
+                       (self.color.red(), self.color.green(), self.color.blue()))
+        for spin, value in channels:
+            spin.blockSignals(True)
+            spin.setValue(value)
+            spin.blockSignals(False)
+
+        if updateOpacity:
+            self.opacitySpinBox.blockSignals(True)
+            self.opacitySpinBox.setValue(int(self.color.alpha() / 255 * 100))
+            self.opacitySpinBox.blockSignals(False)
         if movePicker:
-            self.huePanel.setColor(color)
+            self.huePanel.setColor(self.color)
 
     def __onHueChanged(self, color):
         """ hue changed slot """
         self.color.setHsv(
             color.hue(), color.saturation(), self.color.value(), self.color.alpha())
-        self.setColor(self.color)
+        self.__syncWidgets()
 
     def __onBrightnessChanged(self, color):
         """ brightness changed slot """
         self.color.setHsv(
-            self.color.hue(), self.color.saturation(), color.value(), color.alpha())
-        self.setColor(self.color, False)
+            self.color.hue(), self.color.saturation(), color.value(), self.color.alpha())
+        self.__syncWidgets(movePicker=False)
+
+    def __onOpacityChanged(self, opacity):
+        """ opacity changed slot """
+        self.color.setAlpha(int(opacity / 100 * 255))
+        self.__syncWidgets(updateOpacity=False)
 
     def __onRedChanged(self, red):
         """ red channel changed slot """
-        self.color.setRed(int(red))
-        self.setColor(self.color)
-
-    def __onBlueChanged(self, blue):
-        """ blue channel changed slot """
-        self.color.setBlue(int(blue))
-        self.setColor(self.color)
+        self.color.setRed(red)
+        self.__syncWidgets()
 
     def __onGreenChanged(self, green):
         """ green channel changed slot """
-        self.color.setGreen(int(green))
-        self.setColor(self.color)
+        self.color.setGreen(green)
+        self.__syncWidgets()
 
-    def __onOpacityChanged(self, opacity):
-        """ opacity channel changed slot """
-        self.color.setAlpha(int(int(opacity)/100*255))
-        self.setColor(self.color)
+    def __onBlueChanged(self, blue):
+        """ blue channel changed slot """
+        self.color.setBlue(blue)
+        self.__syncWidgets()
 
     def __onHexColorChanged(self, color):
         """ hex color changed slot """
         self.color.setNamedColor("#" + color)
-        self.setColor(self.color)
+        self.__syncWidgets()
 
     def __onYesButtonClicked(self):
         """ yes button clicked slot """
@@ -387,13 +486,7 @@ class ColorDialog(MaskDialogBase):
 
     def updateStyle(self):
         """ update style sheet """
-        self.setStyle(QApplication.style())
-        self.titleLabel.adjustSize()
-        self.editLabel.adjustSize()
-        self.redLabel.adjustSize()
-        self.greenLabel.adjustSize()
-        self.blueLabel.adjustSize()
-        self.opacityLabel.adjustSize()
+        FluentStyleSheet.COLOR_DIALOG.apply(self)
 
     def showEvent(self, e):
         self.updateStyle()
@@ -406,9 +499,8 @@ class ColorDialog(MaskDialogBase):
 
         self.huePanel.colorChanged.connect(self.__onHueChanged)
         self.brightSlider.colorChanged.connect(self.__onBrightnessChanged)
-
-        self.redLineEdit.valueChanged.connect(self.__onRedChanged)
-        self.blueLineEdit.valueChanged.connect(self.__onBlueChanged)
-        self.greenLineEdit.valueChanged.connect(self.__onGreenChanged)
         self.hexLineEdit.valueChanged.connect(self.__onHexColorChanged)
-        self.opacityLineEdit.valueChanged.connect(self.__onOpacityChanged)
+        self.opacitySpinBox.valueChanged.connect(self.__onOpacityChanged)
+        self.redSpinBox.valueChanged.connect(self.__onRedChanged)
+        self.greenSpinBox.valueChanged.connect(self.__onGreenChanged)
+        self.blueSpinBox.valueChanged.connect(self.__onBlueChanged)
