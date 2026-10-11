@@ -221,6 +221,7 @@ class BreadcrumbBar(QWidget):
         item = self.item(routeKey)
         if item:
             item.setText(text)
+            self.updateGeometry()
 
     def item(self, routeKey: str) -> BreadcrumbItem:
         return self.itemMap.get(routeKey, None)
@@ -311,6 +312,8 @@ class BreadcrumbBar(QWidget):
         for item in self.items:
             item.setFont(font)
 
+        self.updateGeometry()
+
     def _showHiddenItemsMenu(self):
         self.elideButton.clearState()
 
@@ -346,5 +349,7 @@ class BreadcrumbBar(QWidget):
         self._spacing = spacing
         for item in self.items:
             item.setSpacing(spacing)
+
+        self.updateGeometry()
 
     spacing = pyqtProperty(int, getSpacing, setSpacing)
