@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QAction, QLayoutItem, QWidget, QFrame, QHBoxLayout, 
 
 from ...common.font import setFont
 from ...common.icon import FluentIcon, Icon, Action
-from ...common.style_sheet import isDarkTheme
+from ...common.style_sheet import isDarkTheme, tintColor
 from .menu import RoundMenu, MenuAnimationType
 from .button import TransparentToggleToolButton
 from .tool_tip import ToolTipFilter
@@ -166,8 +166,8 @@ class CommandSeparator(QWidget):
 
     def paintEvent(self, e):
         painter = QPainter(self)
-        painter.setPen(QColor(255, 255, 255, 21)
-                       if isDarkTheme() else QColor(0, 0, 0, 15))
+        painter.setPen(tintColor(QColor(255, 255, 255, 21)
+                       if isDarkTheme() else QColor(0, 0, 0, 15)))
         painter.drawLine(5, 2, 5, self.height() - 2)
 
 
@@ -625,7 +625,7 @@ class CommandBarView(FlyoutViewBase):
             path.addRect(1, y, self.width() - 2, 9)
 
         painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
+            tintColor(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)))
         painter.setPen(
-            QColor(56, 56, 56) if isDarkTheme() else QColor(233, 233, 233))
+            tintColor(QColor(56, 56, 56) if isDarkTheme() else QColor(233, 233, 233)))
         painter.drawPath(path.simplified())

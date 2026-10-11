@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
 from ...common.config import isDarkTheme
 from ...common.font import setFont
-from ...common.style_sheet import themeColor
+from ...common.style_sheet import themeColor, tintColor
 from ...common.color import autoFallbackThemeColor
 from ...common.icon import drawIcon, FluentIconBase, toQIcon
 from ...common.icon import FluentIcon as FIF
@@ -100,7 +100,8 @@ class NavigationBarPushButton(NavigationPushButton):
 
     def _drawBackground(self, painter: QPainter):
         if self.isSelected or self.isAboutSelected:
-            painter.setBrush(QColor(255, 255, 255, 42) if isDarkTheme() else Qt.white)
+            painter.setBrush(
+                tintColor(QColor(255, 255, 255, 42) if isDarkTheme() else QColor(255, 255, 255)))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
@@ -113,7 +114,7 @@ class NavigationBarPushButton(NavigationPushButton):
         elif self.isPressed or self.isEnter:
             c = 255 if isDarkTheme() else 0
             alpha = 9 if self.isEnter else 6
-            painter.setBrush(QColor(c, c, c, alpha))
+            painter.setBrush(tintColor(QColor(c, c, c, alpha)))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
     def _drawIcon(self, painter: QPainter):

@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (QApplication, QFrame, QPushButton, QHBoxLayout, QVB
                              QLabel, QWidget, QStackedWidget, QGraphicsDropShadowEffect, QListView)
 
 from ...common.icon import FluentIcon as FIF
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, ThemeColor
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, themeColor, ThemeColor, tintColor
 from ...common.font import getFont
 from ...common.screen import getCurrentScreenGeometry
 from ..widgets.button import TransparentToolButton
@@ -90,9 +90,9 @@ class ScrollItemDelegate(QStyledItemDelegate):
         else:
             c = 255 if isDarkTheme() else 0
             if index == self.pressedIndex:
-                painter.setBrush(QColor(c, c, c, 7))
+                painter.setBrush(tintColor(QColor(c, c, c, 7)))
             elif option.state & QStyle.State_MouseOver:
-                painter.setBrush(QColor(c, c, c, 9))
+                painter.setBrush(tintColor(QColor(c, c, c, 9)))
             else:
                 painter.setBrush(Qt.transparent)
 

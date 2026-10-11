@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPixmap, QPainter, QColor, QImage, QWheelEvent, QPainter
 from PyQt5.QtWidgets import QStyleOptionViewItem, QListWidget, QStyledItemDelegate, QListWidgetItem
 
 from ...common.overload import singledispatchmethod
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ...common.icon import drawIcon, FluentIcon
 from .scroll_bar import SmoothScrollBar
 from .button import ToolButton
@@ -50,9 +50,9 @@ class ScrollButton(ToolButton):
 
         # draw background
         if not isDarkTheme():
-            painter.setBrush(QColor(252, 252, 252, 217))
+            painter.setBrush(tintColor(QColor(252, 252, 252, 217)))
         else:
-            painter.setBrush(QColor(44, 44, 44, 245))
+            painter.setBrush(tintColor(QColor(44, 44, 44, 245)))
 
         painter.drawRoundedRect(self.rect(), 4, 4)
 

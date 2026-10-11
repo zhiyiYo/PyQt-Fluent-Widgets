@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QApplication, QGraphicsDropSha
 
 from ...common.icon import FluentIconBase
 from ...common.screen import getCurrentScreenGeometry
-from ...common.style_sheet import isDarkTheme
+from ...common.style_sheet import isDarkTheme, tintColor
 from .flyout import FlyoutView, FlyoutViewBase
 
 
@@ -106,9 +106,9 @@ class TeachTipBubble(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
 
         painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
+            tintColor(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)))
         painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(0, 0, 0, 17))
+            tintColor(QColor(23, 23, 23) if isDarkTheme() else QColor(0, 0, 0, 17)))
 
         self.manager.draw(self, painter)
 

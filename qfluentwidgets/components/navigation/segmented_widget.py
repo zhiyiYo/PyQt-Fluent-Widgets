@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from ...common.font import setFont
 from ...common.icon import FluentIconBase, drawIcon, Theme
 from ...common.color import autoFallbackThemeColor
-from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme
+from ...common.style_sheet import themeColor, FluentStyleSheet, isDarkTheme, tintColor
 from ...common.animation import FluentAnimation, FluentAnimationType, FluentAnimationProperty, ScaleSlideAnimation
 from ..widgets.button import PushButton, ToolButton, TransparentToolButton
 from .pivot import Pivot, PivotItem
@@ -101,11 +101,11 @@ class SegmentedWidget(Pivot):
 
         # draw background
         if isDarkTheme():
-            painter.setPen(QColor(255, 255, 255, 14))
-            painter.setBrush(QColor(255, 255, 255, 15))
+            painter.setPen(tintColor(QColor(255, 255, 255, 14)))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 15)))
         else:
-            painter.setPen(QColor(0, 0, 0, 19))
-            painter.setBrush(QColor(255, 255, 255, 179))
+            painter.setPen(tintColor(QColor(0, 0, 0, 19)))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 179)))
 
         item = self.currentItem()
         rect = item.rect().adjusted(1, 1, -1, -1).translated(int(self.slideAni.value()), 0)
