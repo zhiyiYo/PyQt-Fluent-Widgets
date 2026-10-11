@@ -3,10 +3,22 @@ import sys
 
 from uuid import uuid1
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QStackedWidget, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QStackedWidget, QVBoxLayout, QAction
 
 from qfluentwidgets import (BreadcrumbBar, setFont, setTheme, Theme, LineEdit, PrimaryToolButton,
                             SubtitleLabel, FluentIcon)
+
+
+# child interfaces of each interface, used to create the drop-down menu of item
+TREE = {
+    'Home': ['Documents', 'Music', 'Pictures'],
+    'Documents': ['Work', 'Study'],
+    'Work': ['report.docx', 'budget.xlsx'],
+    'Study': ['python', 'qt'],
+    'Music': ['Rock', 'Classical'],
+    'Rock': ['album-1', 'album-2'],
+    'Pictures': ['Camera', 'Screenshots'],
+}
 
 
 
@@ -58,8 +70,21 @@ class Demo(QWidget):
         self.stackedWidget.addWidget(w)
         self.stackedWidget.setCurrentWidget(w)
 
-        # !IMPORTANT: add breadcrumb item
-        self.breadcrumbBar.addItem(w.objectName(), text)
+        # !IMPORTANT: add breadcrumb item, the drop-down menu of item contains
+        # its child interfaces, which enables navigating like file explorer
+        key = w.objectName()
+        menu = [QAction(name, self, triggered=lambda _, k=key, n=name: self.navigate(k, n))
+                for name in TREE.get(text, [])]
+        self.breadcrumbBar.addItem(key, text, menu)
+
+    def navigate(self, parentKey: str, name: str):
+        """ navigate to the child interface of `parentKey` """
+        # the menu of current item extends the path, otherwise the chosen
+        # child replaces the trailing item
+        if self.breadcrumbBar.item(parentKey) is not self.breadcrumbBar.currentItem():
+            self.breadcrumbBar.setCurrentItem(parentKey)
+
+        self.addInterface(name)
 
     def switchInterface(self, objectName):
         self.stackedWidget.setCurrentWidget(self.findChild(SubtitleLabel, objectName))

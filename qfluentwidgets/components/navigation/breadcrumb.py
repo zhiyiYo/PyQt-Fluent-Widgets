@@ -69,6 +69,15 @@ class ElideButton(BreadcrumbWidget):
 class BreadcrumbItem(BreadcrumbWidget):
     """ Breadcrumb item """
 
+    separatorMenuClicked = pyqtSignal()
+    menuClicked = pyqtSignal()
+
+    # interactive zones of item
+    NoneZone = 0
+    SeparatorZone = 1
+    TextZone = 2
+    MenuZone = 3
+
     def __init__(self, routeKey: str, text: str, index: int, parent=None):
         super().__init__(parent=parent)
         self.text = text
@@ -78,6 +87,12 @@ class BreadcrumbItem(BreadcrumbWidget):
         self.isSelected = False
         self.index = index
         self.spacing = 5
+        self.menuActions = []       # type: List[QAction]
+        self.isMenuVisible = False
+        self.hasSeparatorMenu = False
+        self._hoveredZone = BreadcrumbItem.NoneZone
+        self._pressedZone = BreadcrumbItem.NoneZone
+        self.setMouseTracking(True)
 
     def setText(self, text: str):
         self.text = text
@@ -86,9 +101,76 @@ class BreadcrumbItem(BreadcrumbWidget):
         w = rect.width() + math.ceil(self.font().pixelSize() / 10)
         if not self.isRoot():
             w += self.spacing * 2
+        if self.isMenuVisible:
+            w += self.menuWidth()
 
         self.setFixedWidth(w)
         self.setFixedHeight(rect.height())
+        self.update()
+
+    def menuWidth(self):
+        return self.spacing * 2 if self.isMenuVisible else 0
+
+    def setMenuActions(self, actions):
+        """ set the actions of item drop-down menu """
+        self.menuActions = list(actions or [])
+        if not self.menuActions:
+            self.isMenuVisible = False
+
+        self.setText(self.text)
+
+    def setMenuVisible(self, isVisible: bool):
+        isVisible = bool(isVisible and self.menuActions)
+        if isVisible == self.isMenuVisible:
+            return
+
+        self.isMenuVisible = isVisible
+        self.setText(self.text)
+
+    def zoneAt(self, pos: QPoint):
+        """ return the interactive zone at position """
+        if not self.rect().contains(pos):
+            return self.NoneZone
+
+        if not self.isRoot() and self.hasSeparatorMenu and pos.x() < self.spacing * 2:
+            return self.SeparatorZone
+
+        if self.isMenuVisible and pos.x() >= self.width() - self.menuWidth():
+            return self.MenuZone
+
+        return self.TextZone
+
+    def mousePressEvent(self, e):
+        self.isPressed = True
+        self._pressedZone = self.zoneAt(e.pos())
+        self.update()
+
+    def mouseReleaseEvent(self, e):
+        self.isPressed = False
+        pressedZone = self._pressedZone
+        self._pressedZone = self.NoneZone
+        self.update()
+
+        if pressedZone == self.NoneZone or pressedZone != self.zoneAt(e.pos()):
+            return
+
+        if pressedZone == self.SeparatorZone:
+            self.separatorMenuClicked.emit()
+        elif pressedZone == self.MenuZone:
+            self.menuClicked.emit()
+        else:
+            self.clicked.emit()
+
+    def mouseMoveEvent(self, e):
+        zone = self.zoneAt(e.pos())
+        if zone != self._hoveredZone:
+            self._hoveredZone = zone
+            self.update()
+
+    def leaveEvent(self, e):
+        self.isHover = False
+        self._hoveredZone = self.NoneZone
+        self._pressedZone = self.NoneZone
         self.update()
 
     def isRoot(self):
@@ -117,14 +199,34 @@ class BreadcrumbItem(BreadcrumbWidget):
             iw = self.font().pixelSize() / 14 * 8
             rect = QRectF((sw - iw) / 2, (self.height() - iw) / 2 + 1, iw, iw)
 
-            painter.setOpacity(0.61)
+            if self._pressedZone == self.SeparatorZone:
+                painter.setOpacity(1)
+            elif self._hoveredZone == self.SeparatorZone and self.hasSeparatorMenu:
+                painter.setOpacity(0.85)
+            else:
+                painter.setOpacity(0.61)
             FluentIcon.CHEVRON_RIGHT_MED.render(painter, rect)
 
+        # draw menu indicator
+        mw = self.menuWidth()
+        if mw > 0:
+            iw = self.font().pixelSize() / 14 * 8
+            rect = QRectF(self.width() - mw + (mw - iw) / 2,
+                          (self.height() - iw) / 2 + 1, iw, iw)
+
+            if self._pressedZone == self.MenuZone:
+                painter.setOpacity(1)
+            elif self._hoveredZone == self.MenuZone:
+                painter.setOpacity(0.85)
+            else:
+                painter.setOpacity(0.61)
+            FluentIcon.CHEVRON_DOWN_MED.render(painter, rect)
+
         # draw text
-        if self.isPressed:
+        if self._pressedZone == self.TextZone:
             alpha = 0.54 if isDarkTheme() else 0.45
             painter.setOpacity(1 if self.isSelected else alpha)
-        elif self.isSelected or self.isHover:
+        elif self.isSelected or self._hoveredZone == self.TextZone:
             painter.setOpacity(1)
         else:
             painter.setOpacity(0.79 if isDarkTheme() else 0.61)
@@ -133,9 +235,9 @@ class BreadcrumbItem(BreadcrumbWidget):
         painter.setPen(Qt.white if isDarkTheme() else Qt.black)
 
         if self.isRoot():
-            rect = self.rect()
+            rect = QRectF(0, 0, self.width() - mw, self.height())
         else:
-            rect = QRectF(sw, 0, self.width() - sw, self.height())
+            rect = QRectF(sw, 0, self.width() - sw - mw, self.height())
 
         painter.drawText(rect, Qt.AlignVCenter | Qt.AlignLeft, self.text)
 
@@ -164,7 +266,7 @@ class BreadcrumbBar(QWidget):
         self.elideButton.hide()
         self.elideButton.clicked.connect(self._showHiddenItemsMenu)
 
-    def addItem(self, routeKey: str, text: str):
+    def addItem(self, routeKey: str, text: str, menu: List[QAction] = None):
         """ add item
 
         Parameters
@@ -174,6 +276,9 @@ class BreadcrumbBar(QWidget):
 
         text: str
             the text of item
+
+        menu: List[QAction]
+            the actions of drop-down menu of item
         """
         if routeKey in self.itemMap:
             return
@@ -181,7 +286,10 @@ class BreadcrumbBar(QWidget):
         item = BreadcrumbItem(routeKey, text, len(self.items), self)
         item.setFont(self.font())
         item.setSpacing(self.spacing)
+        item.setMenuActions(menu)
         item.clicked.connect(lambda: self.setCurrentItem(routeKey))
+        item.separatorMenuClicked.connect(lambda i=item: self._showSeparatorMenu(i))
+        item.menuClicked.connect(lambda i=item: self._showItemMenu(i))
 
         self.itemMap[routeKey] = item
         self.items.append(item)
@@ -206,6 +314,7 @@ class BreadcrumbBar(QWidget):
             self.itemMap.pop(item.routeKey)
             item.deleteLater()
 
+        self._updateItemMenuState()
         self.updateGeometry()
 
         self.currentIndexChanged.emit(index)
@@ -324,12 +433,36 @@ class BreadcrumbBar(QWidget):
             menu.addAction(
                 QAction(item.text, menu, triggered=lambda c, i=item: self.setCurrentItem(i.routeKey)))
 
+        self._execMenu(menu, self, -menu.layout().contentsMargins().left())
+
+    def _showSeparatorMenu(self, item: BreadcrumbItem):
+        """ show the menu of preceding item beside the seperator """
+        if item.index > 0:
+            self._showMenu(self.items[item.index - 1].menuActions, item)
+
+    def _showItemMenu(self, item: BreadcrumbItem):
+        if not item.isMenuVisible:
+            return
+
+        self._showMenu(item.menuActions, item, item.width() - item.menuWidth())
+
+    def _showMenu(self, actions, anchor: QWidget, x=0):
+        if not actions:
+            return
+
+        menu = RoundMenu(parent=self)
+        menu.setItemHeight(32)
+        for action in actions:
+            menu.addAction(action)
+
+        self._execMenu(menu, anchor, x)
+
+    def _execMenu(self, menu: RoundMenu, anchor: QWidget, x=0):
         # determine the animation type by choosing the maximum height of view
-        x = -menu.layout().contentsMargins().left()
-        pd = self.mapToGlobal(QPoint(x, self.height()))
+        pd = anchor.mapToGlobal(QPoint(x, anchor.height()))
         hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
 
-        pu = self.mapToGlobal(QPoint(x, 0))
+        pu = anchor.mapToGlobal(QPoint(x, 0))
         hu = menu.view.heightForAnimation(pu, MenuAnimationType.PULL_UP)
 
         if hd >= hu:
@@ -338,6 +471,13 @@ class BreadcrumbBar(QWidget):
         else:
             menu.view.adjustSize(pu, MenuAnimationType.PULL_UP)
             menu.exec(pu, aniType=MenuAnimationType.PULL_UP)
+
+    def _updateItemMenuState(self):
+        # only the current item shows the trailing menu indicator, and the
+        # seperator of an item is clickable if its preceding item has a menu
+        for i, item in enumerate(self.items):
+            item.hasSeparatorMenu = i > 0 and bool(self.items[i - 1].menuActions)
+            item.setMenuVisible(item is self.currentItem() and bool(item.menuActions))
 
     def getSpacing(self):
         return self._spacing
