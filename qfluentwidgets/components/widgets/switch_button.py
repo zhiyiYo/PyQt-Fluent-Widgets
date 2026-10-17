@@ -1,13 +1,14 @@
 # coding: utf-8
 from enum import Enum
 
-from PyQt5.QtCore import Qt, pyqtProperty, pyqtSignal, QEvent, QPropertyAnimation, QEasingCurve, QPointF, QRectF
+from PyQt5.QtCore import Qt, pyqtProperty, pyqtSignal, QEvent, QPropertyAnimation, QEasingCurve, QRectF
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, isDarkTheme, setCustomStyleSheet
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
+from ...common.animation import FluentAnimation
 from .button import ToolButton
 
 
@@ -20,7 +21,6 @@ class Indicator(ToolButton):
     knobSlotWidth, trackLeft = 20, 1
     offSliderX, onSliderX, dragThreshold = 5, 25, 2
     controlFastDuration, controlFasterDuration = 167, 83
-    stateEvents = (QEvent.EnabledChange, QEvent.MouseButtonPress, QEvent.Enter, QEvent.Leave)
 
     def __init__(self, parent):
         super().__init__(parent=parent)
@@ -33,44 +33,36 @@ class Indicator(ToolButton):
         self._knobWidth = self._knobHeight = self.normalKnobSize
         self._checkedProgress = 0
         self._isDragging, self._pressX, self._pressSliderX = False, None, self.offSliderX
-        curve = self._fastOutSlowInCurve()
-        self.slideAni = QPropertyAnimation(self, b'sliderX', self)
-        self.checkedAni = QPropertyAnimation(self, b'checkedProgress', self)
-        self.knobWidthAni = QPropertyAnimation(self, b'knobWidth', self)
-        self.knobHeightAni = QPropertyAnimation(self, b'knobHeight', self)
-
-        for ani, duration, easing in [
-            (self.slideAni, self.controlFastDuration, curve),
-            (self.checkedAni, self.controlFasterDuration, QEasingCurve.Linear),
-            (self.knobWidthAni, self.controlFasterDuration, curve),
-            (self.knobHeightAni, self.controlFasterDuration, curve),
-        ]:
-            ani.setDuration(duration)
-            ani.setEasingCurve(easing)
+        curve = FluentAnimation.createBezierCurve(0, 0, 0, 1)
+        self.slideAni = self._createAnimation(b'sliderX', self.controlFastDuration, curve)
+        self.checkedAni = self._createAnimation(b'checkedProgress', self.controlFasterDuration, QEasingCurve.Linear)
+        self.knobWidthAni = self._createAnimation(b'knobWidth', self.controlFasterDuration, curve)
+        self.knobHeightAni = self._createAnimation(b'knobHeight', self.controlFasterDuration, curve)
 
         self.toggled.connect(self._toggleSlider)
 
-    @staticmethod
-    def _fastOutSlowInCurve():
-        curve = QEasingCurve(QEasingCurve.BezierSpline)
-        curve.addCubicBezierSegment(QPointF(0, 0), QPointF(0, 1), QPointF(1, 1))
-        return curve
+    def _createAnimation(self, propertyName: bytes, duration: int, curve: QEasingCurve):
+        """ create a property animation of this indicator """
+        ani = QPropertyAnimation(self, propertyName, self)
+        ani.setDuration(duration)
+        ani.setEasingCurve(curve)
+        return ani
 
     def event(self, e: QEvent):
         result = super().event(e)
-        if e.type() in self.stateEvents:
+        if e.type() in (QEvent.EnabledChange, QEvent.MouseButtonPress, QEvent.Enter, QEvent.Leave):
             self._updateKnobSize()
 
         return result
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton:
-            self._startDrag(e.pos().x())
+            self.startDrag(e.pos().x())
 
         super().mousePressEvent(e)
 
     def mouseMoveEvent(self, e):
-        if e.buttons() & Qt.LeftButton and self._moveDrag(e.pos().x()):
+        if e.buttons() & Qt.LeftButton and self.moveDrag(e.pos().x()):
             e.accept()
             return
 
@@ -78,7 +70,7 @@ class Indicator(ToolButton):
 
     def mouseReleaseEvent(self, e):
         """ toggle checked state when mouse release"""
-        if e.button() == Qt.LeftButton and self._endDrag():
+        if e.button() == Qt.LeftButton and self.endDrag():
             self.checkedChanged.emit(self.isChecked())
             e.accept()
             return
@@ -91,13 +83,13 @@ class Indicator(ToolButton):
         self._startAnimation(self.slideAni, self.onSliderX if self.isChecked() else self.offSliderX, self.sliderX)
         self._startAnimation(self.checkedAni, 1 if self.isChecked() else 0, self.checkedProgress)
 
-    def _startDrag(self, x, updateDown=False):
+    def startDrag(self, x, updateDown=False):
         self._isDragging, self._pressX, self._pressSliderX = False, x, self.sliderX
 
         if updateDown:
             self.setDown(True)
 
-    def _moveDrag(self, x):
+    def moveDrag(self, x):
         if self._pressX is None or not self.isEnabled():
             return False
 
@@ -115,7 +107,7 @@ class Indicator(ToolButton):
         self.setCheckedProgress((self.sliderX - self.offSliderX) / self.knobSlotWidth)
         return True
 
-    def _endDrag(self):
+    def endDrag(self):
         isDragging = self._isDragging
         self._pressX = None
         self._isDragging = False
@@ -403,11 +395,11 @@ class SwitchButton(QWidget):
             pos = self.indicator.mapFromGlobal(e.globalPos()).x() if hasattr(e, 'globalPos') else 0
 
             if e.type() == QEvent.MouseButtonPress and e.button() == Qt.LeftButton:
-                self.indicator._startDrag(pos, True)
-            elif e.type() == QEvent.MouseMove and e.buttons() & Qt.LeftButton and self.indicator._moveDrag(pos):
+                self.indicator.startDrag(pos, True)
+            elif e.type() == QEvent.MouseMove and e.buttons() & Qt.LeftButton and self.indicator.moveDrag(pos):
                 return True
             elif e.type() == QEvent.MouseButtonRelease and e.button() == Qt.LeftButton:
-                if not self.indicator._endDrag():
+                if not self.indicator.endDrag():
                     self.indicator.setDown(False)
                     self.indicator.toggle()
 
