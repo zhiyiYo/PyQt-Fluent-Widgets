@@ -1,11 +1,10 @@
 # coding:utf-8
 from typing import List
-from PyQt5.QtCore import Qt, QRect, QRectF, QSize
+from PyQt5.QtCore import Qt, QRect, QRectF, QSize, QPoint
 from PyQt5.QtGui import QPainter, QColor, QPainterPath
 from PyQt5.QtWidgets import QLineEdit, QListWidgetItem, QListWidget
 
-from ..widgets.menu  import (RoundMenu, MenuAnimationType, MenuAnimationManager, MenuActionListWidget,
-                             IndicatorMenuItemDelegate, LineEditMenu, MenuIndicatorType, CheckableMenu)
+from ..widgets.menu  import (RoundMenu, MenuActionListWidget, LineEditMenu, MenuIndicatorType, CheckableMenu)
 from ..widgets.line_edit import CompleterMenu, LineEdit
 from ..widgets.acrylic_label import AcrylicBrush
 from ...common.style_sheet import isDarkTheme
@@ -34,10 +33,10 @@ class AcrylicMenuActionListWidget(MenuActionListWidget):
         self.acrylicBrush.luminosityColor = luminosityColor
 
     def _topMargin(self):
-        return 6
+        return 2
 
     def _bottomMargin(self):
-        return 6
+        return 2
 
     def setItemHeight(self, height: int):
         """ set the height of item """
@@ -63,7 +62,7 @@ class AcrylicMenuActionListWidget(MenuActionListWidget):
 
     def clipPath(self):
         path = QPainterPath()
-        path.addRoundedRect(QRectF(self.rect()).adjusted(0, 0, -2.5, -2.5), 8, 8)
+        path.addRoundedRect(QRectF(self.rect()).adjusted(0, 0, -2.5, -2.5), 7, 7)
         return path
 
     def paintEvent(self, e) -> None:
@@ -84,10 +83,17 @@ class AcrylicMenuBase:
         super().__init__(*args, **kwargs)
 
     def setUpMenu(self, view):
+        assert isinstance(self, RoundMenu)
+        delegate = self.view.itemDelegate()
+        if delegate is not None:
+            delegate.setParent(view)
+            view.setItemDelegate(delegate)
+        view.setObjectName(self.view.objectName())
         self.hBoxLayout.removeWidget(self.view)
         self.view.deleteLater()
 
         self.view = view
+        self.view.setItemHeight(self.itemHeight)
         self.hBoxLayout.addWidget(self.view)
 
         self.setShadowEffect()
@@ -95,10 +101,9 @@ class AcrylicMenuBase:
         self.view.itemClicked.connect(self._onItemClicked)
         self.view.itemEntered.connect(self._onItemEntered)
 
-    def exec(self, pos, ani=True, aniType=MenuAnimationType.DROP_DOWN):
-        p = MenuAnimationManager.make(self, aniType)._endPosition(pos)
-        self.view.acrylicBrush.grabImage(QRect(p, self.layout().sizeHint()))
-        super().exec(pos, ani, aniType)
+    def _prepareMenu(self):
+        viewport = self.view.viewport()
+        self.view.acrylicBrush.grabImage(QRect(viewport.mapToGlobal(QPoint()), viewport.size()))
 
 
 class AcrylicMenu(AcrylicMenuBase, RoundMenu):
@@ -114,7 +119,7 @@ class AcrylicCompleterMenuActionListWidget(AcrylicMenuActionListWidget):
     def clipPath(self):
         path = QPainterPath()
         path.setFillRule(Qt.FillRule.WindingFill)
-        path.addRoundedRect(QRectF(self.rect()).adjusted(1, 1, -2.5, -2.5), 8, 8)
+        path.addRoundedRect(QRectF(self.rect()).adjusted(1, 1, -2.5, -2.5), 7, 7)
 
         if self.property("dropDown"):
             path.addRect(1, 1, 11, 11)
@@ -132,11 +137,6 @@ class AcrylicCompleterMenu(AcrylicMenuBase, CompleterMenu):
     def __init__(self, lineEdit: LineEdit):
         super().__init__(lineEdit)
         self.setUpMenu(AcrylicCompleterMenuActionListWidget(self))
-
-        self.view.setObjectName('completerListWidget')
-        self.view.setItemDelegate(IndicatorMenuItemDelegate())
-        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.setItemHeight(33)
 
     def _onItemClicked(self, item):
         self._hideMenu(False)
@@ -172,21 +172,11 @@ class AcrylicCheckableMenu(AcrylicMenuBase, CheckableMenu):
     def __init__(self, title="", parent=None, indicatorType=MenuIndicatorType.CHECK):
         super().__init__(title, parent, indicatorType)
         self.setUpMenu(AcrylicMenuActionListWidget(self))
-        self.view.setObjectName('checkableListWidget')
 
 
 class AcrylicSystemTrayMenu(AcrylicMenu):
-    """ System tray menu """
-
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.adjustPosition()
-        self.view.acrylicBrush.grabImage(QRect(self.pos(), self.layout().sizeHint()))
+    """ Acrylic system tray menu """
 
 
 class AcrylicCheckableSystemTrayMenu(AcrylicCheckableMenu):
-    """ Checkable system tray menu """
-
-    def showEvent(self, e):
-        super().showEvent(e)
-        self.adjustPosition()
+    """ Acrylic checkable system tray menu """

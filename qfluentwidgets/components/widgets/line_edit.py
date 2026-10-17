@@ -279,7 +279,7 @@ class CompleterMenu(RoundMenu):
         self.indexes = []
         self.lineEdit = lineEdit
 
-        self.view.setViewportMargins(0, 2, 0, 6)
+        self.view.setViewportMargins(0, 2, 0, 2)
         self.view.setObjectName('completerListWidget')
         self.view.setItemDelegate(IndicatorMenuItemDelegate())
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
@@ -352,11 +352,11 @@ class CompleterMenu(RoundMenu):
 
         # determine the animation type by choosing the maximum height of view
         x = -self.width()//2 + self.layout().contentsMargins().left() + p.width()//2
-        y = p.height() - self.layout().contentsMargins().top() + 2
+        y = p.height() - 4
         pd = p.mapToGlobal(QPoint(x, y))
         hd = self.view.heightForAnimation(pd, MenuAnimationType.FADE_IN_DROP_DOWN)
 
-        pu = p.mapToGlobal(QPoint(x, 7))
+        pu = p.mapToGlobal(QPoint(x, 4))
         hu = self.view.heightForAnimation(pu, MenuAnimationType.FADE_IN_PULL_UP)
 
         if hd >= hu:

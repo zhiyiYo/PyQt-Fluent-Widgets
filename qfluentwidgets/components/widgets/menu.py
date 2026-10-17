@@ -5,9 +5,9 @@ import math
 
 from qframelesswindow import WindowEffect
 from PyQt5.QtCore import (QEasingCurve, QEvent, QPropertyAnimation, QObject, QModelIndex,
-                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QParallelAnimationGroup, QRect, QPointF)
-from PyQt5.QtGui import (QIcon, QColor, QPainter, QPen, QPixmap, QRegion, QCursor, QTextCursor, QHoverEvent,
-                         QFontMetrics, QKeySequence, QTextLayout)
+                          Qt, QSize, QRectF, pyqtSignal, QPoint, QTimer, QParallelAnimationGroup, QRect, QPointF, QVariantAnimation)
+from PyQt5.QtGui import (QIcon, QColor, QPainter, QPen, QPixmap, QTextCursor, QMouseEvent,
+                         QKeySequence, QTextLayout)
 from PyQt5.QtWidgets import (QAction, QApplication, QMenu, QProxyStyle, QStyle,
                              QGraphicsDropShadowEffect, QListWidget, QWidget, QHBoxLayout,
                              QListWidgetItem, QLineEdit, QTextEdit, QStyledItemDelegate, QStyleOptionViewItem, QLabel)
@@ -17,7 +17,7 @@ from ...common.icon import FluentIconEngine, Action, FluentIconBase, Icon
 from ...common.style_sheet import FluentStyleSheet, themeColor
 from ...common.screen import getCurrentScreenGeometry
 from ...common.font import getFont, fontStyleSheet
-from ...common.config import isDarkTheme
+from ...common.config import isDarkTheme, qconfig
 from .scroll_bar import SmoothScrollDelegate
 from .tool_tip import ItemViewToolTipDelegate, ItemViewToolTipType
 
@@ -90,6 +90,7 @@ class SubMenuItemWidget(QWidget):
             parent widget
         """
         super().__init__(parent)
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self.menu = menu
         self.item = item
 
@@ -139,7 +140,111 @@ class MenuItemDelegate(QStyledItemDelegate):
         return self.tooltipDelegate.helpEvent(event, view, option, index)
 
 
-class ShortcutMenuItemDelegate(MenuItemDelegate):
+class _MenuItemDelegate(MenuItemDelegate):
+    """ Animated menu rows. """
+
+    def __init__(self, view=None):
+        super().__init__(view)
+        self.view = None
+        self._hoverRow = -1
+        self._pressedRow = -1
+        self._alphas = {}
+        self._colorAni = QVariantAnimation(self)
+        self._colorAni.setStartValue(0.0)
+        self._colorAni.setEndValue(1.0)
+        self._colorAni.setDuration(187)
+        self._colorAni.setEasingCurve(QEasingCurve.Type.InOutQuart)
+        self._colorAni.valueChanged.connect(self._onColorChanged)
+        qconfig.themeChanged.connect(self._updateColors)
+        if isinstance(view, QListWidget):
+            self._setView(view)
+
+    def _setView(self, view):
+        if self.view is view:
+            return
+        self._colorAni.stop()
+        if self.view is not None:
+            self.view.selectionModel().selectionChanged.disconnect(self._onSelectionChanged)
+            self.view.entered.disconnect(self._onEntered)
+            self.view.viewport().removeEventFilter(self)
+        self.view = view
+        if view is None:
+            return
+        self.setParent(view)
+        view.selectionModel().selectionChanged.connect(self._onSelectionChanged)
+        view.entered.connect(self._onEntered)
+        view.viewport().installEventFilter(self)
+
+    def _onSelectionChanged(self):
+        self._updateColors()
+
+    def _onEntered(self, index):
+        self._hoverRow = index.row()
+        self._updateColors()
+
+    def eventFilter(self, object, event):
+        if event is None or self.view is None:
+            return False
+        if event.type() == QEvent.Type.Leave:
+            self._hoverRow = self._pressedRow = -1
+        elif (isinstance(event, QMouseEvent) and event.type() == QEvent.Type.MouseButtonPress
+              and event.button() == Qt.MouseButton.LeftButton):
+            self._pressedRow = self.view.indexAt(event.pos()).row()
+        elif event.type() == QEvent.Type.MouseButtonRelease:
+            self._pressedRow = -1
+        else:
+            return super().eventFilter(object, event)
+        self._updateColors()
+        return super().eventFilter(object, event)
+
+    def _updateColors(self):
+        if self.view is None:
+            return
+        self._colorAni.stop()
+        self._alphas = {row: alpha for row, alpha in self._alphas.items() if alpha}
+        rows = set(self._alphas) | {self.view.currentRow(), self._hoverRow, self._pressedRow}
+        self._fromAlphas = self._alphas.copy()
+        self._toAlphas = {}
+        isDark = isDarkTheme()
+        for row in rows - {-1}:
+            item = self.view.item(row)
+            if item is None:
+                continue
+            enabled = bool(item.flags() & Qt.ItemFlag.ItemIsEnabled)
+            active = item.isSelected() or row == self._hoverRow
+            alpha = (15 if isDark else 10) if enabled and active else 0
+            if enabled and row == self._pressedRow:
+                alpha = 11 if isDark else 6
+            self._toAlphas[row] = alpha
+        self._colorAni.start()
+
+    def _onColorChanged(self, progress):
+        if self.view is None:
+            return
+        for row, end in self._toAlphas.items():
+            start = self._fromAlphas.get(row, 0)
+            self._alphas[row] = round(start + (end - start) * progress)
+            self.view.viewport().update(self.view.visualItemRect(self.view.item(row)))
+
+    def paint(self, painter, option, index):
+        if self._isSeparator(index):
+            return super().paint(painter, option, index)
+        painter.save()
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        rect = QRectF(option.rect).adjusted(5, 3, -5, 0)
+        color = QColor(Qt.GlobalColor.white if isDarkTheme() else Qt.GlobalColor.black)
+        color.setAlpha(self._alphas.get(index.row(), 0))
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.setBrush(color)
+        painter.drawRoundedRect(rect, 5, 5)
+        painter.restore()
+
+        styleOption = QStyleOptionViewItem(option)
+        styleOption.state &= ~(QStyle.StateFlag.State_Selected | QStyle.StateFlag.State_MouseOver)
+        super().paint(painter, styleOption, index)
+
+
+class ShortcutMenuItemDelegate(_MenuItemDelegate):
     """ Shortcut key menu item delegate """
 
     def paint(self, painter: QPainter, option: QStyleOptionViewItem, index: QModelIndex):
@@ -183,11 +288,11 @@ class MenuActionListWidget(QListWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._itemHeight = 28
+        self._itemHeight = 38
         self._maxVisibleItems = -1  # adjust visible items according to the size of screen
 
-        self.setViewportMargins(0, 6, 0, 6)
-        self.setTextElideMode(Qt.ElideNone)
+        self.setViewportMargins(0, 2, 0, 2)
+        self.setTextElideMode(Qt.TextElideMode.ElideRight)
         self.setDragEnabled(False)
         self.setMouseTracking(True)
         self.setIconSize(QSize(14, 14))
@@ -198,6 +303,15 @@ class MenuActionListWidget(QListWidget):
 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+    def setItemDelegate(self, delegate):
+        previous = self.itemDelegate()
+        if isinstance(previous, _MenuItemDelegate) and previous is not delegate and previous.view is self:
+            previous._setView(None)
+            previous.deleteLater()
+        if isinstance(delegate, _MenuItemDelegate):
+            delegate._setView(self)
+        super().setItemDelegate(delegate)
 
     def insertItem(self, row, item):
         """ inserts menu item at the position in the list given by row """
@@ -293,15 +407,32 @@ class RoundMenu(QMenu):
         self.lastHoverItem = None
         self.lastHoverSubMenuItem = None
         self.isHideBySystem = True
-        self.itemHeight = 28
+        self.itemHeight = 38
 
         self.hBoxLayout = QHBoxLayout(self)
         self.view = MenuActionListWidget(self)
 
+        self._isShowing = False
         self.aniManager = None
         self.timer = QTimer(self)
 
         self.__initWidgets()
+
+        self._expandAni = QVariantAnimation(self)
+        self._expandAni.setStartValue(0.0)
+        self._expandAni.setEndValue(1.0)
+        self._expandAni.setDuration(667)
+        self._expandAni.setEasingCurve(QEasingCurve.Type.OutQuint)
+        self._expandAni.valueChanged.connect(self._onExpandValueChanged)
+        self._fadeAni = QPropertyAnimation(self, b'windowOpacity', self)
+        self._fadeAni.setStartValue(0.0)
+        self._fadeAni.setEndValue(1.0)
+        self._fadeAni.setDuration(70)
+        self._fadeAni.setEasingCurve(QEasingCurve.Type.InOutQuart)
+        self._aniGroup = QParallelAnimationGroup(self)
+        self._aniGroup.addAnimation(self._expandAni)
+        self._aniGroup.addAnimation(self._fadeAni)
+        self._aniGroup.finished.connect(self._onExpandFinished)
 
     def __initWidgets(self):
         self.setWindowFlags(Qt.Popup | Qt.FramelessWindowHint |
@@ -316,11 +447,114 @@ class RoundMenu(QMenu):
         self.setShadowEffect()
         self.hBoxLayout.addWidget(self.view, 1, Qt.AlignCenter)
 
-        self.hBoxLayout.setContentsMargins(12, 8, 12, 20)
+        self.hBoxLayout.setContentsMargins(24, 16, 24, 32)
         FluentStyleSheet.MENU.apply(self)
 
         self.view.itemClicked.connect(self._onItemClicked)
         self.view.itemEntered.connect(self._onItemEntered)
+
+    def _setMenuGeometry(self):
+        shadow = self.shadowEffect.boundingRectFor(QRectF()).toAlignedRect()
+        margins = self.hBoxLayout.contentsMargins()
+        self.hBoxLayout.setContentsMargins(max(margins.left(), -shadow.x()), max(margins.top(), -shadow.y()),
+                                          max(margins.right(), shadow.x() + shadow.width()),
+                                          max(margins.bottom(), shadow.y() + shadow.height()))
+        self.hBoxLayout.setEnabled(False)
+        margins = self.hBoxLayout.contentsMargins()
+        self.setFixedSize(self._endRect.width() + margins.left() + margins.right(),
+                          self._endRect.height() + margins.top() + margins.bottom())
+        self.move(self._endRect.x() - margins.left(), self._endRect.y() - margins.top())
+
+    def _scrollFor(self, height, mode):
+        margins = self.view.viewportMargins()
+        listHeight = height - margins.top() - margins.bottom() - 2 * self.view.frameWidth()
+        scroll = self._selectedTop
+        if mode == 2:
+            scroll += self._rowHeight - listHeight
+        elif mode == 0:
+            scroll += (self._rowHeight - listHeight) / 2
+        return max(0, min(round(scroll), self._contentHeight - listHeight))
+
+    def _onExpandValueChanged(self, progress):
+        height = round(self._startHeight + (self._endRect.height() - self._startHeight) * progress)
+        y = round(self._startY + (self._endRect.y() - self._startY) * progress)
+        margins = self.hBoxLayout.contentsMargins()
+        # Keep the native popup fixed while its contents expand.
+        if self.view.height() != height:
+            self.view.setFixedHeight(height)
+            self.view.doItemsLayout()
+        self.view.move(margins.left(), margins.top() + y - self._endRect.y())
+        scroll = (self._scrollFor(height, self._mode) if self._mode else
+                  round(self._startScroll + (self._endScroll - self._startScroll) * progress))
+        # Expansion owns scrolling until its final frame.
+        self.view.scrollDelegate.vScrollBar.scrollTo(scroll, useAni=False)
+
+    def _onExpandFinished(self):
+        self._onExpandValueChanged(1.0)
+        self.view.scrollDelegate.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+
+    def _prepareMenu(self):
+        pass
+
+    def _showMenu(self, ani=True):
+        viewport = self.view.viewport()
+        if viewport is not None:
+            viewport.installEventFilter(self)
+        self._onExpandValueChanged(1.0)
+        self._prepareMenu()
+        delegate = self.view.itemDelegate()
+        if isinstance(delegate, _MenuItemDelegate):
+            delegate._updateColors()
+        if isinstance(delegate, IndicatorMenuItemDelegate) and self.view.selectedItems():
+            delegate._indicatorAni.stop()
+            delegate._indicatorAni.start()
+        self.view.scrollDelegate.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self._onExpandValueChanged(0.0 if ani else 1.0)
+        self.setWindowOpacity(0.0 if ani else 1.0)
+        self._isShowing = True
+        self.show()
+        self._isShowing = False
+        self._onExpandValueChanged(0.0 if ani else 1.0)
+        if ani:
+            self._aniGroup.start()
+        else:
+            self._onExpandFinished()
+
+    def _execAnimation(self, pos, mode=1, ani=True):
+        self._aniGroup.stop()
+        bounds = getCurrentScreenGeometry().adjusted(8, 8, -8, -8)
+        width = min(self.view.width(), bounds.width())
+        height = min(self.view.height(), bounds.height())
+        self.view.setFixedSize(width, height)
+        self.view.doItemsLayout()
+        margins = self.hBoxLayout.contentsMargins()
+        x = max(bounds.left(), min(pos.x() + margins.left(), bounds.right() + 1 - width))
+        y = max(bounds.top(), min(pos.y() + margins.top(), bounds.bottom() + 1 - height))
+        self._endRect = QRect(x, y, width, height)
+        self._contentHeight = sum(self.view.sizeHintForRow(i) for i in range(self.view.count()))
+        item = self.view.currentItem()
+        self._selectedTop = self.view.visualItemRect(item).top() + self.view.scrollDelegate.vScrollBar.value() if item else 0
+        self._rowHeight = item.sizeHint().height() if item else self.itemHeight
+        self._mode = mode
+        self._startHeight = min(46, height)
+        self._startY = y + height - self._startHeight if mode == 2 else y
+        self._startScroll = self._scrollFor(self._startHeight, mode)
+        self._endScroll = self._scrollFor(height, mode)
+        self._setMenuGeometry()
+        self._showMenu(ani)
+
+    def eventFilter(self, obj, e):
+        if obj is self.view.viewport() and e.type() == QEvent.Type.Wheel:
+            if self._aniGroup.state() == QParallelAnimationGroup.State.Running:
+                self._aniGroup.stop()
+                self.setWindowOpacity(1.0)
+                self._onExpandFinished()
+        return super().eventFilter(obj, e)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        if not self._isShowing:
+            self._execAnimation(self.pos())
 
     def setMaxVisibleItems(self, num: int):
         """ set the maximum visible items """
@@ -335,7 +569,7 @@ class RoundMenu(QMenu):
         self.itemHeight = height
         self.view.setItemHeight(height)
 
-    def setShadowEffect(self, blurRadius=30, offset=(0, 8), color=QColor(0, 0, 0, 30)):
+    def setShadowEffect(self, blurRadius=24, offset=(0, 8), color=QColor(0, 0, 0, 36)):
         """ add shadow to dialog """
         self.shadowEffect = QGraphicsDropShadowEffect(self.view)
         self.shadowEffect.setBlurRadius(blurRadius)
@@ -354,6 +588,10 @@ class RoundMenu(QMenu):
         w = self.view.width() + m.left() + m.right()
         h = self.view.height() + m.top() + m.bottom()
         self.setFixedSize(w, h)
+
+    def sizeHint(self):
+        m = self.hBoxLayout.contentsMargins()
+        return self.view.size() + QSize(m.left() + m.right(), m.top() + m.bottom())
 
     def icon(self):
         return self._icon
@@ -720,6 +958,20 @@ class RoundMenu(QMenu):
             self.close()
 
     def hideEvent(self, e):
+        self._aniGroup.stop()
+        if hasattr(self, '_endRect'):
+            self._onExpandFinished()
+        self.timer.stop()
+        delegate = self.view.itemDelegate()
+        if isinstance(delegate, _MenuItemDelegate):
+            delegate._colorAni.stop()
+            delegate._hoverRow = delegate._pressedRow = -1
+            delegate._alphas.clear()
+        if isinstance(delegate, IndicatorMenuItemDelegate):
+            delegate._indicatorAni.stop()
+        for menu in self._subMenus:
+            menu.isHideBySystem = False
+            menu.hide()
         if self.isHideBySystem and self.isSubMenu:
             self._closeParentMenu()
 
@@ -790,13 +1042,8 @@ class RoundMenu(QMenu):
         aniType: MenuAnimationType
             menu animation type
         """
-        #if self.isVisible():
-        #    aniType = MenuAnimationType.NONE
-
-        self.aniManager = MenuAnimationManager.make(self, aniType)
+        self.aniManager = MenuAnimationManager.make(self, aniType if ani else MenuAnimationType.NONE)
         self.aniManager.exec(pos)
-
-        self.show()
 
         if self.isSubMenu:
             self.menuItem.setSelected(True)
@@ -841,42 +1088,22 @@ class MenuAnimationManager(QObject):
     def __init__(self, menu: RoundMenu):
         super().__init__()
         self.menu = menu
-        self.ani = QPropertyAnimation(menu, b'pos', menu)
-
-        self.ani.setDuration(250)
-        self.ani.setEasingCurve(QEasingCurve.OutQuad)
-        self.ani.valueChanged.connect(self._onValueChanged)
-        self.ani.valueChanged.connect(self._updateMenuViewport)
-
-    def _onValueChanged(self):
-        pass
+        self.ani = getattr(menu, '_expandAni', None)
+        self.opacityAni = getattr(menu, '_fadeAni', None)
+        self.aniGroup = getattr(menu, '_aniGroup', None)
 
     def availableViewSize(self, pos: QPoint):
         """ Return the available size of view """
         ss = getCurrentScreenGeometry()
-        w, h = ss.width() - 100, ss.height() - 100
-        return w, h
-
-    def _updateMenuViewport(self):
-        self.menu.view.viewport().update()
-        self.menu.view.setAttribute(Qt.WA_UnderMouse, True)
-        e = QHoverEvent(QEvent.HoverEnter, QPoint(), QPoint(1, 1))
-        QApplication.sendEvent(self.menu.view, e)
+        view = self.menu.view if isinstance(self.menu, RoundMenu) else self.menu
+        height = ss.height() - 16
+        if view.maxVisibleItems() <= 0:
+            height = min(height, 300)
+        return ss.width() - 16, height
 
     def _endPosition(self, pos):
-        m = self.menu
-        rect = getCurrentScreenGeometry()
-        w, h = m.width() + 5, m.height()
-        x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = min(pos.y() - 4, rect.bottom() - h + 10)
-
-        return QPoint(x, y)
-
-    def _menuSize(self):
-        m = self.menu.layout().contentsMargins()
-        w = self.menu.view.width() + m.left() + m.right() + 120
-        h = self.menu.view.height() + m.top() + m.bottom() + 20
-        return w, h
+        margins = self.menu.hBoxLayout.contentsMargins()
+        return QPoint(pos.x() - margins.left(), pos.y() - margins.top() + 4)
 
     def exec(self, pos: QPoint):
         pass
@@ -911,7 +1138,7 @@ class DummyMenuAnimationManager(MenuAnimationManager):
     """ Dummy menu animation manager """
 
     def exec(self, pos: QPoint):
-        self.menu.move(self._endPosition(pos))
+        self.menu._execAnimation(self._endPosition(pos), ani=False)
 
 
 @MenuAnimationManager.register(MenuAnimationType.DROP_DOWN)
@@ -919,21 +1146,12 @@ class DropDownMenuAnimationManager(MenuAnimationManager):
     """ Drop down menu animation manager """
 
     def exec(self, pos):
-        pos = self._endPosition(pos)
-        h = self.menu.height() + 5
-
-        self.ani.setStartValue(pos-QPoint(0, int(h/2)))
-        self.ani.setEndValue(pos)
-        self.ani.start()
+        self.menu._execAnimation(self._endPosition(pos))
 
     def availableViewSize(self, pos: QPoint):
+        width, height = super().availableViewSize(pos)
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
-
-    def _onValueChanged(self):
-        w, h = self._menuSize()
-        y = self.ani.endValue().y() - self.ani.currentValue().y()
-        self.menu.setMask(QRegion(0, y, w, h))
+        return width, min(height, max(ss.bottom() - pos.y() - 8, 1))
 
 
 @MenuAnimationManager.register(MenuAnimationType.PULL_UP)
@@ -941,98 +1159,26 @@ class PullUpMenuAnimationManager(MenuAnimationManager):
     """ Pull up menu animation manager """
 
     def _endPosition(self, pos):
-        m = self.menu
-        rect = getCurrentScreenGeometry()
-        w, h = m.width() + 5, m.height()
-        x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 13, rect.top() + 4)
-        return QPoint(x, y)
+        margins = self.menu.hBoxLayout.contentsMargins()
+        return QPoint(pos.x() - margins.left(), pos.y() - self.menu.view.height() - margins.top() - 4)
 
     def exec(self, pos):
-        pos = self._endPosition(pos)
-        h = self.menu.height() + 5
-
-        self.ani.setStartValue(pos+QPoint(0, int(h/2)))
-        self.ani.setEndValue(pos)
-        self.ani.start()
+        self.menu._execAnimation(self._endPosition(pos), mode=2)
 
     def availableViewSize(self, pos: QPoint):
+        width, height = super().availableViewSize(pos)
         ss = getCurrentScreenGeometry()
-        return ss.width() - 100, max(pos.y() - ss.top() - 28, 1)
-
-    def _onValueChanged(self):
-        w, h = self._menuSize()
-        y = self.ani.endValue().y() - self.ani.currentValue().y()
-        self.menu.setMask(QRegion(0, y, w, h - 28))
+        return width, min(height, max(pos.y() - ss.top() - 8, 1))
 
 
 @MenuAnimationManager.register(MenuAnimationType.FADE_IN_DROP_DOWN)
-class FadeInDropDownMenuAnimationManager(MenuAnimationManager):
+class FadeInDropDownMenuAnimationManager(DropDownMenuAnimationManager):
     """ Fade in drop down menu animation manager """
-
-    def __init__(self, menu: RoundMenu):
-        super().__init__(menu)
-        self.opacityAni = QPropertyAnimation(menu, b'windowOpacity', self)
-        self.aniGroup = QParallelAnimationGroup(self)
-        self.aniGroup.addAnimation(self.ani)
-        self.aniGroup.addAnimation(self.opacityAni)
-
-    def exec(self, pos):
-        pos = self._endPosition(pos)
-
-        self.opacityAni.setStartValue(0)
-        self.opacityAni.setEndValue(1)
-        self.opacityAni.setDuration(150)
-        self.opacityAni.setEasingCurve(QEasingCurve.OutQuad)
-
-        self.ani.setStartValue(pos-QPoint(0, 8))
-        self.ani.setEndValue(pos)
-        self.ani.setDuration(150)
-        self.ani.setEasingCurve(QEasingCurve.OutQuad)
-
-        self.aniGroup.start()
-
-    def availableViewSize(self, pos: QPoint):
-        ss = getCurrentScreenGeometry()
-        return ss.width() - 100, max(ss.bottom() - pos.y() - 10, 1)
 
 
 @MenuAnimationManager.register(MenuAnimationType.FADE_IN_PULL_UP)
-class FadeInPullUpMenuAnimationManager(MenuAnimationManager):
+class FadeInPullUpMenuAnimationManager(PullUpMenuAnimationManager):
     """ Fade in pull up menu animation manager """
-
-    def __init__(self, menu: RoundMenu):
-        super().__init__(menu)
-        self.opacityAni = QPropertyAnimation(menu, b'windowOpacity', self)
-        self.aniGroup = QParallelAnimationGroup(self)
-        self.aniGroup.addAnimation(self.ani)
-        self.aniGroup.addAnimation(self.opacityAni)
-
-    def _endPosition(self, pos):
-        m = self.menu
-        rect = getCurrentScreenGeometry()
-        w, h = m.width() + 5, m.height()
-        x = min(pos.x() - m.layout().contentsMargins().left(), rect.right() - w)
-        y = max(pos.y() - h + 15, rect.top() + 4)
-        return QPoint(x, y)
-
-    def exec(self, pos):
-        pos = self._endPosition(pos)
-
-        self.opacityAni.setStartValue(0)
-        self.opacityAni.setEndValue(1)
-        self.opacityAni.setDuration(150)
-        self.opacityAni.setEasingCurve(QEasingCurve.OutQuad)
-
-        self.ani.setStartValue(pos+QPoint(0, 8))
-        self.ani.setEndValue(pos)
-        self.ani.setDuration(200)
-        self.ani.setEasingCurve(QEasingCurve.OutQuad)
-        self.aniGroup.start()
-
-    def availableViewSize(self, pos: QPoint):
-        ss = getCurrentScreenGeometry()
-        return ss.width() - 100, pos.y()- ss.top() - 28
 
 
 class EditMenu(RoundMenu):
@@ -1169,23 +1315,45 @@ class TextEditMenu(EditMenu):
         super()._onItemClicked(item)
 
 
-class IndicatorMenuItemDelegate(MenuItemDelegate):
+class IndicatorMenuItemDelegate(_MenuItemDelegate):
     """ Menu item delegate with indicator """
 
-    def paint(self, painter: QPainter, option, index):
-        super().paint(painter, option, index)
-        if not option.state & QStyle.State_Selected:
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._indicatorAni = QVariantAnimation(self)
+        self._indicatorAni.setStartValue(0.0)
+        self._indicatorAni.setEndValue(1.0)
+        self._indicatorAni.setDuration(667)
+        self._indicatorAni.setEasingCurve(QEasingCurve.Type.OutQuint)
+        self._indicatorAni.valueChanged.connect(self._updateCurrentItem)
+
+    def _onSelectionChanged(self):
+        super()._onSelectionChanged()
+        self._indicatorAni.stop()
+        self._indicatorAni.start()
+
+    def _updateCurrentItem(self):
+        if self.view is None:
             return
+        item = self.view.currentItem()
+        if item is not None:
+            self.view.viewport().update(self.view.visualItemRect(item))
 
-        painter.save()
-        painter.setRenderHints(
-            QPainter.Antialiasing | QPainter.SmoothPixmapTransform | QPainter.TextAntialiasing)
-
-        painter.setPen(Qt.NoPen)
-        painter.setBrush(themeColor())
-        painter.drawRoundedRect(6, 11+option.rect.y(), 3, 15, 1.5, 1.5)
-
-        painter.restore()
+    def paint(self, painter, option, index):
+        super().paint(painter, option, index)
+        selected = bool(option.state & QStyle.StateFlag.State_Selected)
+        rect = QRectF(option.rect).adjusted(5, 3, -5, 0)
+        if selected:
+            painter.save()
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+            progress = (self._indicatorAni.currentValue() or 0.0) if self.view is not None else 1.0
+            height = max(0, option.rect.height() - 23) * progress
+            painter.setBrush(themeColor())
+            painter.setPen(Qt.PenStyle.NoPen)
+            opacity = min(1.0, self._indicatorAni.currentTime() / 250) if self.view is not None else 1.0
+            painter.setOpacity(1 - (1 - opacity) ** 2)
+            painter.drawRoundedRect(QRectF(rect.x(), rect.center().y() - height / 2, 3, height), 1.5, 1.5)
+            painter.restore()
 
 
 class CheckableMenuItemDelegate(ShortcutMenuItemDelegate):
