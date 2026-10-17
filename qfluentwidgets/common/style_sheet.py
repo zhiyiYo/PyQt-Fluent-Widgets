@@ -296,6 +296,9 @@ def getStyleSheetFromFile(file: Union[str, QFile]):
     return qss
 
 
+styleSheetCache = {}
+
+
 def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     """ get style sheet
 
@@ -312,7 +315,18 @@ def getStyleSheet(source: Union[str, StyleSheetBase], theme=Theme.AUTO):
     if isinstance(source, str):
         source = StyleSheetFile(source)
 
-    return renderQss(source.content(theme))
+    # only built-in style sheets are cached, the content of a file may change
+    # at run time
+    if not isinstance(source, FluentStyleSheet):
+        return renderQss(source.content(theme))
+
+    theme = theme if theme != Theme.AUTO else qconfig.theme
+    key = (source, theme, qconfig.get(qconfig.themeColor).name(),
+           ",".join(qconfig.get(qconfig.fontFamilies)))
+    if key not in styleSheetCache:
+        styleSheetCache[key] = renderQss(source.content(theme))
+
+    return styleSheetCache[key]
 
 
 def setStyleSheet(widget: QWidget, source: Union[str, StyleSheetBase], theme=Theme.AUTO, register=True):
@@ -396,6 +410,7 @@ def updateStyleSheet(lazy=False):
     lazy: bool
         whether to update the style sheet lazily, set to `True` will accelerate theme switching
     """
+    styleSheetCache.clear()
     removes = []
     for widget, file in list(styleSheetManager.items()):
         try:
