@@ -1,6 +1,5 @@
 # coding:utf-8
 import sys
-
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout
