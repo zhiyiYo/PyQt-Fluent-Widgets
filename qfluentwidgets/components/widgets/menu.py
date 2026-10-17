@@ -355,6 +355,12 @@ class RoundMenu(QMenu):
         h = self.view.height() + m.top() + m.bottom()
         self.setFixedSize(w, h)
 
+    def sizeHint(self) -> QSize:
+        """ get the size of menu """
+        self.view.adjustSize()
+        self.adjustSize()
+        return self.size()
+
     def icon(self):
         return self._icon
 
@@ -658,7 +664,15 @@ class RoundMenu(QMenu):
         screenRect = getCurrentScreenGeometry()
         subMenuSize = w.menu.sizeHint()
         if (x + subMenuSize.width()) > screenRect.right():
-            x = max(itemRect.left() - subMenuSize.width() - 5, screenRect.left())
+            # exec(pos) places the menu's visible left edge at pos.x
+            # (see _endPosition), so compute the visible left edge that
+            # flushes the sub menu's visible right edge to the parent
+            # menu; layout margins are transparent shadows and the item
+            # widget rect drifts with styles/DPI
+            m = w.menu.layout().contentsMargins()
+            pm = self.layout().contentsMargins()
+            x = max(self.x() + pm.left() - subMenuSize.width() + m.left() + m.right(),
+                    screenRect.left())
 
         if (y + subMenuSize.height()) > screenRect.bottom():
             y = screenRect.bottom() - subMenuSize.height()
