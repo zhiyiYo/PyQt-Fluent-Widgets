@@ -1,22 +1,16 @@
 # coding:utf-8
-import sys
-from typing import Union, List, Iterable
+from typing import Union, Iterable
 
-from PyQt5.QtCore import Qt, pyqtSignal, QRectF, QPoint, QObject, QEvent, QModelIndex, QAbstractItemModel
-from PyQt5.QtGui import QPainter, QCursor, QIcon, QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QAction, QPushButton, QApplication
+from PyQt5.QtCore import Qt, pyqtSignal, QModelIndex, QAbstractItemModel
+from PyQt5.QtGui import QIcon, QStandardItemModel, QStandardItem
 
-from .menu import RoundMenu, MenuAnimationType, IndicatorMenuItemDelegate
 from .line_edit import LineEdit, LineEditButton
-from .combo_box import ComboBoxMenu
-from ...common.animation import TranslateYAnimation
-from ...common.icon import FluentIconBase, isDarkTheme
+from .combo_box import _ComboBoxBase, _ComboBoxButton
+from ...common.icon import FluentIconBase
 from ...common.icon import FluentIcon as FIF
-from ...common.font import setFont
-from ...common.style_sheet import FluentStyleSheet
 
 
-class ModelComboBoxBase(QObject):
+class ModelComboBoxBase(_ComboBoxBase):
     """ Abstract combo box build in data model """
 
     currentIndexChanged = pyqtSignal(int)
@@ -26,18 +20,8 @@ class ModelComboBoxBase(QObject):
 
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent=parent)
-        self.isHover = False
-        self.isPressed = False
-        self._currentIndex = -1
-        self._maxVisibleItems = -1
-        self.dropMenu = None
-        self._placeholderText = ""
         self._model = None  # type: QAbstractItemModel
-
         self.setModel(QStandardItemModel(self))
-
-        FluentStyleSheet.COMBO_BOX.apply(self)
-        self.installEventFilter(self)
 
     def setModel(self, model: QAbstractItemModel):
         if self._model:
@@ -71,19 +55,6 @@ class ModelComboBoxBase(QObject):
         if Qt.ItemDataRole.DecorationRole in roles:
             for row in range(topLeft.row(), bottomRight.row() + 1):
                 self.setItemIcon(row, self.itemIcon(row))
-
-    def eventFilter(self, obj, e: QEvent):
-        if obj is self:
-            if e.type() == QEvent.Type.MouseButtonPress:
-                self.isPressed = True
-            elif e.type() == QEvent.Type.MouseButtonRelease:
-                self.isPressed = False
-            elif e.type() == QEvent.Type.Enter:
-                self.isHover = True
-            elif e.type() == QEvent.Type.Leave:
-                self.isHover = False
-
-        return super().eventFilter(obj, e)
 
     def insertItem(self, index: int, text: str, userData=None, icon: QIcon = None):
         """ Inserts item into the combobox at the given index. """
@@ -188,9 +159,6 @@ class ModelComboBoxBase(QObject):
 
         if self.count() == 0:
             self.clear()
-
-    def currentIndex(self):
-        return self._currentIndex
 
     def setCurrentIndex(self, index: int):
         """ set current index
@@ -298,6 +266,7 @@ class ModelComboBoxBase(QObject):
 
     def clear(self):
         """ Clears the combobox, removing all items. """
+        self._closeComboMenu()
         if self.currentIndex() >= 0:
             self.setText('')
 
@@ -310,90 +279,11 @@ class ModelComboBoxBase(QObject):
         """ Returns the number of items in the combobox """
         return self.model().rowCount()
 
-    def setMaxVisibleItems(self, num: int):
-        """ Set the maximum allowed size on screen of the combo box, measured in items, set to -1 indicates no restriction """
-        self._maxVisibleItems = num
-
-    def maxVisibleItems(self):
-        """ Returns the maximum allowed size on screen of the combo box, measured in items """
-        return self._maxVisibleItems
-
-    def _closeComboMenu(self):
-        if not self.dropMenu:
-            return
-
-        # drop menu could be deleted before this method
-        try:
-            self.dropMenu.close()
-        except:
-            pass
-
-        self.dropMenu = None
-
-    def _onDropMenuClosed(self):
-        if sys.platform != "win32":
-            self.dropMenu = None
-        else:
-            pos = self.mapFromGlobal(QCursor.pos())
-            if not self.rect().contains(pos):
-                self.dropMenu = None
-
-    def _createComboMenu(self):
-        return ComboBoxMenu(self)
-
-    def _showComboMenu(self):
-        if self.count() == 0:
-            return
-
-        menu = self._createComboMenu()
-        for i in range(self.count()):
-            action = QAction(self.itemIcon(i), self.itemText(i),
-                             triggered=lambda c, x=i: self._onItemClicked(x))
-            menu.addAction(action)
-
-        if menu.view.width() < self.width():
-            menu.view.setMinimumWidth(self.width())
-            menu.adjustSize()
-
-        menu.setMaxVisibleItems(self.maxVisibleItems())
-        menu.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
-        menu.closedSignal.connect(self._onDropMenuClosed)
-        self.dropMenu = menu
-
-        # set the selected item
-        if self.currentIndex() >= 0:
-            menu.setDefaultAction(menu.actions()[self.currentIndex()])
-
-        # determine the animation type by choosing the maximum height of view
-        x = -menu.width()//2 + menu.layout().contentsMargins().left() + self.width()//2
-        pd = self.mapToGlobal(QPoint(x, self.height()))
-        hd = menu.view.heightForAnimation(pd, MenuAnimationType.DROP_DOWN)
-
-        pu = self.mapToGlobal(QPoint(x, 0))
-        hu = menu.view.heightForAnimation(pu, MenuAnimationType.PULL_UP)
-
-        if hd >= hu:
-            menu.view.adjustSize(pd, MenuAnimationType.DROP_DOWN)
-            menu.exec(pd, aniType=MenuAnimationType.DROP_DOWN)
-        else:
-            menu.view.adjustSize(pu, MenuAnimationType.PULL_UP)
-            menu.exec(pu, aniType=MenuAnimationType.PULL_UP)
-
-    def _toggleComboMenu(self):
-        if self.dropMenu:
-            self._closeComboMenu()
-        else:
-            self._showComboMenu()
-
-    def _onItemClicked(self, index):
-        if index != self.currentIndex():
-            self.setCurrentIndex(index)
-
-        self.activated.emit(index)
-        self.textActivated.emit(self.currentText())
+    def _isItemEnabled(self, index):
+        return bool(self.model().flags(self.model().index(index, 0)) & Qt.ItemFlag.ItemIsEnabled)
 
 
-class ModelComboBox(QPushButton, ModelComboBoxBase):
+class ModelComboBox(_ComboBoxButton, ModelComboBoxBase):
     """ Combo box build in data model """
 
     currentIndexChanged = pyqtSignal(int)
@@ -404,8 +294,6 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self._isIconVisible = True
-        self.arrowAni = TranslateYAnimation(self)
-        setFont(self)
 
     def setIconVisible(self, isVisible: bool):
         if isVisible == self._isIconVisible or self.currentIndex() < 0:
@@ -431,13 +319,6 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
         else:
             self.setIcon(QIcon())
 
-    def setPlaceholderText(self, text: str):
-        self._placeholderText = text
-
-        if self.currentIndex() <= 0:
-            self._updateTextState(True)
-            self.setText(text)
-
     def setCurrentIndex(self, index: int):
         if index < 0:
             self._currentIndex = -1
@@ -447,6 +328,7 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
             super().setCurrentIndex(index)
 
         self._updateIcon()
+        self._syncComboMenu()
 
     def clear(self):
         super().clear()
@@ -456,32 +338,6 @@ class ModelComboBox(QPushButton, ModelComboBoxBase):
         super().setItemIcon(index, icon)
         if index == self.currentIndex() and self.isIconVisible():
             self.setIcon(icon)
-
-    def _updateTextState(self, isPlaceholder):
-        if self.property("isPlaceholderText") == isPlaceholder:
-            return
-
-        self.setProperty("isPlaceholderText", isPlaceholder)
-        self.setStyle(QApplication.style())
-
-    def mouseReleaseEvent(self, e):
-        super().mouseReleaseEvent(e)
-        self._toggleComboMenu()
-
-    def paintEvent(self, e):
-        QPushButton.paintEvent(self, e)
-        painter = QPainter(self)
-        painter.setRenderHints(QPainter.Antialiasing)
-        if self.isHover:
-            painter.setOpacity(0.8)
-        elif self.isPressed:
-            painter.setOpacity(0.7)
-
-        rect = QRectF(self.width()-22, self.height()/2-5+self.arrowAni.y, 10, 10)
-        if isDarkTheme():
-            FIF.ARROW_DOWN.render(painter, rect)
-        else:
-            FIF.ARROW_DOWN.render(painter, rect, fill="#646464")
 
 
 class EditableModelComboBox(LineEdit, ModelComboBoxBase):
@@ -530,6 +386,7 @@ class EditableModelComboBox(LineEdit, ModelComboBoxBase):
         else:
             self._currentIndex = index
             self.setText(self.itemText(index))
+        self._syncComboMenu()
 
     def clear(self):
         ModelComboBoxBase.clear(self)
@@ -558,9 +415,6 @@ class EditableModelComboBox(LineEdit, ModelComboBoxBase):
         if index >= 0:
             self._currentIndex = index
             self.currentIndexChanged.emit(index)
-
-    def _onDropMenuClosed(self):
-        self.dropMenu = None
 
     def _onClearButtonClicked(self):
         LineEdit.clear(self)
