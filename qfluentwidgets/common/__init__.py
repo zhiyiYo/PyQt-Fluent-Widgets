@@ -4,7 +4,9 @@ from .auto_wrap import TextWrap
 from .icon import Action, Icon, getIconColor, drawSvgIcon, FluentIcon, drawIcon, FluentIconBase, writeSvg, FluentFontIconBase
 from .style_sheet import (setStyleSheet, getStyleSheet, setTheme, ThemeColor, themeColor,
                           setThemeColor, applyThemeColor, FluentStyleSheet, StyleSheetBase,
-                          StyleSheetFile, StyleSheetCompose, CustomStyleSheet, toggleTheme, setCustomStyleSheet, renderQss)
+                          StyleSheetFile, StyleSheetCompose, CustomStyleSheet, toggleTheme, setCustomStyleSheet, renderQss,
+                          setSurfaceTint, surfaceTint, surfaceTintStrength, applySurfaceTint, tintColor,
+                          isSurfaceTintEnabled)
 from .smooth_scroll import SmoothScroll, SmoothMode
 from .translator import FluentTranslator
 from .router import qrouter, Router

@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QPixmap, QPainter, QColor
 from PyQt5.QtWidgets import QWidget
 
-from ...common.style_sheet import isDarkTheme
+from ...common.style_sheet import isDarkTheme, tintColor
 
 
 class HorizontalSeparator(QWidget):
@@ -18,9 +18,9 @@ class HorizontalSeparator(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
 
         if isDarkTheme():
-            painter.setPen(QColor(255, 255, 255, 51))
+            painter.setPen(tintColor(QColor(255, 255, 255, 51)))
         else:
-            painter.setPen(QColor(0, 0, 0, 22))
+            painter.setPen(tintColor(QColor(0, 0, 0, 22)))
 
         painter.drawLine(0, 1, self.width(), 1)
 
@@ -37,8 +37,8 @@ class VerticalSeparator(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
 
         if isDarkTheme():
-            painter.setPen(QColor(255, 255, 255, 51))
+            painter.setPen(tintColor(QColor(255, 255, 255, 51)))
         else:
-            painter.setPen(QColor(0, 0, 0, 22))
+            painter.setPen(tintColor(QColor(0, 0, 0, 22)))
 
         painter.drawLine(1, 0, 1, self.height())

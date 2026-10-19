@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QStyleOptionViewItem, QStyle, QListWidget, QListWid
 
 from ...common.overload import singledispatchmethod
 from ...common.icon import FluentIcon, drawIcon
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from .button import ToolButton
 from .tool_tip import ToolTipFilter, ToolTipPosition
 from .scroll_bar import SmoothScrollBar
@@ -32,10 +32,10 @@ class ScrollButton(ToolButton):
         painter.setPen(Qt.NoPen)
 
         if isDarkTheme():
-            color = QColor(255, 255, 255)
+            color = tintColor(QColor(255, 255, 255))
             painter.setOpacity(0.773 if self.isHover or self.isPressed else 0.541)
         else:
-            color = QColor(0, 0, 0)
+            color = tintColor(QColor(0, 0, 0))
             painter.setOpacity(0.616 if self.isHover or self.isPressed else 0.45)
 
         if self.isPressed:
@@ -65,14 +65,14 @@ class PipsDelegate(QStyledItemDelegate):
         # draw pip
         if isDarkTheme():
             if isHover or isPressed:
-                color = QColor(255, 255, 255, 197)
+                color = tintColor(QColor(255, 255, 255, 197))
             else:
-                color = QColor(255, 255, 255, 138)
+                color = tintColor(QColor(255, 255, 255, 138))
         else:
             if isHover or isPressed:
-                color = QColor(0, 0, 0, 157)
+                color = tintColor(QColor(0, 0, 0, 157))
             else:
-                color = QColor(0, 0, 0, 114)
+                color = tintColor(QColor(0, 0, 0, 114))
 
         painter.setBrush(color)
 

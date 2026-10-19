@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
 
 from ...common.config import isDarkTheme
 from ...common.icon import getIconColor
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, tintColor
 from .dialog import Dialog
 from .mask_dialog_base import MaskDialogBase
 from ..widgets.scroll_area import SingleDirectionScrollArea
@@ -211,24 +211,24 @@ class ClickableWindow(QWidget):
 
         isDark = isDarkTheme()
         bg = 51 if isDark else 204
-        brush = QBrush(QColor(bg, bg, bg))
+        brush = QBrush(tintColor(QColor(bg, bg, bg)))
         painter.setPen(Qt.NoPen)
 
         if not self._isEnter:
             painter.setBrush(brush)
             painter.drawRoundedRect(self.rect(), 4, 4)
         else:
-            painter.setPen(QPen(QColor(bg, bg, bg), 2))
+            painter.setPen(QPen(tintColor(QColor(bg, bg, bg)), 2))
             painter.drawRect(1, 1, self.width() - 2, self.height() - 2)
             painter.setPen(Qt.NoPen)
             if not self._isPressed:
                 bg = 24 if isDark else 230
-                brush.setColor(QColor(bg, bg, bg))
+                brush.setColor(tintColor(QColor(bg, bg, bg)))
                 painter.setBrush(brush)
                 painter.drawRect(2, 2, self.width() - 4, self.height() - 4)
             else:
                 bg = 102 if isDark else 230
-                brush.setColor(QColor(153, 153, 153))
+                brush.setColor(tintColor(QColor(153, 153, 153)))
                 painter.setBrush(brush)
                 painter.drawRoundedRect(
                     5, 1, self.width() - 10, self.height() - 2, 2, 2)

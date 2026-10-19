@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QSize, QRectF, QModelIndex, QEvent
 from PyQt5.QtGui import QPainter, QColor, QPalette, QPainterPath
 from PyQt5.QtWidgets import QTreeWidget, QStyledItemDelegate, QStyle, QTreeView, QApplication, QStyleOptionViewItem
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, setCustomStyleSheet, tintColor
 from ...common.font import getFont
 from ...common.color import autoFallbackThemeColor
 from .check_box import CheckBoxIcon
@@ -111,10 +111,10 @@ class TreeItemDelegate(QStyledItemDelegate):
         rect = QRectF(x, y, 19, 19)
 
         if checkState == Qt.CheckState.Unchecked:
-            painter.setBrush(QColor(0, 0, 0, 26)
-                             if isDark else QColor(0, 0, 0, 6))
-            painter.setPen(QColor(255, 255, 255, 142)
-                           if isDark else QColor(0, 0, 0, 122))
+            painter.setBrush(tintColor(QColor(0, 0, 0, 26)
+                                       if isDark else QColor(0, 0, 0, 6)))
+            painter.setPen(tintColor(QColor(255, 255, 255, 142)
+                                     if isDark else QColor(0, 0, 0, 122)))
             painter.drawRoundedRect(rect, r, r)
         else:
             color = autoFallbackThemeColor(self.lightCheckedColor, self.darkCheckedColor)
