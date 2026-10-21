@@ -1,7 +1,7 @@
-from enum import Enum, auto
+from enum import auto, Enum
 from functools import lru_cache
 from re import sub
-from typing import List, Optional, Tuple
+from typing import ClassVar, Dict, List, Optional, Tuple
 from unicodedata import east_asian_width
 
 
@@ -14,7 +14,7 @@ class CharType(Enum):
 class TextWrap:
     """Text wrap"""
 
-    EAST_ASAIN_WIDTH_TABLE = {
+    EAST_ASIAN_WIDTH_TABLE: ClassVar[Dict[str, int]] = {
         "F": 2,
         "H": 1,
         "W": 2,
@@ -27,7 +27,7 @@ class TextWrap:
     @lru_cache(maxsize=128)
     def get_width(cls, char: str) -> int:
         """Returns the width of the char"""
-        return cls.EAST_ASAIN_WIDTH_TABLE.get(east_asian_width(char), 1)
+        return cls.EAST_ASIAN_WIDTH_TABLE.get(east_asian_width(char), 1)
 
     @classmethod
     @lru_cache(maxsize=32)
