@@ -1,20 +1,17 @@
-# coding:utf-8
 import sys
 
 from PyQt5.QtCore import Qt, QUrl
-from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PyQt5.QtGui import QDesktopServices, QIcon
+from PyQt5.QtWidgets import QApplication, QVBoxLayout, QWidget
 
-from qfluentwidgets import FluentWidget, toggleTheme, PushButton
 from qfluentwidgets import FluentIcon as FIF
-
+from qfluentwidgets import FluentWidget, PushButton, toggleTheme
 
 
 class Window(FluentWidget):
-
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.button = PushButton(FIF.CONSTRACT, 'Toggle theme', self)
+        self.button = PushButton(FIF.CONTRAST, "Toggle theme", self)
         self.vBoxLayout = QVBoxLayout(self)
 
         # disable mica effect in Win11
@@ -32,21 +29,20 @@ class Window(FluentWidget):
 
         self.initWindow()
 
-    def initWindow(self):
+    def initWindow(self) -> None:
         self.resize(900, 700)
-        self.setWindowIcon(QIcon(':/qfluentwidgets/images/logo.png'))
-        self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.setWindowIcon(QIcon(":/qfluentwidgets/images/logo.png"))
+        self.setWindowTitle("PyQt-Fluent-Widgets")
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
-        self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+        self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
 
-if __name__ == '__main__':
-    QApplication.setHighDpiScaleFactorRoundingPolicy(
-        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+if __name__ == "__main__":
+    QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.ApplicationAttribute.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps)
 
     app = QApplication(sys.argv)
     w = Window()

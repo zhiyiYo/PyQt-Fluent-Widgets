@@ -42,7 +42,7 @@ class ToolBar(QWidget):
         self.documentButton = PushButton(
             self.tr('Documentation'), self, FluentIcon.DOCUMENT)
         self.sourceButton = PushButton(self.tr('Source'), self, FluentIcon.GITHUB)
-        self.themeButton = ToolButton(FluentIcon.CONSTRACT, self)
+        self.themeButton = ToolButton(FluentIcon.CONTRAST, self)
         self.separator = SeparatorWidget(self)
         self.supportButton = ToolButton(FluentIcon.HEART, self)
         self.feedbackButton = ToolButton(FluentIcon.FEEDBACK, self)
