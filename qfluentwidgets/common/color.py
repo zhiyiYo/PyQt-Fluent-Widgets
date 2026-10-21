@@ -26,7 +26,7 @@ class FluentThemeColor(Enum):
     ROSE = "#C30052"
     PLUM_LIGHT = "#E3008C"
     PLUM = "#BF0077"
-    ORCHID_LIGHT = "#BF0077"
+    ORCHID_LIGHT = "#C239B3"
     ORCHID = "#9A0089"
     DEFAULT_BLUE = "#0078D7"
     NAVY_BLUE = "#0063B1"
