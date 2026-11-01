@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from collections import deque
 
 from ...common.config import isDarkTheme
-from ...common.style_sheet import themeColor
+from ...common.style_sheet import themeColor, tintColor
 from ...common.icon import drawIcon, toQIcon
 from ...common.icon import FluentIcon as FIF
 from ...common.color import autoFallbackThemeColor
@@ -191,14 +191,14 @@ class NavigationPushButton(NavigationWidget):
         globalRect = QRect(self.mapToGlobal(QPoint()), self.size())
 
         if self._canDrawIndicator():
-            painter.setBrush(QColor(c, c, c, 6 if self.isEnter else 10))
+            painter.setBrush(tintColor(QColor(c, c, c, 6 if self.isEnter else 10)))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
             # draw indicator
             painter.setBrush(autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor))
             painter.drawRoundedRect(self.indicatorRect(), 1.5, 1.5)
         elif ((self.isEnter and globalRect.contains(QCursor.pos())) or self.isAboutSelected) and self.isEnabled():
-            painter.setBrush(QColor(c, c, c, 6 if self.isAboutSelected else 10))
+            painter.setBrush(tintColor(QColor(c, c, c, 6 if self.isAboutSelected else 10)))
             painter.drawRoundedRect(self.rect(), 5, 5)
 
         drawIcon(self._icon, painter, QRectF(11.5+pl, 10, 16, 16))
@@ -749,7 +749,7 @@ class NavigationAvatarWidget(NavigationWidget):
             return
 
         c = 255 if isDarkTheme() else 0
-        painter.setBrush(QColor(c, c, c, 10))
+        painter.setBrush(tintColor(QColor(c, c, c, 10)))
         painter.setPen(Qt.NoPen)
         painter.drawRoundedRect(self.rect(), 5, 5)
 

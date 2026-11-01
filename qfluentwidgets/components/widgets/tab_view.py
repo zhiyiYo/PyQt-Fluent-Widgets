@@ -8,7 +8,7 @@ from PyQt5.QtGui import QPainter, QColor, QIcon, QPainterPath, QLinearGradient, 
 from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect, QHBoxLayout, QVBoxLayout, QApplication, QStackedWidget
 
 from ...common.icon import FluentIcon, FluentIconBase, drawIcon
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ...common.font import setFont
 from ...common.router import qrouter
 from .button import TransparentToolButton, PushButton
@@ -247,14 +247,14 @@ class TabItem(PushButton):
         path.lineTo(w - 1, h - r)
         path.arcTo(w - d - 1, h - d - 1, d, d, 0, -45)
 
-        topBorderColor = QColor(0, 0, 0, 20)
+        topBorderColor = tintColor(QColor(0, 0, 0, 20))
         if isDark:
             if self.isPressed:
-                topBorderColor = QColor(255, 255, 255, 18)
+                topBorderColor = tintColor(QColor(255, 255, 255, 18))
             elif self.isHover:
-                topBorderColor = QColor(255, 255, 255, 13)
+                topBorderColor = tintColor(QColor(255, 255, 255, 13))
         else:
-            topBorderColor = QColor(0, 0, 0, 16)
+            topBorderColor = tintColor(QColor(0, 0, 0, 16))
 
         painter.strokePath(path, topBorderColor)
 
@@ -267,7 +267,7 @@ class TabItem(PushButton):
 
         bottomBorderColor = topBorderColor
         if not isDark:
-            bottomBorderColor = QColor(0, 0, 0, 63)
+            bottomBorderColor = tintColor(QColor(0, 0, 0, 63))
 
         painter.strokePath(path, bottomBorderColor)
 

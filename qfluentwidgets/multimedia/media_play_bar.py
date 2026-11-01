@@ -4,7 +4,7 @@ from PyQt5.QtGui import QPixmap, QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QGraphicsOpacityEffect, QHBoxLayout, QVBoxLayout
 
 from ..common.icon import FluentIcon
-from ..common.style_sheet import isDarkTheme, FluentStyleSheet
+from ..common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ..components.widgets.button import TransparentToolButton
 from ..components.widgets.tool_tip import ToolTipFilter
 from ..components.widgets.slider import Slider
@@ -79,11 +79,11 @@ class VolumeView(FlyoutViewBase):
         painter.setRenderHints(QPainter.Antialiasing)
 
         if isDarkTheme():
-            painter.setBrush(QColor(46, 46, 46))
-            painter.setPen(QColor(0, 0, 0, 20))
+            painter.setBrush(tintColor(QColor(46, 46, 46)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 20)))
         else:
-            painter.setBrush(QColor(248, 248, 248))
-            painter.setPen(QColor(0, 0, 0, 10))
+            painter.setBrush(tintColor(QColor(248, 248, 248)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 10)))
 
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 8, 8)
 
@@ -212,11 +212,11 @@ class MediaPlayBarBase(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
 
         if isDarkTheme():
-            painter.setBrush(QColor(46, 46, 46))
-            painter.setPen(QColor(0, 0, 0, 20))
+            painter.setBrush(tintColor(QColor(46, 46, 46)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 20)))
         else:
-            painter.setBrush(QColor(248, 248, 248))
-            painter.setPen(QColor(0, 0, 0, 10))
+            painter.setBrush(tintColor(QColor(248, 248, 248)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 10)))
 
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 8, 8)
 

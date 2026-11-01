@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPainter, QPainterPath, QColor
 from PyQt5.QtWidgets import (QSpinBox, QDoubleSpinBox, QToolButton, QHBoxLayout,
                              QDateEdit, QDateTimeEdit, QTimeEdit, QVBoxLayout, QApplication)
 
-from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme
+from ...common.style_sheet import FluentStyleSheet, themeColor, isDarkTheme, tintColor
 from ...common.icon import FluentIconBase, Theme, getIconColor
 from ...common.font import setFont
 from ...common.color import FluentSystemColor, autoFallbackThemeColor
@@ -101,9 +101,9 @@ class SpinFlyoutView(FlyoutViewBase):
         painter.setRenderHints(QPainter.Antialiasing)
 
         painter.setBrush(
-            QColor(46, 46, 46) if isDarkTheme() else QColor(249, 249, 249))
+            tintColor(QColor(46, 46, 46) if isDarkTheme() else QColor(249, 249, 249)))
         painter.setPen(
-            QColor(0, 0, 0, 51) if isDarkTheme() else QColor(0, 0, 0, 15))
+            tintColor(QColor(0, 0, 0, 51) if isDarkTheme() else QColor(0, 0, 0, 15)))
 
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)

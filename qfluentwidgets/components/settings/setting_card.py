@@ -12,7 +12,7 @@ from ..widgets.switch_button import SwitchButton, IndicatorPosition
 from ..widgets.slider import Slider
 from ..widgets.icon_widget import IconWidget
 from ..widgets.button import HyperlinkButton
-from ...common.style_sheet import FluentStyleSheet
+from ...common.style_sheet import FluentStyleSheet, tintColor
 from ...common.config import qconfig, isDarkTheme, ConfigItem, OptionsConfigItem
 from ...common.icon import FluentIconBase, drawIcon
 
@@ -105,11 +105,11 @@ class SettingCard(QFrame):
         painter.setRenderHints(QPainter.Antialiasing)
 
         if isDarkTheme():
-            painter.setBrush(QColor(255, 255, 255, 13))
-            painter.setPen(QColor(0, 0, 0, 50))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 13)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 50)))
         else:
-            painter.setBrush(QColor(255, 255, 255, 170))
-            painter.setPen(QColor(0, 0, 0, 19))
+            painter.setBrush(tintColor(QColor(255, 255, 255, 170)))
+            painter.setPen(tintColor(QColor(0, 0, 0, 19)))
 
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 6, 6)
 

@@ -6,7 +6,7 @@ from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QCheckBox, QStyle, QStyleOptionButton, QWidget
 
 from ...common.icon import FluentIconBase, Theme, getIconColor
-from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor, setCustomStyleSheet
+from ...common.style_sheet import FluentStyleSheet, isDarkTheme, ThemeColor, themeColor, setCustomStyleSheet, tintColor
 from ...common.overload import singledispatchmethod
 from ...common.color import fallbackThemeColor, validColor
 from ...common.font import setFont
@@ -112,24 +112,24 @@ class CheckBox(QCheckBox):
     def _borderColor(self):
         if isDarkTheme():
             map = {
-                CheckBoxState.NORMAL: QColor(255, 255, 255, 141),
-                CheckBoxState.HOVER: QColor(255, 255, 255, 141),
-                CheckBoxState.PRESSED: QColor(255, 255, 255, 40),
+                CheckBoxState.NORMAL: tintColor(QColor(255, 255, 255, 141)),
+                CheckBoxState.HOVER: tintColor(QColor(255, 255, 255, 141)),
+                CheckBoxState.PRESSED: tintColor(QColor(255, 255, 255, 40)),
                 CheckBoxState.CHECKED : fallbackThemeColor(self.darkCheckedColor),
                 CheckBoxState.CHECKED_HOVER: validColor(self.darkCheckedColor, ThemeColor.DARK_1.color()),
                 CheckBoxState.CHECKED_PRESSED : validColor(self.darkCheckedColor, ThemeColor.DARK_2.color()),
-                CheckBoxState.DISABLED : QColor(255, 255, 255, 41),
+                CheckBoxState.DISABLED : tintColor(QColor(255, 255, 255, 41)),
                 CheckBoxState.CHECKED_DISABLED : QColor(0, 0, 0, 0)
             }
         else:
             map = {
-                CheckBoxState.NORMAL: QColor(0, 0, 0, 122),
-                CheckBoxState.HOVER: QColor(0, 0, 0, 143),
-                CheckBoxState.PRESSED: QColor(0, 0, 0, 69),
+                CheckBoxState.NORMAL: tintColor(QColor(0, 0, 0, 122)),
+                CheckBoxState.HOVER: tintColor(QColor(0, 0, 0, 143)),
+                CheckBoxState.PRESSED: tintColor(QColor(0, 0, 0, 69)),
                 CheckBoxState.CHECKED : fallbackThemeColor(self.lightCheckedColor),
                 CheckBoxState.CHECKED_HOVER : validColor(self.lightCheckedColor, ThemeColor.LIGHT_1.color()),
                 CheckBoxState.CHECKED_PRESSED : validColor(self.lightCheckedColor, ThemeColor.LIGHT_2.color()),
-                CheckBoxState.DISABLED : QColor(0, 0, 0, 56),
+                CheckBoxState.DISABLED : tintColor(QColor(0, 0, 0, 56)),
                 CheckBoxState.CHECKED_DISABLED : QColor(0, 0, 0, 0)
             }
 
@@ -138,25 +138,25 @@ class CheckBox(QCheckBox):
     def _backgroundColor(self):
         if isDarkTheme():
             map = {
-                CheckBoxState.NORMAL: QColor(0, 0, 0, 26),
-                CheckBoxState.HOVER: QColor(255, 255, 255, 11),
-                CheckBoxState.PRESSED: QColor(255, 255, 255, 18),
+                CheckBoxState.NORMAL: tintColor(QColor(0, 0, 0, 26)),
+                CheckBoxState.HOVER: tintColor(QColor(255, 255, 255, 11)),
+                CheckBoxState.PRESSED: tintColor(QColor(255, 255, 255, 18)),
                 CheckBoxState.CHECKED: fallbackThemeColor(self.darkCheckedColor),
                 CheckBoxState.CHECKED_HOVER: validColor(self.darkCheckedColor, ThemeColor.DARK_1.color()),
                 CheckBoxState.CHECKED_PRESSED: validColor(self.darkCheckedColor, ThemeColor.DARK_2.color()),
                 CheckBoxState.DISABLED: QColor(0, 0, 0, 0),
-                CheckBoxState.CHECKED_DISABLED: QColor(255, 255, 255, 41)
+                CheckBoxState.CHECKED_DISABLED: tintColor(QColor(255, 255, 255, 41))
             }
         else:
             map = {
-                CheckBoxState.NORMAL: QColor(0, 0, 0, 6),
-                CheckBoxState.HOVER: QColor(0, 0, 0, 13),
-                CheckBoxState.PRESSED: QColor(0, 0, 0, 31),
+                CheckBoxState.NORMAL: tintColor(QColor(0, 0, 0, 6)),
+                CheckBoxState.HOVER: tintColor(QColor(0, 0, 0, 13)),
+                CheckBoxState.PRESSED: tintColor(QColor(0, 0, 0, 31)),
                 CheckBoxState.CHECKED: fallbackThemeColor(self.lightCheckedColor),
                 CheckBoxState.CHECKED_HOVER: validColor(self.lightCheckedColor, ThemeColor.LIGHT_1.color()),
                 CheckBoxState.CHECKED_PRESSED: validColor(self.lightCheckedColor, ThemeColor.LIGHT_2.color()),
                 CheckBoxState.DISABLED: QColor(0, 0, 0, 0),
-                CheckBoxState.CHECKED_DISABLED: QColor(0, 0, 0, 56)
+                CheckBoxState.CHECKED_DISABLED: tintColor(QColor(0, 0, 0, 56))
             }
 
         return map[self._state()]

@@ -9,7 +9,7 @@ from ...common.animation import TranslateYAnimation
 from ...common.icon import FluentIconBase, drawIcon, isDarkTheme, Theme, toQIcon, Icon
 from ...common.icon import FluentIcon as FIF
 from ...common.font import setFont, getFont
-from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor
+from ...common.style_sheet import FluentStyleSheet, themeColor, ThemeColor, tintColor
 from ...common.color import autoFallbackThemeColor
 from ...common.overload import singledispatchmethod
 from .menu import RoundMenu, MenuAnimationType
@@ -305,7 +305,7 @@ class RadioButton(QRadioButton):
             if self.isEnabled():
                 borderColor = autoFallbackThemeColor(self.lightIndicatorColor, self.darkIndicatorColor)
             else:
-                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+                borderColor = tintColor(QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55))
 
             filledColor = Qt.black if isDarkTheme() else Qt.white
 
@@ -317,24 +317,24 @@ class RadioButton(QRadioButton):
         else:
             if self.isEnabled():
                 if not self.isDown():
-                    borderColor = QColor(255, 255, 255, 153) if isDarkTheme() else QColor(0, 0, 0, 153)
+                    borderColor = tintColor(QColor(255, 255, 255, 153) if isDarkTheme() else QColor(0, 0, 0, 153))
                 else:
-                    borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+                    borderColor = tintColor(QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55))
 
                 if self.isDown():
                     filledColor = Qt.black if isDarkTheme() else Qt.white
                 elif self.isHover:
-                    filledColor = QColor(255, 255, 255, 11) if isDarkTheme() else QColor(0, 0, 0, 15)
+                    filledColor = tintColor(QColor(255, 255, 255, 11) if isDarkTheme() else QColor(0, 0, 0, 15))
                 else:
-                    filledColor = QColor(0, 0, 0, 26) if isDarkTheme() else QColor(0, 0, 0, 6)
+                    filledColor = tintColor(QColor(0, 0, 0, 26) if isDarkTheme() else QColor(0, 0, 0, 6))
             else:
                 filledColor = Qt.transparent
-                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55)
+                borderColor = tintColor(QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 55))
 
             self._drawCircle(painter, self.indicatorPos, 10, 1, borderColor, filledColor)
 
             if self.isEnabled() and self.isDown():
-                borderColor = QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 24)
+                borderColor = tintColor(QColor(255, 255, 255, 40) if isDarkTheme() else QColor(0, 0, 0, 24))
                 self._drawCircle(painter, self.indicatorPos, 9, 4, borderColor, Qt.transparent)
 
     def _drawCircle(self, painter: QPainter, center: QPoint, radius, thickness, borderColor, filledColor):
@@ -1012,18 +1012,18 @@ class PillButtonBase:
 
         if not self.isChecked():
             rect = self.rect().adjusted(1, 1, -1, -1)
-            borderColor = QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 15)
+            borderColor = tintColor(QColor(255, 255, 255, 18) if isDark else QColor(0, 0, 0, 15))
 
             if not self.isEnabled():
-                bgColor = QColor(255, 255, 255, 11) if isDark else QColor(249, 249, 249, 75)
+                bgColor = tintColor(QColor(255, 255, 255, 11) if isDark else QColor(249, 249, 249, 75))
             elif self.isPressed or self.isHover:
-                bgColor = QColor(255, 255, 255, 21) if isDark else QColor(249, 249, 249, 128)
+                bgColor = tintColor(QColor(255, 255, 255, 21) if isDark else QColor(249, 249, 249, 128))
             else:
-                bgColor = QColor(255, 255, 255, 15) if isDark else QColor(243, 243, 243, 194)
+                bgColor = tintColor(QColor(255, 255, 255, 15) if isDark else QColor(243, 243, 243, 194))
 
         else:
             if not self.isEnabled():
-                bgColor = QColor(255, 255, 255, 40) if isDark else QColor(0, 0, 0, 55)
+                bgColor = tintColor(QColor(255, 255, 255, 40) if isDark else QColor(0, 0, 0, 55))
             elif self.isPressed:
                 bgColor = ThemeColor.DARK_2.color() if isDark else ThemeColor.LIGHT_3.color()
             elif self.isHover:

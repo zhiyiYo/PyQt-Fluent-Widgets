@@ -8,7 +8,7 @@ from PyQt5.QtGui import QPixmap, QPainter, QColor, QIcon
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGraphicsDropShadowEffect
 
 from ..common.icon import FluentIconBase, drawIcon, toQIcon
-from ..common.style_sheet import isDarkTheme, FluentStyleSheet
+from ..common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ..components.widgets import IconWidget
 from qframelesswindow import TitleBar
 
@@ -89,5 +89,5 @@ class SplashScreen(QWidget):
 
         # draw background
         c = 32 if isDarkTheme() else 255
-        painter.setBrush(QColor(c, c, c))
+        painter.setBrush(tintColor(QColor(c, c, c)))
         painter.drawRect(self.rect())

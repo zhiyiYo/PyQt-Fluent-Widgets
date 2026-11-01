@@ -8,7 +8,7 @@ from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QHBoxLayout, QListWidgetItem, QLabel, QWidget, QStackedWidget, QStyle
 
 from ..widgets.flyout import FlyoutViewBase
-from ...common.style_sheet import isDarkTheme, themeColor, ThemeColor
+from ...common.style_sheet import isDarkTheme, themeColor, ThemeColor, tintColor
 
 
 from .calendar_view import (ScrollItemDelegate, ScrollViewBase,
@@ -52,9 +52,9 @@ class FastScrollItemDelegate(ScrollItemDelegate):
         else:
             c = 255 if isDarkTheme() else 0
             if index == self.pressedIndex:
-                painter.setBrush(QColor(c, c, c, 7))
+                painter.setBrush(tintColor(QColor(c, c, c, 7)))
             elif option.state & QStyle.StateFlag.State_MouseOver:
-                painter.setBrush(QColor(c, c, c, 9))
+                painter.setBrush(tintColor(QColor(c, c, c, 9)))
             else:
                 painter.setBrush(Qt.GlobalColor.transparent)
 
@@ -480,9 +480,9 @@ class FastCalendarView(FlyoutViewBase):
         painter.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         painter.setBrush(
-            QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248))
+            tintColor(QColor(40, 40, 40) if isDarkTheme() else QColor(248, 248, 248)))
         painter.setPen(
-            QColor(23, 23, 23) if isDarkTheme() else QColor(234, 234, 234))
+            tintColor(QColor(23, 23, 23) if isDarkTheme() else QColor(234, 234, 234)))
 
         rect = self.rect().adjusted(1, 1, -1, -1)
         painter.drawRoundedRect(rect, 8, 8)

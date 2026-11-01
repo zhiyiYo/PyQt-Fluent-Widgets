@@ -5,7 +5,7 @@ from PyQt5.QtGui import QPixmap, QPainter, QColor, QPainterPath, QFont, QIcon
 from PyQt5.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLabel
 
 from ...common.overload import singledispatchmethod
-from ...common.style_sheet import isDarkTheme, FluentStyleSheet
+from ...common.style_sheet import isDarkTheme, FluentStyleSheet, tintColor
 from ...common.animation import BackgroundAnimationWidget, DropShadowAnimation
 from ...common.font import setFont
 from ...common.icon import FluentIconBase
@@ -35,13 +35,13 @@ class CardWidget(BackgroundAnimationWidget, QFrame):
         return self._isClickEnabled
 
     def _normalBackgroundColor(self):
-        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
+        return tintColor(QColor(255, 255, 255, 13 if isDarkTheme() else 170))
 
     def _hoverBackgroundColor(self):
-        return QColor(255, 255, 255, 21 if isDarkTheme() else 64)
+        return tintColor(QColor(255, 255, 255, 21 if isDarkTheme() else 64))
 
     def _pressedBackgroundColor(self):
-        return QColor(255, 255, 255, 8 if isDarkTheme() else 64)
+        return tintColor(QColor(255, 255, 255, 8 if isDarkTheme() else 64))
 
     def getBorderRadius(self):
         return self._borderRadius
@@ -113,7 +113,7 @@ class SimpleCardWidget(CardWidget):
         super().__init__(parent)
 
     def _normalBackgroundColor(self):
-        return QColor(255, 255, 255, 13 if isDarkTheme() else 170)
+        return tintColor(QColor(255, 255, 255, 13 if isDarkTheme() else 170))
 
     def _hoverBackgroundColor(self):
         return self._normalBackgroundColor()
@@ -173,10 +173,10 @@ class ElevatedCardWidget(SimpleCardWidget):
         self.elevatedAni.start()
 
     def _hoverBackgroundColor(self):
-        return QColor(255, 255, 255, 16) if isDarkTheme() else QColor(255, 255, 255)
+        return tintColor(QColor(255, 255, 255, 16) if isDarkTheme() else QColor(255, 255, 255))
 
     def _pressedBackgroundColor(self):
-        return QColor(255, 255, 255, 6 if isDarkTheme() else 118)
+        return tintColor(QColor(255, 255, 255, 6 if isDarkTheme() else 118))
 
 
 
