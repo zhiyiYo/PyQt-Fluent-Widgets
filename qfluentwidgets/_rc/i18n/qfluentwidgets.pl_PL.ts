@@ -239,4 +239,58 @@
         <translation>PM</translation>
     </message>
 </context>
+<context>
+    <name>CustomSkinCard</name>
+    <message>
+        <source>Custom…</source>
+        <translation>Własny…</translation>
+    </message>
+</context>
+<context>
+    <name>CustomSkinDialog</name>
+    <message>
+        <source>Custom skin</source>
+        <translation>Własny motyw</translation>
+    </message>
+    <message>
+        <source>Base theme</source>
+        <translation>Motyw podstawowy</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Jasny</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Ciemny</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Kolor akcentu</translation>
+    </message>
+    <message>
+        <source>Surface tint</source>
+        <translation>Odcień powierzchni</translation>
+    </message>
+    <message>
+        <source>Enable surface tint</source>
+        <translation>Włącz odcień powierzchni</translation>
+    </message>
+    <message>
+        <source>Enable tint</source>
+        <translation>Włącz odcień</translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation>Siła</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Zastosuj</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Anuluj</translation>
+    </message>
+</context>
 </TS>

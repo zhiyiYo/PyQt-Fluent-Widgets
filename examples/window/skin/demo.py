@@ -1,73 +1,52 @@
 # coding:utf-8
 import sys
 
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QColor, QImage, QPainter, QLinearGradient
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtWidgets import (QApplication, QWidget, QGridLayout, QHBoxLayout,
-                             QVBoxLayout, QTableWidgetItem, QHeaderView)
+                             QVBoxLayout)
 
-from qfluentwidgets import (FluentIcon as FIF, Action,
-                            MSFluentWindow, NavigationItemPosition, RoundMenu,
+from qfluentwidgets import (FluentIcon as FIF, Action, MSFluentWindow, RoundMenu,
                             PushButton, PrimaryPushButton, TransparentPushButton,
-                            TransparentToolButton, TogglePushButton, HyperlinkButton,
-                            DropDownPushButton, ToolButton, RadioButton, CheckBox,
+                            TogglePushButton, HyperlinkButton, DropDownPushButton,
+                            ToolButton, TransparentToolButton, RadioButton, CheckBox,
                             SwitchButton, FlowLayout,
                             LineEdit, SearchLineEdit, TextEdit, SpinBox, ComboBox,
                             EditableComboBox, DateEdit, DatePicker, CalendarPicker,
-                            Slider, ProgressBar, IndeterminateProgressBar, ProgressRing,
-                            IndeterminateProgressRing,
-                            SegmentedWidget, HorizontalPipsPager, TableWidget,
                             SimpleCardWidget, CardWidget, ElevatedCardWidget,
-                            HorizontalSeparator, ScrollArea,
-                            Flyout, InfoBar, InfoBarIcon, InfoBarPosition,
-                            TeachingTip, TeachingTipTailPosition, MessageBox,
-                            MessageBoxBase, TitleLabel, CaptionLabel, StrongBodyLabel,
-                            BodyLabel, SubtitleLabel, ColorPickerButton,
-                            SwitchSettingCard, ComboBoxSettingCard,
-                            SettingCardGroup, ExpandGroupSettingCard,
-                            CommandBar,
-                            ConfigItem, OptionsConfigItem, BoolValidator, OptionsValidator,
-                            HorizontalFlipView,
-                            tintColor, setTheme, setThemeColor, setSurfaceTint, Theme)
-
-# not exported from the package root
-from qfluentwidgets.components.settings.expand_setting_card import HeaderSettingCard
+                            HorizontalSeparator, ScrollArea, SkinCardView,
+                            CustomSkinDialog, TitleLabel, CaptionLabel,
+                            StrongBodyLabel, FluentSkin, FluentSkinSet,
+                            FluentSkinSetBase, Theme)
 
 
-SKINS = [
-    # name, base theme, accent color, surface tint, tint strength
-    ('Default',    Theme.LIGHT, '#009faa', None,       0),
-    ('Dark',       Theme.DARK,  '#009faa', None,       0),
-    ('Dark gold',  Theme.DARK,  '#D4AF37', '#3A2D12',  0.28),
-    ('Deep ocean', Theme.DARK,  '#4CC2FF', '#12304E',  0.28),
-    ('Paper ink',  Theme.LIGHT, '#7A5C2E', '#F2E8D5',  0.20),
-    ('Celadon',    Theme.LIGHT, '#2F7D6C', '#E7F2EC',  0.22),
-]
+class BrandSkins(FluentSkinSetBase):
+    """ a brand palette, it holds nothing but the four skins below
 
-# in-memory config items, they are not persisted anywhere
-syncEnabledItem = ConfigItem('SkinDemo', 'SyncEnabled', False, BoolValidator())
-languageItem = OptionsConfigItem(
-    'SkinDemo', 'Language', 'English', OptionsValidator(['English', '简体中文']))
+    `FluentSkinSetBase` is the abstract base class, it declares no skin of its
+    own. Inheriting from `FluentSkinSet` instead would bring the 32 built-in
+    presets along, which is only what you want when you extend them on
+    purpose. Call `BrandSkins.register()` as well if you want
+    `FluentSkin.get('Aurora')` to find them, the card view doesn't need it
+    because the skins are passed in explicitly.
 
+    The window background and the surface tint are what actually change the
+    look of a skin. Swapping the accent color alone leaves the large areas
+    untouched, and every skin ends up looking the same.
+    """
 
-def makeFlipImage(text: str) -> QImage:
-    """ create a placeholder image for the flip view """
-    image = QImage(280, 150, QImage.Format_ARGB32)
-    painter = QPainter(image)
-    painter.setRenderHints(QPainter.Antialiasing | QPainter.TextAntialiasing)
+    AURORA_LIGHT = FluentSkin(
+        'Aurora', Theme.LIGHT, '#0E8C7F', '#CDE9E4', 0.55,
+        lightWindowBackground='#CEE6E1', darkWindowBackground='#0E1211')
+    AURORA_DARK = FluentSkin(
+        'Aurora dark', Theme.DARK, '#5FD9C6', '#14312D', 0.55,
+        lightWindowBackground='#CEE6E1', darkWindowBackground='#0E1211')
+    SUNSET = FluentSkin(
+        'Sunset', Theme.LIGHT, '#C8552B', '#F7DCC8', 0.60,
+        lightWindowBackground='#F5DAC2', darkWindowBackground='#1A1210')
+    TERMINAL = FluentSkin(
+        'Terminal', Theme.DARK, '#3DDC84', '#0D2A1B', 0.60,
+        lightWindowBackground='#EDF3EF', darkWindowBackground='#08120D')
 
-    gradient = QLinearGradient(0, 0, 280, 150)
-    gradient.setColorAt(0, QColor(72, 76, 82))
-    gradient.setColorAt(1, QColor(38, 40, 44))
-    painter.fillRect(image.rect(), gradient)
-
-    painter.setPen(QColor(245, 245, 245))
-    font = painter.font()
-    font.setPointSize(16)
-    painter.setFont(font)
-    painter.drawText(image.rect(), Qt.AlignCenter, text)
-    painter.end()
-    return image
 
 
 class Section(SimpleCardWidget):
@@ -76,11 +55,23 @@ class Section(SimpleCardWidget):
     def __init__(self, title: str, parent=None):
         super().__init__(parent)
         self.titleLabel = StrongBodyLabel(title, self)
+        self.hintLabel = CaptionLabel('', self)
+
+        self.headerLayout = QHBoxLayout()
+        self.headerLayout.setSpacing(8)
+        self.headerLayout.addWidget(self.titleLabel)
+        self.headerLayout.addStretch(1)
+        self.headerLayout.addWidget(self.hintLabel)
+
         self.vBoxLayout = QVBoxLayout(self)
         self.vBoxLayout.setContentsMargins(24, 16, 24, 20)
         self.vBoxLayout.setSpacing(14)
-        self.vBoxLayout.addWidget(self.titleLabel)
+        self.vBoxLayout.addLayout(self.headerLayout)
         self.vBoxLayout.addSpacing(4)
+
+    def setHint(self, text: str):
+        """ show a short hint at the right side of the title """
+        self.hintLabel.setText(text)
 
     def addLayout(self, layout):
         self.vBoxLayout.addLayout(layout)
@@ -89,92 +80,16 @@ class Section(SimpleCardWidget):
         self.vBoxLayout.addWidget(widget)
 
 
-class CustomSkinDialog(MessageBoxBase):
-    """ custom skin dialog
+class DemoInterface(ScrollArea):
+    """ the one and only interface of the demo """
 
-    The six presets in the header are demo data; this dialog shows that any
-    combination of the three theme APIs forms a custom skin:
-    setTheme, setThemeColor and setSurfaceTint.
-    """
-
-    def __init__(self, skin, parent=None):
-        super().__init__(parent)
-        self.skin = skin
-        self.titleLabel = SubtitleLabel('Custom skin', self)
-
-        # base theme
-        self.lightRadioButton = RadioButton('Light', self)
-        self.darkRadioButton = RadioButton('Dark', self)
-        if skin[1] == Theme.DARK:
-            self.darkRadioButton.setChecked(True)
-        else:
-            self.lightRadioButton.setChecked(True)
-
-        # accent color
-        self.accentButton = ColorPickerButton(QColor(skin[2]), 'Accent color', self)
-
-        # surface tint
-        self.tintEnabledBox = CheckBox('Enable surface tint', self)
-        self.tintEnabledBox.setChecked(skin[3] is not None)
-        self.tintButton = ColorPickerButton(
-            QColor(skin[3] or '#3A2D12'), 'Surface tint', self)
-        self.tintButton.setEnabled(skin[3] is not None)
-        self.tintEnabledBox.toggled.connect(self.tintButton.setEnabled)
-
-        # tint strength
-        self.strengthSlider = Slider(Qt.Horizontal, self)
-        self.strengthSlider.setRange(0, 100)
-        self.strengthSlider.setValue(int((skin[4] or 0.28) * 100))
-        self.strengthLabel = CaptionLabel(f'{(skin[4] or 0.28):.2f}', self)
-        self.strengthSlider.valueChanged.connect(
-            lambda value: self.strengthLabel.setText(f'{value / 100:.2f}'))
-
-        # assemble the form
-        self.viewLayout.addWidget(self.titleLabel)
-        themeRow = QHBoxLayout()
-        themeRow.addStretch(1)
-        themeRow.addWidget(self.lightRadioButton)
-        themeRow.addWidget(self.darkRadioButton)
-        self.__addRow('Base theme', themeRow)
-        self.__addRow('Accent color', self.accentButton)
-        self.__addRow('Surface tint', self.tintButton)
-        self.__addRow('Enable tint', self.tintEnabledBox)
-
-        strengthRow = QHBoxLayout()
-        strengthRow.addWidget(self.strengthSlider, 1)
-        strengthRow.addWidget(self.strengthLabel)
-        self.__addRow('Strength', strengthRow)
-
-        self.yesButton.setText('Apply')
-        self.cancelButton.setText('Cancel')
-        self.widget.setMinimumWidth(380)
-
-    def __addRow(self, label: str, item):
-        row = QHBoxLayout()
-        row.addWidget(BodyLabel(label, self))
-        row.addStretch(1)
-        if isinstance(item, QWidget):
-            row.addWidget(item)
-        else:
-            row.addLayout(item)
-        self.viewLayout.addLayout(row)
-
-    def customSkin(self):
-        """ return the skin tuple assembled from the current form state """
-        return (
-            'Custom',
-            Theme.DARK if self.darkRadioButton.isChecked() else Theme.LIGHT,
-            self.accentButton.color.name(),
-            self.tintButton.color.name() if self.tintEnabledBox.isChecked() else None,
-            self.strengthSlider.value() / 100,
-        )
-
-
-class Interface(ScrollArea):
-    """ transparent scrollable interface hosted by the fluent window """
+    skinChanged = pyqtSignal(object)
+    customRequested = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setObjectName('demoInterface')
+
         self.scrollWidget = QWidget(self)
         self.vBoxLayout = QVBoxLayout(self.scrollWidget)
 
@@ -185,51 +100,44 @@ class Interface(ScrollArea):
         self.vBoxLayout.setContentsMargins(36, 24, 36, 24)
         self.vBoxLayout.setSpacing(16)
 
+        self.addHeader(
+            'Skin & surface tint',
+            'A skin bundles the base theme, the accent color, the surface tint '
+            'and the window background. Surfaces (cards, flyouts, menus, '
+            'navigation…) follow the tint, accent and content colors stay '
+            'untouched. Pick a preview below, the last four ones are the '
+            'BrandSkins defined at the top of this file.')
+        self.__initSkinsSection()
+        self.__initCardsSection()
+        self.__initButtonsSection()
+        self.__initInputSection()
+        self.vBoxLayout.addStretch(1)
+
     def addHeader(self, title: str, content: str):
         self.vBoxLayout.addWidget(TitleLabel(title, self.scrollWidget))
         caption = CaptionLabel(content, self.scrollWidget)
         caption.setWordWrap(True)
         self.vBoxLayout.addWidget(caption)
         self.vBoxLayout.addSpacing(6)
-
-        # every interface carries the skin buttons in its header
-        skinLayout = QHBoxLayout()
-        skinLayout.setSpacing(10)
-        for skin in SKINS:
-            button = PrimaryPushButton(skin[0], self.scrollWidget)
-            button.setFixedHeight(33)
-            button.clicked.connect(lambda _, s=skin: self.window().applySkin(s))
-            skinLayout.addWidget(button)
-
-        customButton = PushButton('Custom…', self.scrollWidget)
-        customButton.setFixedHeight(33)
-        customButton.clicked.connect(lambda: self.window().showCustomSkinDialog())
-        skinLayout.addWidget(customButton)
-
-        skinLayout.addStretch(1)
-        self.vBoxLayout.addLayout(skinLayout)
-
         self.vBoxLayout.addWidget(HorizontalSeparator(self.scrollWidget))
 
+    def __initSkinsSection(self):
+        self.skinsSection = Section('Skins', self.scrollWidget)
+        skins = FluentSkinSet.skins() + BrandSkins.skins()
+        self.skinCardView = SkinCardView(skins, self.skinsSection)
+        self.skinCardView.skinChanged.connect(self.skinChanged)
+        self.skinCardView.customRequested.connect(self.customRequested)
 
-class BasicInterface(Interface):
+        self.skinsSection.addWidget(self.skinCardView)
+        self.vBoxLayout.addWidget(self.skinsSection)
 
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setObjectName('basicInterface')
+    def setCurrentSkin(self, skin: FluentSkin):
+        """ sync the selected preview without notifying the window again """
+        self.skinsSection.setHint(skin.name)
 
-        self.addHeader(
-            'Skin & surface tint',
-            'Surfaces (cards, flyouts, menus, navigation…) follow the tint, '
-            'accent and content colors stay untouched. Pick a skin from the '
-            'buttons in the header of every interface.')
-
-        self.__initCardsSection()
-        self.__initButtonsSection()
-        self.__initInputSection()
-        self.vBoxLayout.addStretch(1)
-
-    # ------------------------------------------------------------------ cards
+        self.skinCardView.blockSignals(True)
+        self.skinCardView.setCurrentSkin(skin)
+        self.skinCardView.blockSignals(False)
 
     def __initCardsSection(self):
         section = Section('Cards', self.scrollWidget)
@@ -253,8 +161,6 @@ class BasicInterface(Interface):
 
         section.addLayout(layout)
         self.vBoxLayout.addWidget(section)
-
-    # ---------------------------------------------------------------- buttons
 
     def __initButtonsSection(self):
         section = Section('Buttons & switches', self.scrollWidget)
@@ -284,8 +190,6 @@ class BasicInterface(Interface):
 
         section.addLayout(flow)
         self.vBoxLayout.addWidget(section)
-
-    # ------------------------------------------------------------------ input
 
     def __initInputSection(self):
         section = Section('Input & pickers', self.scrollWidget)
@@ -318,186 +222,6 @@ class BasicInterface(Interface):
         self.vBoxLayout.addWidget(section)
 
 
-class ViewsInterface(Interface):
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setObjectName('viewsInterface')
-        self.addHeader('Views & progress', 'Progress, segmented and paged views, '
-                                          'tables, command bar and flip view.')
-
-        self.__initProgressSection()
-        self.__initNavigationSection()
-        self.__initCommandSection()
-        self.vBoxLayout.addStretch(1)
-
-    # --------------------------------------------------------------- progress
-
-    def __initProgressSection(self):
-        section = Section('Progress & slider', self.scrollWidget)
-
-        slider = Slider(Qt.Horizontal)
-        slider.setValue(30)
-
-        barRow = QHBoxLayout()
-        barRow.setSpacing(12)
-        progressBar = ProgressBar()
-        progressBar.setValue(60)
-        indeterminateBar = IndeterminateProgressBar()
-        indeterminateBar.start()
-        barRow.addWidget(progressBar, 1)
-        barRow.addWidget(indeterminateBar, 1)
-
-        ringRow = QHBoxLayout()
-        ringRow.setSpacing(24)
-        ring = ProgressRing()
-        ring.setValue(70)
-        indeterminateRing = IndeterminateProgressRing()
-        indeterminateRing.start()
-        ringRow.addWidget(ring)
-        ringRow.addWidget(indeterminateRing)
-        ringRow.addStretch(1)
-
-        section.addWidget(slider)
-        section.addLayout(barRow)
-        section.addLayout(ringRow)
-        self.vBoxLayout.addWidget(section)
-
-    # ------------------------------------------------------------- navigation
-
-    def __initNavigationSection(self):
-        section = Section('Navigation & views', self.scrollWidget)
-
-        navRow = QHBoxLayout()
-        navRow.setSpacing(24)
-        segmentedWidget = SegmentedWidget(self.scrollWidget)
-        for key, text in [('song', 'Song'), ('album', 'Album'), ('artist', 'Artist')]:
-            segmentedWidget.addItem(routeKey=key, text=text)
-        segmentedWidget.setCurrentItem('song')
-        pager = HorizontalPipsPager(self.scrollWidget)
-        pager.setPageNumber(6)
-        pager.setCurrentIndex(1)
-        navRow.addWidget(segmentedWidget, 1)
-        navRow.addWidget(pager, 0, Qt.AlignVCenter)
-
-        tableView = TableWidget(self.scrollWidget)
-        tableView.setBorderVisible(True)
-        tableView.setBorderRadius(8)
-        tableView.setWordWrap(False)
-        tableView.setFixedHeight(190)
-        tableView.verticalHeader().hide()
-        tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        tableView.setRowCount(4)
-        tableView.setColumnCount(3)
-        tableView.setHorizontalHeaderLabels(['Name', 'Type', 'Note'])
-        for row, cells in enumerate([
-                ['Card', 'Surface', 'Follows the tint'],
-                ['Flyout', 'Surface', 'Follows the tint'],
-                ['Text', 'Content', 'Stays as it is'],
-                ['Accent', 'Content', 'Stays as it is']]):
-            for column, cell in enumerate(cells):
-                tableView.setItem(row, column, QTableWidgetItem(cell))
-
-        section.addLayout(navRow)
-        section.addWidget(tableView)
-        self.vBoxLayout.addWidget(section)
-
-    # ---------------------------------------------------------- command & flip
-
-    def __initCommandSection(self):
-        section = Section('Command bar & flip view', self.scrollWidget)
-
-        commandBar = CommandBar(self.scrollWidget)
-        commandBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        commandBar.addActions([
-            Action(FIF.ADD, 'Add'),
-            Action(FIF.ROTATE, 'Rotate'),
-            Action(FIF.ZOOM_IN, 'Zoom in'),
-        ])
-        commandBar.addSeparator()
-        commandBar.addActions([
-            Action(FIF.EDIT, 'Edit', checkable=True),
-            Action(FIF.DELETE, 'Delete'),
-        ])
-
-        flipView = HorizontalFlipView(self.scrollWidget)
-        flipView.setItemSize(QSize(280, 150))
-        flipView.setFixedHeight(160)
-        for i in range(3):
-            flipView.addImage(makeFlipImage(f'Page {i + 1}'))
-
-        section.addWidget(commandBar)
-        section.addWidget(flipView)
-        self.vBoxLayout.addWidget(section)
-
-
-class DialogsInterface(Interface):
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setObjectName('dialogsInterface')
-        self.addHeader('Flyouts, tips & dialogs',
-                       'Every popup surface follows the tint as well.')
-
-        section = Section('Popups', self.scrollWidget)
-
-        self.flyoutButton = PushButton(FIF.INFO, 'Show flyout')
-        self.flyoutButton.clicked.connect(
-            lambda: self.window().showFlyout(self.flyoutButton))
-        tipButton = PushButton(FIF.EDUCATION, 'Show teaching tip')
-        tipButton.clicked.connect(lambda: self.window().showTeachingTip(tipButton))
-        infoBarButton = PushButton(FIF.MESSAGE, 'Show info bar')
-        infoBarButton.clicked.connect(lambda: self.window().showInfoBar())
-        messageBoxButton = PushButton(FIF.FLAG, 'Show message box')
-        messageBoxButton.clicked.connect(lambda: self.window().showMessageBox())
-
-        for button in (self.flyoutButton, tipButton, infoBarButton, messageBoxButton):
-            section.addWidget(button)
-
-        self.vBoxLayout.addWidget(section)
-        self.vBoxLayout.addStretch(1)
-
-
-class SettingsInterface(Interface):
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setObjectName('settingsInterface')
-        self.addHeader('Setting cards', 'Setting cards paint their own surfaces, '
-                                        'they follow the tint too.')
-
-        self.vBoxLayout.addWidget(HeaderSettingCard(
-            FIF.BRUSH, 'Personalization', 'Customize the look and feel of the app',
-            self.scrollWidget))
-
-        personalGroup = SettingCardGroup('Sync & language', self.scrollWidget)
-        personalGroup.addSettingCards([
-            SwitchSettingCard(
-                FIF.SYNC, 'Sync settings',
-                'Sync your preferences between devices',
-                configItem=syncEnabledItem, parent=personalGroup),
-            ComboBoxSettingCard(
-                languageItem, FIF.LANGUAGE, 'Language', 'The interface language',
-                texts=['English', '简体中文'], parent=personalGroup),
-        ])
-        self.vBoxLayout.addWidget(personalGroup)
-
-        expandCard = ExpandGroupSettingCard(
-            FIF.SETTING, 'More settings', 'Expand to see the grouped options',
-            self.scrollWidget)
-        expandCard.addGroup(
-            FIF.WIFI, 'Auto connect', 'Connect to known networks automatically',
-            SwitchButton())
-        expandCard.addGroup(
-            FIF.TAG, 'Compact mode', 'Reduce the spacing between widgets',
-            RadioButton(''))
-        expandCard.addGroup(
-            FIF.QUIET_HOURS, 'Quiet hours', 'Silence notifications',
-            CheckBox(''))
-        self.vBoxLayout.addWidget(expandCard)
-        self.vBoxLayout.addStretch(1)
-
-
 class Demo(MSFluentWindow):
 
     def __init__(self):
@@ -507,76 +231,27 @@ class Demo(MSFluentWindow):
         # the window background is painted by ourselves, disable the win11
         # mica material so the tinted background is visible on every platform
         self.setMicaEffectEnabled(False)
-        self.setWindowTitle('Surface tint demo')
-        self.resize(1000, 720)
+        self.setWindowTitle('Skin demo')
+        self.resize(1000, 860)
 
-        # sub interfaces
-        self.basicInterface = BasicInterface(self)
-        self.viewsInterface = ViewsInterface(self)
-        self.dialogsInterface = DialogsInterface(self)
-        self.settingsInterface = SettingsInterface(self)
+        self.demoInterface = DemoInterface(self)
+        self.demoInterface.skinChanged.connect(self.applySkin)
+        self.demoInterface.customRequested.connect(self.showCustomSkinDialog)
+        self.addSubInterface(self.demoInterface, FIF.BRUSH, 'Skin')
 
-        self.addSubInterface(self.basicInterface, FIF.HOME, 'Basic')
-        self.addSubInterface(self.viewsInterface, FIF.ALBUM, 'Views')
-        self.addSubInterface(self.dialogsInterface, FIF.MESSAGE, 'Dialogs')
-        self.addSubInterface(
-            self.settingsInterface, FIF.SETTING, 'Settings',
-            position=NavigationItemPosition.BOTTOM)
+        self.applySkin(FluentSkinSet.DEFAULT_LIGHT)
 
-        self.applySkin(SKINS[0])
-
-    def applySkin(self, skin):
-        name, base, accent, tint, strength = skin
-        setTheme(base, save=False)
-        setThemeColor(accent, save=False)
-        setSurfaceTint(tint, strength)
-
-        # the fluent window paints its own background, so it is one of the
-        # custom-color APIs: feed it the tinted colors ourselves
-        self.setCustomBackgroundColor(
-            tintColor(QColor(240, 244, 249)), tintColor(QColor(32, 32, 32)))
+    def applySkin(self, skin: FluentSkin):
+        # the skin applies the theme, the accent color and the surface tint,
+        # and paints the background of this window with the tinted colors
+        skin.apply(self)
         self.currentSkin = skin
+        self.demoInterface.setCurrentSkin(skin)
 
     def showCustomSkinDialog(self):
         dialog = CustomSkinDialog(self.currentSkin, self)
         if dialog.exec():
             self.applySkin(dialog.customSkin())
-
-    def showFlyout(self, target):
-        Flyout.create(
-            icon=InfoBarIcon.INFORMATION,
-            title='Flyout',
-            content='The flyout background follows the surface tint as well',
-            target=target,
-            parent=self,
-            isClosable=True
-        )
-
-    def showTeachingTip(self, target):
-        TeachingTip.create(
-            target=target,
-            icon=InfoBarIcon.SUCCESS,
-            title='Teaching tip',
-            content='The bubble and border of the teaching tip are tinted too.',
-            isClosable=True,
-            tailPosition=TeachingTipTailPosition.TOP,
-            duration=2500,
-            parent=self
-        )
-
-    def showInfoBar(self):
-        InfoBar.success(
-            title='Info bar',
-            content='A success message from the info bar.',
-            position=InfoBarPosition.TOP,
-            duration=2500,
-            parent=self
-        )
-
-    def showMessageBox(self):
-        MessageBox(
-            'Message box', 'The message box background follows the surface tint.',
-            self).exec_()
 
 
 if __name__ == '__main__':

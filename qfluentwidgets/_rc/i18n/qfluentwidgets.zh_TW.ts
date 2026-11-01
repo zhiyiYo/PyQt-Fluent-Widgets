@@ -521,4 +521,58 @@
         <translation>下午</translation>
     </message>
 </context>
+<context>
+    <name>CustomSkinCard</name>
+    <message>
+        <source>Custom…</source>
+        <translation>自訂…</translation>
+    </message>
+</context>
+<context>
+    <name>CustomSkinDialog</name>
+    <message>
+        <source>Custom skin</source>
+        <translation>自訂外觀</translation>
+    </message>
+    <message>
+        <source>Base theme</source>
+        <translation>基礎主題</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>淺色</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>深色</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>強調色</translation>
+    </message>
+    <message>
+        <source>Surface tint</source>
+        <translation>表面染色</translation>
+    </message>
+    <message>
+        <source>Enable surface tint</source>
+        <translation>啟用表面染色</translation>
+    </message>
+    <message>
+        <source>Enable tint</source>
+        <translation>啟用染色</translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation>強度</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>套用</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
 </TS>

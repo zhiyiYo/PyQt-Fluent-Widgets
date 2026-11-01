@@ -521,4 +521,58 @@
         <translation>PM</translation>
     </message>
 </context>
+<context>
+    <name>CustomSkinCard</name>
+    <message>
+        <source>Custom…</source>
+        <translation>Другая…</translation>
+    </message>
+</context>
+<context>
+    <name>CustomSkinDialog</name>
+    <message>
+        <source>Custom skin</source>
+        <translation>Своя тема</translation>
+    </message>
+    <message>
+        <source>Base theme</source>
+        <translation>Базовая тема</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Светлая</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Тёмная</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Цвет акцента</translation>
+    </message>
+    <message>
+        <source>Surface tint</source>
+        <translation>Оттенок поверхности</translation>
+    </message>
+    <message>
+        <source>Enable surface tint</source>
+        <translation>Включить оттенок поверхности</translation>
+    </message>
+    <message>
+        <source>Enable tint</source>
+        <translation>Включить оттенок</translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation>Интенсивность</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Применить</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+</context>
 </TS>

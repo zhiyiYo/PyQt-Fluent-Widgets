@@ -239,4 +239,58 @@
         <translation>PM</translation>
     </message>
 </context>
+<context>
+    <name>CustomSkinCard</name>
+    <message>
+        <source>Custom…</source>
+        <translation>مخصص…</translation>
+    </message>
+</context>
+<context>
+    <name>CustomSkinDialog</name>
+    <message>
+        <source>Custom skin</source>
+        <translation>مظهر مخصص</translation>
+    </message>
+    <message>
+        <source>Base theme</source>
+        <translation>السمة الأساسية</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>فاتح</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>داكن</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>لون التمييز</translation>
+    </message>
+    <message>
+        <source>Surface tint</source>
+        <translation>صبغة السطح</translation>
+    </message>
+    <message>
+        <source>Enable surface tint</source>
+        <translation>تمكين صبغة السطح</translation>
+    </message>
+    <message>
+        <source>Enable tint</source>
+        <translation>تمكين الصبغة</translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation>الشدة</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>تطبيق</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>إلغاء</translation>
+    </message>
+</context>
 </TS>

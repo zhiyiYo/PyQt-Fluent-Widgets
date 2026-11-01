@@ -240,4 +240,58 @@
         <translation>PM</translation>
     </message>
 </context>
+<context>
+    <name>CustomSkinCard</name>
+    <message>
+        <source>Custom…</source>
+        <translation>Custom…</translation>
+    </message>
+</context>
+<context>
+    <name>CustomSkinDialog</name>
+    <message>
+        <source>Custom skin</source>
+        <translation>Custom skin</translation>
+    </message>
+    <message>
+        <source>Base theme</source>
+        <translation>Base theme</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Light</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Dark</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Accent color</translation>
+    </message>
+    <message>
+        <source>Surface tint</source>
+        <translation>Surface tint</translation>
+    </message>
+    <message>
+        <source>Enable surface tint</source>
+        <translation>Enable surface tint</translation>
+    </message>
+    <message>
+        <source>Enable tint</source>
+        <translation>Enable tint</translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation>Strength</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Apply</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
 </TS>

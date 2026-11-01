@@ -7,6 +7,7 @@ from .style_sheet import (setStyleSheet, getStyleSheet, setTheme, ThemeColor, th
                           StyleSheetFile, StyleSheetCompose, CustomStyleSheet, toggleTheme, setCustomStyleSheet, renderQss,
                           setSurfaceTint, surfaceTint, surfaceTintStrength, applySurfaceTint, tintColor,
                           isSurfaceTintEnabled)
+from .skin import FluentSkin, FluentSkinSet, FluentSkinSetBase
 from .smooth_scroll import SmoothScroll, SmoothMode
 from .translator import FluentTranslator
 from .router import qrouter, Router
