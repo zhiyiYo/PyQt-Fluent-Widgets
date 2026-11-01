@@ -17,6 +17,7 @@ class Demo(QWidget):
 
         layout.setWidgetMinimumWidth(150)
         # layout.setWidgetMaximumWidth(160)
+        # layout.setUniformRowHeight(True)
         layout.setContentsMargins(30, 30, 30, 30)
         layout.setVerticalSpacing(20)
         layout.setHorizontalSpacing(10)

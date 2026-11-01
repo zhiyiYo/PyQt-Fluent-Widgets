@@ -242,91 +242,191 @@ class AdaptiveFlowLayout(FlowLayout):
         """
         Parameters
         ----------
-        useMinimumSizeHint: bool
-            * If `True`, use the widget's minimumSizeHint to calculate the layout,
-            maintaining the relative size of widgets but scaling proportionally to fill rows.
-            * If `False`, use a uniform minCardWidth as the base width
+        parent:
+            parent window or layout
+
+        needAni: bool
+            whether to add moving animation
+
+        isTight: bool
+            whether to use the tight layout when widgets are hidden
         """
         super().__init__(parent, needAni, isTight)
         self._widgetMinimumWidth = 200
         self._widgetMaximumWidth = None
+        self._uniformRowHeight = False
+        self._targetCache = None
 
     def setWidgetMinimumWidth(self, width: int):
         self._widgetMinimumWidth = width
+        self._invalidateCache()
 
     def widgetMinimumWidth(self):
         return self._widgetMinimumWidth
 
     def setWidgetMaximumWidth(self, width):
         self._widgetMaximumWidth = width
+        self._invalidateCache()
 
     def widgetMaximumWidth(self):
         return self._widgetMaximumWidth
 
-    def _doLayout(self, rect: QRect, move: bool):
-        aniRestart = False
-        margin = self.contentsMargins()
+    def setUniformRowHeight(self, isEnabled: bool):
+        """ set whether items in the same row are stretched to the row height """
+        self._uniformRowHeight = isEnabled
+        self._invalidateCache()
+
+    def isUniformRowHeight(self):
+        """ get whether items in the same row are stretched to the row height """
+        return self._uniformRowHeight
+
+    def addItem(self, item):
+        super().addItem(item)
+        self._invalidateCache()
+
+    def insertItem(self, index, item):
+        super().insertItem(index, item)
+        self._invalidateCache()
+
+    def takeAt(self, index: int):
+        self._invalidateCache()
+        return super().takeAt(index)
+
+    def setVerticalSpacing(self, spacing: int):
+        super().setVerticalSpacing(spacing)
+        self._invalidateCache()
+
+    def setHorizontalSpacing(self, spacing: int):
+        super().setHorizontalSpacing(spacing)
+        self._invalidateCache()
+
+    def setContentsMargins(self, *args):
+        super().setContentsMargins(*args)
+        self._invalidateCache()
+
+    def invalidate(self):
+        self._invalidateCache()
+        super().invalidate()
+
+    def _invalidateCache(self):
+        self._targetCache = None
+
+    def _cardCountAndWidth(self, availableWidth):
+        """ get the number of cards per row and the uniform card width """
         spaceX = self.horizontalSpacing()
-        spaceY = self.verticalSpacing()
 
-        # Calculate available width
-        availableWidth = rect.width() - margin.left() - margin.right()
-
-        # Calculate the number of cards that fit per row
         if self._widgetMinimumWidth + spaceX > 0:
             cardsPerRow = max(1, (availableWidth + spaceX) // (self._widgetMinimumWidth + spaceX))
         else:
             cardsPerRow = 1
 
-        # Calculate card width to fill each row
         if cardsPerRow > 1:
             cardWidth = (availableWidth - (cardsPerRow - 1) * spaceX) // cardsPerRow
         else:
             cardWidth = availableWidth
 
-        # Apply maximum width limit
+        cardWidth = max(1, cardWidth)
+        isClamped = False
         if self._widgetMaximumWidth is not None and cardWidth > self._widgetMaximumWidth:
             cardWidth = self._widgetMaximumWidth
+            isClamped = True
 
-        # Perform layout
-        x = rect.x() + margin.left()
-        y = rect.y() + margin.top()
-        rowHeight = 0
-        colIndex = 0
+        return cardsPerRow, cardWidth, isClamped
 
-        for i, item in enumerate(self._items):
-            if item.widget() and not item.widget().isVisible() and self.isTight:
-                continue
+    def _itemHeightForWidth(self, item, width):
+        """ get the height of item at the given width """
+        if item.hasHeightForWidth():
+            widget = item.widget()
+            if widget is not None:
+                # trust the widget's own height-for-width contract before
+                # falling back to the wrapper
+                height = widget.heightForWidth(width)
+                if height > 0:
+                    return height
 
-            # Calculate next position
-            nextX = x + cardWidth + spaceX
+            return max(1, item.heightForWidth(width))
 
-            # Need to wrap to new line
-            if colIndex >= cardsPerRow and cardsPerRow > 0:
-                x = rect.x() + margin.left()
-                y = y + rowHeight + spaceY
-                nextX = x + cardWidth + spaceX
-                rowHeight = 0
-                colIndex = 0
+        return max(1, item.sizeHint().height())
 
-            if move:
-                # Set widget size to calculated card width, maintaining original height
-                targetSize = QSize(cardWidth, item.sizeHint().height())
-                target = QRect(QPoint(x, y), targetSize)
+    def _doLayout(self, rect: QRect, move: bool):
+        aniRestart = False
+        targets, height = self._layoutTargets(rect)
 
-                if not self.needAni:
+        if move:
+            needAni = self.needAni
+            for item, target in targets:
+                if not needAni:
                     item.setGeometry(target)
-                elif i < len(self._anis) and target != self._anis[i].endValue():
-                    self._anis[i].stop()
-                    self._anis[i].setEndValue(target)
-                    aniRestart = True
-
-            x = nextX
-            rowHeight = max(rowHeight, item.sizeHint().height())
-            colIndex += 1
+                else:
+                    ani = None
+                    if item.widget():
+                        ani = item.widget().property('flowAni')
+                    if ani is not None and target != ani.endValue():
+                        ani.stop()
+                        ani.setEndValue(target)
+                        aniRestart = True
 
         if self.needAni and aniRestart:
             self._aniGroup.stop()
             self._aniGroup.start()
 
-        return y + rowHeight + margin.bottom() - rect.y()
+        return height
+
+    def _layoutTargets(self, rect: QRect):
+        """ compute the target geometry of every item, reusing the cached
+        result until the layout is invalidated """
+        key = (rect.x(), rect.y(), rect.width())
+        if self._targetCache is not None and self._targetCache[0] == key:
+            return self._targetCache[1], self._targetCache[2]
+
+        margin = self.contentsMargins()
+        spaceX = self.horizontalSpacing()
+        spaceY = self.verticalSpacing()
+
+        availableWidth = max(1, rect.width() - margin.left() - margin.right())
+        cardsPerRow, cardWidth, isClamped = self._cardCountAndWidth(availableWidth)
+
+        baseX = rect.x() + margin.left()
+        # center the whole row when the card width is clamped to the maximum
+        # width, so that the alignment stays consistent across column changes
+        if isClamped:
+            rowWidth = cardsPerRow * cardWidth + (cardsPerRow - 1) * spaceX
+            baseX += (availableWidth - rowWidth) // 2
+
+        y = rect.y() + margin.top()
+        colIndex = 0
+        targets = []
+        row = []
+        uniformRowHeight = self._uniformRowHeight
+        itemHeightForWidth = self._itemHeightForWidth
+
+        def layoutRow():
+            nonlocal y
+            rowHeight = max(height for _, height in row)
+            x = baseX
+            for item, height in row:
+                if uniformRowHeight:
+                    height = rowHeight
+                targets.append((item, QRect(x, y, cardWidth, height)))
+                x = x + cardWidth + spaceX
+            row.clear()
+            return rowHeight
+
+        for item in self._items:
+            if item.widget() and item.widget().isHidden() and self.isTight:
+                continue
+
+            # need to wrap to new line
+            if colIndex >= cardsPerRow:
+                y = y + layoutRow() + spaceY
+                colIndex = 0
+
+            row.append((item, itemHeightForWidth(item, cardWidth)))
+            colIndex += 1
+
+        if row:
+            y = y + layoutRow()
+
+        height = y + margin.bottom() - rect.y()
+        self._targetCache = (key, targets, height)
+        return targets, height
