@@ -196,6 +196,7 @@ class CommandBar(QFrame):
         self._spacing = 4
         self._commandHiddenWidgets = set()
         self._layoutAlignment = Qt.AlignLeft
+        self._collapsibleWidgetFactories = {}  # type: dict
 
         self.moreButton = MoreActionsButton(self)
         self.moreButton.clicked.connect(self._showMoreActionsMenu)
@@ -258,6 +259,38 @@ class CommandBar(QFrame):
         super().insertAction(before, action)
         return button
 
+    def insertActionAt(self, index: int, action: QAction):
+        """ insert action at the position in the command bar
+
+        Parameters
+        ----------
+        index: int
+            the position at which the action is inserted
+
+        action: QAction
+            the action to insert
+        """
+        if action in self.actions():
+            return
+
+        index = max(0, min(index, len(self._widgets)))
+        button = self._createButton(action)
+        self._insertWidgetToLayout(index, button)
+
+        # keep the order of actions consistent with buttons
+        beforeAction = None
+        for w in self._widgets[index + 1:]:
+            if isinstance(w, CommandButton):
+                beforeAction = w.action()
+                break
+
+        if beforeAction is None:
+            super().addAction(action)
+        else:
+            super().insertAction(beforeAction, action)
+
+        return button
+
     def addSeparator(self):
         self.insertSeparator(-1)
 
@@ -267,6 +300,24 @@ class CommandBar(QFrame):
     def addWidget(self, widget: QWidget):
         """ add widget to command bar """
         self._insertWidgetToLayout(-1, widget)
+
+    def addCollapsibleWidget(self, widget: QWidget, menuFactory):
+        """ add custom widget which can be collapsed into more actions menu
+
+        Parameters
+        ----------
+        widget: QWidget
+            custom widget
+
+        menuFactory: Callable
+            the callable which returns a `RoundMenu`, a `QAction` or a list
+            of them. It will be called when `widget` is collapsed into the
+            more actions menu
+        """
+        self._collapsibleWidgetFactories[widget] = menuFactory
+
+        if widget not in self._widgets:
+            self.addWidget(widget)
 
     def setCommandWidgetVisible(self, widget: QWidget, isVisible: bool):
         """ set whether the widget is visible in command bar
@@ -314,6 +365,7 @@ class CommandBar(QFrame):
 
         self._widgets.remove(widget)
         self._commandHiddenWidgets.discard(widget)
+        self._collapsibleWidgetFactories.pop(widget, None)
         self.updateGeometry()
 
     def removeHiddenAction(self, action: QAction):
@@ -504,14 +556,9 @@ class CommandBar(QFrame):
         """ show more actions menu """
         self.moreButton.clearState()
 
-        actions = self._hiddenActions.copy()
-
-        for w in reversed(self._hiddenWidgets):
-            if isinstance(w, CommandButton):
-                actions.insert(0, w.action())
-
         menu = CommandMenu(self)
-        menu.addActions(actions)
+        self._addHiddenWidgetItemsToMenu(menu)
+        menu.addActions(self._hiddenActions)
 
         x = -menu.width() + menu.layout().contentsMargins().right() + \
             self.moreButton.width() + 18
@@ -521,7 +568,76 @@ class CommandBar(QFrame):
             y = -5
 
         pos = self.moreButton.mapToGlobal(QPoint(x, y))
+        menu.closedSignal.connect(menu.deleteLater)
         menu.exec(pos, aniType=self._menuAnimation)
+
+    def _addHiddenWidgetItemsToMenu(self, menu: RoundMenu):
+        """ add the menu items of hidden widgets to menu """
+        for widget in self._hiddenWidgets:
+            if isinstance(widget, CommandButton):
+                menu.addAction(widget.action())
+            elif widget in self._collapsibleWidgetFactories:
+                payload = self._collapsibleWidgetFactories[widget]()
+
+                if not widget.isEnabled():
+                    action = self._createDisabledMenuAction(payload, menu)
+                    if action is not None:
+                        menu.addAction(action)
+                else:
+                    self._addMenuPayloadToMenu(menu, payload)
+
+    def _addMenuPayloadToMenu(self, menu: RoundMenu, payload):
+        """ add the menu items described by the return value of menu factory """
+        if payload is None:
+            return
+
+        if isinstance(payload, RoundMenu):
+            menu.addMenu(self._copyMenu(payload, menu))
+        elif isinstance(payload, QAction):
+            menu.addAction(payload)
+        elif isinstance(payload, (list, tuple)):
+            for item in payload:
+                self._addMenuPayloadToMenu(menu, item)
+
+    def _copyMenu(self, source: RoundMenu, parent=None) -> RoundMenu:
+        """ return a copy of the structure of source menu """
+        menu = CommandMenu(parent)
+        menu.setTitle(source.title())
+        menu.setIcon(source.icon())
+        menu.setMaxVisibleItems(source.view.maxVisibleItems())
+
+        for i in range(source.view.count()):
+            item = source.view.item(i)
+            if item is None:
+                continue
+
+            if item.data(Qt.DecorationRole) == "seperator":
+                menu.addSeparator()
+            elif isinstance(item.data(Qt.UserRole), RoundMenu):
+                menu.addMenu(self._copyMenu(item.data(Qt.UserRole), menu))
+            elif source.view.itemWidget(item) is not None:
+                # custom widget items can't be copied
+                continue
+            elif isinstance(item.data(Qt.UserRole), QAction):
+                menu.addAction(item.data(Qt.UserRole))
+
+        return menu
+
+    def _createDisabledMenuAction(self, payload, parent: QWidget) -> QAction:
+        """ return a disabled action occupying the place of payload """
+        if isinstance(payload, RoundMenu):
+            icon, text = payload.icon(), payload.title()
+        elif isinstance(payload, QAction):
+            icon, text = payload.icon(), payload.text()
+        else:
+            return None
+
+        if not text and icon.isNull():
+            return None
+
+        action = QAction(icon, text, parent)
+        action.setEnabled(False)
+        return action
 
 
 class CommandViewMenu(CommandMenu):
@@ -558,14 +674,9 @@ class CommandViewBar(CommandBar):
     def _showMoreActionsMenu(self):
         self.moreButton.clearState()
 
-        actions = self._hiddenActions.copy()
-
-        for w in reversed(self._hiddenWidgets):
-            if isinstance(w, CommandButton):
-                actions.insert(0, w.action())
-
         menu = CommandViewMenu(self)
-        menu.addActions(actions)
+        self._addHiddenWidgetItemsToMenu(menu)
+        menu.addActions(self._hiddenActions)
 
         # adjust the shape of view
         view = self.parent()  # type: CommandBarView
@@ -573,6 +684,7 @@ class CommandViewBar(CommandBar):
 
         # adjust the shape of menu
         menu.closedSignal.connect(lambda: view.setMenuVisible(False))
+        menu.closedSignal.connect(menu.deleteLater)
         menu.setDropDown(self.isMenuDropDown(), menu.view.width() > view.width()+5)
 
         # adjust menu size
@@ -616,6 +728,9 @@ class CommandBarView(FlyoutViewBase):
 
     def addWidget(self, widget: QWidget):
         self.bar.addWidget(widget)
+
+    def addCollapsibleWidget(self, widget: QWidget, menuFactory):
+        self.bar.addCollapsibleWidget(widget, menuFactory)
 
     def setSpaing(self, spacing: int):
         self.bar.setSpaing(spacing)
