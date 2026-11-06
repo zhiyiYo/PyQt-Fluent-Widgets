@@ -1,32 +1,19 @@
 # coding:utf-8
-from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtWidgets import QAction
+from PyQt5.QtCore import Qt
 
 
 from .acrylic_menu import AcrylicMenuBase, AcrylicMenuActionListWidget
 from .acrylic_line_edit import AcrylicLineEditBase
 from ..widgets.combo_box import ComboBoxMenu, ComboBox, EditableComboBox
-from ..widgets.menu import MenuAnimationType, RoundMenu, IndicatorMenuItemDelegate
 from ..settings import SettingCard
 from ...common.config import OptionsConfigItem, qconfig
 
 
-class AcrylicComboMenuActionListWidget(AcrylicMenuActionListWidget):
-
-    def _topMargin(self):
-        return 2
-
-
-class AcrylicComboBoxMenu(AcrylicMenuBase, RoundMenu):
+class AcrylicComboBoxMenu(AcrylicMenuBase, ComboBoxMenu):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.setUpMenu(AcrylicComboMenuActionListWidget(self))
-
-        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.view.setItemDelegate(IndicatorMenuItemDelegate())
-        self.view.setObjectName('comboListWidget')
-        self.setItemHeight(33)
+        self.setUpMenu(AcrylicMenuActionListWidget(self))
 
 
 class AcrylicComboBox(ComboBox):
@@ -71,7 +58,7 @@ class AcrylicComboBoxSettingCard(SettingCard):
         super().__init__(icon, title, content, parent)
         self.configItem = configItem
         self.comboBox = AcrylicComboBox(self)
-        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignRight)
+        self.hBoxLayout.addWidget(self.comboBox, 0, Qt.AlignmentFlag.AlignRight)
         self.hBoxLayout.addSpacing(16)
 
         self.optionToText = {o: t for o, t in zip(configItem.options, texts)}
