@@ -32,10 +32,11 @@ class ScrollArea(QScrollArea):
             self.scrollDelagate.horizonSmoothScroll.setSmoothMode(mode)
 
     def enableTransparentBackground(self):
-        self.setStyleSheet("QScrollArea{border: none; background: transparent}")
-
-        if self.widget():
-            self.widget().setStyleSheet("QWidget{background: transparent}")
+        self.setStyleSheet(
+            "QScrollArea{border: none; background: transparent}"
+            " QScrollArea>QWidget>QWidget{background: transparent}"
+            " QScrollArea>QWidget>QWidget QWidget{background: transparent}"
+        )
 
 
 class SingleDirectionScrollArea(QScrollArea):
@@ -89,10 +90,11 @@ class SingleDirectionScrollArea(QScrollArea):
         e.setAccepted(True)
 
     def enableTransparentBackground(self):
-        self.setStyleSheet("QScrollArea{border: none; background: transparent}")
-
-        if self.widget():
-            self.widget().setStyleSheet("QWidget{background: transparent}")
+        self.setStyleSheet(
+            "QScrollArea{border: none; background: transparent}"
+            " QScrollArea>QWidget>QWidget{background: transparent}"
+            " QScrollArea>QWidget>QWidget QWidget{background: transparent}"
+        )
 
 
 class SmoothScrollArea(QScrollArea):
@@ -120,7 +122,8 @@ class SmoothScrollArea(QScrollArea):
         bar.setScrollAnimation(duration, easing)
 
     def enableTransparentBackground(self):
-        self.setStyleSheet("QScrollArea{border: none; background: transparent}")
-
-        if self.widget():
-            self.widget().setStyleSheet("QWidget{background: transparent}")
+        self.setStyleSheet(
+            "QScrollArea{border: none; background: transparent}"
+            " QScrollArea>QWidget>QWidget{background: transparent}"
+            " QScrollArea>QWidget>QWidget QWidget{background: transparent}"
+        )
